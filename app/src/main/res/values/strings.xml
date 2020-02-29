@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Learning Assistant</string>
+    <string name="splash_countdown">跳过 3 秒</string>
+    <string name="splash_version">版本号 1.0</string>
+</resources>
