@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import butterknife.Unbinder;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private Unbinder binder;
+    private Context context;
     @LayoutRes
     public abstract int getLayoutId();
 
@@ -24,8 +26,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         binder = ButterKnife.bind(this);
+        context = this;
         initView();
         loadData();
+    }
+
+    public Context getContext() {
+        return context;
     }
 
     public abstract void initView();

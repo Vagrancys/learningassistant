@@ -3,12 +3,16 @@ package com.vargancys.learningassistant.module.common;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.CountDownTimer;
+import android.provider.SyncStateContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.utils.CacheUtils;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -22,6 +26,7 @@ import butterknife.OnClick;
  */
 public class SplashActivity extends BaseActivity {
 
+    private static final String TAG = "SplashActivity";
     @BindView(R.id.splash_image)
     ImageView splashImage;
     @BindView(R.id.splash_countdown)
@@ -45,7 +50,13 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onFinish() {
-                MainActivity.launch(SplashActivity.this);
+                if(CacheUtils.getBoolean(getContext(), ConstantsUtils.GROUP_STATE)){
+
+                    Log.e(TAG,"Cache");
+                    MainActivity.launch(SplashActivity.this);
+                }else{
+                    GroupActivity.launch(SplashActivity.this);
+                }
                 finish();
                 countDownTimer.cancel();
             }
@@ -64,11 +75,11 @@ public class SplashActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.splash_image:
-                ToastUtils.ToastText(this,"广告图片点击事件!");
+                //ToastUtils.ToastText(this,"广告图片点击事件!");
                 countDownTimer.cancel();
                 break;
             case R.id.splash_countdown:
-                ToastUtils.ToastText(this,"倒计时点击事件!");
+                //ToastUtils.ToastText(this,"倒计时点击事件!");
                 MainActivity.launch(SplashActivity.this);
                 countDownTimer.cancel();
                 finish();

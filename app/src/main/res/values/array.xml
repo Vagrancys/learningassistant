@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="group_title">
+        <item>首页 ：让你选择要学习的路径!</item>
+        <item>搜索 ：让你看到知识的海洋!</item>
+        <item>关卡 ：让你知道世界的残酷!</item>
+        <item>天梯 ：让你知道你有多屌!</item>
+        <item>个人中心 ：让你掌握世界的方方面面!</item>
+    </string-array>
+
+    <string-array name="main_title">
+        <item>首页</item>
+        <item>搜索</item>
+        <item>关卡</item>
+        <item>天梯</item>
+        <item>我的</item>
+    </string-array>
+</resources>

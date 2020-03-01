@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_width_230dp">
+        <LinearLayout
+            android:id="@+id/group_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+        <ImageView
+            android:id="@+id/group_point"
+            android:layout_width="@dimen/margin_width_10dp"
+            android:layout_height="@dimen/margin_width_10dp"
+            android:background="@drawable/group_point_shape"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/group_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/group_next"
+        android:textSize="@dimen/text_size_24sp"
+        android:textColor="@color/white"
+        android:background="@drawable/group_next_shape"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_width_200dp"
+        android:visibility="gone"/>
+</RelativeLayout>
