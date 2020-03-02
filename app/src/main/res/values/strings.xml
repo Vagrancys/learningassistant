@@ -5,4 +5,8 @@
     <string name="group_next">开始学习</string>
     <string name="know_add">添加知识</string>
     <string name="know_help">帮助</string>
+    <string name="content_item_title">TextView</string>
+    <string name="content_item_summary">TextView的使用方法和api详解</string>
+    <string name="content_item_study_title">可以不参照代码而独立编写使用TextView的api，并知道该api的效果(作用)</string>
+    <string name="content_item_count">0 / 10 次</string>
 </resources>

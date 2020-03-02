@@ -17,7 +17,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="@dimen/margin_width_10dp">
+                android:padding="@dimen/margin_width_10dp">
                 <ImageView
                     android:id="@+id/content_menu"
                     android:layout_width="wrap_content"
@@ -27,15 +27,16 @@
                     android:src="@drawable/content_menu_normal"/>
                 <ImageView
                     android:id="@+id/add_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/margin_width_30dp"
+                    android:layout_height="@dimen/margin_width_30dp"
                     android:layout_toStartOf="@+id/help_menu"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/know_add_normal"/>
+                    android:src="@drawable/know_add_normal"
+                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
                 <ImageView
                     android:id="@+id/help_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/margin_width_25dp"
+                    android:layout_height="@dimen/margin_width_25dp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/know_help_normal"
                     android:layout_alignParentEnd="true"/>

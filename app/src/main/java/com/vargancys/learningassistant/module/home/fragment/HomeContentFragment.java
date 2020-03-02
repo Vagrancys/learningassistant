@@ -46,6 +46,7 @@ public class HomeContentFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        //recyclerView.setAdapter();
         contentMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +54,6 @@ public class HomeContentFragment extends BaseFragment {
                 openDrawer();
             }
         });
-        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
     }
 
     private void openDrawer() {
