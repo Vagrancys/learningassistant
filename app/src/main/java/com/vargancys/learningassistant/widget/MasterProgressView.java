@@ -17,9 +17,19 @@ import com.vargancys.learningassistant.utils.DensityUtils;
  */
 public class MasterProgressView extends View {
     private Paint mPaint;
+    private Paint mLinePaint;
+    private Paint mTextPaint;
+    private int mStrokeWidth;
     private int CircleWidth;
-    private int LineLength;
+    private int LineWidth;
     private int Width;
+    private int mMasterLevel = 2;
+    private String[] mMasterTitle = {
+            "入门","了解","熟悉","精通","之父"
+    };
+    private int[] mColor = {
+            Color.GRAY,Color.CYAN,Color.RED,Color.GREEN,Color.MAGENTA,Color.DKGRAY
+    };
     public MasterProgressView(Context context) {
         super(context);
         initView();
@@ -35,20 +45,28 @@ public class MasterProgressView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.GREEN);
-        mPaint.setStrokeWidth(25);
+        mPaint.setStrokeWidth(mStrokeWidth);
+        mLinePaint = new Paint();
+        mLinePaint.setAntiAlias(true);
+        mLinePaint.setColor(Color.GRAY);
+        mLinePaint.setStrokeWidth(mStrokeWidth);
+        mTextPaint = new Paint();
+        mTextPaint.setAntiAlias(true);
+        mTextPaint.setColor(Color.BLACK);
+        mTextPaint.setStrokeWidth(mStrokeWidth);
+        mTextPaint.setTextSize(DensityUtils.dip2px(getContext(),18));
     }
 
     private void initData(){
         Width = DensityUtils.dip2px(getContext(),50);
-        CircleWidth = Width / 2;
-        LineLength = Width + DensityUtils.dip2px(getContext(),10);
+        CircleWidth = DensityUtils.dip2px(getContext(),25);
+        LineWidth =DensityUtils.dip2px(getContext(),20);
+        mStrokeWidth = DensityUtils.dip2px(getContext(),25);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Width = widthMeasureSpec;
-        measure(widthMeasureSpec,heightMeasureSpec);
     }
 
     @Override
@@ -60,20 +78,23 @@ public class MasterProgressView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         for (int i = 0; i < 6; i++){
-            if(i <= 4){
-                mPaint.setColor(Color.YELLOW);
-                canvas.drawLine(CircleWidth,CircleWidth,CircleWidth+Width*i,CircleWidth,mPaint);
+            mLinePaint.setColor(mColor[0]);
+            mPaint.setColor(mColor[0]);
+            canvas.drawLine(Width*(i+1),CircleWidth,Width*(i+1)+LineWidth,CircleWidth,mLinePaint);
+            canvas.drawCircle((Width+LineWidth)*i+CircleWidth,CircleWidth,CircleWidth,mPaint);
+            if(i < mMasterLevel){
+                mLinePaint.setColor(mColor[i+1]);
+                mPaint.setColor(mColor[i+1]);
+                canvas.drawLine(Width*(i+1),CircleWidth,Width*(i+1)+LineWidth,CircleWidth,mLinePaint);
+                canvas.drawCircle((Width+LineWidth)*i+CircleWidth,CircleWidth,CircleWidth,mPaint);
             }
-            mPaint.setColor(Color.GRAY);
-            canvas.drawCircle(CircleWidth+Width*i+DensityUtils.dip2px(getContext(),25),CircleWidth,CircleWidth,mPaint);
-            mPaint.setColor(Color.BLACK);
-            canvas.drawText("入门",CircleWidth,CircleWidth,mPaint);
+            float textLength = mTextPaint.measureText(mMasterTitle[mMasterLevel])/2;
+            canvas.drawText(mMasterTitle[i],CircleWidth*(i*2-1)+LineWidth*(i+2),CircleWidth+textLength/2,mTextPaint);
         }
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Width = w;
     }
 }
