@@ -58,7 +58,7 @@ public class MasterProgressView extends View {
     }
 
     private void initData(){
-        Width = DensityUtils.dip2px(getContext(),50);
+        Width = DensityUtils.dip2px(getContext(),48);
         CircleWidth = DensityUtils.dip2px(getContext(),25);
         LineWidth =DensityUtils.dip2px(getContext(),20);
         mStrokeWidth = DensityUtils.dip2px(getContext(),25);
@@ -80,7 +80,7 @@ public class MasterProgressView extends View {
         for (int i = 0; i < 6; i++){
             mLinePaint.setColor(mColor[0]);
             mPaint.setColor(mColor[0]);
-            canvas.drawLine(Width*(i+1),CircleWidth,Width*(i+1)+LineWidth,CircleWidth,mLinePaint);
+            canvas.drawLine((Width+LineWidth)*i+CircleWidth,CircleWidth,(Width+LineWidth)*i+CircleWidth+LineWidth,CircleWidth,mLinePaint);
             canvas.drawCircle((Width+LineWidth)*i+CircleWidth,CircleWidth,CircleWidth,mPaint);
             if(i < mMasterLevel){
                 mLinePaint.setColor(mColor[i+1]);
@@ -89,12 +89,17 @@ public class MasterProgressView extends View {
                 canvas.drawCircle((Width+LineWidth)*i+CircleWidth,CircleWidth,CircleWidth,mPaint);
             }
             float textLength = mTextPaint.measureText(mMasterTitle[mMasterLevel])/2;
-            canvas.drawText(mMasterTitle[i],CircleWidth*(i*2-1)+LineWidth*(i+2),CircleWidth+textLength/2,mTextPaint);
+            canvas.drawText(mMasterTitle[i],CircleWidth*(i*2-1)+LineWidth*(i+3),CircleWidth+textLength/2,mTextPaint);
         }
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+    public void setMasterLevel(int level){
+        this.mMasterLevel = level;
+        requestLayout();
     }
 }

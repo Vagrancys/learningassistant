@@ -17,11 +17,14 @@ import android.widget.ImageView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.module.common.MainActivity;
+import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
+import com.vargancys.learningassistant.module.home.view.HomeContentView;
+import com.vargancys.learningassistant.persenter.home.HomeContentPresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
+import java.util.List;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * author: Vagrancy
@@ -29,7 +32,7 @@ import butterknife.Unbinder;
  * time  : 2020/03/01
  * version:1.0
  */
-public class HomeContentFragment extends BaseFragment {
+public class HomeContentFragment extends BaseFragment implements HomeContentView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.recyclerView)
@@ -39,6 +42,8 @@ public class HomeContentFragment extends BaseFragment {
     @BindView(R.id.content_menu)
     ImageView contentMenu;
 
+    private HomeContentAdapter homeContentAdapter;
+    private HomeContentPresenter homeContentPresenter;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home_content;
@@ -46,6 +51,7 @@ public class HomeContentFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        homeContentPresenter = new HomeContentPresenter(this);
         //recyclerView.setAdapter();
         contentMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +71,7 @@ public class HomeContentFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
+        homeContentPresenter.getData();
     }
 
     @Override
@@ -86,4 +93,14 @@ public class HomeContentFragment extends BaseFragment {
         inflater.inflate(R.menu.home_content_menu,menu);
     }
 
+    @Override
+    public void showContentBean(List<?> bean) {
+        homeContentAdapter = new HomeContentAdapter(getContext(),bean);
+        recyclerView.setAdapter(homeContentAdapter);
+    }
+
+    @Override
+    public void showError(int error, String msg) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+" msg = "+msg);
+    }
 }

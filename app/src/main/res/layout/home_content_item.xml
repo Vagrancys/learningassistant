@@ -111,6 +111,7 @@
             android:src="@drawable/know_master_normal" />
 
         <com.vargancys.learningassistant.widget.MasterProgressView
+            android:id="@+id/content_item_master_level"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_width_50dp" />
     </LinearLayout>
