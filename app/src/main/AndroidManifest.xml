@@ -19,6 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.common.GroupActivity" />
+        <activity android:name=".module.home.activity.KnowShowDefaultActivity"/>
+        <activity android:name=".module.home.activity.KnowShowFirstActivity"/>
+        <activity android:name=".module.home.activity.KnowShowThirdActivity"/>
+        <activity android:name=".module.home.activity.KnowShowFifthActivity"/>
+        <activity android:name=".module.home.activity.KnowShowFourthActivity"/>
+        <activity android:name=".module.home.activity.KnowShowSecondActivity"/>
     </application>
 
 </manifest>

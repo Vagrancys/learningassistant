@@ -9,4 +9,7 @@ package com.vargancys.learningassistant.utils;
 public class ConstantsUtils {
     public static final String SHARED_STATE = "shared_state";
     public static final String GROUP_STATE = "group_state";
+
+    //知识展示页id
+    public static final String ITEM_ID = "item_id";
 }

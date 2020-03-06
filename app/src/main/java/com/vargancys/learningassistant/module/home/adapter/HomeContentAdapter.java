@@ -73,6 +73,7 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
         viewHolder.contentProgress.setProgress(bean.getProgress());
         viewHolder.contentCount.setText(bean.getCount()+"/"+bean.getMax()+"次");
         viewHolder.contentMasterLevel.setMasterLevel(bean.getMasterLevel());
+        viewHolder.contentStudyTitle.setText(bean.getStudyTitle());
     }
 
     @Override

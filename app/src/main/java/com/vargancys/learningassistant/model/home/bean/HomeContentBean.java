@@ -38,6 +38,8 @@ public class HomeContentBean {
     }
 
     public class ContentBean{
+        private int item_id;
+        private String activity;
         private boolean have;
         private String title;
         private int level;
@@ -46,6 +48,23 @@ public class HomeContentBean {
         private int count;
         private int max;
         private int masterLevel;
+        private String studyTitle;
+
+        public int getItem_id() {
+            return item_id;
+        }
+
+        public void setItem_id(int item_id) {
+            this.item_id = item_id;
+        }
+
+        public String getStudyTitle() {
+            return studyTitle;
+        }
+
+        public void setStudyTitle(String studyTitle) {
+            this.studyTitle = studyTitle;
+        }
 
         public String getTitle() {
             return title;
@@ -109,6 +128,14 @@ public class HomeContentBean {
 
         public void setProgress(int progress) {
             this.progress = progress;
+        }
+
+        public String getActivity() {
+            return activity;
+        }
+
+        public void setActivity(String activity) {
+            this.activity = activity;
         }
     }
 }

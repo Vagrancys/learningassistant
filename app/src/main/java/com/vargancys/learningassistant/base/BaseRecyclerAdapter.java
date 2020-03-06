@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * time  : 2020/03/02
  * version:1.0
  */
-public class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private View parentView;
     @NonNull
     @Override
@@ -43,12 +43,11 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.onItemClickListener = onItemClickListener;
     }
 
-    private class OnItemClickListener{
-        void OnItemClick(int position){}
+    public interface OnItemClickListener{
+        void OnItemClick(int position);
     }
 
     public class CommonViewHolder extends RecyclerView.ViewHolder {
-
         public CommonViewHolder(View itemView) {
             super(itemView);
             parentView = itemView;
