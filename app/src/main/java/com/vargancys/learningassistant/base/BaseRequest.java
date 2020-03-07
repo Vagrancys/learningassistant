@@ -15,9 +15,10 @@ public interface BaseRequest {
     interface GetBeanCallback{
         void onFinish(List<?> bean);
         void onError(int error,String msg);
+        void onFinish(Object object);
     }
 
-    void getBean(String task,GetBeanCallback callback);
+    void getBean(GetBeanCallback callback);
 
-    void getBean(String item,String task,GetBeanCallback callback);
+    void getBean(int item,GetBeanCallback callback);
 }

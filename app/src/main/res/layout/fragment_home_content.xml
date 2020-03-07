@@ -57,5 +57,8 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             android:scrollbars="none"/>
+        <include
+            android:visibility="gone"
+            layout="@layout/fragment_empty"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

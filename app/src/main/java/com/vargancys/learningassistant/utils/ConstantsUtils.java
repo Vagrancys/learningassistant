@@ -12,4 +12,7 @@ public class ConstantsUtils {
 
     //知识展示页id
     public static final String ITEM_ID = "item_id";
+
+    //帮助详情页id
+    public static final String HELP_SUMMARY_ID = "help_summary_id";
 }

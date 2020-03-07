@@ -20,13 +20,24 @@ public class HomeContentPresenter implements BaseRequest.GetBeanCallback {
         homeContentRequest = new HomeContentRequest();
     }
 
+    //增加知识项的浏览记录
+    public void updateCount(int position){
+        homeContentRequest.updateCount(position);
+    }
+
     public void getData(){
-        homeContentRequest.getBean("2",this);
+        homeContentRequest.getBean(this);
     }
 
     @Override
     public void onFinish(List<?> bean) {
-        mView.showContentBean(bean);
+        if(bean.size() > 0){
+            mView.hideEmpty();
+            mView.showContentBean(bean);
+        }else{
+            mView.showEmpty();
+        }
+
     }
 
     @Override

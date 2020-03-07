@@ -9,4 +9,11 @@
     <string name="content_item_summary">TextView的使用方法和api详解</string>
     <string name="content_item_study_title">可以不参照代码而独立编写使用TextView的api，并知道该api的效果(作用)</string>
     <string name="content_item_count">0 / 10 次</string>
+    <string name="fragment_content">没有数据!您可以试着添加几条知识！</string>
+    <string name="fragment_error">请求数据失败了!您可以进反馈页面反馈!</string>
+    <string name="help_number">10</string>
+    <string name="help_title">关于有没有源码展示的页面</string>
+    <string name="help_time">2020.3.7</string>
+    <string name="help_error_text">搜索数据失败了!您可以在试试!</string>
+    <string name="help_empty_text">没有任何一条帮助信息!您可以对官方催更!</string>
 </resources>

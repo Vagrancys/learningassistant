@@ -1,5 +1,8 @@
 package com.vargancys.learningassistant.module.home.fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -7,13 +10,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
+import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
+import com.vargancys.learningassistant.module.common.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
+import com.vargancys.learningassistant.module.home.activity.AddKnowActivity;
 import com.vargancys.learningassistant.module.home.activity.KnowShowDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.KnowShowFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.KnowShowFirstActivity;
@@ -37,7 +47,7 @@ import butterknife.BindView;
  * time  : 2020/03/01
  * version:1.0
  */
-public class HomeContentFragment extends BaseFragment implements HomeContentView {
+public class HomeContentFragment extends BaseFragment implements HomeContentView,View.OnClickListener {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.recyclerView)
@@ -46,6 +56,14 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     SwipeRefreshLayout swipeRefresh;
     @BindView(R.id.content_menu)
     ImageView contentMenu;
+    @BindView(R.id.fragment_empty)
+    LinearLayout fragmentEmpty;
+    @BindView(R.id.fragment_content)
+    TextView fragmentContent;
+    @BindView(R.id.add_menu)
+    ImageView addMenu;
+    @BindView(R.id.help_menu)
+    ImageView helpMenu;
 
     private HomeContentAdapter homeContentAdapter;
     private HomeContentPresenter homeContentPresenter;
@@ -69,18 +87,41 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         });
         homeContentAdapter.setOnItemClickListener(new HomeContentItemClickListener());
         jumpRouteUtils = jumpRouteUtils.getJumpRouteUtils();
+        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setOnRefreshListener(new HomeContentOnRefreshListener());
+    }
+
+    class HomeContentOnRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
+
+        @Override
+        public void onRefresh() {
+            swipeRefresh.setRefreshing(true);
+            homeContentPresenter.getData();
+        }
     }
 
     class HomeContentItemClickListener implements BaseRecyclerAdapter.OnItemClickListener{
         @Override
         public void OnItemClick(int position) {
-            Sq
-            HomeContentBean.ContentBean homeContentBean = (HomeContentBean.ContentBean) mBean.get(position);
-            if(homeContentBean.isHave()){
-                launchDemonstrateActivity(homeContentBean.getActivity());
+            homeContentPresenter.updateCount(position);
+            HomeKnowItem homeKnowItem = (HomeKnowItem) mBean.get(position);
+            if(homeKnowItem.isHave()){
+                launchDemonstrateActivity(homeKnowItem.getActivity());
             }else{
-                launchShowActivity(homeContentBean.getItem_id(),homeContentBean.getLevel());
+                launchShowActivity(homeKnowItem.getItem_id(),homeKnowItem.getLevel());
             }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.add_menu:
+                AddKnowActivity.launch(getActivity());
+                break;
+            case R.id.help_menu:
+                HelpContentActivity.launch(getActivity());
+                break;
         }
     }
 
@@ -125,6 +166,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     @Override
     public void initData() {
         super.initData();
+        swipeRefresh.setRefreshing(true);
         homeContentPresenter.getData();
     }
 
@@ -149,6 +191,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
 
     @Override
     public void showContentBean(List<?> bean) {
+        swipeRefresh.setRefreshing(false);
         mBean = bean;
         homeContentAdapter = new HomeContentAdapter(getContext(),bean);
         recyclerView.setAdapter(homeContentAdapter);
@@ -156,6 +199,22 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
 
     @Override
     public void showError(int error, String msg) {
+        swipeRefresh.setRefreshing(false);
         ToastUtils.ToastText(getContext(),"Error = "+error+" msg = "+msg);
+        fragmentContent.setText(getText(R.string.fragment_error));
+        fragmentEmpty.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideEmpty() {
+        recyclerView.setVisibility(View.GONE);
+        fragmentContent.setText(getText(R.string.fragment_content));
+        fragmentEmpty.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showEmpty() {
+        recyclerView.setVisibility(View.VISIBLE);
+        fragmentEmpty.setVisibility(View.GONE);
     }
 }
