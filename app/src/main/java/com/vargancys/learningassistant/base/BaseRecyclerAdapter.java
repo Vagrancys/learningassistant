@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 /**
  * author: Vagrancy
@@ -30,6 +31,15 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
                 }
             }
         });
+        parentView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(onItemLongClickListener !=null){
+                    onItemLongClickListener.OnItemLongClick(position);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -38,13 +48,22 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
     public interface OnItemClickListener{
         void OnItemClick(int position);
+    }
+
+    public interface OnItemLongClickListener{
+        void OnItemLongClick(int position);
     }
 
     public class CommonViewHolder extends RecyclerView.ViewHolder {

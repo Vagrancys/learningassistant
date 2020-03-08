@@ -10,6 +10,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
 
 import org.litepal.LitePal;
+import org.litepal.crud.LitePalSupport;
 import org.litepal.tablemanager.Connector;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  * time  : 2020/03/05
  * version:1.0
  */
-public class HomeContentRequest implements BaseRequest{
+public class HomeRequest implements BaseRequest{
     //等到所有的知识项
     @Override
     public void getBean(GetBeanCallback callback) {
@@ -50,5 +51,32 @@ public class HomeContentRequest implements BaseRequest{
         homeKnowItem.setMax(homeKnowItem.getMax()+1);
         homeKnowItem.setCount(homeKnowItem.getCount()+1);
         homeKnowItem.save();
+    }
+
+    public boolean queryKnowRepeat(String title){
+        List<HomeKnowItem> items = LitePal.where("title = ",title).find(HomeKnowItem.class);
+        if(items.size() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean saveKnowData(HomeKnowItem item){
+        item.setMax(1);
+        item.setCount(0);
+        item.setCreateClass(false);
+        item.setProgress(0);
+        item.setMasterLevel(0);
+        return item.save();
+    }
+
+    public boolean deleteKnowData(int item_id) {
+        int result = LitePal.delete(HomeKnowItem.class,item_id);
+        if(result != 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -13,8 +13,8 @@ public interface BaseView {
     void updateError();
     void deleteFinish();
     void deleteError();
-    void findFinish();
-    void findError();
+    void findFinish(Object object);
+    void findError(int error,String msg);
     void findAllFinish();
     void findAllError();
 }

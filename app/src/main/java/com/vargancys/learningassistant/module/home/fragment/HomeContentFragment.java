@@ -1,8 +1,8 @@
 package com.vargancys.learningassistant.module.home.fragment;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.nfc.NfcAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -10,8 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,8 +18,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
-import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
-import com.vargancys.learningassistant.module.common.HelpContentActivity;
+import com.vargancys.learningassistant.module.common.help.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
 import com.vargancys.learningassistant.module.home.activity.AddKnowActivity;
 import com.vargancys.learningassistant.module.home.activity.KnowShowDefaultActivity;
@@ -78,6 +75,11 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     protected void initView() {
         homeContentPresenter = new HomeContentPresenter(this);
         //recyclerView.setAdapter();
+
+        initListener();
+    }
+
+    private void initListener() {
         contentMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,9 +88,42 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
             }
         });
         homeContentAdapter.setOnItemClickListener(new HomeContentItemClickListener());
+
+        homeContentAdapter.setOnItemLongClickListener(new HomeContentItemLongClickListener());
         jumpRouteUtils = jumpRouteUtils.getJumpRouteUtils();
         swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
         swipeRefresh.setOnRefreshListener(new HomeContentOnRefreshListener());
+        addMenu.setOnClickListener(this);
+
+        helpMenu.setOnClickListener(this);
+    }
+
+    class HomeContentItemLongClickListener implements BaseRecyclerAdapter.OnItemLongClickListener{
+        @Override
+        public void OnItemLongClick(int position) {
+            final HomeKnowItem homeKnowItem = (HomeKnowItem) mBean.get(position);
+            if(homeKnowItem.isOfficial()){
+                ToastUtils.ToastText(getContext(),"官方的知识不能删除!您可以选择其他的知识删除");
+            }else{
+                final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle(homeKnowItem.getTitle());
+                alert.setMessage(homeKnowItem.getSummary());
+                alert.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        homeContentPresenter.deleteKnowData(homeKnowItem.getItem_id());
+                        dialog.dismiss();
+                    }
+                });
+                alert.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+            }
+        }
     }
 
     class HomeContentOnRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
@@ -103,12 +138,20 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     class HomeContentItemClickListener implements BaseRecyclerAdapter.OnItemClickListener{
         @Override
         public void OnItemClick(int position) {
-            homeContentPresenter.updateCount(position);
             HomeKnowItem homeKnowItem = (HomeKnowItem) mBean.get(position);
-            if(homeKnowItem.isHave()){
-                launchDemonstrateActivity(homeKnowItem.getActivity());
+            if(homeKnowItem.isCreateClass()){
+                homeContentPresenter.updateCount(position);
+                if(homeKnowItem.isHave()){
+                    launchDemonstrateActivity(homeKnowItem.getActivity());
+                }else{
+                    launchShowActivity(homeKnowItem.getItem_id(),homeKnowItem.getLevel());
+                }
             }else{
-                launchShowActivity(homeKnowItem.getItem_id(),homeKnowItem.getLevel());
+                if(homeKnowItem.isHave()){
+                    ToastUtils.ToastText(getContext(),"这需要官方来创建!个人不能创建!");
+                }else{
+                    ToastUtils.ToastText(getContext(),"还没有编程到这里!");
+                }
             }
         }
     }
@@ -216,5 +259,16 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     public void showEmpty() {
         recyclerView.setVisibility(View.VISIBLE);
         fragmentEmpty.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void deleteFinish(int item_id) {
+        ToastUtils.ToastText(getContext(),"知识项删除成功了!");
+        homeContentAdapter.notifyItemRemoved(item_id);
+    }
+
+    @Override
+    public void deleteError(int error, String msg) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+", msg = "+msg);
     }
 }

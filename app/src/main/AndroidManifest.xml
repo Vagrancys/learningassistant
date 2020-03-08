@@ -26,10 +26,10 @@
         <activity android:name=".module.home.activity.KnowShowFifthActivity"/>
         <activity android:name=".module.home.activity.KnowShowFourthActivity"/>
         <activity android:name=".module.home.activity.KnowShowSecondActivity"/>
-        <activity android:name=".module.common.HelpContentActivity"/>
+        <activity android:name=".module.common.help.HelpContentActivity"/>
         <activity android:name=".module.home.activity.AddKnowActivity"/>
-        <activity android:name=".module.common.HelpSummaryActivity"/>
-        <activity android:name=".module.common.HelpAddActivity"/>
+        <activity android:name=".module.common.help.HelpSummaryActivity"/>
+        <activity android:name=".module.common.help.HelpAddActivity"/>
     </application>
 
 </manifest>

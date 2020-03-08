@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.persenter.common;
+package com.vargancys.learningassistant.persenter.common.help;
 
 import com.vargancys.learningassistant.model.common.request.HelpRequest;
 import com.vargancys.learningassistant.module.common.view.HelpAddView;
@@ -18,7 +18,11 @@ public class HelpAddPresenter{
     }
 
     public void saveHelpData(String title,String summary){
-        helpRequest.saveHelpData(title,summary);
-        mView.saveFinish();
+        boolean result = helpRequest.saveHelpData(title,summary);
+        if(result){
+            mView.addFinish();
+        }else{
+            mView.addError(501,"添加消息失败了!");
+        }
     }
 }

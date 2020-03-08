@@ -10,9 +10,17 @@ import java.util.List;
  * time  : 2020/03/07
  * version:1.0
  */
-public interface HelpContentView extends BaseView {
+public interface HelpContentView{
+
     void showContentBean(List<?> bean);
+
     void showError(int error,String msg);
+
     void hideEmpty();
+
     void showEmpty();
+
+    void deleteFinish(int position);
+
+    void deleteError();
 }

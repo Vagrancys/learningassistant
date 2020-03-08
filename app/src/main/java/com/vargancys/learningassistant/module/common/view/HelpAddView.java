@@ -8,55 +8,7 @@ import com.vargancys.learningassistant.base.BaseView;
  * time  : 2020/03/07
  * version:1.0
  */
-public abstract class HelpAddView implements BaseView {
-
-    @Override
-    public void saveFinish() {
-
-    }
-
-    @Override
-    public void saveError() {
-
-    }
-
-    @Override
-    public void updateFinish() {
-
-    }
-
-    @Override
-    public void updateError() {
-
-    }
-
-    @Override
-    public void deleteFinish() {
-
-    }
-
-    @Override
-    public void deleteError() {
-
-    }
-
-    @Override
-    public void findFinish() {
-
-    }
-
-    @Override
-    public void findError() {
-
-    }
-
-    @Override
-    public void findAllFinish() {
-
-    }
-
-    @Override
-    public void findAllError() {
-
-    }
+public interface HelpAddView{
+    void addFinish();
+    void addError(int error,String msg);
 }

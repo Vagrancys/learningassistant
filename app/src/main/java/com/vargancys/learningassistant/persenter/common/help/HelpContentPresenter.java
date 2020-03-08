@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.persenter.common;
+package com.vargancys.learningassistant.persenter.common.help;
 
 import com.vargancys.learningassistant.base.BaseRequest;
 import com.vargancys.learningassistant.model.common.request.HelpRequest;
@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class HelpContentPresenter implements BaseRequest.GetBeanCallback {
     private HelpContentView helpContentView;
-    private HelpRequest helpContentRequest;
+    private HelpRequest helpRequest;
     public HelpContentPresenter(HelpContentView view){
         this.helpContentView = view;
-        helpContentRequest = new HelpRequest();
+        helpRequest = new HelpRequest();
     }
 
     public void getAllBean(){
-        helpContentRequest.getBean(this);
+        helpRequest.getBean(this);
     }
 
     @Override
@@ -32,6 +32,20 @@ public class HelpContentPresenter implements BaseRequest.GetBeanCallback {
         }else{
             helpContentView.showEmpty();
         }
+    }
+
+    public void deleteHelpData(int id){
+        int result = helpRequest.deleteHelpData(id);
+        if(result != 0){
+            helpContentView.deleteFinish(id);
+        }else{
+            helpContentView.deleteError();
+        }
+    }
+
+    @Override
+    public void onFinish(Object object) {
+
     }
 
     @Override

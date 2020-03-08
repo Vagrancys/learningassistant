@@ -2,6 +2,8 @@ package com.vargancys.learningassistant.db.common;
 
 import org.litepal.crud.LitePalSupport;
 
+import java.util.List;
+
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
@@ -9,6 +11,7 @@ import org.litepal.crud.LitePalSupport;
  * version:1.0
  */
 public class HelpContentItem extends LitePalSupport {
+    private int id;
     //帮助的数量
     private int number;
     //帮助标题
@@ -21,6 +24,16 @@ public class HelpContentItem extends LitePalSupport {
     private int praise;
     //没有帮助
     private int poor;
+
+    private List<HelpCommendItem> commendItems;
+
+    public List<HelpCommendItem> getCommendItems() {
+        return commendItems;
+    }
+
+    public void setCommendItems(List<HelpCommendItem> commendItems) {
+        this.commendItems = commendItems;
+    }
 
     public String getSummary() {
         return summary;
@@ -68,5 +81,13 @@ public class HelpContentItem extends LitePalSupport {
 
     public int getPraise() {
         return praise;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
