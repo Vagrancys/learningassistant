@@ -36,12 +36,12 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new HomeContentViewHolder(View.inflate(context, R.layout.home_content_item,null));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(CommonViewHolder holder, int position) {
         HomeContentViewHolder viewHolder = (HomeContentViewHolder) holder;
         HomeKnowItem bean = (HomeKnowItem) contentBean.get(position);
         if(bean.isHave()){
@@ -82,7 +82,7 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
         return contentBean.size();
     }
 
-    private class HomeContentViewHolder extends CommonViewHolder{
+    public class HomeContentViewHolder extends CommonViewHolder{
         @BindView(R.id.content_item_have)
         ImageView contentHave;
         @BindView(R.id.content_item_title)

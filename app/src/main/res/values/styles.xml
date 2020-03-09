@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="FunctionAnimAction">
+        <item name="android:windowEnterAnimation">@anim/pop_function_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_function_exit_anim</item>
+    </style>
 </resources>

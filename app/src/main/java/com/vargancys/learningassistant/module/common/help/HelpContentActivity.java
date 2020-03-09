@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,9 +18,11 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
 import com.vargancys.learningassistant.module.common.adapter.HelpContentAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpContentView;
 import com.vargancys.learningassistant.persenter.common.help.HelpContentPresenter;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -49,7 +53,8 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
 
     private HelpContentPresenter helpContentPresenter;
     private HelpContentAdapter helpContentAdapter;
-    private List<?> mBean = new ArrayList<>();
+    private int RequestCode = 2003;
+    private List<HelpContentItem> mBean = new ArrayList<>();
     @Override
     public int getLayoutId() {
         return R.layout.activity_help_content;
@@ -59,17 +64,24 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     public void initView() {
         helpContentPresenter = new HelpContentPresenter(this);
         swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
-        swipeRefresh.setOnRefreshListener(new HelpContentOnRefreshListener());
+        helpContentAdapter = new HelpContentAdapter(getContext(),mBean);
+        recyclerView.setAdapter(helpContentAdapter);
+        initListener();
+        helpContentPresenter.getAllBean();
+    }
 
+    private void initListener(){
+        swipeRefresh.setOnRefreshListener(new HelpContentOnRefreshListener());
         helpContentAdapter.setOnItemClickListener(new HelpContentOnItemClickListener());
         helpContentAdapter.setOnItemLongClickListener(new HelpContentOnItemLongClickListener());
     }
 
     @Override
-    public void showContentBean(List<?> bean) {
-        mBean = bean;
-        helpContentAdapter = new HelpContentAdapter(getContext(),mBean);
-        recyclerView.setAdapter(helpContentAdapter);
+    public void showContentBean(List<HelpContentItem> bean) {
+        Log.e("helpContentActivity","showContentBean = "+bean.size());
+        Log.e("helpContentActivity","showContentBean = "+bean.get(0).getTitle());
+        mBean.addAll(bean);
+        helpContentAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -81,15 +93,17 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
 
     @Override
     public void hideEmpty() {
+        swipeRefresh.setRefreshing(false);
         recyclerView.setVisibility(View.VISIBLE);
         fragmentEmpty.setVisibility(View.GONE);
     }
 
     @Override
     public void showEmpty() {
-        recyclerView.setVisibility(View.GONE);
+        swipeRefresh.setRefreshing(false);
         fragmentContent.setText(getText(R.string.help_empty_text));
         fragmentEmpty.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
     }
 
     @Override
@@ -145,7 +159,6 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
 
     @Override
     public void initToolbar() {
-        super.initToolbar();
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,9 +169,20 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
         commonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HelpAddActivity.launch(HelpContentActivity.this);
+                HelpAddActivity.launch(HelpContentActivity.this,RequestCode);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RequestCode&&resultCode == HelpAddActivity.ResultCode&&data != null){
+            int addCount = data.getIntExtra(ConstantsUtils.HELP_ADD_COUNT,0);
+            if(addCount >0){
+                helpContentPresenter.getAllBean();
+            }
+        }
     }
 
     public static void launch(Activity activity) {
@@ -166,4 +190,8 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
         activity.startActivity(intent);
     }
 
+    @Override
+    public void showRefreshView() {
+        swipeRefresh.setRefreshing(true);
+    }
 }

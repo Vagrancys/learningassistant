@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.module.home.activity;
+package com.vargancys.learningassistant.module.home.activity.show;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
  * time  : 2020/03/06
  * version:1.0
  */
-public class KnowShowFifthActivity extends BaseActivity {
+public class KnowShowSecondActivity extends BaseActivity {
     @Override
     public int getLayoutId() {
         return 0;
@@ -24,7 +24,7 @@ public class KnowShowFifthActivity extends BaseActivity {
     }
 
     public static void launch(Activity activity, int item_id) {
-        Intent intent = new Intent(activity, KnowShowFifthActivity.class);
+        Intent intent = new Intent(activity, KnowShowSecondActivity.class);
         intent.putExtra(ConstantsUtils.ITEM_ID,item_id);
         activity.startActivity(intent);
     }

@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.module.home.activity;
+package com.vargancys.learningassistant.module.home.activity.show;
 
 import android.app.Activity;
 import android.content.Intent;

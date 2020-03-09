@@ -20,16 +20,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.common.GroupActivity" />
-        <activity android:name=".module.home.activity.KnowShowDefaultActivity"/>
-        <activity android:name=".module.home.activity.KnowShowFirstActivity"/>
-        <activity android:name=".module.home.activity.KnowShowThirdActivity"/>
-        <activity android:name=".module.home.activity.KnowShowFifthActivity"/>
-        <activity android:name=".module.home.activity.KnowShowFourthActivity"/>
-        <activity android:name=".module.home.activity.KnowShowSecondActivity"/>
+        <activity android:name=".module.home.activity.show.KnowShowDefaultActivity"/>
+        <activity android:name=".module.home.activity.show.KnowShowFirstActivity"/>
+        <activity android:name=".module.home.activity.show.KnowShowThirdActivity"/>
+        <activity android:name=".module.home.activity.show.KnowShowFifthActivity"/>
+        <activity android:name=".module.home.activity.show.KnowShowFourthActivity"/>
+        <activity android:name=".module.home.activity.show.KnowShowSecondActivity"/>
         <activity android:name=".module.common.help.HelpContentActivity"/>
         <activity android:name=".module.home.activity.AddKnowActivity"/>
         <activity android:name=".module.common.help.HelpSummaryActivity"/>
         <activity android:name=".module.common.help.HelpAddActivity"/>
+        <activity android:name=".module.home.activity.insert.KnowInsertFirstActivity"/>
+        <activity android:name=".module.home.activity.insert.KnowInsertSecondActivity"/>
+        <activity android:name=".module.home.activity.insert.KnowInsertThirdActivity"/>
+        <activity android:name=".module.home.activity.insert.KnowInsertFourthActivity"/>
+        <activity android:name=".module.home.activity.insert.KnowInsertFifthActivity"/>
+        <activity android:name=".module.home.activity.insert.KnowInsertDefaultActivity"/>
     </application>
 
 </manifest>

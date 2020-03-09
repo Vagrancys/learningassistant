@@ -11,11 +11,17 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:layout_above="@+id/commonTab"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_width_1dp"
+        android:background="@color/black_1"/>
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/commonTab"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_width_60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/white_1"
+        android:padding="@dimen/margin_width_10dp"
         app:tl_tab_space_equal="true"
         app:tl_iconWidth="@dimen/margin_width_30dp"
         app:tl_iconHeight="@dimen/margin_width_30dp"

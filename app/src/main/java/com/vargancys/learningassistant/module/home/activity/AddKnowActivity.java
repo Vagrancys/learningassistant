@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -61,6 +62,9 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
     @Override
     public void initView() {
         homeKnowPresenter = new HomeKnowPresenter(this);
+        ArrayAdapter simpleAdapter = ArrayAdapter.createFromResource(getContext(),R.array.level_title,
+                R.layout.support_simple_spinner_dropdown_item);
+        addKnowLevel.setAdapter(simpleAdapter);
         initListener();
     }
 
@@ -89,6 +93,7 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
                 }
             }
         });
+
         addKnowLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

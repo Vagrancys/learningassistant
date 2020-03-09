@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.home.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.nfc.NfcAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,12 +20,15 @@ import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.module.common.help.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
 import com.vargancys.learningassistant.module.home.activity.AddKnowActivity;
-import com.vargancys.learningassistant.module.home.activity.KnowShowDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.KnowShowFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.KnowShowFirstActivity;
-import com.vargancys.learningassistant.module.home.activity.KnowShowFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.KnowShowSecondActivity;
-import com.vargancys.learningassistant.module.home.activity.KnowShowThirdActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFirstActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowFirstActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
 import com.vargancys.learningassistant.persenter.home.HomeContentPresenter;
@@ -75,7 +77,8 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     protected void initView() {
         homeContentPresenter = new HomeContentPresenter(this);
         //recyclerView.setAdapter();
-
+        homeContentAdapter = new HomeContentAdapter(getContext(),mBean);
+        recyclerView.setAdapter(homeContentAdapter);
         initListener();
     }
 
@@ -90,7 +93,8 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         homeContentAdapter.setOnItemClickListener(new HomeContentItemClickListener());
 
         homeContentAdapter.setOnItemLongClickListener(new HomeContentItemLongClickListener());
-        jumpRouteUtils = jumpRouteUtils.getJumpRouteUtils();
+
+        jumpRouteUtils = new JumpRouteUtils().getJumpRouteUtils();
         swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
         swipeRefresh.setOnRefreshListener(new HomeContentOnRefreshListener());
         addMenu.setOnClickListener(this);
@@ -150,7 +154,8 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 if(homeKnowItem.isHave()){
                     ToastUtils.ToastText(getContext(),"这需要官方来创建!个人不能创建!");
                 }else{
-                    ToastUtils.ToastText(getContext(),"还没有编程到这里!");
+                    //ToastUtils.ToastText(getContext(),"还没有编程到这里!");
+                    launchInsertActivity(homeKnowItem.getItem_id(),homeKnowItem.getLevel());
                 }
             }
         }
@@ -178,26 +183,48 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
 
     private void launchShowActivity(int item_id,int level) {
         switch (level){
-            case 0:
+            case 1:
                 KnowShowFirstActivity.launch(getActivity(),item_id);
                 break;
-            case 1:
+            case 2:
                 KnowShowSecondActivity.launch(getActivity(),item_id);
                 break;
-            case 2:
+            case 3:
                 KnowShowThirdActivity.launch(getActivity(),item_id);
                 break;
-            case 3:
+            case 4:
                 KnowShowFourthActivity.launch(getActivity(),item_id);
                 break;
-            case 4:
+            case 5:
                 KnowShowFifthActivity.launch(getActivity(),item_id);
                 break;
             default:
                 KnowShowDefaultActivity.launch(getActivity());
                 break;
         }
+    }
 
+    private void launchInsertActivity(int item_id,int level) {
+        switch (level){
+            case 1:
+                KnowInsertFirstActivity.launch(getActivity(),item_id);
+                break;
+            case 2:
+                KnowInsertSecondActivity.launch(getActivity(),item_id);
+                break;
+            case 3:
+                KnowShowThirdActivity.launch(getActivity(),item_id);
+                break;
+            case 4:
+                KnowShowFourthActivity.launch(getActivity(),item_id);
+                break;
+            case 5:
+                KnowShowFifthActivity.launch(getActivity(),item_id);
+                break;
+            default:
+                KnowInsertDefaultActivity.launch(getActivity(),item_id);
+                break;
+        }
     }
 
     private void openDrawer() {
@@ -234,10 +261,8 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
 
     @Override
     public void showContentBean(List<?> bean) {
-        swipeRefresh.setRefreshing(false);
         mBean = bean;
-        homeContentAdapter = new HomeContentAdapter(getContext(),bean);
-        recyclerView.setAdapter(homeContentAdapter);
+        homeContentAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -250,15 +275,17 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
 
     @Override
     public void hideEmpty() {
-        recyclerView.setVisibility(View.GONE);
-        fragmentContent.setText(getText(R.string.fragment_content));
-        fragmentEmpty.setVisibility(View.VISIBLE);
+        swipeRefresh.setRefreshing(false);
+        recyclerView.setVisibility(View.VISIBLE);
+        fragmentEmpty.setVisibility(View.GONE);
     }
 
     @Override
     public void showEmpty() {
-        recyclerView.setVisibility(View.VISIBLE);
-        fragmentEmpty.setVisibility(View.GONE);
+        swipeRefresh.setRefreshing(false);
+        recyclerView.setVisibility(View.GONE);
+        fragmentContent.setText(getText(R.string.fragment_content));
+        fragmentEmpty.setVisibility(View.VISIBLE);
     }
 
     @Override

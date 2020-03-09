@@ -28,6 +28,7 @@
     <string name="commend_time">2020.3.9</string>
     <string name="update_empty">该数据请求失败了!请重试!</string>
     <string name="help_head">标题:</string>
+
     <string name="add_know_title">知识标题:</string>
     <string name="add_know_class">设置展示的类名:</string>
     <string name="add_know_have">是否有展示</string>
@@ -40,4 +41,66 @@
     <string name="add_know_summary_hint">请输入知识的简单说明</string>
     <string name="add_know_master">掌握要求:</string>
     <string name="add_know_master_hint">请输入掌握的详细要求</string>
+    <string name="add_know_level_text">请选择知识深度</string>
+
+    <string name="common_default">默认级</string>
+    <string name="common_first">入门级</string>
+    <string name="common_second">熟悉级</string>
+    <string name="common_third">熟练级</string>
+    <string name="common_fourth">精通级</string>
+    <string name="common_fifth">创造级</string>
+
+    <string name="insert_title">标题:</string>
+    <string name="insert_hint_title">知识的标题</string>
+    <string name="insert_summary">简介:</string>
+    <string name="insert_hint_summary">知识的简单介绍</string>
+    <string name="insert_show">示范:</string>
+    <string name="insert_hint_show">知识的简单示范(使用的方法)</string>
+    <string name="insert_explain">说明:</string>
+    <string name="insert_hint_explain">知识的简单说明(讲解为什么要这样做)</string>
+    <string name="insert_heed">注意:</string>
+    <string name="insert_hint_heed">知识使用需要注意的点(使用中可能出bug的方法)</string>
+    <string name="insert_experience">心得:</string>
+    <string name="insert_hint_experience">知识的心得(你对该知识的理解)</string>
+
+    <string name="insert_hint_show_first">代码的简单示范(使用的方法)</string>
+    <string name="insert_explain_first">代码意义:</string>
+    <string name="insert_hint_explain_first">简单说明(讲解为什么要这样做)</string>
+    <string name="insert_title_first">知识的标题:</string>
+    <string name="insert_hint_title_first">知识的简单描述</string>
+    <string name="insert_summary_first">简单介绍:</string>
+    <string name="insert_hint_summary_first">知识的背景与介绍</string>
+    <string name="insert_show_first">代码演示:</string>
+    <string name="insert_heed_first">注意点:</string>
+    <string name="insert_hint_heed_first">知识使用需要注意的点(使用中可能出bug的方法)</string>
+    <string name="insert_experience_first">使用心得:</string>
+    <string name="insert_hint_experience_first">使用心得分享(你对该知识的深入理解)</string>
+
+    <string name="insert_title_second">知识的标题:</string>
+    <string name="insert_hint_title_second">更多知识的简单描述</string>
+    <string name="insert_summary_second">多点介绍:</string>
+    <string name="insert_hint_summary_second">多个知识的背景与介绍</string>
+    <string name="insert_show_second">函数演示 </string>
+    <string name="insert_show_count_second">(1个)</string>
+    <string name="show_hint_second">你必须要添加多个知识点才行!</string>
+    <string name="insert_heed_second">熟悉级注意:</string>
+    <string name="insert_hint_heed_second">熟悉级知识所需要注意的点(使用中可能出bug的方法)</string>
+    <string name="insert_experience_second">心得:</string>
+    <string name="insert_hint_experience_second">经验分享(你对该知识的深入理解)</string>
+
+    <string name="item_function_common_second">偶尔</string>
+    <string name="item_function_title_second">textView的常用函数</string>
+    <string name="item_function_summary_second">简单说明:</string>
+    <string name="item_function_summary_title_second">请说明函数的背景</string>
+    <string name="item_function_explain_second">使用说明:</string>
+    <string name="item_function_explain_title_second">请说明函数的使用方法</string>
+
+    <string name="function_title_edit">请输入函数的名称</string>
+    <string name="function_summary_title">函数的简介:</string>
+    <string name="function_summary_edit">请输入函数详细简介</string>
+    <string name="function_explain_title">函数的使用:</string>
+    <string name="function_explain_edit">请输入函数的使用方法</string>
+
+    <string name="function_cancel_text">取消</string>
+    <string name="function_determine_text">确定</string>
 </resources>

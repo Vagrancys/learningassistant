@@ -31,12 +31,12 @@ public class HelpCommendAdapter extends BaseRecyclerAdapter {
     }
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new HelpCommendViewHolder(View.inflate(mContext, R.layout.help_commend_item,null));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(CommonViewHolder holder, int position) {
         HelpCommendViewHolder mHolder = (HelpCommendViewHolder) holder;
         HelpCommendItem helpCommendItem = helpCommendItems.get(position);
         mHolder.commendSummary.setText(helpCommendItem.getSummary());
@@ -48,7 +48,7 @@ public class HelpCommendAdapter extends BaseRecyclerAdapter {
         return helpCommendItems.size();
     }
 
-    private class HelpCommendViewHolder extends CommonViewHolder{
+    public class HelpCommendViewHolder extends CommonViewHolder{
         @BindView(R.id.commend_summary)
         TextView commendSummary;
         @BindView(R.id.commend_time)

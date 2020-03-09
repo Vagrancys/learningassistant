@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface HelpSummaryView{
 
-    void findFinish(Object object);
+    void findFinish(HelpContentItem object);
     void findError(int error,String msg);
     void findCommendError(int error,String msg);
 

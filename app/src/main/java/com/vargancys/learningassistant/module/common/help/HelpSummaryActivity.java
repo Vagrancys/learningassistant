@@ -184,7 +184,7 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     }
 
     @Override
-    public void findFinish(Object object) {
+    public void findFinish(HelpContentItem object) {
         updateData(object);
     }
 

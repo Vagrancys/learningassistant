@@ -1,13 +1,8 @@
 package com.vargancys.learningassistant.persenter.common.help;
 
-import com.vargancys.learningassistant.base.BaseRequest;
-import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.model.common.request.HelpRequest;
-import com.vargancys.learningassistant.module.common.view.HelpSummaryView;
 import com.vargancys.learningassistant.module.common.view.HelpUpdateView;
-
-import java.util.List;
 
 /**
  * author: Vagrancy
@@ -25,7 +20,7 @@ public class HelpUpdatePresenter {
     }
 
     public void getHelpData(int help_id){
-        HelpContentItem helpContentItem = helpRequest.getBean(help_id);
+        HelpContentItem helpContentItem = helpRequest.getItemBean(help_id);
         if(helpContentItem !=null){
             mView.getHelpData(helpContentItem);
         }else{

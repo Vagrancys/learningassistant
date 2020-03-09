@@ -12,17 +12,11 @@ import android.widget.AdapterView;
  * time  : 2020/03/02
  * version:1.0
  */
-public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseRecyclerAdapter.CommonViewHolder> {
     private View parentView;
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        return null;
-    }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull CommonViewHolder holder, final int position) {
         parentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,11 +34,6 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
                 return false;
             }
         });
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
     }
 
     private OnItemClickListener onItemClickListener;

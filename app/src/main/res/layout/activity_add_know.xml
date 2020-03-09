@@ -102,6 +102,7 @@
             android:id="@+id/add_know_level"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:prompt="@string/add_know_level_text"
             android:gravity="center"
             android:entries="@array/level_title"/>
     </LinearLayout>

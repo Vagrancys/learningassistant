@@ -7,7 +7,8 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="@color/pink">
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,6 +24,14 @@
                     android:src="@drawable/common_back_normal"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"/>
+                <TextView
+                    android:id="@+id/common_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/common_default"
+                    android:textSize="@dimen/text_size_24sp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
                 <ImageView
                     android:id="@+id/common_img"
                     android:layout_width="@dimen/margin_width_30dp"

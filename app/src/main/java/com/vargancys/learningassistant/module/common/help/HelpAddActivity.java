@@ -11,6 +11,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.common.view.HelpAddView;
 import com.vargancys.learningassistant.persenter.common.help.HelpAddPresenter;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -33,6 +34,8 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
     @BindView(R.id.help_summary_edit)
     EditText helpSummaryEdit;
     private HelpAddPresenter helpAddPresenter;
+    public static int ResultCode = 2005;
+    private int addCount=0;
 
     @Override
     public int getLayoutId() {
@@ -49,6 +52,9 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra(ConstantsUtils.HELP_ADD_COUNT,addCount);
+                setResult(ResultCode,intent);
                 finish();
             }
         });
@@ -63,14 +69,15 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
         });
     }
 
-    public static void launch(Activity activity) {
-        Intent intent = new Intent(activity, HelpContentActivity.class);
-        activity.startActivity(intent);
+    public static void launch(Activity activity,int requestCode) {
+        Intent intent = new Intent(activity, HelpAddActivity.class);
+        activity.startActivityForResult(intent,requestCode);
     }
 
     @Override
     public void addFinish() {
         ToastUtils.ToastText(getContext(), "添加帮助成功了哦!");
+        addCount++;
         resetView();
     }
 

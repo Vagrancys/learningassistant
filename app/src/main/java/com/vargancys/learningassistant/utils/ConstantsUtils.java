@@ -16,4 +16,6 @@ public class ConstantsUtils {
     //帮助详情页id
     public static final String HELP_SUMMARY_ID = "help_summary_id";
     public static final String HELP_UPDATE_STATE = "help_update_state";
+    public static final String KNOW_ITEM_ID = "know_item_id";
+    public static final String HELP_ADD_COUNT = "help_add_count";
 }

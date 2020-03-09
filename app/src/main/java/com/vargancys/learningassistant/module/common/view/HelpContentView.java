@@ -1,6 +1,8 @@
 package com.vargancys.learningassistant.module.common.view;
 
 import com.vargancys.learningassistant.base.BaseView;
+import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  */
 public interface HelpContentView{
 
-    void showContentBean(List<?> bean);
+    void showContentBean(List<HelpContentItem> bean);
 
     void showError(int error,String msg);
 
@@ -23,4 +25,6 @@ public interface HelpContentView{
     void deleteFinish(int position);
 
     void deleteError();
+
+    void showRefreshView();
 }

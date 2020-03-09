@@ -1,16 +1,11 @@
 package com.vargancys.learningassistant.model.common.request;
 
-import android.content.ContentValues;
-import android.content.Intent;
-
-import com.vargancys.learningassistant.base.BaseRequest;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import org.litepal.LitePal;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +15,9 @@ import java.util.List;
  * time  : 2020/03/07
  * version:1.0
  */
-public class HelpRequest implements BaseRequest {
+public class HelpRequest{
 
-    public HelpContentItem getBean(int id){
+    public HelpContentItem getItemBean(int id){
         HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,id);
         if(helpContentItem !=null){
             return helpContentItem;
@@ -30,24 +25,22 @@ public class HelpRequest implements BaseRequest {
         return null;
     }
 
-    @Override
-    public void getBean(GetBeanCallback callback) {
-        List<?> helpContentBean =  LitePal.findAll(HelpContentItem.class);
-        if(helpContentBean.size() > 0){
-            callback.onFinish(helpContentBean);
+    public List<HelpContentItem> getAllBean() {
+        List<HelpContentItem> helpContentItems =  LitePal.findAll(HelpContentItem.class);
+        if(helpContentItems !=null){
+            return helpContentItems;
         }else{
-            callback.onError(501,"没有帮助数据!");
+            return null;
         }
     }
 
-    @Override
-    public void getBean(int item, GetBeanCallback callback) {
+    public HelpContentItem getContentBean(int item) {
+        return LitePal.find(HelpContentItem.class,item);
+    }
+
+    public List<HelpCommendItem> getCommendBean(int item){
         HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,item);
-        if(helpContentItem != null){
-            callback.onFinish(helpContentItem);
-        }else{
-            callback.onError(501,"没有该帮助数据!");
-        }
+        return helpContentItem.getCommendItems();
     }
 
     public boolean saveHelpData(String title,String summary){

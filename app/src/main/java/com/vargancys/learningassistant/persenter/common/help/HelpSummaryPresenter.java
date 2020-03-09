@@ -1,12 +1,9 @@
 package com.vargancys.learningassistant.persenter.common.help;
 
-import com.vargancys.learningassistant.base.BaseRequest;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.model.common.request.HelpRequest;
 import com.vargancys.learningassistant.module.common.view.HelpSummaryView;
-
-import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -25,50 +22,25 @@ public class HelpSummaryPresenter {
     }
 
     public void getHelpData(int help_id){
-        helpRequest.getBean(help_id, new BaseRequest.GetBeanCallback() {
-            @Override
-            public void onFinish(List<?> bean) {
-
-            }
-
-            @Override
-            public void onError(int error, String msg) {
-                mView.findError(error,msg);
-            }
-
-            @Override
-            public void onFinish(Object object) {
-                mView.findFinish(object);
-            }
-        });
+        HelpContentItem helpContentItem = helpRequest.getContentBean(help_id);
+        if(helpContentItem != null){
+            mView.findFinish(helpContentItem);
+        }else{
+            mView.findError(404,"数据库没有数据!");
+        }
     }
 
     public void getCommendData(int help_id){
-        helpRequest.getBean(help_id, new BaseRequest.GetBeanCallback() {
-            @Override
-            public void onFinish(List<?> bean) {
-
-            }
-
-            @Override
-            public void onError(int error, String msg) {
-                mView.findCommendError(error,msg);
-            }
-
-            @Override
-            public void onFinish(Object object) {
-                List<HelpCommendItem> helpCommendItems = ((HelpContentItem) object).getCommendItems();
-                if(helpCommendItems.size() > 0){
-                    mView.findCommend(helpCommendItems);
-                } else{
-                    mView.findEmpty();
-                }
-            }
-        });
+        List<HelpCommendItem> helpCommendItems = helpRequest.getCommendBean(help_id);
+        if(helpCommendItems.size() > 0){
+            mView.findCommend(helpCommendItems);
+        }else{
+            mView.findEmpty();
+        }
     }
 
     public void reFreshSummary(int help_id){
-        HelpContentItem helpContentItem = helpRequest.getBean(help_id);
+        HelpContentItem helpContentItem = helpRequest.getItemBean(help_id);
         mView.reFreshSummary(helpContentItem);
     }
 

@@ -15,7 +15,7 @@ public class JumpRouteUtils {
     private ArrayList<Activity> activities;
     private static JumpRouteUtils jumpRouteUtils;
 
-    private JumpRouteUtils(){
+    public JumpRouteUtils(){
         activities = new ArrayList<>();
     }
 

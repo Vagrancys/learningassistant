@@ -49,6 +49,15 @@ public class HomeKnowItem extends LitePalSupport{
     private boolean createClass;
 
     private HomeKnowData homeKnowData;
+    private HomeKnowContent homeKnowContent;
+
+    public HomeKnowContent getHomeKnowContent() {
+        return homeKnowContent;
+    }
+
+    public void setHomeKnowContent(HomeKnowContent homeKnowContent) {
+        this.homeKnowContent = homeKnowContent;
+    }
 
     public HomeKnowData getHomeKnowData() {
         return homeKnowData;

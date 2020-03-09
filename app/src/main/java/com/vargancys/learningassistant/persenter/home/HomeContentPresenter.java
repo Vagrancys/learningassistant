@@ -1,6 +1,8 @@
 package com.vargancys.learningassistant.persenter.home;
 
-import com.vargancys.learningassistant.base.BaseRequest;
+import android.util.Log;
+
+import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.home.request.HomeRequest;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
 
@@ -12,7 +14,7 @@ import java.util.List;
  * time  : 2020/03/05
  * version:1.0
  */
-public class HomeContentPresenter implements BaseRequest.GetBeanCallback {
+public class HomeContentPresenter{
     private HomeRequest homeContentRequest;
     private HomeContentView mView;
     public HomeContentPresenter(HomeContentView view){
@@ -26,27 +28,19 @@ public class HomeContentPresenter implements BaseRequest.GetBeanCallback {
     }
 
     public void getData(){
-        homeContentRequest.getBean(this);
-    }
-
-    @Override
-    public void onFinish(Object object) {
-
-    }
-
-    @Override
-    public void onFinish(List<?> bean) {
-        if(bean.size() > 0){
-            mView.hideEmpty();
-            mView.showContentBean(bean);
+        List<HomeKnowItem> mBean = homeContentRequest.getBean();
+        if(mBean !=null){
+            if(mBean.size() > 0){
+                Log.e("HomePresenter","hideEmpty");
+                mView.hideEmpty();
+                mView.showContentBean(mBean);
+            }else{
+                Log.e("HomePresenter","showEmpty");
+                mView.showEmpty();
+            }
         }else{
-            mView.showEmpty();
+            mView.showError(404,"数据库没有数据!");
         }
-    }
-
-    @Override
-    public void onError(int error, String msg) {
-        mView.showError(error,msg);
     }
 
     public void deleteKnowData(int item_id) {
