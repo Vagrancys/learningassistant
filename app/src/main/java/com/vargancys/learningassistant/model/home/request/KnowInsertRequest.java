@@ -39,6 +39,7 @@ public class KnowInsertRequest {
         HomeKnowItem homeKnowItem = new HomeKnowItem();
         homeKnowItem.setHomeKnowContent(homeKnowContent);
         homeKnowItem.update(know_id);
+        return homeKnowContent.save();
     }
 
     //判断入门级知识是否存在
@@ -60,6 +61,7 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
+        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setHomeKnowContent(homeKnowContent);
         homeKnowItem.save();
