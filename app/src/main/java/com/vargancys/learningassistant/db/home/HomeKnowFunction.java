@@ -10,7 +10,7 @@ import org.litepal.crud.LitePalSupport;
  */
 public class HomeKnowFunction extends LitePalSupport {
     //函数的id
-    private int function_id;
+    private int id;
 
     //函数的使用级别
     private int common;
@@ -23,6 +23,15 @@ public class HomeKnowFunction extends LitePalSupport {
 
     //函数的使用
     private String explain;
+    private HomeKnowContent homeKnowContent;
+
+    public HomeKnowContent getHomeKnowContent() {
+        return homeKnowContent;
+    }
+
+    public void setHomeKnowContent(HomeKnowContent homeKnowContent) {
+        this.homeKnowContent = homeKnowContent;
+    }
 
     public String getExplain() {
         return explain;
@@ -56,11 +65,11 @@ public class HomeKnowFunction extends LitePalSupport {
         return common;
     }
 
-    public int getFunction_id() {
-        return function_id;
+    public int getId() {
+        return id;
     }
 
-    public void setFunction_id(int function_id) {
-        this.function_id = function_id;
+    public void setId(int function_id) {
+        this.id = function_id;
     }
 }

@@ -80,7 +80,7 @@
     <string name="insert_hint_title_second">更多知识的简单描述</string>
     <string name="insert_summary_second">多点介绍:</string>
     <string name="insert_hint_summary_second">多个知识的背景与介绍</string>
-    <string name="insert_show_second">函数演示 </string>
+    <string name="insert_show_second">知识点演示 </string>
     <string name="insert_show_count_second">(1个)</string>
     <string name="show_hint_second">你必须要添加多个知识点才行!</string>
     <string name="insert_heed_second">熟悉级注意:</string>
@@ -103,4 +103,51 @@
 
     <string name="function_cancel_text">取消</string>
     <string name="function_determine_text">确定</string>
+
+    <string name="insert_title_third">源码的标题:</string>
+    <string name="insert_hint_title_third">源码知识的简单描述</string>
+    <string name="insert_summary_third">源码介绍:</string>
+    <string name="insert_hint_summary_third">源码的背景与介绍</string>
+    <string name="insert_show_third">源码展示:</string>
+    <string name="insert_hint_show_third">源码的部分展示</string>
+    <string name="insert_explain_third">源码的意义:</string>
+    <string name="insert_hint_explain_third">源码的意义详解</string>
+    <string name="insert_heed_third">源码注意点:</string>
+    <string name="insert_hint_heed_third">理解源码时需要关注的点</string>
+    <string name="insert_experience_third">心得:</string>
+    <string name="insert_hint_experience_third">经验分享(你对该源码的深入理解)</string>
+
+    <string name="insert_title_fourth">多组合源码的标题:</string>
+    <string name="insert_hint_title_fourth">更多组合源码的简单描述</string>
+    <string name="insert_summary_fourth">组合源码介绍:</string>
+    <string name="insert_hint_summary_fourth">多个源码的背景与介绍</string>
+    <string name="insert_show_fourth">单个源码知识点演示 </string>
+    <string name="insert_show_count_fourth">(1个)</string>
+    <string name="show_hint_fourth">你必须要添加多个源码知识点才行!</string>
+    <string name="insert_heed_fourth">精通级注意:</string>
+    <string name="insert_hint_heed_fourth">精通级知识所需要注意的点(使用中可能出问题的点)</string>
+    <string name="insert_experience_fourth">心得:</string>
+    <string name="insert_hint_experience_fourth">经验分享(你对该知识的深入理解)</string>
+
+    <string name="item_function_common_fourth">偶尔</string>
+    <string name="item_function_title_fourth">textView的源码知识</string>
+    <string name="item_function_summary_fourth">简单说明:</string>
+    <string name="item_function_summary_title_fourth">请说明源码的背景</string>
+    <string name="item_function_explain_fourth">使用说明:</string>
+    <string name="item_function_explain_title_fourth">请说明源码的使用方法</string>
+
+    <string name="insert_title_fifth">体系的标题:</string>
+    <string name="insert_hint_title_fifth">体系知识的简单描述</string>
+    <string name="insert_summary_fifth">体系介绍:</string>
+    <string name="insert_hint_summary_fifth">体系的背景与介绍</string>
+    <string name="insert_show_fifth">体系展示:</string>
+    <string name="insert_hint_show_fifth">体系的部分展示</string>
+    <string name="insert_explain_fifth">体系的意义:</string>
+    <string name="insert_hint_explain_fifth">体系的意义详解</string>
+    <string name="insert_heed_fifth">体系注意点:</string>
+    <string name="insert_hint_heed_fifth">理解体系时需要关注的点</string>
+    <string name="insert_experience_fifth">心得:</string>
+    <string name="insert_hint_experience_fifth">经验分享(你对该体系的深入理解)</string>
+
+    <string name="know_empty">没有找到该数据，请反馈!</string>
 </resources>

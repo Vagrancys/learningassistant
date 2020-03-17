@@ -53,16 +53,16 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
         viewHolder.contentTitle.setText(bean.getTitle());
         int ImageId;
         switch (bean.getLevel()){
-            case 0:
+            case 1:
                 ImageId = R.drawable.know_level_1;
                 break;
-            case 1:
+            case 2:
                 ImageId  = R.drawable.know_level_2;
                 break;
-            case 2:
+            case 3:
                 ImageId = R.drawable.know_level_3;
                 break;
-            case 3:
+            case 4:
                 ImageId = R.drawable.know_level_4;
                 break;
             default:
@@ -75,6 +75,7 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
         viewHolder.contentCount.setText(bean.getCount()+"/"+bean.getMax()+"次");
         viewHolder.contentMasterLevel.setMasterLevel(bean.getMasterLevel());
         viewHolder.contentStudyTitle.setText(bean.getStudyTitle());
+        super.onBindViewHolder(holder, position);
     }
 
     @Override
@@ -101,7 +102,6 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
         MasterProgressView contentMasterLevel;
         private HomeContentViewHolder(View view){
             super(view);
-            ButterKnife.bind(view);
         }
     }
 }

@@ -59,7 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
-                android:scrollbars="none"/>
+                android:scrollbars="none"
+                android:padding="@dimen/margin_width_10dp"/>
             <include
                 layout="@layout/fragment_empty"/>
         </RelativeLayout>

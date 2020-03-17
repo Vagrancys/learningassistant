@@ -40,13 +40,13 @@ public class HelpContentAdapter extends BaseRecyclerAdapter {
     }
 
     @Override
-    public void onBindViewHolder(CommonViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CommonViewHolder holder, int position) {
         HelpContentViewHolder mHolder = (HelpContentViewHolder) holder;
-        HelpContentItem helpContentItem = mBean.get(position);
-        mHolder.helpNumber.setText(helpContentItem.getNumber());
-        mHolder.helpTime.setText(helpContentItem.getTime());
-        mHolder.helpTitle.setText(helpContentItem.getTitle());
-        Log.e("HelpContentAdapter","position = "+position);
+        Log.e("HelpContentAdapter","position = "+position+"number = "+mBean.get(position).getNumber());
+        mHolder.helpNumber.setText(String.valueOf(mBean.get(position).getNumber()));
+        mHolder.helpTime.setText(mBean.get(position).getTime());
+        mHolder.helpTitle.setText(mBean.get(position).getTitle());
+        super.onBindViewHolder(holder,position);
     }
 
     @Override
@@ -63,7 +63,6 @@ public class HelpContentAdapter extends BaseRecyclerAdapter {
         TextView helpTime;
         private HelpContentViewHolder(View view){
             super(view);
-            ButterKnife.bind(view);
         }
     }
 }

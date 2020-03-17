@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.common.help;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.vargancys.learningassistant.persenter.common.help.HelpSummaryPresente
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -71,6 +73,7 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     private int help_summary_id;
     private int commendNumber;
     private String TAG = "HelpSummaryActivity";
+    private List<HelpCommendItem> helpCommendItems = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -81,6 +84,9 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     public void initView() {
         help_summary_id = getIntent().getIntExtra(ConstantsUtils.HELP_SUMMARY_ID,0);
         helpSummaryPresenter = new HelpSummaryPresenter(this);
+        helpCommendAdapter = new HelpCommendAdapter(getContext(),helpCommendItems);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(helpCommendAdapter);
         helpSummaryPresenter.getHelpData(help_summary_id);
         helpSummaryPresenter.getCommendData(help_summary_id);
         initListener();
@@ -173,14 +179,13 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
 
     private void updateData(Object object){
         HelpContentItem helpContentItem = (HelpContentItem) object;
-        helpNumber.setText(helpContentItem.getNumber());
+        helpNumber.setText(String.valueOf(helpContentItem.getNumber()));
         helpTitle.setText(helpContentItem.getTitle());
         helpSummary.setText(helpContentItem.getSummary());
         helpTime.setText(helpContentItem.getTime());
-        helpPraiseNumber.setText(helpContentItem.getPraise());
-        helpPoorNumber.setText(helpContentItem.getPoor());
-        commendNumber = helpContentItem.getCommendItems().size();
-        commendNumberText.setText("("+commendNumber+")");
+        helpPraiseNumber.setText(String.valueOf(helpContentItem.getPraise()));
+        helpPoorNumber.setText(String.valueOf(helpContentItem.getPoor()));
+
     }
 
     @Override
@@ -202,8 +207,14 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     public void findCommend(List<HelpCommendItem> items) {
         recyclerView.setVisibility(View.VISIBLE);
         commendLinear.setVisibility(View.GONE);
-        helpCommendAdapter = new HelpCommendAdapter(getContext(),items);
-        recyclerView.setAdapter(helpCommendAdapter);
+        if(items.size() >0){
+            commendNumber = items.size();
+            commendNumberText.setText("("+commendNumber+")");
+        }else{
+            commendNumberText.setText("");
+        }
+        helpCommendItems.addAll(items);
+        helpCommendAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -221,20 +232,24 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     public void PraiseOrPoor(int state,int number,String msg) {
         switch (state){
             case 0:
-                helpPraiseNumber.setText(number);
+                helpPraiseNumber.setText(String.valueOf(number));
                 break;
             case 1:
-                helpPoorNumber.setText(number);
+                helpPoorNumber.setText(String.valueOf(number));
                 break;
         }
         ToastUtils.ToastText(getContext(),msg+"成功!");
     }
 
     @Override
-    public void saveCommendFinish() {
+    public void saveCommendFinish(HelpCommendItem item) {
         ToastUtils.ToastText(getContext(),"发表评论成功了!");
         helpSummaryPresenter.reFreshSummary(help_summary_id);
-        commendNumberText.setText(commendNumber+1);
+        commendNumberText.setText(String.valueOf(++commendNumber));
+        recyclerView.setVisibility(View.VISIBLE);
+        commendLinear.setVisibility(View.GONE);
+        helpCommendItems.add(item);
+        helpCommendAdapter.notifyDataSetChanged();
     }
 
     @Override

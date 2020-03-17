@@ -32,7 +32,7 @@ public class HelpSummaryPresenter {
 
     public void getCommendData(int help_id){
         List<HelpCommendItem> helpCommendItems = helpRequest.getCommendBean(help_id);
-        if(helpCommendItems.size() > 0){
+        if(helpCommendItems !=null&&helpCommendItems.size() > 0){
             mView.findCommend(helpCommendItems);
         }else{
             mView.findEmpty();
@@ -63,9 +63,9 @@ public class HelpSummaryPresenter {
     }
 
     public void saveCommendData(int id,String title){
-        boolean result = helpRequest.saveCommendData(id,title);
-        if(result){
-            mView.saveCommendFinish();
+        HelpCommendItem item = helpRequest.saveCommendData(id,title);
+        if(item !=null){
+            mView.saveCommendFinish(item);
         }else{
             mView.saveCommendError(503,"保存失败了!");
         }

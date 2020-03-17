@@ -106,7 +106,7 @@ public class HelpUpdateActivity extends BaseActivity implements HelpUpdateView {
     public void getHelpData(HelpContentItem item) {
         mTitle = item.getTitle();
         mSummary = item.getSummary();
-        helpNumber.setText(item.getNumber());
+        helpNumber.setText(String.valueOf(item.getNumber()));
         helpTitleEdit.setText(mTitle);
         helpSummaryEdit.setText(mSummary);
     }

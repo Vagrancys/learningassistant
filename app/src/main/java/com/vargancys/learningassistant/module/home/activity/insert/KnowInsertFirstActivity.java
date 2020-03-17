@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,6 +55,7 @@ public class KnowInsertFirstActivity extends BaseActivity implements KnowInsertF
         Intent intent = getIntent();
         if(intent != null){
             know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,1);
+            Log.e("idddd","id="+know_item_id);
         }
         mPresenter = new KnowInsertPresenter(this);
         initListener();
@@ -132,6 +134,7 @@ public class KnowInsertFirstActivity extends BaseActivity implements KnowInsertF
     public void saveFirstItemFinish() {
         ToastUtils.ToastText(getContext(),"保存成功了哦!");
         initEmpty();
+        finish();
     }
 
     private void initEmpty() {

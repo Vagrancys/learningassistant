@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.db.home;
 
+import org.litepal.annotation.Column;
 import org.litepal.crud.LitePalSupport;
 
 /**
@@ -11,7 +12,7 @@ import org.litepal.crud.LitePalSupport;
  */
 public class HomeKnowItem extends LitePalSupport{
     //知识项id
-    private int item_id;
+    private int id;
 
     //官方知识
     private boolean official;
@@ -83,12 +84,12 @@ public class HomeKnowItem extends LitePalSupport{
         return createClass;
     }
 
-    public int getItem_id() {
-        return item_id;
+    public int getId() {
+        return id;
     }
 
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
+    public void setId(int item_id) {
+        this.id = item_id;
     }
 
     public String getStudyTitle() {

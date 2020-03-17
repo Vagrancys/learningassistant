@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,13 +64,12 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     private int know_item_id;
     private List<HomeKnowFunction> homeKnowFunctions = new ArrayList<>();
     private HomeKnowSecondAdapter mAdapter;
-    private int[] mCommonArray;
     private int mCommon = 1;
     private PopupWindow mPopupWindow;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_insert_first;
+        return R.layout.activity_know_insert_second;
     }
 
     @Override
@@ -79,7 +79,6 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
             know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,1);
         }
         mPresenter = new KnowInsertPresenter(this);
-        mCommonArray = getResources().getIntArray(R.array.common_level);
         initRecyclerView();
         initListener();
         initPopupWindow();
@@ -180,10 +179,18 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
         mPopupWindow.setAnimationStyle(R.style.FunctionAnimAction);
         final View popView = View.inflate(getContext(),R.layout.pop_function_second,null);
         Spinner mSpinner =popView.findViewById(R.id.function_common);
-        mSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ArrayAdapter arrayAdapter =ArrayAdapter.createFromResource(getContext(),R.array.common_level,
+                R.layout.support_simple_spinner_dropdown_item);
+        mSpinner.setAdapter(arrayAdapter);
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mCommon = mCommonArray[position];
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mCommon = position+1;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         final EditText mTitle = popView.findViewById(R.id.function_title_edit);
@@ -220,7 +227,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     }
 
     public static void launch(Activity activity, int know_id){
-        Intent intent = new Intent(activity,KnowInsertFirstActivity.class);
+        Intent intent = new Intent(activity,KnowInsertSecondActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
         activity.startActivity(intent);
     }
@@ -234,6 +241,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     public void saveSecondItemFinish() {
         ToastUtils.ToastText(getContext(),"保存成功了哦!");
         initEmpty();
+        finish();
     }
 
     @Override

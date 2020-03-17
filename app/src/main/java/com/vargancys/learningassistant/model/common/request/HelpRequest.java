@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.model.common.request;
 
+import android.util.Log;
+
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -39,7 +41,8 @@ public class HelpRequest{
     }
 
     public List<HelpCommendItem> getCommendBean(int item){
-        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,item);
+        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,item,true);
+        Log.e("helpcommend","size"+helpContentItem.getCommendItems().size());
         return helpContentItem.getCommendItems();
     }
 
@@ -110,14 +113,17 @@ public class HelpRequest{
         return number;
     }
 
-    public boolean saveCommendData(int id,String title){
-        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,id);
+    public HelpCommendItem saveCommendData(int id,String title){
         HelpCommendItem helpCommendItem = new HelpCommendItem();
+        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,id);
         helpCommendItem.setSummary(title);
         helpCommendItem.setTime(TimeUtils.getTime());
+        helpCommendItem.setHelpContentItem(helpContentItem);
         boolean result = helpCommendItem.save();
-        helpContentItem.getCommendItems().add(helpCommendItem);
-        helpContentItem.save();
-        return result;
+        if(result){
+            return helpCommendItem;
+        }else{
+            return null;
+        }
     }
 }

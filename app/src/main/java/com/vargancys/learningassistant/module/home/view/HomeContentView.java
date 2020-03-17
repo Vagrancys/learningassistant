@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.module.home.view;
 
+import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * version:1.0
  */
 public interface  HomeContentView {
-    void showContentBean(List<?> bean);
+    void showContentBean(List<HomeKnowItem> bean);
     void showError(int error,String msg);
     void hideEmpty();
     void showEmpty();

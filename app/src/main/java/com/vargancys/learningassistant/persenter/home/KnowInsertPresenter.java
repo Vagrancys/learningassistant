@@ -1,11 +1,16 @@
 package com.vargancys.learningassistant.persenter.home;
 
+import android.util.Log;
+
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
+import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFirstView;
+import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
+import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;
 
 import org.litepal.LitePal;
 
@@ -80,6 +85,7 @@ public class KnowInsertPresenter {
     //保存入门级知识项
     public void saveKnowFirstItem(int know_id,String title,String summary,String show,
                                     String explain,String heed,String experience){
+        Log.e("save1","is=11" );
         boolean result = mRequest.saveKnowFirstItem(know_id,title,summary,show,
                 explain,heed,experience);
         if(result){
@@ -140,5 +146,103 @@ public class KnowInsertPresenter {
     public boolean isFunctionEmpty(int mCommon, String title,
                                    String summary, String explain) {
         return ((KnowInsertSecondView) mView).isFunctionEmpty(mCommon, title, summary, explain);
+    }
+
+
+
+    //熟练级判断是否为空
+    public void isThirdEmpty() {
+        boolean result = ((KnowInsertThirdView) mView).isThirdEmpty();
+        if(!result){
+            ((KnowInsertThirdView) mView).isThirdEqualsItem();
+        }else{
+            ((KnowInsertThirdView) mView).isThirdEmptyError(502,"没有填写完!");
+        }
+    }
+
+    //熟练级判断是否已经存在
+    public void isEqualsThirdItem(String title) {
+        boolean result = mRequest.isEqualsThirdItem(title);
+        if(!result){
+            ((KnowInsertThirdView) mView).saveThirdKnowItem();
+        }else{
+            ((KnowInsertThirdView) mView).isThirdEqualsError(501,"已经有该数据项了!");
+        }
+    }
+
+    //保存熟练级知识项
+    public void saveKnowThirdItem(int know_item_id, String title, String summary,
+                                   String show,String explain, String heed, String experience) {
+        boolean result = mRequest.saveKnowThirdItem(know_item_id,title,summary,show,explain,
+                heed,experience);
+        if(result){
+            ((KnowInsertThirdView) mView).saveThirdItemFinish();
+        }else{
+            ((KnowInsertThirdView) mView).saveThirdItemError(501,"该数据项保存失败了!");
+        }
+    }
+
+    //精通级判断是否已经存在
+    public void isEqualsFourthItem(String title) {
+        boolean result = mRequest.isEqualsFourthItem(title);
+        if(!result){
+            ((KnowInsertFourthView) mView).saveFourthKnowItem();
+        }else{
+            ((KnowInsertFourthView) mView).isFourthEqualsError(501,"已经有该数据项了!");
+        }
+    }
+
+    //保存精通级知识项
+    public void saveKnowFourthItem(int know_item_id, String title, String summary,
+                                   List<HomeKnowFunction> homeKnowFunctions, String heed, String experience) {
+        boolean result = mRequest.saveKnowFourthItem(know_item_id,title,summary,homeKnowFunctions,
+                heed,experience);
+        if(result){
+            ((KnowInsertFourthView) mView).saveFourthItemFinish();
+        }else{
+            ((KnowInsertFourthView) mView).saveFourthItemError(501,"该数据项保存失败了!");
+        }
+    }
+
+    //熟练级判断是否为空
+    public void isFourthEmpty() {
+        boolean result = ((KnowInsertFourthView) mView).isFourthEmpty();
+        if(!result){
+            ((KnowInsertFourthView) mView).isFourthEqualsItem();
+        }else{
+            ((KnowInsertFourthView) mView).isFourthEmptyError(502,"没有填写完!");
+        }
+    }
+
+    //专家级判断是否为空
+    public void isFifthEmpty() {
+        boolean result = ((KnowInsertFifthView) mView).isFifthEmpty();
+        if(!result){
+            ((KnowInsertFifthView) mView).isFifthEqualsItem();
+        }else{
+            ((KnowInsertFifthView) mView).isFifthEmptyError(502,"没有填写完!");
+        }
+    }
+
+    //专家级判断是否已经存在
+    public void isEqualsFifthItem(String title) {
+        boolean result = mRequest.isEqualsFifthItem(title);
+        if(!result){
+            ((KnowInsertFifthView) mView).saveFifthKnowItem();
+        }else{
+            ((KnowInsertFifthView) mView).isFifthEqualsError(501,"已经有该数据项了!");
+        }
+    }
+
+    //保存专家级知识项
+    public void saveKnowFifthItem(int know_item_id, String title, String summary,
+                                  String show,String explain, String heed, String experience) {
+        boolean result = mRequest.saveKnowFifthItem(know_item_id,title,summary,show,explain,
+                heed,experience);
+        if(result){
+            ((KnowInsertFifthView) mView).saveFifthItemFinish();
+        }else{
+            ((KnowInsertFifthView) mView).saveFifthItemError(501,"该数据项保存失败了!");
+        }
     }
 }

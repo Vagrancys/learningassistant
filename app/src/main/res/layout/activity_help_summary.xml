@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:focusable="true"
+    android:focusableInTouchMode="true">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -86,7 +87,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/help_summary"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_24sp"
+                    android:textSize="@dimen/text_size_20sp"
                     android:layout_toEndOf="@+id/help_text"
                     android:layout_below="@+id/help_number"
                     android:layout_marginEnd="@dimen/margin_width_10dp"/>
@@ -97,6 +98,7 @@
                     android:text="@string/help_time"
                     android:textSize="@dimen/text_size_24sp"
                     android:textColor="@color/black_1"
+                    android:layout_marginTop="@dimen/text_size_20sp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@+id/help_summary"/>
@@ -213,6 +215,8 @@
             android:padding="@dimen/margin_width_10dp"
             android:hint="@string/commend_edit_hint"
             android:minLines="1"
+            android:maxLines="5"
+            android:gravity="start"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/commend_send"
             android:layout_marginEnd="@dimen/margin_width_10dp"/>
@@ -220,6 +224,8 @@
             android:id="@+id/commend_send"
             android:layout_width="@dimen/margin_width_30dp"
             android:layout_height="@dimen/margin_width_30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/margin_width_10dp"
             android:background="@drawable/commend_send_selector"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>

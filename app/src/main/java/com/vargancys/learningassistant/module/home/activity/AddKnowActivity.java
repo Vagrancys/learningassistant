@@ -94,13 +94,19 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
             }
         });
 
-        addKnowLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        addKnowLevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mLevel = position;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mLevel = position+1;
+                Log.e(TAG,"level="+mLevel);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
+
     public void addItem(){
         HomeKnowItem homeKnowItem = new HomeKnowItem();
         homeKnowItem.setTitle(addKnowTitle.getText().toString());

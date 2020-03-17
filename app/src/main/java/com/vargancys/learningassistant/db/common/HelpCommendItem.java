@@ -11,6 +11,15 @@ import org.litepal.crud.LitePalSupport;
 public class HelpCommendItem extends LitePalSupport {
     private String summary;
     private String time;
+    private HelpContentItem helpContentItem;
+
+    public void setHelpContentItem(HelpContentItem helpContentItem) {
+        this.helpContentItem = helpContentItem;
+    }
+
+    public HelpContentItem getHelpContentItem() {
+        return helpContentItem;
+    }
 
     public String getTime() {
         return time;

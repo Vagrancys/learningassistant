@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -65,6 +66,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
         helpContentPresenter = new HelpContentPresenter(this);
         swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
         helpContentAdapter = new HelpContentAdapter(getContext(),mBean);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(helpContentAdapter);
         initListener();
         helpContentPresenter.getAllBean();
@@ -80,6 +82,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     public void showContentBean(List<HelpContentItem> bean) {
         Log.e("helpContentActivity","showContentBean = "+bean.size());
         Log.e("helpContentActivity","showContentBean = "+bean.get(0).getTitle());
+        mBean.clear();
         mBean.addAll(bean);
         helpContentAdapter.notifyDataSetChanged();
     }
@@ -110,6 +113,8 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     public void deleteFinish(int position) {
         ToastUtils.ToastText(getContext(),"删除帮助成功了!");
         helpContentAdapter.notifyItemRemoved(position);
+        mBean.remove(position);
+        helpContentAdapter.notifyItemRangeChanged(position,mBean.size()-1);
     }
 
     @Override
@@ -120,6 +125,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     class HelpContentOnItemLongClickListener implements BaseRecyclerAdapter.OnItemLongClickListener{
         @Override
         public void OnItemLongClick(int position) {
+            final int mPosition = position;
             final HelpContentItem helpContentItem = (HelpContentItem) mBean.get(position);
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
             alertDialog.setTitle(helpContentItem.getTitle());
@@ -127,7 +133,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
             alertDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    helpContentPresenter.deleteHelpData(helpContentItem.getId());
+                    helpContentPresenter.deleteHelpData(mPosition,helpContentItem.getId());
                     dialog.dismiss();
                 }
             });
@@ -144,7 +150,8 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     class HelpContentOnItemClickListener implements BaseRecyclerAdapter.OnItemClickListener{
         @Override
         public void OnItemClick(int position) {
-            HelpContentItem helpContentItem = (HelpContentItem) mBean.get(position);
+            ToastUtils.ToastText(getContext(),"跳转到帮助详情页面!");
+            HelpContentItem helpContentItem =mBean.get(position);
             HelpSummaryActivity.launch(HelpContentActivity.this,helpContentItem.getId());
         }
     }

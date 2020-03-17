@@ -31,7 +31,7 @@ public class HomeRequest{
     }
 
     public boolean queryKnowRepeat(String title){
-        List<HomeKnowItem> items = LitePal.where("title = ",title).find(HomeKnowItem.class);
+        List<HomeKnowItem> items = LitePal.where("title = ?",title).find(HomeKnowItem.class);
         if(items.size() > 0){
             return true;
         }else{

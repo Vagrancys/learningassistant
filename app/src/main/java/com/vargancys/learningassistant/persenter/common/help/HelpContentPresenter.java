@@ -39,10 +39,10 @@ public class HelpContentPresenter{
         }
     }
 
-    public void deleteHelpData(int id){
+    public void deleteHelpData(int position,int id){
         int result = helpRequest.deleteHelpData(id);
         if(result != 0){
-            helpContentView.deleteFinish(id);
+            helpContentView.deleteFinish(position);
         }else{
             helpContentView.deleteError();
         }

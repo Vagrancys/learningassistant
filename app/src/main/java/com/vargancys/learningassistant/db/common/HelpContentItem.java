@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.db.common;
 
 import org.litepal.crud.LitePalSupport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class HelpContentItem extends LitePalSupport {
     //没有帮助
     private int poor;
 
-    private List<HelpCommendItem> commendItems;
+    private List<HelpCommendItem> commendItems = new ArrayList<>();
 
     public List<HelpCommendItem> getCommendItems() {
         return commendItems;

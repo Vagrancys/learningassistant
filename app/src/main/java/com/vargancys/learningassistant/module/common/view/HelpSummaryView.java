@@ -26,7 +26,7 @@ public interface HelpSummaryView{
 
     void PraiseOrPoor(int state,int number,String msg);
 
-    void saveCommendFinish();
+    void saveCommendFinish(HelpCommendItem item);
     void saveCommendError(int error,String msg);
 }
 

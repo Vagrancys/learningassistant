@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.db.home;
 
 import org.litepal.crud.LitePalSupport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class HomeKnowContent extends LitePalSupport {
     //详细知识的id
-    private int content_id;
+    private int id;
     //详细知识的标题
     private String title;
 
@@ -31,8 +32,18 @@ public class HomeKnowContent extends LitePalSupport {
     //详细知识的使用心得
     private String experience;
 
+    private HomeKnowItem homeKnowItem;
+
+    public HomeKnowItem getHomeKnowItem() {
+        return homeKnowItem;
+    }
+
+    public void setHomeKnowItem(HomeKnowItem homeKnowItem) {
+        this.homeKnowItem = homeKnowItem;
+    }
+
     //详细函数的数据项
-    private List<HomeKnowFunction> homeKnowFunctions;
+    private List<HomeKnowFunction> homeKnowFunctions = new ArrayList<>();
 
     public List<HomeKnowFunction> getHomeKnowFunctions() {
         return homeKnowFunctions;
@@ -42,12 +53,12 @@ public class HomeKnowContent extends LitePalSupport {
         this.homeKnowFunctions = homeKnowFunctions;
     }
 
-    public int getContent_id() {
-        return content_id;
+    public int getId() {
+        return id;
     }
 
-    public void setContent_id(int content_id) {
-        this.content_id = content_id;
+    public void setId(int content_id) {
+        this.id = content_id;
     }
 
     public String getSummary() {

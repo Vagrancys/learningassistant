@@ -3,8 +3,10 @@ package com.vargancys.learningassistant.module.home.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,6 +49,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class HomeContentFragment extends BaseFragment implements HomeContentView,View.OnClickListener {
+    private static final String TAG = "HomeContentFragment";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.recyclerView)
@@ -66,7 +69,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
 
     private HomeContentAdapter homeContentAdapter;
     private HomeContentPresenter homeContentPresenter;
-    private List<?> mBean = new ArrayList<>();
+    private List<HomeKnowItem> mBean = new ArrayList<>();
     private JumpRouteUtils jumpRouteUtils;
     @Override
     public int getLayoutId() {
@@ -78,6 +81,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         homeContentPresenter = new HomeContentPresenter(this);
         //recyclerView.setAdapter();
         homeContentAdapter = new HomeContentAdapter(getContext(),mBean);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(homeContentAdapter);
         initListener();
     }
@@ -115,7 +119,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 alert.setNegativeButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        homeContentPresenter.deleteKnowData(homeKnowItem.getItem_id());
+                        homeContentPresenter.deleteKnowData(homeKnowItem.getId());
                         dialog.dismiss();
                     }
                 });
@@ -142,20 +146,21 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     class HomeContentItemClickListener implements BaseRecyclerAdapter.OnItemClickListener{
         @Override
         public void OnItemClick(int position) {
-            HomeKnowItem homeKnowItem = (HomeKnowItem) mBean.get(position);
+            HomeKnowItem homeKnowItem =mBean.get(position);
             if(homeKnowItem.isCreateClass()){
                 homeContentPresenter.updateCount(position);
                 if(homeKnowItem.isHave()){
                     launchDemonstrateActivity(homeKnowItem.getActivity());
                 }else{
-                    launchShowActivity(homeKnowItem.getItem_id(),homeKnowItem.getLevel());
+                    launchShowActivity(homeKnowItem.getId(),homeKnowItem.getLevel());
                 }
             }else{
                 if(homeKnowItem.isHave()){
                     ToastUtils.ToastText(getContext(),"这需要官方来创建!个人不能创建!");
                 }else{
                     //ToastUtils.ToastText(getContext(),"还没有编程到这里!");
-                    launchInsertActivity(homeKnowItem.getItem_id(),homeKnowItem.getLevel());
+                    Log.e("homecontent","level="+homeKnowItem.getLevel());
+                    launchInsertActivity(homeKnowItem.getId(),homeKnowItem.getLevel());
                 }
             }
         }
@@ -210,6 +215,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 KnowInsertFirstActivity.launch(getActivity(),item_id);
                 break;
             case 2:
+                Log.e("launch","level="+level);
                 KnowInsertSecondActivity.launch(getActivity(),item_id);
                 break;
             case 3:
@@ -234,13 +240,6 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     }
 
     @Override
-    public void initData() {
-        super.initData();
-        swipeRefresh.setRefreshing(true);
-        homeContentPresenter.getData();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.know_add:
@@ -260,8 +259,10 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     }
 
     @Override
-    public void showContentBean(List<?> bean) {
-        mBean = bean;
+    public void showContentBean(List<HomeKnowItem> bean) {
+        mBean.clear();
+        Log.e(TAG,"size = "+bean.size());
+        mBean.addAll(bean);
         homeContentAdapter.notifyDataSetChanged();
     }
 
@@ -292,6 +293,14 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     public void deleteFinish(int item_id) {
         ToastUtils.ToastText(getContext(),"知识项删除成功了!");
         homeContentAdapter.notifyItemRemoved(item_id);
+        homeContentAdapter.notifyItemChanged(item_id,mBean.size()-1);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        swipeRefresh.setRefreshing(true);
+        homeContentPresenter.getData();
     }
 
     @Override

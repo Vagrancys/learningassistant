@@ -2,9 +2,12 @@ package com.vargancys.learningassistant.base;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+
+import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy
@@ -13,19 +16,20 @@ import android.widget.AdapterView;
  * version:1.0
  */
 public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseRecyclerAdapter.CommonViewHolder> {
-    private View parentView;
 
     @Override
-    public void onBindViewHolder(@NonNull CommonViewHolder holder, final int position) {
-        parentView.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(final CommonViewHolder holder, final int position) {
+        Log.e("1adapter","1adapter");
+        holder.getParentView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("adapter","adapter");
                 if(onItemClickListener != null){
                     onItemClickListener.OnItemClick(position);
                 }
             }
         });
-        parentView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.getParentView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 if(onItemLongClickListener !=null){
@@ -56,9 +60,15 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseRecyc
     }
 
     public class CommonViewHolder extends RecyclerView.ViewHolder {
+        private View parentView;
         public CommonViewHolder(View itemView) {
             super(itemView);
-            parentView = itemView;
+            this.parentView = itemView;
+            ButterKnife.bind(this,itemView);
+        }
+
+        View getParentView() {
+            return parentView;
         }
     }
 }
