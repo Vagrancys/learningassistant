@@ -17,7 +17,11 @@ public class KnowShowRequest {
     }
 
     public HomeKnowContent getDefaultShowData(int id){
-        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,id);
-        return homeKnowItem.getHomeKnowContent();
+        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,id,true);
+        if(homeKnowItem.getHomeKnowContent() != null){
+            return homeKnowItem.getHomeKnowContent();
+        }else {
+            return null;
+        }
     }
 }

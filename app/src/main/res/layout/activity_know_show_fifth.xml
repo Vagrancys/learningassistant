@@ -6,6 +6,7 @@
     android:orientation="vertical">
     <include layout="@layout/include_toolbar"/>
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -190,4 +191,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <include layout="@layout/include_know_empty"/>
 </LinearLayout>

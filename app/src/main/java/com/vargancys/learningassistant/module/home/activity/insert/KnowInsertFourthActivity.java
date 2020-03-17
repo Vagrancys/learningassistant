@@ -138,7 +138,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
         insertShowAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.showFunctionWindow();
+                mPresenter.showFourthFunctionWindow();
             }
         });
     }
@@ -174,7 +174,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
     }
 
     private void initPopupWindow(){
-        mPopupWindow = new PopupWindow();
+        mPopupWindow = new PopupWindow(this);
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         mPopupWindow.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
         mPopupWindow.setAnimationStyle(R.style.FunctionAnimAction);

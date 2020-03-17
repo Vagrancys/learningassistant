@@ -23,10 +23,10 @@
         <item>5</item>
     </string-array>
 
-    <integer-array name="common_level">
+    <string-array name="common_level">
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
-    </integer-array>
+    </string-array>
 </resources>

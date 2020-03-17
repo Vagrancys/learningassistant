@@ -148,7 +148,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         public void OnItemClick(int position) {
             HomeKnowItem homeKnowItem =mBean.get(position);
             if(homeKnowItem.isCreateClass()){
-                homeContentPresenter.updateCount(position);
+                homeContentPresenter.updateCount(homeKnowItem.getId());
                 if(homeKnowItem.isHave()){
                     launchDemonstrateActivity(homeKnowItem.getActivity());
                 }else{
@@ -204,7 +204,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 KnowShowFifthActivity.launch(getActivity(),item_id);
                 break;
             default:
-                KnowShowDefaultActivity.launch(getActivity());
+                KnowShowDefaultActivity.launch(getActivity(),item_id);
                 break;
         }
     }

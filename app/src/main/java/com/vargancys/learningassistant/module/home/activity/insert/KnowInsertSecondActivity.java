@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,6 +39,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class KnowInsertSecondActivity extends BaseActivity  implements KnowInsertSecondView {
+    private String TAG = "KnowInsertSecondActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_img)
@@ -137,7 +139,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
         insertShowAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.showFunctionWindow();
+                mPresenter.showSecondFunctionWindow();
             }
         });
     }
@@ -173,7 +175,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     }
 
     private void initPopupWindow(){
-        mPopupWindow = new PopupWindow();
+        mPopupWindow = new PopupWindow(this);
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         mPopupWindow.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
         mPopupWindow.setAnimationStyle(R.style.FunctionAnimAction);
@@ -218,8 +220,6 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
         });
         mPopupWindow.setContentView(popView);
     }
-
-
 
     @Override
     public void isSecondEqualsError(int error, String msg) {
@@ -292,5 +292,6 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     @Override
     public void showFunctionWindow() {
         mPopupWindow.showAsDropDown(insertShowAdd);
+        Log.e(TAG,"popupWindow");
     }
 }

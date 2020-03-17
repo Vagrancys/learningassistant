@@ -46,8 +46,8 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
     TextView insertShowCount;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.show_empty_second)
-    TextView showEmptySecond;
+    @BindView(R.id.show_empty_fourth)
+    TextView showEmptyFourth;
     @BindView(R.id.insert_show_heed)
     TextView insertShowHeed;
     @BindView(R.id.insert_show_experience)
@@ -95,7 +95,7 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
     }
 
     public static void launch(Activity activity, int item_id) {
-        Intent intent = new Intent(activity, KnowShowSecondActivity.class);
+        Intent intent = new Intent(activity, KnowShowFourthActivity.class);
         intent.putExtra(ConstantsUtils.ITEM_ID, item_id);
         activity.startActivity(intent);
     }
@@ -121,10 +121,10 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
         insertShowExperience.setText(homeKnowContent.getExperience());
         int count = homeKnowContent.getHomeKnowFunctions().size();
         if(count <= 0){
-            showEmptySecond.setVisibility(View.VISIBLE);
+            showEmptyFourth.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }else{
-            showEmptySecond.setVisibility(View.GONE);
+            showEmptyFourth.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }
         insertShowCount.setText(homeKnowContent.getHomeKnowFunctions().size());
@@ -132,6 +132,5 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
         commonTitle.setText(homeKnowContent.getTitle());
         mAdapter.notifyDataSetChanged();
     }
-
 }
 

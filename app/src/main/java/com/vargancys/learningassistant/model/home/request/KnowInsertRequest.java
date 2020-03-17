@@ -36,11 +36,9 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        boolean result = homeKnowContent.save();
         HomeKnowItem homeKnowItem = new HomeKnowItem();
         homeKnowItem.setHomeKnowContent(homeKnowContent);
         homeKnowItem.update(know_id);
-        return result;
     }
 
     //判断入门级知识是否存在
@@ -62,11 +60,10 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = new HomeKnowItem();
         homeKnowItem.setCreateClass(true);
-        int is = homeKnowItem.update(know_id);
-        Log.e("save","is=" +is+"know=" +know_id);
-        homeKnowContent.setHomeKnowItem(homeKnowItem);
+        homeKnowItem.setHomeKnowContent(homeKnowContent);
+        homeKnowItem.save();
+        //Log.e("save","is=" +is+"know=" +know_id);
         return homeKnowContent.save();
     }
 
@@ -83,11 +80,11 @@ public class KnowInsertRequest {
         homeKnowContent.setHomeKnowFunctions(homeKnowFunctions);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = new HomeKnowItem();
+        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
         homeKnowItem.setCreateClass(true);
-        int is =homeKnowItem.update(know_id);
-        Log.e("save","is=" +is);
-        homeKnowContent.setHomeKnowItem(homeKnowItem);
+        homeKnowItem.setHomeKnowContent(homeKnowContent);
+        homeKnowItem.save();
+        //Log.e("save","is=" +is);
         return homeKnowContent.save();
     }
 
@@ -107,11 +104,11 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = new HomeKnowItem();
+        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
         homeKnowItem.setCreateClass(true);
-        int is =homeKnowItem.update(know_id);
-        Log.e("save","is=" +is);
-        homeKnowContent.setHomeKnowItem(homeKnowItem);
+        homeKnowItem.setHomeKnowContent(homeKnowContent);
+        homeKnowItem.save();
+        //Log.e("save","is=" +is);
         return homeKnowContent.save();
     }
 
@@ -133,11 +130,11 @@ public class KnowInsertRequest {
         homeKnowContent.setHomeKnowFunctions(homeKnowFunctions);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = new HomeKnowItem();
+        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
         homeKnowItem.setCreateClass(true);
-        int is =homeKnowItem.update(know_id);
-        Log.e("save","is=" +is);
-        homeKnowContent.setHomeKnowItem(homeKnowItem);
+        homeKnowItem.setHomeKnowContent(homeKnowContent);
+        homeKnowItem.save();
+        //Log.e("save","is=" +is);
         return homeKnowContent.save();
     }
 
@@ -157,11 +154,12 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = new HomeKnowItem();
+        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
+
         homeKnowItem.setCreateClass(true);
-        int is =homeKnowItem.update(know_id);
-        Log.e("save","is=" +is);
-        homeKnowContent.setHomeKnowItem(homeKnowItem);
+        homeKnowItem.setHomeKnowContent(homeKnowContent);
+        homeKnowItem.save();
+        //Log.e("save","is=" +is);
         return homeKnowContent.save();
     }
 

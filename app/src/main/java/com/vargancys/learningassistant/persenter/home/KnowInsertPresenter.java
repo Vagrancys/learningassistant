@@ -116,8 +116,13 @@ public class KnowInsertPresenter {
     }
 
     //显示熟悉级的函数添加窗口
-    public void showFunctionWindow() {
+    public void showSecondFunctionWindow() {
         ((KnowInsertSecondView) mView).showFunctionWindow();
+    }
+
+    //显示精通级的函数添加窗口
+    public void showFourthFunctionWindow() {
+        ((KnowInsertFourthView) mView).showFunctionWindow();
     }
 
     //熟悉级判断是否为空
