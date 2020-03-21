@@ -44,7 +44,7 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         HomeContentViewHolder viewHolder = (HomeContentViewHolder) holder;
         HomeKnowItem bean = (HomeKnowItem) contentBean.get(position);
-        if(bean.isHave()){
+        if(bean.getHave()){
             viewHolder.contentHave.setImageResource(R.drawable.know_have_selected);
         }else{
             viewHolder.contentHave.setImageResource(R.drawable.know_have_normal);

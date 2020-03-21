@@ -83,6 +83,7 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     @Override
     public void initView() {
         help_summary_id = getIntent().getIntExtra(ConstantsUtils.HELP_SUMMARY_ID,0);
+        Log.e(TAG,"help_id"+help_summary_id);
         helpSummaryPresenter = new HelpSummaryPresenter(this);
         helpCommendAdapter = new HelpCommendAdapter(getContext(),helpCommendItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -177,9 +178,8 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
         activity.startActivity(intent);
     }
 
-    private void updateData(Object object){
-        HelpContentItem helpContentItem = (HelpContentItem) object;
-        helpNumber.setText(String.valueOf(helpContentItem.getNumber()));
+    private void updateData(HelpContentItem helpContentItem){
+        helpNumber.setText(String.valueOf(helpContentItem.getId()));
         helpTitle.setText(helpContentItem.getTitle());
         helpSummary.setText(helpContentItem.getSummary());
         helpTime.setText(helpContentItem.getTime());

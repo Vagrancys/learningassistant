@@ -39,6 +39,7 @@ import butterknife.BindView;
  * 帮助中心页
  */
 public class HelpContentActivity extends BaseActivity implements HelpContentView{
+    private static String TAG = "HelpContentActivity";
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.fragment_content)
@@ -133,7 +134,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
             alertDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    helpContentPresenter.deleteHelpData(mPosition,helpContentItem.getId());
+                    helpContentPresenter.deleteHelpData(mPosition,helpContentItem.getId().intValue());
                     dialog.dismiss();
                 }
             });
@@ -152,7 +153,8 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
         public void OnItemClick(int position) {
             ToastUtils.ToastText(getContext(),"跳转到帮助详情页面!");
             HelpContentItem helpContentItem =mBean.get(position);
-            HelpSummaryActivity.launch(HelpContentActivity.this,helpContentItem.getId());
+            Log.e(TAG,"data = "+helpContentItem.getId()+"help="+helpContentItem.getContentId());
+            HelpSummaryActivity.launch(HelpContentActivity.this,helpContentItem.getId().intValue());
         }
     }
 

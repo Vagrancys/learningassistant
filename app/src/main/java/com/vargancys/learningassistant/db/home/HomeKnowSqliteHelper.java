@@ -3,7 +3,6 @@ package com.vargancys.learningassistant.db.home;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com

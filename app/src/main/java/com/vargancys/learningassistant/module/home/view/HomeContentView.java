@@ -16,6 +16,6 @@ public interface  HomeContentView {
     void showError(int error,String msg);
     void hideEmpty();
     void showEmpty();
-    void deleteFinish(int item_id);
+    void deleteFinish(long item_id);
     void deleteError(int error,String msg);
 }

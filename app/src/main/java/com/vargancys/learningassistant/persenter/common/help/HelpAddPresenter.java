@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.persenter.common.help;
 
+import com.vagrancys.learningassistant.db.DaoSession;
+import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.model.common.request.HelpRequest;
 import com.vargancys.learningassistant.module.common.view.HelpAddView;
 

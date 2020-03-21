@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.module.common.view.HelpAddView;
 import com.vargancys.learningassistant.module.home.view.HomeAddView;

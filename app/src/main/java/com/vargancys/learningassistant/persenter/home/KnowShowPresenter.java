@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.persenter.home;
 
+import com.vagrancys.learningassistant.db.DaoSession;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.model.home.request.KnowShowRequest;
 import com.vargancys.learningassistant.module.home.view.KnowShowView;
@@ -26,4 +27,5 @@ public class KnowShowPresenter {
             ((KnowShowView) mView).showContentError(404,"没有该数据!");
         }
     }
+
 }

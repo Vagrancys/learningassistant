@@ -110,7 +110,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         @Override
         public void OnItemLongClick(int position) {
             final HomeKnowItem homeKnowItem = (HomeKnowItem) mBean.get(position);
-            if(homeKnowItem.isOfficial()){
+            if(homeKnowItem.getOfficial()){
                 ToastUtils.ToastText(getContext(),"官方的知识不能删除!您可以选择其他的知识删除");
             }else{
                 final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
@@ -147,20 +147,22 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         @Override
         public void OnItemClick(int position) {
             HomeKnowItem homeKnowItem =mBean.get(position);
-            if(homeKnowItem.isCreateClass()){
+            if(homeKnowItem.getCreateClass()){
                 homeContentPresenter.updateCount(homeKnowItem.getId());
-                if(homeKnowItem.isHave()){
+                if(homeKnowItem.getHave()){
                     launchDemonstrateActivity(homeKnowItem.getActivity());
                 }else{
-                    launchShowActivity(homeKnowItem.getId(),homeKnowItem.getLevel());
+                    Log.e(TAG,"know_id"+homeKnowItem.getId());
+                    launchShowActivity(homeKnowItem.getId().intValue(),homeKnowItem.getLevel());
                 }
             }else{
-                if(homeKnowItem.isHave()){
+                if(homeKnowItem.getHave()){
                     ToastUtils.ToastText(getContext(),"这需要官方来创建!个人不能创建!");
                 }else{
                     //ToastUtils.ToastText(getContext(),"还没有编程到这里!");
                     Log.e("homecontent","level="+homeKnowItem.getLevel());
-                    launchInsertActivity(homeKnowItem.getId(),homeKnowItem.getLevel());
+                    Log.e(TAG,"know_id"+homeKnowItem.getId().intValue());
+                    launchInsertActivity(homeKnowItem.getId().intValue(),homeKnowItem.getLevel());
                 }
             }
         }
@@ -290,10 +292,10 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     }
 
     @Override
-    public void deleteFinish(int item_id) {
+    public void deleteFinish(long item_id) {
         ToastUtils.ToastText(getContext(),"知识项删除成功了!");
-        homeContentAdapter.notifyItemRemoved(item_id);
-        homeContentAdapter.notifyItemChanged(item_id,mBean.size()-1);
+        homeContentAdapter.notifyItemRemoved((int)item_id);
+        homeContentAdapter.notifyItemChanged((int)item_id,mBean.size()-1);
     }
 
     @Override

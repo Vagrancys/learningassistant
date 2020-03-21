@@ -2,11 +2,14 @@ package com.vargancys.learningassistant.model.common.request;
 
 import android.util.Log;
 
+import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HelpCommendItemDao;
+import com.vagrancys.learningassistant.db.HelpContentItemDao;
+import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
-import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +21,17 @@ import java.util.List;
  * version:1.0
  */
 public class HelpRequest{
+    private HelpContentItemDao mContentDao;
+    private HelpCommendItemDao mCommendDao;
+    private DaoSession daoSession;
+    public HelpRequest(){
+        daoSession = BaseApplication.getInstance().getDaoSession();
+        mContentDao = daoSession.getHelpContentItemDao();
+        mCommendDao = daoSession.getHelpCommendItemDao();
+    }
 
-    public HelpContentItem getItemBean(int id){
-        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,id);
+    public HelpContentItem getItemBean(long id){
+        HelpContentItem helpContentItem = mContentDao.load(id);
         if(helpContentItem !=null){
             return helpContentItem;
         }
@@ -28,7 +39,7 @@ public class HelpRequest{
     }
 
     public List<HelpContentItem> getAllBean() {
-        List<HelpContentItem> helpContentItems =  LitePal.findAll(HelpContentItem.class);
+        List<HelpContentItem> helpContentItems =  mContentDao.loadAll();
         if(helpContentItems !=null){
             return helpContentItems;
         }else{
@@ -36,14 +47,13 @@ public class HelpRequest{
         }
     }
 
-    public HelpContentItem getContentBean(int item) {
-        return LitePal.find(HelpContentItem.class,item);
+    public HelpContentItem getContentBean(long item) {
+        return mContentDao.load(item);
     }
 
     public List<HelpCommendItem> getCommendBean(int item){
-        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,item,true);
-        Log.e("helpcommend","size"+helpContentItem.getCommendItems().size());
-        return helpContentItem.getCommendItems();
+        return mCommendDao._queryHelpContentItem_CommendItems(item);
+        //Log.e("helpcommend","size"+helpContentItem.getCommendItems().size());
     }
 
     public boolean saveHelpData(String title,String summary){
@@ -51,76 +61,82 @@ public class HelpRequest{
             return false;
         }
         HelpContentItem helpContentItem = new HelpContentItem();
-        helpContentItem.setNumber(LitePal.findAll(HelpContentItem.class).size());
+        //helpContentItem.setNumber(LitePal.findAll(HelpContentItem.class).size());
         helpContentItem.setPoor(0);
         helpContentItem.setPraise(0);
         helpContentItem.setTitle(title);
         helpContentItem.setSummary(summary);
+        helpContentItem.setNumber(0);
         helpContentItem.setTime(TimeUtils.getTime());
-        return helpContentItem.save();
+        long result = mContentDao.insert(helpContentItem);
+        if(result == 0){
+            return false;
+        }else{
+            return true;
+        }
+        //helpContentItem.save();
     }
 
     public boolean updateHelpData(int id,String title,String summary){
         HelpContentItem helpContentItem = new HelpContentItem();
+        helpContentItem.setContentId(id);
         helpContentItem.setTitle(title);
         helpContentItem.setSummary(summary);
         helpContentItem.setTime(TimeUtils.getTime());
-        int error = helpContentItem.update(id);
-        if(error != 0){
-            return true;
-        }else{
-            return false;
-        }
+        mContentDao.update(helpContentItem);
+        //int error = helpContentItem.update(id);
+        return true;
     }
 
     public void deleteHelpData(ArrayList<Integer> count){
         for (Integer number :count){
-            LitePal.delete(HelpContentItem.class,number);
+            mContentDao.deleteByKey((long)number);
+            //LitePal.delete(HelpContentItem.class,number);
         }
     }
 
-    public int deleteHelpData(int id){
-        return LitePal.delete(HelpContentItem.class,id);
+    public int deleteHelpData(long id){
+        mContentDao.deleteByKey(id);
+        return 1;//LitePal.delete(HelpContentItem.class,id);
     }
 
-    public int addPraiseOrPoor(int state,int id){
-        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,id);
+    public int addPraiseOrPoor(int state,long id){
+        HelpContentItem helpContentItem = mContentDao.load(id);
         int number;
         if(state == 0){
             number = helpContentItem.getPraise()+1;
             helpContentItem.setPraise(number);
-            helpContentItem.update(id);
+            mContentDao.update(helpContentItem);
         }else{
             number = helpContentItem.getPoor()+1;
             helpContentItem.setPoor(number);
-            helpContentItem.update(id);
+            mContentDao.update(helpContentItem);
         }
         return number;
     }
 
-    public int subPraiseOrPoor(int state,int id){
-        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,id);
+    public int subPraiseOrPoor(int state,long id){
+        HelpContentItem helpContentItem = mContentDao.load(id);
         int number;
         if(state == 0){
             number = helpContentItem.getPraise()+1;
             helpContentItem.setPraise(number);
-            helpContentItem.update(id);
+            mContentDao.update(helpContentItem);
         }else{
             number = helpContentItem.getPoor()+1;
             helpContentItem.setPoor(number);
-            helpContentItem.update(id);
+            mContentDao.update(helpContentItem);
         }
         return number;
     }
 
     public HelpCommendItem saveCommendData(int id,String title){
         HelpCommendItem helpCommendItem = new HelpCommendItem();
-        HelpContentItem helpContentItem = LitePal.find(HelpContentItem.class,id);
         helpCommendItem.setSummary(title);
         helpCommendItem.setTime(TimeUtils.getTime());
-        helpCommendItem.setHelpContentItem(helpContentItem);
-        boolean result = helpCommendItem.save();
-        if(result){
+        helpCommendItem.setCommendId(id);
+        long result = mCommendDao.insert(helpCommendItem);
+        if(result != 0){
             return helpCommendItem;
         }else{
             return null;

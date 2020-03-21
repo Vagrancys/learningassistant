@@ -81,7 +81,7 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
 
     public static void launch(Activity activity, int item_id) {
         Intent intent = new Intent(activity, KnowShowFirstActivity.class);
-        intent.putExtra(ConstantsUtils.ITEM_ID, item_id);
+        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
         activity.startActivity(intent);
     }
 

@@ -1,7 +1,17 @@
 package com.vargancys.learningassistant.db.home;
 
-import org.litepal.annotation.Column;
-import org.litepal.crud.LitePalSupport;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToOne;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.DaoException;
+import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HomeKnowDataDao;
+import org.greenrobot.greendao.annotation.NotNull;
+import org.greenrobot.greendao.annotation.Unique;
+
+import com.vagrancys.learningassistant.db.HomeKnowContentDao;
+import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 
 /**
  * author: Vagrancy
@@ -10,9 +20,15 @@ import org.litepal.crud.LitePalSupport;
  * version:1.0
  * 首页知识item的表结构
  */
-public class HomeKnowItem extends LitePalSupport{
+@Entity
+public class HomeKnowItem{
     //知识项id
-    private int id;
+    @Id(autoincrement = true)
+    @Unique
+    private Long id;
+
+    private long contentId;
+    private long dataId;
 
     //官方知识
     private boolean official;
@@ -49,126 +65,276 @@ public class HomeKnowItem extends LitePalSupport{
     //知识项内容是否创建了
     private boolean createClass;
 
-    private HomeKnowData homeKnowData;
+    @ToOne(joinProperty = "contentId")
     private HomeKnowContent homeKnowContent;
+    @ToOne(joinProperty = "dataId")
+    private HomeKnowData homeKnowData;
 
+    /** Used to resolve relations */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
+
+    /** Used for active entity operations. */
+    @Generated(hash = 1329440142)
+    private transient HomeKnowItemDao myDao;
+
+    @Generated(hash = 246857869)
+    public HomeKnowItem(Long id, long contentId, long dataId, boolean official, String activity,
+            boolean have, String title, int level, String summary, int progress, int count, int max,
+            int masterLevel, String studyTitle, boolean createClass) {
+        this.id = id;
+        this.contentId = contentId;
+        this.dataId = dataId;
+        this.official = official;
+        this.activity = activity;
+        this.have = have;
+        this.title = title;
+        this.level = level;
+        this.summary = summary;
+        this.progress = progress;
+        this.count = count;
+        this.max = max;
+        this.masterLevel = masterLevel;
+        this.studyTitle = studyTitle;
+        this.createClass = createClass;
+    }
+
+    @Generated(hash = 2077989770)
+    public HomeKnowItem() {
+    }
+
+    @Generated(hash = 1769914776)
+    private transient Long homeKnowContent__resolvedKey;
+
+    @Generated(hash = 967281064)
+    private transient Long homeKnowData__resolvedKey;
+
+    /** To-one relationship, resolved on first access. */
+    @Generated(hash = 754192494)
     public HomeKnowContent getHomeKnowContent() {
+        long __key = this.contentId;
+        if (homeKnowContent__resolvedKey == null || !homeKnowContent__resolvedKey.equals(__key)) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            HomeKnowContentDao targetDao = daoSession.getHomeKnowContentDao();
+            HomeKnowContent homeKnowContentNew = targetDao.load(__key);
+            synchronized (this) {
+                homeKnowContent = homeKnowContentNew;
+                homeKnowContent__resolvedKey = __key;
+            }
+        }
         return homeKnowContent;
     }
 
-    public void setHomeKnowContent(HomeKnowContent homeKnowContent) {
-        this.homeKnowContent = homeKnowContent;
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 935763122)
+    public void setHomeKnowContent(@NotNull HomeKnowContent homeKnowContent) {
+        if (homeKnowContent == null) {
+            throw new DaoException(
+                    "To-one property 'contentId' has not-null constraint; cannot set to-one to null");
+        }
+        synchronized (this) {
+            this.homeKnowContent = homeKnowContent;
+            contentId = homeKnowContent.getId();
+            homeKnowContent__resolvedKey = contentId;
+        }
     }
 
+    /** To-one relationship, resolved on first access. */
+    @Generated(hash = 2039737166)
     public HomeKnowData getHomeKnowData() {
+        long __key = this.dataId;
+        if (homeKnowData__resolvedKey == null || !homeKnowData__resolvedKey.equals(__key)) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            HomeKnowDataDao targetDao = daoSession.getHomeKnowDataDao();
+            HomeKnowData homeKnowDataNew = targetDao.load(__key);
+            synchronized (this) {
+                homeKnowData = homeKnowDataNew;
+                homeKnowData__resolvedKey = __key;
+            }
+        }
         return homeKnowData;
     }
 
-    public void setHomeKnowData(HomeKnowData homeKnowData) {
-        this.homeKnowData = homeKnowData;
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1590170270)
+    public void setHomeKnowData(@NotNull HomeKnowData homeKnowData) {
+        if (homeKnowData == null) {
+            throw new DaoException(
+                    "To-one property 'dataId' has not-null constraint; cannot set to-one to null");
+        }
+        synchronized (this) {
+            this.homeKnowData = homeKnowData;
+            dataId = homeKnowData.getId();
+            homeKnowData__resolvedKey = dataId;
+        }
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 128553479)
+    public void delete() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.delete(this);
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 1942392019)
+    public void refresh() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.refresh(this);
+    }
+
+    /**
+     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
+     * Entity must attached to an entity context.
+     */
+    @Generated(hash = 713229351)
+    public void update() {
+        if (myDao == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        myDao.update(this);
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 786071706)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getHomeKnowItemDao() : null;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public boolean getOfficial() {
+        return this.official;
     }
 
     public void setOfficial(boolean official) {
         this.official = official;
     }
 
-    public boolean isOfficial() {
-        return official;
+    public String getActivity() {
+        return this.activity;
     }
 
-    public void setCreateClass(boolean createClass) {
-        this.createClass = createClass;
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 
-    public boolean isCreateClass() {
-        return createClass;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int item_id) {
-        this.id = item_id;
-    }
-
-    public String getStudyTitle() {
-        return studyTitle;
-    }
-
-    public void setStudyTitle(String studyTitle) {
-        this.studyTitle = studyTitle;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public boolean isHave() {
-        return have;
-    }
-
-    public int getMasterLevel() {
-        return masterLevel;
+    public boolean getHave() {
+        return this.have;
     }
 
     public void setHave(boolean have) {
         this.have = have;
     }
 
-    public int getMax() {
-        return max;
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getLevel() {
+        return this.level;
     }
 
     public void setLevel(int level) {
         this.level = level;
     }
 
-    public int getProgress() {
-        return progress;
-    }
-
-    public void setMasterLevel(int masterLevel) {
-        this.masterLevel = masterLevel;
-    }
-
     public String getSummary() {
-        return summary;
+        return this.summary;
     }
 
-    public void setMax(int max) {
-        this.max = max;
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public int getProgress() {
+        return this.progress;
     }
 
     public void setProgress(int progress) {
         this.progress = progress;
     }
 
-    public String getActivity() {
-        return activity;
+    public int getCount() {
+        return this.count;
     }
 
-    public void setActivity(String activity) {
-        this.activity = activity;
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getMax() {
+        return this.max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public int getMasterLevel() {
+        return this.masterLevel;
+    }
+
+    public void setMasterLevel(int masterLevel) {
+        this.masterLevel = masterLevel;
+    }
+
+    public String getStudyTitle() {
+        return this.studyTitle;
+    }
+
+    public void setStudyTitle(String studyTitle) {
+        this.studyTitle = studyTitle;
+    }
+
+    public boolean getCreateClass() {
+        return this.createClass;
+    }
+
+    public void setCreateClass(boolean createClass) {
+        this.createClass = createClass;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public long getContentId() {
+        return this.contentId;
+    }
+
+    public void setContentId(long contentId) {
+        this.contentId = contentId;
+    }
+
+    public long getDataId() {
+        return this.dataId;
+    }
+
+    public void setDataId(long dataId) {
+        this.dataId = dataId;
     }
 }

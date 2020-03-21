@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.persenter.home;
 
 import android.util.Log;
 
+import com.vagrancys.learningassistant.db.DaoSession;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
@@ -11,8 +12,6 @@ import com.vargancys.learningassistant.module.home.view.KnowInsertFirstView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;
-
-import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -108,7 +107,7 @@ public class KnowInsertPresenter {
     //熟悉级判断是否已经存在
     public void isEqualsSecondItem(String title) {
         boolean result = mRequest.isEqualsSecondItem(title);
-        if(!result){
+        if(result){
             ((KnowInsertSecondView) mView).saveSecondKnowItem();
         }else{
             ((KnowInsertSecondView) mView).isSecondEqualsError(501,"已经有该数据项了!");
@@ -168,7 +167,7 @@ public class KnowInsertPresenter {
     //熟练级判断是否已经存在
     public void isEqualsThirdItem(String title) {
         boolean result = mRequest.isEqualsThirdItem(title);
-        if(!result){
+        if(result){
             ((KnowInsertThirdView) mView).saveThirdKnowItem();
         }else{
             ((KnowInsertThirdView) mView).isThirdEqualsError(501,"已经有该数据项了!");
@@ -190,7 +189,7 @@ public class KnowInsertPresenter {
     //精通级判断是否已经存在
     public void isEqualsFourthItem(String title) {
         boolean result = mRequest.isEqualsFourthItem(title);
-        if(!result){
+        if(result){
             ((KnowInsertFourthView) mView).saveFourthKnowItem();
         }else{
             ((KnowInsertFourthView) mView).isFourthEqualsError(501,"已经有该数据项了!");
@@ -232,7 +231,7 @@ public class KnowInsertPresenter {
     //专家级判断是否已经存在
     public void isEqualsFifthItem(String title) {
         boolean result = mRequest.isEqualsFifthItem(title);
-        if(!result){
+        if(result){
             ((KnowInsertFifthView) mView).saveFifthKnowItem();
         }else{
             ((KnowInsertFifthView) mView).isFifthEqualsError(501,"已经有该数据项了!");

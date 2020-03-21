@@ -1,5 +1,8 @@
 package com.vargancys.learningassistant.persenter.common.help;
 
+import android.util.Log;
+
+import com.vagrancys.learningassistant.db.DaoSession;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.model.common.request.HelpRequest;
@@ -14,6 +17,7 @@ import java.util.List;
  * version:1.0
  */
 public class HelpSummaryPresenter {
+    private static String TAG = "helpSummaryPresenter";
     private HelpSummaryView mView;
     private HelpRequest helpRequest;
     public HelpSummaryPresenter(HelpSummaryView view){
@@ -22,8 +26,11 @@ public class HelpSummaryPresenter {
     }
 
     public void getHelpData(int help_id){
+
         HelpContentItem helpContentItem = helpRequest.getContentBean(help_id);
+
         if(helpContentItem != null){
+            Log.e(TAG,"data = "+helpContentItem.toString());
             mView.findFinish(helpContentItem);
         }else{
             mView.findError(404,"数据库没有数据!");

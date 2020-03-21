@@ -43,7 +43,7 @@ public class HelpContentAdapter extends BaseRecyclerAdapter {
     public void onBindViewHolder(@NonNull CommonViewHolder holder, int position) {
         HelpContentViewHolder mHolder = (HelpContentViewHolder) holder;
         Log.e("HelpContentAdapter","position = "+position+"number = "+mBean.get(position).getNumber());
-        mHolder.helpNumber.setText(String.valueOf(mBean.get(position).getNumber()));
+        mHolder.helpNumber.setText(String.valueOf(mBean.get(position).getId()));
         mHolder.helpTime.setText(mBean.get(position).getTime());
         mHolder.helpTitle.setText(mBean.get(position).getTitle());
         super.onBindViewHolder(holder,position);

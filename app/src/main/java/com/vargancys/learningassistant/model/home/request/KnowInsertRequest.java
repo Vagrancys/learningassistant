@@ -2,11 +2,14 @@ package com.vargancys.learningassistant.model.home.request;
 
 import android.util.Log;
 
+import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HomeKnowContentDao;
+import com.vagrancys.learningassistant.db.HomeKnowFunctionDao;
+import com.vagrancys.learningassistant.db.HomeKnowItemDao;
+import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowFunction;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
-
-import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -17,13 +20,25 @@ import java.util.List;
  * version:1.0
  */
 public class KnowInsertRequest {
-    public void KnowINsertRequest(){
-
+    private static String TAG = "KnowInsertRequest";
+    private HomeKnowContentDao mContentDao;
+    private HomeKnowItemDao mItemDao;
+    private HomeKnowFunctionDao mFunctionDao;
+    private DaoSession daoSession;
+    public KnowInsertRequest(){
+        daoSession = BaseApplication.getInstance().getDaoSession();
+        mContentDao = daoSession.getHomeKnowContentDao();
+        mItemDao = daoSession.getHomeKnowItemDao();
+        mFunctionDao = daoSession.getHomeKnowFunctionDao();
     }
 
     //判断默认级知识是否存在
     public boolean isEqualsDefaultItem(String title){
-        return LitePal.isExist(HomeKnowContent.class,title);
+        int number = mContentDao.queryRaw("title",title).size();
+        if(number == 0){
+            return false;
+        }
+        return true;
     }
 
     //保存默认级知识
@@ -36,23 +51,21 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = new HomeKnowItem();
-        homeKnowItem.setHomeKnowContent(homeKnowContent);
-        homeKnowItem.update(know_id);
-        return homeKnowContent.save();
-    }
-
-    //判断入门级知识是否存在
-    public boolean isEqualsFirstItem(String title){
-        List<HomeKnowContent> homeKnowContents = LitePal.where("title = ?",title).find(HomeKnowContent.class);
-        if(homeKnowContents !=null&&homeKnowContents.size()>0){
+        Log.e(TAG,"id = "+know_id);
+        long result = mContentDao.insert(homeKnowContent);
+        if(result == 0){
             return false;
         }
         return true;
     }
 
+    //判断入门级知识是否存在
+    public boolean isEqualsFirstItem(String title){
+        return isEqualsTitle(title);
+    }
+
     //保存入门级知识
-    public boolean saveKnowFirstItem(int know_id,String title,String summary,String show,
+    public boolean saveKnowFirstItem(long know_id,String title,String summary,String show,
                                        String explain,String heed,String experience){
         HomeKnowContent homeKnowContent = new HomeKnowContent();
         homeKnowContent.setTitle(title);
@@ -61,42 +74,51 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
+        Log.e(TAG,"id = "+know_id+"know_id");
+        long result = mContentDao.insert(homeKnowContent);
+        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        homeKnowItem.setContentId(result);
         homeKnowItem.setCreateClass(true);
-        homeKnowItem.setHomeKnowContent(homeKnowContent);
-        homeKnowItem.save();
+        mItemDao.update(homeKnowItem);
         //Log.e("save","is=" +is+"know=" +know_id);
-        return homeKnowContent.save();
+        return insertHomeKnowContent(result);
     }
 
     //保存熟悉级知识
-    public boolean saveKnowSecondItem(int know_id, String title, String summary,
+    public boolean saveKnowSecondItem(long know_id, String title, String summary,
                                       List<HomeKnowFunction> homeKnowFunctions, String heed,
                                       String experience) {
-        for (HomeKnowFunction function:homeKnowFunctions){
-            function.save();
-        }
+
         HomeKnowContent homeKnowContent = new HomeKnowContent();
         homeKnowContent.setTitle(title);
         homeKnowContent.setSummary(summary);
-        homeKnowContent.setHomeKnowFunctions(homeKnowFunctions);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
+        long result = mContentDao.insert(homeKnowContent);
+
+        for (HomeKnowFunction function:homeKnowFunctions){
+            function.setFunctionId((int)result);
+            mFunctionDao.insert(function);
+        }
+        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
-        homeKnowItem.setHomeKnowContent(homeKnowContent);
-        homeKnowItem.save();
+        homeKnowItem.setContentId(result);
+        Log.e(TAG,"id = "+know_id+"know_id"+homeKnowItem.getId());
+        mItemDao.save(homeKnowItem);
         //Log.e("save","is=" +is);
-        return homeKnowContent.save();
+        if(result == 0){
+            return false;
+        }
+        return true;
     }
 
     //判断熟悉级知识是否存在
     public boolean isEqualsSecondItem(String title) {
-        return LitePal.isExist(HomeKnowContent.class,title);
+        return isEqualsTitle(title);
     }
 
     //保存熟练级知识
-    public boolean saveKnowThirdItem(int know_id, String title, String summary,
+    public boolean saveKnowThirdItem(long know_id, String title, String summary,
                                       String show,String explain, String heed,
                                       String experience) {
         HomeKnowContent homeKnowContent = new HomeKnowContent();
@@ -106,47 +128,55 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
+        long result = mContentDao.insert(homeKnowContent);
+        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
-        homeKnowItem.setHomeKnowContent(homeKnowContent);
-        homeKnowItem.save();
+        Log.e(TAG,"id = "+know_id);
+        homeKnowItem.setContentId(result);
+        mItemDao.save(homeKnowItem);
         //Log.e("save","is=" +is);
-        return homeKnowContent.save();
+        return insertHomeKnowContent(result);
     }
 
     //判断熟悉级知识是否存在
     public boolean isEqualsThirdItem(String title) {
-        return LitePal.isExist(HomeKnowContent.class,title);
+        return isEqualsTitle(title);
     }
 
     //保存精通级知识
-    public boolean saveKnowFourthItem(int know_id, String title, String summary,
+    public boolean saveKnowFourthItem(long know_id, String title, String summary,
                                       List<HomeKnowFunction> homeKnowFunctions, String heed,
                                       String experience) {
-        for (HomeKnowFunction function:homeKnowFunctions){
-            function.save();
-        }
+
         HomeKnowContent homeKnowContent = new HomeKnowContent();
         homeKnowContent.setTitle(title);
         homeKnowContent.setSummary(summary);
-        homeKnowContent.setHomeKnowFunctions(homeKnowFunctions);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
+        long result = mContentDao.insert(homeKnowContent);
+        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
-        homeKnowItem.setHomeKnowContent(homeKnowContent);
-        homeKnowItem.save();
+        Log.e(TAG,"id = "+know_id);
+        homeKnowItem.setContentId(result);
+        mItemDao.save(homeKnowItem);
+        for (HomeKnowFunction function:homeKnowFunctions){
+            function.setFunctionId((int) result);
+            mFunctionDao.insert(function);
+        }
         //Log.e("save","is=" +is);
-        return homeKnowContent.save();
+        if(result == 0){
+            return false;
+        }
+        return true;
     }
 
     //判断精通级知识是否存在
     public boolean isEqualsFourthItem(String title) {
-        return LitePal.isExist(HomeKnowContent.class,title);
+        return isEqualsTitle(title);
     }
 
     //保存专家级知识
-    public boolean saveKnowFifthItem(int know_id, String title, String summary,
+    public boolean saveKnowFifthItem(long know_id, String title, String summary,
                                      String show,String explain, String heed,
                                      String experience) {
         HomeKnowContent homeKnowContent = new HomeKnowContent();
@@ -156,17 +186,37 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
-        HomeKnowItem homeKnowItem = LitePal.find(HomeKnowItem.class,know_id);
-
+        Log.e(TAG,"id = "+know_id);
+        long result = mContentDao.insert(homeKnowContent);
+        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
-        homeKnowItem.setHomeKnowContent(homeKnowContent);
-        homeKnowItem.save();
+        homeKnowItem.setContentId(result);
+        mItemDao.save(homeKnowItem);
+        if(result == 0){
+            return false;
+        }
         //Log.e("save","is=" +is);
-        return homeKnowContent.save();
+        return true;
     }
 
     //判断专家级知识是否存在
     public boolean isEqualsFifthItem(String title) {
-        return LitePal.isExist(HomeKnowContent.class,title);
+        return isEqualsTitle(title);
+    }
+
+    private boolean isEqualsTitle(String title){
+        long number = mContentDao.queryBuilder().where(HomeKnowContentDao.Properties.Title.eq(title)).count();
+        Log.e(TAG,"number = "+number);
+        if(number == 0){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean insertHomeKnowContent(long result){
+        if(result == 0){
+            return false;
+        }
+        return true;
     }
 }

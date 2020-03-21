@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.persenter.home;
 
 import android.util.Log;
 
+import com.vagrancys.learningassistant.db.DaoSession;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.home.request.HomeRequest;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
@@ -23,7 +24,7 @@ public class HomeContentPresenter{
     }
 
     //增加知识项的浏览记录
-    public void updateCount(int position){
+    public void updateCount(long position){
         homeContentRequest.updateCount(position);
     }
 
@@ -43,7 +44,7 @@ public class HomeContentPresenter{
         }
     }
 
-    public void deleteKnowData(int item_id) {
+    public void deleteKnowData(long item_id) {
         boolean result = homeContentRequest.deleteKnowData(item_id);
         if(result){
             mView.deleteFinish(item_id);

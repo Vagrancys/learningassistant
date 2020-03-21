@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -16,6 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    greendao {
+        schemaVersion 2 //版本
+        daoPackage 'com.vagrancys.learningassistant.db' // 一般为app包名+生成文件的文件夹名
+        targetGenDir 'src/main/java' //生成文件路径
+    }
 }
 
 dependencies {
@@ -28,8 +34,9 @@ dependencies {
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.jakewharton:butterknife:8.4.0'
-    implementation 'org.litepal.android:core:2.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    implementation 'org.greenrobot:greendao:3.2.0'
+    implementation 'org.greenrobot:greendao-generator:3.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

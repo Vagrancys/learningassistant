@@ -1,6 +1,15 @@
 package com.vargancys.learningassistant.db.home;
 
-import org.litepal.crud.LitePalSupport;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToOne;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Unique;
+
+import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HomeKnowContentDao;
+import com.vagrancys.learningassistant.db.HomeKnowFunctionDao;
 
 /**
  * author: Vagrancy
@@ -8,10 +17,14 @@ import org.litepal.crud.LitePalSupport;
  * time  : 2020/03/09
  * version:1.0
  */
-public class HomeKnowFunction extends LitePalSupport {
+@Entity
+public class HomeKnowFunction{
     //函数的id
-    private int id;
+    @Id(autoincrement = true)
+    @Unique
+    private Long id;
 
+    private long functionId;
     //函数的使用级别
     private int common;
 
@@ -23,30 +36,28 @@ public class HomeKnowFunction extends LitePalSupport {
 
     //函数的使用
     private String explain;
-    private HomeKnowContent homeKnowContent;
 
-    public HomeKnowContent getHomeKnowContent() {
-        return homeKnowContent;
+    @Generated(hash = 1901341501)
+    public HomeKnowFunction() {
     }
 
-    public void setHomeKnowContent(HomeKnowContent homeKnowContent) {
-        this.homeKnowContent = homeKnowContent;
-    }
-
-    public String getExplain() {
-        return explain;
-    }
-
-    public void setExplain(String explain) {
+    @Generated(hash = 1875835771)
+    public HomeKnowFunction(Long id, long functionId, int common, String title,
+            String summary, String explain) {
+        this.id = id;
+        this.functionId = functionId;
+        this.common = common;
+        this.title = title;
+        this.summary = summary;
         this.explain = explain;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public int getCommon() {
+        return this.common;
     }
 
     public void setCommon(int common) {
@@ -54,22 +65,38 @@ public class HomeKnowFunction extends LitePalSupport {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSummary() {
-        return summary;
+        return this.summary;
     }
 
-    public int getCommon() {
-        return common;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
-    public int getId() {
-        return id;
+    public String getExplain() {
+        return this.explain;
     }
 
-    public void setId(int function_id) {
-        this.id = function_id;
+    public void setExplain(String explain) {
+        this.explain = explain;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public long getFunctionId() {
+        return this.functionId;
+    }
+
+    public void setFunctionId(long functionId) {
+        this.functionId = functionId;
     }
 }

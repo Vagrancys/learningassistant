@@ -52,7 +52,7 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,1);
+            know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
         mPresenter = new KnowInsertPresenter(this);
         initListener();

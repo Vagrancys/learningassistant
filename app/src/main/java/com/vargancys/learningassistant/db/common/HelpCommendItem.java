@@ -1,6 +1,17 @@
 package com.vargancys.learningassistant.db.common;
 
-import org.litepal.crud.LitePalSupport;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Keep;
+import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.ToOne;
+import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Unique;
+
+import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HelpContentItemDao;
+import com.vagrancys.learningassistant.db.HelpCommendItemDao;
 
 /**
  * author: Vagrancy
@@ -8,32 +19,56 @@ import org.litepal.crud.LitePalSupport;
  * time  : 2020/03/08
  * version:1.0
  */
-public class HelpCommendItem extends LitePalSupport {
+@Entity
+public class HelpCommendItem{
+    @Id(autoincrement = true)
+    @Unique
+    private Long id;
+    private long commendId;
     private String summary;
     private String time;
-    private HelpContentItem helpContentItem;
 
-    public void setHelpContentItem(HelpContentItem helpContentItem) {
-        this.helpContentItem = helpContentItem;
+    @Generated(hash = 964478489)
+    public HelpCommendItem(Long id, long commendId, String summary, String time) {
+        this.id = id;
+        this.commendId = commendId;
+        this.summary = summary;
+        this.time = time;
     }
 
-    public HelpContentItem getHelpContentItem() {
-        return helpContentItem;
+    @Generated(hash = 1245335468)
+    public HelpCommendItem() {
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public long getCommendId() {
+        return this.commendId;
+    }
+
+    public void setCommendId(long commendId) {
+        this.commendId = commendId;
+    }
+
+    public String getSummary() {
+        return this.summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public String getTime() {
-        return time;
+        return this.time;
     }
 
     public void setTime(String time) {
         this.time = time;
     }
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setId(Long id) {
+        this.id = id;
     }
 }
