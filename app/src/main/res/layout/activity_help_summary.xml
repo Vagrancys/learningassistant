@@ -206,7 +206,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/margin_width_10dp"
-        android:background="@color/black_1">
+        android:background="@color/white_1">
         <EditText
             android:id="@+id/commend_edit"
             android:layout_width="match_parent"

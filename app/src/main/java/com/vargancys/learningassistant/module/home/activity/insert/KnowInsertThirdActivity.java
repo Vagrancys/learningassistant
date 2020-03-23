@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertThirdView {
+    private static String TAG = "KnowInsertThirdActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_img)
@@ -55,6 +57,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
         if(intent != null){
             know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
+        Log.e(TAG,"know_id"+know_item_id);
         mPresenter = new KnowInsertPresenter(this);
         initListener();
     }
@@ -121,7 +124,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
     }
 
     public static void launch(Activity activity, int know_id){
-        Intent intent = new Intent(activity,KnowInsertSecondActivity.class);
+        Intent intent = new Intent(activity,KnowInsertThirdActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
         activity.startActivity(intent);
     }

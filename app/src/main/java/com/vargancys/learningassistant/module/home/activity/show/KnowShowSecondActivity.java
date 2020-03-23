@@ -74,10 +74,10 @@ public class KnowShowSecondActivity extends BaseActivity implements KnowShowView
         if(intent !=null){
             item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
-
+        init();
         mPresenter = new KnowShowPresenter(this);
         mPresenter.getDefaultShowData(item_id);
-        init();
+
     }
 
     private void init() {
@@ -129,8 +129,8 @@ public class KnowShowSecondActivity extends BaseActivity implements KnowShowView
             showEmptySecond.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }
-        insertShowCount.setText(homeKnowContent.getHomeKnowFunctions().size());
-        mFunction = homeKnowContent.getHomeKnowFunctions();
+        insertShowCount.setText(String.valueOf(homeKnowContent.getHomeKnowFunctions().size()));
+        mFunction.addAll(homeKnowContent.getHomeKnowFunctions());
         commonTitle.setText(homeKnowContent.getTitle());
         mAdapter.notifyDataSetChanged();
     }

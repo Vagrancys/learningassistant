@@ -23,7 +23,7 @@ public class HomeKnowPresenter {
 
     public void queryKnowRepeat(String title){
         boolean result = homeRequest.queryKnowRepeat(title);
-        if(!result){
+        if(result){
             mView.queryRepeatFinish();
         }else{
             mView.queryRepeatError();

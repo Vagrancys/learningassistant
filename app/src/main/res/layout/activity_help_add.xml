@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/help_head"
                 android:textSize="@dimen/text_size_20sp"
-                android:textColor="@color/black_1"
+                android:textColor="@color/black"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
                 android:id="@+id/help_title_edit"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:text="@string/help_text"
             android:textSize="@dimen/text_size_20sp"
-            android:textColor="@color/black_1"
+            android:textColor="@color/black"
             android:layout_below="@+id/add_linear"
             android:layout_alignParentStart="true"
             android:layout_marginEnd="@dimen/margin_width_10dp"/>

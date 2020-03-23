@@ -81,7 +81,7 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
             @Override
             public void onClick(View v) {
                 homeKnowPresenter.queryKnowRepeat(addKnowTitle.getText().toString());
-                addItem();
+
             }
         });
         addKnowHave.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -126,6 +126,7 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
 
     @Override
     public void queryRepeatFinish() {
+        addItem();
         Log.e(TAG,"没有重复添加!");
     }
 

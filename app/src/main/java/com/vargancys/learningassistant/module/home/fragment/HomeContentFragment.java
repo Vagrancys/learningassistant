@@ -23,8 +23,11 @@ import com.vargancys.learningassistant.module.common.help.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
 import com.vargancys.learningassistant.module.home.activity.AddKnowActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFirstActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFourthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertThirdActivity;
 import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.KnowShowFirstActivity;
@@ -212,22 +215,22 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     }
 
     private void launchInsertActivity(int item_id,int level) {
+        Log.e("launch","level="+level);
         switch (level){
             case 1:
                 KnowInsertFirstActivity.launch(getActivity(),item_id);
                 break;
             case 2:
-                Log.e("launch","level="+level);
                 KnowInsertSecondActivity.launch(getActivity(),item_id);
                 break;
             case 3:
-                KnowShowThirdActivity.launch(getActivity(),item_id);
+                KnowInsertThirdActivity.launch(getActivity(),item_id);
                 break;
             case 4:
-                KnowShowFourthActivity.launch(getActivity(),item_id);
+                KnowInsertFourthActivity.launch(getActivity(),item_id);
                 break;
             case 5:
-                KnowShowFifthActivity.launch(getActivity(),item_id);
+                KnowInsertFifthActivity.launch(getActivity(),item_id);
                 break;
             default:
                 KnowInsertDefaultActivity.launch(getActivity(),item_id);

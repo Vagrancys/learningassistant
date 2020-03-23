@@ -65,6 +65,9 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
             case 4:
                 ImageId = R.drawable.know_level_4;
                 break;
+            case 5:
+                ImageId = R.drawable.know_level_5;
+                break;
             default:
                 ImageId = R.drawable.know_level_1;
                 break;

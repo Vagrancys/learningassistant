@@ -61,7 +61,7 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getResources().getString(R.string.common_third));
+        commonTitle.setText(getResources().getString(R.string.common_fifth));
     }
 
     private void initListener() {
@@ -121,7 +121,7 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
     }
 
     public static void launch(Activity activity, int know_id){
-        Intent intent = new Intent(activity,KnowInsertSecondActivity.class);
+        Intent intent = new Intent(activity,KnowInsertFifthActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
         activity.startActivity(intent);
     }

@@ -95,12 +95,22 @@ public class KnowInsertPresenter {
     }
 
     //添加熟悉级的函数项
-    public void addFunctionData(int mCommon, String title, String summary, String explain) {
+    public void addFunctionSecondData(int mCommon, String title, String summary, String explain) {
         boolean result = ((KnowInsertSecondView) mView).addFunctionData(mCommon, title, summary, explain);
         if(result){
             ((KnowInsertSecondView) mView).addFunctionFinish();
         }else{
             ((KnowInsertSecondView) mView).addFunctionError(501,"添加函数项失败了!");
+        }
+    }
+
+    //添加精通级的函数项
+    public void addFunctionFourthData(int mCommon, String title, String summary, String explain) {
+        boolean result = ((KnowInsertFourthView) mView).addFunctionData(mCommon, title, summary, explain);
+        if(result){
+            ((KnowInsertFourthView) mView).addFunctionFinish();
+        }else{
+            ((KnowInsertFourthView) mView).addFunctionError(501,"添加函数项失败了!");
         }
     }
 
@@ -147,12 +157,16 @@ public class KnowInsertPresenter {
     }
 
     //判断熟悉级的函数是否为空
-    public boolean isFunctionEmpty(int mCommon, String title,
+    public boolean isFunctionSecondEmpty(int mCommon, String title,
                                    String summary, String explain) {
         return ((KnowInsertSecondView) mView).isFunctionEmpty(mCommon, title, summary, explain);
     }
 
-
+    //判断熟悉级的函数是否为空
+    public boolean isFunctionFourthEmpty(int mCommon, String title,
+                                   String summary, String explain) {
+        return ((KnowInsertFourthView) mView).isFunctionEmpty(mCommon, title, summary, explain);
+    }
 
     //熟练级判断是否为空
     public void isThirdEmpty() {

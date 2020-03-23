@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +29,7 @@ import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
 import com.vargancys.learningassistant.persenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
+import com.vargancys.learningassistant.widget.FunctionDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +70,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
     private List<HomeKnowFunction> homeKnowFunctions = new ArrayList<>();
     private HomeKnowFourthAdapter mAdapter;
     private int mCommon = 1;
-    private PopupWindow mPopupWindow;
+    private FunctionDialog mDialog;
 
     @Override
     public int getLayoutId() {
@@ -82,11 +86,12 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
         mPresenter = new KnowInsertPresenter(this);
         initRecyclerView();
         initListener();
-        initPopupWindow();
+        initDialog();
     }
 
     private void initRecyclerView() {
         mAdapter = new HomeKnowFourthAdapter(getContext(),homeKnowFunctions);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -173,51 +178,30 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
                 insertExperienceEdit.getText().toString());
     }
 
-    private void initPopupWindow(){
-        mPopupWindow = new PopupWindow(this);
-        mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        mPopupWindow.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-        mPopupWindow.setAnimationStyle(R.style.FunctionAnimAction);
+    private void initDialog(){
+        mDialog = new FunctionDialog(this);
+        mDialog = new FunctionDialog(this);
         final View popView = View.inflate(getContext(),R.layout.pop_function_fourth,null);
-        Spinner mSpinner =popView.findViewById(R.id.function_common);
-        ArrayAdapter arrayAdapter =ArrayAdapter.createFromResource(getContext(),R.array.common_level,
-                R.layout.support_simple_spinner_dropdown_item);
-        mSpinner.setAdapter(arrayAdapter);
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mDialog.setParentView(popView);
+        mDialog.setOnClickCancelListener(new FunctionDialog.OnClickCancelListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mCommon = position+1;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void OnCancel() {
+                mDialog.cancel();
             }
         });
-        final EditText mTitle = popView.findViewById(R.id.function_title_edit);
-        final EditText mSummary = popView.findViewById(R.id.function_summary_edit);
-        final EditText mExplain = popView.findViewById(R.id.function_explain_edit);
-        TextView mCancel = popView.findViewById(R.id.function_cancel);
-        TextView mDeterMine = popView.findViewById(R.id.function_determine);
-        mCancel.setOnClickListener(new View.OnClickListener() {
+        mDialog.setOnClickDeterMineListener(new FunctionDialog.OnClickDeterMineListener() {
             @Override
-            public void onClick(View v) {
-                mPopupWindow.dismiss();
-            }
-        });
-        mDeterMine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mPresenter.isFunctionEmpty(mCommon,mTitle.getText().toString(),
-                        mSummary.getText().toString(),mExplain.getText().toString())){
+            public void OnDeterMine(int common,String title,String summary,String explain) {
+                mCommon = common;
+                if(mPresenter.isFunctionFourthEmpty(mCommon,title,
+                        summary,explain)){
                     ToastUtils.ToastText(getContext(),"请输入完整!");
                 }else{
-                    mPresenter.addFunctionData(mCommon,mTitle.getText().toString(),
-                            mSummary.getText().toString(),mExplain.getText().toString());
+                    mPresenter.addFunctionFourthData(mCommon,title,
+                            summary,explain);
                 }
             }
         });
-        mPopupWindow.setContentView(popView);
     }
 
 
@@ -257,9 +241,10 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
             recyclerView.setVisibility(View.VISIBLE);
             showHintFourth.setVisibility(View.GONE);
             insertShowCount.setVisibility(View.VISIBLE);
-            insertShowCount.setText(homeKnowFunctions.size());
+            insertShowCount.setText(String.valueOf(homeKnowFunctions.size()));
         }
-        mPopupWindow.dismiss();
+        mDialog.clearData();
+        mDialog.cancel();
         mAdapter.notifyDataSetChanged();
     }
 
@@ -292,7 +277,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
 
     @Override
     public void showFunctionWindow() {
-        mPopupWindow.showAsDropDown(insertShowAdd);
+        mDialog.show();
     }
 }
 
