@@ -150,4 +150,20 @@
     <string name="insert_hint_experience_fifth">经验分享(你对该体系的深入理解)</string>
 
     <string name="know_empty">没有找到该数据，请反馈!</string>
+
+    <string name="know_data_title">TextView</string>
+    <string name="know_data_level_text">等级:</string>
+    <string name="know_data_count_text">学习次数:</string>
+    <string name="know_data_count">5次</string>
+    <string name="know_data_master">入门</string>
+    <string name="know_data_master_text">掌握:</string>
+    <string name="know_data_time_text">上次测试:</string>
+    <string name="know_data_time">2019:10:25</string>
+    <string name="know_data_history_text">历史版本</string>
+    <string name="know_data_history_count">( 1 )</string>
+    <string name="know_data_history_time">2019:10:14</string>
+    <string name="know_data_commend_text">评论</string>
+    <string name="know_data_commend_count">（1）</string>
+    <string name="know_data_commend_hint">请输入你的看法!</string>
+    <string name="common_title_data">TextView的数据中心</string>
 </resources>

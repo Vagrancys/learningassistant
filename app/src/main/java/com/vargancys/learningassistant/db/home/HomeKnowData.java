@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.db.home;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
@@ -23,6 +24,9 @@ public class HomeKnowData{
     @Id(autoincrement = true)
     @Unique
     private Long id;
+
+    @ToMany(referencedJoinProperty = "commendId")
+    private HomeKnowCommend homeKnowCommend;
 
     @Generated(hash = 430302506)
     public HomeKnowData() {
