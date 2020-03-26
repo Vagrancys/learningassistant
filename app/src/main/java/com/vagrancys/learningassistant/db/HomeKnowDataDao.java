@@ -25,7 +25,17 @@ public class HomeKnowDataDao extends AbstractDao<HomeKnowData, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
+        public final static Property Level = new Property(2, int.class, "level", false, "LEVEL");
+        public final static Property Count = new Property(3, int.class, "count", false, "COUNT");
+        public final static Property Master = new Property(4, String.class, "master", false, "MASTER");
+        public final static Property Time = new Property(5, String.class, "time", false, "TIME");
+        public final static Property Historycount = new Property(6, int.class, "historycount", false, "HISTORYCOUNT");
+        public final static Property Historytime = new Property(7, String.class, "historytime", false, "HISTORYTIME");
+        public final static Property Commendcount = new Property(8, int.class, "commendcount", false, "COMMENDCOUNT");
     }
+
+    private DaoSession daoSession;
 
 
     public HomeKnowDataDao(DaoConfig config) {
@@ -34,13 +44,22 @@ public class HomeKnowDataDao extends AbstractDao<HomeKnowData, Long> {
     
     public HomeKnowDataDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"HOME_KNOW_DATA\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE );"); // 0: id
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE ," + // 0: id
+                "\"TITLE\" TEXT," + // 1: title
+                "\"LEVEL\" INTEGER NOT NULL ," + // 2: level
+                "\"COUNT\" INTEGER NOT NULL ," + // 3: count
+                "\"MASTER\" TEXT," + // 4: master
+                "\"TIME\" TEXT," + // 5: time
+                "\"HISTORYCOUNT\" INTEGER NOT NULL ," + // 6: historycount
+                "\"HISTORYTIME\" TEXT," + // 7: historytime
+                "\"COMMENDCOUNT\" INTEGER NOT NULL );"); // 8: commendcount
     }
 
     /** Drops the underlying database table. */
@@ -57,6 +76,30 @@ public class HomeKnowDataDao extends AbstractDao<HomeKnowData, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(2, title);
+        }
+        stmt.bindLong(3, entity.getLevel());
+        stmt.bindLong(4, entity.getCount());
+ 
+        String master = entity.getMaster();
+        if (master != null) {
+            stmt.bindString(5, master);
+        }
+ 
+        String time = entity.getTime();
+        if (time != null) {
+            stmt.bindString(6, time);
+        }
+        stmt.bindLong(7, entity.getHistorycount());
+ 
+        String historytime = entity.getHistorytime();
+        if (historytime != null) {
+            stmt.bindString(8, historytime);
+        }
+        stmt.bindLong(9, entity.getCommendcount());
     }
 
     @Override
@@ -67,6 +110,36 @@ public class HomeKnowDataDao extends AbstractDao<HomeKnowData, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(2, title);
+        }
+        stmt.bindLong(3, entity.getLevel());
+        stmt.bindLong(4, entity.getCount());
+ 
+        String master = entity.getMaster();
+        if (master != null) {
+            stmt.bindString(5, master);
+        }
+ 
+        String time = entity.getTime();
+        if (time != null) {
+            stmt.bindString(6, time);
+        }
+        stmt.bindLong(7, entity.getHistorycount());
+ 
+        String historytime = entity.getHistorytime();
+        if (historytime != null) {
+            stmt.bindString(8, historytime);
+        }
+        stmt.bindLong(9, entity.getCommendcount());
+    }
+
+    @Override
+    protected final void attachEntity(HomeKnowData entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override
@@ -77,7 +150,15 @@ public class HomeKnowDataDao extends AbstractDao<HomeKnowData, Long> {
     @Override
     public HomeKnowData readEntity(Cursor cursor, int offset) {
         HomeKnowData entity = new HomeKnowData( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0) // id
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
+            cursor.getInt(offset + 2), // level
+            cursor.getInt(offset + 3), // count
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // master
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // time
+            cursor.getInt(offset + 6), // historycount
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // historytime
+            cursor.getInt(offset + 8) // commendcount
         );
         return entity;
     }
@@ -85,6 +166,14 @@ public class HomeKnowDataDao extends AbstractDao<HomeKnowData, Long> {
     @Override
     public void readEntity(Cursor cursor, HomeKnowData entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setLevel(cursor.getInt(offset + 2));
+        entity.setCount(cursor.getInt(offset + 3));
+        entity.setMaster(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setTime(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setHistorycount(cursor.getInt(offset + 6));
+        entity.setHistorytime(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setCommendcount(cursor.getInt(offset + 8));
      }
     
     @Override

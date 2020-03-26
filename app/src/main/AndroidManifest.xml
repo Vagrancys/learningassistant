@@ -38,6 +38,7 @@
         <activity android:name=".module.home.activity.insert.KnowInsertDefaultActivity"/>
         <activity android:name=".module.common.help.HelpUpdateActivity"/>
         <activity android:name=".module.home.activity.ShowKnowDataActivity"/>
+        <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
     </application>
 
 </manifest>

@@ -166,4 +166,6 @@
     <string name="know_data_commend_count">（1）</string>
     <string name="know_data_commend_hint">请输入你的看法!</string>
     <string name="common_title_data">TextView的数据中心</string>
+    <string name="dialog_data_delete_title">删除知识项</string>
+    <string name="dialog_data_delete_message">您确定要删除该知识项吗?</string>
 </resources>
