@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface BaseHistoryView {
     void showHistoryDataFinish(List<HomeKnowHistory> histories);
+    void showHistoryDataError(int error, String message);
 }

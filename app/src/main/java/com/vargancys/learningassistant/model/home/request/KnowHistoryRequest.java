@@ -1,5 +1,12 @@
 package com.vargancys.learningassistant.model.home.request;
 
+import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HomeKnowHistoryDao;
+import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+
+import java.util.List;
+
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
@@ -8,8 +15,11 @@ package com.vargancys.learningassistant.model.home.request;
  */
 public class KnowHistoryRequest {
     private static KnowHistoryRequest mRequest;
+    private DaoSession mDaoSession;
+    private HomeKnowHistoryDao mHistoryDao;
     private KnowHistoryRequest(){
-
+        mDaoSession = BaseApplication.getInstance().getDaoSession();
+        mHistoryDao = mDaoSession.getHomeKnowHistoryDao();
     }
 
     public static KnowHistoryRequest getInstance(){
@@ -21,5 +31,9 @@ public class KnowHistoryRequest {
             }
         }
         return mRequest;
+    }
+
+    public List<HomeKnowHistory> getAllHistoryData(long know_id) {
+        return mHistoryDao._queryHomeKnowData_HomeKnowHistorys(know_id);
     }
 }

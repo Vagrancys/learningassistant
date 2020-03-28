@@ -15,10 +15,12 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.history.HistoryShowFirstActivity;
 import com.vargancys.learningassistant.module.home.adapter.HistoryDataAdapter;
 import com.vargancys.learningassistant.module.home.view.BaseHistoryView;
 import com.vargancys.learningassistant.persenter.home.KnowHistoryPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +75,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
     private void selectShowHistoryLevel(int know_level,long id) {
         switch (know_level){
             case 1:
-
+                HistoryShowFirstActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             case 2:
                 break;
@@ -127,4 +129,8 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
         mHistoryAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showHistoryDataError(int error, String message) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+",Message ="+message);
+    }
 }

@@ -28,5 +28,4 @@ public class HistoryShowPresenter {
             mView.showContentError(404,"没有该数据!");
         }
     }
-
 }
