@@ -18,4 +18,5 @@ public class ConstantsUtils {
     public static final String HELP_UPDATE_STATE = "help_update_state";
     public static final String KNOW_ITEM_ID = "know_item_id";
     public static final String HELP_ADD_COUNT = "help_add_count";
+    public static final String KNOW_LEVEL_ID = "know_level_id";
 }

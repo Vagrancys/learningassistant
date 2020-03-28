@@ -1,7 +1,12 @@
 package com.vargancys.learningassistant.module.home.activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.view.View;
+
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 
 /**
  * author: Vagrancy
@@ -10,6 +15,7 @@ import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
  * version:1.0
  */
 public class KnowSettingContentActivity extends BaseActivity {
+
     @Override
     public int getLayoutId() {
         return 0;
@@ -18,5 +24,11 @@ public class KnowSettingContentActivity extends BaseActivity {
     @Override
     public void initView() {
 
+    }
+
+    public static void launch(Activity activity, Long know_id) {
+        Intent intent = new Intent(activity,KnowSettingContentActivity.class);
+        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
+        activity.startActivity(intent);
     }
 }

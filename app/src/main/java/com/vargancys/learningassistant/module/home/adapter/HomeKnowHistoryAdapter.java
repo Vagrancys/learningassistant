@@ -34,7 +34,7 @@ public class HomeKnowHistoryAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeHistoryViewHolder(View.inflate(mContext, R.layout.help_commend_item,null));
+        return new HomeHistoryViewHolder(View.inflate(mContext, R.layout.know_history_item,null));
     }
 
     @Override
@@ -42,6 +42,10 @@ public class HomeKnowHistoryAdapter extends BaseRecyclerAdapter {
         Log.e(TAG,"position = "+position);
         HomeHistoryViewHolder mHolder = (HomeHistoryViewHolder) holder;
         HomeKnowHistory homeKnowHistory = homeKnowHistories.get(position);
+        mHolder.historyNumber.setText(String.valueOf(homeKnowHistory.getId()));
+        mHolder.historyTime.setText(homeKnowHistory.getTime());
+        mHolder.historyTitle.setText(homeKnowHistory.getTitle());
+        mHolder.historySummary.setText(homeKnowHistory.getSummary());
         super.onBindViewHolder(holder,position);
     }
 
@@ -51,6 +55,14 @@ public class HomeKnowHistoryAdapter extends BaseRecyclerAdapter {
     }
 
     public class HomeHistoryViewHolder extends CommonViewHolder{
+        @BindView(R.id.history_number)
+        TextView historyNumber;
+        @BindView(R.id.history_time)
+        TextView historyTime;
+        @BindView(R.id.history_title)
+        TextView historyTitle;
+        @BindView(R.id.history_summary)
+        TextView historySummary;
         private HomeHistoryViewHolder(View view){
             super(view);
         }

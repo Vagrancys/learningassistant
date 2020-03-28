@@ -41,6 +41,9 @@ public class HomeKnowCommendAdapter extends BaseRecyclerAdapter {
         Log.e(TAG,"position = "+position);
         HomeCommendViewHolder mHolder = (HomeCommendViewHolder) holder;
         HomeKnowCommend homeKnowCommend = homeKnowCommends.get(position);
+        mHolder.commendNumber.setText(String.valueOf(homeKnowCommend.getId()));
+        mHolder.commendTime.setText(homeKnowCommend.getTime());
+        mHolder.commendTitle.setText(homeKnowCommend.getTitle());
         super.onBindViewHolder(holder,position);
     }
 
@@ -50,6 +53,12 @@ public class HomeKnowCommendAdapter extends BaseRecyclerAdapter {
     }
 
     public class HomeCommendViewHolder extends CommonViewHolder{
+        @BindView(R.id.commend_number)
+        TextView commendNumber;
+        @BindView(R.id.commend_time)
+        TextView commendTime;
+        @BindView(R.id.commend_title)
+        TextView commendTitle;
         private HomeCommendViewHolder(View view){
             super(view);
         }

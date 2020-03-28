@@ -4,9 +4,11 @@ import android.util.Log;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
+import com.vagrancys.learningassistant.db.HomeKnowHistoryDao;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
+import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 
 /**
@@ -20,10 +22,12 @@ public class KnowShowRequest {
     private HomeKnowItemDao mItemDao;
     private HomeKnowContentDao mContentDao;
     private DaoSession daoSession;
+    private HomeKnowHistoryDao mHistoryDao;
     public KnowShowRequest(){
         daoSession = BaseApplication.getInstance().getDaoSession();
         mItemDao = daoSession.getHomeKnowItemDao();
         mContentDao = daoSession.getHomeKnowContentDao();
+        mHistoryDao = daoSession.getHomeKnowHistoryDao();
     }
 
     public HomeKnowContent getDefaultShowData(long id){
@@ -33,5 +37,9 @@ public class KnowShowRequest {
         return  homeKnowContent;
         //Log.e(TAG,"Title ="+homeKnowItem.getHomeKnowContent().getTitle());
         //return homeKnowItem.getHomeKnowContent();
+    }
+
+    public HomeKnowHistory getDefaultHistoryShowData(long id) {
+        return mHistoryDao.load(id);
     }
 }

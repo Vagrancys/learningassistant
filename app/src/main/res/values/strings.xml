@@ -188,4 +188,27 @@
     <string name="update_hint_heed">优化知识使用需要注意的点(使用中可能出bug的方法)</string>
     <string name="update_experience">心得:</string>
     <string name="update_hint_experience">优化知识的心得(你对该知识的理解)</string>
+    <string name="common_history_title">历史数据展示中心</string>
+
+    <string name="history_number">1</string>
+    <string name="history_time">2018:12:02</string>
+    <string name="history_title">textView的版本</string>
+    <string name="history_summary">详细的介绍了textView的版本</string>
+    <string name="commend_title">评论哈啊啊</string>
+
+    <string name="history_data_number">1</string>
+    <string name="history_data_time_text">修改时间:</string>
+    <string name="history_data_time">2019:02:03</string>
+    <string name="history_data_title_text">标题:</string>
+    <string name="history_data_title">textView的一级详解</string>
+    <string name="history_data_summary_text">简介:</string>
+    <string name="history_data_summary">textView的使用方法和简单思考</string>
+    <string name="history_anim_show_title">显示更多知识</string>
+    <string name="history_anim_hide_title">隐藏更多知识</string>
+    <string name="history_data_show_text">演示:</string>
+    <string name="history_data_show">textView的知识点演示 </string>
+    <string name="history_data_explain_text">经验分享:</string>
+    <string name="history_data_explain">textView的使用技巧</string>
+    <string name="history_data_experience_text">心得:</string>
+    <string name="history_data_experience">textView的使用心得</string>
 </resources>

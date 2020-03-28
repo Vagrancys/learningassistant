@@ -103,7 +103,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         mHistoryAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                KnowHistoryDataActivity.launch(ShowKnowDataActivity.this,mHistory.get(position).getId());
+                KnowHistoryDataActivity.launch(ShowKnowDataActivity.this,mHistory.get(position).getId(),mData.getLevel());
             }
         });
 
@@ -147,7 +147,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                KnowSettingContentActivity.launch(ShowKnowDataActivity.this,know_id);
             }
         });
     }
@@ -155,7 +155,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private void selectUpdateLevel(int level) {
         switch (level){
             case 1:
-                KnowUpdateDefaultActivity.launch(this,know_id);
                 break;
             case 2:
                 break;
@@ -166,6 +165,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
             case 5:
                 break;
             default:
+                KnowUpdateDefaultActivity.launch(this,know_id);
                 break;
         }
     }

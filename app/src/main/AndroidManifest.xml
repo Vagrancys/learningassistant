@@ -41,6 +41,7 @@
         <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
         <activity android:name=".module.home.activity.update.KnowUpdateDefaultActivity"/>
         <activity android:name=".module.home.activity.KnowSettingContentActivity"/>
+        <activity android:name=".module.home.activity.history.HistoryShowDefaultActivity"/>
     </application>
 
 </manifest>
