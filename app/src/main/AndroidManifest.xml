@@ -39,6 +39,8 @@
         <activity android:name=".module.common.help.HelpUpdateActivity"/>
         <activity android:name=".module.home.activity.ShowKnowDataActivity"/>
         <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
+        <activity android:name=".module.home.activity.update.KnowUpdateDefaultActivity"/>
+        <activity android:name=".module.home.activity.KnowSettingContentActivity"/>
     </application>
 
 </manifest>

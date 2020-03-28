@@ -29,6 +29,7 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowFunctionDao.createTable(db, ifNotExists);
         HomeKnowCommendDao.createTable(db, ifNotExists);
         HomeKnowHistoryDao.createTable(db, ifNotExists);
+        HomeKnowHistoryFunctionDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -41,6 +42,7 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowFunctionDao.dropTable(db, ifExists);
         HomeKnowCommendDao.dropTable(db, ifExists);
         HomeKnowHistoryDao.dropTable(db, ifExists);
+        HomeKnowHistoryFunctionDao.dropTable(db, ifExists);
     }
 
     /**
@@ -67,6 +69,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(HomeKnowFunctionDao.class);
         registerDaoClass(HomeKnowCommendDao.class);
         registerDaoClass(HomeKnowHistoryDao.class);
+        registerDaoClass(HomeKnowHistoryFunctionDao.class);
     }
 
     public DaoSession newSession() {

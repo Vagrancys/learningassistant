@@ -50,6 +50,13 @@
     <string name="common_fourth">精通级</string>
     <string name="common_fifth">创造级</string>
 
+    <string name="common_update_default">更新默认级数据</string>
+    <string name="common_update_first">更新入门级数据</string>
+    <string name="common_update_second">更新熟悉级数据</string>
+    <string name="common_update_third">更新熟练级数据</string>
+    <string name="common_update_fourth">更新精通级数据</string>
+    <string name="common_update_fifth">更新创造级数据</string>
+
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>
     <string name="insert_summary">简介:</string>
@@ -168,4 +175,17 @@
     <string name="common_title_data">TextView的数据中心</string>
     <string name="dialog_data_delete_title">删除知识项</string>
     <string name="dialog_data_delete_message">您确定要删除该知识项吗?</string>
+
+    <string name="update_title">标题:</string>
+    <string name="update_hint_title">优化知识的标题</string>
+    <string name="update_summary">简介:</string>
+    <string name="update_hint_summary">优化知识的简单介绍</string>
+    <string name="update_show">示范:</string>
+    <string name="update_hint_show">优化知识的简单示范(使用的方法)</string>
+    <string name="update_explain">说明:</string>
+    <string name="update_hint_explain">优化知识的简单说明(讲解为什么要这样做)</string>
+    <string name="update_heed">注意:</string>
+    <string name="update_hint_heed">优化知识使用需要注意的点(使用中可能出bug的方法)</string>
+    <string name="update_experience">心得:</string>
+    <string name="update_hint_experience">优化知识的心得(你对该知识的理解)</string>
 </resources>

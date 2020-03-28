@@ -29,7 +29,16 @@ public class HomeKnowHistoryDao extends AbstractDao<HomeKnowHistory, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property DataId = new Property(1, long.class, "dataId", false, "DATA_ID");
+        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
+        public final static Property Summary = new Property(3, String.class, "summary", false, "SUMMARY");
+        public final static Property Show = new Property(4, String.class, "show", false, "SHOW");
+        public final static Property Explain = new Property(5, String.class, "explain", false, "EXPLAIN");
+        public final static Property Heed = new Property(6, String.class, "heed", false, "HEED");
+        public final static Property Experience = new Property(7, String.class, "experience", false, "EXPERIENCE");
+        public final static Property Time = new Property(8, String.class, "time", false, "TIME");
     }
+
+    private DaoSession daoSession;
 
     private Query<HomeKnowHistory> homeKnowData_HomeKnowHistorysQuery;
 
@@ -39,6 +48,7 @@ public class HomeKnowHistoryDao extends AbstractDao<HomeKnowHistory, Long> {
     
     public HomeKnowHistoryDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -46,7 +56,14 @@ public class HomeKnowHistoryDao extends AbstractDao<HomeKnowHistory, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"HOME_KNOW_HISTORY\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
-                "\"DATA_ID\" INTEGER NOT NULL );"); // 1: dataId
+                "\"DATA_ID\" INTEGER NOT NULL ," + // 1: dataId
+                "\"TITLE\" TEXT," + // 2: title
+                "\"SUMMARY\" TEXT," + // 3: summary
+                "\"SHOW\" TEXT," + // 4: show
+                "\"EXPLAIN\" TEXT," + // 5: explain
+                "\"HEED\" TEXT," + // 6: heed
+                "\"EXPERIENCE\" TEXT," + // 7: experience
+                "\"TIME\" TEXT);"); // 8: time
     }
 
     /** Drops the underlying database table. */
@@ -64,6 +81,41 @@ public class HomeKnowHistoryDao extends AbstractDao<HomeKnowHistory, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getDataId());
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(3, title);
+        }
+ 
+        String summary = entity.getSummary();
+        if (summary != null) {
+            stmt.bindString(4, summary);
+        }
+ 
+        String show = entity.getShow();
+        if (show != null) {
+            stmt.bindString(5, show);
+        }
+ 
+        String explain = entity.getExplain();
+        if (explain != null) {
+            stmt.bindString(6, explain);
+        }
+ 
+        String heed = entity.getHeed();
+        if (heed != null) {
+            stmt.bindString(7, heed);
+        }
+ 
+        String experience = entity.getExperience();
+        if (experience != null) {
+            stmt.bindString(8, experience);
+        }
+ 
+        String time = entity.getTime();
+        if (time != null) {
+            stmt.bindString(9, time);
+        }
     }
 
     @Override
@@ -75,6 +127,47 @@ public class HomeKnowHistoryDao extends AbstractDao<HomeKnowHistory, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getDataId());
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(3, title);
+        }
+ 
+        String summary = entity.getSummary();
+        if (summary != null) {
+            stmt.bindString(4, summary);
+        }
+ 
+        String show = entity.getShow();
+        if (show != null) {
+            stmt.bindString(5, show);
+        }
+ 
+        String explain = entity.getExplain();
+        if (explain != null) {
+            stmt.bindString(6, explain);
+        }
+ 
+        String heed = entity.getHeed();
+        if (heed != null) {
+            stmt.bindString(7, heed);
+        }
+ 
+        String experience = entity.getExperience();
+        if (experience != null) {
+            stmt.bindString(8, experience);
+        }
+ 
+        String time = entity.getTime();
+        if (time != null) {
+            stmt.bindString(9, time);
+        }
+    }
+
+    @Override
+    protected final void attachEntity(HomeKnowHistory entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override
@@ -86,7 +179,14 @@ public class HomeKnowHistoryDao extends AbstractDao<HomeKnowHistory, Long> {
     public HomeKnowHistory readEntity(Cursor cursor, int offset) {
         HomeKnowHistory entity = new HomeKnowHistory( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1) // dataId
+            cursor.getLong(offset + 1), // dataId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // summary
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // show
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // explain
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // heed
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // experience
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // time
         );
         return entity;
     }
@@ -95,6 +195,13 @@ public class HomeKnowHistoryDao extends AbstractDao<HomeKnowHistory, Long> {
     public void readEntity(Cursor cursor, HomeKnowHistory entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setDataId(cursor.getLong(offset + 1));
+        entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setSummary(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setShow(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setExplain(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setHeed(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setExperience(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     @Override

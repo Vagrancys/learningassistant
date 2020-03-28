@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateDefaultActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowCommendAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
@@ -79,6 +80,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private HomeKnowCommendAdapter mCommendAdapter;
     private HomeKnowHistoryAdapter mHistoryAdapter;
     private ArrayList<HomeKnowHistory> mHistory = new ArrayList<>();
+    private HomeKnowData mData;
 
     @Override
     public int getLayoutId() {
@@ -138,7 +140,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                selectUpdateLevel(mData.getLevel());
             }
         });
 
@@ -148,6 +150,24 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
 
             }
         });
+    }
+
+    private void selectUpdateLevel(int level) {
+        switch (level){
+            case 1:
+                KnowUpdateDefaultActivity.launch(this,know_id);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -177,6 +197,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
 
     @Override
     public void showDataFinish(HomeKnowData homeKnowData) {
+        mData=homeKnowData;
         commonTitleData.setText(homeKnowData.getTitle());
         knowDataTitle.setText(homeKnowData.getTitle());
         SelectDataLevel(homeKnowData.getLevel());
