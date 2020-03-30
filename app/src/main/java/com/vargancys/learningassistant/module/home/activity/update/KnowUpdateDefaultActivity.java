@@ -25,7 +25,6 @@ import butterknife.BindView;
  * time  : 2020/03/28
  * version:1.0
  */
-public class KnowUpdateDefaultActivity extends BaseActivity implements KnowUpdateFourthView {
 public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowUpdateView {
     private static String TAG = "KnowUpdateDefaultActivity";
     @BindView(R.id.common_back)
