@@ -2,8 +2,11 @@ package com.vargancys.learningassistant.persenter.home;
 
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
+import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.model.home.request.KnowDataRequest;
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
+
+import java.util.List;
 
 /**
  * author: Vagrancy
@@ -51,6 +54,15 @@ public class KnowDataPresenter {
             mView.deleteDataFinish();
         }else{
             mView.deleteDataError(404,"删除失败了!");
+        }
+    }
+
+    public void getHistoryRefreshData(long know_id) {
+        List<HomeKnowHistory> homeKnowHistories = mRequest.getHistoryRefreshData(know_id);
+        if(homeKnowHistories.size() > 0){
+            mView.showRefreshHistoryFinish(homeKnowHistories);
+        }else{
+            mView.showRefreshHistoryError(501,"获取数据失败!");
         }
     }
 }

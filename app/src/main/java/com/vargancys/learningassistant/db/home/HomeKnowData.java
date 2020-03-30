@@ -29,20 +29,28 @@ public class HomeKnowData{
     @Unique
     private Long id;
 
+    //数据的标题
     private String title;
 
+    //数据的等级
     private int level;
 
+    //学习次数
     private int count;
 
+    //掌握层次
     private String master;
 
+    //上次测试时间
     private String time;
 
+    //修改的历史次数
     private int historycount;
 
+    //修改的历史时间
     private String historytime;
 
+    //评论数
     private int commendcount;
 
     @ToMany(referencedJoinProperty = "dataId")

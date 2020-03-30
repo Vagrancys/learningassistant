@@ -10,7 +10,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowContent;
  */
 public interface BaseKnowUpdateView {
     void showKnowDataFinish(HomeKnowContent content);
-    void showKNowDatError(int error,String message);
+    void showKnowDataError(int error,String message);
     boolean isKnowUpdateDefaultEmpty();
     void showKnowEmptyError(int error,String message);
     boolean isKnowUpdateDefaultEquals();

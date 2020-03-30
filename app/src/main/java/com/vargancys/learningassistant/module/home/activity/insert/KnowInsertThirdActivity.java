@@ -65,9 +65,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
     @Override
     public void initToolbar() {
         commonTitle.setText(getResources().getString(R.string.common_third));
-    }
 
-    private void initListener() {
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +73,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
             }
         });
 
-        commonImg.setBackgroundResource(R.drawable.commend_complete_selector);
+        commonImg.setImageResource(R.drawable.commend_complete_selector);
 
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +81,10 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
                 mPresenter.isThirdEmpty();
             }
         });
+    }
+
+    private void initListener() {
+
 
     }
 

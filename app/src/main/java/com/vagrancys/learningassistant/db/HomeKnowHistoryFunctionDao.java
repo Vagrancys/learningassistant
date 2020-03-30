@@ -29,6 +29,10 @@ public class HomeKnowHistoryFunctionDao extends AbstractDao<HomeKnowHistoryFunct
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property FunctionId = new Property(1, long.class, "functionId", false, "FUNCTION_ID");
+        public final static Property Common = new Property(2, int.class, "common", false, "COMMON");
+        public final static Property Title = new Property(3, String.class, "title", false, "TITLE");
+        public final static Property Summary = new Property(4, String.class, "summary", false, "SUMMARY");
+        public final static Property Explain = new Property(5, String.class, "explain", false, "EXPLAIN");
     }
 
     private Query<HomeKnowHistoryFunction> homeKnowHistory_HomeKnowHistoryFunctionsQuery;
@@ -46,7 +50,11 @@ public class HomeKnowHistoryFunctionDao extends AbstractDao<HomeKnowHistoryFunct
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"HOME_KNOW_HISTORY_FUNCTION\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE ," + // 0: id
-                "\"FUNCTION_ID\" INTEGER NOT NULL );"); // 1: functionId
+                "\"FUNCTION_ID\" INTEGER NOT NULL ," + // 1: functionId
+                "\"COMMON\" INTEGER NOT NULL ," + // 2: common
+                "\"TITLE\" TEXT," + // 3: title
+                "\"SUMMARY\" TEXT," + // 4: summary
+                "\"EXPLAIN\" TEXT);"); // 5: explain
     }
 
     /** Drops the underlying database table. */
@@ -64,6 +72,22 @@ public class HomeKnowHistoryFunctionDao extends AbstractDao<HomeKnowHistoryFunct
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getFunctionId());
+        stmt.bindLong(3, entity.getCommon());
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(4, title);
+        }
+ 
+        String summary = entity.getSummary();
+        if (summary != null) {
+            stmt.bindString(5, summary);
+        }
+ 
+        String explain = entity.getExplain();
+        if (explain != null) {
+            stmt.bindString(6, explain);
+        }
     }
 
     @Override
@@ -75,6 +99,22 @@ public class HomeKnowHistoryFunctionDao extends AbstractDao<HomeKnowHistoryFunct
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getFunctionId());
+        stmt.bindLong(3, entity.getCommon());
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(4, title);
+        }
+ 
+        String summary = entity.getSummary();
+        if (summary != null) {
+            stmt.bindString(5, summary);
+        }
+ 
+        String explain = entity.getExplain();
+        if (explain != null) {
+            stmt.bindString(6, explain);
+        }
     }
 
     @Override
@@ -86,7 +126,11 @@ public class HomeKnowHistoryFunctionDao extends AbstractDao<HomeKnowHistoryFunct
     public HomeKnowHistoryFunction readEntity(Cursor cursor, int offset) {
         HomeKnowHistoryFunction entity = new HomeKnowHistoryFunction( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1) // functionId
+            cursor.getLong(offset + 1), // functionId
+            cursor.getInt(offset + 2), // common
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // title
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // summary
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // explain
         );
         return entity;
     }
@@ -95,6 +139,10 @@ public class HomeKnowHistoryFunctionDao extends AbstractDao<HomeKnowHistoryFunct
     public void readEntity(Cursor cursor, HomeKnowHistoryFunction entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setFunctionId(cursor.getLong(offset + 1));
+        entity.setCommon(cursor.getInt(offset + 2));
+        entity.setTitle(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setSummary(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setExplain(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     @Override

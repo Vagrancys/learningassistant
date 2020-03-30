@@ -43,6 +43,15 @@
         <activity android:name=".module.home.activity.KnowSettingContentActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowDefaultActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFirstActivity"/>
+        <activity android:name=".module.home.activity.history.HistoryShowSecondActivity"/>
+        <activity android:name=".module.home.activity.history.HistoryShowThirdActivity"/>
+        <activity android:name=".module.home.activity.history.HistoryShowFourthActivity"/>
+        <activity android:name=".module.home.activity.history.HistoryShowFifthActivity"/>
+        <activity android:name=".module.home.activity.update.KnowUpdateFirstActivity"/>
+        <activity android:name=".module.home.activity.update.KnowUpdateSecondActivity"/>
+        <activity android:name=".module.home.activity.update.KnowUpdateThirdActivity"/>
+        <activity android:name=".module.home.activity.update.KnowUpdateFourthActivity"/>
+        <activity android:name=".module.home.activity.update.KnowUpdateFifthActivity"/>
     </application>
 
 </manifest>

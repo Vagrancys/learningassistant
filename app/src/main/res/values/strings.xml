@@ -211,4 +211,67 @@
     <string name="history_data_explain">textView的使用技巧</string>
     <string name="history_data_experience_text">心得:</string>
     <string name="history_data_experience">textView的使用心得</string>
+    <string name="history_empty_title">还没有更新版本!您可以看看有没有要改进的地方！</string>
+    <string name="commend_empty_title">还没有人评论该知识!你是否要抢先评论?</string>
+
+    <string name="update_hint_show_first">更新代码的简单示范(使用的方法)</string>
+    <string name="update_explain_first">代码意义:</string>
+    <string name="update_hint_explain_first">更新简单说明(讲解为什么要这样做)</string>
+    <string name="update_title_first">知识的标题:</string>
+    <string name="update_hint_title_first">更新知识的简单描述</string>
+    <string name="update_summary_first">简单介绍:</string>
+    <string name="update_hint_summary_first">更新知识的背景与介绍</string>
+    <string name="update_show_first">代码演示:</string>
+    <string name="update_heed_first">注意点:</string>
+    <string name="update_hint_heed_first">更新知识使用需要注意的点(使用中可能出bug的方法)</string>
+    <string name="update_experience_first">使用心得:</string>
+    <string name="update_hint_experience_first">更新使用心得分享(你对该知识的深入理解)</string>
+
+    <string name="update_title_second">知识的标题:</string>
+    <string name="update_hint_title_second">优化更多知识的简单描述</string>
+    <string name="update_summary_second">多点介绍:</string>
+    <string name="update_hint_summary_second">优化多个知识的背景与介绍</string>
+    <string name="update_show_second">知识点演示 </string>
+    <string name="update_show_count_second">(1个)</string>
+    <string name="update_heed_second">熟悉级注意:</string>
+    <string name="update_hint_heed_second">优化熟悉级知识所需要注意的点(使用中可能出bug的方法)</string>
+    <string name="update_experience_second">心得:</string>
+    <string name="update_hint_experience_second">优化经验分享(你对该知识的深入理解)</string>
+
+    <string name="update_title_third">源码的标题:</string>
+    <string name="update_hint_title_third">优化源码知识的简单描述</string>
+    <string name="update_summary_third">源码介绍:</string>
+    <string name="update_hint_summary_third">优化源码的背景与介绍</string>
+    <string name="update_show_third">源码展示:</string>
+    <string name="update_hint_show_third">优化源码的部分展示</string>
+    <string name="update_explain_third">源码的意义:</string>
+    <string name="update_hint_explain_third">优化源码的意义详解</string>
+    <string name="update_heed_third">源码注意点:</string>
+    <string name="update_hint_heed_third">优化理解源码时需要关注的点</string>
+    <string name="update_experience_third">心得:</string>
+    <string name="update_hint_experience_third">优化经验分享(你对该源码的深入理解)</string>
+
+    <string name="update_title_fourth">多组合源码的标题:</string>
+    <string name="update_hint_title_fourth">优化更多组合源码的简单描述</string>
+    <string name="update_summary_fourth">组合源码介绍:</string>
+    <string name="update_hint_summary_fourth">优化多个源码的背景与介绍</string>
+    <string name="update_show_fourth">单个源码知识点演示 </string>
+    <string name="update_show_count_fourth">(1个)</string>
+    <string name="update_heed_fourth">精通级注意:</string>
+    <string name="update_hint_heed_fourth">优化精通级知识所需要注意的点(使用中可能出问题的点)</string>
+    <string name="update_experience_fourth">心得:</string>
+    <string name="update_hint_experience_fourth">优化经验分享(你对该知识的深入理解)</string>
+
+    <string name="update_title_fifth">体系的标题:</string>
+    <string name="update_hint_title_fifth">优化体系知识的简单描述</string>
+    <string name="update_summary_fifth">体系介绍:</string>
+    <string name="update_hint_summary_fifth">优化体系的背景与介绍</string>
+    <string name="update_show_fifth">体系展示:</string>
+    <string name="update_hint_show_fifth">优化体系的部分展示</string>
+    <string name="update_explain_fifth">体系的意义:</string>
+    <string name="update_hint_explain_fifth">优化体系的意义详解</string>
+    <string name="update_heed_fifth">体系注意点:</string>
+    <string name="update_hint_heed_fifth">优化理解体系时需要关注的点</string>
+    <string name="update_experience_fifth">心得:</string>
+    <string name="update_hint_experience_fifth">优化经验分享(你对该体系的深入理解)</string>
 </resources>

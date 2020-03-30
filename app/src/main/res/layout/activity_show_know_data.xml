@@ -103,6 +103,10 @@
                         android:textColor="@color/black"/>
                 </TableRow>
             </TableLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_width_1dp"
+                android:background="@color/black_1"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,6 +131,10 @@
                     android:src="@drawable/know_data_setting_normal"
                     android:layout_weight="1"/>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_width_1dp"
+                android:background="@color/black_1"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,6 +170,20 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"/>
             </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_width_1dp"
+                android:background="@color/black_1"/>
+            <TextView
+                android:id="@+id/history_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/history_empty_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_24sp"
+                android:padding="@dimen/margin_width_40dp"
+                android:gravity="center"
+                android:visibility="gone"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/history_recycler"
                 android:layout_width="match_parent"
@@ -188,6 +210,20 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_24sp"/>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_width_1dp"
+                android:background="@color/black_1"/>
+            <TextView
+                android:id="@+id/commend_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/commend_empty_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_24sp"
+                android:padding="@dimen/margin_width_40dp"
+                android:gravity="center"
+                android:visibility="gone"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/commend_recycler"
                 android:layout_width="match_parent"
@@ -203,7 +239,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/margin_width_10dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:background="@color/black_1">
         <EditText
             android:id="@+id/know_data_commend_edit"
             android:layout_width="0dp"

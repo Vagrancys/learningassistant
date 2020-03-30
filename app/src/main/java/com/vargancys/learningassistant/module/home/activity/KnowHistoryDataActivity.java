@@ -78,6 +78,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
                 HistoryShowFirstActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             case 2:
+                HistoryShowFirstActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             case 3:
                 break;

@@ -74,7 +74,7 @@ public class KnowInsertFirstActivity extends BaseActivity implements KnowInsertF
             }
         });
 
-        commonImg.setBackgroundResource(R.drawable.commend_complete_selector);
+        commonImg.setImageResource(R.drawable.commend_complete_selector);
 
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override

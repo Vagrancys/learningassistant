@@ -2,6 +2,9 @@ package com.vargancys.learningassistant.module.home.view;
 
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
+import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+
+import java.util.List;
 
 /**
  * author: Vagrancy
@@ -19,5 +22,9 @@ public interface KnowDataView {
 
     void deleteDataFinish();
 
-    void deleteDataError(int i, String s);
+    void deleteDataError(int error, String message);
+
+    void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories);
+
+    void showRefreshHistoryError(int error, String message);
 }

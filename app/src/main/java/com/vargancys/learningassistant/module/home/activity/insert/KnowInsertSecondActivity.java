@@ -98,9 +98,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     @Override
     public void initToolbar() {
         commonTitle.setText(getResources().getString(R.string.common_second));
-    }
 
-    private void initListener() {
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +106,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
             }
         });
 
-        commonImg.setBackgroundResource(R.drawable.commend_complete_selector);
+        commonImg.setImageResource(R.drawable.commend_complete_selector);
 
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +114,10 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
                 mPresenter.isSecondEmpty();
             }
         });
+    }
+
+    private void initListener() {
+
 
         mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
             @Override

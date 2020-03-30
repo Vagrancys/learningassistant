@@ -162,7 +162,7 @@ public class KnowInsertPresenter {
         return ((KnowInsertSecondView) mView).isFunctionEmpty(mCommon, title, summary, explain);
     }
 
-    //判断熟悉级的函数是否为空
+    //判断熟练级的函数是否为空
     public boolean isFunctionFourthEmpty(int mCommon, String title,
                                    String summary, String explain) {
         return ((KnowInsertFourthView) mView).isFunctionEmpty(mCommon, title, summary, explain);

@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowCommend;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFirstActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowCommendAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
@@ -27,6 +30,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.nio.LongBuffer;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -37,6 +41,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
+    private static String TAG = "ShowKnowDataActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title_data)
@@ -73,9 +78,16 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     ImageView knowDataCommendSend;
     @BindView(R.id.know_data_history_time)
     TextView knowDataHistoryTime;
+    @BindView(R.id.history_empty)
+    TextView historyEmpty;
+    @BindView(R.id.commend_empty)
+    TextView commendEmpty;
     private KnowDataPresenter mPresenter;
-    private Long know_id;
+    private long know_id;
     private int commendCount;
+    public static int RESULT_CODE = 2000;
+    public static int REQUEST_CODE = 1900;
+    public static int RESULT_UPDATE_CODE = 2002;
     private ArrayList<HomeKnowCommend> mCommends = new ArrayList<>();
     private HomeKnowCommendAdapter mCommendAdapter;
     private HomeKnowHistoryAdapter mHistoryAdapter;
@@ -93,6 +105,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         if(intent !=null){
             know_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
+        Log.e(TAG,"know_id"+know_id);
         init();
         mPresenter = new KnowDataPresenter(this);
         mPresenter.getShowData(know_id);
@@ -155,6 +168,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private void selectUpdateLevel(int level) {
         switch (level){
             case 1:
+                KnowUpdateFirstActivity.launch(this,REQUEST_CODE,know_id);
                 break;
             case 2:
                 break;
@@ -165,7 +179,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
             case 5:
                 break;
             default:
-                KnowUpdateDefaultActivity.launch(this,know_id);
+                KnowUpdateDefaultActivity.launch(this,REQUEST_CODE,know_id);
                 break;
         }
     }
@@ -175,6 +189,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(RESULT_CODE);
                 finish();
             }
         });
@@ -189,10 +204,10 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         historyRecycler.setAdapter(mHistoryAdapter);
     }
 
-    public static void launch(Activity activity,Long know_id){
+    public static void launch(Activity activity,int SHOW_REQUEST,long know_id){
         Intent intent = new Intent(activity,ShowKnowDataActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent,SHOW_REQUEST);
     }
 
     @Override
@@ -204,14 +219,35 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataCount.setText(homeKnowData.getCount()+"次");
         knowDataMaster.setText(homeKnowData.getMaster());
         knowDataTime.setText(homeKnowData.getTime());
-        knowDataHistoryCount.setText(homeKnowData.getHistorycount());
-        knowDataHistoryTime.setText(homeKnowData.getHistorytime());
-        mHistory.addAll(homeKnowData.getHomeKnowHistorys());
-        mHistoryAdapter.notifyDataSetChanged();
+        if(homeKnowData.getHistorycount() >0&&homeKnowData.getHomeKnowHistorys().size()>0){
+            Log.e(TAG,"Count ="+homeKnowData.getHomeKnowHistorys().size());
+            historyRecycler.setVisibility(View.VISIBLE);
+            knowDataHistoryCount.setVisibility(View.VISIBLE);
+            knowDataHistoryTime.setVisibility(View.VISIBLE);
+            knowDataHistoryCount.setText("("+homeKnowData.getHistorycount()+")");
+            knowDataHistoryTime.setText(homeKnowData.getHistorytime());
+            historyEmpty.setVisibility(View.GONE);
+            mHistory.addAll(homeKnowData.getHomeKnowHistorys());
+            mHistoryAdapter.notifyDataSetChanged();
+        }else{
+            historyRecycler.setVisibility(View.GONE);
+            knowDataHistoryCount.setVisibility(View.GONE);
+            knowDataHistoryTime.setVisibility(View.GONE);
+            historyEmpty.setVisibility(View.VISIBLE);
+        }
         commendCount = homeKnowData.getCommendcount();
-        knowDataCommend.setText(commendCount);
-        mCommends.addAll(homeKnowData.getHomeKnowCommends());
-        mCommendAdapter.notifyDataSetChanged();
+        if(commendCount > 0){
+            commendRecycler.setVisibility(View.VISIBLE);
+            commendEmpty.setVisibility(View.GONE);
+            knowDataCommend.setVisibility(View.VISIBLE);
+            knowDataCommend.setText("("+commendCount+")");
+            mCommends.addAll(homeKnowData.getHomeKnowCommends());
+            mCommendAdapter.notifyDataSetChanged();
+        }else{
+            commendRecycler.setVisibility(View.GONE);
+            commendEmpty.setVisibility(View.VISIBLE);
+            knowDataCommend.setVisibility(View.GONE);
+        }
     }
 
     private void SelectDataLevel(int level){
@@ -245,10 +281,27 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE&&resultCode == RESULT_UPDATE_CODE&&data !=null){
+            if(data.getIntExtra(ConstantsUtils.ITEM_UPDATE_STATUS,0) == 1){
+                Log.e(TAG,"update_id = 更新了吗!");
+                mPresenter.getHistoryRefreshData(know_id);
+            }
+        }
+    }
+
+    @Override
     public void showCommendSaveFinish(HomeKnowCommend homeKnowCommend) {
-        knowDataCommend.setText(commendCount+1);
-        mCommends.add(homeKnowCommend);
-        mCommendAdapter.notifyDataSetChanged();
+        int number = commendCount++;
+        if( number > 0){
+            commendRecycler.setVisibility(View.VISIBLE);
+            commendEmpty.setVisibility(View.GONE);
+            knowDataCommend.setVisibility(View.VISIBLE);
+            knowDataCommend.setText("("+number+")");
+            mCommends.add(homeKnowCommend);
+            mCommendAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -268,6 +321,31 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
 
     @Override
     public void deleteDataFinish() {
+        Intent intent = new Intent();
+        //0表示没有状态，1表示删除状态
+        intent.putExtra(ConstantsUtils.ITEM_DELETE_STATUS,1);
+        setResult(RESULT_CODE,intent);
         finish();
+    }
+
+    @Override
+    public void showRefreshHistoryError(int error, String message) {
+        Log.e(TAG,"Error ="+error+", Message ="+message);
+    }
+
+    @Override
+    public void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories) {
+        int count = homeKnowHistories.size();
+        Log.e(TAG,"CountFinish ="+count);
+        if(count>0){
+            historyRecycler.setVisibility(View.VISIBLE);
+            knowDataHistoryCount.setVisibility(View.VISIBLE);
+            knowDataHistoryTime.setVisibility(View.VISIBLE);
+            knowDataHistoryCount.setText("("+count+")");
+            knowDataHistoryTime.setText(homeKnowHistories.get(count-1).getTime());
+            historyEmpty.setVisibility(View.GONE);
+            mHistory.addAll(homeKnowHistories);
+            mHistoryAdapter.notifyDataSetChanged();
+        }
     }
 }

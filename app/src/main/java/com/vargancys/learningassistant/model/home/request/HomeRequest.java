@@ -1,9 +1,12 @@
 package com.vargancys.learningassistant.model.home.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HomeKnowDataDao;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.utils.TimeUtils;
 
 
 import org.greenrobot.greendao.query.WhereCondition;
@@ -19,9 +22,12 @@ import java.util.List;
 public class HomeRequest{
     private HomeKnowItemDao mItemDao;
     private DaoSession daoSession;
+
     public HomeRequest(){
         daoSession = BaseApplication.getInstance().getDaoSession();
         mItemDao = daoSession.getHomeKnowItemDao();
+
+
     }
     //等到所有的知识项
     public List<HomeKnowItem> getBean() {
@@ -54,12 +60,15 @@ public class HomeRequest{
         item.setCreateClass(false);
         item.setProgress(0);
         item.setMasterLevel(0);
+
         long result = mItemDao.insert(item);
         if(result == 0){
             return false;
         }
         return true;
     }
+
+
 
     public boolean deleteKnowData(long item_id) {
         mItemDao.deleteByKey(item_id);

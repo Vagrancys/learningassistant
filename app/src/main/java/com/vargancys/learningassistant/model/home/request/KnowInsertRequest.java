@@ -4,12 +4,15 @@ import android.util.Log;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
+import com.vagrancys.learningassistant.db.HomeKnowDataDao;
 import com.vagrancys.learningassistant.db.HomeKnowFunctionDao;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
+import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowFunction;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.utils.TimeUtils;
 
 import java.util.List;
 
@@ -25,11 +28,13 @@ public class KnowInsertRequest {
     private HomeKnowItemDao mItemDao;
     private HomeKnowFunctionDao mFunctionDao;
     private DaoSession daoSession;
+    private HomeKnowDataDao mDataDao;
     public KnowInsertRequest(){
         daoSession = BaseApplication.getInstance().getDaoSession();
         mContentDao = daoSession.getHomeKnowContentDao();
         mItemDao = daoSession.getHomeKnowItemDao();
         mFunctionDao = daoSession.getHomeKnowFunctionDao();
+        mDataDao = daoSession.getHomeKnowDataDao();
     }
 
     //判断默认级知识是否存在
@@ -41,8 +46,22 @@ public class KnowInsertRequest {
         return true;
     }
 
+    private long addHomeKnowData(String title,int level){
+
+        HomeKnowData homeKnowData = new HomeKnowData();
+        homeKnowData.setTitle(title);
+        homeKnowData.setTime(TimeUtils.getTime());
+        homeKnowData.setCommendcount(0);
+        homeKnowData.setCount(0);
+        homeKnowData.setHistorycount(0);
+        homeKnowData.setHistorytime(TimeUtils.getTime());
+        homeKnowData.setLevel(level);
+        homeKnowData.setMaster("入门");
+        return mDataDao.insert(homeKnowData);
+    }
+
     //保存默认级知识
-    public boolean saveKnowDefaultItem(int know_id,String title,String summary,String show,
+    public boolean saveKnowDefaultItem(long know_id,String title,String summary,String show,
                                        String explain,String heed,String experience){
         HomeKnowContent homeKnowContent = new HomeKnowContent();
         homeKnowContent.setTitle(title);
@@ -52,6 +71,10 @@ public class KnowInsertRequest {
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
         Log.e(TAG,"id = "+know_id);
+        long dataId = addHomeKnowData(title,0);
+        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        homeKnowItem.setDataId(dataId);
+        homeKnowItem.update();
         long result = mContentDao.insert(homeKnowContent);
         if(result == 0){
             return false;
@@ -76,9 +99,11 @@ public class KnowInsertRequest {
         homeKnowContent.setExperience(experience);
         Log.e(TAG,"id = "+know_id+"know_id");
         long result = mContentDao.insert(homeKnowContent);
+        long dataId = addHomeKnowData(title,1);
         HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setContentId(result);
         homeKnowItem.setCreateClass(true);
+        homeKnowItem.setDataId(dataId);
         mItemDao.update(homeKnowItem);
         //Log.e("save","is=" +is+"know=" +know_id);
         return insertHomeKnowContent(result);
@@ -100,9 +125,11 @@ public class KnowInsertRequest {
             function.setFunctionId((int)result);
             mFunctionDao.insert(function);
         }
+        long dataId = addHomeKnowData(title,2);
         HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
+        homeKnowItem.setDataId(dataId);
         Log.e(TAG,"id = "+know_id+"know_id"+homeKnowItem.getId());
         mItemDao.save(homeKnowItem);
         //Log.e("save","is=" +is);
@@ -133,6 +160,8 @@ public class KnowInsertRequest {
         homeKnowItem.setCreateClass(true);
         Log.e(TAG,"id = "+know_id);
         homeKnowItem.setContentId(result);
+        long dataId = addHomeKnowData(title,3);
+        homeKnowItem.setDataId(dataId);
         mItemDao.save(homeKnowItem);
         //Log.e("save","is=" +is);
         return insertHomeKnowContent(result);
@@ -158,6 +187,8 @@ public class KnowInsertRequest {
         homeKnowItem.setCreateClass(true);
         Log.e(TAG,"id = "+know_id);
         homeKnowItem.setContentId(result);
+        long dataId = addHomeKnowData(title,4);
+        homeKnowItem.setDataId(dataId);
         mItemDao.save(homeKnowItem);
         for (HomeKnowFunction function:homeKnowFunctions){
             function.setFunctionId((int) result);
@@ -191,6 +222,8 @@ public class KnowInsertRequest {
         HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
+        long dataId = addHomeKnowData(title,5);
+        homeKnowItem.setDataId(dataId);
         mItemDao.save(homeKnowItem);
         if(result == 0){
             return false;

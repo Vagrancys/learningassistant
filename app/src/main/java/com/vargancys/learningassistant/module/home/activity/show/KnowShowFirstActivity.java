@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.home.activity.show;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
+import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.view.KnowShowView;
 import com.vargancys.learningassistant.persenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
@@ -40,7 +42,7 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     @BindView(R.id.insert_show_summary)
     TextView insertShowSummary;
     @BindView(R.id.insert_show_show)
-    EditText insertShowShow;
+    TextView insertShowShow;
     @BindView(R.id.insert_show_explain)
     TextView insertShowExplain;
     @BindView(R.id.insert_show_heed)
@@ -52,7 +54,8 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
     private KnowShowPresenter mPresenter;
-    private int item_id;
+    private long item_id;
+    private static int REQUEST_CODE = 2001;
 
     @Override
     public int getLayoutId() {
@@ -63,7 +66,7 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
         }
         mPresenter = new KnowShowPresenter(this);
         mPresenter.getDefaultShowData(item_id);
@@ -77,9 +80,26 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
                 finish();
             }
         });
+
+        commonImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowKnowDataActivity.launch(KnowShowFirstActivity.this,REQUEST_CODE,item_id);
+            }
+        });
     }
 
-    public static void launch(Activity activity, int item_id) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
+            if(data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0) == 1){
+                finish();
+            }
+        }
+    }
+
+    public static void launch(Activity activity, long item_id) {
         Intent intent = new Intent(activity, KnowShowFirstActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
         activity.startActivity(intent);

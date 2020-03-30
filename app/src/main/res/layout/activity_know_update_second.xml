@@ -26,15 +26,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/insert_title_first"
+                    android:text="@string/update_title_second"
                     android:textSize="@dimen/text_size_20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/margin_width_10dp"/>
                 <EditText
-                    android:id="@+id/insert_title_edit"
+                    android:id="@+id/update_title_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_title_first"
+                    android:hint="@string/update_hint_title_second"
                     android:minLines="2"
                     android:gravity="start"
                     android:textColor="@color/black"
@@ -58,15 +58,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/insert_summary_first"
+                    android:text="@string/update_summary_second"
                     android:textSize="@dimen/text_size_20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/margin_width_10dp"/>
                 <EditText
-                    android:id="@+id/insert_summary_edit"
+                    android:id="@+id/update_summary_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_summary_first"
+                    android:hint="@string/update_hint_summary_second"
                     android:minLines="3"
                     android:gravity="start"
                     android:textColor="@color/black"
@@ -80,32 +80,57 @@
                 android:background="@color/black_1"
                 android:layout_marginBottom="@dimen/margin_width_5dp"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start|top">
+                android:layout_marginBottom="@dimen/margin_width_10dp">
                 <TextView
+                    android:id="@+id/update_show_title_second"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/insert_show_first"
+                    android:text="@string/update_show_second"
                     android:textSize="@dimen/text_size_20sp"
                     android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_show_edit"
-                    android:layout_width="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
+                <TextView
+                    android:id="@+id/update_show_count"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_show_first"
-                    android:minLines="5"
-                    android:gravity="start"
-                    android:textColor="@color/black"
+                    android:text="@string/update_show_count_second"
                     android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
+                    android:textColor="@color/black"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/update_show_title_second"/>
+                <ImageView
+                    android:id="@+id/update_show_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/know_function_add_normal"/>
+            </RelativeLayout>
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:visibility="gone"
+                android:layout_marginBottom="@dimen/margin_width_10dp"/>
+            <TextView
+                android:id="@+id/show_hint_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/show_hint_second"
+                android:textColor="@color/black_1"
+                android:textSize="@dimen/text_size_24sp"
+                android:gravity="center"
+                android:padding="@dimen/margin_width_50dp"
+                android:layout_marginBottom="@dimen/margin_width_10dp"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_width_1dp"
@@ -122,47 +147,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/insert_explain_first"
+                    android:text="@string/update_heed_second"
                     android:textSize="@dimen/text_size_20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/margin_width_10dp"/>
                 <EditText
-                    android:id="@+id/insert_explain_edit"
+                    android:id="@+id/update_heed_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_explain_first"
-                    android:minLines="4"
-                    android:gravity="start"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"
-                android:layout_marginBottom="@dimen/margin_width_5dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start|top">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/insert_heed_first"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_heed_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_heed_first"
+                    android:hint="@string/update_hint_heed_second"
                     android:minLines="3"
                     android:gravity="start"
                     android:textColor="@color/black"
@@ -180,15 +173,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/insert_experience_first"
+                    android:text="@string/update_experience_second"
                     android:textSize="@dimen/text_size_20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/margin_width_10dp"/>
                 <EditText
-                    android:id="@+id/insert_experience_edit"
+                    android:id="@+id/update_experience_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_experience_first"
+                    android:hint="@string/update_hint_experience_second"
                     android:minLines="6"
                     android:gravity="start"
                     android:textColor="@color/black"

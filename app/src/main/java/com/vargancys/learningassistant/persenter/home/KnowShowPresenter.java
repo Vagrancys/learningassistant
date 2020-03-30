@@ -19,7 +19,7 @@ public class KnowShowPresenter {
         mRequest = new KnowShowRequest();
     }
 
-    public void getDefaultShowData(int id){
+    public void getDefaultShowData(long id){
         HomeKnowContent homeKnowContent = mRequest.getDefaultShowData(id);
         if(homeKnowContent !=null){
             ((KnowShowView) mView).showContentFinish(homeKnowContent);

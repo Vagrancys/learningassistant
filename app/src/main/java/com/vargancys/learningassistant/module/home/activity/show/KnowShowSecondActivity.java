@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.home.activity.show;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowFunction;
+import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowSecondAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowShowView;
 import com.vargancys.learningassistant.persenter.home.KnowShowPresenter;
@@ -60,7 +62,8 @@ public class KnowShowSecondActivity extends BaseActivity implements KnowShowView
     LinearLayout includeKnowEmpty;
 
     private KnowShowPresenter mPresenter;
-    private int item_id;
+    private long item_id;
+    private static int REQUEST_CODE = 2001;
     private HomeKnowShowSecondAdapter mAdapter;
     private List<HomeKnowFunction> mFunction = new ArrayList<>();
     @Override
@@ -72,7 +75,7 @@ public class KnowShowSecondActivity extends BaseActivity implements KnowShowView
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
         init();
         mPresenter = new KnowShowPresenter(this);
@@ -94,12 +97,29 @@ public class KnowShowSecondActivity extends BaseActivity implements KnowShowView
                 finish();
             }
         });
+
+        commonImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowKnowDataActivity.launch(KnowShowSecondActivity.this,REQUEST_CODE,item_id);
+            }
+        });
     }
 
-    public static void launch(Activity activity, int item_id) {
+    public static void launch(Activity activity, long item_id) {
         Intent intent = new Intent(activity, KnowShowSecondActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
         activity.startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
+            if(data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0) == 1){
+                finish();
+            }
+        }
     }
 
     @Override

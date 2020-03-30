@@ -1,9 +1,7 @@
-package com.vargancys.learningassistant.module.home.activity.show;
+package com.vargancys.learningassistant.module.home.activity.history;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,8 +11,10 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
+import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.module.home.view.HistoryShowView;
 import com.vargancys.learningassistant.module.home.view.KnowShowView;
+import com.vargancys.learningassistant.persenter.home.HistoryShowPresenter;
 import com.vargancys.learningassistant.persenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -27,7 +27,7 @@ import butterknife.BindView;
  * time  : 2020/03/06
  * version:1.0
  */
-public class KnowShowThirdActivity extends BaseActivity implements KnowShowView {
+public class HistoryShowFifthActivity extends BaseActivity implements HistoryShowView {
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -50,23 +50,21 @@ public class KnowShowThirdActivity extends BaseActivity implements KnowShowView 
     ScrollView scrollView;
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
-    private KnowShowPresenter mPresenter;
-    private long item_id;
-    private static int REQUEST_CODE = 2001;
-
+    private HistoryShowPresenter mPresenter;
+    private int item_id;
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_third;
+        return R.layout.activity_know_show_fifth;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
         }
 
-        mPresenter = new KnowShowPresenter(this);
+        mPresenter = new HistoryShowPresenter(this);
         mPresenter.getDefaultShowData(item_id);
     }
 
@@ -79,27 +77,12 @@ public class KnowShowThirdActivity extends BaseActivity implements KnowShowView 
             }
         });
 
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowKnowDataActivity.launch(KnowShowThirdActivity.this,REQUEST_CODE,item_id);
-            }
-        });
+        commonImg.setVisibility(View.GONE);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
-            if(data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0) == 1){
-                finish();
-            }
-        }
-    }
-
-    public static void launch(Activity activity, long item_id) {
-        Intent intent = new Intent(activity, KnowShowThirdActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
+    public static void launch(Activity activity, int item_id) {
+        Intent intent = new Intent(activity, HistoryShowFifthActivity.class);
+        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,item_id);
         activity.startActivity(intent);
     }
 
@@ -111,19 +94,19 @@ public class KnowShowThirdActivity extends BaseActivity implements KnowShowView 
     }
 
     @Override
-    public void showContentFinish(HomeKnowContent homeKnowContent) {
+    public void showContentFinish(HomeKnowHistory homeKnowHistory) {
         scrollView.setVisibility(View.VISIBLE);
         includeKnowEmpty.setVisibility(View.GONE);
-        initData(homeKnowContent);
+        initData(homeKnowHistory);
     }
 
-    private void initData(HomeKnowContent homeKnowContent) {
-        insertShowTitle.setText(homeKnowContent.getTitle());
-        insertShowSummary.setText(homeKnowContent.getSummary());
-        insertShowShow.setText(homeKnowContent.getShow());
-        insertShowHeed.setText(homeKnowContent.getHeed());
-        insertShowExperience.setText(homeKnowContent.getExperience());
-        insertShowExplain.setText(homeKnowContent.getExplain());
-        commonTitle.setText(homeKnowContent.getTitle());
+    private void initData(HomeKnowHistory homeKnowHistory) {
+        insertShowTitle.setText(homeKnowHistory.getTitle());
+        insertShowSummary.setText(homeKnowHistory.getSummary());
+        insertShowShow.setText(homeKnowHistory.getShow());
+        insertShowHeed.setText(homeKnowHistory.getHeed());
+        insertShowExperience.setText(homeKnowHistory.getExperience());
+        insertShowExplain.setText(homeKnowHistory.getExplain());
+        commonTitle.setText(homeKnowHistory.getTitle());
     }
 }

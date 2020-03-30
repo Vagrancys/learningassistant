@@ -19,4 +19,6 @@ public class ConstantsUtils {
     public static final String KNOW_ITEM_ID = "know_item_id";
     public static final String HELP_ADD_COUNT = "help_add_count";
     public static final String KNOW_LEVEL_ID = "know_level_id";
+    public static final String ITEM_DELETE_STATUS = "item_delete_status";
+    public static final String ITEM_UPDATE_STATUS = "item_update_status";
 }

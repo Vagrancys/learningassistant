@@ -72,7 +72,6 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
             }
         });
 
-        commonImg.setBackgroundResource(R.drawable.commend_complete_selector);
 
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
