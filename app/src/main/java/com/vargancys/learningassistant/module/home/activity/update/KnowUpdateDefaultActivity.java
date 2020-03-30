@@ -48,6 +48,7 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
     private long know_id;
     private KnowUpdatePresenter mPresenter;
     private HomeKnowHistory mOldHistory;
+    
     private int RESULT_CODE = 2002;
 
     @Override
