@@ -1,6 +1,7 @@
 package com.vargancys.learningassistant.persenter.home;
 
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
+import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.model.home.request.KnowDataRequest;
@@ -22,8 +23,8 @@ public class KnowDataPresenter {
         mRequest = KnowDataRequest.getRequest();
     }
 
-    public void getShowData(Long know_id) {
-        HomeKnowData homeKnowData = mRequest.getShowData(know_id);
+    public void getShowData(Long data_id) {
+        HomeKnowData homeKnowData = mRequest.getShowData(data_id);
         if(homeKnowData !=null){
             mView.showDataFinish(homeKnowData);
         }else{
@@ -57,10 +58,11 @@ public class KnowDataPresenter {
         }
     }
 
-    public void getHistoryRefreshData(long know_id) {
-        List<HomeKnowHistory> homeKnowHistories = mRequest.getHistoryRefreshData(know_id);
+    public void getHistoryRefreshData(long data_id,long content_id) {
+        List<HomeKnowHistory> homeKnowHistories = mRequest.getHistoryRefreshData(data_id);
+        HomeKnowContent homeKnowContent = mRequest.getContentRefreshData(content_id);
         if(homeKnowHistories.size() > 0){
-            mView.showRefreshHistoryFinish(homeKnowHistories);
+            mView.showRefreshHistoryFinish(homeKnowHistories,homeKnowContent);
         }else{
             mView.showRefreshHistoryError(501,"获取数据失败!");
         }

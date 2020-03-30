@@ -119,6 +119,7 @@ public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpd
 
     private void addHistory(HomeKnowContent content){
         mOldHistory = new HomeKnowHistory();
+        Log.e(TAG,"ResultDataId ="+dataId);
         mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());

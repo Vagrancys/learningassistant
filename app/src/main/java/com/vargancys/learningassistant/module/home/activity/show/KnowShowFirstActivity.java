@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ import butterknife.ButterKnife;
  */
 public class KnowShowFirstActivity extends BaseActivity implements KnowShowView {
 
+    private static final String TAG = "KnowShowFirstActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -93,9 +95,13 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
-            if(data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0) == 1){
+            int state = data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0);
+            if(state == 1){
                 finish();
+            }else if(state == 2){
+                mPresenter.getRefreshDefaultShowData(itemId);
             }
+            Log.e(TAG,"state ="+state);
         }
     }
 

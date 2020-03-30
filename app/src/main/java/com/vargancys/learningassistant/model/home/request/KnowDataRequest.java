@@ -4,10 +4,12 @@ import android.util.Log;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowCommendDao;
+import com.vagrancys.learningassistant.db.HomeKnowContentDao;
 import com.vagrancys.learningassistant.db.HomeKnowDataDao;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
+import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -28,11 +30,13 @@ public class KnowDataRequest {
     private HomeKnowDataDao mKnowDataDao;
     private HomeKnowItemDao mKnowItemDao;
     private DaoSession mDaoSession;
+    private HomeKnowContentDao mContentDao;
     private KnowDataRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mKnowDataDao = mDaoSession.getHomeKnowDataDao();
         mKnowItemDao = mDaoSession.getHomeKnowItemDao();
         mKnowCommendDao = mDaoSession.getHomeKnowCommendDao();
+        mContentDao = mDaoSession.getHomeKnowContentDao();
     }
 
     public static KnowDataRequest getRequest() {
@@ -46,8 +50,8 @@ public class KnowDataRequest {
         return mRequest;
     }
 
-    public HomeKnowData getShowData(long know_id){
-        return mKnowDataDao.load(know_id);
+    public HomeKnowData getShowData(long data_id){
+        return mKnowDataDao.load(data_id);
     }
 
     public HomeKnowCommend saveCommend(long know_id,String commend) {
@@ -69,12 +73,17 @@ public class KnowDataRequest {
     }
 
     //刷新请求最新的历史数据
-    public List<HomeKnowHistory> getHistoryRefreshData(long know_id) {
-        return mKnowDataDao.load(know_id).getHomeKnowHistorys();
+    public List<HomeKnowHistory> getHistoryRefreshData(long data_id) {
+        return mKnowDataDao.load(data_id).getHomeKnowHistorys();
     }
 
     //得到内容的id
     public long getContentId(long know_id) {
         return mKnowItemDao.load(know_id).getContentId();
+    }
+
+    //得到更新后的内容
+    public HomeKnowContent getContentRefreshData(long content_id) {
+        return mContentDao.load(content_id);
     }
 }

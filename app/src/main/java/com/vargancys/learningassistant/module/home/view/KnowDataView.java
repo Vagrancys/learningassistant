@@ -1,6 +1,7 @@
 package com.vargancys.learningassistant.module.home.view;
 
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
+import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 
@@ -24,7 +25,7 @@ public interface KnowDataView {
 
     void deleteDataError(int error, String message);
 
-    void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories);
+    void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories, HomeKnowContent homeKnowContent);
 
     void showRefreshHistoryError(int error, String message);
 }

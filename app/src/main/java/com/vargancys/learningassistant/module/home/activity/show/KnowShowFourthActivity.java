@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +35,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class KnowShowFourthActivity extends BaseActivity implements KnowShowView {
+    private static final String TAG = "KnowShowFourthActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -113,9 +115,13 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
-            if(data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0) == 1){
+            int state = data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0);
+            if(state == 1){
                 finish();
+            }else if(state == 2){
+                mPresenter.getRefreshDefaultShowData(item_id);
             }
+            Log.e(TAG,"state ="+state);
         }
     }
 

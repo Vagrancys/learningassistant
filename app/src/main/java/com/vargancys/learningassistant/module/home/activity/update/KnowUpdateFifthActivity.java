@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.module.home.activity.update;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class KnowUpdateFifthActivity extends BaseActivity implements BaseKnowUpdateView {
+    private static final String TAG = "KnowUpdateFifthActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_img)
@@ -151,6 +153,7 @@ public class KnowUpdateFifthActivity extends BaseActivity implements BaseKnowUpd
 
     private void addHistory(HomeKnowContent content){
         mOldHistory = new HomeKnowHistory();
+        Log.e(TAG,"ResultDataId ="+dataId);
         mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());

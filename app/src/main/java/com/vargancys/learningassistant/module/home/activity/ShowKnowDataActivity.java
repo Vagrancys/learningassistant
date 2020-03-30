@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
+import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateDefaultActivity;
@@ -99,6 +100,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private HomeKnowHistoryAdapter mHistoryAdapter;
     private ArrayList<HomeKnowHistory> mHistory = new ArrayList<>();
     private HomeKnowData mData;
+    private boolean update_status = false;
 
     @Override
     public int getLayoutId() {
@@ -123,7 +125,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         mHistoryAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                KnowHistoryDataActivity.launch(ShowKnowDataActivity.this,mHistory.get(position).getId(),mData.getLevel());
+                KnowHistoryDataActivity.launch(ShowKnowDataActivity.this,dataId,mData.getLevel());
             }
         });
 
@@ -200,7 +202,12 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(RESULT_CODE);
+                //0表示没有状态，1表示删除状态,2表示更新状态
+                if(update_status){
+                    Intent intent = new Intent();
+                    intent.putExtra(ConstantsUtils.ITEM_DELETE_STATUS,2);
+                    setResult(RESULT_CODE,intent);
+                }
                 finish();
             }
         });
@@ -232,7 +239,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataMaster.setText(homeKnowData.getMaster());
         knowDataTime.setText(homeKnowData.getTime());
         if(homeKnowData.getHistorycount() >0&&homeKnowData.getHomeKnowHistorys().size()>0){
-            Log.e(TAG,"Count ="+homeKnowData.getHomeKnowHistorys().size());
+            Log.e(TAG,"CountDataId ="+homeKnowData.getHomeKnowHistorys().get(0).getDataId()+",DataId ="+homeKnowData.getId()+",Know_id ="+know_id);
             historyRecycler.setVisibility(View.VISIBLE);
             knowDataHistoryCount.setVisibility(View.VISIBLE);
             knowDataHistoryTime.setVisibility(View.VISIBLE);
@@ -298,7 +305,9 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         if(requestCode == REQUEST_CODE&&resultCode == RESULT_UPDATE_CODE&&data !=null){
             if(data.getIntExtra(ConstantsUtils.ITEM_UPDATE_STATUS,0) == 1){
                 Log.e(TAG,"update_id = 更新了吗!");
-                mPresenter.getHistoryRefreshData(know_id);
+                update_status = true;
+                Log.e(TAG,"ResultDataId ="+dataId);
+                mPresenter.getHistoryRefreshData(dataId,contentId);
             }
         }
     }
@@ -306,7 +315,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     @Override
     public void showCommendSaveFinish(HomeKnowCommend homeKnowCommend) {
         int number = commendCount++;
-
         if( number > 0){
             commendRecycler.setVisibility(View.VISIBLE);
             commendEmpty.setVisibility(View.GONE);
@@ -319,7 +327,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
 
     @Override
     public void showSaveCommend() {
-        mPresenter.saveCommend(know_id,knowDataCommendEdit.getText().toString());
+        mPresenter.saveCommend(dataId,knowDataCommendEdit.getText().toString());
     }
 
     @Override
@@ -335,7 +343,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     @Override
     public void deleteDataFinish() {
         Intent intent = new Intent();
-        //0表示没有状态，1表示删除状态
+        //0表示没有状态，1表示删除状态,2表示更新状态
         intent.putExtra(ConstantsUtils.ITEM_DELETE_STATUS,1);
         setResult(RESULT_CODE,intent);
         finish();
@@ -347,7 +355,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     }
 
     @Override
-    public void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories) {
+    public void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories,HomeKnowContent homeKnowContent) {
         int count = homeKnowHistories.size();
         Log.e(TAG,"CountFinish ="+count);
         mHistory.clear();
@@ -361,5 +369,8 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
             mHistory.addAll(homeKnowHistories);
             mHistoryAdapter.notifyDataSetChanged();
         }
+
+        commonTitleData.setText(homeKnowContent.getTitle());
+        knowDataTitle.setText(homeKnowContent.getTitle());
     }
 }

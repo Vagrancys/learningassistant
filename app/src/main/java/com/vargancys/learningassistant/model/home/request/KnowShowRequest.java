@@ -32,14 +32,16 @@ public class KnowShowRequest {
 
     public HomeKnowContent getDefaultShowData(long id){
         //HomeKnowContent homeKnowContent = mContentDao.queryBuilder().where(HomeKnowContentDao.Properties.ContentId.eq(id)).unique();
-        HomeKnowContent homeKnowContent = mItemDao.load(id).getHomeKnowContent();
         //Log.e(TAG,"id ="+id+"content ="+homeKnowContent.getTitle());
-        return  homeKnowContent;
         //Log.e(TAG,"Title ="+homeKnowItem.getHomeKnowContent().getTitle());
         //return homeKnowItem.getHomeKnowContent();
     }
 
     public HomeKnowHistory getDefaultHistoryShowData(long id) {
         return mHistoryDao.load(id);
+    }
+
+    public HomeKnowContent getRefreshDefaultShowData(long id) {
+        return mItemDao.load(id).getHomeKnowContent();
     }
 }

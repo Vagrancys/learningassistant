@@ -28,4 +28,12 @@ public class KnowShowPresenter {
         }
     }
 
+    public void getRefreshDefaultShowData(long id) {
+        HomeKnowContent homeKnowContent = mRequest.getRefreshDefaultShowData(id);
+        if(homeKnowContent !=null){
+            ((KnowShowView) mView).showContentFinish(homeKnowContent);
+        }else{
+            ((KnowShowView) mView).showContentError(404,"没有该数据!");
+        }
+    }
 }

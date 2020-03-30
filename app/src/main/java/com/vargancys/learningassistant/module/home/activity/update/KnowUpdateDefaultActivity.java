@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.module.home.activity.update;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -120,6 +121,7 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
 
     private void addHistory(HomeKnowContent content) {
         mOldHistory = new HomeKnowHistory();
+        Log.e(TAG,"dataId ="+dataId);
         mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());

@@ -89,10 +89,6 @@ public class HomeKnowHistory {
         return this.dataId;
     }
 
-    public void setDataId(int dataId) {
-        this.dataId = dataId;
-    }
-
     public void setDataId(long dataId) {
         this.dataId = dataId;
     }

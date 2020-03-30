@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.home.activity.show;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +28,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class KnowShowDefaultActivity extends BaseActivity implements KnowShowView {
+    private static String TAG = "KnowShowDefaultActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -89,9 +91,13 @@ public class KnowShowDefaultActivity extends BaseActivity implements KnowShowVie
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
-            if(data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0) == 1){
+            int state = data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0);
+            if(state == 1){
                 finish();
+            }else if(state == 2){
+                mPresenter.getRefreshDefaultShowData(item_id);
             }
+            Log.e(TAG,"state = "+state);
         }
     }
 
