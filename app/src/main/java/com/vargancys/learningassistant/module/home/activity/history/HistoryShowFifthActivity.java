@@ -51,7 +51,7 @@ public class HistoryShowFifthActivity extends BaseActivity implements HistorySho
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
     private HistoryShowPresenter mPresenter;
-    private int item_id;
+    private long item_id;
     @Override
     public int getLayoutId() {
         return R.layout.activity_know_show_fifth;
@@ -61,7 +61,7 @@ public class HistoryShowFifthActivity extends BaseActivity implements HistorySho
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
         }
 
         mPresenter = new HistoryShowPresenter(this);
@@ -80,7 +80,7 @@ public class HistoryShowFifthActivity extends BaseActivity implements HistorySho
         commonImg.setVisibility(View.GONE);
     }
 
-    public static void launch(Activity activity, int item_id) {
+    public static void launch(Activity activity, long item_id) {
         Intent intent = new Intent(activity, HistoryShowFifthActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,item_id);
         activity.startActivity(intent);

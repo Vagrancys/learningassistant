@@ -15,7 +15,11 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.history.HistoryShowFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowFirstActivity;
+import com.vargancys.learningassistant.module.home.activity.history.HistoryShowFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.history.HistoryShowSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.history.HistoryShowThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HistoryDataAdapter;
 import com.vargancys.learningassistant.module.home.view.BaseHistoryView;
 import com.vargancys.learningassistant.persenter.home.KnowHistoryPresenter;
@@ -78,13 +82,16 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
                 HistoryShowFirstActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             case 2:
-                HistoryShowFirstActivity.launch(KnowHistoryDataActivity.this,id);
+                HistoryShowSecondActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             case 3:
+                HistoryShowThirdActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             case 4:
+                HistoryShowFourthActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             case 5:
+                HistoryShowFifthActivity.launch(KnowHistoryDataActivity.this,id);
                 break;
             default:
                 HistoryShowDefaultActivity.launch(KnowHistoryDataActivity.this,id);

@@ -65,4 +65,8 @@ public class KnowDataPresenter {
             mView.showRefreshHistoryError(501,"获取数据失败!");
         }
     }
+
+    public long getContentId(long know_id) {
+        return mRequest.getContentId(know_id);
+    }
 }

@@ -21,4 +21,6 @@ public class ConstantsUtils {
     public static final String KNOW_LEVEL_ID = "know_level_id";
     public static final String ITEM_DELETE_STATUS = "item_delete_status";
     public static final String ITEM_UPDATE_STATUS = "item_update_status";
+    public static final String KNOW_DATA_ID = "know_data_id";
+    public static final String KNOW_CONTENT_ID = "know_content_id";
 }

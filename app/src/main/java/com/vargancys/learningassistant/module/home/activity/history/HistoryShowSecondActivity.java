@@ -63,7 +63,7 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
     LinearLayout includeKnowEmpty;
 
     private HistoryShowPresenter mPresenter;
-    private int item_id;
+    private long item_id;
     private HomeHistorySecondAdapter mAdapter;
     private List<HomeKnowHistoryFunction> mFunction = new ArrayList<>();
     @Override
@@ -75,7 +75,7 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
         init();
         mPresenter = new HistoryShowPresenter(this);
@@ -102,7 +102,7 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
         commonImg.setVisibility(View.GONE);
     }
 
-    public static void launch(Activity activity, int item_id) {
+    public static void launch(Activity activity,long item_id) {
         Intent intent = new Intent(activity, HistoryShowSecondActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
         activity.startActivity(intent);

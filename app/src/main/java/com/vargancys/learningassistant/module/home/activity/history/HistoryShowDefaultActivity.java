@@ -51,7 +51,7 @@ public class HistoryShowDefaultActivity extends BaseActivity implements HistoryS
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
     private HistoryShowPresenter mPresenter;
-    private int item_id;
+    private long item_id;
 
     @Override
     public int getLayoutId() {
@@ -62,7 +62,7 @@ public class HistoryShowDefaultActivity extends BaseActivity implements HistoryS
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
         }
         mPresenter = new HistoryShowPresenter(this);
         mPresenter.getDefaultShowData(item_id);

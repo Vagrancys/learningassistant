@@ -72,4 +72,9 @@ public class KnowDataRequest {
     public List<HomeKnowHistory> getHistoryRefreshData(long know_id) {
         return mKnowDataDao.load(know_id).getHomeKnowHistorys();
     }
+
+    //得到内容的id
+    public long getContentId(long know_id) {
+        return mKnowItemDao.load(know_id).getContentId();
+    }
 }

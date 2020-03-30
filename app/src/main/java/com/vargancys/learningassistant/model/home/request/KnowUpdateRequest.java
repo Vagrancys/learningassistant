@@ -35,6 +35,8 @@ public class KnowUpdateRequest {
         mContentDao = mDaoSession.getHomeKnowContentDao();
         mHistoryDao = mDaoSession.getHomeKnowHistoryDao();
         mDataDao = mDaoSession.getHomeKnowDataDao();
+        mHistoryFunctionDao = mDaoSession.getHomeKnowHistoryFunctionDao();
+        mFunctionDao = mDaoSession.getHomeKnowFunctionDao();
     }
 
     public static KnowUpdateRequest getInstance(){
@@ -49,15 +51,15 @@ public class KnowUpdateRequest {
     }
 
     //返回要修改的数据
-    public HomeKnowContent getKnowDefaultContent(long know_id) {
-        return mContentDao.load(know_id);
+    public HomeKnowContent getKnowDefaultContent(long content_id) {
+        return mContentDao.load(content_id);
     }
 
     //更新默认级的数据
     public boolean saveKnowUpdateDefault(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
         mOldHistory.setTime(TimeUtils.getTime());
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
-        mHistoryDao.save(mOldHistory);
+        mHistoryDao.insert(mOldHistory);
         mContentDao.update(mNewContent);
         return true;
     }
@@ -66,7 +68,7 @@ public class KnowUpdateRequest {
     public boolean saveKnowUpdateFirst(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
         mOldHistory.setTime(TimeUtils.getTime());
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
-        mHistoryDao.save(mOldHistory);
+        mHistoryDao.insert(mOldHistory);
         mContentDao.update(mNewContent);
         return true;
     }
@@ -116,7 +118,7 @@ public class KnowUpdateRequest {
     public boolean saveKnowUpdateThird(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
         mOldHistory.setTime(TimeUtils.getTime());
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
-        mHistoryDao.save(mOldHistory);
+        mHistoryDao.insert(mOldHistory);
         mContentDao.update(mNewContent);
         return true;
     }
@@ -125,7 +127,7 @@ public class KnowUpdateRequest {
     public boolean saveKnowUpdateFifth(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
         mOldHistory.setTime(TimeUtils.getTime());
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
-        mHistoryDao.save(mOldHistory);
+        mHistoryDao.insert(mOldHistory);
         mContentDao.update(mNewContent);
         return true;
     }

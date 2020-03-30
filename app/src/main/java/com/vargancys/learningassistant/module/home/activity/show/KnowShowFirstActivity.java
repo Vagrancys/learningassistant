@@ -54,7 +54,7 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
     private KnowShowPresenter mPresenter;
-    private long item_id;
+    private long itemId;
     private static int REQUEST_CODE = 2001;
 
     @Override
@@ -66,10 +66,10 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            itemId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
         }
         mPresenter = new KnowShowPresenter(this);
-        mPresenter.getDefaultShowData(item_id);
+        mPresenter.getDefaultShowData(itemId);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowKnowDataActivity.launch(KnowShowFirstActivity.this,REQUEST_CODE,item_id);
+                ShowKnowDataActivity.launch(KnowShowFirstActivity.this,REQUEST_CODE,itemId);
             }
         });
     }

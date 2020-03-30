@@ -20,7 +20,11 @@ import com.vargancys.learningassistant.db.home.HomeKnowCommend;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFirstActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowCommendAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
@@ -85,6 +89,8 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private KnowDataPresenter mPresenter;
     private long know_id;
     private int commendCount;
+    private long contentId;
+    private long dataId;
     public static int RESULT_CODE = 2000;
     public static int REQUEST_CODE = 1900;
     public static int RESULT_UPDATE_CODE = 2002;
@@ -109,6 +115,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         init();
         mPresenter = new KnowDataPresenter(this);
         mPresenter.getShowData(know_id);
+        contentId = mPresenter.getContentId(know_id);
         initListener();
     }
 
@@ -168,18 +175,22 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private void selectUpdateLevel(int level) {
         switch (level){
             case 1:
-                KnowUpdateFirstActivity.launch(this,REQUEST_CODE,know_id);
+                KnowUpdateFirstActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 2:
+                KnowUpdateSecondActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 3:
+                KnowUpdateThirdActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 4:
+                KnowUpdateFourthActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 5:
+                KnowUpdateFifthActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             default:
-                KnowUpdateDefaultActivity.launch(this,REQUEST_CODE,know_id);
+                KnowUpdateDefaultActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
         }
     }
@@ -213,6 +224,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     @Override
     public void showDataFinish(HomeKnowData homeKnowData) {
         mData=homeKnowData;
+        dataId = homeKnowData.getId();
         commonTitleData.setText(homeKnowData.getTitle());
         knowDataTitle.setText(homeKnowData.getTitle());
         SelectDataLevel(homeKnowData.getLevel());
@@ -294,6 +306,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     @Override
     public void showCommendSaveFinish(HomeKnowCommend homeKnowCommend) {
         int number = commendCount++;
+
         if( number > 0){
             commendRecycler.setVisibility(View.VISIBLE);
             commendEmpty.setVisibility(View.GONE);
@@ -337,6 +350,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     public void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories) {
         int count = homeKnowHistories.size();
         Log.e(TAG,"CountFinish ="+count);
+        mHistory.clear();
         if(count>0){
             historyRecycler.setVisibility(View.VISIBLE);
             knowDataHistoryCount.setVisibility(View.VISIBLE);

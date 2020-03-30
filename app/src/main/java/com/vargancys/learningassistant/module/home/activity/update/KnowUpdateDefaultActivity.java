@@ -45,10 +45,11 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
     EditText updateHeedEdit;
     @BindView(R.id.update_experience_edit)
     EditText updateExperienceEdit;
-    private long know_id;
+    private long contentId;
+    private long dataId;
     private KnowUpdatePresenter mPresenter;
     private HomeKnowHistory mOldHistory;
-    
+    private HomeKnowContent mNewContent;
     private int RESULT_CODE = 2002;
 
     @Override
@@ -60,10 +61,11 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            know_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            contentId = intent.getLongExtra(ConstantsUtils.KNOW_CONTENT_ID, 0);
+            dataId = intent.getLongExtra(ConstantsUtils.KNOW_DATA_ID,0);
         }
         mPresenter = new KnowUpdatePresenter(this);
-        mPresenter.getKnowDefaultContent(know_id);
+        mPresenter.getKnowDefaultContent(contentId);
     }
 
     @Override
@@ -88,15 +90,17 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
         });
     }
 
-    public static void launch(Activity activity,int request_code,long know_id) {
+    public static void launch(Activity activity,int request_code,long content_id,long data_id) {
         Intent intent = new Intent(activity, KnowUpdateDefaultActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, know_id);
+        intent.putExtra(ConstantsUtils.KNOW_CONTENT_ID, content_id);
+        intent.putExtra(ConstantsUtils.KNOW_DATA_ID,data_id);
         activity.startActivityForResult(intent,request_code);
     }
 
     @Override
     public void showKnowDataFinish(HomeKnowContent content) {
-        initData(content);
+        mNewContent = content;
+        initData(mNewContent);
     }
 
     @Override
@@ -116,7 +120,7 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
 
     private void addHistory(HomeKnowContent content) {
         mOldHistory = new HomeKnowHistory();
-        mOldHistory.setDataId(know_id);
+        mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());
         mOldHistory.setExplain(content.getExplain());
@@ -147,18 +151,16 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
 
     @Override
     public boolean isKnowUpdateDefaultEquals() {
-        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())||
-                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())||
-                updateShowEdit.getText().toString().equals(mOldHistory.getShow())||
-                updateExplainEdit.getText().toString().equals(mOldHistory.getExplain())||
-                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())||
+        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())&&
+                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())&&
+                updateShowEdit.getText().toString().equals(mOldHistory.getShow())&&
+                updateExplainEdit.getText().toString().equals(mOldHistory.getExplain())&&
+                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())&&
                 updateHeedEdit.getText().toString().equals(mOldHistory.getHeed());
     }
 
     @Override
     public void saveKnowUpdateContent() {
-        HomeKnowContent mNewContent = new HomeKnowContent();
-        mNewContent.setId(know_id);
         mNewContent.setTitle(updateTitleEdit.getText().toString());
         mNewContent.setSummary(updateSummaryEdit.getText().toString());
         mNewContent.setShow(updateShowEdit.getText().toString());

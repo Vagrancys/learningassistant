@@ -28,6 +28,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpdateView{
+    private static String TAG = "KnowUpdateFirstActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_img)
@@ -47,9 +48,11 @@ public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpd
     @BindView(R.id.update_experience_edit)
     EditText updateExperienceEdit;
     private KnowUpdatePresenter mPresenter;
-    private long know_item_id;
+    private long contentId;
+    private long dataId;
     private int RESULT_CODE = 2002;
     private HomeKnowHistory mOldHistory;
+    private HomeKnowContent mNewContent;
 
     @Override
     public int getLayoutId() {
@@ -60,11 +63,12 @@ public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpd
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            know_item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
-            Log.e("idddd","id="+know_item_id);
+            contentId = intent.getLongExtra(ConstantsUtils.KNOW_CONTENT_ID,0);
+            dataId = intent.getLongExtra(ConstantsUtils.KNOW_DATA_ID,0);
+            Log.e(TAG,"id="+contentId);
         }
         mPresenter = new KnowUpdatePresenter(this);
-        mPresenter.getKnowFirstContent(know_item_id);
+        mPresenter.getKnowFirstContent(contentId);
         initListener();
     }
 
@@ -94,26 +98,28 @@ public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpd
         });
     }
 
-    public static void launch(Activity activity,int request_code, long know_id){
+    public static void launch(Activity activity,int request_code, long content_id,long data_id){
         Intent intent = new Intent(activity, KnowUpdateFirstActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
+        intent.putExtra(ConstantsUtils.KNOW_CONTENT_ID,content_id);
+        intent.putExtra(ConstantsUtils.KNOW_DATA_ID,data_id);
         activity.startActivityForResult(intent,request_code);
     }
 
     @Override
     public void showKnowDataFinish(HomeKnowContent content) {
-        addHistory(content);
-        updateTitleEdit.setText(content.getTitle());
-        updateSummaryEdit.setText(content.getSummary());
-        updateShowEdit.setText(content.getShow());
-        updateExplainEdit.setText(content.getExplain());
-        updateHeedEdit.setText(content.getHeed());
-        updateExperienceEdit.setText(content.getExperience());
+        mNewContent = content;
+        addHistory(mNewContent);
+        updateTitleEdit.setText(mNewContent.getTitle());
+        updateSummaryEdit.setText(mNewContent.getSummary());
+        updateShowEdit.setText(mNewContent.getShow());
+        updateExplainEdit.setText(mNewContent.getExplain());
+        updateHeedEdit.setText(mNewContent.getHeed());
+        updateExperienceEdit.setText(mNewContent.getExperience());
     }
 
     private void addHistory(HomeKnowContent content){
         mOldHistory = new HomeKnowHistory();
-        mOldHistory.setDataId(know_item_id);
+        mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());
         mOldHistory.setExplain(content.getExplain());
@@ -145,18 +151,18 @@ public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpd
 
     @Override
     public boolean isKnowUpdateDefaultEquals() {
-        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())||
-                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())||
-                updateShowEdit.getText().toString().equals(mOldHistory.getShow())||
-                updateExplainEdit.getText().toString().equals(mOldHistory.getExplain())||
-                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())||
+
+        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())&&
+                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())&&
+                updateShowEdit.getText().toString().equals(mOldHistory.getShow())&&
+                updateExplainEdit.getText().toString().equals(mOldHistory.getExplain())&&
+                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())&&
                 updateHeedEdit.getText().toString().equals(mOldHistory.getHeed());
     }
 
     @Override
     public void saveKnowUpdateContent() {
-        HomeKnowContent mNewContent = new HomeKnowContent();
-        mNewContent.setId(know_item_id);
+        Log.e(TAG,"NewContent的ID ="+contentId);
         mNewContent.setTitle(updateTitleEdit.getText().toString());
         mNewContent.setSummary(updateSummaryEdit.getText().toString());
         mNewContent.setShow(updateShowEdit.getText().toString());
