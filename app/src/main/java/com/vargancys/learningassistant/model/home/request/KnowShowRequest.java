@@ -32,6 +32,7 @@ public class KnowShowRequest {
 
     public HomeKnowContent getDefaultShowData(long id){
         //HomeKnowContent homeKnowContent = mContentDao.queryBuilder().where(HomeKnowContentDao.Properties.ContentId.eq(id)).unique();
+        return   mItemDao.load(id).getHomeKnowContent();
         //Log.e(TAG,"id ="+id+"content ="+homeKnowContent.getTitle());
         //Log.e(TAG,"Title ="+homeKnowItem.getHomeKnowContent().getTitle());
         //return homeKnowItem.getHomeKnowContent();

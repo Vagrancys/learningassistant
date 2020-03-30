@@ -68,6 +68,7 @@ public class KnowUpdateRequest {
     public boolean saveKnowUpdateFirst(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
         mOldHistory.setTime(TimeUtils.getTime());
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
+        mHistoryDao.save(mOldHistory);
         mContentDao.update(mNewContent);
         return true;
     }
@@ -117,6 +118,7 @@ public class KnowUpdateRequest {
     public boolean saveKnowUpdateThird(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
         mOldHistory.setTime(TimeUtils.getTime());
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
+        mHistoryDao.save(mOldHistory);
         mContentDao.update(mNewContent);
         return true;
     }
@@ -125,6 +127,7 @@ public class KnowUpdateRequest {
     public boolean saveKnowUpdateFifth(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
         mOldHistory.setTime(TimeUtils.getTime());
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
+        mHistoryDao.save(mOldHistory);
         mContentDao.update(mNewContent);
         return true;
     }
