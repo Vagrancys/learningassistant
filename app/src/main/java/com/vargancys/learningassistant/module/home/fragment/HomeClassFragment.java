@@ -329,18 +329,24 @@ public class HomeClassFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void clearMaster() {
-        switch (mLanguage){
+        switch (mMaster){
             case 0:
-                knowLanguageAll.setSelected(false);
+                knowMasterAll.setSelected(false);
                 break;
             case 1:
-                knowLanguageAndroid.setSelected(false);
+                knowMasterFirst.setSelected(false);
                 break;
             case 2:
-                knowLanguageJava.setSelected(false);
+                knowMasterSecond.setSelected(false);
                 break;
             case 3:
-                knowLanguagePhp.setSelected(false);
+                knowMasterThird.setSelected(false);
+                break;
+            case 4:
+                knowMasterFourth.setSelected(false);
+                break;
+            case 5:
+                knowMasterFifth.setSelected(false);
                 break;
         }
     }

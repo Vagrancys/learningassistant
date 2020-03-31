@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:fillBefore="true"
-    android:duration="250">
+    android:duration="100">
     <scale android:pivotY="0"
         android:pivotX="50%"
         android:fromXScale="100%"

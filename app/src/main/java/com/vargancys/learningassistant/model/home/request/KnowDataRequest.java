@@ -54,13 +54,13 @@ public class KnowDataRequest {
         return mKnowDataDao.load(data_id);
     }
 
-    public HomeKnowCommend saveCommend(long know_id,String commend) {
+    public HomeKnowCommend saveCommend(long data_id,String commend) {
         HomeKnowCommend homeKnowCommend = new HomeKnowCommend();
-        homeKnowCommend.setCommendId(know_id);
-        Log.e(TAG,"know_id"+know_id);
+        homeKnowCommend.setCommendId(data_id);
+        Log.e(TAG,"know_id"+data_id);
         homeKnowCommend.setTime(TimeUtils.getTime());
         homeKnowCommend.setTitle(commend);
-        HomeKnowData homeKnowData = mKnowDataDao.load(know_id);
+        HomeKnowData homeKnowData = mKnowDataDao.load(data_id);
         homeKnowData.setCommendcount(homeKnowData.getCommendcount()+1);
         homeKnowData.update();
         mKnowCommendDao.insert(homeKnowCommend);

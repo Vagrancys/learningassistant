@@ -88,10 +88,10 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     @BindView(R.id.commend_empty)
     TextView commendEmpty;
     private KnowDataPresenter mPresenter;
-    private long know_id;
     private int commendCount;
     private long contentId;
     private long dataId;
+    private long itemId;
     public static int RESULT_CODE = 2000;
     public static int REQUEST_CODE = 1900;
     public static int RESULT_UPDATE_CODE = 2002;
@@ -111,13 +111,13 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            know_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            itemId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
-        Log.e(TAG,"know_id"+know_id);
+        Log.e(TAG,"item_id"+dataId);
         init();
         mPresenter = new KnowDataPresenter(this);
-        mPresenter.getShowData(know_id);
-        contentId = mPresenter.getContentId(know_id);
+        mPresenter.getShowData(itemId);
+        contentId = mPresenter.getContentId(itemId);
         initListener();
     }
 
@@ -152,7 +152,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        mPresenter.deleteDataItem(know_id);
+                        mPresenter.deleteDataItem(itemId);
                     }
                 });
                 dialog.show();
@@ -169,7 +169,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KnowSettingContentActivity.launch(ShowKnowDataActivity.this,know_id);
+                KnowSettingContentActivity.launch(ShowKnowDataActivity.this,dataId);
             }
         });
     }
@@ -239,7 +239,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataMaster.setText(homeKnowData.getMaster());
         knowDataTime.setText(homeKnowData.getTime());
         if(homeKnowData.getHistorycount() >0&&homeKnowData.getHomeKnowHistorys().size()>0){
-            Log.e(TAG,"CountDataId ="+homeKnowData.getHomeKnowHistorys().get(0).getDataId()+",DataId ="+homeKnowData.getId()+",Know_id ="+know_id);
+            Log.e(TAG,"CountDataId ="+homeKnowData.getHomeKnowHistorys().get(1).getDataId()+",DataId ="+homeKnowData.getId()+",ItemId ="+itemId);
             historyRecycler.setVisibility(View.VISIBLE);
             knowDataHistoryCount.setVisibility(View.VISIBLE);
             knowDataHistoryTime.setVisibility(View.VISIBLE);

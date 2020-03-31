@@ -47,7 +47,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
     ImageView commonImg;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    private long data_id;
+    private long dataId;
     private int know_level;
     private HistoryDataAdapter mHistoryAdapter;
     private KnowHistoryPresenter mPresenter;
@@ -57,13 +57,13 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            data_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            dataId = intent.getLongExtra(ConstantsUtils.KNOW_DATA_ID,0);
             know_level = intent.getIntExtra(ConstantsUtils.KNOW_LEVEL_ID,1);
         }
         mHandler = new Handler();
         initAdapter();
         mPresenter = new KnowHistoryPresenter(this);
-        mPresenter.getAllHistoryData(data_id);
+        mPresenter.getAllHistoryData(dataId);
         initListener();
     }
 

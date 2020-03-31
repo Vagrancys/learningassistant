@@ -9,8 +9,10 @@ import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 
+import org.greenrobot.greendao.query.QueryBuilder;
 import org.greenrobot.greendao.query.WhereCondition;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,6 +78,26 @@ public class HomeRequest{
     }
 
     public List<HomeKnowItem> getSelectBean(int language, int level, int show, int master) {
-        
+        QueryBuilder<HomeKnowItem> queryBuilder = mItemDao.queryBuilder();
+        if(language != 0){
+            queryBuilder.where(HomeKnowItemDao.Properties.Language.eq(language));
+        }
+        if(level != 0){
+            queryBuilder.where(HomeKnowItemDao.Properties.Level.eq(level));
+        }
+        if(show != 0){
+            boolean result;
+            if(show ==1){
+                result = true;
+            }else{
+                result = false;
+            }
+            queryBuilder.where(HomeKnowItemDao.Properties.CreateClass.eq(result));
+        }
+        if(master != 0){
+            queryBuilder.where(HomeKnowItemDao.Properties.MasterLevel.eq(master));
+        }
+        return queryBuilder.list();
     }
+
 }

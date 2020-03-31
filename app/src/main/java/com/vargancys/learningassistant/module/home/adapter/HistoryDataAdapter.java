@@ -30,7 +30,7 @@ import butterknife.BindView;
  */
 public class HistoryDataAdapter extends BaseRecyclerAdapter {
 
-    private static final long DELAYED_TIME = 2000;
+    private static final long DELAYED_TIME = 3000;
     private String TAG = "HistoryDataAdapter";
     private Context mContext;
     private List<HomeKnowHistory> homeKnowHistorys;
@@ -67,26 +67,28 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
         mHolder.historyAnim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHandler.removeCallbacks(null);
-                if(mHolder.historyAnimStub.getVisibility() == View.GONE){
+                Runnable mRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        mHolder.historyAnimLayout.startAnimation(mTopScaleAnimation);
+                        mHolder.historyAnimImg.startAnimation(mBottomRotateAnimation);
+                        mHolder.historyAnimLayout.setVisibility(View.GONE);
+                        mHolder.historyAnimTitle.setText(mContext.getString(R.string.history_anim_show_title));
+                    }
+                };
+                mHandler.removeCallbacksAndMessages(null);
+                if(mHolder.historyAnimLayout.getVisibility() == View.GONE){
                     initData(mHolder,homeKnowHistory);
-                    mHolder.historyAnimStub.setVisibility(View.VISIBLE);
-                    mHolder.historyAnimStub.startAnimation(mBottomScaleAnimation);
+                    mHolder.historyAnimLayout.setVisibility(View.VISIBLE);
+                    mHolder.historyAnimLayout.startAnimation(mBottomScaleAnimation);
                     mHolder.historyAnimImg.startAnimation(mTopRotateAnimation);
                     mHolder.historyAnimTitle.setText(mContext.getString(R.string.history_anim_hide_title));
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mHolder.historyAnimStub.startAnimation(mTopScaleAnimation);
-                            mHolder.historyAnimImg.startAnimation(mBottomRotateAnimation);
-                            mHolder.historyAnimStub.setVisibility(View.GONE);
-                            mHolder.historyAnimTitle.setText(mContext.getString(R.string.history_anim_show_title));
-                        }
-                    },DELAYED_TIME);
+                    mHandler.postDelayed(mRunnable,DELAYED_TIME);
                 }else{
-                    mHolder.historyAnimStub.startAnimation(mTopScaleAnimation);
+                    mHolder.historyAnimLayout.startAnimation(mTopScaleAnimation);
                     mHolder.historyAnimImg.startAnimation(mBottomRotateAnimation);
-                    mHolder.historyAnimStub.setVisibility(View.GONE);
+                    mHolder.historyAnimLayout.setVisibility(View.GONE);
+                    mHolder.historyAnimTitle.setText(mContext.getString(R.string.history_anim_show_title));
                 }
             }
         });
@@ -119,8 +121,8 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
         TextView historyDataExplain;
         @BindView(R.id.history_data_experience)
         TextView historyDataExperience;
-        @BindView(R.id.history_anim_stub)
-        ViewStub historyAnimStub;
+        @BindView(R.id.history_anim_layout)
+        LinearLayout historyAnimLayout;
         @BindView(R.id.history_anim_title)
         TextView historyAnimTitle;
         @BindView(R.id.history_anim_img)

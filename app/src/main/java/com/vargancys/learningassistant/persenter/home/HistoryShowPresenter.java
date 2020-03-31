@@ -20,8 +20,8 @@ public class HistoryShowPresenter {
         mRequest = new KnowShowRequest();
     }
 
-    public void getDefaultShowData(long id){
-        HomeKnowHistory homeKnowHistory = mRequest.getDefaultHistoryShowData(id);
+    public void getDefaultShowData(long history_id){
+        HomeKnowHistory homeKnowHistory = mRequest.getDefaultHistoryShowData(history_id);
         if(homeKnowHistory !=null){
             mView.showContentFinish(homeKnowHistory);
         }else{

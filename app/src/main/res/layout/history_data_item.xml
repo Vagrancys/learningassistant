@@ -81,10 +81,12 @@
             android:maxLines="2"
             android:ellipsize="end"/>
     </LinearLayout>
-    <ViewStub
-        android:id="@+id/history_anim_stub"
+    <LinearLayout
+        android:id="@+id/history_anim_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -151,7 +153,7 @@
                 android:maxLines="2"
                 android:ellipsize="end"/>
         </LinearLayout>
-    </ViewStub>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/history_anim"
         android:layout_width="match_parent"

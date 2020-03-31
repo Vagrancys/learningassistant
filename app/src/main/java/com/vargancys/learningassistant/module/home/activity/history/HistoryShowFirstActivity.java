@@ -41,7 +41,7 @@ public class HistoryShowFirstActivity extends BaseActivity implements HistorySho
     @BindView(R.id.insert_show_summary)
     TextView insertShowSummary;
     @BindView(R.id.insert_show_show)
-    EditText insertShowShow;
+    TextView insertShowShow;
     @BindView(R.id.insert_show_explain)
     TextView insertShowExplain;
     @BindView(R.id.insert_show_heed)
@@ -53,7 +53,7 @@ public class HistoryShowFirstActivity extends BaseActivity implements HistorySho
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
     private HistoryShowPresenter mPresenter;
-    private long item_id;
+    private long historyId;
 
     @Override
     public int getLayoutId() {
@@ -64,10 +64,10 @@ public class HistoryShowFirstActivity extends BaseActivity implements HistorySho
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            historyId = intent.getLongExtra(ConstantsUtils.KNOW_HISTORY_ID, 0);
         }
         mPresenter = new HistoryShowPresenter(this);
-        mPresenter.getDefaultShowData(item_id);
+        mPresenter.getDefaultShowData(historyId);
     }
 
     @Override
@@ -81,9 +81,9 @@ public class HistoryShowFirstActivity extends BaseActivity implements HistorySho
         commonImg.setVisibility(View.GONE);
     }
 
-    public static void launch(Activity activity, long item_id) {
+    public static void launch(Activity activity, long history_id) {
         Intent intent = new Intent(activity, HistoryShowFirstActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
+        intent.putExtra(ConstantsUtils.KNOW_HISTORY_ID, history_id);
         activity.startActivity(intent);
     }
 

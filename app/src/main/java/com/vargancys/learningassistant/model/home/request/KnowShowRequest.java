@@ -30,19 +30,19 @@ public class KnowShowRequest {
         mHistoryDao = daoSession.getHomeKnowHistoryDao();
     }
 
-    public HomeKnowContent getDefaultShowData(long id){
+    public HomeKnowContent getDefaultShowData(long item_id){
         //HomeKnowContent homeKnowContent = mContentDao.queryBuilder().where(HomeKnowContentDao.Properties.ContentId.eq(id)).unique();
-        return   mItemDao.load(id).getHomeKnowContent();
+        return   mItemDao.load(item_id).getHomeKnowContent();
         //Log.e(TAG,"id ="+id+"content ="+homeKnowContent.getTitle());
         //Log.e(TAG,"Title ="+homeKnowItem.getHomeKnowContent().getTitle());
         //return homeKnowItem.getHomeKnowContent();
     }
 
-    public HomeKnowHistory getDefaultHistoryShowData(long id) {
-        return mHistoryDao.load(id);
+    public HomeKnowHistory getDefaultHistoryShowData(long history_id) {
+        return mHistoryDao.load(history_id);
     }
 
-    public HomeKnowContent getRefreshDefaultShowData(long id) {
-        return mItemDao.load(id).getHomeKnowContent();
+    public HomeKnowContent getRefreshDefaultShowData(long item_id) {
+        return mItemDao.load(item_id).getHomeKnowContent();
     }
 }
