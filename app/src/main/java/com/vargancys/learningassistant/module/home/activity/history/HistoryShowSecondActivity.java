@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +38,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class HistoryShowSecondActivity extends BaseActivity implements HistoryShowView {
+    private static String TAG = "HistoryShowSecondActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -63,7 +65,7 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
     LinearLayout includeKnowEmpty;
 
     private HistoryShowPresenter mPresenter;
-    private long item_id;
+    private long historyId;
     private HomeHistorySecondAdapter mAdapter;
     private List<HomeKnowHistoryFunction> mFunction = new ArrayList<>();
     @Override
@@ -75,11 +77,11 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            historyId = intent.getLongExtra(ConstantsUtils.KNOW_HISTORY_ID,0);
         }
         init();
         mPresenter = new HistoryShowPresenter(this);
-        mPresenter.getDefaultShowData(item_id);
+        mPresenter.getDefaultShowData(historyId);
 
     }
 
@@ -102,9 +104,9 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
         commonImg.setVisibility(View.GONE);
     }
 
-    public static void launch(Activity activity,long item_id) {
+    public static void launch(Activity activity,long history_id) {
         Intent intent = new Intent(activity, HistoryShowSecondActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
+        intent.putExtra(ConstantsUtils.KNOW_HISTORY_ID, history_id);
         activity.startActivity(intent);
     }
 
@@ -127,6 +129,7 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
         insertShowSummary.setText(homeKnowHistory.getSummary());
         insertShowHeed.setText(homeKnowHistory.getHeed());
         insertShowExperience.setText(homeKnowHistory.getExperience());
+        Log.e(TAG,"id ="+homeKnowHistory.getId()+"size ="+homeKnowHistory.getHomeKnowHistoryFunctions().size());
         int count = homeKnowHistory.getHomeKnowHistoryFunctions().size();
         if(count <= 0){
             showEmptySecond.setVisibility(View.VISIBLE);

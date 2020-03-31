@@ -63,7 +63,7 @@ public class HistoryShowFourthActivity extends BaseActivity implements HistorySh
     LinearLayout includeKnowEmpty;
 
     private HistoryShowPresenter mPresenter;
-    private long item_id;
+    private long historyId;
     private HomeHistoryFourthAdapter mAdapter;
     private List<HomeKnowHistoryFunction> mFunction = new ArrayList<>();
     @Override
@@ -75,11 +75,11 @@ public class HistoryShowFourthActivity extends BaseActivity implements HistorySh
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            historyId = intent.getLongExtra(ConstantsUtils.KNOW_HISTORY_ID,0);
         }
         mPresenter = new HistoryShowPresenter(this);
         init();
-        mPresenter.getDefaultShowData(item_id);
+        mPresenter.getDefaultShowData(historyId);
     }
 
     private void init() {
@@ -100,9 +100,9 @@ public class HistoryShowFourthActivity extends BaseActivity implements HistorySh
         commonImg.setVisibility(View.GONE);
     }
 
-    public static void launch(Activity activity, long item_id) {
+    public static void launch(Activity activity, long history_id) {
         Intent intent = new Intent(activity, HistoryShowFourthActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
+        intent.putExtra(ConstantsUtils.KNOW_HISTORY_ID, history_id);
         activity.startActivity(intent);
     }
 

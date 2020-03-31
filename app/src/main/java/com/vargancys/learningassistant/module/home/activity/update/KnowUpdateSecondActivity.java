@@ -279,7 +279,6 @@ public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdat
         if(content.getHomeKnowFunctions().size()>0){
             for (HomeKnowFunction mFunction :content.getHomeKnowFunctions()){
                 HomeKnowHistoryFunction mHistory = new HomeKnowHistoryFunction();
-                mHistory.setId(mFunction.getId());
                 mHistory.setCommon(mFunction.getCommon());
                 mHistory.setExplain(mFunction.getExplain());
                 mHistory.setFunctionId(mFunction.getFunctionId());

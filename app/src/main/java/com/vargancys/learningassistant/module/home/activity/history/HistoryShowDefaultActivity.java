@@ -51,7 +51,7 @@ public class HistoryShowDefaultActivity extends BaseActivity implements HistoryS
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
     private HistoryShowPresenter mPresenter;
-    private long item_id;
+    private long historyId;
 
     @Override
     public int getLayoutId() {
@@ -62,10 +62,10 @@ public class HistoryShowDefaultActivity extends BaseActivity implements HistoryS
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            historyId = intent.getLongExtra(ConstantsUtils.KNOW_HISTORY_ID, 0);
         }
         mPresenter = new HistoryShowPresenter(this);
-        mPresenter.getDefaultShowData(item_id);
+        mPresenter.getDefaultShowData(historyId);
     }
 
     @Override
@@ -79,9 +79,9 @@ public class HistoryShowDefaultActivity extends BaseActivity implements HistoryS
         commonImg.setVisibility(View.GONE);
     }
 
-    public static void launch(Activity activity, long id) {
+    public static void launch(Activity activity, long history_id) {
         Intent intent = new Intent(activity, HistoryShowDefaultActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, id);
+        intent.putExtra(ConstantsUtils.KNOW_HISTORY_ID, history_id);
         activity.startActivity(intent);
     }
 

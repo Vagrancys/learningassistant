@@ -239,7 +239,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataMaster.setText(homeKnowData.getMaster());
         knowDataTime.setText(homeKnowData.getTime());
         if(homeKnowData.getHistorycount() >0&&homeKnowData.getHomeKnowHistorys().size()>0){
-            Log.e(TAG,"CountDataId ="+homeKnowData.getHomeKnowHistorys().get(1).getDataId()+",DataId ="+homeKnowData.getId()+",ItemId ="+itemId);
+            Log.e(TAG,"CountDataId ="+homeKnowData.getHomeKnowHistorys().get(0).getDataId()+",DataId ="+homeKnowData.getId()+",ItemId ="+itemId);
             historyRecycler.setVisibility(View.VISIBLE);
             knowDataHistoryCount.setVisibility(View.VISIBLE);
             knowDataHistoryTime.setVisibility(View.VISIBLE);

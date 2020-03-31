@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.model.home.request;
 
+import android.util.Log;
+
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
 import com.vagrancys.learningassistant.db.HomeKnowDataDao;
@@ -30,6 +32,7 @@ public class KnowUpdateRequest {
     private HomeKnowDataDao mDataDao;
     private HomeKnowHistoryFunctionDao mHistoryFunctionDao;
     private HomeKnowFunctionDao mFunctionDao;
+    private static String TAG = "KnowUpdateRequest";
     private KnowUpdateRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mContentDao = mDaoSession.getHomeKnowContentDao();
@@ -88,10 +91,12 @@ public class KnowUpdateRequest {
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
         long result = mHistoryDao.insert(mOldHistory);
         for (HomeKnowHistoryFunction mFunction :mOldHistoryFunction){
+            Log.e(TAG,"history_functionId ="+result);
             mFunction.setFunctionId(result);
             mHistoryFunctionDao.save(mFunction);
         }
         for (HomeKnowFunction mFunctions :homeKnowFunctions){
+            Log.e(TAG,"functionId ="+result);
             mFunctionDao.save(mFunctions);
         }
         mContentDao.update(mNewContent);
@@ -104,6 +109,7 @@ public class KnowUpdateRequest {
         updateData(mOldHistory.getDataId(),mNewContent.getTitle(),mOldHistory.getTime());
         long result = mHistoryDao.insert(mOldHistory);
         for (HomeKnowHistoryFunction mFunction :mOldHistoryFunction){
+            Log.e(TAG,"functionId ="+result);
             mFunction.setFunctionId(result);
             mHistoryFunctionDao.save(mFunction);
         }

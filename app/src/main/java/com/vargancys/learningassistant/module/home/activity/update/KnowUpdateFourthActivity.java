@@ -216,6 +216,7 @@ public class KnowUpdateFourthActivity extends BaseActivity implements KnowUpdate
     @Override
     public boolean addFunctionData(int common, String title, String summary, String explain) {
         HomeKnowFunction homeKnowFunction = new HomeKnowFunction();
+        homeKnowFunction.setFunctionId(contentId);
         homeKnowFunction.setCommon(common);
         homeKnowFunction.setTitle(title);
         homeKnowFunction.setSummary(summary);
@@ -279,7 +280,6 @@ public class KnowUpdateFourthActivity extends BaseActivity implements KnowUpdate
         if(content.getHomeKnowFunctions().size()>0){
             for (HomeKnowFunction mFunction :content.getHomeKnowFunctions()){
                 HomeKnowHistoryFunction mHistory = new HomeKnowHistoryFunction();
-                mHistory.setId(mFunction.getId());
                 mHistory.setCommon(mFunction.getCommon());
                 mHistory.setExplain(mFunction.getExplain());
                 mHistory.setFunctionId(mFunction.getFunctionId());
