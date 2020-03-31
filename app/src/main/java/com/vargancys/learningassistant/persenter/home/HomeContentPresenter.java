@@ -52,4 +52,20 @@ public class HomeContentPresenter{
             mView.deleteError(501,"该知识项没有被删除!请重试!");
         }
     }
+
+    public void getSelectContentData(int language, int level, int show, int master) {
+        List<HomeKnowItem> mBean = homeContentRequest.getSelectBean(language,level,show,master);
+        if(mBean !=null){
+            if(mBean.size() > 0){
+                Log.e("HomePresenter","hideEmpty");
+                mView.hideEmpty();
+                mView.showRefreshContentBean(mBean);
+            }else{
+                Log.e("HomePresenter","showEmpty");
+                mView.showEmpty();
+            }
+        }else{
+            mView.showError(404,"数据库没有数据!");
+        }
+    }
 }

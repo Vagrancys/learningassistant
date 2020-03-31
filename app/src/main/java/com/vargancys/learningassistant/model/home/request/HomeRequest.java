@@ -74,4 +74,8 @@ public class HomeRequest{
         mItemDao.deleteByKey(item_id);
         return true;
     }
+
+    public List<HomeKnowItem> getSelectBean(int language, int level, int show, int master) {
+        
+    }
 }

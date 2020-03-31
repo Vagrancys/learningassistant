@@ -18,4 +18,5 @@ public interface  HomeContentView {
     void showEmpty();
     void deleteFinish(long item_id);
     void deleteError(int error,String msg);
+    void showRefreshContentBean(List<HomeKnowItem> bean);
 }

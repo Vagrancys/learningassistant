@@ -45,6 +45,7 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
         public final static Property MasterLevel = new Property(12, int.class, "masterLevel", false, "MASTER_LEVEL");
         public final static Property StudyTitle = new Property(13, String.class, "studyTitle", false, "STUDY_TITLE");
         public final static Property CreateClass = new Property(14, boolean.class, "createClass", false, "CREATE_CLASS");
+        public final static Property Language = new Property(15, int.class, "language", false, "LANGUAGE");
     }
 
     private DaoSession daoSession;
@@ -77,7 +78,8 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
                 "\"MAX\" INTEGER NOT NULL ," + // 11: max
                 "\"MASTER_LEVEL\" INTEGER NOT NULL ," + // 12: masterLevel
                 "\"STUDY_TITLE\" TEXT," + // 13: studyTitle
-                "\"CREATE_CLASS\" INTEGER NOT NULL );"); // 14: createClass
+                "\"CREATE_CLASS\" INTEGER NOT NULL ," + // 14: createClass
+                "\"LANGUAGE\" INTEGER NOT NULL );"); // 15: language
     }
 
     /** Drops the underlying database table. */
@@ -124,6 +126,7 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
             stmt.bindString(14, studyTitle);
         }
         stmt.bindLong(15, entity.getCreateClass() ? 1L: 0L);
+        stmt.bindLong(16, entity.getLanguage());
     }
 
     @Override
@@ -164,6 +167,7 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
             stmt.bindString(14, studyTitle);
         }
         stmt.bindLong(15, entity.getCreateClass() ? 1L: 0L);
+        stmt.bindLong(16, entity.getLanguage());
     }
 
     @Override
@@ -194,7 +198,8 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
             cursor.getInt(offset + 11), // max
             cursor.getInt(offset + 12), // masterLevel
             cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // studyTitle
-            cursor.getShort(offset + 14) != 0 // createClass
+            cursor.getShort(offset + 14) != 0, // createClass
+            cursor.getInt(offset + 15) // language
         );
         return entity;
     }
@@ -216,6 +221,7 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
         entity.setMasterLevel(cursor.getInt(offset + 12));
         entity.setStudyTitle(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
         entity.setCreateClass(cursor.getShort(offset + 14) != 0);
+        entity.setLanguage(cursor.getInt(offset + 15));
      }
     
     @Override

@@ -274,4 +274,28 @@
     <string name="update_hint_heed_fifth">优化理解体系时需要关注的点</string>
     <string name="update_experience_fifth">心得:</string>
     <string name="update_hint_experience_fifth">优化经验分享(你对该体系的深入理解)</string>
+
+    <string name="know_language_title">语言</string>
+    <string name="know_language_android">android</string>
+    <string name="know_language_java">java</string>
+    <string name="know_language_php">php</string>
+
+    <string name="know_level_title">难度</string>
+    <string name="know_common_all">全部</string>
+    <string name="know_level_first">入门</string>
+    <string name="know_level_second">熟悉</string>
+    <string name="know_level_third">熟练</string>
+    <string name="know_level_fourth">精通</string>
+    <string name="know_level_fifth">创造</string>
+
+    <string name="know_show_title">展示</string>
+    <string name="know_show_yes">yes</string>
+    <string name="know_show_no">no</string>
+
+    <string name="know_master_title">掌握</string>
+    <string name="know_master_first">了解</string>
+    <string name="know_master_second">熟悉</string>
+    <string name="know_master_third">掌握</string>
+    <string name="know_master_fourth">精通</string>
+    <string name="know_master_fifth">专家</string>
 </resources>

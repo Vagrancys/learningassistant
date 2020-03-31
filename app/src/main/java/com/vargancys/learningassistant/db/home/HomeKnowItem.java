@@ -65,6 +65,9 @@ public class HomeKnowItem{
     //知识项内容是否创建了
     private boolean createClass;
 
+    //知识的语言类别language
+    private int language;
+
     @ToOne(joinProperty = "contentId")
     private HomeKnowContent homeKnowContent;
     @ToOne(joinProperty = "dataId")
@@ -78,10 +81,10 @@ public class HomeKnowItem{
     @Generated(hash = 1329440142)
     private transient HomeKnowItemDao myDao;
 
-    @Generated(hash = 246857869)
+    @Generated(hash = 48619158)
     public HomeKnowItem(Long id, long contentId, long dataId, boolean official, String activity,
             boolean have, String title, int level, String summary, int progress, int count, int max,
-            int masterLevel, String studyTitle, boolean createClass) {
+            int masterLevel, String studyTitle, boolean createClass, int language) {
         this.id = id;
         this.contentId = contentId;
         this.dataId = dataId;
@@ -97,6 +100,7 @@ public class HomeKnowItem{
         this.masterLevel = masterLevel;
         this.studyTitle = studyTitle;
         this.createClass = createClass;
+        this.language = language;
     }
 
     @Generated(hash = 2077989770)
@@ -336,5 +340,13 @@ public class HomeKnowItem{
 
     public void setDataId(long dataId) {
         this.dataId = dataId;
+    }
+
+    public int getLanguage() {
+        return this.language;
+    }
+
+    public void setLanguage(int language) {
+        this.language = language;
     }
 }

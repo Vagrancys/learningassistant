@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -29,9 +30,17 @@
                     android:id="@+id/add_menu"
                     android:layout_width="@dimen/margin_width_30dp"
                     android:layout_height="@dimen/margin_width_30dp"
-                    android:layout_toStartOf="@+id/help_menu"
+                    android:layout_toStartOf="@+id/class_menu"
                     android:layout_centerVertical="true"
                     android:src="@drawable/know_add_normal"
+                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
+                <ImageView
+                    android:id="@+id/class_menu"
+                    android:layout_width="@dimen/margin_width_30dp"
+                    android:layout_height="@dimen/margin_width_30dp"
+                    android:background="@drawable/know_class_selector"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/help_menu"
                     android:layout_marginEnd="@dimen/margin_width_10dp"/>
                 <ImageView
                     android:id="@+id/help_menu"
@@ -44,26 +53,33 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_below="@+id/appBar"
-        android:id="@+id/swipeRefresh"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
-        <RelativeLayout
+        android:layout_height="match_parent">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                android:padding="@dimen/margin_width_10dp"/>
-            <include
-                layout="@layout/fragment_empty"/>
-        </RelativeLayout>
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:padding="@dimen/margin_width_10dp"/>
+                <include
+                    layout="@layout/fragment_empty"/>
+            </RelativeLayout>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
-</RelativeLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
+        <FrameLayout
+            android:id="@+id/know_class_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </FrameLayout>
+</LinearLayout>
