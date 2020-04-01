@@ -298,4 +298,7 @@
     <string name="know_master_third">掌握</string>
     <string name="know_master_fourth">精通</string>
     <string name="know_master_fifth">专家</string>
+
+    <string name="common_setting_content">知识设置中心</string>
+    <string name="know_search_hint">请输入你要查找的知识</string>
 </resources>

@@ -52,6 +52,7 @@
         <activity android:name=".module.home.activity.update.KnowUpdateThirdActivity"/>
         <activity android:name=".module.home.activity.update.KnowUpdateFourthActivity"/>
         <activity android:name=".module.home.activity.update.KnowUpdateFifthActivity"/>
+        <activity android:name=".module.home.activity.KnowSearchActivity"/>
     </application>
 
 </manifest>

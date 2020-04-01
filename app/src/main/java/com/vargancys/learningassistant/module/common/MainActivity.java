@@ -24,16 +24,15 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.commonTab)
     CommonTabLayout commonTab;
     private CommonFragmentAdapter commonAdapter;
-    private int adapterSize = 1;
     private String[] mTitle;
     private ArrayList<CustomTabEntity> customTabEntities = new ArrayList<>();
     private int[] mSelected = {
-            R.drawable.main_home_selected,R.drawable.main_search_selected,
+            R.drawable.main_home_selected,R.drawable.main_overview_selected,
             R.drawable.main_game_selected,R.drawable.main_ladder_selected,
             R.drawable.main_my_selected
     };
     private int[] mUnselected = {
-            R.drawable.main_home_normal,R.drawable.main_search_normal,
+            R.drawable.main_home_normal,R.drawable.main_overview_normal,
             R.drawable.main_game_normal,R.drawable.main_ladder_normal,
             R.drawable.main_my_normal
     };
@@ -44,16 +43,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        Log.e(TAG,"initView");
         mTitle = getResources().getStringArray(R.array.main_title);
         initEntity();
-        commonAdapter = new CommonFragmentAdapter(getSupportFragmentManager(), adapterSize);
+        commonAdapter = new CommonFragmentAdapter(getSupportFragmentManager(), mTitle.length);
         viewPager.setAdapter(commonAdapter);
         viewPager.addOnPageChangeListener(new CommonPageChangeListener());
         commonTab.setTabData(customTabEntities);
         commonTab.setCurrentTab(0);
         commonTab.setOnTabSelectListener(new CommonTabSelectListener());
-        Log.e(TAG,"init");
     }
 
     private void initEntity() {

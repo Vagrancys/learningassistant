@@ -40,7 +40,15 @@
                     android:layout_height="@dimen/margin_width_30dp"
                     android:background="@drawable/know_class_selector"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/help_menu"
+                    android:layout_toStartOf="@+id/search_menu"
+                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
+                <ImageView
+                    android:id="@+id/search_menu"
+                    android:layout_width="@dimen/margin_width_30dp"
+                    android:layout_height="@dimen/margin_width_30dp"
+                    android:background="@drawable/know_search_selector"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/help_menu"
                     android:layout_marginEnd="@dimen/margin_width_10dp"/>
                 <ImageView
                     android:id="@+id/help_menu"

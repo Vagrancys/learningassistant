@@ -11,7 +11,7 @@
         android:padding="@dimen/margin_width_10dp">
         <ImageView
             android:id="@+id/content_item_have"
-            android:layout_width="@dimen/margin_width_40dp"
+            android:layout_width="@dimen/margin_width_30dp"
             android:layout_height="@dimen/margin_width_30dp"
             android:src="@drawable/know_have_normal"/>
         <TextView
@@ -33,8 +33,8 @@
             android:gravity="center|start">
             <ImageView
                 android:id="@+id/content_item_level"
-                android:layout_width="@dimen/margin_width_60dp"
-                android:layout_height="@dimen/margin_width_50dp"
+                android:layout_width="@dimen/margin_width_40dp"
+                android:layout_height="@dimen/margin_width_30dp"
                 android:layout_marginTop="@dimen/margin_width_5dp"
                 android:src="@drawable/know_level_1"
                 android:scaleType="fitXY"
@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/content_item_study"
-            android:layout_width="@dimen/margin_width_40dp"
-            android:layout_height="@dimen/margin_width_40dp"
+            android:layout_width="@dimen/margin_width_30dp"
+            android:layout_height="@dimen/margin_width_30dp"
             android:src="@drawable/know_study_normal"
             android:layout_below="@+id/content_item_linear_1"
             android:layout_marginEnd="@dimen/margin_width_10dp"/>
@@ -109,8 +109,8 @@
 
             <ImageView
                 android:id="@+id/content_item_master"
-                android:layout_width="@dimen/margin_width_40dp"
-                android:layout_height="@dimen/margin_width_40dp"
+                android:layout_width="@dimen/margin_width_30dp"
+                android:layout_height="@dimen/margin_width_30dp"
                 android:layout_marginEnd="@dimen/margin_width_10dp"
                 android:src="@drawable/know_master_normal" />
 

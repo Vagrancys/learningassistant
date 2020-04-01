@@ -28,6 +28,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.module.common.help.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
 import com.vargancys.learningassistant.module.home.activity.AddKnowActivity;
+import com.vargancys.learningassistant.module.home.activity.KnowSearchActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFirstActivity;
@@ -79,6 +80,8 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     ImageView classMenu;
     @BindView(R.id.know_class_layout)
     FrameLayout knowClassLayout;
+    @BindView(R.id.search_menu)
+    ImageView searchMenu;
 
     private HomeContentAdapter homeContentAdapter;
     private HomeContentPresenter homeContentPresenter;
@@ -145,6 +148,8 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         recyclerView.setOnClickListener(this);
 
         fragmentEmpty.setOnClickListener(this);
+
+        searchMenu.setOnClickListener(this);
     }
 
     class HomeContentItemLongClickListener implements BaseRecyclerAdapter.OnItemLongClickListener{
@@ -200,7 +205,6 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 if(homeKnowItem.getHave()){
                     ToastUtils.ToastText(getContext(),"这需要官方来创建!个人不能创建!");
                 }else{
-                    //ToastUtils.ToastText(getContext(),"还没有编程到这里!");
                     Log.e("homecontent","level="+homeKnowItem.getLevel());
                     Log.e(TAG,"know_id"+homeKnowItem.getId().intValue());
                     launchInsertActivity(homeKnowItem.getId().intValue(),homeKnowItem.getLevel());
@@ -234,7 +238,9 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
             case R.id.fragment_empty:
                 hideKnowClass();
                 break;
-
+            case R.id.search_menu:
+                KnowSearchActivity.launch(getActivity());
+                break;
         }
     }
 
