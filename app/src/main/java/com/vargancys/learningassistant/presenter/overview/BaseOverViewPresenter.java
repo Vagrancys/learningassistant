@@ -1,0 +1,33 @@
+package com.vargancys.learningassistant.presenter.overview;
+
+import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
+import com.vargancys.learningassistant.module.overview.view.BaseOverView;
+
+import java.util.List;
+
+/**
+ * author: Vagrancy
+ * e-mail: 18050829067@163.com
+ * time  : 2020/04/03
+ * version:1.0
+ */
+public class BaseOverViewPresenter {
+    private BaseOverView mView;
+    private OverViewRequest mRequest;
+
+    public BaseOverViewPresenter(BaseOverView view){
+        this.mView = view;
+        mRequest = OverViewRequest.getInstance();
+    }
+
+
+    public void getAllContentData() {
+        List<OverViewListContent> mObject = mRequest.getAllContentData();
+        if(mObject !=null && mObject.size()>0){
+            mView.getAllData(mObject);
+        }else{
+            mView.getAllDataError(404,"没有找到数据!");
+        }
+    }
+}

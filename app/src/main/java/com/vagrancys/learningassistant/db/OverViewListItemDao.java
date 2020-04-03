@@ -1,5 +1,6 @@
 package com.vagrancys.learningassistant.db;
 
+import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -8,6 +9,8 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
+import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 
@@ -25,15 +28,17 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property Create = new Property(1, long.class, "create", false, "CREATE");
-        public final static Property ParentId = new Property(2, long.class, "parentId", false, "PARENT_ID");
-        public final static Property Title = new Property(3, String.class, "title", false, "TITLE");
-        public final static Property MasterLevel = new Property(4, int.class, "masterLevel", false, "MASTER_LEVEL");
-        public final static Property Level = new Property(5, int.class, "level", false, "LEVEL");
-        public final static Property Study = new Property(6, boolean.class, "study", false, "STUDY");
-        public final static Property Score = new Property(7, int.class, "score", false, "SCORE");
+        public final static Property ContentId = new Property(1, long.class, "contentId", false, "CONTENT_ID");
+        public final static Property Create = new Property(2, long.class, "create", false, "CREATE");
+        public final static Property ParentId = new Property(3, long.class, "parentId", false, "PARENT_ID");
+        public final static Property Title = new Property(4, String.class, "title", false, "TITLE");
+        public final static Property MasterLevel = new Property(5, int.class, "masterLevel", false, "MASTER_LEVEL");
+        public final static Property Level = new Property(6, int.class, "level", false, "LEVEL");
+        public final static Property Study = new Property(7, boolean.class, "study", false, "STUDY");
+        public final static Property Score = new Property(8, int.class, "score", false, "SCORE");
     }
 
+    private Query<OverViewListItem> overViewListContent_OverViewListItemQuery;
 
     public OverViewListItemDao(DaoConfig config) {
         super(config);
@@ -48,13 +53,14 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"OVER_VIEW_LIST_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
-                "\"CREATE\" INTEGER NOT NULL ," + // 1: create
-                "\"PARENT_ID\" INTEGER NOT NULL ," + // 2: parentId
-                "\"TITLE\" TEXT," + // 3: title
-                "\"MASTER_LEVEL\" INTEGER NOT NULL ," + // 4: masterLevel
-                "\"LEVEL\" INTEGER NOT NULL ," + // 5: level
-                "\"STUDY\" INTEGER NOT NULL ," + // 6: study
-                "\"SCORE\" INTEGER NOT NULL );"); // 7: score
+                "\"CONTENT_ID\" INTEGER NOT NULL ," + // 1: contentId
+                "\"CREATE\" INTEGER NOT NULL ," + // 2: create
+                "\"PARENT_ID\" INTEGER NOT NULL ," + // 3: parentId
+                "\"TITLE\" TEXT," + // 4: title
+                "\"MASTER_LEVEL\" INTEGER NOT NULL ," + // 5: masterLevel
+                "\"LEVEL\" INTEGER NOT NULL ," + // 6: level
+                "\"STUDY\" INTEGER NOT NULL ," + // 7: study
+                "\"SCORE\" INTEGER NOT NULL );"); // 8: score
     }
 
     /** Drops the underlying database table. */
@@ -71,17 +77,18 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getCreate());
-        stmt.bindLong(3, entity.getParentId());
+        stmt.bindLong(2, entity.getContentId());
+        stmt.bindLong(3, entity.getCreate());
+        stmt.bindLong(4, entity.getParentId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(4, title);
+            stmt.bindString(5, title);
         }
-        stmt.bindLong(5, entity.getMasterLevel());
-        stmt.bindLong(6, entity.getLevel());
-        stmt.bindLong(7, entity.getStudy() ? 1L: 0L);
-        stmt.bindLong(8, entity.getScore());
+        stmt.bindLong(6, entity.getMasterLevel());
+        stmt.bindLong(7, entity.getLevel());
+        stmt.bindLong(8, entity.getStudy() ? 1L: 0L);
+        stmt.bindLong(9, entity.getScore());
     }
 
     @Override
@@ -92,17 +99,18 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getCreate());
-        stmt.bindLong(3, entity.getParentId());
+        stmt.bindLong(2, entity.getContentId());
+        stmt.bindLong(3, entity.getCreate());
+        stmt.bindLong(4, entity.getParentId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(4, title);
+            stmt.bindString(5, title);
         }
-        stmt.bindLong(5, entity.getMasterLevel());
-        stmt.bindLong(6, entity.getLevel());
-        stmt.bindLong(7, entity.getStudy() ? 1L: 0L);
-        stmt.bindLong(8, entity.getScore());
+        stmt.bindLong(6, entity.getMasterLevel());
+        stmt.bindLong(7, entity.getLevel());
+        stmt.bindLong(8, entity.getStudy() ? 1L: 0L);
+        stmt.bindLong(9, entity.getScore());
     }
 
     @Override
@@ -114,13 +122,14 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
     public OverViewListItem readEntity(Cursor cursor, int offset) {
         OverViewListItem entity = new OverViewListItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // create
-            cursor.getLong(offset + 2), // parentId
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // title
-            cursor.getInt(offset + 4), // masterLevel
-            cursor.getInt(offset + 5), // level
-            cursor.getShort(offset + 6) != 0, // study
-            cursor.getInt(offset + 7) // score
+            cursor.getLong(offset + 1), // contentId
+            cursor.getLong(offset + 2), // create
+            cursor.getLong(offset + 3), // parentId
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // title
+            cursor.getInt(offset + 5), // masterLevel
+            cursor.getInt(offset + 6), // level
+            cursor.getShort(offset + 7) != 0, // study
+            cursor.getInt(offset + 8) // score
         );
         return entity;
     }
@@ -128,13 +137,14 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
     @Override
     public void readEntity(Cursor cursor, OverViewListItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setCreate(cursor.getLong(offset + 1));
-        entity.setParentId(cursor.getLong(offset + 2));
-        entity.setTitle(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setMasterLevel(cursor.getInt(offset + 4));
-        entity.setLevel(cursor.getInt(offset + 5));
-        entity.setStudy(cursor.getShort(offset + 6) != 0);
-        entity.setScore(cursor.getInt(offset + 7));
+        entity.setContentId(cursor.getLong(offset + 1));
+        entity.setCreate(cursor.getLong(offset + 2));
+        entity.setParentId(cursor.getLong(offset + 3));
+        entity.setTitle(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setMasterLevel(cursor.getInt(offset + 5));
+        entity.setLevel(cursor.getInt(offset + 6));
+        entity.setStudy(cursor.getShort(offset + 7) != 0);
+        entity.setScore(cursor.getInt(offset + 8));
      }
     
     @Override
@@ -162,4 +172,18 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         return true;
     }
     
+    /** Internal query to resolve the "overViewListItem" to-many relationship of OverViewListContent. */
+    public List<OverViewListItem> _queryOverViewListContent_OverViewListItem(long contentId) {
+        synchronized (this) {
+            if (overViewListContent_OverViewListItemQuery == null) {
+                QueryBuilder<OverViewListItem> queryBuilder = queryBuilder();
+                queryBuilder.where(Properties.ContentId.eq(null));
+                overViewListContent_OverViewListItemQuery = queryBuilder.build();
+            }
+        }
+        Query<OverViewListItem> query = overViewListContent_OverViewListItemQuery.forCurrentThread();
+        query.setParameter(0, contentId);
+        return query.list();
+    }
+
 }

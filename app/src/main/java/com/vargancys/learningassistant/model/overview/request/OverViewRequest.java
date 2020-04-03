@@ -1,8 +1,10 @@
 package com.vargancys.learningassistant.model.overview.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
 
@@ -18,9 +20,11 @@ public class OverViewRequest {
     private static OverViewRequest mRequest;
     private OverViewListItemDao mListItemDao;
     private DaoSession mDaoSession;
+    private OverViewListContentDao mListContentDao;
     private OverViewRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mListItemDao = mDaoSession.getOverViewListItemDao();
+        mListContentDao = mDaoSession.getOverViewListContentDao();
     }
 
     public static OverViewRequest getInstance(){
@@ -36,5 +40,9 @@ public class OverViewRequest {
 
     public List<OverViewListItem> getOverViewListData(long selectId) {
         return mListItemDao.queryBuilder().where(OverViewListItemDao.Properties.Create.eq(selectId)).list();
+    }
+
+    public List<OverViewListContent> getAllContentData() {
+        return mListContentDao.loadAll();
     }
 }

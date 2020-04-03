@@ -16,6 +16,9 @@ public class OverViewListItem{
     @Id
     @Unique
     private Long id;
+    //content的id
+    private long contentId;
+
     //目录创造者
     private long create;
 
@@ -37,10 +40,11 @@ public class OverViewListItem{
     //目录学习分
     private int score;
 
-    @Generated(hash = 574642951)
-    public OverViewListItem(Long id, long create, long parentId, String title,
-            int masterLevel, int level, boolean study, int score) {
+    @Generated(hash = 185144744)
+    public OverViewListItem(Long id, long contentId, long create, long parentId,
+            String title, int masterLevel, int level, boolean study, int score) {
         this.id = id;
+        this.contentId = contentId;
         this.create = create;
         this.parentId = parentId;
         this.title = title;
@@ -116,5 +120,13 @@ public class OverViewListItem{
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public long getContentId() {
+        return this.contentId;
+    }
+
+    public void setContentId(long contentId) {
+        this.contentId = contentId;
     }
 }

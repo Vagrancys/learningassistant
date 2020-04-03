@@ -304,4 +304,11 @@
 
     <string name="overview_title">安卓知识集</string>
     <string name="overview_score">1分</string>
+    <string name="overview_author">游戏神</string>
+    <string name="overview_summary">想要提升自己的话就来学习吧!想要提升自己的话就来学习吧!</string>
+    <string name="overview_grade_text">502分</string>
+    <string name="overview_number_text">201个</string>
+    <string name="overview_layer_text">2层</string>
+    <string name="overview_people_text">5201人使用</string>
+    <string name="overview_time_text">2019:26:21</string>
 </resources>
