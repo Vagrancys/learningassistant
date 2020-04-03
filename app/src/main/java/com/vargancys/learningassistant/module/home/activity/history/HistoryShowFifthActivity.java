@@ -10,12 +10,9 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.view.HistoryShowView;
-import com.vargancys.learningassistant.module.home.view.KnowShowView;
-import com.vargancys.learningassistant.persenter.home.HistoryShowPresenter;
-import com.vargancys.learningassistant.persenter.home.KnowShowPresenter;
+import com.vargancys.learningassistant.presenter.home.HistoryShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 

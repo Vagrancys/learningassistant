@@ -3,7 +3,6 @@ package com.vargancys.learningassistant.module.home.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +42,7 @@ import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondA
 import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
-import com.vargancys.learningassistant.persenter.home.HomeContentPresenter;
+import com.vargancys.learningassistant.presenter.home.HomeContentPresenter;
 import com.vargancys.learningassistant.utils.JumpRouteUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 

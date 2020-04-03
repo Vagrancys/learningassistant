@@ -13,8 +13,7 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
-import com.vargancys.learningassistant.module.home.view.KnowUpdateFourthView;
-import com.vargancys.learningassistant.persenter.home.KnowUpdatePresenter;
+import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 

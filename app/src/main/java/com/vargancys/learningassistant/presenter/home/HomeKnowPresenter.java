@@ -1,11 +1,8 @@
-package com.vargancys.learningassistant.persenter.home;
+package com.vargancys.learningassistant.presenter.home;
 
-import com.vagrancys.learningassistant.db.DaoSession;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.home.request.HomeRequest;
 import com.vargancys.learningassistant.module.home.view.HomeAddView;
-
-import java.security.PublicKey;
 
 /**
  * author: Vagrancy

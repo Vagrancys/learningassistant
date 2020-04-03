@@ -14,12 +14,11 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.module.common.adapter.HelpCommendAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpSummaryView;
-import com.vargancys.learningassistant.persenter.common.help.HelpSummaryPresenter;
+import com.vargancys.learningassistant.presenter.common.help.HelpSummaryPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 

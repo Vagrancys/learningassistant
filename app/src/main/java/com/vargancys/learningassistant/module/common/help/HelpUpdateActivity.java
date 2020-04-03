@@ -1,9 +1,7 @@
 package com.vargancys.learningassistant.module.common.help;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,12 +12,11 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 import com.vargancys.learningassistant.module.common.view.HelpUpdateView;
-import com.vargancys.learningassistant.persenter.common.help.HelpUpdatePresenter;
+import com.vargancys.learningassistant.presenter.common.help.HelpUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy

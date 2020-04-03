@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.home.activity.show;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +19,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowFunction;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowSecondAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowShowView;
-import com.vargancys.learningassistant.persenter.home.KnowShowPresenter;
+import com.vargancys.learningassistant.presenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy

@@ -1,62 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
-    <com.vargancys.learningassistant.widget.OverViewKnowLayout
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:line_width="@dimen/margin_width_10dp"
-        app:circle_color="@color/pink"
-        app:circle_radius="@dimen/margin_width_20dp"
-        app:line_color="@color/gray">
-
-    </com.vargancys.learningassistant.widget.OverViewKnowLayout>
-
-    <RelativeLayout
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentInsetStart="@dimen/margin_width_0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_width_10dp">
+                <ImageView
+                    android:id="@+id/overview_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/overview_select_normal"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"/>
+                <ImageView
+                    android:id="@+id/overview_information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/overview_information_normal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:id="@+id/overview_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_width_10dp"
-        android:layout_marginEnd="@dimen/margin_width_10dp"
-        android:layout_gravity="end">
-        <LinearLayout
-            android:id="@+id/overview_circle"
-            android:layout_width="@dimen/margin_width_40dp"
-            android:layout_height="@dimen/margin_width_40dp"
-            android:gravity="center|start"
-            android:background="@drawable/overview_circle_shape"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:paddingStart="@dimen/margin_width_10dp"
-            android:paddingEnd="@dimen/margin_width_50dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/know_class_selected"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/know_class_selected"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/know_class_selected"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/know_class_selected"/>
-        </LinearLayout>
-        <ImageView
-            android:id="@+id/overview_switch"
-            android:layout_width="@dimen/margin_width_30dp"
-            android:layout_height="@dimen/margin_width_30dp"
-            android:background="@drawable/overview_switch_selector"
-            android:layout_gravity="end"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/margin_width_5dp"/>
-    </RelativeLayout>
-</FrameLayout>
+        android:layout_gravity="center"
+        android:text="@string/overview_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_24sp"
+        android:padding="@dimen/margin_width_10dp"/>
+    <ListView
+        android:id="@+id/overview_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

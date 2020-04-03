@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
-import com.vargancys.learningassistant.persenter.home.KnowInsertPresenter;
+import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 

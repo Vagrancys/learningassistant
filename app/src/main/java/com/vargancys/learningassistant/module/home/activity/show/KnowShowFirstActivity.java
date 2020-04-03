@@ -2,11 +2,9 @@ package com.vargancys.learningassistant.module.home.activity.show;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -17,12 +15,11 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.view.KnowShowView;
-import com.vargancys.learningassistant.persenter.home.KnowShowPresenter;
+import com.vargancys.learningassistant.presenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy

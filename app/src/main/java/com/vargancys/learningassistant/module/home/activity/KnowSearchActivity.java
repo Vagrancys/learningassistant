@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.home.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
@@ -29,7 +27,7 @@ import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondA
 import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.KnowSearchAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeCommonView;
-import com.vargancys.learningassistant.persenter.home.HomeCommonPresenter;
+import com.vargancys.learningassistant.presenter.home.HomeCommonPresenter;
 import com.vargancys.learningassistant.utils.JumpRouteUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -37,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy

@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.home.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,7 +21,7 @@ import com.vargancys.learningassistant.module.home.activity.history.HistoryShowS
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HistoryDataAdapter;
 import com.vargancys.learningassistant.module.home.view.BaseHistoryView;
-import com.vargancys.learningassistant.persenter.home.KnowHistoryPresenter;
+import com.vargancys.learningassistant.presenter.home.KnowHistoryPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy

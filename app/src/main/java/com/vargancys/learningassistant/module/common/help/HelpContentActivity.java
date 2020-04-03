@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.common.help;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -19,10 +18,9 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
-import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
 import com.vargancys.learningassistant.module.common.adapter.HelpContentAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpContentView;
-import com.vargancys.learningassistant.persenter.common.help.HelpContentPresenter;
+import com.vargancys.learningassistant.presenter.common.help.HelpContentPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 

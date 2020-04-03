@@ -1,10 +1,8 @@
-package com.vargancys.learningassistant.persenter.home;
+package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.model.home.request.KnowShowRequest;
 import com.vargancys.learningassistant.module.home.view.HistoryShowView;
-import com.vargancys.learningassistant.module.home.view.KnowShowView;
 
 /**
  * author: Vagrancy

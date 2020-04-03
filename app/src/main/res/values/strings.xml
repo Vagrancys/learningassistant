@@ -301,4 +301,7 @@
 
     <string name="common_setting_content">知识设置中心</string>
     <string name="know_search_hint">请输入你要查找的知识</string>
+
+    <string name="overview_title">安卓知识集</string>
+    <string name="overview_score">1分</string>
 </resources>

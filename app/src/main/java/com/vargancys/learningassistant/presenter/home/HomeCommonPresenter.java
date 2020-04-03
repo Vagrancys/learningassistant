@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.persenter.home;
+package com.vargancys.learningassistant.presenter.home;
 
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.home.request.HomeCommonRequest;

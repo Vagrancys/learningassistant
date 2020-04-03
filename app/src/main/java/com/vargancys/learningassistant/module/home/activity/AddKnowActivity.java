@@ -2,30 +2,23 @@ package com.vargancys.learningassistant.module.home.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
-import com.vargancys.learningassistant.module.common.view.HelpAddView;
 import com.vargancys.learningassistant.module.home.view.HomeAddView;
-import com.vargancys.learningassistant.persenter.common.help.HelpAddPresenter;
-import com.vargancys.learningassistant.persenter.home.HomeKnowPresenter;
+import com.vargancys.learningassistant.presenter.home.HomeKnowPresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy

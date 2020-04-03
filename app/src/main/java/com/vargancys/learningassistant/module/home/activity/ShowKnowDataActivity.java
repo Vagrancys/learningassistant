@@ -29,11 +29,10 @@ import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateThi
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowCommendAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
-import com.vargancys.learningassistant.persenter.home.KnowDataPresenter;
+import com.vargancys.learningassistant.presenter.home.KnowDataPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
-import java.nio.LongBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
