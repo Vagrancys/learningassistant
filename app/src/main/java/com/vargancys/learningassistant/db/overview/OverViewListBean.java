@@ -12,10 +12,8 @@ import com.vargancys.learningassistant.widget.TreeDirectory.TreeNodePid;
  */
 public class OverViewListBean {
     @TreeNodeId
-    private Long _id;
     private int _id;
     @TreeNodePid
-    private long parentId;
     private int parentId;
     @TreeNodeLabel
     private String title;
@@ -23,6 +21,7 @@ public class OverViewListBean {
     private int masterLevel;
     private boolean study;
     private int score;
+    public OverViewListBean(int _id,int parentId,String title){
         this._id = _id;
         this.parentId = parentId;
         this.title = title;
