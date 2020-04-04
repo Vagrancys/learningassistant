@@ -94,7 +94,6 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
 
     private void initData(List<OverViewListItem> overViewListItemList) {
         for (OverViewListItem item:overViewListItemList){
-            OverViewListBean mBean = new OverViewListBean(item.getId(),item.getParentId(),item.getTitle());
             mBean.setMasterLevel(item.getMasterLevel());
             mBean.setScore(item.getScore());
             mBean.setStudy(item.getStudy());

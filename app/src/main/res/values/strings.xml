@@ -311,4 +311,11 @@
     <string name="overview_layer_text">2层</string>
     <string name="overview_people_text">5201人使用</string>
     <string name="overview_time_text">2019:26:21</string>
+    <string name="overview_add_empty">请创建知识集!</string>
+    <string name="overview_roof_title">根标题</string>
+    <string name="overview_toolbar_title">知识集添加</string>
+    <string name="dialog_hint_title">请输入您要创建的知识集</string>
+    <string name="item_title_text">标题</string>
+    <string name="item_level_text">等级</string>
+    <string name="item_score_text">分数</string>
 </resources>

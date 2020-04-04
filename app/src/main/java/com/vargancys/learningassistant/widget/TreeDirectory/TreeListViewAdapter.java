@@ -23,14 +23,17 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
     protected List<Node> mNodes;
     protected LayoutInflater mInflater;
 
+    protected List<T> mDatas;
     //存储所有的Node;
     protected List<Node> mAllNodes;
 
     //点击的回调接口
-    private OnTreeNodeClickListener onTreeNodeClickListener;
+    public OnTreeNodeClickListener onTreeNodeClickListener;
 
     public interface OnTreeNodeClickListener{
         void onClick(Node node,int position);
+        void onDelete(Node node,int position);
+        void onUpdate(Node node,int position);
     }
 
     public void setOnTreeNodeClickListener(OnTreeNodeClickListener onTreeNodeClickListener) {
@@ -40,7 +43,8 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
     public TreeListViewAdapter(ListView mTree,Context context,List<T> datas,int defaultExpandLevel)
             throws IllegalArgumentException,IllegalAccessException{
         mContext = context;
-        mAllNodes = TreeHelper.getSortedNodes(datas,defaultExpandLevel);
+        mDatas = datas;
+        mAllNodes = TreeHelper.getSortedNodes(mDatas,defaultExpandLevel);
         mNodes = TreeHelper.filterVisibleNode(mAllNodes);
         mInflater = LayoutInflater.from(context);
         mTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,6 +67,12 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
                 notifyDataSetChanged();
             }
         }
+    }
+
+    public void addNode(T data)throws IllegalArgumentException,IllegalAccessException{
+        mDatas.add(data);
+        mAllNodes = TreeHelper.getSortedNodes(mDatas,1);
+        mNodes = TreeHelper.filterVisibleNode(mAllNodes);
     }
 
     @Override
@@ -89,6 +99,14 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
     }
 
     public abstract View getConvertView(Node node,int position,View convertView,ViewGroup parent);
+
+    public Node getNodes(int position) {
+        return mNodes.get(position);
+    }
+
+    public void deleteNode(int position){
+        mNodes.remove(position);
+    }
 }
 
 

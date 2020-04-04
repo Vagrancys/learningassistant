@@ -13,4 +13,5 @@ import java.util.List;
 public interface BaseOverView {
     void getAllData(List<OverViewListContent> objects);
     void getAllDataError(int error,String message);
+    void TidyAllData();
 }

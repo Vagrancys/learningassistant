@@ -28,6 +28,8 @@ public class Node {
     //父Node
     private Node parent;
 
+    private int score;
+
     public Node(){
 
     }
@@ -37,6 +39,14 @@ public class Node {
         this.id = id;
         this.pId = pId;
         this.name = name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public int getIcon() {
@@ -125,7 +135,6 @@ public class Node {
     public boolean isLeaf(){
         return children.size() == 0;
     }
-
 }
 
 

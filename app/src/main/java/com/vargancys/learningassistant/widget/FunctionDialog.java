@@ -87,7 +87,6 @@ public class FunctionDialog extends AlertDialog {
         ArrayAdapter arrayAdapter =ArrayAdapter.createFromResource(getContext(),R.array.common_level,
                 R.layout.support_simple_spinner_dropdown_item);
         mSpinner.setAdapter(arrayAdapter);
-
     }
 
     public View getContentView() {

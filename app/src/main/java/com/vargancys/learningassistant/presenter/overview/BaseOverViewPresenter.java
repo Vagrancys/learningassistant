@@ -1,6 +1,7 @@
 package com.vargancys.learningassistant.presenter.overview;
 
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 
@@ -29,5 +30,13 @@ public class BaseOverViewPresenter {
         }else{
             mView.getAllDataError(404,"没有找到数据!");
         }
+    }
+
+    public void TidyAllData() {
+        mView.TidyAllData();
+    }
+
+    public void saveOverViewAllData(OverViewListContent mContent, List<OverViewListItem> mItems) {
+
     }
 }
