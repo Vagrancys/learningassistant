@@ -17,7 +17,8 @@ import com.vargancys.learningassistant.R;
  */
 public class AddKnowTitleDialog extends AlertDialog {
     private View parentView;
-    private EditText mMessageEdit;
+    private EditText mTitleEdit;
+    private EditText mSummaryEdit;
     private TextView mCancel;
     private TextView mDeterMine;
     public AddKnowTitleDialog(Context context) {
@@ -37,7 +38,8 @@ public class AddKnowTitleDialog extends AlertDialog {
     }
 
     private void initView() {
-        mMessageEdit = parentView.findViewById(R.id.dialog_message_edit);
+        mTitleEdit = parentView.findViewById(R.id.dialog_title_edit);
+        mSummaryEdit = parentView.findViewById(R.id.dialog_summary_edit);
         mCancel = parentView.findViewById(R.id.common_cancel);
         mDeterMine = parentView.findViewById(R.id.common_determine);
     }
@@ -56,7 +58,7 @@ public class AddKnowTitleDialog extends AlertDialog {
             @Override
             public void onClick(View v) {
                 if(onClickDeterMineListener != null){
-                    onClickDeterMineListener.OnDeterMine(mMessageEdit.getText().toString());
+                    onClickDeterMineListener.OnDeterMine(mTitleEdit.getText().toString(),mSummaryEdit.getText().toString());
                 }
             }
         });
@@ -67,7 +69,7 @@ public class AddKnowTitleDialog extends AlertDialog {
     }
 
     public interface OnClickDeterMineListener{
-        void OnDeterMine(String message);
+        void OnDeterMine(String title,String summary);
     }
 
     private OnClickCancelListener onClickCancelListener;

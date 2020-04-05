@@ -314,7 +314,8 @@
     <string name="overview_add_empty">请创建知识集!</string>
     <string name="overview_roof_title">根标题</string>
     <string name="overview_toolbar_title">知识集添加</string>
-    <string name="dialog_hint_title">请输入您要创建的知识集</string>
+    <string name="dialog_hint_title">标题</string>
+    <string name="dialog_hint_summary">简介</string>
     <string name="item_title_text">标题</string>
     <string name="item_level_text">等级</string>
     <string name="item_score_text">分数</string>

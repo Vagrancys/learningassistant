@@ -37,6 +37,12 @@ public class BaseOverViewPresenter {
     }
 
     public void saveOverViewAllData(OverViewListContent mContent, List<OverViewListItem> mItems) {
-
+        long parentId = mRequest.saveOverViewContent(mContent);
+        boolean result = mRequest.saveOverViewItem(parentId,mItems);
+        if(result){
+            mView.saveDataFinish();
+        }else{
+            mView.saveDataError(200,"没有保存成功");
+        }
     }
 }

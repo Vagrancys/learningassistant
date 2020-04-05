@@ -23,6 +23,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.adapter.AddTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
+import com.vargancys.learningassistant.utils.TimeUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.AddKnowItemDialog;
 import com.vargancys.learningassistant.widget.AddKnowTitleDialog;
@@ -86,6 +87,16 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
     private int mId = 1;
     private int mPid = 0;
     private int selectNode = 0;
+    //总知识分数
+    private int mGrade = 0;
+    //总知识层级
+    private int mLayer = 0;
+    //总知识等级
+    private int mLevel = 0;
+    //总知识个数
+    private int mNumber = 0;
+    //简介
+    private String mSummary;
     private List<OverViewListBean> mBeans = new ArrayList<>();
     private List<OverViewListItem> mItems = new ArrayList<>();
 
@@ -122,9 +133,14 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
         });
         mTitleAlert.setOnClickDeterMineListener(new AddKnowTitleDialog.OnClickDeterMineListener() {
             @Override
-            public void OnDeterMine(String message) {
-                showKnowItem(message);
-                mTitleAlert.dismiss();
+            public void OnDeterMine(String title,String summary) {
+                if(title.isEmpty()&&summary.isEmpty()){
+                    ToastUtils.ToastText(getContext(),"请填写完整!");
+                }else{
+                    showKnowItem(title);
+                    mSummary = summary;
+                    mTitleAlert.dismiss();
+                }
             }
         });
 
@@ -160,13 +176,13 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
             mBean.setScore(Integer.valueOf(score));
             mAdapter.addNode(mBean);
             mId++;
-            Log.e(TAG,"length="+mBeans.size());
+            //Log.e(TAG,"length="+mBeans.size());
             mAdapter.notifyDataSetChanged();
             if(mPid != 0){
                 mPid = 0;
             }
         }else{
-           mAdapter.getNodes(selectNode).setName(title);
+            mAdapter.getNodes(selectNode).setName(title);
             mAdapter.getNodes(selectNode).setLevel(Integer.valueOf(level));
             mAdapter.getNodes(selectNode).setScore(Integer.valueOf(score));
         }
@@ -311,16 +327,91 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
 
     @Override
     public void TidyAllData() {
-        handlerContent();
-        handlerItem();
-        mPresenter.saveOverViewAllData(mContent,mItems);
+        new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        handlerItem();
+                        handlerContent();
+                        mPresenter.saveOverViewAllData(mContent,mItems);
+                    }
+                }
+        ).start();
     }
 
+    //增加知识项的array
     private void handlerItem() {
-        
+        List<Node> nodes = mAdapter.getAllNodes();
+        for (Node node : nodes){
+            OverViewListItem mItem = new OverViewListItem();
+            //标题
+            mItem.setTitle(node.getName());
+            //是否学习
+            mItem.setStudy(false);
+            //增加总分数
+            mGrade = mGrade + node.getScore();
+            //学习分
+            mItem.setScore(node.getScore());
+            //增加最高等级
+            if(mLevel < node.getLevel()){
+                mLevel = node.getLevel();
+            }
+            //掌握知识为零
+            mItem.setMasterLevel(0);
+            //知识等级
+            mItem.setLevel(node.getLevel());
+            //父类id
+            mItem.setParentId(node.getpId());
+
+            //创造者id
+            mItem.setCreate(mContent.getAuthorId());
+            mItems.add(mItem);
+        }
+        mNumber = mItems.size();
     }
 
+    //增加知识项作者的item
     private void handlerContent() {
+        //作者名称
+        mContent.setAuthor("Vagrancys");
+        //作者id
+        mContent.setAuthorId(1);
+        //总分数
+        mContent.setGrade(mGrade);
+        //总层级
+        mContent.setLayer(mLayer);
+        //总等级
+        mContent.setLevel(mLevel);
+        //总个数
+        mContent.setNumber(mNumber);
+        //使用人数
+        mContent.setPeople(0);
+        //官方推荐
+        mContent.setRecommend(true);
+        mContent.setSummary(mSummary);
+        mContent.setTime(TimeUtils.getTime());
+        mContent.setTitle(treeRoofTitle.getText().toString());
+    }
 
+    @Override
+    public void saveDataError(int error, String message) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
+    }
+
+    @Override
+    public void saveDataFinish() {
+        //总知识分数
+        mGrade = 0;
+        //总知识层级
+        mLayer = 0;
+        //总知识等级
+        mLevel = 0;
+        //总知识个数
+        mNumber = 0;
+        //简介
+        mSummary = "";
+        mBeans.clear();
+        mItems.clear();
+        mContent = null;
+        hideKnowItem();
     }
 }

@@ -14,4 +14,8 @@ public interface BaseOverView {
     void getAllData(List<OverViewListContent> objects);
     void getAllDataError(int error,String message);
     void TidyAllData();
+
+    void saveDataFinish();
+
+    void saveDataError(int error, String message);
 }

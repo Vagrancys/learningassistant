@@ -45,4 +45,16 @@ public class OverViewRequest {
     public List<OverViewListContent> getAllContentData() {
         return mListContentDao.loadAll();
     }
+
+    public long saveOverViewContent(OverViewListContent mContent) {
+       return mListContentDao.insert(mContent);
+    }
+
+    public boolean saveOverViewItem(long parent,List<OverViewListItem> mItems) {
+        for (OverViewListItem mItem :mItems){
+            mItem.setContentId(parent);
+            mListItemDao.insert(mItem);
+        }
+        return true;
+    }
 }

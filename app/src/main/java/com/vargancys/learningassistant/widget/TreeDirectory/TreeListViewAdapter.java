@@ -104,6 +104,10 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
         return mNodes.get(position);
     }
 
+    public List<Node> getAllNodes(){
+        return mNodes;
+    }
+
     public void deleteNode(int position){
         mNodes.remove(position);
     }
