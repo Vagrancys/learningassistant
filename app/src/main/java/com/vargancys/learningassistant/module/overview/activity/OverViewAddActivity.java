@@ -162,6 +162,7 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                    mItemAlert.clearData();
                     mItemAlert.dismiss();
                 }
 
@@ -172,7 +173,7 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
     private void addKnowContent(String title, String level, String score)throws IllegalAccessException {
         if(selectNode == 0){
             OverViewListBean mBean = new OverViewListBean(mId,mPid,title);
-            mBean.setMasterLevel(Integer.valueOf(level));
+            mBean.setLevel(Integer.valueOf(level));
             mBean.setScore(Integer.valueOf(score));
             mAdapter.addNode(mBean);
             mId++;
@@ -185,6 +186,7 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
             mAdapter.getNodes(selectNode).setName(title);
             mAdapter.getNodes(selectNode).setLevel(Integer.valueOf(level));
             mAdapter.getNodes(selectNode).setScore(Integer.valueOf(score));
+            mAdapter.notifyDataSetChanged();
         }
         selectNode = 0;
     }
@@ -332,7 +334,7 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
                     public void run() {
                         handlerItem();
                         handlerContent();
-                        mPresenter.saveOverViewAllData(mContent,mItems);
+                        mPresenter.saveOverViewAllData(mHandler,mContent,mItems);
                     }
                 }
         ).start();
@@ -354,6 +356,11 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
             //增加最高等级
             if(mLevel < node.getLevel()){
                 mLevel = node.getLevel();
+            }
+
+            //增加层级
+            if(mLayer < node.getLayer()){
+                mLayer = node.getLayer();
             }
             //掌握知识为零
             mItem.setMasterLevel(0);

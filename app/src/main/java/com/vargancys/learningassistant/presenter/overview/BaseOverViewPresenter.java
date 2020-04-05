@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.presenter.overview;
 
+import android.os.Handler;
+
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
@@ -36,13 +38,24 @@ public class BaseOverViewPresenter {
         mView.TidyAllData();
     }
 
-    public void saveOverViewAllData(OverViewListContent mContent, List<OverViewListItem> mItems) {
+    public void saveOverViewAllData(Handler handler, OverViewListContent mContent, List<OverViewListItem> mItems) {
         long parentId = mRequest.saveOverViewContent(mContent);
         boolean result = mRequest.saveOverViewItem(parentId,mItems);
         if(result){
-            mView.saveDataFinish();
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mView.saveDataFinish();
+                }
+            });
         }else{
-            mView.saveDataError(200,"没有保存成功");
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mView.saveDataError(200,"没有保存成功");
+                }
+            });
+
         }
     }
 }

@@ -72,7 +72,6 @@ public class OverViewSearchAdapter extends BaseRecyclerAdapter {
         mHolder.overviewGrade.setText(mContent.getGrade()+"分");
         mHolder.overviewNumber.setText(mContent.getNumber()+"个");
         mHolder.overviewLayer.setText(mContent.getLayer()+"层");
-        mHolder.overviewPeople.setText(mContent.getPeople()+"人使用");
         mHolder.overviewTime.setText(mContent.getTime());
         super.onBindViewHolder(holder, position);
     }

@@ -67,6 +67,12 @@ public class AddKnowItemDialog extends AlertDialog {
         });
     }
 
+    public void clearData() {
+        mTitleEdit.setText("");
+        mScoreEdit.setText("");
+        mLevelEdit.setText("");
+    }
+
     public interface OnClickCancelListener{
         void OnCancel();
     }

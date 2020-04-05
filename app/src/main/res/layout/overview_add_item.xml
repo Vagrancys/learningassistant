@@ -7,8 +7,8 @@
     android:gravity="center|start">
     <ImageView
         android:id="@+id/overview_add"
-        android:layout_width="@dimen/margin_width_30dp"
-        android:layout_height="@dimen/margin_width_30dp"
+        android:layout_width="@dimen/margin_width_20dp"
+        android:layout_height="@dimen/margin_width_20dp"
         android:layout_marginEnd="@dimen/margin_width_10dp"
         android:layout_margin="@dimen/margin_width_10dp"
         android:layout_centerInParent="true"
@@ -31,24 +31,30 @@
         android:textColor="@color/black"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/overview_level"/>
-    <TextView
-        android:id="@+id/overview_score"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/overview_score"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_20sp"
-        android:layout_toStartOf="@+id/overview_tool"
-        android:layout_centerVertical="true"
-        android:paddingEnd="@dimen/margin_width_20dp"/>
-    <ImageView
-        android:id="@+id/overview_tool"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/overview_tool_normal"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/margin_width_10dp"/>
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/overview_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/overview_score"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_20sp"
+            android:paddingEnd="@dimen/margin_width_20dp"/>
+        <ImageView
+            android:id="@+id/overview_tool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/overview_tool_normal"
+
+            android:layout_marginEnd="@dimen/margin_width_10dp"/>
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/overview_tool_layout"
         android:layout_width="wrap_content"

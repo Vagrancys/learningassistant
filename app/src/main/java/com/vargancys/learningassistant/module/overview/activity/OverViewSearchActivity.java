@@ -112,4 +112,19 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
         recyclerView.setVisibility(View.GONE);
         fragmentEmpty.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void TidyAllData() {
+
+    }
+
+    @Override
+    public void saveDataFinish() {
+
+    }
+
+    @Override
+    public void saveDataError(int error, String message) {
+
+    }
 }

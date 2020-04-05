@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import com.vargancys.learningassistant.utils.DensityUtils;
+
 import java.util.List;
 
 /**
@@ -94,7 +96,7 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Node node = mNodes.get(position);
         convertView = getConvertView(node,position,convertView,parent);
-        convertView.setPadding(node.getLevel()*30,3,3,3);
+        convertView.setPadding(node.getLayer()* DensityUtils.dip2px(mContext,20),3,3,3);
         return convertView;
     }
 

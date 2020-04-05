@@ -48,6 +48,7 @@ public class AddTreeAdapter<T> extends TreeListViewAdapter<T> {
             viewHolder.overViewToolUpdate = convertView.findViewById(R.id.overview_tool_update);
             viewHolder.overViewToolDelete = convertView.findViewById(R.id.overview_tool_delete);
             viewHolder.overViewScore = convertView.findViewById(R.id.overview_score);
+            viewHolder.overViewLevel = convertView.findViewById(R.id.overview_level);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -89,7 +90,7 @@ public class AddTreeAdapter<T> extends TreeListViewAdapter<T> {
             @Override
             public void onClick(View v) {
                 if(onTreeNodeClickListener != null){
-                    onTreeNodeClickListener.onDelete(node, position);
+                    onTreeNodeClickListener.onUpdate(node, position);
                 }
             }
         });
@@ -98,11 +99,11 @@ public class AddTreeAdapter<T> extends TreeListViewAdapter<T> {
             @Override
             public void onClick(View v) {
                 if(onTreeNodeClickListener != null){
-                    onTreeNodeClickListener.onUpdate(node, position);
+                    onTreeNodeClickListener.onDelete(node, position);
                 }
             }
         });
-        viewHolder.overViewScore.setText(node.getScore());
+        viewHolder.overViewScore.setText(node.getScore()+"分");
         int ImageId;
         switch (node.getLevel()){
             case 1:

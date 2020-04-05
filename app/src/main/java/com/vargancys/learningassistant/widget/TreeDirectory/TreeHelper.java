@@ -1,6 +1,7 @@
 package com.vargancys.learningassistant.widget.TreeDirectory;
 
 import com.vargancys.learningassistant.R;
+import com.vargancys.learningassistant.db.overview.OverViewListBean;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -14,13 +15,13 @@ import java.util.List;
  */
 public class TreeHelper {
     public static <T>List<Node> getSortedNodes(List<T> datas,
-                                              int defaultExpandLevel) throws IllegalArgumentException,
+                                              int defaultExpandLayer) throws IllegalArgumentException,
             IllegalAccessException{
         List<Node> result = new ArrayList<>();
         List<Node> nodes = convetData2Node(datas);
         List<Node> rootNodes = getRootNodes(nodes);
         for (Node node:rootNodes){
-            addNode(result,node,defaultExpandLevel,1);
+            addNode(result,node,defaultExpandLayer,1);
         }
         return result;
     }
@@ -66,6 +67,8 @@ public class TreeHelper {
                 }
             }
             node = new Node(id,pId,label);
+            node.setScore(((OverViewListBean) t).getScore());
+            node.setLevel(((OverViewListBean) t).getLevel());
             nodes.add(node);
         }
 
@@ -98,16 +101,17 @@ public class TreeHelper {
         return root;
     }
 
-    private static void addNode(List<Node> nodes,Node node,int defaultExpandLevel,int currentLevel){
+    private static void addNode(List<Node> nodes,Node node,int defaultExpandLayer,int currentLayer){
+        node.setLayer(currentLayer);
         nodes.add(node);
-        if(defaultExpandLevel>=currentLevel){
+        if(defaultExpandLayer>=currentLayer){
             node.setExpand(true);
         }
         if(node.isLeaf()){
             return;
         }
         for (int i = 0;i<node.getChildren().size();i++){
-            addNode(nodes,node.getChildren().get(i),defaultExpandLevel,currentLevel+1);
+            addNode(nodes,node.getChildren().get(i),defaultExpandLayer,currentLayer+1);
         }
     }
 

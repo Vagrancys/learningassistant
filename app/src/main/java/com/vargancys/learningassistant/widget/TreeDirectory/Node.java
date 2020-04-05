@@ -16,6 +16,8 @@ public class Node {
     private String name;
     //当前的级别
     private int level;
+    //当前的层级
+    private int layer;
 
     //是否展开
     private boolean isExpand = false;
@@ -134,6 +136,14 @@ public class Node {
     //是否是叶子节点
     public boolean isLeaf(){
         return children.size() == 0;
+    }
+
+    public void setLayer(int layer) {
+        this.layer = layer;
+    }
+
+    public int getLayer() {
+        return layer;
     }
 }
 
