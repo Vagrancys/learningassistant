@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.vargancys.learningassistant.module.game.fragment.GameFragment;
 import com.vargancys.learningassistant.module.home.fragment.HomeFragment;
 import com.vargancys.learningassistant.module.overview.fragment.OverViewFragment;
 
@@ -32,7 +33,7 @@ public class CommonFragmentAdapter extends FragmentPagerAdapter {
                     mFragment[position] = OverViewFragment.newInstance();
                     break;
                 case 2:
-                    mFragment[position] = HomeFragment.newInstance();
+                    mFragment[position] = GameFragment.newInstance();
                 case 3:
                     mFragment[position] = HomeFragment.newInstance();
                 case 4:
