@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.module.overview.fragment;
 
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,6 +16,8 @@ import com.vargancys.learningassistant.module.overview.activity.OverViewSearchAc
 import com.vargancys.learningassistant.module.overview.adapter.SimpleTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewContentView;
 import com.vargancys.learningassistant.presenter.overview.OverViewContentPresenter;
+import com.vargancys.learningassistant.utils.CacheUtils;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 
@@ -38,6 +42,8 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
     TextView overviewTitle;
     @BindView(R.id.overview_listview)
     ListView overviewListView;
+    @BindView(R.id.overview_swipe)
+    SwipeRefreshLayout overViewSwipe;
 
     private List<OverViewListItem> mItems= new ArrayList<>();
     private List<OverViewListBean> mBeans = new ArrayList<>();
@@ -61,9 +67,28 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        init();
         overviewListView.setAdapter(mAdapter);
         initToolbar();
         mPresenter.getOverViewListData(selectId);
+    }
+
+    private void init() {
+        getSelectId();
+        overViewSwipe.setColorSchemeColors(getResources().getColor(R.color.pink));
+        overViewSwipe.setRefreshing(true);
+        overViewSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getSelectId();
+                overViewSwipe.setRefreshing(true);
+                mPresenter.getOverViewListData(selectId);
+            }
+        });
+    }
+
+    public void getSelectId(){
+        selectId = CacheUtils.getLong(getContext(), ConstantsUtils.OVERVIEW_ID,0);
     }
 
     public void initToolbar(){
@@ -84,22 +109,34 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
 
     @Override
     public void showOverViewDataError(int error, String message) {
+        overViewSwipe.setRefreshing(false);
         ToastUtils.ToastText(getContext(),"Error = "+error+",Message ="+message);
     }
 
     @Override
     public void showOverViewDataFinish(List<OverViewListItem> overViewListItemList) {
+        overViewSwipe.setRefreshing(false);
         initData(overViewListItemList);
     }
 
-    private void initData(List<OverViewListItem> overViewListItemList) {
+    private void initData(List<OverViewListItem> overViewListItemList){
+        mBeans.clear();
         for (OverViewListItem item:overViewListItemList){
-            OverViewListBean mBean = new OverViewListBean(item.getId().intValue(),Integer.valueOf(String.valueOf(item.getParentId())),item.getTitle());
+            OverViewListBean mBean = new OverViewListBean(item.getSortId(),item.getParentId(),item.getTitle());
             mBean.setMasterLevel(item.getMasterLevel());
             mBean.setScore(item.getScore());
             mBean.setStudy(item.getStudy());
             mBeans.add(mBean);
         }
+        try {
+            Log.e(TAG,"断点 mBeans ="+mBeans.size());
+            mAdapter.swipeData(mBeans);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
         mAdapter.notifyDataSetChanged();
     }
+
+
 }
+

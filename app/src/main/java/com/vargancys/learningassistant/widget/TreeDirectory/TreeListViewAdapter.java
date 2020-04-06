@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.widget.TreeDirectory;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import com.vargancys.learningassistant.db.overview.OverViewListBean;
+import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.utils.DensityUtils;
 
 import java.util.List;
@@ -20,14 +23,16 @@ import java.util.List;
  * version:1.0
  */
 public abstract class TreeListViewAdapter<T> extends BaseAdapter {
+    private static String TAG = "TreeListViewAdapter";
     protected Context mContext;
     //存储所有可见的Node
     protected List<Node> mNodes;
     protected LayoutInflater mInflater;
 
-    protected List<T> mDatas;
+    protected List<OverViewListBean> mDatas;
     //存储所有的Node;
     protected List<Node> mAllNodes;
+    private boolean mExpandOrCollapse = true;
 
     //点击的回调接口
     public OnTreeNodeClickListener onTreeNodeClickListener;
@@ -42,17 +47,20 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
         this.onTreeNodeClickListener = onTreeNodeClickListener;
     }
 
-    public TreeListViewAdapter(ListView mTree,Context context,List<T> datas,int defaultExpandLevel)
+    public TreeListViewAdapter(ListView mTree,Context context,List<OverViewListBean> datas,int defaultExpandLevel,boolean expand)
             throws IllegalArgumentException,IllegalAccessException{
         mContext = context;
         mDatas = datas;
+        mExpandOrCollapse = expand;
         mAllNodes = TreeHelper.getSortedNodes(mDatas,defaultExpandLevel);
         mNodes = TreeHelper.filterVisibleNode(mAllNodes);
         mInflater = LayoutInflater.from(context);
         mTree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                expandOrCollapse(position);
+                if(mExpandOrCollapse){
+                    expandOrCollapse(position);
+                }
                 if(onTreeNodeClickListener !=null){
                     onTreeNodeClickListener.onClick(mNodes.get(position),position);
                 }
@@ -71,9 +79,9 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
         }
     }
 
-    public void addNode(T data)throws IllegalArgumentException,IllegalAccessException{
+    public void addNode(OverViewListBean data)throws IllegalArgumentException,IllegalAccessException{
         mDatas.add(data);
-        mAllNodes = TreeHelper.getSortedNodes(mDatas,1);
+        mAllNodes = TreeHelper.getSortedNodes(mDatas,10);
         mNodes = TreeHelper.filterVisibleNode(mAllNodes);
     }
 
@@ -113,7 +121,15 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
     public void deleteNode(int position){
         mNodes.remove(position);
     }
+
+    public void swipeData(List<OverViewListBean> mItem)throws IllegalArgumentException,IllegalAccessException{
+        mDatas =mItem;
+        Log.e(TAG,"mItem ="+mItem.size()+"mData ="+mDatas.size());
+        mAllNodes = TreeHelper.getSortedNodes(mDatas,1);
+        mNodes = TreeHelper.filterVisibleNode(mAllNodes);
+    }
 }
+
 
 
 

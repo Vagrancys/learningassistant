@@ -39,7 +39,7 @@ public class OverViewRequest {
     }
 
     public List<OverViewListItem> getOverViewListData(long selectId) {
-        return mListItemDao.queryBuilder().where(OverViewListItemDao.Properties.Create.eq(selectId)).list();
+        return mListItemDao.queryBuilder().where(OverViewListItemDao.Properties.ContentId.eq(selectId)).list();
     }
 
     public List<OverViewListContent> getAllContentData() {
@@ -56,5 +56,9 @@ public class OverViewRequest {
             mListItemDao.insert(mItem);
         }
         return true;
+    }
+
+    public OverViewListContent getContentData(long selectId) {
+        return mListContentDao.load(selectId);
     }
 }

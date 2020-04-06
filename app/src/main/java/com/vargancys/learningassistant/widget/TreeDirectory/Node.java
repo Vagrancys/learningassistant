@@ -10,9 +10,9 @@ import java.util.List;
  * version:1.0
  */
 public class Node {
-    private int id;
+    private long id;
     //根节点pId为0
-    private int pId = 0;
+    private long pId = 0;
     private String name;
     //当前的级别
     private int level;
@@ -36,7 +36,7 @@ public class Node {
 
     }
 
-    public Node(int id,int pId,String name){
+    public Node(long id,long pId,String name){
         super();
         this.id = id;
         this.pId = pId;
@@ -59,7 +59,7 @@ public class Node {
         this.icon = icon;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -71,7 +71,7 @@ public class Node {
         this.pId = pId;
     }
 
-    public int getpId() {
+    public long getpId() {
         return pId;
     }
 

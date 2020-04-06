@@ -42,19 +42,19 @@ public class TreeHelper {
         List<Node> nodes = new ArrayList<Node>();
         Node node = null;
         for (T t:datas){
-            int id = -1;
-            int pId = -1;
+            long id = -1;
+            long pId = -1;
             String label = null;
             Class<? extends Object> clazz = t.getClass();
             Field[] declaredFields = clazz.getDeclaredFields();
             for (Field f : declaredFields){
                 if(f.getAnnotation(TreeNodeId.class) !=null){
                     f.setAccessible(true);
-                    id = f.getInt(t);
+                    id = f.getLong(t);
                 }
                 if(f.getAnnotation(TreeNodePid.class) !=null){
                     f.setAccessible(true);
-                    pId = f.getInt(t);
+                    pId = f.getLong(t);
                 }
 
                 if(f.getAnnotation(TreeNodeLabel.class) !=null){

@@ -1,11 +1,14 @@
 package com.vargancys.learningassistant.presenter.overview;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
+import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
+import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
 
 import java.util.List;
 
@@ -16,10 +19,11 @@ import java.util.List;
  * version:1.0
  */
 public class BaseOverViewPresenter {
-    private BaseOverView mView;
+    private static String TAG = "BaseOverViewPresenter";
+    private Object mView;
     private OverViewRequest mRequest;
 
-    public BaseOverViewPresenter(BaseOverView view){
+    public BaseOverViewPresenter(Object view){
         this.mView = view;
         mRequest = OverViewRequest.getInstance();
     }
@@ -28,14 +32,14 @@ public class BaseOverViewPresenter {
     public void getAllContentData() {
         List<OverViewListContent> mObject = mRequest.getAllContentData();
         if(mObject !=null && mObject.size()>0){
-            mView.getAllData(mObject);
+            ((BaseOverView)mView).getAllData(mObject);
         }else{
-            mView.getAllDataError(404,"没有找到数据!");
+            ((BaseOverView)mView).getAllDataError(404,"没有找到数据!");
         }
     }
 
     public void TidyAllData() {
-        mView.TidyAllData();
+        ((OverViewAddView)mView).TidyAllData();
     }
 
     public void saveOverViewAllData(Handler handler, OverViewListContent mContent, List<OverViewListItem> mItems) {
@@ -45,17 +49,30 @@ public class BaseOverViewPresenter {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mView.saveDataFinish();
+                    ((OverViewAddView)mView).saveDataFinish();
                 }
             });
         }else{
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mView.saveDataError(200,"没有保存成功");
+                    ((OverViewAddView)mView).saveDataError(200,"没有保存成功");
                 }
             });
 
         }
+    }
+
+    //获得知识集的详细信息
+    public void getContentData(long selectId) {
+        OverViewListContent mContent = mRequest.getContentData(selectId);
+        if(mContent !=null){
+            Log.e(TAG,"断点2");
+            ((OverViewInformationView)mView).getContentData(mContent);
+        }else{
+            Log.e(TAG,"断点3");
+            ((OverViewInformationView)mView).getContentDataError(404,"没有该数据!");
+        }
+
     }
 }

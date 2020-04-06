@@ -1,10 +1,13 @@
 package com.vargancys.learningassistant.module.overview.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,6 +20,8 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.module.overview.adapter.OverViewSearchAdapter;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
+import com.vargancys.learningassistant.utils.CacheUtils;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -31,6 +36,7 @@ import butterknife.BindView;
  * version:1.0
  */
 public class OverViewSearchActivity extends BaseActivity implements BaseOverView {
+    private static String TAG = "OverViewSearchActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -41,10 +47,12 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
     RecyclerView recyclerView;
     @BindView(R.id.fragment_empty)
     LinearLayout fragmentEmpty;
+    private long overviewId = 0;
     private OverViewSearchAdapter mAdapter;
     private int REQUEST_CODE = 2000;
     private List<OverViewListContent> mObjects = new ArrayList<>();
     private BaseOverViewPresenter mPresenter;
+    private AlertDialog.Builder mAlert;
 
     @Override
     public int getLayoutId() {
@@ -58,14 +66,37 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
         mPresenter.getAllContentData();
+        initData();
         initListener();
+    }
+
+    private void initData(){
+        mAlert = new AlertDialog.Builder(getContext());
+        mAlert.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                overviewId = 0;
+            }
+        });
+        mAlert.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                CacheUtils.putLong(getContext(), ConstantsUtils.OVERVIEW_ID,overviewId);
+                overviewId = 0;
+                finish();
+            }
+        });
     }
 
     private void initListener() {
         mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                ToastUtils.ToastText(getContext(),"未完工");
+                overviewId = mObjects.get(position).getId();
+                Log.e(TAG,"overviewId ="+overviewId);
+                mAlert.setTitle(mObjects.get(position).getTitle());
+                mAlert.setMessage(mObjects.get(position).getSummary());
+                mAlert.show();
             }
         });
     }
@@ -113,18 +144,4 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
         fragmentEmpty.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void TidyAllData() {
-
-    }
-
-    @Override
-    public void saveDataFinish() {
-
-    }
-
-    @Override
-    public void saveDataError(int error, String message) {
-
-    }
 }

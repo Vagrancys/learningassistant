@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
+import com.vargancys.learningassistant.db.overview.OverViewListBean;
 import com.vargancys.learningassistant.widget.TreeDirectory.Node;
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 
@@ -21,9 +22,9 @@ import java.util.List;
  * version:1.0
  */
 public class SimpleTreeAdapter<T> extends TreeListViewAdapter<T> {
-    public SimpleTreeAdapter(ListView mTree, Context content, List<T> datas,
+    public SimpleTreeAdapter(ListView mTree, Context content, List<OverViewListBean> datas,
                              int defaultExpandLevel)throws IllegalArgumentException,IllegalAccessException {
-        super(mTree,content,datas,defaultExpandLevel);
+        super(mTree,content,datas,defaultExpandLevel,true);
     }
 
     @Override

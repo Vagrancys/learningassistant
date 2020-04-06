@@ -319,4 +319,15 @@
     <string name="item_title_text">标题</string>
     <string name="item_level_text">等级</string>
     <string name="item_score_text">分数</string>
+
+    <string name="information_title">初级工程师合集</string>
+    <string name="information_author">Vagrancy</string>
+    <string name="information_level">等级</string>
+    <string name="information_number">125</string>
+    <string name="information_layer">层级</string>
+    <string name="information_summary">不错的简介和不错的内容</string>
+    <string name="information_time">2020:10:20</string>
+    <string name="information_recommend">推荐</string>
+    <string name="information_grade">分数</string>
+    <string name="information_people">201人</string>
 </resources>

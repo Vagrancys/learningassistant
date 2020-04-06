@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
+import com.vargancys.learningassistant.db.overview.OverViewListBean;
 import com.vargancys.learningassistant.widget.TreeDirectory.Node;
 
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
@@ -28,9 +29,9 @@ public class AddTreeAdapter<T> extends TreeListViewAdapter<T> {
     private Animation mShowAnim;
     private Animation mHideAnim;
     private Handler mHandler;
-    public AddTreeAdapter(ListView mTree, Context content, Handler handler,List<T> datas,
+    public AddTreeAdapter(ListView mTree, Context content, Handler handler,List<OverViewListBean> datas,
                           int defaultExpandLevel) throws IllegalArgumentException, IllegalAccessException {
-        super(mTree, content, datas, defaultExpandLevel);
+        super(mTree, content, datas, defaultExpandLevel,false);
         mHandler =handler;
         mShowAnim = AnimationUtils.loadAnimation(content,R.anim.common_show_item_anim);
         mHideAnim = AnimationUtils.loadAnimation(content,R.anim.common_hide_item_anim);

@@ -21,4 +21,14 @@ public class CacheUtils {
         return sharedPreferences.getBoolean(key,false);
     }
 
+    public static void putLong(Context context,String key,long deValue){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(ConstantsUtils.SHARED_STATE,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(key,deValue).commit();
+    }
+
+    public static Long getLong(Context context,String key,long deValue){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(ConstantsUtils.SHARED_STATE,Context.MODE_PRIVATE);
+        return sharedPreferences.getLong(key,deValue);
+    }
 }

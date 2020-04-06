@@ -22,6 +22,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.adapter.AddTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
+import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.TimeUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -42,7 +43,7 @@ import butterknife.ButterKnife;
  * time  : 2020/04/03
  * version:1.0
  */
-public class OverViewAddActivity extends BaseActivity implements BaseOverView {
+public class OverViewAddActivity extends BaseActivity implements OverViewAddView {
     private static String TAG = "OverViewAddActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
@@ -85,7 +86,7 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
     private AddKnowItemDialog mItemAlert;
     private OverViewListContent mContent;
     private int mId = 1;
-    private int mPid = 0;
+    private long mPid = 0;
     private int selectNode = 0;
     //总知识分数
     private int mGrade = 0;
@@ -172,7 +173,9 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
 
     private void addKnowContent(String title, String level, String score)throws IllegalAccessException {
         if(selectNode == 0){
+
             OverViewListBean mBean = new OverViewListBean(mId,mPid,title);
+            Log.e(TAG,"Node ="+mBean.getParentId());
             mBean.setLevel(Integer.valueOf(level));
             mBean.setScore(Integer.valueOf(score));
             mAdapter.addNode(mBean);
@@ -251,6 +254,7 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
             @Override
             public void onClick(Node node, int position) {
                 mPid = node.getId();
+                Log.e(TAG,"mPid = "+mPid);
                 mItemAlert.show();
             }
 
@@ -366,6 +370,7 @@ public class OverViewAddActivity extends BaseActivity implements BaseOverView {
             mItem.setMasterLevel(0);
             //知识等级
             mItem.setLevel(node.getLevel());
+            mItem.setSortId(node.getId());
             //父类id
             mItem.setParentId(node.getpId());
 
