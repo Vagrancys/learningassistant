@@ -330,4 +330,15 @@
     <string name="information_recommend">推荐</string>
     <string name="information_grade">分数</string>
     <string name="information_people">201人</string>
+
+    <string name="game_subject">24</string>
+    <string name="game_subject_text">题</string>
+    <string name="game_error">45</string>
+    <string name="game_error_text">错误</string>
+    <string name="game_level">5</string>
+    <string name="game_level_text">难度</string>
+    <string name="game_score">35</string>
+    <string name="game_score_text">分</string>
+    <string name="game_title">该知识不错的!</string>
+    <string name="game_text">关卡闯关</string>
 </resources>
