@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.module.overview.adapter;
+package com.vargancys.learningassistant.module.game.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -17,12 +17,12 @@ import java.util.List;
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
- * time  : 2020/04/02
+ * time  : 2020/04/10
  * version:1.0
  */
-public class SimpleTreeAdapter<T> extends TreeListViewAdapter<T> {
-    public SimpleTreeAdapter(ListView mTree, Context content, List<KnowListBean> datas,
-                             int defaultExpandLevel)throws IllegalArgumentException,IllegalAccessException {
+public class GameTreeAdapter<T> extends TreeListViewAdapter<T> {
+    public GameTreeAdapter(ListView mTree, Context content, List<KnowListBean> datas,
+                           int defaultExpandLevel)throws IllegalArgumentException,IllegalAccessException {
         super(mTree,content,datas,defaultExpandLevel,true);
     }
 

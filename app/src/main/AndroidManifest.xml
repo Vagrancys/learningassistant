@@ -57,6 +57,8 @@
         <activity android:name=".module.overview.activity.OverViewInformationActivity"/>
         <activity android:name=".module.overview.activity.OverViewSearchActivity"/>
         <activity android:name=".module.overview.activity.OverViewAddActivity"/>
+        <activity android:name=".module.game.activity.GameSelectActivity"/>
+        <activity android:name=".module.game.activity.GameSignActivity"/>
     </application>
 
 </manifest>

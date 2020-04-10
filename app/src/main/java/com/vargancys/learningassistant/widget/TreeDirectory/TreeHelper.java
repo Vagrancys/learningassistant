@@ -1,7 +1,7 @@
 package com.vargancys.learningassistant.widget.TreeDirectory;
 
 import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.db.overview.OverViewListBean;
+import com.vargancys.learningassistant.db.common.KnowListBean;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -67,8 +67,8 @@ public class TreeHelper {
                 }
             }
             node = new Node(id,pId,label);
-            node.setScore(((OverViewListBean) t).getScore());
-            node.setLevel(((OverViewListBean) t).getLevel());
+            node.setScore(((KnowListBean) t).getScore());
+            node.setLevel(((KnowListBean) t).getLevel());
             nodes.add(node);
         }
 

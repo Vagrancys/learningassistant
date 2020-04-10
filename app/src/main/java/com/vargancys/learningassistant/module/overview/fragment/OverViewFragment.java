@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.overview.OverViewListBean;
+import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.activity.OverViewInformationActivity;
 import com.vargancys.learningassistant.module.overview.activity.OverViewSearchActivity;
@@ -46,7 +46,7 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
     SwipeRefreshLayout overViewSwipe;
 
     private List<OverViewListItem> mItems= new ArrayList<>();
-    private List<OverViewListBean> mBeans = new ArrayList<>();
+    private List<KnowListBean> mBeans = new ArrayList<>();
     private TreeListViewAdapter mAdapter;
     private OverViewContentPresenter mPresenter;
     public static OverViewFragment newInstance() {
@@ -122,7 +122,7 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
     private void initData(List<OverViewListItem> overViewListItemList){
         mBeans.clear();
         for (OverViewListItem item:overViewListItemList){
-            OverViewListBean mBean = new OverViewListBean(item.getSortId(),item.getParentId(),item.getTitle());
+            KnowListBean mBean = new KnowListBean(item.getSortId(),item.getParentId(),item.getTitle());
             mBean.setMasterLevel(item.getMasterLevel());
             mBean.setScore(item.getScore());
             mBean.setStudy(item.getStudy());

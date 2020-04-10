@@ -19,10 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class org.litepal.** {
-    *;
+-keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
+    public static java.lang.String TABLENAME;
 }
 
--keep class * extends org.litepal.crud.LitePalSupport{
-    *;
-}
+-keep class **$Properties

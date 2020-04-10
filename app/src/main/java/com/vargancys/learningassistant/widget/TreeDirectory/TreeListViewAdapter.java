@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.widget.TreeDirectory;
 
 import android.content.Context;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.vargancys.learningassistant.db.overview.OverViewListBean;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.utils.DensityUtils;
 
 import java.util.List;
@@ -29,7 +27,7 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
     protected List<Node> mNodes;
     protected LayoutInflater mInflater;
 
-    protected List<OverViewListBean> mDatas;
+    protected List<KnowListBean> mDatas;
     //存储所有的Node;
     protected List<Node> mAllNodes;
     private boolean mExpandOrCollapse = true;
@@ -47,7 +45,7 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
         this.onTreeNodeClickListener = onTreeNodeClickListener;
     }
 
-    public TreeListViewAdapter(ListView mTree,Context context,List<OverViewListBean> datas,int defaultExpandLevel,boolean expand)
+    public TreeListViewAdapter(ListView mTree, Context context, List<KnowListBean> datas, int defaultExpandLevel, boolean expand)
             throws IllegalArgumentException,IllegalAccessException{
         mContext = context;
         mDatas = datas;
@@ -79,7 +77,7 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
         }
     }
 
-    public void addNode(OverViewListBean data)throws IllegalArgumentException,IllegalAccessException{
+    public void addNode(KnowListBean data)throws IllegalArgumentException,IllegalAccessException{
         mDatas.add(data);
         mAllNodes = TreeHelper.getSortedNodes(mDatas,10);
         mNodes = TreeHelper.filterVisibleNode(mAllNodes);
@@ -122,7 +120,7 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
         mNodes.remove(position);
     }
 
-    public void swipeData(List<OverViewListBean> mItem)throws IllegalArgumentException,IllegalAccessException{
+    public void swipeData(List<KnowListBean> mItem)throws IllegalArgumentException,IllegalAccessException{
         mDatas =mItem;
         Log.e(TAG,"mItem ="+mItem.size()+"mData ="+mDatas.size());
         mAllNodes = TreeHelper.getSortedNodes(mDatas,1);

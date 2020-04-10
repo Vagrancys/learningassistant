@@ -32,6 +32,7 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowHistoryFunctionDao.createTable(db, ifNotExists);
         OverViewListItemDao.createTable(db, ifNotExists);
         OverViewListContentDao.createTable(db, ifNotExists);
+        GameContentDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -47,6 +48,7 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowHistoryFunctionDao.dropTable(db, ifExists);
         OverViewListItemDao.dropTable(db, ifExists);
         OverViewListContentDao.dropTable(db, ifExists);
+        GameContentDao.dropTable(db, ifExists);
     }
 
     /**
@@ -76,6 +78,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(HomeKnowHistoryFunctionDao.class);
         registerDaoClass(OverViewListItemDao.class);
         registerDaoClass(OverViewListContentDao.class);
+        registerDaoClass(GameContentDao.class);
     }
 
     public DaoSession newSession() {

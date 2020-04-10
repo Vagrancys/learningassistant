@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.db.overview;
+package com.vargancys.learningassistant.db.common;
 
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeNodeId;
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeNodeLabel;
@@ -10,7 +10,7 @@ import com.vargancys.learningassistant.widget.TreeDirectory.TreeNodePid;
  * time  : 2020/04/03
  * version:1.0
  */
-public class OverViewListBean {
+public class KnowListBean {
     @TreeNodeId
     private long _id;
     @TreeNodePid
@@ -21,7 +21,7 @@ public class OverViewListBean {
     private int masterLevel;
     private boolean study;
     private int score;
-    public OverViewListBean(long _id,long parentId,String title){
+    public KnowListBean(long _id, long parentId, String title){
         this._id = _id;
         this.parentId = parentId;
         this.title = title;

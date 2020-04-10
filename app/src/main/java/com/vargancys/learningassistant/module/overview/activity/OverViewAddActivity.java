@@ -1,9 +1,7 @@
 package com.vargancys.learningassistant.module.overview.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -17,11 +15,10 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.overview.OverViewListBean;
+import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.adapter.AddTreeAdapter;
-import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -35,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy
@@ -98,7 +94,7 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
     private int mNumber = 0;
     //简介
     private String mSummary;
-    private List<OverViewListBean> mBeans = new ArrayList<>();
+    private List<KnowListBean> mBeans = new ArrayList<>();
     private List<OverViewListItem> mItems = new ArrayList<>();
 
     @Override
@@ -174,7 +170,7 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
     private void addKnowContent(String title, String level, String score)throws IllegalAccessException {
         if(selectNode == 0){
 
-            OverViewListBean mBean = new OverViewListBean(mId,mPid,title);
+            KnowListBean mBean = new KnowListBean(mId,mPid,title);
             Log.e(TAG,"Node ="+mBean.getParentId());
             mBean.setLevel(Integer.valueOf(level));
             mBean.setScore(Integer.valueOf(score));

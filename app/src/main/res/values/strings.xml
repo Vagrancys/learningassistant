@@ -341,4 +341,5 @@
     <string name="game_score_text">分</string>
     <string name="game_title">该知识不错的!</string>
     <string name="game_text">关卡闯关</string>
+    <string name="game_title_error">还没有选择关卡!去选择吧!</string>
 </resources>
