@@ -342,4 +342,13 @@
     <string name="game_title">该知识不错的!</string>
     <string name="game_text">关卡闯关</string>
     <string name="game_title_error">还没有选择关卡!去选择吧!</string>
+    <string name="select_number">25</string>
+    <string name="select_title">不错的标题的</string>
+    <string name="select_people">250人使用</string>
+    <string name="select_subject">25题</string>
+    <string name="select_subject_text">题数:</string>
+    <string name="select_difficulty">4级</string>
+    <string name="select_difficulty_text">难度:</string>
+    <string name="select_score">26分</string>
+    <string name="select_score_text">分数:</string>
 </resources>
