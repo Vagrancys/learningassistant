@@ -12,10 +12,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_time"
-            android:textSize="@dimen/text_size_22sp"
+            android:textSize="@dimen/text_size_18sp"
             android:textColor="@color/black"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_width_10dp"/>
         <TextView
             android:id="@+id/sign_title"
             android:layout_width="wrap_content"
@@ -23,18 +24,20 @@
             android:text="@string/sign_title"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_24sp"
+            android:layout_toEndOf="@+id/sign_time"
             android:layout_centerInParent="true"
             android:ellipsize="end"/>
     </RelativeLayout>
     <TextView
         android:id="@+id/sign_summary"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_width_5dp"
         android:layout_marginBottom="@dimen/margin_width_5dp"
-        android:text="@string/sign_summart"
+        android:text="@string/sign_summary"
         android:textSize="@dimen/text_size_24sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:gravity="center"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,7 +93,7 @@
                 android:id="@+id/sign_game_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/game_subject"
+                android:text="@string/game_subject_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_24sp"
                 android:layout_alignParentStart="true"/>
@@ -99,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/game_subject_schedule"
-                android:textSize="@dimen/text_size_24sp"
+                android:textSize="@dimen/text_size_18sp"
                 android:textColor="@color/black"
                 android:layout_alignParentEnd="true"/>
             <ProgressBar
@@ -123,7 +126,7 @@
                 android:id="@+id/game_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/game_subject"
+                android:text="@string/game_score_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_24sp"
                 android:layout_alignParentStart="true"/>
@@ -155,7 +158,7 @@
                 android:id="@+id/game_error"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/game_error"
+                android:text="@string/game_error_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_24sp"
                 android:layout_alignParentStart="true"/>

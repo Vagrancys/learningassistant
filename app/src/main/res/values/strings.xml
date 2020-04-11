@@ -355,4 +355,12 @@
     <string name="game_state">有</string>
     <string name="game_time">20.2.3</string>
     <string name="fragment_sign_empty">还没有任何的打卡记录,是否现在开始呢?</string>
+    <string name="sign_time">2020:30:21</string>
+    <string name="sign_title">不错的打卡的啊!</string>
+    <string name="sign_summary">这是个不错的简介够够了了</string>
+    <string name="sign_indicate">查看更多信息</string>
+    <string name="sign_game_title">这个是发的的的阿达</string>
+    <string name="game_subject_schedule">21题/总51题</string>
+    <string name="game_score_schedule">25分/总96分</string>
+    <string name="game_error_schedule">总25道</string>
 </resources>
