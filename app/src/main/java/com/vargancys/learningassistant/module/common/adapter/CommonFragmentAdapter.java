@@ -34,10 +34,13 @@ public class CommonFragmentAdapter extends FragmentPagerAdapter {
                     break;
                 case 2:
                     mFragment[position] = GameFragment.newInstance();
+                    break;
                 case 3:
                     mFragment[position] = HomeFragment.newInstance();
+                    break;
                 case 4:
                     mFragment[position] = HomeFragment.newInstance();
+                    break;
             }
         }
         return mFragment[position];

@@ -351,4 +351,8 @@
     <string name="select_difficulty_text">难度:</string>
     <string name="select_score">26分</string>
     <string name="select_score_text">分数:</string>
+    <string name="game_number">5</string>
+    <string name="game_state">有</string>
+    <string name="game_time">20.2.3</string>
+    <string name="fragment_sign_empty">还没有任何的打卡记录,是否现在开始呢?</string>
 </resources>

@@ -82,7 +82,6 @@ public class AddTreeAdapter<T> extends TreeListViewAdapter<T> {
 
                             }
                         });
-
                     }
                 },3000);
             }

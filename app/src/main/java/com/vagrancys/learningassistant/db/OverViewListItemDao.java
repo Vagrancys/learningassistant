@@ -37,6 +37,7 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         public final static Property Level = new Property(7, int.class, "level", false, "LEVEL");
         public final static Property Study = new Property(8, boolean.class, "study", false, "STUDY");
         public final static Property Score = new Property(9, int.class, "score", false, "SCORE");
+        public final static Property Time = new Property(10, int.class, "time", false, "TIME");
     }
 
     private Query<OverViewListItem> overViewListContent_OverViewListItemQuery;
@@ -62,7 +63,8 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
                 "\"MASTER_LEVEL\" INTEGER NOT NULL ," + // 6: masterLevel
                 "\"LEVEL\" INTEGER NOT NULL ," + // 7: level
                 "\"STUDY\" INTEGER NOT NULL ," + // 8: study
-                "\"SCORE\" INTEGER NOT NULL );"); // 9: score
+                "\"SCORE\" INTEGER NOT NULL ," + // 9: score
+                "\"TIME\" INTEGER NOT NULL );"); // 10: time
     }
 
     /** Drops the underlying database table. */
@@ -92,6 +94,7 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         stmt.bindLong(8, entity.getLevel());
         stmt.bindLong(9, entity.getStudy() ? 1L: 0L);
         stmt.bindLong(10, entity.getScore());
+        stmt.bindLong(11, entity.getTime());
     }
 
     @Override
@@ -115,6 +118,7 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         stmt.bindLong(8, entity.getLevel());
         stmt.bindLong(9, entity.getStudy() ? 1L: 0L);
         stmt.bindLong(10, entity.getScore());
+        stmt.bindLong(11, entity.getTime());
     }
 
     @Override
@@ -134,7 +138,8 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
             cursor.getInt(offset + 6), // masterLevel
             cursor.getInt(offset + 7), // level
             cursor.getShort(offset + 8) != 0, // study
-            cursor.getInt(offset + 9) // score
+            cursor.getInt(offset + 9), // score
+            cursor.getInt(offset + 10) // time
         );
         return entity;
     }
@@ -151,6 +156,7 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         entity.setLevel(cursor.getInt(offset + 7));
         entity.setStudy(cursor.getShort(offset + 8) != 0);
         entity.setScore(cursor.getInt(offset + 9));
+        entity.setTime(cursor.getInt(offset + 10));
      }
     
     @Override

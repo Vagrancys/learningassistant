@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/margin_width_60dp"
+    android:orientation="horizontal"
+    android:gravity="center|start">
+    <LinearLayout
+        android:id="@+id/game_line"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/margin_width_10dp">
+        <View
+            android:layout_width="@dimen/margin_width_1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/green"/>
+        <ImageView
+            android:layout_width="@dimen/margin_width_10dp"
+            android:layout_height="@dimen/margin_width_10dp"
+            android:background="@drawable/game_item_radius_shape"/>
+        <View
+            android:layout_width="@dimen/margin_width_1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/green"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/game_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview_title"
+        android:textSize="@dimen/text_size_24sp"
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/game_line"
+        android:layout_marginStart="@dimen/margin_width_10dp"/>
+
+    <ImageView
+        android:id="@+id/game_collection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/game_collection_normal"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/margin_width_10dp"/>
+
+    <LinearLayout
+        android:id="@+id/game_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:background="@color/white"
+        android:padding="@dimen/margin_width_10dp"
+        android:visibility="gone">
+
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/game_level_normal"
+        android:layout_marginEnd="@dimen/margin_width_5dp"/>
+        <TextView
+            android:id="@+id/game_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_level"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/text_size_24sp"/>
+
+        <View
+            android:layout_width="@dimen/margin_width_1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black_1"
+            android:layout_margin="@dimen/margin_width_5dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/game_score_normal"
+            android:layout_marginEnd="@dimen/margin_width_5dp"/>
+        <TextView
+            android:id="@+id/game_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_score"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/text_size_24sp"/>
+
+        <View
+            android:layout_width="@dimen/margin_width_1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black_1"
+            android:layout_margin="@dimen/margin_width_5dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/game_number_normal"
+            android:layout_marginEnd="@dimen/margin_width_5dp"/>
+        <TextView
+            android:id="@+id/game_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_number"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/text_size_24sp"/>
+
+        <View
+            android:layout_width="@dimen/margin_width_1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black_1"
+            android:layout_margin="@dimen/margin_width_5dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/game_state_normal"
+            android:layout_marginEnd="@dimen/margin_width_5dp"/>
+        <TextView
+            android:id="@+id/game_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_state"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/text_size_24sp"/>
+
+        <View
+            android:layout_width="@dimen/margin_width_1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black_1"
+            android:layout_margin="@dimen/margin_width_5dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/game_time_normal"
+            android:layout_marginEnd="@dimen/margin_width_5dp"/>
+        <TextView
+            android:id="@+id/game_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_time"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/text_size_24sp"/>
+    </LinearLayout>
+</RelativeLayout>

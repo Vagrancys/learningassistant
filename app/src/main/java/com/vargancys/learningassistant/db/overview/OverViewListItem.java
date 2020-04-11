@@ -42,10 +42,13 @@ public class OverViewListItem{
     //目录学习分
     private int score;
 
-    @Generated(hash = 1373301669)
+    //目录的创建时间
+    private int time;
+
+    @Generated(hash = 679926223)
     public OverViewListItem(Long id, long contentId, long sortId, long create,
             long parentId, String title, int masterLevel, int level, boolean study,
-            int score) {
+            int score, int time) {
         this.id = id;
         this.contentId = contentId;
         this.sortId = sortId;
@@ -56,6 +59,7 @@ public class OverViewListItem{
         this.level = level;
         this.study = study;
         this.score = score;
+        this.time = time;
     }
 
     @Generated(hash = 1807338273)
@@ -140,5 +144,13 @@ public class OverViewListItem{
 
     public void setSortId(long sortId) {
         this.sortId = sortId;
+    }
+
+    public int getTime() {
+        return this.time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

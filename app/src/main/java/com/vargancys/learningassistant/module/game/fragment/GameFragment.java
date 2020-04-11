@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.module.game.fragment;
 
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -62,6 +63,8 @@ public class GameFragment extends BaseFragment implements GameView {
     private long gameId;
     private BaseGamePresenter mPresenter;
     private GameTreeAdapter mAdapter;
+    private List<OverViewListItem> mItems = new ArrayList<>();
+    private Handler mHandler;
     private List<KnowListBean> mBeans = new ArrayList<>();
     public static Fragment newInstance() {
         return new GameFragment();
@@ -87,8 +90,9 @@ public class GameFragment extends BaseFragment implements GameView {
     }
 
     private void init(){
+        mHandler = new Handler();
         try {
-            mAdapter = new GameTreeAdapter<>(gameList,getContext(),mBeans,10);
+            mAdapter = new GameTreeAdapter<>(gameList,getContext(),mBeans,mItems,mHandler,10);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -156,6 +160,8 @@ public class GameFragment extends BaseFragment implements GameView {
 
     private void initData(List<OverViewListItem> overViewListItemList){
         mBeans.clear();
+        mItems.clear();
+        mItems.addAll(overViewListItemList);
         for (OverViewListItem item:overViewListItemList){
             KnowListBean mBean = new KnowListBean(item.getSortId(),item.getParentId(),item.getTitle());
             mBean.setMasterLevel(item.getMasterLevel());
