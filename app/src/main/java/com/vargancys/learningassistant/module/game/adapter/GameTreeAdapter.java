@@ -48,16 +48,15 @@ public class GameTreeAdapter<T> extends TreeListViewAdapter<T> {
             convertView = mInflater.inflate(R.layout.game_list_item,parent,false);
             viewHolder = new ViewHolder();
             initViewHolder(viewHolder,convertView);
-
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
         OverViewListItem mItem = mItems.get(position);
-        initData(viewHolder,mItem);
+        initData(viewHolder,mItem,position);
         return convertView;
     }
 
-    private void initData(final ViewHolder viewHolder, OverViewListItem mItem) {
+    private void initData(final ViewHolder viewHolder, OverViewListItem mItem, final int position) {
         viewHolder.gameTitle.setText(mItem.getTitle());
         viewHolder.gameLevel.setText(mItem.getLevel()+"级");
         viewHolder.gameScore.setText(mItem.getScore()+"分");
@@ -108,6 +107,15 @@ public class GameTreeAdapter<T> extends TreeListViewAdapter<T> {
                 viewHolder.gameLayout.startAnimation(mHideAnimation);
             }
         });
+
+        viewHolder.gameShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onTreeNodeClickListener != null){
+                    onTreeNodeClickListener.onShow(position);
+                }
+            }
+        });
     }
 
     private void initViewHolder(ViewHolder viewHolder, View convertView) {
@@ -119,6 +127,7 @@ public class GameTreeAdapter<T> extends TreeListViewAdapter<T> {
         viewHolder.gameNumber = convertView.findViewById(R.id.game_number);
         viewHolder.gameState = convertView.findViewById(R.id.game_state);
         viewHolder.gameTime = convertView.findViewById(R.id.game_time);
+        viewHolder.gameShow = convertView.findViewById(R.id.game_show);
         convertView.setTag(viewHolder);
     }
 
@@ -131,5 +140,6 @@ public class GameTreeAdapter<T> extends TreeListViewAdapter<T> {
         TextView gameTime;
         TextView gameNumber;
         LinearLayout gameLayout;
+        ImageView gameShow;
     }
 }

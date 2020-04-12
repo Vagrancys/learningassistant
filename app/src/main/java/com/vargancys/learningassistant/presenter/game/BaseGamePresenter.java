@@ -3,6 +3,8 @@ package com.vargancys.learningassistant.presenter.game;
 import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.db.game.GameSubjectContent;
+import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.game.request.BaseGameRequest;
@@ -11,6 +13,7 @@ import com.vargancys.learningassistant.module.game.view.GameView;
 import com.vargancys.learningassistant.module.game.view.SelectGameView;
 import com.vargancys.learningassistant.module.game.view.SignAddView;
 import com.vargancys.learningassistant.module.game.view.SignGameView;
+import com.vargancys.learningassistant.module.game.view.SubjectShowView;
 
 import java.util.List;
 
@@ -94,7 +97,7 @@ public class BaseGamePresenter {
 
     public void isSignDataEmpty() {
         boolean result = ((SignAddView) mView).isSignDataEmpty();
-        if(result){
+        if(!result){
             ((SignAddView) mView).addSignData();
         }else{
             ((SignAddView) mView).isSignDataEmptyError(404,"错误的事情!");
@@ -107,6 +110,21 @@ public class BaseGamePresenter {
             ((SignAddView) mView).saveSignDataFinish();
         }else{
             ((SignAddView) mView).saveSignDataError(404,"没有保存成功!");
+        }
+    }
+
+    public void getSubjectData(long knowId) {
+        GameSubjectContent mContent = mRequest.getSubjectContentData(knowId);
+        if(mContent != null){
+            ((SubjectShowView) mView).showSubjectContentFinish(mContent);
+            List<GameSubjectItem> mItems = mRequest.getSubjectItemData(mContent.getId());
+            if(mItems != null &&mItems.size() > 0){
+                ((SubjectShowView) mView).showSubjectItemFinish(mItems);
+            }else{
+                ((SubjectShowView) mView).showSubjectItemError(404,"没有找到问题!");
+            }
+        }else{
+            ((SubjectShowView) mView).showSubjectContentError(404,"没有该数据项啊");
         }
     }
 }

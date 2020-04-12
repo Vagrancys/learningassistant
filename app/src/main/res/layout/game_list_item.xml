@@ -39,6 +39,15 @@
         android:layout_marginStart="@dimen/margin_width_10dp"/>
 
     <ImageView
+        android:id="@+id/game_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/game_show_normal"
+        android:layout_toStartOf="@+id/game_collection"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/margin_width_10dp"/>
+
+    <ImageView
         android:id="@+id/game_collection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

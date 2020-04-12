@@ -378,4 +378,17 @@
     <string name="sign_error_title">答错的题数</string>
     <string name="sign_error_progress">总35题</string>
     <string name="sign_game_add_title">签到打卡</string>
+
+    <string name="subject_title">这个知识点不错哒啊啊!</string>
+    <string name="subject_last_time">2020:03:25</string>
+    <string name="subject_last_time_text">上次时间</string>
+    <string name="subject_problem">23道</string>
+    <string name="subject_problem_text">总问题数</string>
+    <string name="subject_error">35题</string>
+    <string name="subject_error_text">总错误数</string>
+    <string name="subject_answer">40题</string>
+    <string name="subject_answer_text">总答对数</string>
+    <string name="common_subject_title">知识问答详情</string>
+    <string name="subject_title_empty">没有该知识的详情，你可以反馈给作者!</string>
+    <string name="subject_item_empty">没有可以回答的问题!您可以添加一些!</string>
 </resources>

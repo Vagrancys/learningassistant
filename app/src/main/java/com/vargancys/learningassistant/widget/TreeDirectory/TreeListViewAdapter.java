@@ -36,6 +36,7 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter {
     public OnTreeNodeClickListener onTreeNodeClickListener;
 
     public interface OnTreeNodeClickListener{
+        void onShow(int position);
         void onClick(Node node,int position);
         void onDelete(Node node,int position);
         void onUpdate(Node node,int position);

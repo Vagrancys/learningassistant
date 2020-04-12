@@ -3,11 +3,15 @@ package com.vargancys.learningassistant.model.game.request;
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.GameContentDao;
 import com.vagrancys.learningassistant.db.GameSignContentDao;
+import com.vagrancys.learningassistant.db.GameSubjectContentDao;
+import com.vagrancys.learningassistant.db.GameSubjectItemDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.db.game.GameSubjectContent;
+import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 
@@ -26,12 +30,16 @@ public class BaseGameRequest {
     private OverViewListItemDao mListItemDao;
     private OverViewListContentDao mListContentDao;
     private GameSignContentDao mSignContentDao;
+    private GameSubjectContentDao mSubjectContentDao;
+    private GameSubjectItemDao mSubjectItemDao;
     private BaseGameRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mGameContentDao = mDaoSession.getGameContentDao();
         mListItemDao = mDaoSession.getOverViewListItemDao();
         mListContentDao = mDaoSession.getOverViewListContentDao();
         mSignContentDao = mDaoSession.getGameSignContentDao();
+        mSubjectContentDao = mDaoSession.getGameSubjectContentDao();
+        mSubjectItemDao = mDaoSession.getGameSubjectItemDao();
     }
 
     public static BaseGameRequest getInstance(){
@@ -90,5 +98,14 @@ public class BaseGameRequest {
         }else{
             return false;
         }
+    }
+
+    public GameSubjectContent getSubjectContentData(long knowId) {
+        return mSubjectContentDao.queryBuilder().where(GameSubjectContentDao.Properties.KnowId.eq(knowId)).unique();
+    }
+
+
+    public List<GameSubjectItem> getSubjectItemData(Long id) {
+        return mSubjectItemDao._queryGameSubjectContent_MItems(id);
     }
 }

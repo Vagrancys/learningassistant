@@ -39,8 +39,8 @@ public class GameSignAdapter extends BaseRecyclerAdapter {
         mContext = context;
         this.mSigns = mSigns;
         this.mHandler = mHandler;
-        mUpScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_buttom_anim);
-        mDownScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_top_anim);
+        mUpScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_top_anim);
+        mDownScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_buttom_anim);
         mUpRotateAnimation = AnimationUtils.loadAnimation(context,R.anim.common_rotate_buttom_anim);
         mDownRotateAnimation = AnimationUtils.loadAnimation(context,R.anim.common_rotate_top_anim);
     }

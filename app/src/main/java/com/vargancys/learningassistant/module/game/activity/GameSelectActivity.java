@@ -141,6 +141,7 @@ public class GameSelectActivity extends BaseActivity implements SelectGameView {
         GameContent gameContent = new GameContent();
         gameContent.setOverviewId(gameId);
         gameContent.setTitle(gameTitle);
+        gameContent.setGame_title(gameTitle);
         gameContent.setDifficulty(mContent.getLevel());
         gameContent.setError(0);
         gameContent.setScore(mContent.getGrade());

@@ -17,11 +17,14 @@ import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.game.activity.GameSelectActivity;
 import com.vargancys.learningassistant.module.game.activity.GameSignActivity;
+import com.vargancys.learningassistant.module.game.activity.SubjectShowActivity;
 import com.vargancys.learningassistant.module.game.adapter.GameTreeAdapter;
 import com.vargancys.learningassistant.module.game.view.GameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.widget.TreeDirectory.Node;
+import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +106,28 @@ public class GameFragment extends BaseFragment implements GameView {
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
                 mPresenter.getGameListData(gameId);
+            }
+        });
+
+        mAdapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
+            @Override
+            public void onShow(int position) {
+                SubjectShowActivity.launch(getActivity(),mItems.get(position).getId());
+            }
+
+            @Override
+            public void onClick(Node node, int position) {
+
+            }
+
+            @Override
+            public void onDelete(Node node, int position) {
+
+            }
+
+            @Override
+            public void onUpdate(Node node, int position) {
+
             }
         });
     }

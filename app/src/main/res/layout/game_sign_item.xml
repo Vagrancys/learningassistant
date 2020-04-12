@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_width_10dp">
     <RelativeLayout
+        android:id="@+id/head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -37,13 +38,16 @@
         android:text="@string/sign_summary"
         android:textSize="@dimen/text_size_24sp"
         android:textColor="@color/black"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_below="@+id/head"/>
+
     <LinearLayout
         android:id="@+id/indicate_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_below="@+id/sign_summary">
         <TextView
             android:id="@+id/sign_indicate"
             android:layout_width="wrap_content"
@@ -58,13 +62,15 @@
             android:layout_height="wrap_content"
             android:src="@drawable/sign_indicate_normal"/>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/sign_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/margin_width_5dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:layout_below="@+id/indicate_layout">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -79,8 +85,8 @@
                 android:layout_centerVertical="true"/>
             <ImageView
                 android:id="@+id/sign_game_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/margin_width_40dp"
+                android:layout_height="@dimen/margin_width_30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/know_level_0"/>
@@ -183,4 +189,4 @@
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
         </RelativeLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

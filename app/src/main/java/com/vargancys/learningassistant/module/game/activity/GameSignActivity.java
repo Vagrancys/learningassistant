@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.game.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy
@@ -44,9 +42,9 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
     @BindView(R.id.fragment_empty)
-    TextView fragmentEmpty;
+    LinearLayout fragmentEmpty;
     @BindView(R.id.fragment_content)
-    LinearLayout fragmentContent;
+    TextView fragmentContent;
     private BaseGamePresenter mPresenter;
     private GameSignAdapter mAdapter;
     private Handler mHandler;
@@ -107,6 +105,7 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
 
     @Override
     public void showGameSignAllData(List<GameSignContent> mSign) {
+        swipeRefresh.setRefreshing(false);
         fragmentContent.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         mSigns.clear();
@@ -118,8 +117,8 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
     public void showGameSignAllError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
         swipeRefresh.setRefreshing(false);
-        fragmentEmpty.setText(getResources().getString(R.string.fragment_sign_empty));
-        fragmentContent.setVisibility(View.VISIBLE);
+        fragmentContent.setText(getResources().getString(R.string.fragment_sign_empty));
+        fragmentEmpty.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }
 }
