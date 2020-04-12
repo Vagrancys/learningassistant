@@ -365,4 +365,17 @@
     <string name="game_score_schedule">25分/总96分</string>
     <string name="game_error_schedule">总25道</string>
     <string name="game_sign_title">关卡签到打卡</string>
+
+    <string name="sign_title_text">主题:</string>
+    <string name="sign_title_hint">请说说你的进步!</string>
+    <string name="sign_summary_text">简要:</string>
+    <string name="sign_summary_hint">请说说详细的进步程度!</string>
+    <string name="sign_prompt">进步详情</string>
+    <string name="sign_subject_title">所学题数的进度</string>
+    <string name="sign_subject_progress">25题/总35题</string>
+    <string name="sign_score_title">所得分数</string>
+    <string name="sign_score_progress">26分/总45分</string>
+    <string name="sign_error_title">答错的题数</string>
+    <string name="sign_error_progress">总35题</string>
+    <string name="sign_game_add_title">签到打卡</string>
 </resources>

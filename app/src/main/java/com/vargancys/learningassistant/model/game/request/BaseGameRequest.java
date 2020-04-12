@@ -78,4 +78,17 @@ public class BaseGameRequest {
     public List<GameSignContent> getGameSignAllData() {
         return mSignContentDao.loadAll();
     }
+
+    public GameContent getGameContentData(long gameId) {
+        return mGameContentDao.load(gameId);
+    }
+
+    public boolean saveSignData(GameSignContent content) {
+        long id =mSignContentDao.insert(content);
+        if(id != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

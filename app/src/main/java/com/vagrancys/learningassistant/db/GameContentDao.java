@@ -27,10 +27,14 @@ public class GameContentDao extends AbstractDao<GameContent, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
         public final static Property Subject = new Property(2, int.class, "subject", false, "SUBJECT");
-        public final static Property Error = new Property(3, int.class, "error", false, "ERROR");
-        public final static Property Score = new Property(4, int.class, "score", false, "SCORE");
-        public final static Property Difficulty = new Property(5, int.class, "difficulty", false, "DIFFICULTY");
-        public final static Property OverviewId = new Property(6, long.class, "overviewId", false, "OVERVIEW_ID");
+        public final static Property Subject_current = new Property(3, int.class, "subject_current", false, "SUBJECT_CURRENT");
+        public final static Property Error = new Property(4, int.class, "error", false, "ERROR");
+        public final static Property Error_current = new Property(5, int.class, "error_current", false, "ERROR_CURRENT");
+        public final static Property Score = new Property(6, int.class, "score", false, "SCORE");
+        public final static Property Score_current = new Property(7, int.class, "score_current", false, "SCORE_CURRENT");
+        public final static Property Difficulty = new Property(8, int.class, "difficulty", false, "DIFFICULTY");
+        public final static Property OverviewId = new Property(9, long.class, "overviewId", false, "OVERVIEW_ID");
+        public final static Property Game_title = new Property(10, String.class, "game_title", false, "GAME_TITLE");
     }
 
 
@@ -49,10 +53,14 @@ public class GameContentDao extends AbstractDao<GameContent, Long> {
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
                 "\"TITLE\" TEXT," + // 1: title
                 "\"SUBJECT\" INTEGER NOT NULL ," + // 2: subject
-                "\"ERROR\" INTEGER NOT NULL ," + // 3: error
-                "\"SCORE\" INTEGER NOT NULL ," + // 4: score
-                "\"DIFFICULTY\" INTEGER NOT NULL ," + // 5: difficulty
-                "\"OVERVIEW_ID\" INTEGER NOT NULL );"); // 6: overviewId
+                "\"SUBJECT_CURRENT\" INTEGER NOT NULL ," + // 3: subject_current
+                "\"ERROR\" INTEGER NOT NULL ," + // 4: error
+                "\"ERROR_CURRENT\" INTEGER NOT NULL ," + // 5: error_current
+                "\"SCORE\" INTEGER NOT NULL ," + // 6: score
+                "\"SCORE_CURRENT\" INTEGER NOT NULL ," + // 7: score_current
+                "\"DIFFICULTY\" INTEGER NOT NULL ," + // 8: difficulty
+                "\"OVERVIEW_ID\" INTEGER NOT NULL ," + // 9: overviewId
+                "\"GAME_TITLE\" TEXT);"); // 10: game_title
     }
 
     /** Drops the underlying database table. */
@@ -75,10 +83,18 @@ public class GameContentDao extends AbstractDao<GameContent, Long> {
             stmt.bindString(2, title);
         }
         stmt.bindLong(3, entity.getSubject());
-        stmt.bindLong(4, entity.getError());
-        stmt.bindLong(5, entity.getScore());
-        stmt.bindLong(6, entity.getDifficulty());
-        stmt.bindLong(7, entity.getOverviewId());
+        stmt.bindLong(4, entity.getSubject_current());
+        stmt.bindLong(5, entity.getError());
+        stmt.bindLong(6, entity.getError_current());
+        stmt.bindLong(7, entity.getScore());
+        stmt.bindLong(8, entity.getScore_current());
+        stmt.bindLong(9, entity.getDifficulty());
+        stmt.bindLong(10, entity.getOverviewId());
+ 
+        String game_title = entity.getGame_title();
+        if (game_title != null) {
+            stmt.bindString(11, game_title);
+        }
     }
 
     @Override
@@ -95,10 +111,18 @@ public class GameContentDao extends AbstractDao<GameContent, Long> {
             stmt.bindString(2, title);
         }
         stmt.bindLong(3, entity.getSubject());
-        stmt.bindLong(4, entity.getError());
-        stmt.bindLong(5, entity.getScore());
-        stmt.bindLong(6, entity.getDifficulty());
-        stmt.bindLong(7, entity.getOverviewId());
+        stmt.bindLong(4, entity.getSubject_current());
+        stmt.bindLong(5, entity.getError());
+        stmt.bindLong(6, entity.getError_current());
+        stmt.bindLong(7, entity.getScore());
+        stmt.bindLong(8, entity.getScore_current());
+        stmt.bindLong(9, entity.getDifficulty());
+        stmt.bindLong(10, entity.getOverviewId());
+ 
+        String game_title = entity.getGame_title();
+        if (game_title != null) {
+            stmt.bindString(11, game_title);
+        }
     }
 
     @Override
@@ -112,10 +136,14 @@ public class GameContentDao extends AbstractDao<GameContent, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
             cursor.getInt(offset + 2), // subject
-            cursor.getInt(offset + 3), // error
-            cursor.getInt(offset + 4), // score
-            cursor.getInt(offset + 5), // difficulty
-            cursor.getLong(offset + 6) // overviewId
+            cursor.getInt(offset + 3), // subject_current
+            cursor.getInt(offset + 4), // error
+            cursor.getInt(offset + 5), // error_current
+            cursor.getInt(offset + 6), // score
+            cursor.getInt(offset + 7), // score_current
+            cursor.getInt(offset + 8), // difficulty
+            cursor.getLong(offset + 9), // overviewId
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // game_title
         );
         return entity;
     }
@@ -125,10 +153,14 @@ public class GameContentDao extends AbstractDao<GameContent, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setSubject(cursor.getInt(offset + 2));
-        entity.setError(cursor.getInt(offset + 3));
-        entity.setScore(cursor.getInt(offset + 4));
-        entity.setDifficulty(cursor.getInt(offset + 5));
-        entity.setOverviewId(cursor.getLong(offset + 6));
+        entity.setSubject_current(cursor.getInt(offset + 3));
+        entity.setError(cursor.getInt(offset + 4));
+        entity.setError_current(cursor.getInt(offset + 5));
+        entity.setScore(cursor.getInt(offset + 6));
+        entity.setScore_current(cursor.getInt(offset + 7));
+        entity.setDifficulty(cursor.getInt(offset + 8));
+        entity.setOverviewId(cursor.getLong(offset + 9));
+        entity.setGame_title(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
      }
     
     @Override

@@ -9,6 +9,7 @@ import com.vargancys.learningassistant.model.game.request.BaseGameRequest;
 import com.vargancys.learningassistant.module.game.view.BaseGameView;
 import com.vargancys.learningassistant.module.game.view.GameView;
 import com.vargancys.learningassistant.module.game.view.SelectGameView;
+import com.vargancys.learningassistant.module.game.view.SignAddView;
 import com.vargancys.learningassistant.module.game.view.SignGameView;
 
 import java.util.List;
@@ -79,6 +80,33 @@ public class BaseGamePresenter {
             ((SignGameView) mView).showGameSignAllData(mSigns);
         }else{
             ((SignGameView) mView).showGameSignAllError(404,"不错的打卡");
+        }
+    }
+
+    public void getGameContentData(long gameId) {
+        GameContent mContent = mRequest.getGameContentData(gameId);
+        if(mContent != null){
+            ((SignAddView) mView).initSignAddDataFinish(mContent);
+        }else{
+            ((SignAddView) mView).initSignAddDataError(404,"不需要打卡!");
+        }
+    }
+
+    public void isSignDataEmpty() {
+        boolean result = ((SignAddView) mView).isSignDataEmpty();
+        if(result){
+            ((SignAddView) mView).addSignData();
+        }else{
+            ((SignAddView) mView).isSignDataEmptyError(404,"错误的事情!");
+        }
+    }
+
+    public void saveSignData(GameSignContent content) {
+        boolean result = mRequest.saveSignData(content);
+        if(result){
+            ((SignAddView) mView).saveSignDataFinish();
+        }else{
+            ((SignAddView) mView).saveSignDataError(404,"没有保存成功!");
         }
     }
 }
