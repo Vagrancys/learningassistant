@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.game.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.module.game.adapter.GameSignAdapter;
 import com.vargancys.learningassistant.module.game.view.SignGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -33,8 +35,10 @@ import butterknife.ButterKnife;
 public class GameSignActivity extends BaseActivity implements SignGameView {
     @BindView(R.id.common_back)
     ImageView commonBack;
-    @BindView(R.id.common_title_data)
-    TextView commonTitleData;
+    @BindView(R.id.common_title)
+    TextView commonTitle;
+    @BindView(R.id.common_img)
+    ImageView commonImg;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefresh)
@@ -45,6 +49,7 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
     LinearLayout fragmentContent;
     private BaseGamePresenter mPresenter;
     private GameSignAdapter mAdapter;
+    private Handler mHandler;
     private List<GameSignContent> mSigns = new ArrayList<>();
 
     @Override
@@ -59,7 +64,28 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
         mPresenter.getGameSignAllData();
     }
 
+    @Override
+    public void initToolbar() {
+        commonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        commonTitle.setText(getResources().getString(R.string.game_sign_title));
+
+        commonImg.setImageResource(R.drawable.game_sign_add_normal);
+        commonImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GameSignAddActivity.launch(GameSignActivity.this);
+            }
+        });
+    }
+
     private void initData() {
+        mHandler = new Handler();
         swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
         swipeRefresh.setRefreshing(true);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -69,7 +95,7 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
                 mPresenter.getGameSignAllData();
             }
         });
-        mAdapter = new GameSignAdapter(recyclerView, mSigns);
+        mAdapter = new GameSignAdapter(getContext(), mSigns,mHandler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
     }
@@ -85,7 +111,7 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
         recyclerView.setVisibility(View.VISIBLE);
         mSigns.clear();
         mSigns.addAll(mSign);
-        mAdapter.notifityDataChange();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

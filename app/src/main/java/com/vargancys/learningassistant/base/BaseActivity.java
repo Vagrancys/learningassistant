@@ -43,6 +43,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void loadData(){}
 
     @Override
+    public void finish() {
+        super.finish();
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if(binder != null){

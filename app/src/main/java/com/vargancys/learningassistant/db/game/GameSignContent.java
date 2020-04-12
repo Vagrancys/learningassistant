@@ -45,13 +45,16 @@ public class GameSignContent {
     private int game_score_current;
 
     //关卡的错题数
-    private int game_error;
+    private int game_error_total;
 
-    @Generated(hash = 1416937588)
+    //关卡的复习错题数
+    private int game_error_current;
+
+    @Generated(hash = 1705060593)
     public GameSignContent(Long id, String time, String title, String summary,
             String game_title, int level, int game_subject_total,
             int game_subject_current, int game_score_total, int game_score_current,
-            int game_error) {
+            int game_error_total, int game_error_current) {
         this.id = id;
         this.time = time;
         this.title = title;
@@ -62,7 +65,8 @@ public class GameSignContent {
         this.game_subject_current = game_subject_current;
         this.game_score_total = game_score_total;
         this.game_score_current = game_score_current;
-        this.game_error = game_error;
+        this.game_error_total = game_error_total;
+        this.game_error_current = game_error_current;
     }
 
     @Generated(hash = 82160446)
@@ -149,11 +153,19 @@ public class GameSignContent {
         this.game_score_current = game_score_current;
     }
 
-    public int getGame_error() {
-        return this.game_error;
+    public int getGame_error_total() {
+        return this.game_error_total;
     }
 
-    public void setGame_error(int game_error) {
-        this.game_error = game_error;
+    public void setGame_error_total(int game_error_total) {
+        this.game_error_total = game_error_total;
+    }
+
+    public int getGame_error_current() {
+        return this.game_error_current;
+    }
+
+    public void setGame_error_current(int game_error_current) {
+        this.game_error_current = game_error_current;
     }
 }

@@ -34,7 +34,8 @@ public class GameSignContentDao extends AbstractDao<GameSignContent, Long> {
         public final static Property Game_subject_current = new Property(7, int.class, "game_subject_current", false, "GAME_SUBJECT_CURRENT");
         public final static Property Game_score_total = new Property(8, int.class, "game_score_total", false, "GAME_SCORE_TOTAL");
         public final static Property Game_score_current = new Property(9, int.class, "game_score_current", false, "GAME_SCORE_CURRENT");
-        public final static Property Game_error = new Property(10, int.class, "game_error", false, "GAME_ERROR");
+        public final static Property Game_error_total = new Property(10, int.class, "game_error_total", false, "GAME_ERROR_TOTAL");
+        public final static Property Game_error_current = new Property(11, int.class, "game_error_current", false, "GAME_ERROR_CURRENT");
     }
 
 
@@ -60,7 +61,8 @@ public class GameSignContentDao extends AbstractDao<GameSignContent, Long> {
                 "\"GAME_SUBJECT_CURRENT\" INTEGER NOT NULL ," + // 7: game_subject_current
                 "\"GAME_SCORE_TOTAL\" INTEGER NOT NULL ," + // 8: game_score_total
                 "\"GAME_SCORE_CURRENT\" INTEGER NOT NULL ," + // 9: game_score_current
-                "\"GAME_ERROR\" INTEGER NOT NULL );"); // 10: game_error
+                "\"GAME_ERROR_TOTAL\" INTEGER NOT NULL ," + // 10: game_error_total
+                "\"GAME_ERROR_CURRENT\" INTEGER NOT NULL );"); // 11: game_error_current
     }
 
     /** Drops the underlying database table. */
@@ -102,7 +104,8 @@ public class GameSignContentDao extends AbstractDao<GameSignContent, Long> {
         stmt.bindLong(8, entity.getGame_subject_current());
         stmt.bindLong(9, entity.getGame_score_total());
         stmt.bindLong(10, entity.getGame_score_current());
-        stmt.bindLong(11, entity.getGame_error());
+        stmt.bindLong(11, entity.getGame_error_total());
+        stmt.bindLong(12, entity.getGame_error_current());
     }
 
     @Override
@@ -138,7 +141,8 @@ public class GameSignContentDao extends AbstractDao<GameSignContent, Long> {
         stmt.bindLong(8, entity.getGame_subject_current());
         stmt.bindLong(9, entity.getGame_score_total());
         stmt.bindLong(10, entity.getGame_score_current());
-        stmt.bindLong(11, entity.getGame_error());
+        stmt.bindLong(11, entity.getGame_error_total());
+        stmt.bindLong(12, entity.getGame_error_current());
     }
 
     @Override
@@ -159,7 +163,8 @@ public class GameSignContentDao extends AbstractDao<GameSignContent, Long> {
             cursor.getInt(offset + 7), // game_subject_current
             cursor.getInt(offset + 8), // game_score_total
             cursor.getInt(offset + 9), // game_score_current
-            cursor.getInt(offset + 10) // game_error
+            cursor.getInt(offset + 10), // game_error_total
+            cursor.getInt(offset + 11) // game_error_current
         );
         return entity;
     }
@@ -176,7 +181,8 @@ public class GameSignContentDao extends AbstractDao<GameSignContent, Long> {
         entity.setGame_subject_current(cursor.getInt(offset + 7));
         entity.setGame_score_total(cursor.getInt(offset + 8));
         entity.setGame_score_current(cursor.getInt(offset + 9));
-        entity.setGame_error(cursor.getInt(offset + 10));
+        entity.setGame_error_total(cursor.getInt(offset + 10));
+        entity.setGame_error_current(cursor.getInt(offset + 11));
      }
     
     @Override

@@ -39,6 +39,7 @@
         android:textColor="@color/black"
         android:gravity="center"/>
     <LinearLayout
+        android:id="@+id/indicate_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -47,7 +48,7 @@
             android:id="@+id/sign_indicate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_indicate"
+            android:text="@string/sign_show_indicate"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_24sp"
             android:layout_marginEnd="@dimen/margin_width_10dp"/>
@@ -62,7 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/margin_width_5dp">
+        android:padding="@dimen/margin_width_5dp"
+        android:visibility="gone">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
