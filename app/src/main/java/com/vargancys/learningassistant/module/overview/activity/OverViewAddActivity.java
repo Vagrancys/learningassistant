@@ -248,6 +248,11 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
 
         mAdapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
             @Override
+            public void onShow(int position) {
+
+            }
+
+            @Override
             public void onClick(Node node, int position) {
                 mPid = node.getId();
                 Log.e(TAG,"mPid = "+mPid);

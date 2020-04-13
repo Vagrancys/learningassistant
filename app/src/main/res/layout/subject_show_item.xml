@@ -98,7 +98,6 @@
             android:layout_marginTop="@dimen/margin_width_5dp"
             android:layout_marginBottom="@dimen/margin_width_5dp"/>
         <LinearLayout
-            android:id="@+id/radio_subject_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -130,7 +129,6 @@
             android:background="@color/white_1"
             android:layout_marginTop="@dimen/margin_width_5dp"/>
         <LinearLayout
-            android:id="@+id/radio_subject_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -163,7 +161,6 @@
             android:layout_marginTop="@dimen/margin_width_5dp"/>
 
         <LinearLayout
-            android:id="@+id/radio_subject_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -195,7 +192,6 @@
             android:background="@color/white_1"
             android:layout_marginTop="@dimen/margin_width_5dp" />
         <LinearLayout
-            android:id="@+id/radio_subject_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -258,7 +254,6 @@
             android:layout_marginTop="@dimen/margin_width_5dp"
             android:layout_marginBottom="@dimen/margin_width_5dp"/>
         <LinearLayout
-            android:id="@+id/multiple_subject_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -290,7 +285,6 @@
             android:background="@color/white_1"
             android:layout_marginTop="@dimen/margin_width_5dp"/>
         <LinearLayout
-            android:id="@+id/multiple_subject_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -323,7 +317,6 @@
             android:layout_marginTop="@dimen/margin_width_5dp"/>
 
         <LinearLayout
-            android:id="@+id/multiple_subject_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -355,7 +348,6 @@
             android:background="@color/white_1"
             android:layout_marginTop="@dimen/margin_width_5dp" />
         <LinearLayout
-            android:id="@+id/multiple_subject_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -418,7 +410,6 @@
             android:layout_marginTop="@dimen/margin_width_5dp"
             android:layout_marginBottom="@dimen/margin_width_5dp"/>
         <LinearLayout
-            android:id="@+id/fill_subject_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -443,7 +434,6 @@
             android:background="@color/white_1"
             android:layout_marginTop="@dimen/margin_width_5dp"/>
         <LinearLayout
-            android:id="@+id/fill_subject_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -469,7 +459,6 @@
             android:layout_marginTop="@dimen/margin_width_5dp"/>
 
         <LinearLayout
-            android:id="@+id/fill_subject_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -494,7 +483,6 @@
             android:background="@color/white_1"
             android:layout_marginTop="@dimen/margin_width_5dp" />
         <LinearLayout
-            android:id="@+id/fill_subject_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -550,13 +538,11 @@
             android:layout_marginTop="@dimen/margin_width_5dp"
             android:layout_marginBottom="@dimen/margin_width_5dp"/>
         <LinearLayout
-            android:id="@+id/subjective_subject_consult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center|start">
             <ImageView
-                android:id="@+id/subjective_consult_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/subjective_consult_normal"

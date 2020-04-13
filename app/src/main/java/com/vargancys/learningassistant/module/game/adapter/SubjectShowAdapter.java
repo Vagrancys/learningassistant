@@ -162,6 +162,72 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
         }
     }
 
+    private void initSubjectiveData(SubjectShowViewHolder mHolder, GameSubjectiveItem mSubjective) {
+        mHolder.subjectiveConsultTitle.setText(mSubjective.getTitle());
+        mHolder.subjectiveSubjectTitle.setText(mSubjective.getAnswer());
+    }
+
+    private void initFillData(SubjectShowViewHolder mHolder, GameFillItem mFill) {
+        mHolder.fillSubjectTitle.setText(mFill.getTitle());
+        initFillState(mHolder);
+        switch (mFill.getAnswer()){
+            case 1:
+                mHolder.fillSubjectFirstImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+            case 2:
+                mHolder.fillSubjectSecondImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+            case 3:
+                mHolder.fillSubjectThirdImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+            case 4:
+                mHolder.fillSubjectFourthImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+        }
+
+        mHolder.fillSubjectFirstTitle.setText(mFill.getFirst_answer());
+        mHolder.fillSubjectSecondTitle.setText(mFill.getSecond_answer());
+        mHolder.fillSubjectThirdTitle.setText(mFill.getThird_answer());
+        mHolder.fillSubjectFourthTitle.setText(mFill.getFourth_answer());
+    }
+
+    private void initFillState(SubjectShowViewHolder mHolder) {
+        mHolder.fillSubjectFirstImg.setImageResource(R.drawable.subject_wrong_normal);
+        mHolder.fillSubjectSecondImg.setImageResource(R.drawable.subject_wrong_normal);
+        mHolder.fillSubjectThirdImg.setImageResource(R.drawable.subject_wrong_normal);
+        mHolder.fillSubjectFourthImg.setImageResource(R.drawable.subject_wrong_normal);
+    }
+
+    private void initMultipleData(SubjectShowViewHolder mHolder, GameMultipleItem mMultiple) {
+        mHolder.multipleSubjectTitle.setText(mMultiple.getTitle());
+        mHolder.multipleSubjectFirstTitle.setText(mMultiple.getFirst_title());
+        mHolder.multipleSubjectSecondTitle.setText(mMultiple.getSecond_title());
+        mHolder.multipleSubjectThirdTitle.setText(mMultiple.getThird_title());
+        mHolder.multipleSubjectFourthTitle.setText(mMultiple.getFourth_title());
+        int YesId = R.drawable.subject_yes_normal;
+        int WrongId = R.drawable.subject_wrong_normal;
+        if(mMultiple.getFirst_answer()){
+            mHolder.multipleSubjectFirstImg.setImageResource(YesId);
+        }else{
+            mHolder.multipleSubjectFirstImg.setImageResource(WrongId);
+        }
+        if(mMultiple.getSecond_answer()){
+            mHolder.multipleSubjectSecondImg.setImageResource(YesId);
+        }else{
+            mHolder.multipleSubjectSecondImg.setImageResource(WrongId);
+        }
+        if(mMultiple.getThird_answer()){
+            mHolder.multipleSubjectThirdImg.setImageResource(YesId);
+        }else{
+            mHolder.multipleSubjectThirdImg.setImageResource(WrongId);
+        }
+        if(mMultiple.getFourth_answer()){
+            mHolder.multipleSubjectFourthImg.setImageResource(YesId);
+        }else{
+            mHolder.multipleSubjectFourthImg.setImageResource(WrongId);
+        }
+    }
+
     private void initRadioData(SubjectShowViewHolder mHolder,GameRadioItem mRadio) {
         mHolder.radioSubjectTitle.setText(mRadio.getTitle());
         initRadioState(mHolder);
@@ -183,7 +249,6 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
         mHolder.radioSubjectSecondTitle.setText(mRadio.getSecond_title());
         mHolder.radioSubjectThirdTitle.setText(mRadio.getThird_title());
         mHolder.radioSubjectFourthTitle.setText(mRadio.getFourth_title());
-        
     }
 
     private void initRadioState(SubjectShowViewHolder mHolder) {
@@ -217,26 +282,18 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
         ImageView radioSubjectFirstImg;
         @BindView(R.id.radio_subject_first_title)
         TextView radioSubjectFirstTitle;
-        @BindView(R.id.radio_subject_first)
-        LinearLayout radioSubjectFirst;
         @BindView(R.id.radio_subject_second_img)
         ImageView radioSubjectSecondImg;
         @BindView(R.id.radio_subject_second_title)
         TextView radioSubjectSecondTitle;
-        @BindView(R.id.radio_subject_second)
-        LinearLayout radioSubjectSecond;
         @BindView(R.id.radio_subject_third_img)
         ImageView radioSubjectThirdImg;
         @BindView(R.id.radio_subject_third_title)
         TextView radioSubjectThirdTitle;
-        @BindView(R.id.radio_subject_third)
-        LinearLayout radioSubjectThird;
         @BindView(R.id.radio_subject_fourth_img)
         ImageView radioSubjectFourthImg;
         @BindView(R.id.radio_subject_fourth_title)
         TextView radioSubjectFourthTitle;
-        @BindView(R.id.radio_subject_fourth)
-        LinearLayout radioSubjectFourth;
         @BindView(R.id.radio_module)
         LinearLayout radioModule;
 
@@ -246,26 +303,18 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
         ImageView multipleSubjectFirstImg;
         @BindView(R.id.multiple_subject_first_title)
         TextView multipleSubjectFirstTitle;
-        @BindView(R.id.multiple_subject_first)
-        LinearLayout multipleSubjectFirst;
         @BindView(R.id.multiple_subject_second_img)
         ImageView multipleSubjectSecondImg;
         @BindView(R.id.multiple_subject_second_title)
         TextView multipleSubjectSecondTitle;
-        @BindView(R.id.multiple_subject_second)
-        LinearLayout multipleSubjectSecond;
         @BindView(R.id.multiple_subject_third_img)
         ImageView multipleSubjectThirdImg;
         @BindView(R.id.multiple_subject_third_title)
         TextView multipleSubjectThirdTitle;
-        @BindView(R.id.multiple_subject_third)
-        LinearLayout multipleSubjectThird;
         @BindView(R.id.multiple_subject_fourth_img)
         ImageView multipleSubjectFourthImg;
         @BindView(R.id.multiple_subject_fourth_title)
         TextView multipleSubjectFourthTitle;
-        @BindView(R.id.multiple_subject_fourth)
-        LinearLayout multipleSubjectFourth;
         @BindView(R.id.multiple_module)
         LinearLayout multipleModule;
 
@@ -275,37 +324,25 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
         ImageView fillSubjectFirstImg;
         @BindView(R.id.fill_subject_first_title)
         TextView fillSubjectFirstTitle;
-        @BindView(R.id.fill_subject_first)
-        LinearLayout fillSubjectFirst;
         @BindView(R.id.fill_subject_second_img)
         ImageView fillSubjectSecondImg;
         @BindView(R.id.fill_subject_second_title)
         TextView fillSubjectSecondTitle;
-        @BindView(R.id.fill_subject_second)
-        LinearLayout fillSubjectSecond;
         @BindView(R.id.fill_subject_third_img)
         ImageView fillSubjectThirdImg;
         @BindView(R.id.fill_subject_third_title)
         TextView fillSubjectThirdTitle;
-        @BindView(R.id.fill_subject_third)
-        LinearLayout fillSubjectThird;
         @BindView(R.id.fill_subject_fourth_img)
         ImageView fillSubjectFourthImg;
         @BindView(R.id.fill_subject_fourth_title)
         TextView fillSubjectFourthTitle;
-        @BindView(R.id.fill_subject_fourth)
-        LinearLayout fillSubjectFourth;
         @BindView(R.id.fill_module)
         LinearLayout fillModule;
 
         @BindView(R.id.subjective_subject_title)
         TextView subjectiveSubjectTitle;
-        @BindView(R.id.subjective_consult_img)
-        ImageView subjectiveConsultImg;
         @BindView(R.id.subjective_consult_title)
         TextView subjectiveConsultTitle;
-        @BindView(R.id.subjective_subject_consult)
-        LinearLayout subjectiveSubjectConsult;
         @BindView(R.id.subjective_module)
         LinearLayout subjectiveModule;
         private SubjectShowViewHolder(View view) {

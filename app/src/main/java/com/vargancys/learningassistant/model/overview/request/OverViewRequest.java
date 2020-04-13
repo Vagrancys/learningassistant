@@ -1,9 +1,11 @@
 package com.vargancys.learningassistant.model.overview.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.GameSubjectContentDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
@@ -21,10 +23,12 @@ public class OverViewRequest {
     private OverViewListItemDao mListItemDao;
     private DaoSession mDaoSession;
     private OverViewListContentDao mListContentDao;
+    private GameSubjectContentDao mSubjectContentDao;
     private OverViewRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mListItemDao = mDaoSession.getOverViewListItemDao();
         mListContentDao = mDaoSession.getOverViewListContentDao();
+        mSubjectContentDao = mDaoSession.getGameSubjectContentDao();
     }
 
     public static OverViewRequest getInstance(){
@@ -53,7 +57,15 @@ public class OverViewRequest {
     public boolean saveOverViewItem(long parent,List<OverViewListItem> mItems) {
         for (OverViewListItem mItem :mItems){
             mItem.setContentId(parent);
-            mListItemDao.insert(mItem);
+            long result =mListItemDao.insert(mItem);
+            GameSubjectContent mContent = new GameSubjectContent();
+            mContent.setTitle(mItem.getTitle());
+            mContent.setError(0);
+            mContent.setKnowId(result);
+            mContent.setLast_time("--");
+            mContent.setAnswer(0);
+            mContent.setProblem(0);
+            mSubjectContentDao.insert(mContent);
         }
         return true;
     }

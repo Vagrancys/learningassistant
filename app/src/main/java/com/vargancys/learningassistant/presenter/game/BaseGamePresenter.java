@@ -8,6 +8,7 @@ import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.game.request.BaseGameRequest;
+import com.vargancys.learningassistant.module.game.view.AddGameView;
 import com.vargancys.learningassistant.module.game.view.BaseGameView;
 import com.vargancys.learningassistant.module.game.view.GameView;
 import com.vargancys.learningassistant.module.game.view.SelectGameView;
@@ -126,5 +127,18 @@ public class BaseGamePresenter {
         }else{
             ((SubjectShowView) mView).showSubjectContentError(404,"没有该数据项啊");
         }
+    }
+
+    public void isSubjectDataEmpty() {
+        boolean result = ((AddGameView) mView).isSubjectDataEmpty();
+        if(!result){
+            ((AddGameView) mView).tidySubjectData();
+        }else{
+            ((AddGameView) mView).isSubjectDataError(404,"请填写完成在保存!");
+        }
+    }
+
+    public long saveSubjectItemData(GameSubjectItem mItem) {
+        return mRequest.saveSubjectItemData(mItem);
     }
 }

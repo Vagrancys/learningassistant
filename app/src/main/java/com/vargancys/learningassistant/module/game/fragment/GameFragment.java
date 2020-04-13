@@ -104,6 +104,7 @@ public class GameFragment extends BaseFragment implements GameView {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                getGameId();
                 swipeRefreshLayout.setRefreshing(true);
                 mPresenter.getGameListData(gameId);
             }

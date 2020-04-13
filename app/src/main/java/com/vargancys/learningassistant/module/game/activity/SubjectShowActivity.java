@@ -98,13 +98,13 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
             @Override
             public void onClick(View v) {
                 //添加问题的各种答题方法
+                SubjectAddActivity.launch(SubjectShowActivity.this,knowId);
             }
         });
     }
 
     private void init() {
         mHandler = new Handler();
-        //adapter没有完成
         mAdapter = new SubjectShowAdapter(getContext(),mItems,mHandler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);

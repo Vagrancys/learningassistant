@@ -108,4 +108,8 @@ public class BaseGameRequest {
     public List<GameSubjectItem> getSubjectItemData(Long id) {
         return mSubjectItemDao._queryGameSubjectContent_MItems(id);
     }
+
+    public long saveSubjectItemData(GameSubjectItem mItem) {
+        return mSubjectItemDao.insert(mItem);
+    }
 }

@@ -427,4 +427,35 @@
 
     <string name="subjective_subject_title">service的实现原理是什么呢?</string>
     <string name="subjective_consult_title">这个啊!服务啊!是一个在后台运行的没有与用户交互的组件，实现原理是执行service的函数，没什么技术含量!</string>
+
+    <string name="subject_add_title">添加问题</string>
+
+    <string name="add_title_text">问题:</string>
+    <string name="add_title_hint">请输入问题!</string>
+    <string name="add_class_text">题目类型:</string>
+    <string name="add_class_first_title">单选</string>
+    <string name="add_class_second_title">多选</string>
+    <string name="add_class_third_title">填空</string>
+    <string name="add_class_fourth_title">主观</string>
+
+    <string name="add_radio_title_hint">请输入单选问题!</string>
+    <string name="add_radio_first_title_hint">请输入单选第一个答案!</string>
+    <string name="add_radio_second_title_hint">请输入单选第二个答案!</string>
+    <string name="add_radio_third_title_hint">请输入单选第三个答案!</string>
+    <string name="add_radio_fourth_title_hint">请输入单选第四个答案!</string>
+
+    <string name="add_multiple_title_hint">请输入多选问题!</string>
+    <string name="add_multiple_first_title_hint">请输入多选第一个答案!</string>
+    <string name="add_multiple_second_title_hint">请输入多选第二个答案!</string>
+    <string name="add_multiple_third_title_hint">请输入多选第三个答案!</string>
+    <string name="add_multiple_fourth_title_hint">请输入多选第四个答案!</string>
+
+    <string name="add_fill_title_hint">请输入填空问题!</string>
+    <string name="add_fill_first_title_hint">请输入填空第一个答案!</string>
+    <string name="add_fill_second_title_hint">请输入填空第二个答案!</string>
+    <string name="add_fill_third_title_hint">请输入填空第三个答案!</string>
+    <string name="add_fill_fourth_title_hint">请输入填空第四个答案!</string>
+
+    <string name="add_subjective_title_hint">请输入主观问题!</string>
+    <string name="add_subjective_consult_title_hint">请输入主观答案!</string>
 </resources>
