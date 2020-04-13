@@ -391,4 +391,40 @@
     <string name="common_subject_title">知识问答详情</string>
     <string name="subject_title_empty">没有该知识的详情，你可以反馈给作者!</string>
     <string name="subject_item_empty">没有可以回答的问题!您可以添加一些!</string>
+
+    <string name="subject_problem_title">textView的使用方式是什么?</string>
+    <string name="subject_time">2020:20:20</string>
+    <string name="subject_class_first">单选</string>
+    <string name="subject_class_second">多选</string>
+    <string name="subject_class_third">填空</string>
+    <string name="subject_class_fourth">主观</string>
+    <string name="subject_details_show">详情展示</string>
+    <string name="subject_details_hide">详情隐藏</string>
+
+    <string name="subject_number_first">A.</string>
+    <string name="subject_number_second">B.</string>
+    <string name="subject_number_third">C.</string>
+    <string name="subject_number_fourth">D.</string>
+
+    <string name="subject_headline">题目:</string>
+    <string name="radio_subject_title">textView的常用函数是否正确呢?</string>
+    <string name="radio_subject_first_title">当然正确的啦!</string>
+    <string name="radio_subject_second_title">当然是是不对的啦!</string>
+    <string name="radio_subject_third_title">当然是不对的啦!</string>
+    <string name="radio_subject_fourth_title">当然是不正确的啦!</string>
+
+    <string name="multiple_subject_title">textView的常用函数有哪些呢?</string>
+    <string name="multiple_subject_first_title">这个啊!setText()</string>
+    <string name="multiple_subject_second_title">还有这个啊!setTextSize()</string>
+    <string name="multiple_subject_third_title">那这个呢!setImageResource()!</string>
+    <string name="multiple_subject_fourth_title">当然是这个了!setTextColor()!</string>
+
+    <string name="fill_subject_title">service的中文意思是__呢?</string>
+    <string name="fill_subject_first_title">这个啊!服务啊!</string>
+    <string name="fill_subject_second_title">是这个才对啊!活动</string>
+    <string name="fill_subject_third_title">不对,是这个呢!广播!</string>
+    <string name="fill_subject_fourth_title">应该是这个才对!内容提供器!</string>
+
+    <string name="subjective_subject_title">service的实现原理是什么呢?</string>
+    <string name="subjective_consult_title">这个啊!服务啊!是一个在后台运行的没有与用户交互的组件，实现原理是执行service的函数，没什么技术含量!</string>
 </resources>

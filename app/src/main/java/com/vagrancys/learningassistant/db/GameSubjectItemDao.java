@@ -1,16 +1,23 @@
 package com.vagrancys.learningassistant.db;
 
 import java.util.List;
+import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.internal.SqlUtils;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
+
+import com.vargancys.learningassistant.db.game.GameFillItem;
+import com.vargancys.learningassistant.db.game.GameMultipleItem;
+import com.vargancys.learningassistant.db.game.GameRadioItem;
+import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
 
@@ -29,7 +36,12 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property SubjectId = new Property(1, long.class, "subjectId", false, "SUBJECT_ID");
+        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
+        public final static Property Select = new Property(3, int.class, "select", false, "SELECT");
+        public final static Property Time = new Property(4, String.class, "time", false, "TIME");
     }
+
+    private DaoSession daoSession;
 
     private Query<GameSubjectItem> gameSubjectContent_MItemsQuery;
 
@@ -39,6 +51,7 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     
     public GameSubjectItemDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -46,7 +59,10 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GAME_SUBJECT_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
-                "\"SUBJECT_ID\" INTEGER NOT NULL );"); // 1: subjectId
+                "\"SUBJECT_ID\" INTEGER NOT NULL ," + // 1: subjectId
+                "\"TITLE\" TEXT," + // 2: title
+                "\"SELECT\" INTEGER NOT NULL ," + // 3: select
+                "\"TIME\" TEXT);"); // 4: time
     }
 
     /** Drops the underlying database table. */
@@ -64,6 +80,17 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getSubjectId());
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(3, title);
+        }
+        stmt.bindLong(4, entity.getSelect());
+ 
+        String time = entity.getTime();
+        if (time != null) {
+            stmt.bindString(5, time);
+        }
     }
 
     @Override
@@ -75,6 +102,23 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getSubjectId());
+ 
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(3, title);
+        }
+        stmt.bindLong(4, entity.getSelect());
+ 
+        String time = entity.getTime();
+        if (time != null) {
+            stmt.bindString(5, time);
+        }
+    }
+
+    @Override
+    protected final void attachEntity(GameSubjectItem entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override
@@ -86,7 +130,10 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     public GameSubjectItem readEntity(Cursor cursor, int offset) {
         GameSubjectItem entity = new GameSubjectItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1) // subjectId
+            cursor.getLong(offset + 1), // subjectId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
+            cursor.getInt(offset + 3), // select
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // time
         );
         return entity;
     }
@@ -95,6 +142,9 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     public void readEntity(Cursor cursor, GameSubjectItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setSubjectId(cursor.getLong(offset + 1));
+        entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setSelect(cursor.getInt(offset + 3));
+        entity.setTime(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
      }
     
     @Override
@@ -136,4 +186,124 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         return query.list();
     }
 
+    private String selectDeep;
+
+    protected String getSelectDeep() {
+        if (selectDeep == null) {
+            StringBuilder builder = new StringBuilder("SELECT ");
+            SqlUtils.appendColumns(builder, "T", getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T0", daoSession.getGameRadioItemDao().getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T1", daoSession.getGameMultipleItemDao().getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T2", daoSession.getGameFillItemDao().getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T3", daoSession.getGameSubjectiveItemDao().getAllColumns());
+            builder.append(" FROM GAME_SUBJECT_ITEM T");
+            builder.append(" LEFT JOIN GAME_RADIO_ITEM T0 ON T.\"SUBJECT_ID\"=T0.\"_id\"");
+            builder.append(" LEFT JOIN GAME_MULTIPLE_ITEM T1 ON T.\"SUBJECT_ID\"=T1.\"_id\"");
+            builder.append(" LEFT JOIN GAME_FILL_ITEM T2 ON T.\"SUBJECT_ID\"=T2.\"_id\"");
+            builder.append(" LEFT JOIN GAME_SUBJECTIVE_ITEM T3 ON T.\"SUBJECT_ID\"=T3.\"_id\"");
+            builder.append(' ');
+            selectDeep = builder.toString();
+        }
+        return selectDeep;
+    }
+    
+    protected GameSubjectItem loadCurrentDeep(Cursor cursor, boolean lock) {
+        GameSubjectItem entity = loadCurrent(cursor, 0, lock);
+        int offset = getAllColumns().length;
+
+        GameRadioItem radioItem = loadCurrentOther(daoSession.getGameRadioItemDao(), cursor, offset);
+         if(radioItem != null) {
+            entity.setRadioItem(radioItem);
+        }
+        offset += daoSession.getGameRadioItemDao().getAllColumns().length;
+
+        GameMultipleItem multipleItem = loadCurrentOther(daoSession.getGameMultipleItemDao(), cursor, offset);
+         if(multipleItem != null) {
+            entity.setMultipleItem(multipleItem);
+        }
+        offset += daoSession.getGameMultipleItemDao().getAllColumns().length;
+
+        GameFillItem fillItem = loadCurrentOther(daoSession.getGameFillItemDao(), cursor, offset);
+         if(fillItem != null) {
+            entity.setFillItem(fillItem);
+        }
+        offset += daoSession.getGameFillItemDao().getAllColumns().length;
+
+        GameSubjectiveItem subjectiveItem = loadCurrentOther(daoSession.getGameSubjectiveItemDao(), cursor, offset);
+         if(subjectiveItem != null) {
+            entity.setSubjectiveItem(subjectiveItem);
+        }
+
+        return entity;    
+    }
+
+    public GameSubjectItem loadDeep(Long key) {
+        assertSinglePk();
+        if (key == null) {
+            return null;
+        }
+
+        StringBuilder builder = new StringBuilder(getSelectDeep());
+        builder.append("WHERE ");
+        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
+        String sql = builder.toString();
+        
+        String[] keyArray = new String[] { key.toString() };
+        Cursor cursor = db.rawQuery(sql, keyArray);
+        
+        try {
+            boolean available = cursor.moveToFirst();
+            if (!available) {
+                return null;
+            } else if (!cursor.isLast()) {
+                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
+            }
+            return loadCurrentDeep(cursor, true);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
+    public List<GameSubjectItem> loadAllDeepFromCursor(Cursor cursor) {
+        int count = cursor.getCount();
+        List<GameSubjectItem> list = new ArrayList<GameSubjectItem>(count);
+        
+        if (cursor.moveToFirst()) {
+            if (identityScope != null) {
+                identityScope.lock();
+                identityScope.reserveRoom(count);
+            }
+            try {
+                do {
+                    list.add(loadCurrentDeep(cursor, false));
+                } while (cursor.moveToNext());
+            } finally {
+                if (identityScope != null) {
+                    identityScope.unlock();
+                }
+            }
+        }
+        return list;
+    }
+    
+    protected List<GameSubjectItem> loadDeepAllAndCloseCursor(Cursor cursor) {
+        try {
+            return loadAllDeepFromCursor(cursor);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+
+    /** A raw-style query where you can pass any WHERE clause and arguments. */
+    public List<GameSubjectItem> queryDeep(String where, String... selectionArg) {
+        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
+        return loadDeepAllAndCloseCursor(cursor);
+    }
+ 
 }

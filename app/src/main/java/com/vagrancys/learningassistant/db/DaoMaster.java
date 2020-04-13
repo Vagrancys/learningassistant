@@ -36,6 +36,10 @@ public class DaoMaster extends AbstractDaoMaster {
         GameSignContentDao.createTable(db, ifNotExists);
         GameSubjectContentDao.createTable(db, ifNotExists);
         GameSubjectItemDao.createTable(db, ifNotExists);
+        GameFillItemDao.createTable(db, ifNotExists);
+        GameMultipleItemDao.createTable(db, ifNotExists);
+        GameRadioItemDao.createTable(db, ifNotExists);
+        GameSubjectiveItemDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -55,6 +59,10 @@ public class DaoMaster extends AbstractDaoMaster {
         GameSignContentDao.dropTable(db, ifExists);
         GameSubjectContentDao.dropTable(db, ifExists);
         GameSubjectItemDao.dropTable(db, ifExists);
+        GameFillItemDao.dropTable(db, ifExists);
+        GameMultipleItemDao.dropTable(db, ifExists);
+        GameRadioItemDao.dropTable(db, ifExists);
+        GameSubjectiveItemDao.dropTable(db, ifExists);
     }
 
     /**
@@ -88,6 +96,10 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(GameSignContentDao.class);
         registerDaoClass(GameSubjectContentDao.class);
         registerDaoClass(GameSubjectItemDao.class);
+        registerDaoClass(GameFillItemDao.class);
+        registerDaoClass(GameMultipleItemDao.class);
+        registerDaoClass(GameRadioItemDao.class);
+        registerDaoClass(GameSubjectiveItemDao.class);
     }
 
     public DaoSession newSession() {
