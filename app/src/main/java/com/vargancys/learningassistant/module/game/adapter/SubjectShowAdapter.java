@@ -130,7 +130,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
             case 1:
                 GameRadioItem mRadio = mItem.getRadioItem();
                 if(mRadio !=null){
-                    initRadioData(mRadio);
+                    initRadioData(mHolder,mRadio);
                     mHolder.radioModule.setVisibility(View.VISIBLE);
                     mHolder.radioModule.startAnimation(mDownScaleAnimation);
                 }
@@ -138,7 +138,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
             case 2:
                 GameMultipleItem mMultiple = mItem.getMultipleItem();
                 if(mMultiple != null){
-                    initMultipleData(mMultiple);
+                    initMultipleData(mHolder,mMultiple);
                     mHolder.multipleModule.setVisibility(View.VISIBLE);
                     mHolder.multipleModule.startAnimation(mDownScaleAnimation);
                 }
@@ -146,7 +146,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
             case 3:
                 GameFillItem mFill = mItem.getFillItem();
                 if(mFill != null){
-                    initFillData(mFill);
+                    initFillData(mHolder,mFill);
                     mHolder.fillModule.setVisibility(View.VISIBLE);
                     mHolder.fillModule.startAnimation(mDownScaleAnimation);
                 }
@@ -154,12 +154,43 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
             case 4:
                 GameSubjectiveItem mSubjective = mItem.getSubjectiveItem();
                 if(mSubjective != null){
-                    initSubjectiveData(mSubjective);
+                    initSubjectiveData(mHolder,mSubjective);
                     mHolder.subjectiveModule.setVisibility(View.VISIBLE);
                     mHolder.subjectiveModule.startAnimation(mDownScaleAnimation);
                 }
                 break;
         }
+    }
+
+    private void initRadioData(SubjectShowViewHolder mHolder,GameRadioItem mRadio) {
+        mHolder.radioSubjectTitle.setText(mRadio.getTitle());
+        initRadioState(mHolder);
+        switch (mRadio.getYes()){
+            case 1:
+                mHolder.radioSubjectFirstImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+            case 2:
+                mHolder.radioSubjectSecondImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+            case 3:
+                mHolder.radioSubjectThirdImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+            case 4:
+                mHolder.radioSubjectFourthImg.setImageResource(R.drawable.subject_yes_normal);
+                break;
+        }
+        mHolder.radioSubjectFirstTitle.setText(mRadio.getFirst_title());
+        mHolder.radioSubjectSecondTitle.setText(mRadio.getSecond_title());
+        mHolder.radioSubjectThirdTitle.setText(mRadio.getThird_title());
+        mHolder.radioSubjectFourthTitle.setText(mRadio.getFourth_title());
+        
+    }
+
+    private void initRadioState(SubjectShowViewHolder mHolder) {
+        mHolder.radioSubjectFirstImg.setImageResource(R.drawable.subject_wrong_normal);
+        mHolder.radioSubjectSecondImg.setImageResource(R.drawable.subject_wrong_normal);
+        mHolder.radioSubjectThirdImg.setImageResource(R.drawable.subject_wrong_normal);
+        mHolder.radioSubjectFourthImg.setImageResource(R.drawable.subject_wrong_normal);
     }
 
     @Override
