@@ -119,7 +119,7 @@ public class BaseGameRequest {
 
 
     public List<GameSubjectItem> getSubjectItemData(Long id) {
-        return mSubjectItemDao._queryGameSubjectContent_MItems(id);
+        return mSubjectItemDao.queryBuilder().where(GameSubjectItemDao.Properties.SubjectId.eq(id)).list();
     }
 
     public long saveSubjectItemData(GameSubjectItem mItem) {
@@ -142,14 +142,17 @@ public class BaseGameRequest {
     }
 
     public long saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId) {
+        updateContent(subjectId);
         return mMultipleItemDao.insert(mMultiple);
     }
 
     public long saveGameFillItemData(GameFillItem mFill,long subjectId) {
+        updateContent(subjectId);
         return mFillItemDao.insert(mFill);
     }
 
     public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
+        updateContent(subjectId);
         return mSubjectiveItemDao.insert(mSubjective);
     }
 }

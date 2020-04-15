@@ -84,6 +84,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
                 selectText = R.string.subject_class_fourth;
                 break;
         }
+        //TODO 没有反应布局变化和布局有点怪
         mHolder.subjectClass.setText(mContext.getString(selectText));
         mHolder.subjectDetails.setOnClickListener(new View.OnClickListener() {
             @Override

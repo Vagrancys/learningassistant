@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.game.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,6 +43,7 @@ import butterknife.ButterKnife;
  * 添加单个问题
  */
 public class SubjectAddActivity extends BaseActivity implements AddGameView {
+    private static String TAG = "SubjectAddActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -149,6 +151,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         Intent intent = getIntent();
         if (intent != null) {
             knowId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            //TODO 处理id的各种命名和重构，因为都分不清哪个id是哪个模块
             mSubjectContent = intent.getLongExtra(ConstantsUtils.KNOW_SUBJECT_ID,0);
         }
         initData();
@@ -325,7 +328,10 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
 
     @Override
     public boolean isSubjectDataEmpty() {
-        return addTitleEdit.getText().toString().isEmpty()&&isEmptyItem(mSelect);
+
+        boolean result =isEmptyItem(mSelect);
+        Log.e(TAG,"isSubjectDataEmpty ="+result);
+        return addTitleEdit.getText().toString().isEmpty()||result;
     }
 
     private boolean isEmptyItem(int mSelect) {
@@ -344,37 +350,38 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
                 result = isEmptySubjective();
                 break;
         }
+        Log.e(TAG,"result ="+result);
         return result;
     }
 
     private boolean isEmptyMultiple() {
         return addMultipleTitleEdit.getText().toString().isEmpty()
-                &&addMultipleFirstTitleEdit.getText().toString().isEmpty()
-                &&addMultipleSecondTitleEdit.getText().toString().isEmpty()
-                &&addMultipleThirdTitleEdit.getText().toString().isEmpty()
-                &&addMultipleFourthTitleEdit.getText().toString().isEmpty()
-                &&(mMultipleFirstId|| mMultipleSecondId|| mMultipleThirdId || mMultipleFourthId);
+                ||addMultipleFirstTitleEdit.getText().toString().isEmpty()
+                ||addMultipleSecondTitleEdit.getText().toString().isEmpty()
+                ||addMultipleThirdTitleEdit.getText().toString().isEmpty()
+                ||addMultipleFourthTitleEdit.getText().toString().isEmpty()
+                ||(mMultipleFirstId&& mMultipleSecondId&& mMultipleThirdId && mMultipleFourthId);
     }
 
     private boolean isEmptyRadio() {
         return addRadioTitleEdit.getText().toString().isEmpty()
-                &&mRadioId == 0&&addRadioFirstTitleEdit.getText().toString().isEmpty()
-                &&addRadioSecondTitleEdit.getText().toString().isEmpty()
-                &&addRadioThirdTitleEdit.getText().toString().isEmpty()
-                &&addRadioFourthTitleEdit.getText().toString().isEmpty();
+                ||mRadioId == 0||addRadioFirstTitleEdit.getText().toString().isEmpty()
+                ||addRadioSecondTitleEdit.getText().toString().isEmpty()
+                ||addRadioThirdTitleEdit.getText().toString().isEmpty()
+                ||addRadioFourthTitleEdit.getText().toString().isEmpty();
     }
 
     private boolean isEmptyFill(){
         return mFillId ==0 &&addFillTitleEdit.getText().toString().isEmpty()
-                &&addFillFirstTitleEdit.getText().toString().isEmpty()
-                &&addFillSecondTitleEdit.getText().toString().isEmpty()
-                &&addFillThirdTitleEdit.getText().toString().isEmpty()
-                &&addFillFourthTitleEdit.getText().toString().isEmpty();
+                ||addFillFirstTitleEdit.getText().toString().isEmpty()
+                ||addFillSecondTitleEdit.getText().toString().isEmpty()
+                ||addFillThirdTitleEdit.getText().toString().isEmpty()
+                ||addFillFourthTitleEdit.getText().toString().isEmpty();
     }
 
     private boolean isEmptySubjective(){
         return addSubjectiveTitleEdit.getText().toString().isEmpty()
-                &&addSubjectiveConsultTitleEdit.getText().toString().isEmpty();
+                ||addSubjectiveConsultTitleEdit.getText().toString().isEmpty();
     }
 
     @Override
@@ -399,7 +406,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         //答题的类型
         mItem.setSelect(mSelect);
         //父级的id
-        mItem.setSubjectId(knowId);
+        mItem.setSubjectId(mSubjectContent);
         //添加时间
         mItem.setTime(TimeUtils.getTime());
         //添加的标题
