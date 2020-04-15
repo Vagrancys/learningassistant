@@ -17,6 +17,7 @@ import com.vagrancys.learningassistant.db.OverViewListContentDao;
  * e-mail: 18050829067@163.com
  * time  : 2020/04/03
  * version:1.0
+ * 知识结构化的总数据
  */
 @Entity
 public class OverViewListContent {

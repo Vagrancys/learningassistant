@@ -27,4 +27,6 @@ public class ConstantsUtils {
     public static final String OVERVIEW_SELECTED_ID = "overview_selected_id";
     public static final String OVERVIEW_ID = "overview_id";
     public static final String GAME_ID = "game_id";
+    //关卡的知识单项id
+    public static final String KNOW_SUBJECT_ID = "know_subject_id";
 }

@@ -10,4 +10,6 @@ public interface AddGameView extends BaseGameView{
     boolean isSubjectDataEmpty();
     void tidySubjectData();
     void isSubjectDataError(int error,String message);
+    void showAddDataFinish();
+    void showAddDataError(int error,String message);
 }

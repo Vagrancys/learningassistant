@@ -2,9 +2,13 @@ package com.vargancys.learningassistant.presenter.game;
 
 import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.game.GameContent;
+import com.vargancys.learningassistant.db.game.GameFillItem;
+import com.vargancys.learningassistant.db.game.GameMultipleItem;
+import com.vargancys.learningassistant.db.game.GameRadioItem;
 import com.vargancys.learningassistant.db.game.GameSignContent;
 import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
+import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.game.request.BaseGameRequest;
@@ -140,5 +144,34 @@ public class BaseGamePresenter {
 
     public long saveSubjectItemData(GameSubjectItem mItem) {
         return mRequest.saveSubjectItemData(mItem);
+    }
+
+    public void saveGameRadioItemData(GameRadioItem mRadio,long subjectId) {
+        long result = mRequest.saveGameRadioItemData(mRadio,subjectId);
+        showView(result);
+    }
+
+    public void saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId) {
+        long result = mRequest.saveGameMultipleItemData(mMultiple,subjectId);
+        showView(result);
+    }
+
+    public void saveGameFillItemData(GameFillItem mFill,long subjectId) {
+        long result = mRequest.saveGameFillItemData(mFill,subjectId);
+        showView(result);
+    }
+
+
+    public void saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
+        long result = mRequest.saveGameSubjectiveItemData(mSubjective,subjectId);
+        showView(result);
+    }
+
+    private void showView(long result){
+        if(result != 0){
+            ((AddGameView) mView).showAddDataFinish();
+        }else{
+            ((AddGameView) mView).showAddDataError(404,"不错的关系啊!");
+        }
     }
 }

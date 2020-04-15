@@ -2,16 +2,24 @@ package com.vargancys.learningassistant.model.game.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.GameContentDao;
+import com.vagrancys.learningassistant.db.GameFillItemDao;
+import com.vagrancys.learningassistant.db.GameMultipleItemDao;
+import com.vagrancys.learningassistant.db.GameRadioItemDao;
 import com.vagrancys.learningassistant.db.GameSignContentDao;
 import com.vagrancys.learningassistant.db.GameSubjectContentDao;
 import com.vagrancys.learningassistant.db.GameSubjectItemDao;
+import com.vagrancys.learningassistant.db.GameSubjectiveItemDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.game.GameContent;
+import com.vargancys.learningassistant.db.game.GameFillItem;
+import com.vargancys.learningassistant.db.game.GameMultipleItem;
+import com.vargancys.learningassistant.db.game.GameRadioItem;
 import com.vargancys.learningassistant.db.game.GameSignContent;
 import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
+import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 
@@ -32,6 +40,10 @@ public class BaseGameRequest {
     private GameSignContentDao mSignContentDao;
     private GameSubjectContentDao mSubjectContentDao;
     private GameSubjectItemDao mSubjectItemDao;
+    private GameRadioItemDao mRadioItemDao;
+    private GameMultipleItemDao mMultipleItemDao;
+    private GameFillItemDao mFillItemDao;
+    private GameSubjectiveItemDao mSubjectiveItemDao;
     private BaseGameRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mGameContentDao = mDaoSession.getGameContentDao();
@@ -40,6 +52,7 @@ public class BaseGameRequest {
         mSignContentDao = mDaoSession.getGameSignContentDao();
         mSubjectContentDao = mDaoSession.getGameSubjectContentDao();
         mSubjectItemDao = mDaoSession.getGameSubjectItemDao();
+        mRadioItemDao = mDaoSession.getGameRadioItemDao();
     }
 
     public static BaseGameRequest getInstance(){
@@ -111,5 +124,32 @@ public class BaseGameRequest {
 
     public long saveSubjectItemData(GameSubjectItem mItem) {
         return mSubjectItemDao.insert(mItem);
+    }
+
+    public long saveGameRadioItemData(GameRadioItem mRadio,long subjectId) {
+
+        updateContent(subjectId);
+        return mRadioItemDao.insert(mRadio);
+    }
+
+    private void updateContent(long subjectId) {
+        GameContent gameContent = mGameContentDao.load(subjectId);
+        gameContent.setSubject(gameContent.getSubject()+1);
+        mGameContentDao.update(gameContent);
+        GameSubjectContent gameSubjectContent = mSubjectContentDao.load(subjectId);
+        gameSubjectContent.setProblem(gameSubjectContent.getProblem()+1);
+        mSubjectContentDao.update(gameSubjectContent);
+    }
+
+    public long saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId) {
+        return mMultipleItemDao.insert(mMultiple);
+    }
+
+    public long saveGameFillItemData(GameFillItem mFill,long subjectId) {
+        return mFillItemDao.insert(mFill);
+    }
+
+    public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
+        return mSubjectiveItemDao.insert(mSubjective);
     }
 }

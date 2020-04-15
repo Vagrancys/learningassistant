@@ -242,7 +242,7 @@
                 android:textColor="@color/black_2"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
-                android:id="@+id/add_multiple_title"
+                android:id="@+id/add_multiple_title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_multiple_title_hint"
@@ -273,7 +273,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
-                android:id="@+id/add_multiple_first_title"
+                android:id="@+id/add_multiple_first_title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_multiple_first_title_hint"
@@ -305,7 +305,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
-                android:id="@+id/add_multiple_second_title"
+                android:id="@+id/add_multiple_second_title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_multiple_second_title_hint"
@@ -338,7 +338,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
-                android:id="@+id/add_multiple_third_title"
+                android:id="@+id/add_multiple_third_title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_multiple_third_title_hint"
@@ -370,7 +370,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
-                android:id="@+id/add_multiple_fourth_title"
+                android:id="@+id/add_multiple_fourth_title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_multiple_fourth_title_hint"
@@ -432,7 +432,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_width_10dp" />
                 <EditText
-                    android:id="@+id/add_fill_first_title"
+                    android:id="@+id/add_fill_first_title_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/add_fill_first_title_hint"
@@ -457,7 +457,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_width_10dp" />
                 <EditText
-                    android:id="@+id/add_fill_second_title"
+                    android:id="@+id/add_fill_second_title_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/add_fill_second_title_hint"
@@ -483,7 +483,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_width_10dp" />
                 <EditText
-                    android:id="@+id/add_fill_third_title"
+                    android:id="@+id/add_fill_third_title_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/add_fill_third_title_hint"
@@ -508,7 +508,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_width_10dp" />
                 <EditText
-                    android:id="@+id/add_fill_fourth_title"
+                    android:id="@+id/add_fill_fourth_title_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/add_fill_fourth_title_hint"
@@ -540,7 +540,7 @@
                 android:textColor="@color/black"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
-                android:id="@+id/add_subjective_title"
+                android:id="@+id/add_subjective_title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_subjective_title_hint"
@@ -566,7 +566,7 @@
                 android:src="@drawable/subjective_consult_normal"
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
             <EditText
-                android:id="@+id/add_subjective_consult_title"
+                android:id="@+id/add_subjective_consult_title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_subjective_consult_title_hint"

@@ -1,10 +1,12 @@
 package com.vargancys.learningassistant.model.overview.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.GameContentDao;
 import com.vagrancys.learningassistant.db.GameSubjectContentDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
@@ -24,11 +26,13 @@ public class OverViewRequest {
     private DaoSession mDaoSession;
     private OverViewListContentDao mListContentDao;
     private GameSubjectContentDao mSubjectContentDao;
+    private GameContentDao mGameContentDao;
     private OverViewRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mListItemDao = mDaoSession.getOverViewListItemDao();
         mListContentDao = mDaoSession.getOverViewListContentDao();
         mSubjectContentDao = mDaoSession.getGameSubjectContentDao();
+        mGameContentDao = mDaoSession.getGameContentDao();
     }
 
     public static OverViewRequest getInstance(){
@@ -51,7 +55,20 @@ public class OverViewRequest {
     }
 
     public long saveOverViewContent(OverViewListContent mContent) {
-       return mListContentDao.insert(mContent);
+        long result = mListContentDao.insert(mContent);
+        GameContent gameContent = new GameContent();
+        gameContent.setTitle(mContent.getTitle());
+        gameContent.setSubject(0);
+        gameContent.setSubject_current(0);
+        gameContent.setGame_title(mContent.getTitle());
+        gameContent.setScore(mContent.getGrade());
+        gameContent.setOverviewId(result);
+        gameContent.setError(0);
+        gameContent.setDifficulty(mContent.getLevel());
+        gameContent.setError_current(0);
+        gameContent.setScore_current(0);
+        mGameContentDao.insert(gameContent);
+       return result;
     }
 
     public boolean saveOverViewItem(long parent,List<OverViewListItem> mItems) {

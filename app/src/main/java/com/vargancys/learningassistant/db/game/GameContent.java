@@ -10,6 +10,8 @@ import org.greenrobot.greendao.annotation.Generated;
  * e-mail: 18050829067@163.com
  * time  : 2020/04/10
  * version:1.0
+ * 关卡的数据统计中心
+ * 关卡的总数据
  */
 @Entity
 public class GameContent {

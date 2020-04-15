@@ -17,6 +17,7 @@ import com.vagrancys.learningassistant.db.GameSubjectContentDao;
  * e-mail: 18050829067@163.com
  * time  : 2020/04/12
  * version:1.0
+ * 关卡中的单个知识项的数据
  */
 @Entity
 public class GameSubjectContent {

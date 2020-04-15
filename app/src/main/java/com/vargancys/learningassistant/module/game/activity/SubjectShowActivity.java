@@ -62,7 +62,11 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     private SubjectShowAdapter mAdapter;
     private BaseGamePresenter mPresenter;
     private Handler mHandler;
+    //总结知识单项的id;
     private long knowId;
+    //题目中心的id
+    private long mSubjectContent;
+
     private List<GameSubjectItem> mItems =new ArrayList<>();
 
     @Override
@@ -98,7 +102,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
             @Override
             public void onClick(View v) {
                 //添加问题的各种答题方法
-                SubjectAddActivity.launch(SubjectShowActivity.this,knowId);
+                SubjectAddActivity.launch(SubjectShowActivity.this,knowId,mSubjectContent);
             }
         });
     }
@@ -128,6 +132,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     @Override
     public void showSubjectContentFinish(GameSubjectContent mContent) {
         swipeRefreshLayout.setRefreshing(false);
+        mSubjectContent = mContent.getId();
         subjectTitle.setText(mContent.getTitle());
         subjectLastTime.setText(mContent.getLast_time());
         subjectError.setText(mContent.getError()+"道");
