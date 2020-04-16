@@ -25,16 +25,15 @@ public class GameMultipleItemDao extends AbstractDao<GameMultipleItem, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property SubjectId = new Property(1, long.class, "subjectId", false, "SUBJECT_ID");
-        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
-        public final static Property First_answer = new Property(3, boolean.class, "first_answer", false, "FIRST_ANSWER");
-        public final static Property Second_answer = new Property(4, boolean.class, "second_answer", false, "SECOND_ANSWER");
-        public final static Property Third_answer = new Property(5, boolean.class, "third_answer", false, "THIRD_ANSWER");
-        public final static Property Fourth_answer = new Property(6, boolean.class, "fourth_answer", false, "FOURTH_ANSWER");
-        public final static Property First_title = new Property(7, String.class, "first_title", false, "FIRST_TITLE");
-        public final static Property Second_title = new Property(8, String.class, "second_title", false, "SECOND_TITLE");
-        public final static Property Third_title = new Property(9, String.class, "third_title", false, "THIRD_TITLE");
-        public final static Property Fourth_title = new Property(10, String.class, "fourth_title", false, "FOURTH_TITLE");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
+        public final static Property First_answer = new Property(2, boolean.class, "first_answer", false, "FIRST_ANSWER");
+        public final static Property Second_answer = new Property(3, boolean.class, "second_answer", false, "SECOND_ANSWER");
+        public final static Property Third_answer = new Property(4, boolean.class, "third_answer", false, "THIRD_ANSWER");
+        public final static Property Fourth_answer = new Property(5, boolean.class, "fourth_answer", false, "FOURTH_ANSWER");
+        public final static Property First_title = new Property(6, String.class, "first_title", false, "FIRST_TITLE");
+        public final static Property Second_title = new Property(7, String.class, "second_title", false, "SECOND_TITLE");
+        public final static Property Third_title = new Property(8, String.class, "third_title", false, "THIRD_TITLE");
+        public final static Property Fourth_title = new Property(9, String.class, "fourth_title", false, "FOURTH_TITLE");
     }
 
 
@@ -51,16 +50,15 @@ public class GameMultipleItemDao extends AbstractDao<GameMultipleItem, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GAME_MULTIPLE_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
-                "\"SUBJECT_ID\" INTEGER NOT NULL ," + // 1: subjectId
-                "\"TITLE\" TEXT," + // 2: title
-                "\"FIRST_ANSWER\" INTEGER NOT NULL ," + // 3: first_answer
-                "\"SECOND_ANSWER\" INTEGER NOT NULL ," + // 4: second_answer
-                "\"THIRD_ANSWER\" INTEGER NOT NULL ," + // 5: third_answer
-                "\"FOURTH_ANSWER\" INTEGER NOT NULL ," + // 6: fourth_answer
-                "\"FIRST_TITLE\" TEXT," + // 7: first_title
-                "\"SECOND_TITLE\" TEXT," + // 8: second_title
-                "\"THIRD_TITLE\" TEXT," + // 9: third_title
-                "\"FOURTH_TITLE\" TEXT);"); // 10: fourth_title
+                "\"TITLE\" TEXT," + // 1: title
+                "\"FIRST_ANSWER\" INTEGER NOT NULL ," + // 2: first_answer
+                "\"SECOND_ANSWER\" INTEGER NOT NULL ," + // 3: second_answer
+                "\"THIRD_ANSWER\" INTEGER NOT NULL ," + // 4: third_answer
+                "\"FOURTH_ANSWER\" INTEGER NOT NULL ," + // 5: fourth_answer
+                "\"FIRST_TITLE\" TEXT," + // 6: first_title
+                "\"SECOND_TITLE\" TEXT," + // 7: second_title
+                "\"THIRD_TITLE\" TEXT," + // 8: third_title
+                "\"FOURTH_TITLE\" TEXT);"); // 9: fourth_title
     }
 
     /** Drops the underlying database table. */
@@ -77,35 +75,34 @@ public class GameMultipleItemDao extends AbstractDao<GameMultipleItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
-        stmt.bindLong(4, entity.getFirst_answer() ? 1L: 0L);
-        stmt.bindLong(5, entity.getSecond_answer() ? 1L: 0L);
-        stmt.bindLong(6, entity.getThird_answer() ? 1L: 0L);
-        stmt.bindLong(7, entity.getFourth_answer() ? 1L: 0L);
+        stmt.bindLong(3, entity.getFirst_answer() ? 1L: 0L);
+        stmt.bindLong(4, entity.getSecond_answer() ? 1L: 0L);
+        stmt.bindLong(5, entity.getThird_answer() ? 1L: 0L);
+        stmt.bindLong(6, entity.getFourth_answer() ? 1L: 0L);
  
         String first_title = entity.getFirst_title();
         if (first_title != null) {
-            stmt.bindString(8, first_title);
+            stmt.bindString(7, first_title);
         }
  
         String second_title = entity.getSecond_title();
         if (second_title != null) {
-            stmt.bindString(9, second_title);
+            stmt.bindString(8, second_title);
         }
  
         String third_title = entity.getThird_title();
         if (third_title != null) {
-            stmt.bindString(10, third_title);
+            stmt.bindString(9, third_title);
         }
  
         String fourth_title = entity.getFourth_title();
         if (fourth_title != null) {
-            stmt.bindString(11, fourth_title);
+            stmt.bindString(10, fourth_title);
         }
     }
 
@@ -117,35 +114,34 @@ public class GameMultipleItemDao extends AbstractDao<GameMultipleItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
-        stmt.bindLong(4, entity.getFirst_answer() ? 1L: 0L);
-        stmt.bindLong(5, entity.getSecond_answer() ? 1L: 0L);
-        stmt.bindLong(6, entity.getThird_answer() ? 1L: 0L);
-        stmt.bindLong(7, entity.getFourth_answer() ? 1L: 0L);
+        stmt.bindLong(3, entity.getFirst_answer() ? 1L: 0L);
+        stmt.bindLong(4, entity.getSecond_answer() ? 1L: 0L);
+        stmt.bindLong(5, entity.getThird_answer() ? 1L: 0L);
+        stmt.bindLong(6, entity.getFourth_answer() ? 1L: 0L);
  
         String first_title = entity.getFirst_title();
         if (first_title != null) {
-            stmt.bindString(8, first_title);
+            stmt.bindString(7, first_title);
         }
  
         String second_title = entity.getSecond_title();
         if (second_title != null) {
-            stmt.bindString(9, second_title);
+            stmt.bindString(8, second_title);
         }
  
         String third_title = entity.getThird_title();
         if (third_title != null) {
-            stmt.bindString(10, third_title);
+            stmt.bindString(9, third_title);
         }
  
         String fourth_title = entity.getFourth_title();
         if (fourth_title != null) {
-            stmt.bindString(11, fourth_title);
+            stmt.bindString(10, fourth_title);
         }
     }
 
@@ -158,16 +154,15 @@ public class GameMultipleItemDao extends AbstractDao<GameMultipleItem, Long> {
     public GameMultipleItem readEntity(Cursor cursor, int offset) {
         GameMultipleItem entity = new GameMultipleItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // subjectId
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
-            cursor.getShort(offset + 3) != 0, // first_answer
-            cursor.getShort(offset + 4) != 0, // second_answer
-            cursor.getShort(offset + 5) != 0, // third_answer
-            cursor.getShort(offset + 6) != 0, // fourth_answer
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // first_title
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // second_title
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // third_title
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // fourth_title
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
+            cursor.getShort(offset + 2) != 0, // first_answer
+            cursor.getShort(offset + 3) != 0, // second_answer
+            cursor.getShort(offset + 4) != 0, // third_answer
+            cursor.getShort(offset + 5) != 0, // fourth_answer
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // first_title
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // second_title
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // third_title
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // fourth_title
         );
         return entity;
     }
@@ -175,16 +170,15 @@ public class GameMultipleItemDao extends AbstractDao<GameMultipleItem, Long> {
     @Override
     public void readEntity(Cursor cursor, GameMultipleItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setSubjectId(cursor.getLong(offset + 1));
-        entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setFirst_answer(cursor.getShort(offset + 3) != 0);
-        entity.setSecond_answer(cursor.getShort(offset + 4) != 0);
-        entity.setThird_answer(cursor.getShort(offset + 5) != 0);
-        entity.setFourth_answer(cursor.getShort(offset + 6) != 0);
-        entity.setFirst_title(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setSecond_title(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setThird_title(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setFourth_title(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setFirst_answer(cursor.getShort(offset + 2) != 0);
+        entity.setSecond_answer(cursor.getShort(offset + 3) != 0);
+        entity.setThird_answer(cursor.getShort(offset + 4) != 0);
+        entity.setFourth_answer(cursor.getShort(offset + 5) != 0);
+        entity.setFirst_title(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setSecond_title(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setThird_title(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setFourth_title(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     @Override

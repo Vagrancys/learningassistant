@@ -29,6 +29,15 @@ public class GameSubjectItem {
     //父id
     private long subjectId;
 
+    //单选的id
+    private long radioId;
+
+    //多选的id
+    private long multipleId;
+    //填空的id
+    private long fillId;
+    //主观的id
+    private long subjectiveId;
     //问题的标题
     private String title;
 
@@ -38,16 +47,16 @@ public class GameSubjectItem {
     //添加的时间
     private String time;
 
-    @ToOne(joinProperty = "subjectId")
+    @ToOne(joinProperty = "radioId")
     private GameRadioItem radioItem;
 
-    @ToOne(joinProperty = "subjectId")
+    @ToOne(joinProperty = "multipleId")
     private GameMultipleItem multipleItem;
 
-    @ToOne(joinProperty = "subjectId")
+    @ToOne(joinProperty = "fillId")
     private GameFillItem fillItem;
 
-    @ToOne(joinProperty = "subjectId")
+    @ToOne(joinProperty = "subjectiveId")
     private GameSubjectiveItem subjectiveItem;
 
     /** Used to resolve relations */
@@ -70,11 +79,15 @@ public class GameSubjectItem {
     @Generated(hash = 604438555)
     private transient Long subjectiveItem__resolvedKey;
 
-    @Generated(hash = 1332245646)
-    public GameSubjectItem(Long id, long subjectId, String title, int select,
-            String time) {
+    @Generated(hash = 668141511)
+    public GameSubjectItem(Long id, long subjectId, long radioId, long multipleId, long fillId,
+            long subjectiveId, String title, int select, String time) {
         this.id = id;
         this.subjectId = subjectId;
+        this.radioId = radioId;
+        this.multipleId = multipleId;
+        this.fillId = fillId;
+        this.subjectiveId = subjectiveId;
         this.title = title;
         this.select = select;
         this.time = time;
@@ -125,11 +138,10 @@ public class GameSubjectItem {
     }
 
     /** To-one relationship, resolved on first access. */
-    @Generated(hash = 1684566623)
+    @Generated(hash = 1861874478)
     public GameRadioItem getRadioItem() {
-        long __key = this.subjectId;
-        if (radioItem__resolvedKey == null
-                || !radioItem__resolvedKey.equals(__key)) {
+        long __key = this.radioId;
+        if (radioItem__resolvedKey == null || !radioItem__resolvedKey.equals(__key)) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
                 throw new DaoException("Entity is detached from DAO context");
@@ -145,25 +157,24 @@ public class GameSubjectItem {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1262973406)
+    @Generated(hash = 806157913)
     public void setRadioItem(@NotNull GameRadioItem radioItem) {
         if (radioItem == null) {
             throw new DaoException(
-                    "To-one property 'subjectId' has not-null constraint; cannot set to-one to null");
+                    "To-one property 'radioId' has not-null constraint; cannot set to-one to null");
         }
         synchronized (this) {
             this.radioItem = radioItem;
-            subjectId = radioItem.getId();
-            radioItem__resolvedKey = subjectId;
+            radioId = radioItem.getId();
+            radioItem__resolvedKey = radioId;
         }
     }
 
     /** To-one relationship, resolved on first access. */
-    @Generated(hash = 1087996899)
+    @Generated(hash = 1762537331)
     public GameMultipleItem getMultipleItem() {
-        long __key = this.subjectId;
-        if (multipleItem__resolvedKey == null
-                || !multipleItem__resolvedKey.equals(__key)) {
+        long __key = this.multipleId;
+        if (multipleItem__resolvedKey == null || !multipleItem__resolvedKey.equals(__key)) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
                 throw new DaoException("Entity is detached from DAO context");
@@ -179,23 +190,23 @@ public class GameSubjectItem {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 249535328)
+    @Generated(hash = 1169367028)
     public void setMultipleItem(@NotNull GameMultipleItem multipleItem) {
         if (multipleItem == null) {
             throw new DaoException(
-                    "To-one property 'subjectId' has not-null constraint; cannot set to-one to null");
+                    "To-one property 'multipleId' has not-null constraint; cannot set to-one to null");
         }
         synchronized (this) {
             this.multipleItem = multipleItem;
-            subjectId = multipleItem.getId();
-            multipleItem__resolvedKey = subjectId;
+            multipleId = multipleItem.getId();
+            multipleItem__resolvedKey = multipleId;
         }
     }
 
     /** To-one relationship, resolved on first access. */
-    @Generated(hash = 2067410595)
+    @Generated(hash = 1455310777)
     public GameFillItem getFillItem() {
-        long __key = this.subjectId;
+        long __key = this.fillId;
         if (fillItem__resolvedKey == null || !fillItem__resolvedKey.equals(__key)) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
@@ -212,25 +223,24 @@ public class GameSubjectItem {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 759547252)
+    @Generated(hash = 252998454)
     public void setFillItem(@NotNull GameFillItem fillItem) {
         if (fillItem == null) {
             throw new DaoException(
-                    "To-one property 'subjectId' has not-null constraint; cannot set to-one to null");
+                    "To-one property 'fillId' has not-null constraint; cannot set to-one to null");
         }
         synchronized (this) {
             this.fillItem = fillItem;
-            subjectId = fillItem.getId();
-            fillItem__resolvedKey = subjectId;
+            fillId = fillItem.getId();
+            fillItem__resolvedKey = fillId;
         }
     }
 
     /** To-one relationship, resolved on first access. */
-    @Generated(hash = 2022034785)
+    @Generated(hash = 1829881203)
     public GameSubjectiveItem getSubjectiveItem() {
-        long __key = this.subjectId;
-        if (subjectiveItem__resolvedKey == null
-                || !subjectiveItem__resolvedKey.equals(__key)) {
+        long __key = this.subjectiveId;
+        if (subjectiveItem__resolvedKey == null || !subjectiveItem__resolvedKey.equals(__key)) {
             final DaoSession daoSession = this.daoSession;
             if (daoSession == null) {
                 throw new DaoException("Entity is detached from DAO context");
@@ -246,16 +256,16 @@ public class GameSubjectItem {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 593459639)
+    @Generated(hash = 411586755)
     public void setSubjectiveItem(@NotNull GameSubjectiveItem subjectiveItem) {
         if (subjectiveItem == null) {
             throw new DaoException(
-                    "To-one property 'subjectId' has not-null constraint; cannot set to-one to null");
+                    "To-one property 'subjectiveId' has not-null constraint; cannot set to-one to null");
         }
         synchronized (this) {
             this.subjectiveItem = subjectiveItem;
-            subjectId = subjectiveItem.getId();
-            subjectiveItem__resolvedKey = subjectId;
+            subjectiveId = subjectiveItem.getId();
+            subjectiveItem__resolvedKey = subjectiveId;
         }
     }
 
@@ -300,5 +310,37 @@ public class GameSubjectItem {
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getGameSubjectItemDao() : null;
+    }
+
+    public long getRadioId() {
+        return this.radioId;
+    }
+
+    public void setRadioId(long radioId) {
+        this.radioId = radioId;
+    }
+
+    public long getMultipleId() {
+        return this.multipleId;
+    }
+
+    public void setMultipleId(long multipleId) {
+        this.multipleId = multipleId;
+    }
+
+    public long getFillId() {
+        return this.fillId;
+    }
+
+    public void setFillId(long fillId) {
+        this.fillId = fillId;
+    }
+
+    public long getSubjectiveId() {
+        return this.subjectiveId;
+    }
+
+    public void setSubjectiveId(long subjectiveId) {
+        this.subjectiveId = subjectiveId;
     }
 }

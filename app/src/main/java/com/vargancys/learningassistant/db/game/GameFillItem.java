@@ -17,9 +17,6 @@ public class GameFillItem {
     @Unique
     private Long id;
 
-    //父Id
-    private long subjectId;
-
     //填空的问题标题
     private String title;
 
@@ -38,12 +35,10 @@ public class GameFillItem {
     //填空的第四个答案
     private String fourth_answer;
 
-    @Generated(hash = 221129465)
-    public GameFillItem(Long id, long subjectId, String title, int answer,
-            String first_answer, String second_answer, String third_answer,
-            String fourth_answer) {
+    @Generated(hash = 479667118)
+    public GameFillItem(Long id, String title, int answer, String first_answer,
+            String second_answer, String third_answer, String fourth_answer) {
         this.id = id;
-        this.subjectId = subjectId;
         this.title = title;
         this.answer = answer;
         this.first_answer = first_answer;
@@ -62,14 +57,6 @@ public class GameFillItem {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getSubjectId() {
-        return this.subjectId;
-    }
-
-    public void setSubjectId(long subjectId) {
-        this.subjectId = subjectId;
     }
 
     public String getTitle() {

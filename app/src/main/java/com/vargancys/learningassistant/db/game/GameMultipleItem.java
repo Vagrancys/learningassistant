@@ -17,8 +17,6 @@ public class GameMultipleItem {
     @Unique
     private Long id;
 
-    //上级的父id
-    private long subjectId;
 
     //多项选择的问题标题
     private String title;
@@ -47,13 +45,12 @@ public class GameMultipleItem {
     //多项选择的第四个答案
     private String fourth_title;
 
-    @Generated(hash = 1263797580)
-    public GameMultipleItem(Long id, long subjectId, String title,
-            boolean first_answer, boolean second_answer, boolean third_answer,
-            boolean fourth_answer, String first_title, String second_title,
-            String third_title, String fourth_title) {
+    @Generated(hash = 2025467836)
+    public GameMultipleItem(Long id, String title, boolean first_answer,
+            boolean second_answer, boolean third_answer, boolean fourth_answer,
+            String first_title, String second_title, String third_title,
+            String fourth_title) {
         this.id = id;
-        this.subjectId = subjectId;
         this.title = title;
         this.first_answer = first_answer;
         this.second_answer = second_answer;
@@ -75,14 +72,6 @@ public class GameMultipleItem {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getSubjectId() {
-        return this.subjectId;
-    }
-
-    public void setSubjectId(long subjectId) {
-        this.subjectId = subjectId;
     }
 
     public String getTitle() {

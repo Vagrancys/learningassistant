@@ -38,11 +38,12 @@
             android:layout_centerVertical="true"/>
         <Spinner
             android:id="@+id/add_spinner"
-            android:layout_width="@dimen/margin_width_50dp"
+            android:layout_width="@dimen/margin_width_100dp"
             android:layout_height="wrap_content"
             android:entries="@array/level_title"
             android:layout_toEndOf="@+id/add_class_text"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:spinnerMode="dialog"/>
         <TextView
             android:id="@+id/add_class_title"
             android:layout_width="wrap_content"

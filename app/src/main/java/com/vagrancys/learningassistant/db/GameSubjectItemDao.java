@@ -36,9 +36,13 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property SubjectId = new Property(1, long.class, "subjectId", false, "SUBJECT_ID");
-        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
-        public final static Property Select = new Property(3, int.class, "select", false, "SELECT");
-        public final static Property Time = new Property(4, String.class, "time", false, "TIME");
+        public final static Property RadioId = new Property(2, long.class, "radioId", false, "RADIO_ID");
+        public final static Property MultipleId = new Property(3, long.class, "multipleId", false, "MULTIPLE_ID");
+        public final static Property FillId = new Property(4, long.class, "fillId", false, "FILL_ID");
+        public final static Property SubjectiveId = new Property(5, long.class, "subjectiveId", false, "SUBJECTIVE_ID");
+        public final static Property Title = new Property(6, String.class, "title", false, "TITLE");
+        public final static Property Select = new Property(7, int.class, "select", false, "SELECT");
+        public final static Property Time = new Property(8, String.class, "time", false, "TIME");
     }
 
     private DaoSession daoSession;
@@ -60,9 +64,13 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"GAME_SUBJECT_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
                 "\"SUBJECT_ID\" INTEGER NOT NULL ," + // 1: subjectId
-                "\"TITLE\" TEXT," + // 2: title
-                "\"SELECT\" INTEGER NOT NULL ," + // 3: select
-                "\"TIME\" TEXT);"); // 4: time
+                "\"RADIO_ID\" INTEGER NOT NULL ," + // 2: radioId
+                "\"MULTIPLE_ID\" INTEGER NOT NULL ," + // 3: multipleId
+                "\"FILL_ID\" INTEGER NOT NULL ," + // 4: fillId
+                "\"SUBJECTIVE_ID\" INTEGER NOT NULL ," + // 5: subjectiveId
+                "\"TITLE\" TEXT," + // 6: title
+                "\"SELECT\" INTEGER NOT NULL ," + // 7: select
+                "\"TIME\" TEXT);"); // 8: time
     }
 
     /** Drops the underlying database table. */
@@ -80,16 +88,20 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getSubjectId());
+        stmt.bindLong(3, entity.getRadioId());
+        stmt.bindLong(4, entity.getMultipleId());
+        stmt.bindLong(5, entity.getFillId());
+        stmt.bindLong(6, entity.getSubjectiveId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(7, title);
         }
-        stmt.bindLong(4, entity.getSelect());
+        stmt.bindLong(8, entity.getSelect());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(5, time);
+            stmt.bindString(9, time);
         }
     }
 
@@ -102,16 +114,20 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getSubjectId());
+        stmt.bindLong(3, entity.getRadioId());
+        stmt.bindLong(4, entity.getMultipleId());
+        stmt.bindLong(5, entity.getFillId());
+        stmt.bindLong(6, entity.getSubjectiveId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(7, title);
         }
-        stmt.bindLong(4, entity.getSelect());
+        stmt.bindLong(8, entity.getSelect());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(5, time);
+            stmt.bindString(9, time);
         }
     }
 
@@ -131,9 +147,13 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         GameSubjectItem entity = new GameSubjectItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getLong(offset + 1), // subjectId
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
-            cursor.getInt(offset + 3), // select
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // time
+            cursor.getLong(offset + 2), // radioId
+            cursor.getLong(offset + 3), // multipleId
+            cursor.getLong(offset + 4), // fillId
+            cursor.getLong(offset + 5), // subjectiveId
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // title
+            cursor.getInt(offset + 7), // select
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // time
         );
         return entity;
     }
@@ -142,9 +162,13 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     public void readEntity(Cursor cursor, GameSubjectItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setSubjectId(cursor.getLong(offset + 1));
-        entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setSelect(cursor.getInt(offset + 3));
-        entity.setTime(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setRadioId(cursor.getLong(offset + 2));
+        entity.setMultipleId(cursor.getLong(offset + 3));
+        entity.setFillId(cursor.getLong(offset + 4));
+        entity.setSubjectiveId(cursor.getLong(offset + 5));
+        entity.setTitle(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setSelect(cursor.getInt(offset + 7));
+        entity.setTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     @Override
@@ -201,10 +225,10 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
             builder.append(',');
             SqlUtils.appendColumns(builder, "T3", daoSession.getGameSubjectiveItemDao().getAllColumns());
             builder.append(" FROM GAME_SUBJECT_ITEM T");
-            builder.append(" LEFT JOIN GAME_RADIO_ITEM T0 ON T.\"SUBJECT_ID\"=T0.\"_id\"");
-            builder.append(" LEFT JOIN GAME_MULTIPLE_ITEM T1 ON T.\"SUBJECT_ID\"=T1.\"_id\"");
-            builder.append(" LEFT JOIN GAME_FILL_ITEM T2 ON T.\"SUBJECT_ID\"=T2.\"_id\"");
-            builder.append(" LEFT JOIN GAME_SUBJECTIVE_ITEM T3 ON T.\"SUBJECT_ID\"=T3.\"_id\"");
+            builder.append(" LEFT JOIN GAME_RADIO_ITEM T0 ON T.\"RADIO_ID\"=T0.\"_id\"");
+            builder.append(" LEFT JOIN GAME_MULTIPLE_ITEM T1 ON T.\"MULTIPLE_ID\"=T1.\"_id\"");
+            builder.append(" LEFT JOIN GAME_FILL_ITEM T2 ON T.\"FILL_ID\"=T2.\"_id\"");
+            builder.append(" LEFT JOIN GAME_SUBJECTIVE_ITEM T3 ON T.\"SUBJECTIVE_ID\"=T3.\"_id\"");
             builder.append(' ');
             selectDeep = builder.toString();
         }

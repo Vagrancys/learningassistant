@@ -25,9 +25,8 @@ public class GameSubjectiveItemDao extends AbstractDao<GameSubjectiveItem, Long>
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property SubjectId = new Property(1, long.class, "subjectId", false, "SUBJECT_ID");
-        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
-        public final static Property Answer = new Property(3, String.class, "answer", false, "ANSWER");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
+        public final static Property Answer = new Property(2, String.class, "answer", false, "ANSWER");
     }
 
 
@@ -44,9 +43,8 @@ public class GameSubjectiveItemDao extends AbstractDao<GameSubjectiveItem, Long>
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GAME_SUBJECTIVE_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
-                "\"SUBJECT_ID\" INTEGER NOT NULL ," + // 1: subjectId
-                "\"TITLE\" TEXT," + // 2: title
-                "\"ANSWER\" TEXT);"); // 3: answer
+                "\"TITLE\" TEXT," + // 1: title
+                "\"ANSWER\" TEXT);"); // 2: answer
     }
 
     /** Drops the underlying database table. */
@@ -63,16 +61,15 @@ public class GameSubjectiveItemDao extends AbstractDao<GameSubjectiveItem, Long>
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
  
         String answer = entity.getAnswer();
         if (answer != null) {
-            stmt.bindString(4, answer);
+            stmt.bindString(3, answer);
         }
     }
 
@@ -84,16 +81,15 @@ public class GameSubjectiveItemDao extends AbstractDao<GameSubjectiveItem, Long>
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
  
         String answer = entity.getAnswer();
         if (answer != null) {
-            stmt.bindString(4, answer);
+            stmt.bindString(3, answer);
         }
     }
 
@@ -106,9 +102,8 @@ public class GameSubjectiveItemDao extends AbstractDao<GameSubjectiveItem, Long>
     public GameSubjectiveItem readEntity(Cursor cursor, int offset) {
         GameSubjectiveItem entity = new GameSubjectiveItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // subjectId
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // answer
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // answer
         );
         return entity;
     }
@@ -116,9 +111,8 @@ public class GameSubjectiveItemDao extends AbstractDao<GameSubjectiveItem, Long>
     @Override
     public void readEntity(Cursor cursor, GameSubjectiveItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setSubjectId(cursor.getLong(offset + 1));
-        entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setAnswer(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setAnswer(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     @Override

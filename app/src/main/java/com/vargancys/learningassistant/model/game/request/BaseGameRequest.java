@@ -53,6 +53,9 @@ public class BaseGameRequest {
         mSubjectContentDao = mDaoSession.getGameSubjectContentDao();
         mSubjectItemDao = mDaoSession.getGameSubjectItemDao();
         mRadioItemDao = mDaoSession.getGameRadioItemDao();
+        mMultipleItemDao = mDaoSession.getGameMultipleItemDao();
+        mFillItemDao = mDaoSession.getGameFillItemDao();
+        mSubjectiveItemDao = mDaoSession.getGameSubjectiveItemDao();
     }
 
     public static BaseGameRequest getInstance(){

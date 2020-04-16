@@ -151,7 +151,6 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         Intent intent = getIntent();
         if (intent != null) {
             knowId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
-            //TODO 处理id的各种命名和重构，因为都分不清哪个id是哪个模块
             mSubjectContent = intent.getLongExtra(ConstantsUtils.KNOW_SUBJECT_ID,0);
         }
         initData();
@@ -222,7 +221,8 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         addMultipleFirst.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                Log.e(TAG,"isChecked ="+isChecked);
+                if(mMultipleFirstId){
                     mMultipleFirstId = false;
                     addMultipleFirst.setChecked(false);
                 }else{
@@ -235,7 +235,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         addMultipleSecond.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if(mMultipleSecondId){
                     mMultipleSecondId = false;
                     addMultipleSecond.setChecked(false);
                 }else{
@@ -248,7 +248,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         addMultipleThird.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if(mMultipleThirdId){
                     mMultipleThirdId = false;
                     addMultipleThird.setChecked(false);
                 }else{
@@ -261,7 +261,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         addMultipleFourth.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if(mMultipleFourthId){
                     mMultipleFourthId = false;
                     addMultipleFourth.setChecked(false);
                 }else{
@@ -360,7 +360,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
                 ||addMultipleSecondTitleEdit.getText().toString().isEmpty()
                 ||addMultipleThirdTitleEdit.getText().toString().isEmpty()
                 ||addMultipleFourthTitleEdit.getText().toString().isEmpty()
-                ||(mMultipleFirstId&& mMultipleSecondId&& mMultipleThirdId && mMultipleFourthId);
+                ||!(mMultipleFirstId| mMultipleSecondId| mMultipleThirdId | mMultipleFourthId);
     }
 
     private boolean isEmptyRadio() {
@@ -372,7 +372,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
     }
 
     private boolean isEmptyFill(){
-        return mFillId ==0 &&addFillTitleEdit.getText().toString().isEmpty()
+        return mFillId ==0 ||addFillTitleEdit.getText().toString().isEmpty()
                 ||addFillFirstTitleEdit.getText().toString().isEmpty()
                 ||addFillSecondTitleEdit.getText().toString().isEmpty()
                 ||addFillThirdTitleEdit.getText().toString().isEmpty()
@@ -411,38 +411,36 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         mItem.setTime(TimeUtils.getTime());
         //添加的标题
         mItem.setTitle(addTitleEdit.getText().toString());
-        long subjectId = mPresenter.saveSubjectItemData(mItem);
         switch (mSelect){
             case 1:
-                tidySubjectRadioData(subjectId);
+                mItem.setRadioId(tidySubjectRadioData());
                 break;
             case 2:
-                tidySubjectMultipleData(subjectId);
+                mItem.setMultipleId(tidySubjectMultipleData());
                 break;
             case 3:
-                tidySubjectFillData(subjectId);
+                mItem.setFillId(tidySubjectFillData());
                 break;
             case 4:
-                tidySubjectSubjectiveData(subjectId);
+                mItem.setSubjectiveId(tidySubjectSubjectiveData());
                 break;
         }
+        mPresenter.saveSubjectItemData(mItem);
     }
 
-    private void tidySubjectRadioData(long result){
+    private long tidySubjectRadioData(){
         GameRadioItem mRadio = new GameRadioItem();
-        mRadio.setSubjectId(result);
         mRadio.setTitle(addRadioTitleEdit.getText().toString());
         mRadio.setYes(mRadioId);
         mRadio.setFirst_title(addRadioFirstTitleEdit.getText().toString());
         mRadio.setSecond_title(addRadioSecondTitleEdit.getText().toString());
         mRadio.setThird_title(addRadioThirdTitleEdit.getText().toString());
         mRadio.setFourth_title(addRadioFourthTitleEdit.getText().toString());
-        mPresenter.saveGameRadioItemData(mRadio,mSubjectContent);
+        return mPresenter.saveGameRadioItemData(mRadio,mSubjectContent);
     }
 
-    private void tidySubjectMultipleData(long result){
+    private long tidySubjectMultipleData(){
         GameMultipleItem mMultiple = new GameMultipleItem();
-        mMultiple.setSubjectId(result);
         mMultiple.setTitle(addMultipleTitleEdit.getText().toString());
         mMultiple.setFirst_title(addMultipleFirstTitleEdit.getText().toString());
         mMultiple.setFirst_answer(mMultipleFirstId);
@@ -452,26 +450,25 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         mMultiple.setThird_answer(mMultipleThirdId);
         mMultiple.setFourth_title(addMultipleFourthTitleEdit.getText().toString());
         mMultiple.setFourth_answer(mMultipleFourthId);
-        mPresenter.saveGameMultipleItemData(mMultiple,mSubjectContent);
+        return mPresenter.saveGameMultipleItemData(mMultiple,mSubjectContent);
     }
 
-    private void tidySubjectFillData(long result){
+    private long tidySubjectFillData(){
         GameFillItem mFill = new GameFillItem();
-        mFill.setSubjectId(result);
         mFill.setAnswer(mFillId);
+        Log.e(TAG,"mFillId ="+mFillId);
         mFill.setTitle(addFillTitleEdit.getText().toString());
         mFill.setFirst_answer(addFillFirstTitleEdit.getText().toString());
         mFill.setSecond_answer(addFillSecondTitleEdit.getText().toString());
         mFill.setThird_answer(addFillThirdTitleEdit.getText().toString());
         mFill.setFourth_answer(addFillFourthTitleEdit.getText().toString());
-        mPresenter.saveGameFillItemData(mFill,mSubjectContent);
+        return mPresenter.saveGameFillItemData(mFill,mSubjectContent);
     }
 
-    private void tidySubjectSubjectiveData(long result){
+    private long tidySubjectSubjectiveData(){
         GameSubjectiveItem mSubjective = new GameSubjectiveItem();
-        mSubjective.setSubjectId(result);
         mSubjective.setTitle(addSubjectiveTitleEdit.getText().toString());
         mSubjective.setAnswer(addSubjectiveConsultTitleEdit.getText().toString());
-        mPresenter.saveGameSubjectiveItemData(mSubjective,mSubjectContent);
+        return mPresenter.saveGameSubjectiveItemData(mSubjective,mSubjectContent);
     }
 }

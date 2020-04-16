@@ -25,13 +25,12 @@ public class GameFillItemDao extends AbstractDao<GameFillItem, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property SubjectId = new Property(1, long.class, "subjectId", false, "SUBJECT_ID");
-        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
-        public final static Property Answer = new Property(3, int.class, "answer", false, "ANSWER");
-        public final static Property First_answer = new Property(4, String.class, "first_answer", false, "FIRST_ANSWER");
-        public final static Property Second_answer = new Property(5, String.class, "second_answer", false, "SECOND_ANSWER");
-        public final static Property Third_answer = new Property(6, String.class, "third_answer", false, "THIRD_ANSWER");
-        public final static Property Fourth_answer = new Property(7, String.class, "fourth_answer", false, "FOURTH_ANSWER");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
+        public final static Property Answer = new Property(2, int.class, "answer", false, "ANSWER");
+        public final static Property First_answer = new Property(3, String.class, "first_answer", false, "FIRST_ANSWER");
+        public final static Property Second_answer = new Property(4, String.class, "second_answer", false, "SECOND_ANSWER");
+        public final static Property Third_answer = new Property(5, String.class, "third_answer", false, "THIRD_ANSWER");
+        public final static Property Fourth_answer = new Property(6, String.class, "fourth_answer", false, "FOURTH_ANSWER");
     }
 
 
@@ -48,13 +47,12 @@ public class GameFillItemDao extends AbstractDao<GameFillItem, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GAME_FILL_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
-                "\"SUBJECT_ID\" INTEGER NOT NULL ," + // 1: subjectId
-                "\"TITLE\" TEXT," + // 2: title
-                "\"ANSWER\" INTEGER NOT NULL ," + // 3: answer
-                "\"FIRST_ANSWER\" TEXT," + // 4: first_answer
-                "\"SECOND_ANSWER\" TEXT," + // 5: second_answer
-                "\"THIRD_ANSWER\" TEXT," + // 6: third_answer
-                "\"FOURTH_ANSWER\" TEXT);"); // 7: fourth_answer
+                "\"TITLE\" TEXT," + // 1: title
+                "\"ANSWER\" INTEGER NOT NULL ," + // 2: answer
+                "\"FIRST_ANSWER\" TEXT," + // 3: first_answer
+                "\"SECOND_ANSWER\" TEXT," + // 4: second_answer
+                "\"THIRD_ANSWER\" TEXT," + // 5: third_answer
+                "\"FOURTH_ANSWER\" TEXT);"); // 6: fourth_answer
     }
 
     /** Drops the underlying database table. */
@@ -71,32 +69,31 @@ public class GameFillItemDao extends AbstractDao<GameFillItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
-        stmt.bindLong(4, entity.getAnswer());
+        stmt.bindLong(3, entity.getAnswer());
  
         String first_answer = entity.getFirst_answer();
         if (first_answer != null) {
-            stmt.bindString(5, first_answer);
+            stmt.bindString(4, first_answer);
         }
  
         String second_answer = entity.getSecond_answer();
         if (second_answer != null) {
-            stmt.bindString(6, second_answer);
+            stmt.bindString(5, second_answer);
         }
  
         String third_answer = entity.getThird_answer();
         if (third_answer != null) {
-            stmt.bindString(7, third_answer);
+            stmt.bindString(6, third_answer);
         }
  
         String fourth_answer = entity.getFourth_answer();
         if (fourth_answer != null) {
-            stmt.bindString(8, fourth_answer);
+            stmt.bindString(7, fourth_answer);
         }
     }
 
@@ -108,32 +105,31 @@ public class GameFillItemDao extends AbstractDao<GameFillItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(3, title);
+            stmt.bindString(2, title);
         }
-        stmt.bindLong(4, entity.getAnswer());
+        stmt.bindLong(3, entity.getAnswer());
  
         String first_answer = entity.getFirst_answer();
         if (first_answer != null) {
-            stmt.bindString(5, first_answer);
+            stmt.bindString(4, first_answer);
         }
  
         String second_answer = entity.getSecond_answer();
         if (second_answer != null) {
-            stmt.bindString(6, second_answer);
+            stmt.bindString(5, second_answer);
         }
  
         String third_answer = entity.getThird_answer();
         if (third_answer != null) {
-            stmt.bindString(7, third_answer);
+            stmt.bindString(6, third_answer);
         }
  
         String fourth_answer = entity.getFourth_answer();
         if (fourth_answer != null) {
-            stmt.bindString(8, fourth_answer);
+            stmt.bindString(7, fourth_answer);
         }
     }
 
@@ -146,13 +142,12 @@ public class GameFillItemDao extends AbstractDao<GameFillItem, Long> {
     public GameFillItem readEntity(Cursor cursor, int offset) {
         GameFillItem entity = new GameFillItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // subjectId
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // title
-            cursor.getInt(offset + 3), // answer
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // first_answer
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // second_answer
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // third_answer
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // fourth_answer
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
+            cursor.getInt(offset + 2), // answer
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // first_answer
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // second_answer
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // third_answer
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // fourth_answer
         );
         return entity;
     }
@@ -160,13 +155,12 @@ public class GameFillItemDao extends AbstractDao<GameFillItem, Long> {
     @Override
     public void readEntity(Cursor cursor, GameFillItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setSubjectId(cursor.getLong(offset + 1));
-        entity.setTitle(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setAnswer(cursor.getInt(offset + 3));
-        entity.setFirst_answer(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setSecond_answer(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setThird_answer(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setFourth_answer(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setAnswer(cursor.getInt(offset + 2));
+        entity.setFirst_answer(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setSecond_answer(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setThird_answer(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setFourth_answer(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override

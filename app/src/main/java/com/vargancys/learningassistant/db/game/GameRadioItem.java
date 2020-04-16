@@ -16,8 +16,6 @@ public class GameRadioItem {
     @Id
     @Unique
     private Long id;
-    //问题项的Id
-    private long subjectId;
 
     //单项选择的问题标题
     private String title;
@@ -35,12 +33,10 @@ public class GameRadioItem {
     private String third_title;
     //单项选择的第四个答案
     private String fourth_title;
-    @Generated(hash = 1697011375)
-    public GameRadioItem(Long id, long subjectId, String title, int yes,
-            String first_title, String second_title, String third_title,
-            String fourth_title) {
+    @Generated(hash = 362853094)
+    public GameRadioItem(Long id, String title, int yes, String first_title,
+            String second_title, String third_title, String fourth_title) {
         this.id = id;
-        this.subjectId = subjectId;
         this.title = title;
         this.yes = yes;
         this.first_title = first_title;
@@ -56,12 +52,6 @@ public class GameRadioItem {
     }
     public void setId(Long id) {
         this.id = id;
-    }
-    public long getSubjectId() {
-        return this.subjectId;
-    }
-    public void setSubjectId(long subjectId) {
-        this.subjectId = subjectId;
     }
     public String getTitle() {
         return this.title;

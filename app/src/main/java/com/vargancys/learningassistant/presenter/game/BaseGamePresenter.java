@@ -142,29 +142,26 @@ public class BaseGamePresenter {
         }
     }
 
-    public long saveSubjectItemData(GameSubjectItem mItem) {
-        return mRequest.saveSubjectItemData(mItem);
-    }
-
-    public void saveGameRadioItemData(GameRadioItem mRadio,long subjectId) {
-        long result = mRequest.saveGameRadioItemData(mRadio,subjectId);
+    public void saveSubjectItemData(GameSubjectItem mItem) {
+        long result = mRequest.saveSubjectItemData(mItem);
         showView(result);
     }
 
-    public void saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId) {
-        long result = mRequest.saveGameMultipleItemData(mMultiple,subjectId);
-        showView(result);
+    public long saveGameRadioItemData(GameRadioItem mRadio,long subjectId) {
+        return mRequest.saveGameRadioItemData(mRadio,subjectId);
     }
 
-    public void saveGameFillItemData(GameFillItem mFill,long subjectId) {
-        long result = mRequest.saveGameFillItemData(mFill,subjectId);
-        showView(result);
+    public long saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId) {
+        return mRequest.saveGameMultipleItemData(mMultiple,subjectId);
+    }
+
+    public long saveGameFillItemData(GameFillItem mFill,long subjectId) {
+        return mRequest.saveGameFillItemData(mFill,subjectId);
     }
 
 
-    public void saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
-        long result = mRequest.saveGameSubjectiveItemData(mSubjective,subjectId);
-        showView(result);
+    public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
+        return mRequest.saveGameSubjectiveItemData(mSubjective,subjectId);
     }
 
     private void showView(long result){

@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.game.adapter;
 import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -38,6 +39,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
     private Animation mDownScaleAnimation;
     private Animation mUpRotateAnimation;
     private Animation mDownRotateAnimation;
+    private String TAG = "SubjectShowAdapter";
 
     public SubjectShowAdapter(Context context, List<GameSubjectItem> mItems, Handler mHandler) {
         this.mHandler = mHandler;
@@ -84,11 +86,13 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
                 selectText = R.string.subject_class_fourth;
                 break;
         }
-        //TODO 没有反应布局变化和布局有点怪
+
         mHolder.subjectClass.setText(mContext.getString(selectText));
+
         mHolder.subjectDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e(TAG,"断点");
                 if(mHolder.subjectDetails.getText().toString()
                         .equals(mContext.getResources()
                                 .getString(R.string.subject_details_show))){
@@ -99,10 +103,12 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
                 }else{
                     mHolder.subjectDetails.setText(R.string.subject_details_show);
                     mHolder.subjectIndicate.startAnimation(mUpRotateAnimation);
+                    mHandler.removeCallbacks(mRunnable);
                     hideLayout(mHolder,mItem.getSelect());
                 }
             }
         });
+
         super.onBindViewHolder(holder, position);
     }
 
@@ -171,6 +177,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
     private void initFillData(SubjectShowViewHolder mHolder, GameFillItem mFill) {
         mHolder.fillSubjectTitle.setText(mFill.getTitle());
         initFillState(mHolder);
+        Log.e(TAG,"Answer ="+mFill.getAnswer());
         switch (mFill.getAnswer()){
             case 1:
                 mHolder.fillSubjectFirstImg.setImageResource(R.drawable.subject_yes_normal);

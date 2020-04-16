@@ -17,20 +17,15 @@ public class GameSubjectiveItem {
     @Unique
     private Long id;
 
-    //父Id
-    private long subjectId;
-
     //主观题的问题标题
     private String title;
 
     //主观题的答案
     private String answer;
 
-    @Generated(hash = 1852551770)
-    public GameSubjectiveItem(Long id, long subjectId, String title,
-            String answer) {
+    @Generated(hash = 1534158660)
+    public GameSubjectiveItem(Long id, String title, String answer) {
         this.id = id;
-        this.subjectId = subjectId;
         this.title = title;
         this.answer = answer;
     }
@@ -45,14 +40,6 @@ public class GameSubjectiveItem {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getSubjectId() {
-        return this.subjectId;
-    }
-
-    public void setSubjectId(long subjectId) {
-        this.subjectId = subjectId;
     }
 
     public String getTitle() {
