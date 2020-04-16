@@ -6,6 +6,7 @@ import com.vargancys.learningassistant.db.game.GameFillItem;
 import com.vargancys.learningassistant.db.game.GameMultipleItem;
 import com.vargancys.learningassistant.db.game.GameRadioItem;
 import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.db.game.GameStartContent;
 import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
@@ -18,6 +19,7 @@ import com.vargancys.learningassistant.module.game.view.GameView;
 import com.vargancys.learningassistant.module.game.view.SelectGameView;
 import com.vargancys.learningassistant.module.game.view.SignAddView;
 import com.vargancys.learningassistant.module.game.view.SignGameView;
+import com.vargancys.learningassistant.module.game.view.StartGameView;
 import com.vargancys.learningassistant.module.game.view.SubjectShowView;
 
 import java.util.List;
@@ -170,5 +172,25 @@ public class BaseGamePresenter {
         }else{
             ((AddGameView) mView).showAddDataError(404,"不错的关系啊!");
         }
+    }
+
+    public interface TidyAllData{
+        void showFinish(List<GameStartContent> mContent);
+        void showError(int error,String message);
+    }
+
+    public void getGameStartAllData(long gameId) {
+        TidyAllData tidyAllData = new TidyAllData() {
+            @Override
+            public void showFinish(List<GameStartContent> mContent) {
+                ((StartGameView) mView).showTidyAllDataFinish(mContent);
+            }
+
+            @Override
+            public void showError(int error, String message) {
+                ((StartGameView) mView).showTidyAllDataError(404,"没有处理好!");
+            }
+        };
+        mRequest.getGameStartAllData(gameId,tidyAllData);
     }
 }

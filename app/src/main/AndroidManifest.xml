@@ -62,6 +62,9 @@
         <activity android:name=".module.game.activity.GameSignAddActivity"/>
         <activity android:name=".module.game.activity.SubjectShowActivity"/>
         <activity android:name=".module.game.activity.SubjectAddActivity"/>
+        <activity android:name=".module.game.activity.GameConfigActivity"/>
+        <activity android:name=".module.game.activity.GameStartActivity"/>
+
     </application>
 
 </manifest>

@@ -39,4 +39,6 @@ public class ConstantsUtils {
     public static final String GAME_ID = "game_id";
     //关卡的知识单项id
     public static final String KNOW_SUBJECT_ID = "know_subject_id";
+    //判断闯关配置是否有完成
+    public static final String GAME_STATE = "game_state";
 }

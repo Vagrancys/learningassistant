@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.model.game.request;
 
+import android.util.Log;
+
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.GameContentDao;
 import com.vagrancys.learningassistant.db.GameFillItemDao;
@@ -12,6 +14,7 @@ import com.vagrancys.learningassistant.db.GameSubjectiveItemDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.game.GameConfigUtils;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameFillItem;
 import com.vargancys.learningassistant.db.game.GameMultipleItem;
@@ -22,8 +25,10 @@ import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 
 import java.util.List;
+import java.util.concurrent.CompletionStage;
 
 /**
  * author: Vagrancy
@@ -32,6 +37,7 @@ import java.util.List;
  * version:1.0
  */
 public class BaseGameRequest {
+    private static String TAG = "BaseGameRequest";
     private static BaseGameRequest mRequest;
     private DaoSession mDaoSession;
     private GameContentDao mGameContentDao;
@@ -157,5 +163,20 @@ public class BaseGameRequest {
     public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
         updateContent(subjectId);
         return mSubjectiveItemDao.insert(mSubjective);
+    }
+
+    public void getGameStartAllData(final long gameId, final BaseGamePresenter.TidyAllData tidyAllData) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //TODO 处理考察知识问题的处理和排序,要求1秒以下
+                List<GameSubjectItem> mItems = mSubjectItemDao
+                        .queryBuilder()
+                        .where(GameSubjectItemDao.Properties.SubjectId.eq(gameId))
+                        .limit(GameConfigUtils.CONFIG_NUMBER)
+                        .list();
+                Log.e(TAG,"mItems ="+mItems.size());
+            }
+        }).start();
     }
 }

@@ -458,4 +458,44 @@
 
     <string name="add_subjective_title_hint">请输入主观问题!</string>
     <string name="add_subjective_consult_title_hint">请输入主观答案!</string>
+    <string name="game_tidy">准备闯关</string>
+
+    <string name="config_number_first">10题</string>
+    <string name="config_number_second">20题</string>
+    <string name="config_number_third">30题</string>
+    <string name="config_number_fourth">40题</string>
+    <string name="config_number_fifth">50题</string>
+    <string name="config_number">闯关题数</string>
+
+    <string name="config_single_first">1题</string>
+    <string name="config_single_second">2题</string>
+    <string name="config_single_third">3题</string>
+    <string name="config_single_fourth">4题</string>
+    <string name="config_single_fifth">5题</string>
+    <string name="config_single">每个知识点的出题数</string>
+
+    <string name="config_type_first">全部</string>
+    <string name="config_type_second">单选</string>
+    <string name="config_type_third">多选</string>
+    <string name="config_type_fourth">填空</string>
+    <string name="config_type_fifth">主观</string>
+    <string name="config_type">题目的类型</string>
+
+    <string name="config_difficulty_first">1级</string>
+    <string name="config_difficulty_second">2级</string>
+    <string name="config_difficulty_third">3级</string>
+    <string name="config_difficulty_fourth">4级</string>
+    <string name="config_difficulty_fifth">5级</string>
+    <string name="config_difficulty">题目的难度</string>
+
+    <string name="config_contain_first">不包含</string>
+    <string name="config_contain_second">包含</string>
+    <string name="config_contain">是否包含错题</string>
+
+    <string name="config_repeat_first">不重复</string>
+    <string name="config_repeat_second">重复</string>
+    <string name="config_repeat">是否重复</string>
+
+    <string name="config_save">完成</string>
+    <string name="config_title">闯关配置中心</string>
 </resources>

@@ -17,6 +17,8 @@ import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.game.activity.GameSelectActivity;
 import com.vargancys.learningassistant.module.game.activity.GameSignActivity;
+import com.vargancys.learningassistant.module.game.activity.GameStartActivity;
+import com.vargancys.learningassistant.module.game.activity.GameConfigActivity;
 import com.vargancys.learningassistant.module.game.activity.SubjectShowActivity;
 import com.vargancys.learningassistant.module.game.adapter.GameTreeAdapter;
 import com.vargancys.learningassistant.module.game.view.GameView;
@@ -63,6 +65,8 @@ public class GameFragment extends BaseFragment implements GameView {
     LinearLayout fragmentEmpty;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.game_tidy)
+    TextView gameTidy;
     private long gameId;
     private BaseGamePresenter mPresenter;
     private GameTreeAdapter mAdapter;
@@ -93,6 +97,17 @@ public class GameFragment extends BaseFragment implements GameView {
     }
 
     private void init(){
+        gameTidy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(CacheUtils.getBoolean(getContext(),ConstantsUtils.GAME_STATE)){
+                    GameConfigActivity.launch(getActivity());
+                }else{
+                    GameStartActivity.launch(getActivity());
+                }
+
+            }
+        });
         mHandler = new Handler();
         try {
             mAdapter = new GameTreeAdapter<>(gameList,getContext(),mBeans,mItems,mHandler,10);
