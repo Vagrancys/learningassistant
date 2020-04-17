@@ -20,6 +20,7 @@ import com.vargancys.learningassistant.db.game.GameFillItem;
 import com.vargancys.learningassistant.db.game.GameMultipleItem;
 import com.vargancys.learningassistant.db.game.GameRadioItem;
 import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.db.game.GameStartContent;
 import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
@@ -27,6 +28,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 
@@ -176,6 +178,34 @@ public class BaseGameRequest {
                         .limit(GameConfigUtils.CONFIG_NUMBER)
                         .list();
                 Log.e(TAG,"mItems ="+mItems.size());
+                List<GameStartContent> mStarts = new ArrayList<>();
+                for(GameSubjectItem mItem :mItems){
+                    GameStartContent mStart = new GameStartContent();
+                    switch (mItem.getSelect()){
+                        case 1:
+                            GameRadioItem mRadio = mItem.getRadioItem();
+                            //处理单选需要的数据
+                            mStart.setType(1);
+                            mStart.setRadio_title(mRadio.getTitle());
+                            mStart.setRadio_yes(mRadio.getYes());
+                            mStart.setRadio_first_title(mRadio.getFirst_title());
+                            mStart.setRadio_second_title(mRadio.getSecond_title());
+                            mStart.setRadio_third_title(mRadio.getThird_title());
+                            mStart.setRadio_fourth_title(mRadio.getFourth_title());
+                            break;
+                        case 2:
+                            mStart.setType(2);
+
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
+                    }
+                    mStarts.add(mStart);
+                }
             }
         }).start();
     }
