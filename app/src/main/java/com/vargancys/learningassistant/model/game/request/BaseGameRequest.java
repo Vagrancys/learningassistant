@@ -30,6 +30,7 @@ import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CompletionStage;
 
 /**
@@ -173,67 +174,118 @@ public class BaseGameRequest {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //TODO 处理考察知识问题的处理和排序,要求1秒以下
-
                 List<OverViewListItem> mOverViews =  getGameListBean(getGameListData(gameId).getOverviewId());
                 List<GameStartContent> mStarts = new ArrayList<>();
+                int type = GameConfigUtils.CONFIG_TYPE;
+                boolean isError = GameConfigUtils.CONFIG_CONTAIN;
+                int difficulty = GameConfigUtils.CONFIG_DIFFICULTY;
+                boolean isRepeat = GameConfigUtils.CONFIG_REPEAT;
                 for (OverViewListItem mItem:mOverViews) {
                     long SubjectId = getSubjectContentData(mItem.getId()).getId();
                     List<GameSubjectItem> mSubjects = mSubjectItemDao
                             .queryBuilder()
                             .where(GameSubjectItemDao.Properties.SubjectId.eq(SubjectId))
-                            .limit(GameConfigUtils.CONFIG_NUMBER)
+                            .limit(GameConfigUtils.CONFIG_SINGLE)
                             .list();
                     Log.e(TAG,"mSubjects ="+mSubjects.size());
                     for(GameSubjectItem mSubject :mSubjects){
-                        GameStartContent mStart = new GameStartContent();
-                        switch (mSubject.getSelect()){
-                            case 1:
-                                GameRadioItem mRadio = mSubject.getRadioItem();
-                                //处理单选需要的数据
-                                mStart.setType(1);
-                                mStart.setRadio_title(mRadio.getTitle());
-                                mStart.setRadio_yes(mRadio.getYes());
-                                mStart.setRadio_first_title(mRadio.getFirst_title());
-                                mStart.setRadio_second_title(mRadio.getSecond_title());
-                                mStart.setRadio_third_title(mRadio.getThird_title());
-                                mStart.setRadio_fourth_title(mRadio.getFourth_title());
-                                break;
-                            case 2:
-                                GameMultipleItem mMultiple = mSubject.getMultipleItem();
-                                mStart.setType(2);
-                                mStart.setMultiple_title(mMultiple.getTitle());
-                                mStart.setMultiple_first_title(mMultiple.getFirst_title());
-                                mStart.setMultiple_first_answer(mMultiple.getFirst_answer());
-                                mStart.setMultiple_second_title(mMultiple.getSecond_title());
-                                mStart.setMultiple_second_answer(mMultiple.getSecond_answer());
-                                mStart.setMultiple_third_title(mMultiple.getThird_title());
-                                mStart.setMultiple_third_answer(mMultiple.getThird_answer());
-                                mStart.setMultiple_fourth_title(mMultiple.getFourth_title());
-                                mStart.setMultiple_fourth_answer(mMultiple.getFourth_answer());
-                                break;
-                            case 3:
-                                GameFillItem mFill = mSubject.getFillItem();
-                                mStart.setType(3);
-                                mStart.setFill_title(mFill.getTitle());
-                                mStart.setFill_answer(mFill.getAnswer());
-                                mStart.setFill_first_title(mFill.getFirst_answer());
-                                mStart.setFill_second_title(mFill.getSecond_answer());
-                                mStart.setFill_third_title(mFill.getThird_answer());
-                                mStart.setFill_fourth_title(mFill.getFourth_answer());
-                                break;
-                            case 4:
-                                GameSubjectiveItem mSubjective = mSubject.getSubjectiveItem();
-                                mStart.setType(4);
-                                mStart.setSubjective_title(mSubjective.getTitle());
-                                mStart.setSubjective_answer(mSubjective.getAnswer());
-                                break;
+                        if(isError&&mSubject.getIsError()){
+                            if(!isRepeat&&mSubject.getIsRepeat()){
+                                if(difficulty <= mSubject.getLevel()){
+                                    GameStartContent mStart = new GameStartContent();
+                                    if(type == 0){
+                                        switch (mSubject.getSelect()){
+                                            case 1:
+                                                initRadio(mSubject, mStart);
+                                                break;
+                                            case 2:
+                                                initMultiple(mSubject, mStart);
+                                                break;
+                                            case 3:
+                                                initFill(mSubject, mStart);
+                                                break;
+                                            case 4:
+                                                initSubjective(mSubject, mStart);
+                                                break;
+                                        }
+                                    }else if(type == 1){
+                                        initRadio(mSubject,mStart);
+                                    }else if(type == 2){
+                                        initMultiple(mSubject,mStart);
+                                    }else if(type == 3){
+                                        initFill(mSubject,mStart);
+                                    }else if(type == 4){
+                                        initSubjective(mSubject,mStart);
+                                    }
+                                    mStarts.add(mStart);
+                                }
+                            }
                         }
-                        mStarts.add(mStart);
                     }
                 }
                 Log.e("looper","size ="+mStarts.size());
+                int size = GameConfigUtils.CONFIG_NUMBER;
+                Random mRandom = new Random();
+                List<GameStartContent> mFinishStart = new ArrayList<>();
+                for (int i = 0; i < size; i++){
+                    int length = mRandom.nextInt(size);
+                    mFinishStart.add(mStarts.get(length));
+                    mStarts.remove(length);
+                }
+                if(mFinishStart.size() > 0){
+                    tidyAllData.showFinish(mFinishStart);
+                }else{
+                    tidyAllData.showError(404,"没有找到合适的答题项!");
+                }
             }
         }).start();
+    }
+
+    //添加单选到闯关开始
+    private void initRadio(GameSubjectItem mSubject, GameStartContent mStart) {
+        GameRadioItem mRadio = mSubject.getRadioItem();
+        //处理单选需要的数据
+        mStart.setType(1);
+        mStart.setRadio_title(mRadio.getTitle());
+        mStart.setRadio_yes(mRadio.getYes());
+        mStart.setRadio_first_title(mRadio.getFirst_title());
+        mStart.setRadio_second_title(mRadio.getSecond_title());
+        mStart.setRadio_third_title(mRadio.getThird_title());
+        mStart.setRadio_fourth_title(mRadio.getFourth_title());
+    }
+
+    //添加多选到闯关开始
+    private void initMultiple(GameSubjectItem mSubject, GameStartContent mStart) {
+        GameMultipleItem mMultiple = mSubject.getMultipleItem();
+        mStart.setType(2);
+        mStart.setMultiple_title(mMultiple.getTitle());
+        mStart.setMultiple_first_title(mMultiple.getFirst_title());
+        mStart.setMultiple_first_answer(mMultiple.getFirst_answer());
+        mStart.setMultiple_second_title(mMultiple.getSecond_title());
+        mStart.setMultiple_second_answer(mMultiple.getSecond_answer());
+        mStart.setMultiple_third_title(mMultiple.getThird_title());
+        mStart.setMultiple_third_answer(mMultiple.getThird_answer());
+        mStart.setMultiple_fourth_title(mMultiple.getFourth_title());
+        mStart.setMultiple_fourth_answer(mMultiple.getFourth_answer());
+    }
+
+    //添加填空到闯关开始
+    private void initFill(GameSubjectItem mSubject, GameStartContent mStart) {
+        GameFillItem mFill = mSubject.getFillItem();
+        mStart.setType(3);
+        mStart.setFill_title(mFill.getTitle());
+        mStart.setFill_answer(mFill.getAnswer());
+        mStart.setFill_first_title(mFill.getFirst_answer());
+        mStart.setFill_second_title(mFill.getSecond_answer());
+        mStart.setFill_third_title(mFill.getThird_answer());
+        mStart.setFill_fourth_title(mFill.getFourth_answer());
+    }
+
+    //添加主观到闯关开始
+    private void initSubjective(GameSubjectItem mSubject, GameStartContent mStart) {
+        GameSubjectiveItem mSubjective = mSubject.getSubjectiveItem();
+        mStart.setType(4);
+        mStart.setSubjective_title(mSubjective.getTitle());
+        mStart.setSubjective_answer(mSubjective.getAnswer());
     }
 }

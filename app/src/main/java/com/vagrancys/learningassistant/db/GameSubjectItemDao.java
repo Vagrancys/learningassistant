@@ -43,6 +43,9 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         public final static Property Title = new Property(6, String.class, "title", false, "TITLE");
         public final static Property Select = new Property(7, int.class, "select", false, "SELECT");
         public final static Property Time = new Property(8, String.class, "time", false, "TIME");
+        public final static Property Level = new Property(9, int.class, "level", false, "LEVEL");
+        public final static Property IsError = new Property(10, boolean.class, "isError", false, "IS_ERROR");
+        public final static Property IsRepeat = new Property(11, boolean.class, "isRepeat", false, "IS_REPEAT");
     }
 
     private DaoSession daoSession;
@@ -70,7 +73,10 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
                 "\"SUBJECTIVE_ID\" INTEGER NOT NULL ," + // 5: subjectiveId
                 "\"TITLE\" TEXT," + // 6: title
                 "\"SELECT\" INTEGER NOT NULL ," + // 7: select
-                "\"TIME\" TEXT);"); // 8: time
+                "\"TIME\" TEXT," + // 8: time
+                "\"LEVEL\" INTEGER NOT NULL ," + // 9: level
+                "\"IS_ERROR\" INTEGER NOT NULL ," + // 10: isError
+                "\"IS_REPEAT\" INTEGER NOT NULL );"); // 11: isRepeat
     }
 
     /** Drops the underlying database table. */
@@ -103,6 +109,9 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         if (time != null) {
             stmt.bindString(9, time);
         }
+        stmt.bindLong(10, entity.getLevel());
+        stmt.bindLong(11, entity.getIsError() ? 1L: 0L);
+        stmt.bindLong(12, entity.getIsRepeat() ? 1L: 0L);
     }
 
     @Override
@@ -129,6 +138,9 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         if (time != null) {
             stmt.bindString(9, time);
         }
+        stmt.bindLong(10, entity.getLevel());
+        stmt.bindLong(11, entity.getIsError() ? 1L: 0L);
+        stmt.bindLong(12, entity.getIsRepeat() ? 1L: 0L);
     }
 
     @Override
@@ -153,7 +165,10 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
             cursor.getLong(offset + 5), // subjectiveId
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // title
             cursor.getInt(offset + 7), // select
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // time
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // time
+            cursor.getInt(offset + 9), // level
+            cursor.getShort(offset + 10) != 0, // isError
+            cursor.getShort(offset + 11) != 0 // isRepeat
         );
         return entity;
     }
@@ -169,6 +184,9 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         entity.setTitle(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setSelect(cursor.getInt(offset + 7));
         entity.setTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setLevel(cursor.getInt(offset + 9));
+        entity.setIsError(cursor.getShort(offset + 10) != 0);
+        entity.setIsRepeat(cursor.getShort(offset + 11) != 0);
      }
     
     @Override

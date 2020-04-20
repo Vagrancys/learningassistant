@@ -47,6 +47,15 @@ public class GameSubjectItem {
     //添加的时间
     private String time;
 
+    //问题的难度
+    private int level;
+
+    //是否答对  答错false  答对true
+    private boolean isError;
+
+    //是否已经答对 true 没有答过 false 答过
+    private boolean isRepeat;
+
     @ToOne(joinProperty = "radioId")
     private GameRadioItem radioItem;
 
@@ -79,9 +88,9 @@ public class GameSubjectItem {
     @Generated(hash = 604438555)
     private transient Long subjectiveItem__resolvedKey;
 
-    @Generated(hash = 668141511)
-    public GameSubjectItem(Long id, long subjectId, long radioId, long multipleId, long fillId,
-            long subjectiveId, String title, int select, String time) {
+    @Generated(hash = 1689043981)
+    public GameSubjectItem(Long id, long subjectId, long radioId, long multipleId, long fillId, long subjectiveId,
+            String title, int select, String time, int level, boolean isError, boolean isRepeat) {
         this.id = id;
         this.subjectId = subjectId;
         this.radioId = radioId;
@@ -91,6 +100,9 @@ public class GameSubjectItem {
         this.title = title;
         this.select = select;
         this.time = time;
+        this.level = level;
+        this.isError = isError;
+        this.isRepeat = isRepeat;
     }
 
     @Generated(hash = 1713026714)
@@ -342,5 +354,29 @@ public class GameSubjectItem {
 
     public void setSubjectiveId(long subjectiveId) {
         this.subjectiveId = subjectiveId;
+    }
+
+    public boolean getIsError() {
+        return this.isError;
+    }
+
+    public void setIsError(boolean isError) {
+        this.isError = isError;
+    }
+
+    public int getLevel() {
+        return this.level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public boolean getIsRepeat() {
+        return this.isRepeat;
+    }
+
+    public void setIsRepeat(boolean isRepeat) {
+        this.isRepeat = isRepeat;
     }
 }

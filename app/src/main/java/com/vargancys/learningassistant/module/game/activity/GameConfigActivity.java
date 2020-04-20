@@ -245,12 +245,12 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
         activity.startActivity(intent);
     }
 
-    // 确定闯关的题数
-    // 确定是否包含错题
-    // 确定每个知识点出题数
-    //确定是否重复已答的题目
-    // 确定题目类型
-    // 确定题目难易
+    // 确定闯关的题数 10 20 30 40 50
+    // 确定是否包含错题 false true
+    // 确定每个知识点出题数  1 2 3 4 5
+    //确定是否重复已答的题目 false true
+    // 确定题目类型 0 1 2 3 4
+    // 确定题目难易 1 2 3 4 5
 
 
     @Override
@@ -304,32 +304,32 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
             case R.id.config_single_fifth:
                 clearSingle();
                 configSingleFifth.setSelected(true);
-                GameConfigUtils.CONFIG_SINGLE = 10;
+                GameConfigUtils.CONFIG_SINGLE = 5;
                 break;
             case R.id.config_type_first:
                 clearType();
                 configTypeFirst.setSelected(true);
-                GameConfigUtils.CONFIG_TYPE = 1;
+                GameConfigUtils.CONFIG_TYPE = 0;
                 break;
             case R.id.config_type_second:
                 clearType();
                 configTypeSecond.setSelected(true);
-                GameConfigUtils.CONFIG_TYPE = 2;
+                GameConfigUtils.CONFIG_TYPE = 1;
                 break;
             case R.id.config_type_third:
                 clearType();
                 configTypeThird.setSelected(true);
-                GameConfigUtils.CONFIG_TYPE = 3;
+                GameConfigUtils.CONFIG_TYPE = 2;
                 break;
             case R.id.config_type_fourth:
                 clearType();
                 configTypeFourth.setSelected(true);
-                GameConfigUtils.CONFIG_TYPE = 4;
+                GameConfigUtils.CONFIG_TYPE = 3;
                 break;
             case R.id.config_type_fifth:
                 clearType();
                 configTypeFifth.setSelected(true);
-                GameConfigUtils.CONFIG_TYPE = 5;
+                GameConfigUtils.CONFIG_TYPE = 4;
                 break;
             case R.id.config_difficulty_first:
                 clearDifficulty();

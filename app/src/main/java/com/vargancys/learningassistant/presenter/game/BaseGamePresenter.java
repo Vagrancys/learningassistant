@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.presenter.game;
 
+import android.os.Handler;
+
 import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameFillItem;
@@ -179,16 +181,27 @@ public class BaseGamePresenter {
         void showError(int error,String message);
     }
 
-    public void getGameStartAllData(long gameId) {
+    public void getGameStartAllData(final Handler handler,long gameId) {
         TidyAllData tidyAllData = new TidyAllData() {
             @Override
-            public void showFinish(List<GameStartContent> mContent) {
-                ((StartGameView) mView).showTidyAllDataFinish(mContent);
+            public void showFinish(final List<GameStartContent> mContent) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((StartGameView) mView).showTidyAllDataFinish(mContent);
+                    }
+                });
+
             }
 
             @Override
             public void showError(int error, String message) {
-                ((StartGameView) mView).showTidyAllDataError(404,"没有处理好!");
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((StartGameView) mView).showTidyAllDataError(404,"没有处理好!");
+                    }
+                });
             }
         };
         mRequest.getGameStartAllData(gameId,tidyAllData);

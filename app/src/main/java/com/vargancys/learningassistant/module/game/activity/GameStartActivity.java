@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.module.game.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
@@ -23,6 +24,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     private BaseGamePresenter mPresenter;
     //关卡id
     private long gameId;
+    private Handler mHandler;
     @Override
     public int getLayoutId() {
         return R.layout.activity_game_start;
@@ -30,9 +32,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
 
     @Override
     public void initView() {
+        mHandler = new Handler();
         mPresenter = new BaseGamePresenter(this);
         gameId = CacheUtils.getLong(getContext(), ConstantsUtils.GAME_ID,0);
-        mPresenter.getGameStartAllData(gameId);
+        mPresenter.getGameStartAllData(mHandler,gameId);
     }
 
     public static void launch(Activity activity){
