@@ -23,46 +23,46 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void createAllTables(Database db, boolean ifNotExists) {
         HelpCommendItemDao.createTable(db, ifNotExists);
         HelpContentItemDao.createTable(db, ifNotExists);
-        HomeKnowContentDao.createTable(db, ifNotExists);
-        HomeKnowItemDao.createTable(db, ifNotExists);
-        HomeKnowDataDao.createTable(db, ifNotExists);
-        HomeKnowFunctionDao.createTable(db, ifNotExists);
-        HomeKnowCommendDao.createTable(db, ifNotExists);
-        HomeKnowHistoryDao.createTable(db, ifNotExists);
-        HomeKnowHistoryFunctionDao.createTable(db, ifNotExists);
-        OverViewListItemDao.createTable(db, ifNotExists);
-        OverViewListContentDao.createTable(db, ifNotExists);
         GameContentDao.createTable(db, ifNotExists);
-        GameSignContentDao.createTable(db, ifNotExists);
-        GameSubjectContentDao.createTable(db, ifNotExists);
-        GameSubjectItemDao.createTable(db, ifNotExists);
         GameFillItemDao.createTable(db, ifNotExists);
         GameMultipleItemDao.createTable(db, ifNotExists);
         GameRadioItemDao.createTable(db, ifNotExists);
+        GameSignContentDao.createTable(db, ifNotExists);
+        GameSubjectContentDao.createTable(db, ifNotExists);
+        GameSubjectItemDao.createTable(db, ifNotExists);
         GameSubjectiveItemDao.createTable(db, ifNotExists);
+        HomeKnowCommendDao.createTable(db, ifNotExists);
+        HomeKnowContentDao.createTable(db, ifNotExists);
+        HomeKnowDataDao.createTable(db, ifNotExists);
+        HomeKnowFunctionDao.createTable(db, ifNotExists);
+        HomeKnowHistoryDao.createTable(db, ifNotExists);
+        HomeKnowHistoryFunctionDao.createTable(db, ifNotExists);
+        HomeKnowItemDao.createTable(db, ifNotExists);
+        OverViewListContentDao.createTable(db, ifNotExists);
+        OverViewListItemDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         HelpCommendItemDao.dropTable(db, ifExists);
         HelpContentItemDao.dropTable(db, ifExists);
-        HomeKnowContentDao.dropTable(db, ifExists);
-        HomeKnowItemDao.dropTable(db, ifExists);
-        HomeKnowDataDao.dropTable(db, ifExists);
-        HomeKnowFunctionDao.dropTable(db, ifExists);
-        HomeKnowCommendDao.dropTable(db, ifExists);
-        HomeKnowHistoryDao.dropTable(db, ifExists);
-        HomeKnowHistoryFunctionDao.dropTable(db, ifExists);
-        OverViewListItemDao.dropTable(db, ifExists);
-        OverViewListContentDao.dropTable(db, ifExists);
         GameContentDao.dropTable(db, ifExists);
-        GameSignContentDao.dropTable(db, ifExists);
-        GameSubjectContentDao.dropTable(db, ifExists);
-        GameSubjectItemDao.dropTable(db, ifExists);
         GameFillItemDao.dropTable(db, ifExists);
         GameMultipleItemDao.dropTable(db, ifExists);
         GameRadioItemDao.dropTable(db, ifExists);
+        GameSignContentDao.dropTable(db, ifExists);
+        GameSubjectContentDao.dropTable(db, ifExists);
+        GameSubjectItemDao.dropTable(db, ifExists);
         GameSubjectiveItemDao.dropTable(db, ifExists);
+        HomeKnowCommendDao.dropTable(db, ifExists);
+        HomeKnowContentDao.dropTable(db, ifExists);
+        HomeKnowDataDao.dropTable(db, ifExists);
+        HomeKnowFunctionDao.dropTable(db, ifExists);
+        HomeKnowHistoryDao.dropTable(db, ifExists);
+        HomeKnowHistoryFunctionDao.dropTable(db, ifExists);
+        HomeKnowItemDao.dropTable(db, ifExists);
+        OverViewListContentDao.dropTable(db, ifExists);
+        OverViewListItemDao.dropTable(db, ifExists);
     }
 
     /**
@@ -83,23 +83,23 @@ public class DaoMaster extends AbstractDaoMaster {
         super(db, SCHEMA_VERSION);
         registerDaoClass(HelpCommendItemDao.class);
         registerDaoClass(HelpContentItemDao.class);
-        registerDaoClass(HomeKnowContentDao.class);
-        registerDaoClass(HomeKnowItemDao.class);
-        registerDaoClass(HomeKnowDataDao.class);
-        registerDaoClass(HomeKnowFunctionDao.class);
-        registerDaoClass(HomeKnowCommendDao.class);
-        registerDaoClass(HomeKnowHistoryDao.class);
-        registerDaoClass(HomeKnowHistoryFunctionDao.class);
-        registerDaoClass(OverViewListItemDao.class);
-        registerDaoClass(OverViewListContentDao.class);
         registerDaoClass(GameContentDao.class);
-        registerDaoClass(GameSignContentDao.class);
-        registerDaoClass(GameSubjectContentDao.class);
-        registerDaoClass(GameSubjectItemDao.class);
         registerDaoClass(GameFillItemDao.class);
         registerDaoClass(GameMultipleItemDao.class);
         registerDaoClass(GameRadioItemDao.class);
+        registerDaoClass(GameSignContentDao.class);
+        registerDaoClass(GameSubjectContentDao.class);
+        registerDaoClass(GameSubjectItemDao.class);
         registerDaoClass(GameSubjectiveItemDao.class);
+        registerDaoClass(HomeKnowCommendDao.class);
+        registerDaoClass(HomeKnowContentDao.class);
+        registerDaoClass(HomeKnowDataDao.class);
+        registerDaoClass(HomeKnowFunctionDao.class);
+        registerDaoClass(HomeKnowHistoryDao.class);
+        registerDaoClass(HomeKnowHistoryFunctionDao.class);
+        registerDaoClass(HomeKnowItemDao.class);
+        registerDaoClass(OverViewListContentDao.class);
+        registerDaoClass(OverViewListItemDao.class);
     }
 
     public DaoSession newSession() {

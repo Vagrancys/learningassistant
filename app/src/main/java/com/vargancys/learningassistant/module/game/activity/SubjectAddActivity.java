@@ -27,6 +27,7 @@ import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.module.game.view.AddGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
+import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -139,8 +140,11 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
     private boolean mMultipleThirdId = false;
     private boolean mMultipleFourthId = false;
     private int mFillId = 0;
+    private long gameId =0;
     private BaseGamePresenter mPresenter;
-
+    private void getGameId(){
+        gameId = CacheUtils.getLong(getContext(),ConstantsUtils.GAME_ID,0);
+    }
     @Override
     public int getLayoutId() {
         return R.layout.activity_subject_add;
@@ -162,6 +166,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         ArrayAdapter mAdapter =ArrayAdapter.createFromResource(getContext(),R.array.common_level,
                 R.layout.support_simple_spinner_dropdown_item);
         addSpinner.setAdapter(mAdapter);
+        getGameId();
     }
 
     private void initListener() {
@@ -436,7 +441,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         mRadio.setSecond_title(addRadioSecondTitleEdit.getText().toString());
         mRadio.setThird_title(addRadioThirdTitleEdit.getText().toString());
         mRadio.setFourth_title(addRadioFourthTitleEdit.getText().toString());
-        return mPresenter.saveGameRadioItemData(mRadio,mSubjectContent);
+        return mPresenter.saveGameRadioItemData(mRadio,mSubjectContent,gameId);
     }
 
     private long tidySubjectMultipleData(){
@@ -450,7 +455,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         mMultiple.setThird_answer(mMultipleThirdId);
         mMultiple.setFourth_title(addMultipleFourthTitleEdit.getText().toString());
         mMultiple.setFourth_answer(mMultipleFourthId);
-        return mPresenter.saveGameMultipleItemData(mMultiple,mSubjectContent);
+        return mPresenter.saveGameMultipleItemData(mMultiple,mSubjectContent,gameId);
     }
 
     private long tidySubjectFillData(){
@@ -462,13 +467,13 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         mFill.setSecond_answer(addFillSecondTitleEdit.getText().toString());
         mFill.setThird_answer(addFillThirdTitleEdit.getText().toString());
         mFill.setFourth_answer(addFillFourthTitleEdit.getText().toString());
-        return mPresenter.saveGameFillItemData(mFill,mSubjectContent);
+        return mPresenter.saveGameFillItemData(mFill,mSubjectContent,gameId);
     }
 
     private long tidySubjectSubjectiveData(){
         GameSubjectiveItem mSubjective = new GameSubjectiveItem();
         mSubjective.setTitle(addSubjectiveTitleEdit.getText().toString());
         mSubjective.setAnswer(addSubjectiveConsultTitleEdit.getText().toString());
-        return mPresenter.saveGameSubjectiveItemData(mSubjective,mSubjectContent);
+        return mPresenter.saveGameSubjectiveItemData(mSubjective,mSubjectContent,gameId);
     }
 }

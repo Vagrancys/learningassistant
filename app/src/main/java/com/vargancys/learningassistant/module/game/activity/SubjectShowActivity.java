@@ -63,7 +63,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     private BaseGamePresenter mPresenter;
     private Handler mHandler;
     //总结知识单项的id;
-    private long knowId;
+    private long knowItemId;
     //题目中心的id
     private long mSubjectContent;
 
@@ -78,11 +78,11 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            knowId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            knowItemId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
         }
         init();
         mPresenter = new BaseGamePresenter(this);
-        mPresenter.getSubjectData(knowId);
+        mPresenter.getSubjectData(knowItemId);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
             @Override
             public void onClick(View v) {
                 //添加问题的各种答题方法
-                SubjectAddActivity.launch(SubjectShowActivity.this,knowId,mSubjectContent);
+                SubjectAddActivity.launch(SubjectShowActivity.this,knowItemId,mSubjectContent);
             }
         });
     }
@@ -117,7 +117,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
-                mPresenter.getSubjectData(knowId);
+                mPresenter.getSubjectData(knowItemId);
             }
         });
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.pink));

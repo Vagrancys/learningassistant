@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -146,6 +147,20 @@ public class GameFragment extends BaseFragment implements GameView {
 
             }
         });
+        gameList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                if(i >= 1){
+                    swipeRefreshLayout.setEnabled(false);
+                }else{
+                    swipeRefreshLayout.setEnabled(true);
+                }
+            }
+        });
     }
 
     private void initToolbar(){
@@ -202,6 +217,7 @@ public class GameFragment extends BaseFragment implements GameView {
     private void initData(List<OverViewListItem> overViewListItemList){
         mBeans.clear();
         mItems.clear();
+        gameTidy.setVisibility(View.VISIBLE);
         mItems.addAll(overViewListItemList);
         for (OverViewListItem item:overViewListItemList){
             KnowListBean mBean = new KnowListBean(item.getSortId(),item.getParentId(),item.getTitle());

@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.game.activity;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.game.GameStartContent;
 import com.vargancys.learningassistant.module.game.view.StartGameView;
@@ -24,7 +25,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     private long gameId;
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_game_start;
     }
 
     @Override

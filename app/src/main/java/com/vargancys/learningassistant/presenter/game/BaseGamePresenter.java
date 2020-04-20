@@ -149,21 +149,21 @@ public class BaseGamePresenter {
         showView(result);
     }
 
-    public long saveGameRadioItemData(GameRadioItem mRadio,long subjectId) {
-        return mRequest.saveGameRadioItemData(mRadio,subjectId);
+    public long saveGameRadioItemData(GameRadioItem mRadio,long subjectId,long gameId) {
+        return mRequest.saveGameRadioItemData(mRadio,subjectId,gameId);
     }
 
-    public long saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId) {
-        return mRequest.saveGameMultipleItemData(mMultiple,subjectId);
+    public long saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId,long gameId) {
+        return mRequest.saveGameMultipleItemData(mMultiple,subjectId,gameId);
     }
 
-    public long saveGameFillItemData(GameFillItem mFill,long subjectId) {
-        return mRequest.saveGameFillItemData(mFill,subjectId);
+    public long saveGameFillItemData(GameFillItem mFill,long subjectId,long gameId) {
+        return mRequest.saveGameFillItemData(mFill,subjectId,gameId);
     }
 
 
-    public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
-        return mRequest.saveGameSubjectiveItemData(mSubjective,subjectId);
+    public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId,long gameId) {
+        return mRequest.saveGameSubjectiveItemData(mSubjective,subjectId,gameId);
     }
 
     private void showView(long result){

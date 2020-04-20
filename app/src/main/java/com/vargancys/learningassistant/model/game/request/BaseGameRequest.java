@@ -52,6 +52,7 @@ public class BaseGameRequest {
     private GameMultipleItemDao mMultipleItemDao;
     private GameFillItemDao mFillItemDao;
     private GameSubjectiveItemDao mSubjectiveItemDao;
+    private OverViewListItemDao mOverViewItemDao;
     private BaseGameRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mGameContentDao = mDaoSession.getGameContentDao();
@@ -64,6 +65,7 @@ public class BaseGameRequest {
         mMultipleItemDao = mDaoSession.getGameMultipleItemDao();
         mFillItemDao = mDaoSession.getGameFillItemDao();
         mSubjectiveItemDao = mDaoSession.getGameSubjectiveItemDao();
+        mOverViewItemDao = mDaoSession.getOverViewListItemDao();
     }
 
     public static BaseGameRequest getInstance(){
@@ -137,14 +139,13 @@ public class BaseGameRequest {
         return mSubjectItemDao.insert(mItem);
     }
 
-    public long saveGameRadioItemData(GameRadioItem mRadio,long subjectId) {
-
-        updateContent(subjectId);
+    public long saveGameRadioItemData(GameRadioItem mRadio,long subjectId,long gameId) {
+        updateContent(subjectId,gameId);
         return mRadioItemDao.insert(mRadio);
     }
 
-    private void updateContent(long subjectId) {
-        GameContent gameContent = mGameContentDao.load(subjectId);
+    private void updateContent(long subjectId,long gameId) {
+        GameContent gameContent = mGameContentDao.load(gameId);
         gameContent.setSubject(gameContent.getSubject()+1);
         mGameContentDao.update(gameContent);
         GameSubjectContent gameSubjectContent = mSubjectContentDao.load(subjectId);
@@ -152,60 +153,86 @@ public class BaseGameRequest {
         mSubjectContentDao.update(gameSubjectContent);
     }
 
-    public long saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId) {
-        updateContent(subjectId);
+    public long saveGameMultipleItemData(GameMultipleItem mMultiple,long subjectId,long gameId) {
+        updateContent(subjectId,gameId);
         return mMultipleItemDao.insert(mMultiple);
     }
 
-    public long saveGameFillItemData(GameFillItem mFill,long subjectId) {
-        updateContent(subjectId);
+    public long saveGameFillItemData(GameFillItem mFill,long subjectId,long gameId) {
+        updateContent(subjectId,gameId);
         return mFillItemDao.insert(mFill);
     }
 
-    public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId) {
-        updateContent(subjectId);
+    public long saveGameSubjectiveItemData(GameSubjectiveItem mSubjective,long subjectId,long gameId) {
+        updateContent(subjectId,gameId);
         return mSubjectiveItemDao.insert(mSubjective);
     }
 
+    //关卡中心的id
     public void getGameStartAllData(final long gameId, final BaseGamePresenter.TidyAllData tidyAllData) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //TODO 处理考察知识问题的处理和排序,要求1秒以下
-                List<GameSubjectItem> mItems = mSubjectItemDao
-                        .queryBuilder()
-                        .where(GameSubjectItemDao.Properties.SubjectId.eq(gameId))
-                        .limit(GameConfigUtils.CONFIG_NUMBER)
-                        .list();
-                Log.e(TAG,"mItems ="+mItems.size());
-                List<GameStartContent> mStarts = new ArrayList<>();
-                for(GameSubjectItem mItem :mItems){
-                    GameStartContent mStart = new GameStartContent();
-                    switch (mItem.getSelect()){
-                        case 1:
-                            GameRadioItem mRadio = mItem.getRadioItem();
-                            //处理单选需要的数据
-                            mStart.setType(1);
-                            mStart.setRadio_title(mRadio.getTitle());
-                            mStart.setRadio_yes(mRadio.getYes());
-                            mStart.setRadio_first_title(mRadio.getFirst_title());
-                            mStart.setRadio_second_title(mRadio.getSecond_title());
-                            mStart.setRadio_third_title(mRadio.getThird_title());
-                            mStart.setRadio_fourth_title(mRadio.getFourth_title());
-                            break;
-                        case 2:
-                            mStart.setType(2);
 
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            break;
+                List<OverViewListItem> mOverViews =  getGameListBean(getGameListData(gameId).getOverviewId());
+                List<GameStartContent> mStarts = new ArrayList<>();
+                for (OverViewListItem mItem:mOverViews) {
+                    long SubjectId = getSubjectContentData(mItem.getId()).getId();
+                    List<GameSubjectItem> mSubjects = mSubjectItemDao
+                            .queryBuilder()
+                            .where(GameSubjectItemDao.Properties.SubjectId.eq(SubjectId))
+                            .limit(GameConfigUtils.CONFIG_NUMBER)
+                            .list();
+                    Log.e(TAG,"mSubjects ="+mSubjects.size());
+                    for(GameSubjectItem mSubject :mSubjects){
+                        GameStartContent mStart = new GameStartContent();
+                        switch (mSubject.getSelect()){
+                            case 1:
+                                GameRadioItem mRadio = mSubject.getRadioItem();
+                                //处理单选需要的数据
+                                mStart.setType(1);
+                                mStart.setRadio_title(mRadio.getTitle());
+                                mStart.setRadio_yes(mRadio.getYes());
+                                mStart.setRadio_first_title(mRadio.getFirst_title());
+                                mStart.setRadio_second_title(mRadio.getSecond_title());
+                                mStart.setRadio_third_title(mRadio.getThird_title());
+                                mStart.setRadio_fourth_title(mRadio.getFourth_title());
+                                break;
+                            case 2:
+                                GameMultipleItem mMultiple = mSubject.getMultipleItem();
+                                mStart.setType(2);
+                                mStart.setMultiple_title(mMultiple.getTitle());
+                                mStart.setMultiple_first_title(mMultiple.getFirst_title());
+                                mStart.setMultiple_first_answer(mMultiple.getFirst_answer());
+                                mStart.setMultiple_second_title(mMultiple.getSecond_title());
+                                mStart.setMultiple_second_answer(mMultiple.getSecond_answer());
+                                mStart.setMultiple_third_title(mMultiple.getThird_title());
+                                mStart.setMultiple_third_answer(mMultiple.getThird_answer());
+                                mStart.setMultiple_fourth_title(mMultiple.getFourth_title());
+                                mStart.setMultiple_fourth_answer(mMultiple.getFourth_answer());
+                                break;
+                            case 3:
+                                GameFillItem mFill = mSubject.getFillItem();
+                                mStart.setType(3);
+                                mStart.setFill_title(mFill.getTitle());
+                                mStart.setFill_answer(mFill.getAnswer());
+                                mStart.setFill_first_title(mFill.getFirst_answer());
+                                mStart.setFill_second_title(mFill.getSecond_answer());
+                                mStart.setFill_third_title(mFill.getThird_answer());
+                                mStart.setFill_fourth_title(mFill.getFourth_answer());
+                                break;
+                            case 4:
+                                GameSubjectiveItem mSubjective = mSubject.getSubjectiveItem();
+                                mStart.setType(4);
+                                mStart.setSubjective_title(mSubjective.getTitle());
+                                mStart.setSubjective_answer(mSubjective.getAnswer());
+                                break;
+                        }
+                        mStarts.add(mStart);
                     }
-                    mStarts.add(mStart);
                 }
+                Log.e("looper","size ="+mStarts.size());
             }
         }).start();
     }
