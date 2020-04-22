@@ -13,4 +13,5 @@ import java.util.List;
 public interface StartGameView extends BaseGameView{
     void showTidyAllDataFinish(List<GameStartContent> contents);
     void showTidyAllDataError(int error,String message);
+    void showRefreshLayout();
 }

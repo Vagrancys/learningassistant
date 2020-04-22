@@ -498,4 +498,14 @@
 
     <string name="config_save">完成</string>
     <string name="config_title">闯关配置中心</string>
+    <string name="start_progress_title">5/40</string>
+    <string name="start_radio_item_title">答案</string>
+    <string name="start_radio_title">这是神马一道踢踢踢踢踢啊！</string>
+    <string name="start_radio_submit_title">回答</string>
+    <string name="start_hint_radio_title">单选题</string>
+    <string name="start_hint_multiple_title">多选题</string>
+    <string name="start_hint_fill_title">填空题</string>
+    <string name="start_hint_subjective_title">主观题</string>
+    <string name="start_subjective_hint_title">请输入您所理解的知识</string>
+    <string name="start_empty_title">正在处理数据中</>
 </resources>

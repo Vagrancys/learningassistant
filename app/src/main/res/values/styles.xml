@@ -12,4 +12,39 @@
         <item name="android:windowEnterAnimation">@anim/pop_function_enter_anim</item>
         <item name="android:windowExitAnimation">@anim/pop_function_exit_anim</item>
     </style>
+
+    <!--单选答题的style-->
+    <style name="start_radio_style">
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/start_radio_item_title</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_width_30dp</item>
+        <item name="android:layout_marginStart">@dimen/margin_width_30dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_width_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_width_5dp</item>
+        <item name="android:paddingLeft">@dimen/margin_width_20dp</item>
+        <item name="android:paddingRight">@dimen/margin_width_20dp</item>
+        <item name="android:paddingTop">@dimen/margin_width_10dp</item>
+        <item name="android:paddingBottom">@dimen/margin_width_10dp</item>
+        <item name="android:background">@drawable/start_radio_no_bg</item>
+    </style>
+
+    <style name="start_radio_submit_style">
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/start_radio_submit_title</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:paddingStart">@dimen/margin_width_50dp</item>
+        <item name="android:paddingEnd">@dimen/margin_width_50dp</item>
+        <item name="android:paddingTop">@dimen/margin_width_10dp</item>
+        <item name="android:paddingBottom">@dimen/margin_width_10dp</item>
+        <item name="android:background">@drawable/start_radio_submit_bg</item>
+    </style>
+
+    <style name="start_common_hint_style">
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginBottom">@dimen/margin_width_10dp</item>
+    </style>
 </resources>

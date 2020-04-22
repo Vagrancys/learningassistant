@@ -201,6 +201,7 @@ public class GameFragment extends BaseFragment implements GameView {
         gameLevel.setText("--");
         fragmentEmpty.setVisibility(View.VISIBLE);
         gameLinear.setVisibility(View.GONE);
+        gameTidy.setVisibility(View.GONE);
         swipeRefreshLayout.setRefreshing(false);
     }
 

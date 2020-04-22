@@ -182,6 +182,7 @@ public class BaseGamePresenter {
     }
 
     public void getGameStartAllData(final Handler handler,long gameId) {
+        ((StartGameView) mView).showRefreshLayout();
         TidyAllData tidyAllData = new TidyAllData() {
             @Override
             public void showFinish(final List<GameStartContent> mContent) {
