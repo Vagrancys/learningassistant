@@ -50,4 +50,6 @@ public class ConstantsUtils {
 
     //判断闯关配置是否有完成
     public static final String GAME_STATE = "game_state";
+    //答题卡的字段
+    public static final String ANSWER_SHEET_NAME = "answer_sheet_name";
 }

@@ -508,4 +508,5 @@
     <string name="start_hint_subjective_title">主观题</string>
     <string name="start_subjective_hint_title">请输入您所理解的知识</string>
     <string name="start_empty_title">正在处理数据中</>
+    <string name="next_problem">下一题</string>
 </resources>
