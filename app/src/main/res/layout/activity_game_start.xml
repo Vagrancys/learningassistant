@@ -236,7 +236,8 @@
         android:paddingTop="@dimen/margin_width_10dp"
         android:paddingBottom="@dimen/margin_width_10dp"
         android:paddingLeft="@dimen/margin_width_30dp"
-        android:paddingRight="@dimen/margin_width_30dp"/>
+        android:paddingRight="@dimen/margin_width_30dp"
+        android:visibility="gone"/>
     <LinearLayout
         android:id="@+id/ll_start_empty"
         android:layout_width="match_parent"
