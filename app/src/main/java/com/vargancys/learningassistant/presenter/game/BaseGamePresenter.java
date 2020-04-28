@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.presenter.game;
 import android.os.Handler;
 
 import com.vargancys.learningassistant.db.common.KnowListBean;
+import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameFillItem;
 import com.vargancys.learningassistant.db.game.GameMultipleItem;
@@ -16,6 +17,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.game.request.BaseGameRequest;
 import com.vargancys.learningassistant.module.game.view.AddGameView;
+import com.vargancys.learningassistant.module.game.view.AnswerSheetView;
 import com.vargancys.learningassistant.module.game.view.BaseGameView;
 import com.vargancys.learningassistant.module.game.view.GameView;
 import com.vargancys.learningassistant.module.game.view.SelectGameView;
@@ -24,6 +26,7 @@ import com.vargancys.learningassistant.module.game.view.SignGameView;
 import com.vargancys.learningassistant.module.game.view.StartGameView;
 import com.vargancys.learningassistant.module.game.view.SubjectShowView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -173,6 +176,15 @@ public class BaseGamePresenter {
             ((AddGameView) mView).showAddDataFinish();
         }else{
             ((AddGameView) mView).showAddDataError(404,"不错的关系啊!");
+        }
+    }
+
+    public void updateAnswerSheetData(ArrayList<GameAnswerSheetBean> mBean) {
+        boolean result = mRequest.updateAnswerSheetData(mBean);
+        if(result){
+            ((AnswerSheetView) mView).updateDataFinish();
+        }else{
+            ((AnswerSheetView) mView).updateDataError(401,"更新失败!");
         }
     }
 

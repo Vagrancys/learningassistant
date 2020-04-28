@@ -14,6 +14,7 @@ import com.vagrancys.learningassistant.db.GameSubjectiveItemDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
 import com.vargancys.learningassistant.db.game.GameConfigUtils;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameFillItem;
@@ -193,6 +194,9 @@ public class BaseGameRequest {
                             if(!isRepeat&&mSubject.getIsRepeat()){
                                 if(difficulty <= mSubject.getLevel()){
                                     GameStartContent mStart = new GameStartContent();
+                                    mStart.setStart_id(mSubject.getId());
+                                    mStart.setGame_id(gameId);
+                                    mStart.setContent_id(SubjectId);
                                     if(type == 0){
                                         switch (mSubject.getSelect()){
                                             case 1:
@@ -283,9 +287,20 @@ public class BaseGameRequest {
 
     //添加主观到闯关开始
     private void initSubjective(GameSubjectItem mSubject, GameStartContent mStart) {
-        GameSubjectiveItem mSubjective = mSubject.getSubjectiveItem();
+        GameSubjectiveItem  mSubjective= mSubject.getSubjectiveItem();
         mStart.setType(4);
         mStart.setSubjective_title(mSubjective.getTitle());
         mStart.setSubjective_answer(mSubjective.getAnswer());
+    }
+
+    public boolean updateAnswerSheetData(ArrayList<GameAnswerSheetBean> mBean) {
+        for (GameAnswerSheetBean bean:mBean){
+            GameSubjectItem mItem = mSubjectItemDao.load(bean.getAnswer_id());
+            mItem.setIsRepeat(true);
+            mItem.setIsError(bean.isWin());
+            mSubjectItemDao.update(mItem);
+        }
+        //TODO 处理知识模块和知识单项的数据
+        return true;
     }
 }

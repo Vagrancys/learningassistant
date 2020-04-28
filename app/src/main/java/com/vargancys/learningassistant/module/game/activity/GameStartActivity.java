@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.db.game.AnswerSheetParcelable;
+import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
 import com.vargancys.learningassistant.db.game.GameStartContent;
 import com.vargancys.learningassistant.module.game.view.StartGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
@@ -109,6 +111,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     private int startFillAnswer = 0;
     private List<GameStartContent> mContents = new ArrayList<>();
     private Parcelable AnswerSheetParcelable;
+    private ArrayList<GameAnswerSheetBean> mBean;
 
     //TODO 友好提示答题情况 保持答题情况序列化 答题卡页面
 
@@ -123,7 +126,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         mPresenter = new BaseGamePresenter(this);
         gameId = CacheUtils.getLong(getContext(), ConstantsUtils.GAME_ID, 0);
         mPresenter.getGameStartAllData(mHandler, gameId);
-
+        AnswerSheetParcelable = new AnswerSheetParcelable();
+        mBean = new ArrayList<>();
         initLayoutListener();
     }
 
@@ -408,6 +412,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
 
     //错误答案处理方式
     private void JudgeAnswer(int select) {
+        mBean.add(new GameAnswerSheetBean(mContents.get(startProgress).getStart_id(),false));
         switch (select){
             case 1:
                 JudgeRadioLayout();
@@ -526,6 +531,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     //回答问题正确
     private void AnswerWin(){
         recoveryRadio();
+        mBean.add(new GameAnswerSheetBean(mContents.get(startProgress).getStart_id(),false));
         nextProblem();
     }
 
