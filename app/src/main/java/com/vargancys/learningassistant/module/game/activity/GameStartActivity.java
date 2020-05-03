@@ -110,7 +110,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     private boolean multipleFourthAnswer =false;
     private int startFillAnswer = 0;
     private List<GameStartContent> mContents = new ArrayList<>();
-    private Parcelable AnswerSheetParcelable;
+    private AnswerSheetParcelable mAnswerSheetParcelable;
     private ArrayList<GameAnswerSheetBean> mBean;
 
     //TODO 友好提示答题情况 保持答题情况序列化 答题卡页面
@@ -126,7 +126,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         mPresenter = new BaseGamePresenter(this);
         gameId = CacheUtils.getLong(getContext(), ConstantsUtils.GAME_ID, 0);
         mPresenter.getGameStartAllData(mHandler, gameId);
-        AnswerSheetParcelable = new AnswerSheetParcelable();
+        mAnswerSheetParcelable = new AnswerSheetParcelable();
         mBean = new ArrayList<>();
         initLayoutListener();
     }
@@ -142,7 +142,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         startAnswerSheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GameAnswerSheetActivity.launch(GameStartActivity.this,AnswerSheetParcelable);
+                GameAnswerSheetActivity.launch(GameStartActivity.this,mAnswerSheetParcelable);
             }
         });
         initRadioLayout();
@@ -412,7 +412,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
 
     //错误答案处理方式
     private void JudgeAnswer(int select) {
-        mBean.add(new GameAnswerSheetBean(mContents.get(startProgress).getStart_id(),false));
+        mBean.add(new GameAnswerSheetBean(mContents.get(startProgress).getStart_id(),false,mContents.get(startProgress).getContent_id()));
         switch (select){
             case 1:
                 JudgeRadioLayout();
@@ -531,7 +531,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     //回答问题正确
     private void AnswerWin(){
         recoveryRadio();
-        mBean.add(new GameAnswerSheetBean(mContents.get(startProgress).getStart_id(),false));
+        mBean.add(new GameAnswerSheetBean(mContents.get(startProgress).getStart_id(),true,mContents.get(startProgress).getContent_id()));
         nextProblem();
     }
 
@@ -539,7 +539,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     private void nextProblem() {
         startProgress++;
         if(mContents.size() == startProgress){
-            GameAnswerSheetActivity.launch(GameStartActivity.this,AnswerSheetParcelable);
+            GameAnswerSheetActivity.launch(GameStartActivity.this,mAnswerSheetParcelable);
             finish();
         }
         startProgressTitle.setText(startProgress+"/"+mContents.size());
@@ -573,6 +573,7 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         startProgressTitle.setText(startProgress+"/"+mContents.size());
         startProgressBar.setProgress(startProgress);
         startProgressBar.setMax(mContents.size());
+        mAnswerSheetParcelable.setGame_id(contents.get(0).getGame_id());
         initData(mContents.get(startProgress).getType());
     }
 

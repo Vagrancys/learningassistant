@@ -28,6 +28,7 @@ import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
+import com.vargancys.learningassistant.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -293,13 +294,54 @@ public class BaseGameRequest {
         mStart.setSubjective_answer(mSubjective.getAnswer());
     }
 
-    public boolean updateAnswerSheetData(ArrayList<GameAnswerSheetBean> mBean) {
-        for (GameAnswerSheetBean bean:mBean){
+    public boolean updateAnswerSheetData(long gameId,ArrayList<GameAnswerSheetBean> mBean) {
+        int gameError = 0;
+        int contentError = 0;
+        int contentAnswer = 0;
+        int size = mBean.size();
+        for (int j = 0;j<size;j++){
+            GameAnswerSheetBean bean = mBean.get(j);
             GameSubjectItem mItem = mSubjectItemDao.load(bean.getAnswer_id());
             mItem.setIsRepeat(true);
             mItem.setIsError(bean.isWin());
+            if(j==0){
+                if(!bean.isWin()){
+                    contentError++;
+                }else{
+                    contentAnswer++;
+                }
+            }else if(j == size-1){
+                GameSubjectContent mContent = mSubjectContentDao.load(mBean.get(j).getContent_id());
+                mContent.setLast_time(TimeUtils.getTime());
+                mContent.setAnswer(mContent.getAnswer()+contentAnswer);
+                mContent.setError(mContent.getError()+contentError);
+                contentError = 0;
+                contentAnswer = 0;
+            }else{
+                if(!bean.isWin()){
+                    contentError++;
+                }else{
+                    contentAnswer++;
+                }
+                if(!mBean.get(j).getContent_id().equals(mBean.get(j-1).getContent_id())){
+                    GameSubjectContent mContent = mSubjectContentDao.load(mBean.get(j-1).getContent_id());
+                    mContent.setLast_time(TimeUtils.getTime());
+                    mContent.setAnswer(mContent.getAnswer()+contentAnswer);
+                    mContent.setError(mContent.getError()+contentError);
+                    contentError = 0;
+                    contentAnswer = 0;
+                }
+            }
             mSubjectItemDao.update(mItem);
+            if(!bean.isWin()){
+                gameError++;
+            }
         }
+        //修改闯关中心的错题数
+        GameContent gameContent = mGameContentDao.load(gameId);
+        gameContent.setError(gameContent.getError()+gameError);
+        gameContent.setError_current(gameContent.getError_current()+gameError);
+        mGameContentDao.update(gameContent);
         //TODO 处理知识模块和知识单项的数据
         return true;
     }
