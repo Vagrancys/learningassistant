@@ -513,4 +513,36 @@
     <string name="answer_sheet_determine">确定</string>
     <string name="answer_sheet_title">1</string>
     <string name="answer_sheet_toolbar">答题卡</string>
+
+    <!--天梯-->
+    <string name="ladder_level_text">25阶</string>
+    <string name="ladder_time_text">9s</string>
+    <string name="ladder_mode_text">模式</string>
+    <string name="ladder_communication_text">交流</string>
+    <string name="ladder_help_text">帮助</string>
+    <string name="ladder_difficulty_text">难度</string>
+    <string name="ladder_rank_text">排行</string>
+    <string name="ladder_result_text">成绩</string>
+    <string name="ladder_interlude_text">加载</string>
+    <string name="ladder_prepare_head_text">准备阶段</string>
+    <string name="ladder_prepare_title_text">当前称号:</string>
+    <string name="ladder_prepare_title_name_text">初级攀登者</string>
+    <string name="ladder_prepare_upgrade_text">升阶所需:</string>
+    <string name="ladder_prepare_upgrade_name_text">125阶</string>
+    <string name="ladder_prepare_difficulty_text">天梯难度:</string>
+    <string name="ladder_prepare_difficulty_name_text">专家</string>
+    <string name="ladder_prepare_highest_text">最高阶层:</string>
+    <string name="ladder_prepare_highest_name_text">1025阶</string>
+    <string name="ladder_prepare_fail_text">失败层级:</string>
+    <string name="ladder_prepare_fail_name_text">501阶</string>
+    <string name="ladder_prepare_time_text">登梯时间:</string>
+    <string name="ladder_prepare_time_name_text">2020.05.04 22:52</string>
+    <string name="ladder_prepare_total_text">总阶梯数:</string>
+    <string name="ladder_prepare_total_name_text">10245阶</string>
+    <string name="ladder_prepare_master_text">所掌握数:</string>
+    <string name="ladder_prepare_master_name_text">1025题</string>
+    <string name="ladder_prepare_chance_text">登顶概率:</string>
+    <string name="ladder_prepare_chance_name_text">15%</string>
+    <string name="ladder_prepare_start_text">登天梯</string>
+    <string name="ladder_judgment_text">登梯</string>
 </resources>

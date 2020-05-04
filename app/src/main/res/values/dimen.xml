@@ -8,6 +8,8 @@
     <dimen name="text_size_18sp">18sp</dimen>
     <dimen name="text_size_16sp">16sp</dimen>
     <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_10sp">10sp</dimen>
     <dimen name="corners_radius_30dp">30dp</dimen>
     <dimen name="corners_radius_20dp">20dp</dimen>
     <dimen name="corners_radius_15dp">15dp</dimen>
@@ -18,6 +20,11 @@
     <dimen name="margin_width_200dp">200dp</dimen>
     <dimen name="margin_width_180dp">180dp</dimen>
     <dimen name="margin_width_160dp">160dp</dimen>
+    <dimen name="margin_width_150dp">150dp</dimen>
+    <dimen name="margin_width_140dp">140dp</dimen>
+    <dimen name="margin_width_130dp">130dp</dimen>
+    <dimen name="margin_width_120dp">120dp</dimen>
+    <dimen name="margin_width_110dp">110dp</dimen>
     <dimen name="margin_width_100dp">100dp</dimen>
     <dimen name="margin_width_80dp">80dp</dimen>
     <dimen name="margin_width_70dp">70dp</dimen>
