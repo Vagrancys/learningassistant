@@ -247,6 +247,7 @@ public class LadderFragment extends BaseFragment implements LadderView {
     }
 
     private void initPrepareData() {
+
         ladderPrepareTitle.setText(mLadder.getTitle());
         ladderPrepareUpgrade.setText(mLadder.getUpgrade()+"阶");
         ladderPrepareDifficulty.setText(mLadder.getDifficulty());
