@@ -52,4 +52,6 @@ public class ConstantsUtils {
     public static final String GAME_STATE = "game_state";
     //答题卡的字段
     public static final String ANSWER_SHEET_NAME = "answer_sheet_name";
+    //天梯个人数据中心的id
+    public static final String LADDER_DATA_ID = "ladder_data_id";
 }

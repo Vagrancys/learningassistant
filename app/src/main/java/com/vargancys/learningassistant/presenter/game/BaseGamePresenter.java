@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.presenter.game;
 
 import android.os.Handler;
 
-import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameFillItem;
@@ -179,8 +178,8 @@ public class BaseGamePresenter {
         }
     }
 
-    public void updateAnswerSheetData(ArrayList<GameAnswerSheetBean> mBean) {
-        boolean result = mRequest.updateAnswerSheetData(mBean);
+    public void updateAnswerSheetData(long gameId,ArrayList<GameAnswerSheetBean> mBean) {
+        boolean result = mRequest.updateAnswerSheetData(gameId,mBean);
         if(result){
             ((AnswerSheetView) mView).updateDataFinish();
         }else{

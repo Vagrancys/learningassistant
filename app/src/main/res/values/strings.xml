@@ -545,4 +545,40 @@
     <string name="ladder_prepare_chance_name_text">15%</string>
     <string name="ladder_prepare_start_text">登天梯</string>
     <string name="ladder_judgment_text">登梯</string>
+
+    <string name="ladder_radio_item_title">答案</string>
+    <string name="ladder_radio_title">这是神马一道踢踢踢踢踢啊！</string>
+    <string name="ladder_radio_submit_title">回答</string>
+    <string name="ladder_hint_radio_title">单选题</string>
+    <string name="ladder_hint_multiple_title">多选题</string>
+    <string name="ladder_hint_fill_title">填空题</string>
+    <string name="ladder_hint_subjective_title">主观题</string>
+    <string name="ladder_subjective_hint_title">请输入您所理解的知识</string>
+    <string name="ladder_empty_title">正在处理数据中</string>
+
+    <string name="fail_title_head_text">登顶失败了!</string>
+    <string name="ladder_fail_change_text">称号变化</string>
+    <string name="ladder_fail_change_name_text">中级攀登者 -> 初级攀登者</string>
+    <string name="ladder_fail_time_text">失败时间</string>
+    <string name="ladder_fail_time_name_text">2020.05.06 20:40</string>
+    <string name="ladder_fail_level_text">失败层级</string>
+    <string name="ladder_fail_level_name_text">124阶</string>
+    <string name="ladder_fail_difficulty_text">天梯难度</string>
+    <string name="ladder_fail_difficulty_name_text">专家</string>
+    <string name="ladder_fail_total_text">总天梯数</string>
+    <string name="ladder_fail_total_name_text">1235阶</string>
+    <string name="ladder_fail_start_text">回归底层</string>
+
+    <string name="win_title_head_text">登顶成功了!</string>
+    <string name="ladder_win_change_text">称号变化</string>
+    <string name="ladder_win_change_name_text">初级攀登者 -> 中级攀登者</string>
+    <string name="ladder_win_time_text">登顶时间</string>
+    <string name="ladder_win_time_name_text">2020.05.06 20:40</string>
+    <string name="ladder_win_difficulty_text">天梯难度</string>
+    <string name="ladder_win_difficulty_name_text">专家</string>
+    <string name="ladder_win_unavailable_text">总用时</string>
+    <string name="ladder_win_unavailable_name_text">25小时</string>
+    <string name="ladder_win_total_text">总天梯数</string>
+    <string name="ladder_win_total_name_text">1235阶</string>
+    <string name="ladder_win_start_text">更换难度</string>
 </resources>

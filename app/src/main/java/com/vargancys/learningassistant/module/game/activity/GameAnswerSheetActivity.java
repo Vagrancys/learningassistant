@@ -18,6 +18,7 @@ import com.vargancys.learningassistant.module.game.adapter.AnswerSheetAdapter;
 import com.vargancys.learningassistant.module.game.view.AnswerSheetView;
 import com.vargancys.learningassistant.module.game.view.BaseGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
+import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -38,6 +39,7 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
     private ArrayList<GameAnswerSheetBean> mBean = new ArrayList<>();
     private AnswerSheetAdapter mAdapter;
     private BaseGamePresenter mPresenter;
+    private long gameId;
 
     @Override
     public int getLayoutId() {
@@ -61,6 +63,7 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
     @Override
     public void initView() {
         mBean = getIntent().getParcelableArrayListExtra(ConstantsUtils.ANSWER_SHEET_NAME);
+        gameId = CacheUtils.getLong(getContext(), ConstantsUtils.GAME_ID, 0);
         Log.e("GameAnswerSheetActivity", "测试");
         mAdapter = new AnswerSheetAdapter(getContext(), mBean);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
@@ -69,7 +72,7 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
         sheetDetermine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.updateAnswerSheetData(mBean);
+                mPresenter.updateAnswerSheetData(gameId,mBean);
             }
         });
     }
