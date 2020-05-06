@@ -20,4 +20,8 @@ public interface LadderView {
     void getLadderTopicError(int error,String message);
     void showPrepareLayout();
     void showLadderLayout();
+    void TrailAnswer();
+    boolean isAnswerEmpty();
+    void showFailLayout();
+    void showWinLayout();
 }

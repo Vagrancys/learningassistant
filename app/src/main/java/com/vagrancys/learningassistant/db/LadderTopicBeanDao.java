@@ -25,6 +25,30 @@ public class LadderTopicBeanDao extends AbstractDao<LadderTopicBean, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Type = new Property(1, int.class, "type", false, "TYPE");
+        public final static Property Radio_title = new Property(2, String.class, "radio_title", false, "RADIO_TITLE");
+        public final static Property Radio_answer = new Property(3, int.class, "radio_answer", false, "RADIO_ANSWER");
+        public final static Property Radio_first_answer = new Property(4, String.class, "radio_first_answer", false, "RADIO_FIRST_ANSWER");
+        public final static Property Radio_second_answer = new Property(5, String.class, "radio_second_answer", false, "RADIO_SECOND_ANSWER");
+        public final static Property Radio_third_answer = new Property(6, String.class, "radio_third_answer", false, "RADIO_THIRD_ANSWER");
+        public final static Property Radio_fourth_answer = new Property(7, String.class, "radio_fourth_answer", false, "RADIO_FOURTH_ANSWER");
+        public final static Property Multiple_title = new Property(8, String.class, "multiple_title", false, "MULTIPLE_TITLE");
+        public final static Property Multiple_first_answer = new Property(9, boolean.class, "multiple_first_answer", false, "MULTIPLE_FIRST_ANSWER");
+        public final static Property Multiple_second_answer = new Property(10, boolean.class, "multiple_second_answer", false, "MULTIPLE_SECOND_ANSWER");
+        public final static Property Multiple_third_answer = new Property(11, boolean.class, "multiple_third_answer", false, "MULTIPLE_THIRD_ANSWER");
+        public final static Property Multiple_fourth_answer = new Property(12, boolean.class, "multiple_fourth_answer", false, "MULTIPLE_FOURTH_ANSWER");
+        public final static Property Multiple_first_title = new Property(13, String.class, "multiple_first_title", false, "MULTIPLE_FIRST_TITLE");
+        public final static Property Multiple_second_title = new Property(14, String.class, "multiple_second_title", false, "MULTIPLE_SECOND_TITLE");
+        public final static Property Multiple_third_title = new Property(15, String.class, "multiple_third_title", false, "MULTIPLE_THIRD_TITLE");
+        public final static Property Multiple_fourth_title = new Property(16, String.class, "multiple_fourth_title", false, "MULTIPLE_FOURTH_TITLE");
+        public final static Property Fill_title = new Property(17, String.class, "fill_title", false, "FILL_TITLE");
+        public final static Property Fill_answer = new Property(18, int.class, "fill_answer", false, "FILL_ANSWER");
+        public final static Property Fill_first_answer = new Property(19, String.class, "fill_first_answer", false, "FILL_FIRST_ANSWER");
+        public final static Property Fill_second_answer = new Property(20, String.class, "fill_second_answer", false, "FILL_SECOND_ANSWER");
+        public final static Property Fill_third_answer = new Property(21, String.class, "fill_third_answer", false, "FILL_THIRD_ANSWER");
+        public final static Property Fill_fourth_answer = new Property(22, String.class, "fill_fourth_answer", false, "FILL_FOURTH_ANSWER");
+        public final static Property Subjective_title = new Property(23, String.class, "subjective_title", false, "SUBJECTIVE_TITLE");
+        public final static Property Subjective_answer = new Property(24, String.class, "subjective_answer", false, "SUBJECTIVE_ANSWER");
     }
 
 
@@ -40,7 +64,31 @@ public class LadderTopicBeanDao extends AbstractDao<LadderTopicBean, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"LADDER_TOPIC_BEAN\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY UNIQUE );"); // 0: id
+                "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
+                "\"TYPE\" INTEGER NOT NULL ," + // 1: type
+                "\"RADIO_TITLE\" TEXT," + // 2: radio_title
+                "\"RADIO_ANSWER\" INTEGER NOT NULL ," + // 3: radio_answer
+                "\"RADIO_FIRST_ANSWER\" TEXT," + // 4: radio_first_answer
+                "\"RADIO_SECOND_ANSWER\" TEXT," + // 5: radio_second_answer
+                "\"RADIO_THIRD_ANSWER\" TEXT," + // 6: radio_third_answer
+                "\"RADIO_FOURTH_ANSWER\" TEXT," + // 7: radio_fourth_answer
+                "\"MULTIPLE_TITLE\" TEXT," + // 8: multiple_title
+                "\"MULTIPLE_FIRST_ANSWER\" INTEGER NOT NULL ," + // 9: multiple_first_answer
+                "\"MULTIPLE_SECOND_ANSWER\" INTEGER NOT NULL ," + // 10: multiple_second_answer
+                "\"MULTIPLE_THIRD_ANSWER\" INTEGER NOT NULL ," + // 11: multiple_third_answer
+                "\"MULTIPLE_FOURTH_ANSWER\" INTEGER NOT NULL ," + // 12: multiple_fourth_answer
+                "\"MULTIPLE_FIRST_TITLE\" TEXT," + // 13: multiple_first_title
+                "\"MULTIPLE_SECOND_TITLE\" TEXT," + // 14: multiple_second_title
+                "\"MULTIPLE_THIRD_TITLE\" TEXT," + // 15: multiple_third_title
+                "\"MULTIPLE_FOURTH_TITLE\" TEXT," + // 16: multiple_fourth_title
+                "\"FILL_TITLE\" TEXT," + // 17: fill_title
+                "\"FILL_ANSWER\" INTEGER NOT NULL ," + // 18: fill_answer
+                "\"FILL_FIRST_ANSWER\" TEXT," + // 19: fill_first_answer
+                "\"FILL_SECOND_ANSWER\" TEXT," + // 20: fill_second_answer
+                "\"FILL_THIRD_ANSWER\" TEXT," + // 21: fill_third_answer
+                "\"FILL_FOURTH_ANSWER\" TEXT," + // 22: fill_fourth_answer
+                "\"SUBJECTIVE_TITLE\" TEXT," + // 23: subjective_title
+                "\"SUBJECTIVE_ANSWER\" TEXT);"); // 24: subjective_answer
     }
 
     /** Drops the underlying database table. */
@@ -57,6 +105,98 @@ public class LadderTopicBeanDao extends AbstractDao<LadderTopicBean, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
+        stmt.bindLong(2, entity.getType());
+ 
+        String radio_title = entity.getRadio_title();
+        if (radio_title != null) {
+            stmt.bindString(3, radio_title);
+        }
+        stmt.bindLong(4, entity.getRadio_answer());
+ 
+        String radio_first_answer = entity.getRadio_first_answer();
+        if (radio_first_answer != null) {
+            stmt.bindString(5, radio_first_answer);
+        }
+ 
+        String radio_second_answer = entity.getRadio_second_answer();
+        if (radio_second_answer != null) {
+            stmt.bindString(6, radio_second_answer);
+        }
+ 
+        String radio_third_answer = entity.getRadio_third_answer();
+        if (radio_third_answer != null) {
+            stmt.bindString(7, radio_third_answer);
+        }
+ 
+        String radio_fourth_answer = entity.getRadio_fourth_answer();
+        if (radio_fourth_answer != null) {
+            stmt.bindString(8, radio_fourth_answer);
+        }
+ 
+        String multiple_title = entity.getMultiple_title();
+        if (multiple_title != null) {
+            stmt.bindString(9, multiple_title);
+        }
+        stmt.bindLong(10, entity.getMultiple_first_answer() ? 1L: 0L);
+        stmt.bindLong(11, entity.getMultiple_second_answer() ? 1L: 0L);
+        stmt.bindLong(12, entity.getMultiple_third_answer() ? 1L: 0L);
+        stmt.bindLong(13, entity.getMultiple_fourth_answer() ? 1L: 0L);
+ 
+        String multiple_first_title = entity.getMultiple_first_title();
+        if (multiple_first_title != null) {
+            stmt.bindString(14, multiple_first_title);
+        }
+ 
+        String multiple_second_title = entity.getMultiple_second_title();
+        if (multiple_second_title != null) {
+            stmt.bindString(15, multiple_second_title);
+        }
+ 
+        String multiple_third_title = entity.getMultiple_third_title();
+        if (multiple_third_title != null) {
+            stmt.bindString(16, multiple_third_title);
+        }
+ 
+        String multiple_fourth_title = entity.getMultiple_fourth_title();
+        if (multiple_fourth_title != null) {
+            stmt.bindString(17, multiple_fourth_title);
+        }
+ 
+        String fill_title = entity.getFill_title();
+        if (fill_title != null) {
+            stmt.bindString(18, fill_title);
+        }
+        stmt.bindLong(19, entity.getFill_answer());
+ 
+        String fill_first_answer = entity.getFill_first_answer();
+        if (fill_first_answer != null) {
+            stmt.bindString(20, fill_first_answer);
+        }
+ 
+        String fill_second_answer = entity.getFill_second_answer();
+        if (fill_second_answer != null) {
+            stmt.bindString(21, fill_second_answer);
+        }
+ 
+        String fill_third_answer = entity.getFill_third_answer();
+        if (fill_third_answer != null) {
+            stmt.bindString(22, fill_third_answer);
+        }
+ 
+        String fill_fourth_answer = entity.getFill_fourth_answer();
+        if (fill_fourth_answer != null) {
+            stmt.bindString(23, fill_fourth_answer);
+        }
+ 
+        String subjective_title = entity.getSubjective_title();
+        if (subjective_title != null) {
+            stmt.bindString(24, subjective_title);
+        }
+ 
+        String subjective_answer = entity.getSubjective_answer();
+        if (subjective_answer != null) {
+            stmt.bindString(25, subjective_answer);
+        }
     }
 
     @Override
@@ -66,6 +206,98 @@ public class LadderTopicBeanDao extends AbstractDao<LadderTopicBean, Long> {
         Long id = entity.getId();
         if (id != null) {
             stmt.bindLong(1, id);
+        }
+        stmt.bindLong(2, entity.getType());
+ 
+        String radio_title = entity.getRadio_title();
+        if (radio_title != null) {
+            stmt.bindString(3, radio_title);
+        }
+        stmt.bindLong(4, entity.getRadio_answer());
+ 
+        String radio_first_answer = entity.getRadio_first_answer();
+        if (radio_first_answer != null) {
+            stmt.bindString(5, radio_first_answer);
+        }
+ 
+        String radio_second_answer = entity.getRadio_second_answer();
+        if (radio_second_answer != null) {
+            stmt.bindString(6, radio_second_answer);
+        }
+ 
+        String radio_third_answer = entity.getRadio_third_answer();
+        if (radio_third_answer != null) {
+            stmt.bindString(7, radio_third_answer);
+        }
+ 
+        String radio_fourth_answer = entity.getRadio_fourth_answer();
+        if (radio_fourth_answer != null) {
+            stmt.bindString(8, radio_fourth_answer);
+        }
+ 
+        String multiple_title = entity.getMultiple_title();
+        if (multiple_title != null) {
+            stmt.bindString(9, multiple_title);
+        }
+        stmt.bindLong(10, entity.getMultiple_first_answer() ? 1L: 0L);
+        stmt.bindLong(11, entity.getMultiple_second_answer() ? 1L: 0L);
+        stmt.bindLong(12, entity.getMultiple_third_answer() ? 1L: 0L);
+        stmt.bindLong(13, entity.getMultiple_fourth_answer() ? 1L: 0L);
+ 
+        String multiple_first_title = entity.getMultiple_first_title();
+        if (multiple_first_title != null) {
+            stmt.bindString(14, multiple_first_title);
+        }
+ 
+        String multiple_second_title = entity.getMultiple_second_title();
+        if (multiple_second_title != null) {
+            stmt.bindString(15, multiple_second_title);
+        }
+ 
+        String multiple_third_title = entity.getMultiple_third_title();
+        if (multiple_third_title != null) {
+            stmt.bindString(16, multiple_third_title);
+        }
+ 
+        String multiple_fourth_title = entity.getMultiple_fourth_title();
+        if (multiple_fourth_title != null) {
+            stmt.bindString(17, multiple_fourth_title);
+        }
+ 
+        String fill_title = entity.getFill_title();
+        if (fill_title != null) {
+            stmt.bindString(18, fill_title);
+        }
+        stmt.bindLong(19, entity.getFill_answer());
+ 
+        String fill_first_answer = entity.getFill_first_answer();
+        if (fill_first_answer != null) {
+            stmt.bindString(20, fill_first_answer);
+        }
+ 
+        String fill_second_answer = entity.getFill_second_answer();
+        if (fill_second_answer != null) {
+            stmt.bindString(21, fill_second_answer);
+        }
+ 
+        String fill_third_answer = entity.getFill_third_answer();
+        if (fill_third_answer != null) {
+            stmt.bindString(22, fill_third_answer);
+        }
+ 
+        String fill_fourth_answer = entity.getFill_fourth_answer();
+        if (fill_fourth_answer != null) {
+            stmt.bindString(23, fill_fourth_answer);
+        }
+ 
+        String subjective_title = entity.getSubjective_title();
+        if (subjective_title != null) {
+            stmt.bindString(24, subjective_title);
+        }
+ 
+        String subjective_answer = entity.getSubjective_answer();
+        if (subjective_answer != null) {
+            stmt.bindString(25, subjective_answer);
         }
     }
 
@@ -77,7 +309,31 @@ public class LadderTopicBeanDao extends AbstractDao<LadderTopicBean, Long> {
     @Override
     public LadderTopicBean readEntity(Cursor cursor, int offset) {
         LadderTopicBean entity = new LadderTopicBean( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0) // id
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.getInt(offset + 1), // type
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // radio_title
+            cursor.getInt(offset + 3), // radio_answer
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // radio_first_answer
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // radio_second_answer
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // radio_third_answer
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // radio_fourth_answer
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // multiple_title
+            cursor.getShort(offset + 9) != 0, // multiple_first_answer
+            cursor.getShort(offset + 10) != 0, // multiple_second_answer
+            cursor.getShort(offset + 11) != 0, // multiple_third_answer
+            cursor.getShort(offset + 12) != 0, // multiple_fourth_answer
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // multiple_first_title
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // multiple_second_title
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // multiple_third_title
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // multiple_fourth_title
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // fill_title
+            cursor.getInt(offset + 18), // fill_answer
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // fill_first_answer
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // fill_second_answer
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // fill_third_answer
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // fill_fourth_answer
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // subjective_title
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24) // subjective_answer
         );
         return entity;
     }
@@ -85,6 +341,30 @@ public class LadderTopicBeanDao extends AbstractDao<LadderTopicBean, Long> {
     @Override
     public void readEntity(Cursor cursor, LadderTopicBean entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setType(cursor.getInt(offset + 1));
+        entity.setRadio_title(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setRadio_answer(cursor.getInt(offset + 3));
+        entity.setRadio_first_answer(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setRadio_second_answer(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setRadio_third_answer(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setRadio_fourth_answer(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setMultiple_title(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setMultiple_first_answer(cursor.getShort(offset + 9) != 0);
+        entity.setMultiple_second_answer(cursor.getShort(offset + 10) != 0);
+        entity.setMultiple_third_answer(cursor.getShort(offset + 11) != 0);
+        entity.setMultiple_fourth_answer(cursor.getShort(offset + 12) != 0);
+        entity.setMultiple_first_title(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setMultiple_second_title(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setMultiple_third_title(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setMultiple_fourth_title(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setFill_title(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setFill_answer(cursor.getInt(offset + 18));
+        entity.setFill_first_answer(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setFill_second_answer(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setFill_third_answer(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setFill_fourth_answer(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setSubjective_title(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setSubjective_answer(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
      }
     
     @Override

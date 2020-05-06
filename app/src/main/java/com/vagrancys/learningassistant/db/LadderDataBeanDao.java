@@ -26,14 +26,16 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
-        public final static Property Upgrade = new Property(2, int.class, "upgrade", false, "UPGRADE");
-        public final static Property Difficulty = new Property(3, String.class, "difficulty", false, "DIFFICULTY");
-        public final static Property Highest = new Property(4, int.class, "highest", false, "HIGHEST");
-        public final static Property Fail = new Property(5, int.class, "fail", false, "FAIL");
-        public final static Property Time = new Property(6, String.class, "time", false, "TIME");
-        public final static Property Total = new Property(7, int.class, "total", false, "TOTAL");
-        public final static Property Master = new Property(8, int.class, "master", false, "MASTER");
-        public final static Property Chance = new Property(9, String.class, "chance", false, "CHANCE");
+        public final static Property Title_level = new Property(2, int.class, "title_level", false, "TITLE_LEVEL");
+        public final static Property Upgrade = new Property(3, int.class, "upgrade", false, "UPGRADE");
+        public final static Property Upgrade_total = new Property(4, int.class, "upgrade_total", false, "UPGRADE_TOTAL");
+        public final static Property Difficulty = new Property(5, String.class, "difficulty", false, "DIFFICULTY");
+        public final static Property Highest = new Property(6, int.class, "highest", false, "HIGHEST");
+        public final static Property Fail = new Property(7, int.class, "fail", false, "FAIL");
+        public final static Property Time = new Property(8, String.class, "time", false, "TIME");
+        public final static Property Total = new Property(9, int.class, "total", false, "TOTAL");
+        public final static Property Master = new Property(10, int.class, "master", false, "MASTER");
+        public final static Property Chance = new Property(11, String.class, "chance", false, "CHANCE");
     }
 
 
@@ -51,14 +53,16 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"LADDER_DATA_BEAN\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
                 "\"TITLE\" TEXT," + // 1: title
-                "\"UPGRADE\" INTEGER NOT NULL ," + // 2: upgrade
-                "\"DIFFICULTY\" TEXT," + // 3: difficulty
-                "\"HIGHEST\" INTEGER NOT NULL ," + // 4: highest
-                "\"FAIL\" INTEGER NOT NULL ," + // 5: fail
-                "\"TIME\" TEXT," + // 6: time
-                "\"TOTAL\" INTEGER NOT NULL ," + // 7: total
-                "\"MASTER\" INTEGER NOT NULL ," + // 8: master
-                "\"CHANCE\" TEXT);"); // 9: chance
+                "\"TITLE_LEVEL\" INTEGER NOT NULL ," + // 2: title_level
+                "\"UPGRADE\" INTEGER NOT NULL ," + // 3: upgrade
+                "\"UPGRADE_TOTAL\" INTEGER NOT NULL ," + // 4: upgrade_total
+                "\"DIFFICULTY\" TEXT," + // 5: difficulty
+                "\"HIGHEST\" INTEGER NOT NULL ," + // 6: highest
+                "\"FAIL\" INTEGER NOT NULL ," + // 7: fail
+                "\"TIME\" TEXT," + // 8: time
+                "\"TOTAL\" INTEGER NOT NULL ," + // 9: total
+                "\"MASTER\" INTEGER NOT NULL ," + // 10: master
+                "\"CHANCE\" TEXT);"); // 11: chance
     }
 
     /** Drops the underlying database table. */
@@ -80,25 +84,27 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         if (title != null) {
             stmt.bindString(2, title);
         }
-        stmt.bindLong(3, entity.getUpgrade());
+        stmt.bindLong(3, entity.getTitle_level());
+        stmt.bindLong(4, entity.getUpgrade());
+        stmt.bindLong(5, entity.getUpgrade_total());
  
         String difficulty = entity.getDifficulty();
         if (difficulty != null) {
-            stmt.bindString(4, difficulty);
+            stmt.bindString(6, difficulty);
         }
-        stmt.bindLong(5, entity.getHighest());
-        stmt.bindLong(6, entity.getFail());
+        stmt.bindLong(7, entity.getHighest());
+        stmt.bindLong(8, entity.getFail());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(7, time);
+            stmt.bindString(9, time);
         }
-        stmt.bindLong(8, entity.getTotal());
-        stmt.bindLong(9, entity.getMaster());
+        stmt.bindLong(10, entity.getTotal());
+        stmt.bindLong(11, entity.getMaster());
  
         String chance = entity.getChance();
         if (chance != null) {
-            stmt.bindString(10, chance);
+            stmt.bindString(12, chance);
         }
     }
 
@@ -115,25 +121,27 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         if (title != null) {
             stmt.bindString(2, title);
         }
-        stmt.bindLong(3, entity.getUpgrade());
+        stmt.bindLong(3, entity.getTitle_level());
+        stmt.bindLong(4, entity.getUpgrade());
+        stmt.bindLong(5, entity.getUpgrade_total());
  
         String difficulty = entity.getDifficulty();
         if (difficulty != null) {
-            stmt.bindString(4, difficulty);
+            stmt.bindString(6, difficulty);
         }
-        stmt.bindLong(5, entity.getHighest());
-        stmt.bindLong(6, entity.getFail());
+        stmt.bindLong(7, entity.getHighest());
+        stmt.bindLong(8, entity.getFail());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(7, time);
+            stmt.bindString(9, time);
         }
-        stmt.bindLong(8, entity.getTotal());
-        stmt.bindLong(9, entity.getMaster());
+        stmt.bindLong(10, entity.getTotal());
+        stmt.bindLong(11, entity.getMaster());
  
         String chance = entity.getChance();
         if (chance != null) {
-            stmt.bindString(10, chance);
+            stmt.bindString(12, chance);
         }
     }
 
@@ -147,14 +155,16 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         LadderDataBean entity = new LadderDataBean( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
-            cursor.getInt(offset + 2), // upgrade
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // difficulty
-            cursor.getInt(offset + 4), // highest
-            cursor.getInt(offset + 5), // fail
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // time
-            cursor.getInt(offset + 7), // total
-            cursor.getInt(offset + 8), // master
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // chance
+            cursor.getInt(offset + 2), // title_level
+            cursor.getInt(offset + 3), // upgrade
+            cursor.getInt(offset + 4), // upgrade_total
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // difficulty
+            cursor.getInt(offset + 6), // highest
+            cursor.getInt(offset + 7), // fail
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // time
+            cursor.getInt(offset + 9), // total
+            cursor.getInt(offset + 10), // master
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // chance
         );
         return entity;
     }
@@ -163,14 +173,16 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
     public void readEntity(Cursor cursor, LadderDataBean entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setUpgrade(cursor.getInt(offset + 2));
-        entity.setDifficulty(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setHighest(cursor.getInt(offset + 4));
-        entity.setFail(cursor.getInt(offset + 5));
-        entity.setTime(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setTotal(cursor.getInt(offset + 7));
-        entity.setMaster(cursor.getInt(offset + 8));
-        entity.setChance(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setTitle_level(cursor.getInt(offset + 2));
+        entity.setUpgrade(cursor.getInt(offset + 3));
+        entity.setUpgrade_total(cursor.getInt(offset + 4));
+        entity.setDifficulty(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setHighest(cursor.getInt(offset + 6));
+        entity.setFail(cursor.getInt(offset + 7));
+        entity.setTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setTotal(cursor.getInt(offset + 9));
+        entity.setMaster(cursor.getInt(offset + 10));
+        entity.setChance(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
      }
     
     @Override

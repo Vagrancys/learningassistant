@@ -26,14 +26,17 @@ public class BaseLadderPresenter {
 
     public void getLadderAllTopicItem() {
         List<LadderTopicBean> mTopics = mRequest.getLadderAllTopicItem();
+        ((LadderView) mView).loadingFinish();
         if(mTopics != null && mTopics.size() > 0){
             ((LadderView) mView).getLadderTopicFinish(mTopics);
         }else{
             ((LadderView) mView).getLadderTopicError(404,"没有该数据!");
         }
+
     }
 
     public void getLadderData(long ladderId) {
+        ((LadderView) mView).loadingLayout();
         LadderDataBean ladder = mRequest.getLadderData(ladderId);
         if(ladder != null){
             ((LadderView) mView).getLadderData(ladder);
@@ -46,5 +49,21 @@ public class BaseLadderPresenter {
 
     public void showLadderLayout() {
         ((LadderView) mView).showLadderLayout();
+    }
+
+    public void TrailAnswer() {
+        ((LadderView) mView).TrailAnswer();
+    }
+
+    public boolean isAnswerEmpty() {
+        return ((LadderView) mView).isAnswerEmpty();
+    }
+
+    public void showFailLayout() {
+        ((LadderView) mView).showFailLayout();
+    }
+
+    public void showWinLayout() {
+        ((LadderView) mView).showWinLayout();
     }
 }

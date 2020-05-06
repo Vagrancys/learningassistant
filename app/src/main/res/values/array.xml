@@ -29,4 +29,13 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+    <string-array name="ladder_title">
+        <item>入门级攀登者</item>
+        <item>初级攀登者</item>
+        <item>中级攀登者</item>
+        <item>高级攀登者</item>
+        <item>深资级攀登者</item>
+        <item>专家级攀登者</item>
+    </string-array>
 </resources>
