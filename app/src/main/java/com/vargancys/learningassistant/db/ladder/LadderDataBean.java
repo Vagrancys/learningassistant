@@ -44,6 +44,9 @@ public class LadderDataBean {
     //登梯时间
     private String time;
 
+    //总用时
+    private String total_time;
+
     //总阶层
     private int total;
 
@@ -53,10 +56,10 @@ public class LadderDataBean {
     //登顶概率
     private String chance;
 
-    @Generated(hash = 478260275)
+    @Generated(hash = 27535365)
     public LadderDataBean(Long id, String title, int title_level, int upgrade,
             int upgrade_total, String difficulty, int highest, int fail,
-            String time, int total, int master, String chance) {
+            String time, String total_time, int total, int master, String chance) {
         this.id = id;
         this.title = title;
         this.title_level = title_level;
@@ -66,6 +69,7 @@ public class LadderDataBean {
         this.highest = highest;
         this.fail = fail;
         this.time = time;
+        this.total_time = total_time;
         this.total = total;
         this.master = master;
         this.chance = chance;
@@ -169,5 +173,13 @@ public class LadderDataBean {
 
     public void setUpgrade_total(int upgrade_total) {
         this.upgrade_total = upgrade_total;
+    }
+
+    public String getTotal_time() {
+        return this.total_time;
+    }
+
+    public void setTotal_time(String total_time) {
+        this.total_time = total_time;
     }
 }

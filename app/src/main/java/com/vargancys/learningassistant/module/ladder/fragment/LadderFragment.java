@@ -15,6 +15,12 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
+import com.vargancys.learningassistant.module.ladder.activity.LadderCommunicationActivity;
+import com.vargancys.learningassistant.module.ladder.activity.LadderDifficultyActivity;
+import com.vargancys.learningassistant.module.ladder.activity.LadderHelpActivity;
+import com.vargancys.learningassistant.module.ladder.activity.LadderModeActivity;
+import com.vargancys.learningassistant.module.ladder.activity.LadderRankActivity;
+import com.vargancys.learningassistant.module.ladder.activity.LadderResultActivity;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
@@ -138,8 +144,8 @@ public class LadderFragment extends BaseFragment implements LadderView {
     TextView ladderWinTotal;
     @BindView(R.id.ladder_win_difficulty)
     TextView ladderWinDifficulty;
-    @BindView(R.id.ladder_win_level)
-    TextView ladderWinLevel;
+    @BindView(R.id.ladder_win_unavailable)
+    TextView ladderWinUnavailable;
     @BindView(R.id.ladder_win_change)
     TextView ladderWinChange;
     @BindView(R.id.ladder_win_start)
@@ -202,12 +208,12 @@ public class LadderFragment extends BaseFragment implements LadderView {
         mTitle = getResources().getStringArray(R.array.ladder_title);
         initHideLayout();
         mPresenter.getLadderData(ladderId);
-        mPresenter.getLadderAllTopicItem();
     }
 
     @Override
     public void getLadderData(LadderDataBean ladder) {
         mLadder = ladder;
+        mPresenter.getLadderAllTopicItem(mLadder.getHighest());
     }
 
     private void initHideLayout(){
@@ -229,7 +235,8 @@ public class LadderFragment extends BaseFragment implements LadderView {
         interludeLayout.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.ladder_prepare_start,R.id.ladder_judgment})
+    @OnClick({R.id.ladder_prepare_start,R.id.ladder_judgment,R.id.ladder_win_start,
+            R.id.ladder_function_list,R.id.function_layout,R.id.ladder_mode})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ladder_prepare_start:
@@ -241,6 +248,44 @@ public class LadderFragment extends BaseFragment implements LadderView {
                     return;
                 }
                 mPresenter.TrailAnswer();
+                break;
+            case R.id.ladder_win_start:
+                mPresenter.saveLadderData(ladderId);
+                mPresenter.showPrepareLayout();
+                break;
+            case R.id.ladder_function_list:
+                if(functionLayout.getVisibility() == View.GONE){
+                    functionLayout.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.function_layout:
+                if(functionLayout.getVisibility() == View.VISIBLE){
+                    functionLayout.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.ladder_mode:
+                //模式配置
+                LadderModeActivity.launch(getActivity());
+                break;
+            case R.id.ladder_communication:
+                //交流经验
+                LadderCommunicationActivity.launch(getActivity());
+                break;
+            case R.id.ladder_help:
+                //帮助中心
+                LadderHelpActivity.launch(getActivity());
+                break;
+            case R.id.ladder_rank:
+                //排行中心
+                LadderRankActivity.launch(getActivity());
+                break;
+            case R.id.ladder_difficulty:
+                //难度选择
+                LadderDifficultyActivity.launch(getActivity());
+                break;
+            case R.id.ladder_result:
+                //成绩展示
+                LadderResultActivity.launch(getActivity());
                 break;
         }
     }
@@ -358,6 +403,7 @@ public class LadderFragment extends BaseFragment implements LadderView {
     private void JudgmentCorrect() {
         LadderLevel++;
         if(LadderLevel>mLadder.getTotal()){
+            changeLadderData();
             mPresenter.showWinLayout();
             return;
         }
@@ -375,6 +421,18 @@ public class LadderFragment extends BaseFragment implements LadderView {
     @Override
     public void showWinLayout() {
         //TODO 制作到登顶界面
+        initWinData();
+        ladderLayout.setVisibility(View.GONE);
+        winLayout.setVisibility(View.VISIBLE);
+    }
+
+    //处理登顶成功的数据
+    private void initWinData() {
+        ladderWinTime.setText(mLadder.getTime());
+        ladderWinTotal.setText(mLadder.getTotal());
+        ladderWinDifficulty.setText(mLadder.getDifficulty());
+        ladderWinUnavailable.setText(mLadder.getTotal_time());
+        ladderWinChange.setText(oldTitle +"->"+mLadder.getTitle());
     }
 
     //改变天梯数据
@@ -384,14 +442,17 @@ public class LadderFragment extends BaseFragment implements LadderView {
         mLadder.setTitle(mTitle[level]);
         mLadder.setTitle_level(level);
         mLadder.setFail(LadderLevel);
+        int time = Integer.parseInt(TimeUtils.getTime())-Integer.parseInt(mLadder.getTime());
+        mLadder.setTotal_time(String.valueOf(time));
         mLadder.setTime(TimeUtils.getTime());
     }
 
+    //显示登顶失败布局
     @Override
     public void showFailLayout() {
+        initFailData();
         ladderLayout.setVisibility(View.GONE);
         failLayout.setVisibility(View.VISIBLE);
-        initFailData();
     }
 
     //显示登顶失败的页面数据
@@ -403,19 +464,22 @@ public class LadderFragment extends BaseFragment implements LadderView {
         ladderFailChange.setText(oldTitle +"->"+mLadder.getTitle());
     }
 
+    //显示天梯布局
     @Override
     public void showLadderLayout() {
+        initLadderData();
         prepareLayout.setVisibility(View.GONE);
         showLadderInterludeLayout();
-        initLadderData();
     }
 
+    //显示天梯过场布局
     private void showLadderInterludeLayout() {
         ladderLayout.setVisibility(View.VISIBLE);
         ladderInterludeLayout.setVisibility(View.VISIBLE);
         hideProblemLayout();
     }
 
+    //隐藏各个问题
     private void hideProblemLayout() {
         llRadioLayout.setVisibility(View.GONE);
         llMultipleLayout.setVisibility(View.GONE);
@@ -423,8 +487,7 @@ public class LadderFragment extends BaseFragment implements LadderView {
         llSubjectiveLayout.setVisibility(View.GONE);
     }
 
-
-    //TODO 处理到天梯关卡
+    //处理天梯数据
     private void initLadderData() {
         LadderLevel = 1;
         ladderLevel.setText(LadderLevel+"阶");
@@ -498,9 +561,11 @@ public class LadderFragment extends BaseFragment implements LadderView {
         mPresenter.showPrepareLayout();
     }
 
+    //显示准备布局
     @Override
     public void showPrepareLayout() {
         initPrepareData();
+        winLayout.setVisibility(View.GONE);
         prepareLayout.setVisibility(View.VISIBLE);
     }
 

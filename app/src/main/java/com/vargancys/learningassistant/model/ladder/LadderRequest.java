@@ -37,7 +37,11 @@ public class LadderRequest {
         return null;
     }
 
-    public List<LadderTopicBean> getLadderAllTopicItem() {
+    public List<LadderTopicBean> getLadderAllTopicItem(int highest) {
         return null;
+    }
+
+    public void saveLadderData(long ladderId) {
+
     }
 }

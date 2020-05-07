@@ -65,6 +65,12 @@
         <activity android:name=".module.game.activity.GameConfigActivity"/>
         <activity android:name=".module.game.activity.GameStartActivity"/>
         <activity android:name=".module.game.activity.GameAnswerSheetActivity"/>
+        <activity android:name=".module.ladder.activity.LadderModeActivity"/>
+        <activity android:name=".module.ladder.activity.LadderRankActivity"/>
+        <activity android:name=".module.ladder.activity.LadderCommunicationActivity"/>
+        <activity android:name=".module.ladder.activity.LadderHelpActivity"/>
+        <activity android:name=".module.ladder.activity.LadderDifficultyActivity"/>
+        <activity android:name=".module.ladder.activity.LadderResultActivity"/>
     </application>
 
 </manifest>

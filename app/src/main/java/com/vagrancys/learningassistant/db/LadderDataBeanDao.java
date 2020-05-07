@@ -33,9 +33,10 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         public final static Property Highest = new Property(6, int.class, "highest", false, "HIGHEST");
         public final static Property Fail = new Property(7, int.class, "fail", false, "FAIL");
         public final static Property Time = new Property(8, String.class, "time", false, "TIME");
-        public final static Property Total = new Property(9, int.class, "total", false, "TOTAL");
-        public final static Property Master = new Property(10, int.class, "master", false, "MASTER");
-        public final static Property Chance = new Property(11, String.class, "chance", false, "CHANCE");
+        public final static Property Total_time = new Property(9, String.class, "total_time", false, "TOTAL_TIME");
+        public final static Property Total = new Property(10, int.class, "total", false, "TOTAL");
+        public final static Property Master = new Property(11, int.class, "master", false, "MASTER");
+        public final static Property Chance = new Property(12, String.class, "chance", false, "CHANCE");
     }
 
 
@@ -60,9 +61,10 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
                 "\"HIGHEST\" INTEGER NOT NULL ," + // 6: highest
                 "\"FAIL\" INTEGER NOT NULL ," + // 7: fail
                 "\"TIME\" TEXT," + // 8: time
-                "\"TOTAL\" INTEGER NOT NULL ," + // 9: total
-                "\"MASTER\" INTEGER NOT NULL ," + // 10: master
-                "\"CHANCE\" TEXT);"); // 11: chance
+                "\"TOTAL_TIME\" TEXT," + // 9: total_time
+                "\"TOTAL\" INTEGER NOT NULL ," + // 10: total
+                "\"MASTER\" INTEGER NOT NULL ," + // 11: master
+                "\"CHANCE\" TEXT);"); // 12: chance
     }
 
     /** Drops the underlying database table. */
@@ -99,12 +101,17 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         if (time != null) {
             stmt.bindString(9, time);
         }
-        stmt.bindLong(10, entity.getTotal());
-        stmt.bindLong(11, entity.getMaster());
+ 
+        String total_time = entity.getTotal_time();
+        if (total_time != null) {
+            stmt.bindString(10, total_time);
+        }
+        stmt.bindLong(11, entity.getTotal());
+        stmt.bindLong(12, entity.getMaster());
  
         String chance = entity.getChance();
         if (chance != null) {
-            stmt.bindString(12, chance);
+            stmt.bindString(13, chance);
         }
     }
 
@@ -136,12 +143,17 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         if (time != null) {
             stmt.bindString(9, time);
         }
-        stmt.bindLong(10, entity.getTotal());
-        stmt.bindLong(11, entity.getMaster());
+ 
+        String total_time = entity.getTotal_time();
+        if (total_time != null) {
+            stmt.bindString(10, total_time);
+        }
+        stmt.bindLong(11, entity.getTotal());
+        stmt.bindLong(12, entity.getMaster());
  
         String chance = entity.getChance();
         if (chance != null) {
-            stmt.bindString(12, chance);
+            stmt.bindString(13, chance);
         }
     }
 
@@ -162,9 +174,10 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
             cursor.getInt(offset + 6), // highest
             cursor.getInt(offset + 7), // fail
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // time
-            cursor.getInt(offset + 9), // total
-            cursor.getInt(offset + 10), // master
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // chance
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // total_time
+            cursor.getInt(offset + 10), // total
+            cursor.getInt(offset + 11), // master
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // chance
         );
         return entity;
     }
@@ -180,9 +193,10 @@ public class LadderDataBeanDao extends AbstractDao<LadderDataBean, Long> {
         entity.setHighest(cursor.getInt(offset + 6));
         entity.setFail(cursor.getInt(offset + 7));
         entity.setTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setTotal(cursor.getInt(offset + 9));
-        entity.setMaster(cursor.getInt(offset + 10));
-        entity.setChance(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setTotal_time(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setTotal(cursor.getInt(offset + 10));
+        entity.setMaster(cursor.getInt(offset + 11));
+        entity.setChance(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
      }
     
     @Override

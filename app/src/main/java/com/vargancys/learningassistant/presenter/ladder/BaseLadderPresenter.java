@@ -24,8 +24,8 @@ public class BaseLadderPresenter {
     }
 
 
-    public void getLadderAllTopicItem() {
-        List<LadderTopicBean> mTopics = mRequest.getLadderAllTopicItem();
+    public void getLadderAllTopicItem(int highest) {
+        List<LadderTopicBean> mTopics = mRequest.getLadderAllTopicItem(highest);
         ((LadderView) mView).loadingFinish();
         if(mTopics != null && mTopics.size() > 0){
             ((LadderView) mView).getLadderTopicFinish(mTopics);
@@ -65,5 +65,9 @@ public class BaseLadderPresenter {
 
     public void showWinLayout() {
         ((LadderView) mView).showWinLayout();
+    }
+
+    public void saveLadderData(long ladderId) {
+        mRequest.saveLadderData(ladderId);
     }
 }

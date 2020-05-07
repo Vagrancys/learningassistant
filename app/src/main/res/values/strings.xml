@@ -518,6 +518,7 @@
     <string name="ladder_level_text">25阶</string>
     <string name="ladder_time_text">9s</string>
     <string name="ladder_mode_text">模式</string>
+    <string name="ladder_function_list_text">功能清单</string>
     <string name="ladder_communication_text">交流</string>
     <string name="ladder_help_text">帮助</string>
     <string name="ladder_difficulty_text">难度</string>

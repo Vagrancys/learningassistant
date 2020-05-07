@@ -299,6 +299,16 @@
                     android:textColor="@color/white"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
+            <TextView
+                android:id="@+id/ladder_function_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ladder_function_list_text"
+                android:textSize="@dimen/text_size_18sp"
+                android:textColor="@color/black"
+                android:layout_margin="@dimen/margin_width_10dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"/>
             <FrameLayout
                 android:layout_below="@id/ladder_level"
                 android:layout_width="match_parent"
@@ -606,6 +616,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/margin_width_50dp"/>
     </LinearLayout>
+
     <!--登顶成功-->
     <LinearLayout
         android:id="@+id/win_layout"
@@ -699,7 +710,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_24sp"/>
             <TextView
-                android:id="@+id/ladder_win_level"
+                android:id="@+id/ladder_win_unavailable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ladder_win_unavailable_name_text"
