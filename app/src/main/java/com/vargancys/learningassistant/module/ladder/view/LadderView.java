@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2020/5/5
  * Github: https:github.com/Vagrancys
  * Email:18050829067@163.com
- * Description:
+ * Description: 天梯的视图层
  */
 public interface LadderView {
     void loadingLayout();

@@ -582,4 +582,9 @@
     <string name="ladder_win_total_text">总天梯数</string>
     <string name="ladder_win_total_name_text">1235阶</string>
     <string name="ladder_win_start_text">更换难度</string>
+
+    <!--天梯交流-->
+    <string name="ladder_communication_toolbar">天梯交流</string>
+    <string name="ladder_communication_empty">请填写完评论在发布!</string>
+    <string name="ladder_comment_success">评论成功了!</string>
 </resources>

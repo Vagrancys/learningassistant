@@ -65,7 +65,7 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
             }
         });
 
-        commonImg.setImageResource(R.drawable.commend_complete_selector);
+        commonImg.setImageResource(R.drawable.comment_complete_selector);
 
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override

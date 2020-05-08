@@ -1,10 +1,14 @@
 package com.vargancys.learningassistant.presenter.ladder;
 
+import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.LadderRequest;
+import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
+import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,5 +73,27 @@ public class BaseLadderPresenter {
 
     public void saveLadderData(long ladderId) {
         mRequest.saveLadderData(ladderId);
+    }
+
+    public void saveCommentData(int current,String comment) {
+        boolean result = mRequest.saveCommentData(current,comment);
+        if(result){
+            ((LadderCommunicationView) mView).sendCommentFinish();
+        }else{
+            ((LadderCommunicationView) mView).sendCommentError(404,"评论发布失败!");
+        }
+    }
+
+    public void refreshCommentLayout() {
+        ((LadderCommunicationView) mView).refreshCommentLayout();
+    }
+
+    public void refreshCommentData(int mCurrent) {
+        List<LadderCommentBean> mBean = mRequest.refreshCommentData(mCurrent);
+        if(mBean!=null && mBean.size()>0){
+            ((LadderCommentView) mView).showCommentDataFinish(mBean);
+        }else{
+            ((LadderCommentView) mView).showCommentDataError(404,"没有查找到数据!");
+        }
     }
 }

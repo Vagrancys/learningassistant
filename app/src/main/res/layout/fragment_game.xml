@@ -136,7 +136,7 @@
         android:id="@+id/game_tidy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/commend_tidy_shape"
+        android:background="@drawable/comment_tidy_shape"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/game_tidy"

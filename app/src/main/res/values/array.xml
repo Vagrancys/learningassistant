@@ -38,4 +38,16 @@
         <item>深资级攀登者</item>
         <item>专家级攀登者</item>
     </string-array>
+
+    <string-array name="ladder_communication">
+        <item>公共交流区</item>
+        <item>本层交流区</item>
+        <item>入门级交流区</item>
+        <item>初级交流区</item>
+        <item>中级交流区</item>
+        <item>高级交流区</item>
+        <item>深资交流区</item>
+        <item>专家交流区</item>
+        <item>特色交流区</item>
+    </string-array>
 </resources>

@@ -69,7 +69,7 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
                 finish();
             }
         });
-        commonImg.setBackgroundResource(R.drawable.commend_complete_selector);
+        commonImg.setBackgroundResource(R.drawable.comment_complete_selector);
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

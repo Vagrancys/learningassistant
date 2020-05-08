@@ -189,7 +189,7 @@
                     <ImageView
                         android:layout_width="@dimen/margin_width_160dp"
                         android:layout_height="@dimen/margin_width_160dp"
-                        android:src="@drawable/commend_safa_normal"/>
+                        android:src="@drawable/comment_safa_normal"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
             android:id="@+id/commend_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/commend_edit_shape"
+            android:background="@drawable/comment_edit_shape"
             android:padding="@dimen/margin_width_10dp"
             android:hint="@string/commend_edit_hint"
             android:minLines="1"
@@ -226,7 +226,7 @@
             android:layout_height="@dimen/margin_width_30dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="@dimen/margin_width_10dp"
-            android:background="@drawable/commend_send_selector"
+            android:background="@drawable/comment_send_selector"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>

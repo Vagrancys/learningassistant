@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="@dimen/margin_width_200dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/commend_edit_shape"
+        android:background="@drawable/comment_edit_shape"
         android:padding="@dimen/margin_width_5dp">
         <TextView
             android:id="@+id/history_number"

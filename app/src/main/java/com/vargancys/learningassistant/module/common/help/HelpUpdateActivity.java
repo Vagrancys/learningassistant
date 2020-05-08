@@ -72,7 +72,7 @@ public class HelpUpdateActivity extends BaseActivity implements HelpUpdateView {
             }
         });
 
-        commonImg.setBackgroundResource(R.drawable.commend_complete_selector);
+        commonImg.setBackgroundResource(R.drawable.comment_complete_selector);
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

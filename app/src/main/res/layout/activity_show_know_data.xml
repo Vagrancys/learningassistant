@@ -256,6 +256,6 @@
             android:id="@+id/know_data_commend_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/commend_send_selector"/>
+            android:src="@drawable/comment_send_selector"/>
     </LinearLayout>
 </RelativeLayout>
