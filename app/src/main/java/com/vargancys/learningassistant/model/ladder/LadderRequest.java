@@ -60,16 +60,19 @@ public class LadderRequest {
 
     }
 
+    //保持评论数据
     public boolean saveCommentData(int current,String comment) {
         LadderCommentBean mBean = new LadderCommentBean();
-        mBean.setAuthor("");
+        mBean.setAuthor(0);
         mBean.setAvatar("");
+        mBean.setLevel("初级攀登者");
         mBean.setPraise(0);
         mBean.setStep(0);
         mBean.setCurrent(current);
         mBean.setComment(comment);
         mBean.setTime(TimeUtils.getTime());
         mBean.setReply_count(0);
+        mBean.setFloor(0);
         long commentId = mCommentDao.insert(mBean);
         if(commentId == 0){
             return false;
@@ -78,7 +81,30 @@ public class LadderRequest {
         }
     }
 
+    //刷新评论数据
     public List<LadderCommentBean> refreshCommentData(int mCurrent) {
         return mCommentDao.queryBuilder().where(LadderCommentBeanDao.Properties.Current.eq(mCurrent)).list();
+    }
+
+    //更新赞的数据
+    public void updatePraiseData(Long commentId, boolean state) {
+        LadderCommentBean mBean = mCommentDao.load(commentId);
+        if(state){
+            mBean.setPraise(mBean.getPraise()+1);
+        }else{
+            mBean.setPraise(mBean.getPraise()-1);
+        }
+        mCommentDao.update(mBean);
+    }
+
+    //更新踩的数据
+    public void updateStepData(Long commentId,boolean state){
+        LadderCommentBean mBean = mCommentDao.load(commentId);
+        if(state){
+            mBean.setStep(mBean.getStep()+1);
+        }else{
+            mBean.setStep(mBean.getStep()-1);
+        }
+        mCommentDao.update(mBean);
     }
 }

@@ -587,4 +587,12 @@
     <string name="ladder_communication_toolbar">天梯交流</string>
     <string name="ladder_communication_empty">请填写完评论在发布!</string>
     <string name="ladder_comment_success">评论成功了!</string>
+    <string name="comment_author_text">作者</string>
+    <string name="comment_praise_count_text">0</string>
+    <string name="comment_step_count_text">0</string>
+    <string name="comment_level_text">初级攀登者</string>
+    <string name="comment_content_text">不错的知识吧!,对吧!对吧!对吧!对吧!对吧!对吧!</string>
+    <string name="comment_reply_count_text">0</string>
+    <string name="comment_floor_count_text">2楼</string>
+    <string name="comment_time_text">2020.05.08 15:57:25</string>
 </resources>

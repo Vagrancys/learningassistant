@@ -10,15 +10,15 @@ import org.greenrobot.greendao.annotation.Generated;
  * @date 2020/5/8
  * Github: https:github.com/Vagrancys
  * Email:18050829067@163.com
- * Description: 天梯交流评论中心数据
+ * Description: 交流评论回复的数据
  */
 @Entity
-public class LadderCommentBean {
+public class LadderCommentReplyBean {
     @Id
     @Unique
     private Long id;
-    //交流分区id
-    private int current;
+
+    private long commentId;
 
     //评论作者
     private long author;
@@ -44,18 +44,15 @@ public class LadderCommentBean {
     //评论内容
     private String comment;
 
-    //回复数
-    private int reply_count;
-
     //评论数量
     private int floor;
 
-    @Generated(hash = 48203243)
-    public LadderCommentBean(Long id, int current, long author, String author_title,
-            String level, String avatar, int praise, int step, String time,
-            String comment, int reply_count, int floor) {
+    @Generated(hash = 881516712)
+    public LadderCommentReplyBean(Long id, long commentId, long author,
+            String author_title, String level, String avatar, int praise, int step,
+            String time, String comment, int floor) {
         this.id = id;
-        this.current = current;
+        this.commentId = commentId;
         this.author = author;
         this.author_title = author_title;
         this.level = level;
@@ -64,12 +61,11 @@ public class LadderCommentBean {
         this.step = step;
         this.time = time;
         this.comment = comment;
-        this.reply_count = reply_count;
         this.floor = floor;
     }
 
-    @Generated(hash = 1363383988)
-    public LadderCommentBean() {
+    @Generated(hash = 2030624059)
+    public LadderCommentReplyBean() {
     }
 
     public Long getId() {
@@ -80,12 +76,12 @@ public class LadderCommentBean {
         this.id = id;
     }
 
-    public int getCurrent() {
-        return this.current;
+    public long getCommentId() {
+        return this.commentId;
     }
 
-    public void setCurrent(int current) {
-        this.current = current;
+    public void setCommentId(long commentId) {
+        this.commentId = commentId;
     }
 
     public long getAuthor() {
@@ -150,14 +146,6 @@ public class LadderCommentBean {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public int getReply_count() {
-        return this.reply_count;
-    }
-
-    public void setReply_count(int reply_count) {
-        this.reply_count = reply_count;
     }
 
     public int getFloor() {

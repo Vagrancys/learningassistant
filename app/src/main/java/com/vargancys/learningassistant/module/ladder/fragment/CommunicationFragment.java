@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
+import com.vargancys.learningassistant.module.ladder.activity.LadderCommentReplyActivity;
 import com.vargancys.learningassistant.module.ladder.adapter.CommunicationAdapter;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @author Vagrancy
@@ -72,9 +68,38 @@ public class CommunicationFragment extends BaseFragment implements LadderComment
             }
         });
         mAdapter = new CommunicationAdapter(getContext(),mBean);
+        mAdapter.setOnCommentClickListener(new CommentListener());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
         autoRefreshData();
+    }
+
+    private class CommentListener implements CommunicationAdapter.OnCommentClickListener {
+
+        @Override
+        public void onPraisePressure(int position) {
+            mPresenter.updatePraiseData(mBean.get(position).getId(),true);
+        }
+
+        @Override
+        public void onPraiseUnPressure(int position) {
+            mPresenter.updatePraiseData(mBean.get(position).getId(),false);
+        }
+
+        @Override
+        public void onStepPressure(int position) {
+            mPresenter.updateStepData(mBean.get(position).getId(),true);
+        }
+
+        @Override
+        public void onStepUnPressure(int position) {
+            mPresenter.updateStepData(mBean.get(position).getId(),false);
+        }
+
+        @Override
+        public void onReplyPressure(int position) {
+            LadderCommentReplyActivity.launch(getActivity(),mBean.get(position).getId());
+        }
     }
 
     private void autoRefreshData() {
@@ -94,6 +119,6 @@ public class CommunicationFragment extends BaseFragment implements LadderComment
 
     @Override
     public void showCommentDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
+        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
     }
 }

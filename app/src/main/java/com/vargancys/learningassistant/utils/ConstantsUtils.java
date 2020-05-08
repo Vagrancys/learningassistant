@@ -56,4 +56,6 @@ public class ConstantsUtils {
     public static final String LADDER_DATA_ID = "ladder_data_id";
     //天梯交流中心的区分id
     public static final String LADDER_COMMUNICATION_ITEM = "ladder_communication_item";
+    //评论回复页面需要的id
+    public static final String COMMENT_ID = "comment_id";
 }

@@ -96,4 +96,12 @@ public class BaseLadderPresenter {
             ((LadderCommentView) mView).showCommentDataError(404,"没有查找到数据!");
         }
     }
+
+    public void updatePraiseData(Long commentId, boolean state) {
+        mRequest.updatePraiseData(commentId,state);
+    }
+
+    public void updateStepData(Long commentId,boolean state){
+        mRequest.updateStepData(commentId,state);
+    }
 }
