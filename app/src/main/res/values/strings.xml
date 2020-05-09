@@ -595,4 +595,9 @@
     <string name="comment_reply_count_text">0</string>
     <string name="comment_floor_count_text">2楼</string>
     <string name="comment_time_text">2020.05.08 15:57:25</string>
+    <string name="comment_data_empty_text">请输入您的回复!</string>
+    <string name="comment_save_data_finish_text">发布回复成功了!</string>
+    <string name="comment_save_data_error_text">发布回复失败了!</string>
+    <string name="comment_empty_text">没有找到该评论!</string>
+    <string name="comment_reply_toolbar">回复中心</string>
 </resources>

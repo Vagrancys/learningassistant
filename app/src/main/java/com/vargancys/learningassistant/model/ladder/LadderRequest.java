@@ -4,16 +4,21 @@ import android.app.DownloadManager;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.LadderCommentBeanDao;
+import com.vagrancys.learningassistant.db.LadderCommentReplyBeanDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
+import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,11 +34,13 @@ public class LadderRequest {
     private LadderCommentBeanDao mCommentDao;
     private LadderDataBeanDao mDataDao;
     private LadderTopicBeanDao mTopicDao;
+    private LadderCommentReplyBeanDao mCommentReplyDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mCommentDao = mDaoSession.getLadderCommentBeanDao();
         mDataDao = mDaoSession.getLadderDataBeanDao();
         mTopicDao = mDaoSession.getLadderTopicBeanDao();
+        mCommentReplyDao = mDaoSession.getLadderCommentReplyBeanDao();
     }
 
     public static LadderRequest getInstance(){
@@ -106,5 +113,37 @@ public class LadderRequest {
             mBean.setStep(mBean.getStep()-1);
         }
         mCommentDao.update(mBean);
+    }
+
+    //获取单个评论数据
+    public LadderCommentBean getLadderCommentData(long commentId) {
+        return mCommentDao.load(commentId);
+    }
+
+    //获取评论下的所有回复
+    public List<LadderCommentReplyBean> getLadderCommentReplyAllData(long commentId) {
+        QueryBuilder<LadderCommentReplyBean> mBean = mCommentReplyDao.queryBuilder();
+        return mBean.where(LadderCommentReplyBeanDao.Properties.CommentId.eq(commentId)).list();
+    }
+
+    //保持回复评论数据
+    public boolean saveCommentReplyData(long comment, String content) {
+        LadderCommentBean mBean = mCommentDao.load(comment);
+        mBean.setReply_count(mBean.getReply_count()+1);
+        mCommentDao.update(mBean);
+        LadderCommentReplyBean mReplyBean = new LadderCommentReplyBean();
+        mReplyBean.setAuthor(1);
+        mReplyBean.setAuthor_title("11");
+        mReplyBean.setAvatar("11");
+        mReplyBean.setComment(content);
+        mReplyBean.setLevel("初级攀登者");
+        mReplyBean.setCommentId(comment);
+        mReplyBean.setTime(TimeUtils.getTime());
+        long result =mCommentReplyDao.insert(mReplyBean);
+        if(result != 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

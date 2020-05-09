@@ -2,8 +2,11 @@ package com.vargancys.learningassistant.db.ladder;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
+
+import java.util.List;
 
 /**
  * @author Vagrancy
@@ -49,6 +52,9 @@ public class LadderCommentBean {
 
     //评论数量
     private int floor;
+
+    @ToMany(referencedJoinProperty = "commentId")
+    private List<LadderCommentReplyBean> mBean;
 
     @Generated(hash = 48203243)
     public LadderCommentBean(Long id, int current, long author, String author_title,

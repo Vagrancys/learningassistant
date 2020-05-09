@@ -32,36 +32,24 @@ public class LadderCommentReplyBean {
     //评论作者头像
     private String avatar;
 
-    //赞数
-    private int praise;
-
-    //踩数
-    private int step;
-
     //评论时间
     private String time;
 
     //评论内容
     private String comment;
 
-    //评论数量
-    private int floor;
-
     @Generated(hash = 881516712)
     public LadderCommentReplyBean(Long id, long commentId, long author,
-            String author_title, String level, String avatar, int praise, int step,
-            String time, String comment, int floor) {
+            String author_title, String level, String avatar,
+            String time, String comment) {
         this.id = id;
         this.commentId = commentId;
         this.author = author;
         this.author_title = author_title;
         this.level = level;
         this.avatar = avatar;
-        this.praise = praise;
-        this.step = step;
         this.time = time;
         this.comment = comment;
-        this.floor = floor;
     }
 
     @Generated(hash = 2030624059)
@@ -116,22 +104,6 @@ public class LadderCommentReplyBean {
         this.avatar = avatar;
     }
 
-    public int getPraise() {
-        return this.praise;
-    }
-
-    public void setPraise(int praise) {
-        this.praise = praise;
-    }
-
-    public int getStep() {
-        return this.step;
-    }
-
-    public void setStep(int step) {
-        this.step = step;
-    }
-
     public String getTime() {
         return this.time;
     }
@@ -146,13 +118,5 @@ public class LadderCommentReplyBean {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public int getFloor() {
-        return this.floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
     }
 }

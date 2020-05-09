@@ -1,106 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/include_toolbar"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_width_10dp">
-        <LinearLayout
-            android:id="@+id/user_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:layout_height="match_parent">
+        <RelativeLayout
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="@dimen/margin_width_10dp">
-            <ImageView
-                android:id="@+id/comment_avatar"
-                android:layout_width="@dimen/margin_width_50dp"
-                android:layout_height="@dimen/margin_width_50dp"
-                android:src="@drawable/comment_avatar_normal"/>
-            <TextView
-                android:id="@+id/comment_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/comment_author_text"
-                android:textSize="@dimen/text_size_18sp"
-                android:textColor="@color/black"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/data_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_toEndOf="@+id/user_layout"
-            android:layout_alignParentTop="true"
-            android:gravity="center|start"
-            android:layout_marginBottom="@dimen/margin_width_10dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/relative_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginRight="@dimen/margin_width_10dp">
-                <ImageView
+                android:padding="@dimen/margin_width_10dp">
+                <LinearLayout
+                    android:id="@+id/user_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/comment_level_normal"
-                    android:layout_marginRight="@dimen/margin_width_10dp"/>
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="@dimen/margin_width_10dp">
+                    <ImageView
+                        android:id="@+id/comment_avatar"
+                        android:layout_width="@dimen/margin_width_50dp"
+                        android:layout_height="@dimen/margin_width_50dp"
+                        android:src="@drawable/comment_avatar_normal"/>
+                    <TextView
+                        android:id="@+id/comment_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/comment_author_text"
+                        android:textSize="@dimen/text_size_18sp"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/data_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_toEndOf="@+id/user_layout"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center|start"
+                    android:layout_marginBottom="@dimen/margin_width_10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="@dimen/margin_width_10dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/comment_level_normal"
+                            android:layout_marginRight="@dimen/margin_width_10dp"/>
+                        <TextView
+                            android:id="@+id/comment_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/comment_level_text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_20sp"/>
+                    </LinearLayout>
+                </LinearLayout>
                 <TextView
-                    android:id="@+id/comment_level"
+                    android:id="@+id/comment_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/comment_level_text"
+                    android:text="@string/comment_content_text"
+                    android:minLines="3"
+                    android:textSize="@dimen/text_size_20sp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"/>
-            </LinearLayout>
-        </LinearLayout>
-        <TextView
-            android:id="@+id/comment_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/comment_content_text"
-            android:minLines="3"
-            android:textSize="@dimen/text_size_20sp"
-            android:textColor="@color/black"
-            android:layout_toEndOf="@+id/user_layout"
-            android:layout_below="@+id/data_layout"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/comment_content"
-            android:layout_alignParentRight="true">
+                    android:layout_toEndOf="@+id/user_layout"
+                    android:layout_below="@+id/data_layout"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/comment_content"
+                    android:layout_alignParentRight="true">
+                    <LinearLayout
+                        android:id="@+id/reply_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginRight="@dimen/margin_width_10dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/comment_reply_normal"
+                            android:layout_marginRight="@dimen/margin_width_10dp"/>
+                        <TextView
+                            android:id="@+id/comment_reply_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/comment_reply_count_text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_20sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/comment_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/comment_time_text"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_20sp"/>
+                </LinearLayout>
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:layout_below="@+id/relative_layout"
+                android:layout_above="@+id/send_layout"/>
             <LinearLayout
-                android:id="@+id/reply_layout"
-                android:layout_width="wrap_content"
+                android:id="@+id/send_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginRight="@dimen/margin_width_10dp">
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/margin_width_10dp"
+                android:gravity="center">
+                <EditText
+                    android:id="@+id/comment_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_width_30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/comment_edit_shape"
+                    android:textSize="@dimen/text_size_16sp"
+                    android:textColor="@color/black_1"/>
                 <ImageView
+                    android:id="@+id/comment_send"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/comment_reply_normal"
-                    android:layout_marginRight="@dimen/margin_width_10dp"/>
-                <TextView
-                    android:id="@+id/comment_reply_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/comment_reply_count_text"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"/>
+                    android:background="@drawable/comment_send_selector"
+                    android:layout_marginLeft="@dimen/margin_width_10dp"/>
             </LinearLayout>
-            <TextView
-                android:id="@+id/comment_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/comment_time_text"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_20sp"/>
-        </LinearLayout>
-    </RelativeLayout>
-
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
+
