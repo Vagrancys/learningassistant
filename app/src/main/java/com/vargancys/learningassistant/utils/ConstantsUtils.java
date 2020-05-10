@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.utils;
 
+import android.content.Context;
+
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
@@ -58,4 +60,7 @@ public class ConstantsUtils {
     public static final String LADDER_COMMUNICATION_ITEM = "ladder_communication_item";
     //评论回复页面需要的id
     public static final String COMMENT_ID = "comment_id";
+
+    //天梯难度类型
+    public static final String LADDER_DIFFICULTY_TYPE = "ladder_difficulty_type";
 }

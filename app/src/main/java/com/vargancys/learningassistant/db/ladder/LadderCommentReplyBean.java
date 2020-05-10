@@ -38,10 +38,10 @@ public class LadderCommentReplyBean {
     //评论内容
     private String comment;
 
-    @Generated(hash = 881516712)
+    @Generated(hash = 969516380)
     public LadderCommentReplyBean(Long id, long commentId, long author,
-            String author_title, String level, String avatar,
-            String time, String comment) {
+            String author_title, String level, String avatar, String time,
+            String comment) {
         this.id = id;
         this.commentId = commentId;
         this.author = author;
@@ -55,7 +55,7 @@ public class LadderCommentReplyBean {
     @Generated(hash = 2030624059)
     public LadderCommentReplyBean() {
     }
-
+    
     public Long getId() {
         return this.id;
     }

@@ -6,11 +6,13 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.LadderCommentBeanDao;
 import com.vagrancys.learningassistant.db.LadderCommentReplyBeanDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
+import com.vagrancys.learningassistant.db.LadderDifficultyCommentBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -35,6 +37,7 @@ public class LadderRequest {
     private LadderDataBeanDao mDataDao;
     private LadderTopicBeanDao mTopicDao;
     private LadderCommentReplyBeanDao mCommentReplyDao;
+    private LadderDifficultyCommentBeanDao mDifficultyCommentDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mCommentDao = mDaoSession.getLadderCommentBeanDao();
@@ -126,7 +129,7 @@ public class LadderRequest {
         return mBean.where(LadderCommentReplyBeanDao.Properties.CommentId.eq(commentId)).list();
     }
 
-    //保持回复评论数据
+    //保存回复评论数据
     public boolean saveCommentReplyData(long comment, String content) {
         LadderCommentBean mBean = mCommentDao.load(comment);
         mBean.setReply_count(mBean.getReply_count()+1);
@@ -140,6 +143,22 @@ public class LadderRequest {
         mReplyBean.setCommentId(comment);
         mReplyBean.setTime(TimeUtils.getTime());
         long result =mCommentReplyDao.insert(mReplyBean);
+        if(result != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //保持难度评论的数据
+    public boolean saveDifficultyData(int selectDifficulty, String data) {
+        LadderDifficultyCommentBean mBean = new LadderDifficultyCommentBean();
+        mBean.setAuthor(0);
+        mBean.setAuthor_title("你好");
+        mBean.setComment(data);
+        mBean.setTime(TimeUtils.getTime());
+        mBean.setType(selectDifficulty);
+        long result =mDifficultyCommentDao.insert(mBean);
         if(result != 0){
             return true;
         }else{

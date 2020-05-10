@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.SyncStateContract;
 
 /**
  * author: Vagrancy
@@ -30,5 +31,16 @@ public class CacheUtils {
     public static Long getLong(Context context,String key,long deValue){
         SharedPreferences sharedPreferences = context.getSharedPreferences(ConstantsUtils.SHARED_STATE,Context.MODE_PRIVATE);
         return sharedPreferences.getLong(key,deValue);
+    }
+
+    public static void putInt(Context context,String key,int deValue){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(ConstantsUtils.SHARED_STATE,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key,deValue).commit();
+    }
+
+    public static int getInt(Context context, String key, int deValue){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(ConstantsUtils.SHARED_STATE, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(key,deValue);
     }
 }

@@ -50,4 +50,12 @@
         <item>专家交流区</item>
         <item>特色交流区</item>
     </string-array>
+
+    <string-array name="ladder_difficulty">
+        <item>入门难度</item>
+        <item>简单难度</item>
+        <item>困难难度</item>
+        <item>专家难度</item>
+        <item>科研难度</item>
+    </string-array>
 </resources>

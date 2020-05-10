@@ -8,6 +8,7 @@ import com.vargancys.learningassistant.model.ladder.LadderRequest;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentReplyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;
+import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 
 import java.util.ArrayList;
@@ -140,5 +141,18 @@ public class BaseLadderPresenter {
         }else{
             ((LadderCommentReplyView) mView).showCommentAllDataError(404,"没有找到该数据!");
         }
+    }
+
+    public void saveDifficultData(int selectDifficulty, String data) {
+        boolean result = mRequest.saveDifficultyData(selectDifficulty,data);
+        if(result){
+            ((LadderDifficultyView) mView).showDifficultySendFinish();
+        }else{
+            ((LadderDifficultyView) mView).showDifficultySendError(404,"没有保存成功!");
+        }
+    }
+
+    public void showSelectType() {
+        ((LadderDifficultyView) mView).showSelectType();
     }
 }

@@ -1,5 +1,6 @@
 package com.vagrancys.learningassistant.db;
 
+import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -8,6 +9,8 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
+import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 
@@ -30,13 +33,11 @@ public class LadderCommentReplyBeanDao extends AbstractDao<LadderCommentReplyBea
         public final static Property Author_title = new Property(3, String.class, "author_title", false, "AUTHOR_TITLE");
         public final static Property Level = new Property(4, String.class, "level", false, "LEVEL");
         public final static Property Avatar = new Property(5, String.class, "avatar", false, "AVATAR");
-        public final static Property Praise = new Property(6, int.class, "praise", false, "PRAISE");
-        public final static Property Step = new Property(7, int.class, "step", false, "STEP");
-        public final static Property Time = new Property(8, String.class, "time", false, "TIME");
-        public final static Property Comment = new Property(9, String.class, "comment", false, "COMMENT");
-        public final static Property Floor = new Property(10, int.class, "floor", false, "FLOOR");
+        public final static Property Time = new Property(6, String.class, "time", false, "TIME");
+        public final static Property Comment = new Property(7, String.class, "comment", false, "COMMENT");
     }
 
+    private Query<LadderCommentReplyBean> ladderCommentBean_MBeanQuery;
 
     public LadderCommentReplyBeanDao(DaoConfig config) {
         super(config);
@@ -56,11 +57,8 @@ public class LadderCommentReplyBeanDao extends AbstractDao<LadderCommentReplyBea
                 "\"AUTHOR_TITLE\" TEXT," + // 3: author_title
                 "\"LEVEL\" TEXT," + // 4: level
                 "\"AVATAR\" TEXT," + // 5: avatar
-                "\"PRAISE\" INTEGER NOT NULL ," + // 6: praise
-                "\"STEP\" INTEGER NOT NULL ," + // 7: step
-                "\"TIME\" TEXT," + // 8: time
-                "\"COMMENT\" TEXT," + // 9: comment
-                "\"FLOOR\" INTEGER NOT NULL );"); // 10: floor
+                "\"TIME\" TEXT," + // 6: time
+                "\"COMMENT\" TEXT);"); // 7: comment
     }
 
     /** Drops the underlying database table. */
@@ -94,19 +92,16 @@ public class LadderCommentReplyBeanDao extends AbstractDao<LadderCommentReplyBea
         if (avatar != null) {
             stmt.bindString(6, avatar);
         }
-        stmt.bindLong(7, entity.getPraise());
-        stmt.bindLong(8, entity.getStep());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(9, time);
+            stmt.bindString(7, time);
         }
  
         String comment = entity.getComment();
         if (comment != null) {
-            stmt.bindString(10, comment);
+            stmt.bindString(8, comment);
         }
-        stmt.bindLong(11, entity.getFloor());
     }
 
     @Override
@@ -134,19 +129,16 @@ public class LadderCommentReplyBeanDao extends AbstractDao<LadderCommentReplyBea
         if (avatar != null) {
             stmt.bindString(6, avatar);
         }
-        stmt.bindLong(7, entity.getPraise());
-        stmt.bindLong(8, entity.getStep());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(9, time);
+            stmt.bindString(7, time);
         }
  
         String comment = entity.getComment();
         if (comment != null) {
-            stmt.bindString(10, comment);
+            stmt.bindString(8, comment);
         }
-        stmt.bindLong(11, entity.getFloor());
     }
 
     @Override
@@ -163,11 +155,8 @@ public class LadderCommentReplyBeanDao extends AbstractDao<LadderCommentReplyBea
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // author_title
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // level
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // avatar
-            cursor.getInt(offset + 6), // praise
-            cursor.getInt(offset + 7), // step
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // time
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // comment
-            cursor.getInt(offset + 10) // floor
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // time
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // comment
         );
         return entity;
     }
@@ -180,11 +169,8 @@ public class LadderCommentReplyBeanDao extends AbstractDao<LadderCommentReplyBea
         entity.setAuthor_title(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setLevel(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setAvatar(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setPraise(cursor.getInt(offset + 6));
-        entity.setStep(cursor.getInt(offset + 7));
-        entity.setTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setComment(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setFloor(cursor.getInt(offset + 10));
+        entity.setTime(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setComment(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     @Override
@@ -212,4 +198,18 @@ public class LadderCommentReplyBeanDao extends AbstractDao<LadderCommentReplyBea
         return true;
     }
     
+    /** Internal query to resolve the "mBean" to-many relationship of LadderCommentBean. */
+    public List<LadderCommentReplyBean> _queryLadderCommentBean_MBean(long commentId) {
+        synchronized (this) {
+            if (ladderCommentBean_MBeanQuery == null) {
+                QueryBuilder<LadderCommentReplyBean> queryBuilder = queryBuilder();
+                queryBuilder.where(Properties.CommentId.eq(null));
+                ladderCommentBean_MBeanQuery = queryBuilder.build();
+            }
+        }
+        Query<LadderCommentReplyBean> query = ladderCommentBean_MBeanQuery.forCurrentThread();
+        query.setParameter(0, commentId);
+        return query.list();
+    }
+
 }

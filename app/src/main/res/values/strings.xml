@@ -600,4 +600,12 @@
     <string name="comment_save_data_error_text">发布回复失败了!</string>
     <string name="comment_empty_text">没有找到该评论!</string>
     <string name="comment_reply_toolbar">回复中心</string>
+    <string name="difficulty_toolbar">天梯难度选择</string>
+    <string name="common_cancel_text">取消</string>
+    <string name="common_determine_text">确定</string>
+    <string name="difficulty_select_type_text">是否挑战 %d 呢?</string>
+    <string name="difficulty_edit_empty_text">请输入你的评论!</string>
+    <string name="difficulty_send_successful_text">难度区经验发布成功了!</string>
+    <string name="difficulty_select_successful_text">选择难度成功!</string>
 </resources>
+

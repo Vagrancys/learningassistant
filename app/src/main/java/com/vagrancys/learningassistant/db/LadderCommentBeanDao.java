@@ -38,6 +38,8 @@ public class LadderCommentBeanDao extends AbstractDao<LadderCommentBean, Long> {
         public final static Property Floor = new Property(11, int.class, "floor", false, "FLOOR");
     }
 
+    private DaoSession daoSession;
+
 
     public LadderCommentBeanDao(DaoConfig config) {
         super(config);
@@ -45,6 +47,7 @@ public class LadderCommentBeanDao extends AbstractDao<LadderCommentBean, Long> {
     
     public LadderCommentBeanDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -151,6 +154,12 @@ public class LadderCommentBeanDao extends AbstractDao<LadderCommentBean, Long> {
         }
         stmt.bindLong(11, entity.getReply_count());
         stmt.bindLong(12, entity.getFloor());
+    }
+
+    @Override
+    protected final void attachEntity(LadderCommentBean entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override

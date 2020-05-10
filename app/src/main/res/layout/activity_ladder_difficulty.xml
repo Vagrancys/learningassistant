@@ -1,26 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <include
+        android:id="@+id/toolbar"
         layout="@layout/include_toolbar"/>
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/sliding_tab"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_width_40dp"
-        app:tl_textSelectColor="@color/black"
-        app:tl_textUnselectColor="@color/black_2"
-        app:tl_textsize="@dimen/text_size_18sp"
-        app:tl_indicator_gravity="BOTTOM"
-        app:tl_indicator_corner_radius="@dimen/corners_radius_5dp"
-        app:tl_indicator_width="@dimen/margin_width_5dp"
-        app:tl_indicator_height="@dimen/margin_width_20dp"
-        app:tl_indicator_color="@color/pink"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/send_layout">
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/sliding_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_width_40dp"
+            app:tl_textSelectColor="@color/black"
+            app:tl_textUnselectColor="@color/black_2"
+            app:tl_textsize="@dimen/text_size_18sp"
+            app:tl_indicator_gravity="BOTTOM"
+            app:tl_indicator_corner_radius="@dimen/corners_radius_5dp"
+            app:tl_indicator_width="@dimen/margin_width_5dp"
+            app:tl_indicator_height="@dimen/margin_width_20dp"
+            app:tl_indicator_color="@color/pink"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/send_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/margin_width_10dp"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/difficulty_edit"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_width_30dp"
+            android:layout_weight="1"
+            android:background="@drawable/comment_edit_shape"
+            android:textSize="@dimen/text_size_16sp"
+            android:textColor="@color/black_1"/>
+        <ImageView
+            android:id="@+id/difficulty_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/comment_send_selector"
+            android:layout_marginLeft="@dimen/margin_width_10dp"/>
+    </LinearLayout>
+</RelativeLayout>
