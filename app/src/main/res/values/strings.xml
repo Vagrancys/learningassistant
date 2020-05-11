@@ -54,7 +54,6 @@
     <string name="common_update_first">更新入门级数据</string>
     <string name="common_update_second">更新熟悉级数据</string>
     <string name="common_update_third">更新熟练级数据</string>
-    <string name="common_update_fourth">更新精通级数据</string>
     <string name="common_update_fifth">更新创造级数据</string>
 
     <string name="insert_title">标题:</string>
@@ -143,7 +142,6 @@
     <string name="item_function_explain_fourth">使用说明:</string>
     <string name="item_function_explain_title_fourth">请说明源码的使用方法</string>
 
-    <string name="insert_title_fifth">体系的标题:</string>
     <string name="insert_hint_title_fifth">体系知识的简单描述</string>
     <string name="insert_summary_fifth">体系介绍:</string>
     <string name="insert_hint_summary_fifth">体系的背景与介绍</string>
@@ -262,7 +260,6 @@
     <string name="update_experience_fourth">心得:</string>
     <string name="update_hint_experience_fourth">优化经验分享(你对该知识的深入理解)</string>
 
-    <string name="update_title_fifth">体系的标题:</string>
     <string name="update_hint_title_fifth">优化体系知识的简单描述</string>
     <string name="update_summary_fifth">体系介绍:</string>
     <string name="update_hint_summary_fifth">优化体系的背景与介绍</string>
@@ -502,7 +499,6 @@
     <string name="start_radio_item_title">答案</string>
     <string name="start_radio_title">这是神马一道踢踢踢踢踢啊！</string>
     <string name="start_radio_submit_title">回答</string>
-    <string name="start_hint_radio_title">单选题</string>
     <string name="start_hint_multiple_title">多选题</string>
     <string name="start_hint_fill_title">填空题</string>
     <string name="start_hint_subjective_title">主观题</string>
@@ -547,15 +543,11 @@
     <string name="ladder_prepare_start_text">登天梯</string>
     <string name="ladder_judgment_text">登梯</string>
 
-    <string name="ladder_radio_item_title">答案</string>
     <string name="ladder_radio_title">这是神马一道踢踢踢踢踢啊！</string>
-    <string name="ladder_radio_submit_title">回答</string>
-    <string name="ladder_hint_radio_title">单选题</string>
     <string name="ladder_hint_multiple_title">多选题</string>
     <string name="ladder_hint_fill_title">填空题</string>
     <string name="ladder_hint_subjective_title">主观题</string>
     <string name="ladder_subjective_hint_title">请输入您所理解的知识</string>
-    <string name="ladder_empty_title">正在处理数据中</string>
 
     <string name="fail_title_head_text">登顶失败了!</string>
     <string name="ladder_fail_change_text">称号变化</string>
@@ -620,5 +612,8 @@
     <string name="ladder_help_time_text">20.31.02</string>
     <string name="ladder_help_summary_text">这是评论的简单加敏捷</string>
     <string name="ladder_help_number_text">1</string>
+
+    <string name="ladder_empty_header">数据已经获取不到了!你可以重新请求下!</string>
+    <string name="retry_button_text">重试</string>
 </resources>
 

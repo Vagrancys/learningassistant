@@ -1,6 +1,7 @@
 package com.vargancys.learningassistant.module.ladder.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -166,6 +167,10 @@ public class LadderFragment extends BaseFragment implements LadderView {
     RelativeLayout functionLayout;
     @BindView(R.id.win_layout)
     LinearLayout winLayout;
+    @BindView(R.id.empty_layout)
+    LinearLayout emptyLayout;
+    @BindView(R.id.retry_button)
+    TextView retryButton;
 
     private LadderDataBean mLadder;
     public static LadderFragment newInstance() {
@@ -223,10 +228,12 @@ public class LadderFragment extends BaseFragment implements LadderView {
         failLayout.setVisibility(View.GONE);
         winLayout.setVisibility(View.GONE);
         functionLayout.setVisibility(View.GONE);
+        emptyLayout.setVisibility(View.GONE);
     }
 
     @Override
     public void loadingLayout() {
+        emptyLayout.setVisibility(View.GONE);
         interludeLayout.setVisibility(View.VISIBLE);
     }
 
@@ -235,8 +242,14 @@ public class LadderFragment extends BaseFragment implements LadderView {
         interludeLayout.setVisibility(View.GONE);
     }
 
+    @Override
+    public void getLadderDataError() {
+        emptyLayout.setVisibility(View.VISIBLE);
+    }
+
     @OnClick({R.id.ladder_prepare_start,R.id.ladder_judgment,R.id.ladder_win_start,
-            R.id.ladder_function_list,R.id.function_layout,R.id.ladder_mode})
+            R.id.ladder_function_list,R.id.function_layout,R.id.ladder_mode,
+            R.id.retry_button})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ladder_prepare_start:
@@ -286,6 +299,9 @@ public class LadderFragment extends BaseFragment implements LadderView {
             case R.id.ladder_result:
                 //成绩展示
                 LadderResultActivity.launch(getActivity());
+                break;
+            case R.id.retry_button:
+                mPresenter.getLadderData(ladderId);
                 break;
         }
     }

@@ -8,11 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="FunctionAnimAction">
-        <item name="android:windowEnterAnimation">@anim/pop_function_enter_anim</item>
-        <item name="android:windowExitAnimation">@anim/pop_function_exit_anim</item>
-    </style>
-
     <!--公有答题的style-->
     <style name="start_radio_style">
         <item name="android:gravity">center</item>
@@ -47,18 +42,6 @@
     </style>
 
     <style name="start_radio_submit_style">
-        <item name="android:gravity">center</item>
-        <item name="android:text">@string/start_radio_submit_title</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/text_size_16sp</item>
-        <item name="android:paddingStart">@dimen/margin_width_50dp</item>
-        <item name="android:paddingEnd">@dimen/margin_width_50dp</item>
-        <item name="android:paddingTop">@dimen/margin_width_10dp</item>
-        <item name="android:paddingBottom">@dimen/margin_width_10dp</item>
-        <item name="android:background">@drawable/topic_radio_submit_bg</item>
-    </style>
-
-    <style name="ladder_radio_submit_style">
         <item name="android:gravity">center</item>
         <item name="android:text">@string/start_radio_submit_title</item>
         <item name="android:textColor">@color/white</item>

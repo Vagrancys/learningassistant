@@ -7,7 +7,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
-import com.vargancys.learningassistant.model.ladder.LadderRequest;
+import com.vargancys.learningassistant.model.ladder.request.LadderRequest;
 import com.vargancys.learningassistant.module.ladder.adapter.LadderHelpView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentReplyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
@@ -16,7 +16,6 @@ import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetail
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +50,9 @@ public class BaseLadderPresenter {
         LadderDataBean ladder = mRequest.getLadderData(ladderId);
         if(ladder != null){
             ((LadderView) mView).getLadderData(ladder);
+        }else{
+            ((LadderView) mView).loadingFinish();
+            ((LadderView) mView).getLadderDataError();
         }
     }
 

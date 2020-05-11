@@ -63,4 +63,6 @@ public class ConstantsUtils {
 
     //天梯难度类型
     public static final String LADDER_DIFFICULTY_TYPE = "ladder_difficulty_type";
+    //天梯帮助区的id
+    public static final String LADDER_HELP_ID = "ladder_help_id";
 }

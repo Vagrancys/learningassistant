@@ -24,4 +24,5 @@ public interface LadderView {
     boolean isAnswerEmpty();
     void showFailLayout();
     void showWinLayout();
+    void getLadderDataError();
 }

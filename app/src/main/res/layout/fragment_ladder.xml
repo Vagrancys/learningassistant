@@ -796,4 +796,27 @@
                 android:text="@string/ladder_result_text"/>
         </LinearLayout>
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="@dimen/margin_width_50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ladder_empty_header"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_24sp"/>
+        <TextView
+            android:id="@+id/retry_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry_button_text"
+            android:textSize="@dimen/text_size_24sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 </FrameLayout>

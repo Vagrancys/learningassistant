@@ -1,6 +1,4 @@
-package com.vargancys.learningassistant.model.ladder;
-
-import android.app.DownloadManager;
+package com.vargancys.learningassistant.model.ladder.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.LadderCommentBeanDao;
@@ -18,13 +16,10 @@ import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
-import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,9 +51,9 @@ public class LadderRequest {
     }
 
     public static LadderRequest getInstance(){
-        if(mRequest != null){
+        if(mRequest == null){
             synchronized (LadderRequest.class){
-                if(mRequest != null){
+                if(mRequest == null){
                     mRequest = new LadderRequest();
                 }
             }
