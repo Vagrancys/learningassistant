@@ -5,8 +5,10 @@ import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.LadderRequest;
+import com.vargancys.learningassistant.module.ladder.adapter.LadderHelpView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentReplyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;
@@ -146,6 +148,7 @@ public class BaseLadderPresenter {
         }
     }
 
+    //保存难度区评论数据
     public void saveDifficultData(int selectDifficulty, String data) {
         boolean result = mRequest.saveDifficultyData(selectDifficulty,data);
         if(result){
@@ -154,6 +157,7 @@ public class BaseLadderPresenter {
             ((LadderDifficultyView) mView).showDifficultySendError(404,"没有保存成功!");
         }
     }
+
 
     public void showSelectType() {
         ((LadderDifficultyView) mView).showSelectType();
@@ -177,6 +181,16 @@ public class BaseLadderPresenter {
             ((LadderDifficultyDetailsView) mView).showDifficultyCommentFinish(mBean);
         }else{
             ((LadderDifficultyDetailsView) mView).showDifficultyCommentError(404,"没有该数据!");
+        }
+    }
+
+    //获取所有的难度区所有的数据
+    public void getLadderHelpAllData() {
+        List<LadderHelpBean> mBean = mRequest.getLadderHelpAllData();
+        if(mBean != null && mBean.size() > 0){
+            ((LadderHelpView) mView).showAllDataFinish(mBean);
+        }else{
+            ((LadderHelpView) mView).showAllDataError(404,"不错啊");
         }
     }
 }

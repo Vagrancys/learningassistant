@@ -8,6 +8,7 @@ import com.vagrancys.learningassistant.db.LadderCommentReplyBeanDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderDifficultyCommentBeanDao;
 import com.vagrancys.learningassistant.db.LadderDifficultyDataBeanDao;
+import com.vagrancys.learningassistant.db.LadderHelpBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
@@ -15,6 +16,7 @@ import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -41,6 +43,7 @@ public class LadderRequest {
     private LadderCommentReplyBeanDao mCommentReplyDao;
     private LadderDifficultyCommentBeanDao mDifficultyCommentDao;
     private LadderDifficultyDataBeanDao mDifficultyDataDao;
+    private LadderHelpBeanDao mHelpDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mCommentDao = mDaoSession.getLadderCommentBeanDao();
@@ -49,6 +52,7 @@ public class LadderRequest {
         mCommentReplyDao = mDaoSession.getLadderCommentReplyBeanDao();
         mDifficultyCommentDao = mDaoSession.getLadderDifficultyCommentBeanDao();
         mDifficultyDataDao = mDaoSession.getLadderDifficultyDataBeanDao();
+        mHelpDao = mDaoSession.getLadderHelpBeanDao();
     }
 
     public static LadderRequest getInstance(){
@@ -68,11 +72,12 @@ public class LadderRequest {
     }
 
     public List<LadderTopicBean> getLadderAllTopicItem(int highest) {
+        //TODO 天梯所有问题
         return null;
     }
 
     public void saveLadderData(long ladderId) {
-
+        //TODO 天梯数据
     }
 
     //保持评论数据
@@ -179,5 +184,10 @@ public class LadderRequest {
     //得到难度区所有的评论数据
     public List<LadderDifficultyCommentBean> getLadderCommentAllData(int difficultyType) {
         return mDifficultyCommentDao.queryBuilder().where(LadderDifficultyCommentBeanDao.Properties.DataId.eq(difficultyType)).list();
+    }
+
+    //等到所有的帮助数据
+    public List<LadderHelpBean> getLadderHelpAllData() {
+        return mHelpDao.loadAll();
     }
 }

@@ -95,7 +95,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
 
         viewPager.setOffscreenPageLimit(mDifficulty.length);
 
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(difficultyType);
 
         slidingTab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override

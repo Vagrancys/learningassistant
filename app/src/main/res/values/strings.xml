@@ -615,5 +615,10 @@
     <string name="difficulty_time_text">2014.21.32</string>
     <string name="difficulty_comment_text">使用评论</string>
     <string name="difficulty_comment_count_text">(10)</string>
+
+    <string name="ladder_help_title_text">天梯帮助中心</string>
+    <string name="ladder_help_time_text">20.31.02</string>
+    <string name="ladder_help_summary_text">这是评论的简单加敏捷</string>
+    <string name="ladder_help_number_text">1</string>
 </resources>
 
