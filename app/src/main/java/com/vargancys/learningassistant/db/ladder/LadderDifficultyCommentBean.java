@@ -18,6 +18,9 @@ public class LadderDifficultyCommentBean {
     @Unique
     private Long id;
 
+    //难度区的id
+    private long dataId;
+
     //作者id
     private int author;
     //作者名
@@ -28,15 +31,25 @@ public class LadderDifficultyCommentBean {
     private String time;
     //评论所属的难度区
     private int type;
-    @Generated(hash = 933864588)
-    public LadderDifficultyCommentBean(Long id, int author, String author_title,
-            String comment, String time, int type) {
+
+    //评论等级
+    private String level;
+
+    //评论楼层
+    private int floor;
+    @Generated(hash = 127377855)
+    public LadderDifficultyCommentBean(Long id, long dataId, int author,
+            String author_title, String comment, String time, int type,
+            String level, int floor) {
         this.id = id;
+        this.dataId = dataId;
         this.author = author;
         this.author_title = author_title;
         this.comment = comment;
         this.time = time;
         this.type = type;
+        this.level = level;
+        this.floor = floor;
     }
     @Generated(hash = 492235373)
     public LadderDifficultyCommentBean() {
@@ -76,6 +89,24 @@ public class LadderDifficultyCommentBean {
     }
     public void setType(int type) {
         this.type = type;
+    }
+    public long getDataId() {
+        return this.dataId;
+    }
+    public void setDataId(long dataId) {
+        this.dataId = dataId;
+    }
+    public String getLevel() {
+        return this.level;
+    }
+    public void setLevel(String level) {
+        this.level = level;
+    }
+    public int getFloor() {
+        return this.floor;
+    }
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 
 }

@@ -3,11 +3,14 @@ package com.vargancys.learningassistant.presenter.ladder;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
+import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.LadderRequest;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentReplyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;
+import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetailsView;
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 
@@ -154,5 +157,26 @@ public class BaseLadderPresenter {
 
     public void showSelectType() {
         ((LadderDifficultyView) mView).showSelectType();
+    }
+
+    //得到难度区详情数据
+    public void getLadderDetailsData(int difficultyType) {
+        LadderDifficultyDataBean mBean = mRequest.getLadderDetailsData(difficultyType);
+        if(mBean != null){
+            ((LadderDifficultyDetailsView) mView).showDifficultyDetailsFinish(mBean);
+
+        }else{
+            ((LadderDifficultyDetailsView) mView).showDifficultyDetailsError(404,"没有该详情数据!");
+        }
+    }
+
+    //得到难度区的所有评论
+    public void getLadderCommentAllData(int difficultyType) {
+        List<LadderDifficultyCommentBean> mBean = mRequest.getLadderCommentAllData(difficultyType);
+        if(mBean != null && mBean.size() > 0){
+            ((LadderDifficultyDetailsView) mView).showDifficultyCommentFinish(mBean);
+        }else{
+            ((LadderDifficultyDetailsView) mView).showDifficultyCommentError(404,"没有该数据!");
+        }
     }
 }

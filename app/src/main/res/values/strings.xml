@@ -607,5 +607,13 @@
     <string name="difficulty_edit_empty_text">请输入你的评论!</string>
     <string name="difficulty_send_successful_text">难度区经验发布成功了!</string>
     <string name="difficulty_select_successful_text">选择难度成功!</string>
+    <string name="difficulty_title_text">入门级难度区</string>
+    <string name="difficulty_describe_head">详情:</string>
+    <string name="difficulty_describe_text">这是一个入门级的难度,对于新手是很友好的难度!</string>
+    <string name="difficulty_successful_text">25%</string>
+    <string name="difficulty_people_text">2015</string>
+    <string name="difficulty_time_text">2014.21.32</string>
+    <string name="difficulty_comment_text">使用评论</string>
+    <string name="difficulty_comment_count_text">(10)</string>
 </resources>
 

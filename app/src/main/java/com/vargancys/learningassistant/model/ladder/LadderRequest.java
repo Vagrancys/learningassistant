@@ -7,12 +7,14 @@ import com.vagrancys.learningassistant.db.LadderCommentBeanDao;
 import com.vagrancys.learningassistant.db.LadderCommentReplyBeanDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderDifficultyCommentBeanDao;
+import com.vagrancys.learningassistant.db.LadderDifficultyDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
+import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -38,12 +40,15 @@ public class LadderRequest {
     private LadderTopicBeanDao mTopicDao;
     private LadderCommentReplyBeanDao mCommentReplyDao;
     private LadderDifficultyCommentBeanDao mDifficultyCommentDao;
+    private LadderDifficultyDataBeanDao mDifficultyDataDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mCommentDao = mDaoSession.getLadderCommentBeanDao();
         mDataDao = mDaoSession.getLadderDataBeanDao();
         mTopicDao = mDaoSession.getLadderTopicBeanDao();
         mCommentReplyDao = mDaoSession.getLadderCommentReplyBeanDao();
+        mDifficultyCommentDao = mDaoSession.getLadderDifficultyCommentBeanDao();
+        mDifficultyDataDao = mDaoSession.getLadderDifficultyDataBeanDao();
     }
 
     public static LadderRequest getInstance(){
@@ -164,5 +169,15 @@ public class LadderRequest {
         }else{
             return false;
         }
+    }
+
+    //得到难度区详情数据
+    public LadderDifficultyDataBean getLadderDetailsData(int difficultyType) {
+        return mDifficultyDataDao.queryBuilder().where(LadderDifficultyDataBeanDao.Properties.Type.eq(difficultyType)).unique();
+    }
+
+    //得到难度区所有的评论数据
+    public List<LadderDifficultyCommentBean> getLadderCommentAllData(int difficultyType) {
+        return mDifficultyCommentDao.queryBuilder().where(LadderDifficultyCommentBeanDao.Properties.DataId.eq(difficultyType)).list();
     }
 }
