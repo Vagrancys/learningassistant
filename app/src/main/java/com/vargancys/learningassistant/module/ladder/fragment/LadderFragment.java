@@ -436,7 +436,6 @@ public class LadderFragment extends BaseFragment implements LadderView {
     //显示登顶的页面
     @Override
     public void showWinLayout() {
-        //TODO 制作到登顶界面
         initWinData();
         ladderLayout.setVisibility(View.GONE);
         winLayout.setVisibility(View.VISIBLE);

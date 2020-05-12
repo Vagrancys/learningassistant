@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.presenter.ladder;
 
+import android.support.v7.view.menu.MenuView;
+
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
@@ -14,6 +16,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetailsView;
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
+import com.vargancys.learningassistant.module.ladder.view.LadderHelpDetailsView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 
 import java.util.List;
@@ -194,5 +197,16 @@ public class BaseLadderPresenter {
         }else{
             ((LadderHelpView) mView).showAllDataError(404,"不错啊");
         }
+    }
+
+    //获取帮助详情页的数据
+    public void getLadderHelpDetailsData(long helpId) {
+        LadderHelpBean mBean = mRequest.getLadderHelpDetailsData(helpId);
+        if(mBean != null){
+            ((LadderHelpDetailsView) mView).showHelpDetailsFinish(mBean);
+        }else{
+            ((LadderHelpDetailsView) mView).showHelpDetailsError(404,"不能够执行这个行动");
+        }
+
     }
 }

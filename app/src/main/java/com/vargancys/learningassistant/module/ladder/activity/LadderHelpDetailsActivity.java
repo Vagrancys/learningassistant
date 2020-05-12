@@ -2,9 +2,22 @@ package com.vargancys.learningassistant.module.ladder.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.module.ladder.view.LadderHelpDetailsView;
+import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ToastUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author Vagrancy
@@ -13,20 +26,90 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
  * Email:18050829067@163.com
  * Description: 帮助详情页
  */
-public class LadderHelpDetailsActivity extends BaseActivity {
+public class LadderHelpDetailsActivity extends BaseActivity implements LadderHelpDetailsView {
+    @BindView(R.id.common_back)
+    ImageView commonBack;
+    @BindView(R.id.common_title)
+    TextView commonTitle;
+    @BindView(R.id.common_img)
+    ImageView commonImg;
+    @BindView(R.id.help_details_number)
+    TextView helpDetailsNumber;
+    @BindView(R.id.help_details_title)
+    TextView helpDetailsTitle;
+    @BindView(R.id.help_details_summary)
+    TextView helpDetailsSummary;
+    @BindView(R.id.help_details_content)
+    TextView helpDetailsContent;
+    @BindView(R.id.help_details_time)
+    TextView helpDetailsTime;
+    @BindView(R.id.swipeRefresh)
+    SwipeRefreshLayout swipeRefresh;
+    private BaseLadderPresenter mPresenter;
+    private long helpId;
+
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_help_details;
     }
 
     @Override
     public void initView() {
-        //TODO 帮助详情页
+        helpId = getIntent().getIntExtra(ConstantsUtils.LADDER_HELP_ID,0);
+        mPresenter = new BaseLadderPresenter(this);
+        initListener();
+        mPresenter.getLadderHelpDetailsData(helpId);
     }
 
-    public static void launch(Activity activity,long helpId){
-        Intent intent = new Intent(activity,LadderHelpDetailsActivity.class);
-        intent.putExtra(ConstantsUtils.LADDER_HELP_ID,helpId);
+    private void initListener() {
+        swipeRefresh.setRefreshing(true);
+        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefresh.setRefreshing(true);
+                mPresenter.getLadderHelpDetailsData(helpId);
+            }
+        });
+    }
+
+    @Override
+    public void initToolbar() {
+        commonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        commonTitle.setText(getResources().getString(R.string.help_details_toolbar));
+        commonImg.setVisibility(View.GONE);
+    }
+
+    public static void launch(Activity activity, long helpId) {
+        Intent intent = new Intent(activity, LadderHelpDetailsActivity.class);
+        intent.putExtra(ConstantsUtils.LADDER_HELP_ID, helpId);
         activity.startActivity(intent);
+    }
+
+    @Override
+    public void showHelpDetailsError(int error, String message) {
+        swipeRefresh.setRefreshing(false);
+        ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
+        helpDetailsNumber.setText("--");
+        helpDetailsContent.setText("--");
+        helpDetailsSummary.setText("--");
+        helpDetailsTime.setText("--");
+        helpDetailsTitle.setText("--");
+    }
+
+    @Override
+    public void showHelpDetailsFinish(LadderHelpBean mBean) {
+        swipeRefresh.setRefreshing(false);
+        helpDetailsTitle.setText(mBean.getTitle());
+        helpDetailsTime.setText(mBean.getTime());
+        helpDetailsSummary.setText(mBean.getSummary());
+        helpDetailsNumber.setText(mBean.getNumber());
+        helpDetailsContent.setText(mBean.getContent());
     }
 }

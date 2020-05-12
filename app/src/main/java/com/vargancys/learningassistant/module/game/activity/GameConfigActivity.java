@@ -14,6 +14,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
  * time  : 2020/04/16
  * version:1.0
  */
-public class GameConfigActivity extends BaseActivity implements View.OnClickListener {
+public class GameConfigActivity extends BaseActivity {
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title_data)
@@ -76,6 +77,18 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
     TextView configRepeatSecond;
     @BindView(R.id.config_save)
     TextView configSave;
+    @BindView(R.id.config_number)
+    TextView configNumber;
+    @BindView(R.id.config_single)
+    TextView configSingle;
+    @BindView(R.id.config_type)
+    TextView configType;
+    @BindView(R.id.config_difficulty)
+    TextView configDifficulty;
+    @BindView(R.id.config_contain)
+    TextView configContain;
+    @BindView(R.id.config_repeat)
+    TextView configRepeat;
 
     @Override
     public int getLayoutId() {
@@ -85,33 +98,9 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
     @Override
     public void initView() {
         initConfig();
-        initListener();
     }
 
-    private void initListener(){
-        configNumberFirst.setOnClickListener(this);
-        configNumberSecond.setOnClickListener(this);
-        configNumberThird.setOnClickListener(this);
-        configNumberFourth.setOnClickListener(this);
-        configNumberFifth.setOnClickListener(this);
-        configSingleFirst.setOnClickListener(this);
-        configSingleSecond.setOnClickListener(this);
-        configSingleThird.setOnClickListener(this);
-        configSingleFourth.setOnClickListener(this);
-        configSingleFifth.setOnClickListener(this);
-        configTypeFirst.setOnClickListener(this);
-        configTypeSecond.setOnClickListener(this);
-        configTypeThird.setOnClickListener(this);
-        configTypeFourth.setOnClickListener(this);
-        configTypeFifth.setOnClickListener(this);
-        configContainFirst.setOnClickListener(this);
-        configContainSecond.setOnClickListener(this);
-        configRepeatFirst.setOnClickListener(this);
-        configRepeatSecond.setOnClickListener(this);
-        configSave.setOnClickListener(this);
-    }
-
-    private void clearNumber(){
+    private void clearNumber() {
         configNumberFirst.setSelected(false);
         configNumberSecond.setSelected(false);
         configNumberThird.setSelected(false);
@@ -119,7 +108,7 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
         configNumberFifth.setSelected(false);
     }
 
-    private void clearSingle(){
+    private void clearSingle() {
         configSingleFirst.setSelected(false);
         configSingleSecond.setSelected(false);
         configSingleThird.setSelected(false);
@@ -127,7 +116,7 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
         configSingleFifth.setSelected(false);
     }
 
-    private void clearType(){
+    private void clearType() {
         configTypeFirst.setSelected(false);
         configTypeSecond.setSelected(false);
         configTypeThird.setSelected(false);
@@ -135,7 +124,7 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
         configTypeFifth.setSelected(false);
     }
 
-    private void clearDifficulty(){
+    private void clearDifficulty() {
         configDifficultyFirst.setSelected(false);
         configDifficultySecond.setSelected(false);
         configDifficultyThird.setSelected(false);
@@ -143,8 +132,8 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
         configDifficultyFifth.setSelected(false);
     }
 
-    private void initConfig(){
-        switch (GameConfigUtils.CONFIG_NUMBER){
+    private void initConfig() {
+        switch (GameConfigUtils.CONFIG_NUMBER) {
             case 10:
                 configNumberFirst.setSelected(true);
                 break;
@@ -161,7 +150,7 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
                 configNumberFifth.setSelected(true);
                 break;
         }
-        switch (GameConfigUtils.CONFIG_SINGLE){
+        switch (GameConfigUtils.CONFIG_SINGLE) {
             case 1:
                 configSingleFirst.setSelected(true);
                 break;
@@ -179,7 +168,7 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
                 break;
         }
 
-        switch (GameConfigUtils.CONFIG_TYPE){
+        switch (GameConfigUtils.CONFIG_TYPE) {
             case 1:
                 configTypeFirst.setSelected(true);
                 break;
@@ -197,7 +186,7 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
                 break;
         }
 
-        switch (GameConfigUtils.CONFIG_DIFFICULTY){
+        switch (GameConfigUtils.CONFIG_DIFFICULTY) {
             case 1:
                 configDifficultyFirst.setSelected(true);
                 break;
@@ -215,15 +204,15 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
                 break;
         }
 
-        if(GameConfigUtils.CONFIG_CONTAIN){
+        if (GameConfigUtils.CONFIG_CONTAIN) {
             configContainSecond.setSelected(true);
-        }else{
+        } else {
             configContainFirst.setSelected(true);
         }
 
-        if(GameConfigUtils.CONFIG_REPEAT){
+        if (GameConfigUtils.CONFIG_REPEAT) {
             configRepeatSecond.setSelected(true);
-        }else{
+        } else {
             configRepeatFirst.setSelected(true);
         }
     }
@@ -253,9 +242,14 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
     // 确定题目难易 1 2 3 4 5
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+    @OnClick({R.id.config_number_first,R.id.config_number_second,R.id.config_number_third,R.id.config_number_fourth,
+            R.id.config_number_fifth,R.id.config_single_first,R.id.config_single_second,R.id.config_single_third,
+            R.id.config_single_fourth,R.id.config_single_fifth,R.id.config_type_first,R.id.config_type_second,R.id.config_type_third,
+            R.id.config_type_fourth,R.id.config_type_fifth,R.id.config_difficulty_first,R.id.config_difficulty_second,
+            R.id.config_difficulty_third,R.id.config_difficulty_fourth,R.id.config_difficulty_fifth,R.id.config_contain_first,
+            R.id.config_contain_second,R.id.config_repeat_first,R.id.config_repeat_second,R.id.config_save})
+    public void onViewClicked(View v) {
+        switch (v.getId()) {
             case R.id.config_number_first:
                 clearNumber();
                 configNumberFirst.setSelected(true);
@@ -373,7 +367,7 @@ public class GameConfigActivity extends BaseActivity implements View.OnClickList
                 GameConfigUtils.CONFIG_REPEAT = true;
                 break;
             case R.id.config_save:
-                ToastUtils.ToastText(getContext(),"保存成功了哦!");
+                ToastUtils.ToastText(getContext(), "保存成功了哦!");
                 GameStartActivity.launch(GameConfigActivity.this);
                 finish();
                 break;

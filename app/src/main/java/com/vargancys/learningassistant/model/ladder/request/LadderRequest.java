@@ -185,4 +185,9 @@ public class LadderRequest {
     public List<LadderHelpBean> getLadderHelpAllData() {
         return mHelpDao.loadAll();
     }
+
+    //得到帮助详情数据
+    public LadderHelpBean getLadderHelpDetailsData(long helpId) {
+        return mHelpDao.load(helpId);
+    }
 }

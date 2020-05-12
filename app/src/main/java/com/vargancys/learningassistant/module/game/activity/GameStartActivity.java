@@ -110,8 +110,6 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     private AnswerSheetParcelable mAnswerSheetParcelable;
     private ArrayList<GameAnswerSheetBean> mBean;
 
-    //TODO 友好提示答题情况 保持答题情况序列化 答题卡页面
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_game_start;

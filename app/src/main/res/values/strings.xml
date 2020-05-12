@@ -608,12 +608,49 @@
     <string name="difficulty_comment_text">使用评论</string>
     <string name="difficulty_comment_count_text">(10)</string>
 
+    <!--天梯帮助模块-->
     <string name="ladder_help_title_text">天梯帮助中心</string>
     <string name="ladder_help_time_text">20.31.02</string>
     <string name="ladder_help_summary_text">这是评论的简单加敏捷</string>
     <string name="ladder_help_number_text">1</string>
+    <string name="help_details_number_text">1</string>
+    <string name="help_details_title_text">这是一个帮助</string>
+    <string name="help_details_summary_text">这是一个个个个个个帮助</string>
+    <string name="help_details_content_text">这是一哥哥哥哥哥哥哥哥哥哥哥哥帮助</string>
+    <string name="help_details_time_text">202020 20.20.20</string>
+    <string name="help_details_summary_head_text">简要:</string>
+    <string name="help_details_content_head_text">内容详情:</string>
+    <string name="help_details_toolbar">帮助详情中心</string>
 
     <string name="ladder_empty_header">数据已经获取不到了!你可以重新请求下!</string>
     <string name="retry_button_text">重试</string>
+
+    <!--天梯模式配置-->
+    <string name="mode_number_text">挑战题数</string>
+    <string name="mode_number_first_text">10题</string>
+    <string name="mode_number_second_text">20题</string>
+    <string name="mode_number_third_text">30题</string>
+    <string name="mode_number_fourth_text">40题</string>
+    <string name="mode_number_fifth_text">50题</string>
+    <string name="mode_type_text">挑战题型</string>
+    <string name="mode_type_first_text">全部</string>
+    <string name="mode_type_second_text">单选</string>
+    <string name="mode_type_third_text">多选</string>
+    <string name="mode_type_fourth_text">填空</string>
+    <string name="mode_type_fifth_text">主观</string>
+    <string name="mode_time_text">挑战时间</string>
+    <string name="mode_time_first_text">10s</string>
+    <string name="mode_time_second_text">20s</string>
+    <string name="mode_time_third_text">30s</string>
+    <string name="mode_time_fourth_text">40s</string>
+    <string name="mode_time_fifth_text">50s</string>
+    <string name="mode_class_text">挑战种类</string>
+    <string name="mode_class_first_text">android</string>
+    <string name="mode_class_second_text">java</string>
+    <string name="mode_class_third_text">html</string>
+    <string name="mode_class_fourth_text">php</string>
+    <string name="mode_class_fifth_text">c++</string>
+    <string name="mode_save_text">保存</string>
+    <string name="ladder_mode_toolbar">天梯模式选择</string>
 </resources>
 

@@ -18,6 +18,8 @@ import com.vargancys.learningassistant.module.ladder.adapter.CommunicationPagerA
 import com.vargancys.learningassistant.module.ladder.fragment.CommunicationFragment;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
+import com.vargancys.learningassistant.utils.CacheUtils;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -132,6 +134,7 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
             @Override
             public void onClick(View view) {
                 //TODO 权限设置
+
             }
         });
     }
