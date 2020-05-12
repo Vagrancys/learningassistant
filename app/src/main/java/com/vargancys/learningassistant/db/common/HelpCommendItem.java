@@ -21,6 +21,7 @@ import com.vagrancys.learningassistant.db.HelpCommendItemDao;
  */
 @Entity
 public class HelpCommendItem{
+
     @Id(autoincrement = true)
     @Unique
     private Long id;
