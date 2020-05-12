@@ -38,15 +38,15 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowHistoryDao.createTable(db, ifNotExists);
         HomeKnowHistoryFunctionDao.createTable(db, ifNotExists);
         HomeKnowItemDao.createTable(db, ifNotExists);
-        OverViewListContentDao.createTable(db, ifNotExists);
-        OverViewListItemDao.createTable(db, ifNotExists);
-        LadderDataBeanDao.createTable(db, ifNotExists);
-        LadderTopicBeanDao.createTable(db, ifNotExists);
         LadderCommentBeanDao.createTable(db, ifNotExists);
         LadderCommentReplyBeanDao.createTable(db, ifNotExists);
+        LadderDataBeanDao.createTable(db, ifNotExists);
         LadderDifficultyCommentBeanDao.createTable(db, ifNotExists);
         LadderDifficultyDataBeanDao.createTable(db, ifNotExists);
         LadderHelpBeanDao.createTable(db, ifNotExists);
+        LadderTopicBeanDao.createTable(db, ifNotExists);
+        OverViewListContentDao.createTable(db, ifNotExists);
+        OverViewListItemDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -68,15 +68,15 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowHistoryDao.dropTable(db, ifExists);
         HomeKnowHistoryFunctionDao.dropTable(db, ifExists);
         HomeKnowItemDao.dropTable(db, ifExists);
-        OverViewListContentDao.dropTable(db, ifExists);
-        OverViewListItemDao.dropTable(db, ifExists);
-        LadderDataBeanDao.dropTable(db, ifExists);
-        LadderTopicBeanDao.dropTable(db, ifExists);
         LadderCommentBeanDao.dropTable(db, ifExists);
         LadderCommentReplyBeanDao.dropTable(db, ifExists);
+        LadderDataBeanDao.dropTable(db, ifExists);
         LadderDifficultyCommentBeanDao.dropTable(db, ifExists);
         LadderDifficultyDataBeanDao.dropTable(db, ifExists);
         LadderHelpBeanDao.dropTable(db, ifExists);
+        LadderTopicBeanDao.dropTable(db, ifExists);
+        OverViewListContentDao.dropTable(db, ifExists);
+        OverViewListItemDao.dropTable(db, ifExists);
     }
 
     /**
@@ -112,15 +112,15 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(HomeKnowHistoryDao.class);
         registerDaoClass(HomeKnowHistoryFunctionDao.class);
         registerDaoClass(HomeKnowItemDao.class);
-        registerDaoClass(OverViewListContentDao.class);
-        registerDaoClass(OverViewListItemDao.class);
-        registerDaoClass(LadderDataBeanDao.class);
-        registerDaoClass(LadderTopicBeanDao.class);
         registerDaoClass(LadderCommentBeanDao.class);
         registerDaoClass(LadderCommentReplyBeanDao.class);
+        registerDaoClass(LadderDataBeanDao.class);
         registerDaoClass(LadderDifficultyCommentBeanDao.class);
         registerDaoClass(LadderDifficultyDataBeanDao.class);
         registerDaoClass(LadderHelpBeanDao.class);
+        registerDaoClass(LadderTopicBeanDao.class);
+        registerDaoClass(OverViewListContentDao.class);
+        registerDaoClass(OverViewListItemDao.class);
     }
 
     public DaoSession newSession() {
