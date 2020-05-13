@@ -21,7 +21,7 @@ public class LadderRankActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        //TODO 进度:天梯排行页面设计
     }
 
     public static void launch(Activity activity){
