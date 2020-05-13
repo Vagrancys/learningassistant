@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.module.ladder.adapter;
+package com.vargancys.learningassistant.module.ladder.view;
 
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 

@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.presenter.ladder;
 
-import android.support.v7.view.menu.MenuView;
-
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
@@ -10,7 +8,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.request.LadderRequest;
-import com.vargancys.learningassistant.module.ladder.adapter.LadderHelpView;
+import com.vargancys.learningassistant.module.ladder.view.LadderHelpView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentReplyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;

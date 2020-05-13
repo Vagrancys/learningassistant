@@ -23,10 +23,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/03
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/3
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 知识体系信息页面
  */
 public class OverViewInformationActivity extends BaseActivity implements OverViewInformationView{
     private static String TAG = "OverViewInformationActivity";

@@ -30,10 +30,11 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/03
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/3
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 知识体系搜索页面
  */
 public class OverViewSearchActivity extends BaseActivity implements BaseOverView {
     private static String TAG = "OverViewSearchActivity";

@@ -38,10 +38,11 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/05/03
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/5/3
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 天梯碎片模块
  */
 public class LadderFragment extends BaseFragment implements LadderView {
     @BindView(R.id.interlude_layout)

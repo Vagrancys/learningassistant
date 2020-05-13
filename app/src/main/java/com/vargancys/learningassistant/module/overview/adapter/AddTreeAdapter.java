@@ -20,10 +20,11 @@ import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 import java.util.List;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/04
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/4
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 知识体系树添加适配器
  */
 public class AddTreeAdapter<T> extends TreeListViewAdapter<T> {
     private Animation mShowAnim;

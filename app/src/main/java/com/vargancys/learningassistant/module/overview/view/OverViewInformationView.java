@@ -5,10 +5,11 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import java.util.List;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/06
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/6
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 知识体系信息视图层
  */
 public interface OverViewInformationView extends BaseOverView{
     void getContentData(OverViewListContent mContent);
