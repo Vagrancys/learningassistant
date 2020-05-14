@@ -652,5 +652,13 @@
     <string name="mode_class_fifth_text">c++</string>
     <string name="mode_save_text">保存</string>
     <string name="ladder_mode_toolbar">天梯模式选择</string>
+
+    <!--天梯排行-->
+    <string name="ladder_rank_toolbar">天梯排行中心</string>
+    <string name="zone_rank_author_text">小鬼</string>
+    <string name="zone_rank_level_text">初级攀爬者</string>
+    <string name="zone_rank_total_text">150层</string>
+    <string name="zone_rank_floor_text">250层</string>
+    <string name="zone_rank_time_text">202020 20:20:20</string>
 </resources>
 

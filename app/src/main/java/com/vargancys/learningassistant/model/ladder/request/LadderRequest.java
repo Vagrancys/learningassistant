@@ -7,6 +7,7 @@ import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderDifficultyCommentBeanDao;
 import com.vagrancys.learningassistant.db.LadderDifficultyDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderHelpBeanDao;
+import com.vagrancys.learningassistant.db.LadderRankDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
@@ -15,6 +16,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
@@ -38,6 +40,7 @@ public class LadderRequest {
     private LadderCommentReplyBeanDao mCommentReplyDao;
     private LadderDifficultyCommentBeanDao mDifficultyCommentDao;
     private LadderDifficultyDataBeanDao mDifficultyDataDao;
+    private LadderRankDataBeanDao mRankDataDao;
     private LadderHelpBeanDao mHelpDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
@@ -48,6 +51,7 @@ public class LadderRequest {
         mDifficultyCommentDao = mDaoSession.getLadderDifficultyCommentBeanDao();
         mDifficultyDataDao = mDaoSession.getLadderDifficultyDataBeanDao();
         mHelpDao = mDaoSession.getLadderHelpBeanDao();
+        mRankDataDao = mDaoSession.getLadderRankDataBeanDao();
     }
 
     public static LadderRequest getInstance(){
@@ -189,5 +193,17 @@ public class LadderRequest {
     //得到帮助详情数据
     public LadderHelpBean getLadderHelpDetailsData(long helpId) {
         return mHelpDao.load(helpId);
+    }
+
+    //获取排行数据
+    public List<LadderRankDataBean> getLadderZoneRankData(int zoneId) {
+        List<LadderRankDataBean> mBean;
+        QueryBuilder<LadderRankDataBean> mQuery = mRankDataDao.queryBuilder();
+        if(zoneId == 0){
+            mBean = mQuery.list();
+        }else{
+            mBean = mQuery.where(LadderRankDataBeanDao.Properties.Zone.eq(zoneId)).list();
+        }
+        return mBean;
     }
 }

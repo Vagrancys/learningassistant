@@ -73,6 +73,7 @@
         <activity android:name=".module.ladder.activity.LadderResultActivity"/>
         <activity android:name=".module.ladder.activity.LadderCommentReplyActivity"/>
         <activity android:name=".module.ladder.activity.LadderHelpDetailsActivity"/>
+        <activity android:name=".module.ladder.activity.LadderRankSettingActivity"/>
     </application>
 
 </manifest>

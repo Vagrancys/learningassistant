@@ -6,6 +6,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.request.LadderRequest;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpView;
@@ -16,6 +17,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetail
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpDetailsView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
+import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 
 import java.util.List;
 
@@ -206,5 +208,15 @@ public class BaseLadderPresenter {
             ((LadderHelpDetailsView) mView).showHelpDetailsError(404,"不能够执行这个行动");
         }
 
+    }
+
+    //获取各分区排行榜数据
+    public void getLadderZoneRankData(int zoneId) {
+        List<LadderRankDataBean> mBean = mRequest.getLadderZoneRankData(zoneId);
+        if(mBean != null && mBean.size() > 0){
+            ((LadderZoneRankView) mView).showZoneRankDataFinish(mBean);
+        }else{
+            ((LadderZoneRankView) mView).showZoneRankDataError(404,"没有找到数据!");
+        }
     }
 }
