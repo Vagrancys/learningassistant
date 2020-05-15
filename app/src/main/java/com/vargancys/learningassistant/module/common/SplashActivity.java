@@ -23,6 +23,7 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/02/29
  * version:1.0
+ * 跳转页面
  */
 public class SplashActivity extends BaseActivity {
 
