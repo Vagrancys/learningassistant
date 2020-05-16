@@ -244,8 +244,11 @@ public class LadderFragment extends BaseFragment implements LadderView {
     }
 
     @Override
-    public void getLadderDataError() {
+    public void getLadderDataError(long result) {
         emptyLayout.setVisibility(View.VISIBLE);
+        if(result !=0){
+            CacheUtils.putLong(getContext(),ConstantsUtils.LADDER_DATA_ID,result);
+        }
     }
 
     @OnClick({R.id.ladder_prepare_start,R.id.ladder_judgment,R.id.ladder_win_start,

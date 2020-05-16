@@ -18,6 +18,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
+import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -71,6 +72,7 @@ public class LadderRequest {
     }
 
     public List<LadderTopicBean> getLadderAllTopicItem(int highest) {
+
         //TODO 天梯所有问题
         return null;
     }
@@ -205,5 +207,23 @@ public class LadderRequest {
             mBean = mQuery.where(LadderRankDataBeanDao.Properties.Zone.eq(zoneId)).list();
         }
         return mBean;
+    }
+
+    //第一次天梯排名创建用户数据
+    public long insertLadderData() {
+        LadderDataBean mBean = new LadderDataBean();
+        mBean.setTitle("入门级攀登者");
+        mBean.setTitle_level(0);
+        mBean.setUpgrade(500);
+        mBean.setUpgrade_total(0);
+        mBean.setDifficulty("1级");
+        mBean.setHighest(1);
+        mBean.setFail(0);
+        mBean.setTime("--");
+        mBean.setTotal_time("--");
+        mBean.setTotal(0);
+        mBean.setMaster(0);
+        mBean.setChance("0%");
+        return mDataDao.insert(mBean);
     }
 }

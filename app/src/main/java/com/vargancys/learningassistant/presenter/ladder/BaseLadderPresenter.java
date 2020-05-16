@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.presenter.ladder;
 
+import android.util.Log;
+
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
@@ -54,8 +56,10 @@ public class BaseLadderPresenter {
         if(ladder != null){
             ((LadderView) mView).getLadderData(ladder);
         }else{
+            long result = mRequest.insertLadderData();
+            Log.e("测试","对是测试");
             ((LadderView) mView).loadingFinish();
-            ((LadderView) mView).getLadderDataError();
+            ((LadderView) mView).getLadderDataError(result);
         }
     }
 

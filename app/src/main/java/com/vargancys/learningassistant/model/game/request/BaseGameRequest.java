@@ -229,15 +229,21 @@ public class BaseGameRequest {
                     }
                 }
                 Log.e("looper","size ="+mStarts.size());
-                int size = GameConfigUtils.CONFIG_NUMBER;
-                Random mRandom = new Random();
-                List<GameStartContent> mFinishStart = new ArrayList<>();
-                for (int i = 0; i < size; i++){
-                    int length = mRandom.nextInt(size);
-                    mFinishStart.add(mStarts.get(length));
-                    mStarts.remove(length);
-                }
-                if(mFinishStart.size() > 0){
+
+
+
+                if(mStarts.size() > 0){
+                    int size = GameConfigUtils.CONFIG_NUMBER;
+                    if(size>mStarts.size()){
+                        size = mStarts.size();
+                    }
+                    Random mRandom = new Random();
+                    List<GameStartContent> mFinishStart = new ArrayList<>();
+                    for (int i = 0; i < size; i++){
+                        int length = mRandom.nextInt(mStarts.size());
+                        mFinishStart.add(mStarts.get(length));
+                        mStarts.remove(length);
+                    }
                     tidyAllData.showFinish(mFinishStart);
                 }else{
                     tidyAllData.showError(404,"没有找到合适的答题项!");

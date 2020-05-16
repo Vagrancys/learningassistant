@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.module.common;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.CountDownTimer;
@@ -64,7 +65,7 @@ public class SplashActivity extends BaseActivity {
         };
 
         try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(),PackageInfo.INSTALL_LOCATION_AUTO);
+            @SuppressLint("WrongConstant") PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(),PackageInfo.INSTALL_LOCATION_AUTO);
             splashVersion.setText(packageInfo.versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
