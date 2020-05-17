@@ -98,6 +98,7 @@ public class DifficultyFragment extends BaseFragment implements LadderDifficulty
     }
 
     public void autoRefreshData() {
+        mCommentBean.clear();
         mPresenter.getLadderDetailsData(difficultyType);
         mPresenter.getLadderCommentAllData(difficultyType);
     }
@@ -124,7 +125,7 @@ public class DifficultyFragment extends BaseFragment implements LadderDifficulty
     @Override
     public void showDifficultyCommentFinish(List<LadderDifficultyCommentBean> mBean) {
         swipeRefreshLayout.setRefreshing(false);
-        mCommentBean = mBean;
+        mCommentBean.addAll(mBean);
         mAdapter.notifyDataSetChanged();
     }
 

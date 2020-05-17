@@ -56,7 +56,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
     private String[] mDifficulty;
     private AlertDialog.Builder mDialog;
     private BaseLadderPresenter mPresenter;
-    private int selectDifficulty = 1;
+    private int selectDifficulty = 0;
 
     @Override
     public int getLayoutId() {
@@ -65,42 +65,24 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
 
     @Override
     public void initView() {
-        difficultyType = CacheUtils.getInt(getContext(), ConstantsUtils.LADDER_DIFFICULTY_TYPE, 1);
+        difficultyType = CacheUtils.getInt(getContext(), ConstantsUtils.LADDER_DIFFICULTY_TYPE, 0);
         initData();
     }
 
     private void initData() {
         mPresenter = new BaseLadderPresenter(this);
         mDifficulty = getResources().getStringArray(R.array.ladder_difficulty);
-        slidingTab.setViewPager(viewPager,mDifficulty);
         mAdapter = new DifficultyPagerAdapter(getSupportFragmentManager(),mDifficulty);
         viewPager.setAdapter(mAdapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                selectDifficulty = i+1;
-                slidingTab.setCurrentTab(i);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
 
         viewPager.setOffscreenPageLimit(mDifficulty.length);
 
         viewPager.setCurrentItem(difficultyType);
-
+        slidingTab.setViewPager(viewPager,mDifficulty);
         slidingTab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                selectDifficulty = position+1;
+                selectDifficulty = position;
                 viewPager.setCurrentItem(position);
             }
 
@@ -121,7 +103,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 mPresenter.showSelectType();
-                CacheUtils.putInt(getContext(),ConstantsUtils.LADDER_COMMUNICATION_ITEM,slidingTab.getCurrentTab());
+                CacheUtils.putInt(getContext(),ConstantsUtils.LADDER_DIFFICULTY_TYPE,slidingTab.getCurrentTab());
                 dialogInterface.dismiss();
                 finish();
             }

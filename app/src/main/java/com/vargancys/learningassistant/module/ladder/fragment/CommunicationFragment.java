@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
@@ -28,10 +31,13 @@ import butterknife.BindView;
  * Description: 天梯交流区的评论内容
  */
 public class CommunicationFragment extends BaseFragment implements LadderCommentView {
+    private static String TAG = "CommunicationFragment";
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.fragment_empty)
+    LinearLayout fragmentEmpty;
     public static CommunicationFragment newInstance(int position) {
         CommunicationFragment mFragment = new CommunicationFragment();
         Bundle bundle = new Bundle();
@@ -68,10 +74,10 @@ public class CommunicationFragment extends BaseFragment implements LadderComment
             }
         });
         mAdapter = new CommunicationAdapter(getContext(),mBean);
-        mAdapter.setOnCommentClickListener(new CommentListener());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
         autoRefreshData();
+        mAdapter.setOnCommentClickListener(new CommentListener());
     }
 
     private class CommentListener implements CommunicationAdapter.OnCommentClickListener {
@@ -103,6 +109,7 @@ public class CommunicationFragment extends BaseFragment implements LadderComment
     }
 
     private void autoRefreshData() {
+        mBean.clear();
         swipeRefresh.setRefreshing(true);
         mPresenter.refreshCommentData(mCurrent);
     }
@@ -112,13 +119,19 @@ public class CommunicationFragment extends BaseFragment implements LadderComment
     }
 
     @Override
-    public void showCommentDataFinish(List<LadderCommentBean> mBean) {
-        this.mBean = mBean;
+    public void showCommentDataFinish(List<LadderCommentBean> bean) {
+        mBean.addAll(bean);
+        recyclerView.setVisibility(View.VISIBLE);
+        fragmentEmpty.setVisibility(View.GONE);
+        swipeRefresh.setRefreshing(false);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showCommentDataError(int error, String message) {
+        swipeRefresh.setRefreshing(false);
+        fragmentEmpty.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
     }
 }

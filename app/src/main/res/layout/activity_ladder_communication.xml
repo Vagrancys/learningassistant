@@ -17,14 +17,15 @@
             android:id="@+id/sliding_tab"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_width_40dp"
-            app:tl_textSelectColor="@color/black"
+            app:tl_textSelectColor="@color/white"
             app:tl_textUnselectColor="@color/black_2"
             app:tl_textsize="@dimen/text_size_18sp"
             app:tl_indicator_gravity="BOTTOM"
             app:tl_indicator_corner_radius="@dimen/corners_radius_5dp"
-            app:tl_indicator_width="@dimen/margin_width_5dp"
-            app:tl_indicator_height="@dimen/margin_width_20dp"
-            app:tl_indicator_color="@color/pink"/>
+            app:tl_indicator_width="@dimen/margin_width_100dp"
+            app:tl_indicator_height="@dimen/margin_width_25dp"
+            app:tl_indicator_color="@color/pink"
+            app:tl_indicator_margin_bottom="@dimen/margin_width_10dp"/>
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"

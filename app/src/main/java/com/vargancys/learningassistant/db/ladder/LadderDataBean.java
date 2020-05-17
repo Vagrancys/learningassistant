@@ -42,10 +42,10 @@ public class LadderDataBean {
     private int fail;
 
     //登梯时间
-    private String time;
+    private long time;
 
     //总用时
-    private String total_time;
+    private long total_time;
 
     //总阶层
     private int total;
@@ -56,10 +56,10 @@ public class LadderDataBean {
     //登顶概率
     private String chance;
 
-    @Generated(hash = 27535365)
+    @Generated(hash = 267002243)
     public LadderDataBean(Long id, String title, int title_level, int upgrade,
-            int upgrade_total, String difficulty, int highest, int fail,
-            String time, String total_time, int total, int master, String chance) {
+            int upgrade_total, String difficulty, int highest, int fail, long time,
+            long total_time, int total, int master, String chance) {
         this.id = id;
         this.title = title;
         this.title_level = title_level;
@@ -95,12 +95,28 @@ public class LadderDataBean {
         this.title = title;
     }
 
+    public int getTitle_level() {
+        return this.title_level;
+    }
+
+    public void setTitle_level(int title_level) {
+        this.title_level = title_level;
+    }
+
     public int getUpgrade() {
         return this.upgrade;
     }
 
     public void setUpgrade(int upgrade) {
         this.upgrade = upgrade;
+    }
+
+    public int getUpgrade_total() {
+        return this.upgrade_total;
+    }
+
+    public void setUpgrade_total(int upgrade_total) {
+        this.upgrade_total = upgrade_total;
     }
 
     public String getDifficulty() {
@@ -127,12 +143,20 @@ public class LadderDataBean {
         this.fail = fail;
     }
 
-    public String getTime() {
+    public long getTime() {
         return this.time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
+    }
+
+    public long getTotal_time() {
+        return this.total_time;
+    }
+
+    public void setTotal_time(long total_time) {
+        this.total_time = total_time;
     }
 
     public int getTotal() {
@@ -157,29 +181,5 @@ public class LadderDataBean {
 
     public void setChance(String chance) {
         this.chance = chance;
-    }
-
-    public int getTitle_level() {
-        return this.title_level;
-    }
-
-    public void setTitle_level(int title_level) {
-        this.title_level = title_level;
-    }
-
-    public int getUpgrade_total() {
-        return this.upgrade_total;
-    }
-
-    public void setUpgrade_total(int upgrade_total) {
-        this.upgrade_total = upgrade_total;
-    }
-
-    public String getTotal_time() {
-        return this.total_time;
-    }
-
-    public void setTotal_time(String total_time) {
-        this.total_time = total_time;
     }
 }

@@ -23,6 +23,8 @@ import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 
 import java.util.List;
 
+import static android.support.constraint.Constraints.TAG;
+
 /**
  * @author Vagrancy
  * @date 2020/5/5
@@ -31,6 +33,7 @@ import java.util.List;
  * Description:
  */
 public class BaseLadderPresenter {
+    private static String TAG = "BaseLadderPresenter";
     private Object mView;
     private LadderRequest mRequest;
 
@@ -39,8 +42,8 @@ public class BaseLadderPresenter {
         mRequest = LadderRequest.getInstance();
     }
 
-    public void getLadderAllTopicItem(int highest) {
-        List<LadderTopicBean> mTopics = mRequest.getLadderAllTopicItem(highest);
+    public void getLadderAllTopicItem(int difficulty,int highest) {
+        List<LadderTopicBean> mTopics = mRequest.getLadderAllTopicItem(difficulty,highest);
         ((LadderView) mView).loadingFinish();
         if(mTopics != null && mTopics.size() > 0){
             ((LadderView) mView).getLadderTopicFinish(mTopics);
@@ -88,8 +91,8 @@ public class BaseLadderPresenter {
     }
 
     //保持天梯数据
-    public void saveLadderData(long ladderId) {
-        mRequest.saveLadderData(ladderId);
+    public void saveLadderData(LadderDataBean bean) {
+        mRequest.saveLadderData(bean);
     }
 
     //发布评论
@@ -110,7 +113,7 @@ public class BaseLadderPresenter {
     //刷新评论数据
     public void refreshCommentData(int mCurrent) {
         List<LadderCommentBean> mBean = mRequest.refreshCommentData(mCurrent);
-        if(mBean!=null && mBean.size()>0){
+        if(mBean != null && mBean.size()>0){
             ((LadderCommentView) mView).showCommentDataFinish(mBean);
         }else{
             ((LadderCommentView) mView).showCommentDataError(404,"没有查找到数据!");
@@ -159,6 +162,7 @@ public class BaseLadderPresenter {
 
     //保存难度区评论数据
     public void saveDifficultData(int selectDifficulty, String data) {
+        Log.e(TAG,"saveDifficultyData ="+selectDifficulty);
         boolean result = mRequest.saveDifficultyData(selectDifficulty,data);
         if(result){
             ((LadderDifficultyView) mView).showDifficultySendFinish();
@@ -185,6 +189,7 @@ public class BaseLadderPresenter {
 
     //得到难度区的所有评论
     public void getLadderCommentAllData(int difficultyType) {
+        Log.e(TAG,"getLadderCommentAllData ="+difficultyType);
         List<LadderDifficultyCommentBean> mBean = mRequest.getLadderCommentAllData(difficultyType);
         if(mBean != null && mBean.size() > 0){
             ((LadderDifficultyDetailsView) mView).showDifficultyCommentFinish(mBean);

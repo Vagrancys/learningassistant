@@ -1,6 +1,7 @@
 package com.vargancys.learningassistant.model.ladder.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.GameSubjectItemDao;
 import com.vagrancys.learningassistant.db.LadderCommentBeanDao;
 import com.vagrancys.learningassistant.db.LadderCommentReplyBeanDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
@@ -10,12 +11,18 @@ import com.vagrancys.learningassistant.db.LadderHelpBeanDao;
 import com.vagrancys.learningassistant.db.LadderRankDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.game.GameFillItem;
+import com.vargancys.learningassistant.db.game.GameMultipleItem;
+import com.vargancys.learningassistant.db.game.GameRadioItem;
+import com.vargancys.learningassistant.db.game.GameSubjectItem;
+import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.db.ladder.LadderModeUtils;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.CacheUtils;
@@ -23,6 +30,7 @@ import com.vargancys.learningassistant.utils.TimeUtils;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +51,7 @@ public class LadderRequest {
     private LadderDifficultyDataBeanDao mDifficultyDataDao;
     private LadderRankDataBeanDao mRankDataDao;
     private LadderHelpBeanDao mHelpDao;
+    private GameSubjectItemDao mSubjectDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mCommentDao = mDaoSession.getLadderCommentBeanDao();
@@ -53,6 +62,7 @@ public class LadderRequest {
         mDifficultyDataDao = mDaoSession.getLadderDifficultyDataBeanDao();
         mHelpDao = mDaoSession.getLadderHelpBeanDao();
         mRankDataDao = mDaoSession.getLadderRankDataBeanDao();
+        mSubjectDao = mDaoSession.getGameSubjectItemDao();
     }
 
     public static LadderRequest getInstance(){
@@ -66,19 +76,105 @@ public class LadderRequest {
         return mRequest;
     }
 
-
+    //获得天梯数据
     public LadderDataBean getLadderData(long ladderId) {
         return mDataDao.load(ladderId);
     }
 
-    public List<LadderTopicBean> getLadderAllTopicItem(int highest) {
-
+    //得到天梯挑战的题目
+    public List<LadderTopicBean> getLadderAllTopicItem(int difficulty,int highest) {
+        QueryBuilder<GameSubjectItem> mSubject = mSubjectDao.queryBuilder();
+        List<GameSubjectItem> mItems;
+        List<LadderTopicBean> mBeans = new ArrayList<>();
+        if(difficulty == 0){
+            mItems = mSubject.limit(LadderModeUtils.CONFIG_NUMBER).list();
+        }else{
+            mItems = mSubject.where(GameSubjectItemDao.Properties.Level.eq(difficulty)).limit(LadderModeUtils.CONFIG_NUMBER).list();
+        }
+        if(mItems != null &&mItems.size() > 0){
+            int length = 0;
+            if(mItems.size()> highest){
+                length = highest-1;
+            }else{
+                length = 0;
+            }
+            for(int i = length;i<mItems.size();i++){
+                GameSubjectItem mItem = mItems.get(i);
+                LadderTopicBean mBean = new LadderTopicBean();
+                switch (mItem.getSelect()){
+                    case 1:
+                        initRadio(mItem, mBean);
+                        break;
+                    case 2:
+                        initMultiple(mItem, mBean);
+                        break;
+                    case 3:
+                        initFill(mItem, mBean);
+                        break;
+                    case 4:
+                        initSubjective(mItem, mBean);
+                        break;
+                }
+                mBeans.add(mBean);
+            }
+            return mBeans;
+        }
         //TODO 天梯所有问题
         return null;
     }
 
-    public void saveLadderData(long ladderId) {
+    //添加单选到天梯开始
+    private void initRadio(GameSubjectItem mSubject, LadderTopicBean mBean) {
+        GameRadioItem mRadio = mSubject.getRadioItem();
+        //处理单选需要的数据
+        mBean.setType(1);
+        mBean.setRadio_title(mRadio.getTitle());
+        mBean.setRadio_answer(mRadio.getYes());
+        mBean.setRadio_first_answer(mRadio.getFirst_title());
+        mBean.setRadio_second_answer(mRadio.getSecond_title());
+        mBean.setRadio_third_answer(mRadio.getThird_title());
+        mBean.setRadio_fourth_answer(mRadio.getFourth_title());
+    }
+
+    //添加多选到天梯开始
+    private void initMultiple(GameSubjectItem mSubject, LadderTopicBean mBean) {
+        GameMultipleItem mMultiple = mSubject.getMultipleItem();
+        mBean.setType(2);
+        mBean.setMultiple_title(mMultiple.getTitle());
+        mBean.setMultiple_first_title(mMultiple.getFirst_title());
+        mBean.setMultiple_first_answer(mMultiple.getFirst_answer());
+        mBean.setMultiple_second_title(mMultiple.getSecond_title());
+        mBean.setMultiple_second_answer(mMultiple.getSecond_answer());
+        mBean.setMultiple_third_title(mMultiple.getThird_title());
+        mBean.setMultiple_third_answer(mMultiple.getThird_answer());
+        mBean.setMultiple_fourth_title(mMultiple.getFourth_title());
+        mBean.setMultiple_fourth_answer(mMultiple.getFourth_answer());
+    }
+
+    //添加填空到天梯开始
+    private void initFill(GameSubjectItem mSubject, LadderTopicBean mBean) {
+        GameFillItem mFill = mSubject.getFillItem();
+        mBean.setType(3);
+        mBean.setFill_title(mFill.getTitle());
+        mBean.setFill_answer(mFill.getAnswer());
+        mBean.setFill_first_answer(mFill.getFirst_answer());
+        mBean.setFill_second_answer(mFill.getSecond_answer());
+        mBean.setFill_third_answer(mFill.getThird_answer());
+        mBean.setFill_fourth_answer(mFill.getFourth_answer());
+    }
+
+    //添加主观到天梯开始
+    private void initSubjective(GameSubjectItem mSubject, LadderTopicBean mBean) {
+        GameSubjectiveItem mSubjective= mSubject.getSubjectiveItem();
+        mBean.setType(4);
+        mBean.setSubjective_title(mSubjective.getTitle());
+        mBean.setSubjective_answer(mSubjective.getAnswer());
+    }
+
+    //保存天梯数据
+    public void saveLadderData(LadderDataBean bean) {
         //TODO 天梯数据
+        mDataDao.update(bean);
     }
 
     //保持评论数据
@@ -184,7 +280,7 @@ public class LadderRequest {
 
     //得到难度区所有的评论数据
     public List<LadderDifficultyCommentBean> getLadderCommentAllData(int difficultyType) {
-        return mDifficultyCommentDao.queryBuilder().where(LadderDifficultyCommentBeanDao.Properties.DataId.eq(difficultyType)).list();
+        return mDifficultyCommentDao.queryBuilder().where(LadderDifficultyCommentBeanDao.Properties.Type.eq(difficultyType)).list();
     }
 
     //等到所有的帮助数据
@@ -219,8 +315,8 @@ public class LadderRequest {
         mBean.setDifficulty("1级");
         mBean.setHighest(1);
         mBean.setFail(0);
-        mBean.setTime("--");
-        mBean.setTotal_time("--");
+        mBean.setTime(0);
+        mBean.setTotal_time(0);
         mBean.setTotal(0);
         mBean.setMaster(0);
         mBean.setChance("0%");

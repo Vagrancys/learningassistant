@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderModeUtils;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.module.ladder.activity.LadderCommunicationActivity;
 import com.vargancys.learningassistant.module.ladder.activity.LadderDifficultyActivity;
@@ -45,6 +46,7 @@ import butterknife.Unbinder;
  * Description: 天梯碎片模块
  */
 public class LadderFragment extends BaseFragment implements LadderView {
+    private static String TAG = "LadderFragment";
     @BindView(R.id.interlude_layout)
     RelativeLayout interludeLayout;
     @BindView(R.id.ladder_prepare_title)
@@ -200,6 +202,7 @@ public class LadderFragment extends BaseFragment implements LadderView {
     private String oldTitle = "";
 
     private String[] mTitle;
+    private int difficulty;
     private List<LadderTopicBean> mTopics = new ArrayList<>();
 
     @Override
@@ -213,13 +216,14 @@ public class LadderFragment extends BaseFragment implements LadderView {
         mPresenter = new BaseLadderPresenter(this);
         mTitle = getResources().getStringArray(R.array.ladder_title);
         initHideLayout();
+        difficulty = CacheUtils.getInt(getContext(),ConstantsUtils.LADDER_DIFFICULTY_TYPE,0);
         mPresenter.getLadderData(ladderId);
     }
 
     @Override
     public void getLadderData(LadderDataBean ladder) {
         mLadder = ladder;
-        mPresenter.getLadderAllTopicItem(mLadder.getHighest());
+        mPresenter.getLadderAllTopicItem(difficulty,mLadder.getHighest());
     }
 
     private void initHideLayout(){
@@ -251,11 +255,87 @@ public class LadderFragment extends BaseFragment implements LadderView {
         }
     }
 
-    @OnClick({R.id.ladder_prepare_start,R.id.ladder_judgment,R.id.ladder_win_start,
-            R.id.ladder_function_list,R.id.function_layout,R.id.ladder_mode,
-            R.id.retry_button})
+    @OnClick({R.id.ladder_prepare_start,R.id.ladder_judgment,R.id.ladder_win_start,R.id.ladder_fail_start,
+            R.id.ladder_function_list,R.id.function_layout,R.id.ladder_mode,R.id.ladder_difficulty,
+            R.id.ladder_communication,R.id.ladder_rank,R.id.ladder_result,R.id.ladder_help,
+            R.id.retry_button,R.id.ladder_radio_first_title,R.id.ladder_radio_second_title,
+    R.id.ladder_radio_third_title,R.id.ladder_radio_fourth_title,R.id.ladder_multiple_first_title,
+    R.id.ladder_multiple_second_title,R.id.ladder_multiple_third_title,R.id.ladder_multiple_fourth_title,
+    R.id.ladder_fill_first_title,R.id.ladder_fill_second_title,R.id.ladder_fill_third_title,R.id.ladder_fill_fourth_title})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ladder_radio_first_title:
+                //处理单选第一个答案的逻辑
+                HandlerRadio(ladderRadioFirstTitle,1);
+                break;
+            case R.id.ladder_radio_second_title:
+                //处理单选第二个答案的逻辑
+                HandlerRadio(ladderRadioSecondTitle,2);
+                break;
+            case R.id.ladder_radio_third_title:
+                //处理单选第三个答案的逻辑
+                HandlerRadio(ladderRadioThirdTitle,3);
+                break;
+            case R.id.ladder_radio_fourth_title:
+                //处理单选第四个答案的逻辑
+                HandlerRadio(ladderRadioFourthTitle,4);
+                break;
+            case R.id.ladder_multiple_first_title:
+                //处理多选第一个答案的逻辑
+                if(MultipleFirstAnswer){
+                    ladderMultipleFirstTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+                    MultipleFirstAnswer = false;
+                }else{
+                    HandlerMultiple(ladderMultipleFirstTitle);
+                    MultipleFirstAnswer = true;
+                }
+                break;
+            case R.id.ladder_multiple_second_title:
+                //处理多选第二个答案的逻辑
+                if(MultipleSecondAnswer){
+                    ladderMultipleSecondTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+                    MultipleSecondAnswer = false;
+                }else{
+                    HandlerMultiple(ladderMultipleSecondTitle);
+                    MultipleSecondAnswer = true;
+                }
+                break;
+            case R.id.ladder_multiple_third_title:
+                //处理多选第三个答案的逻辑
+                if(MultipleThirdAnswer){
+                    ladderMultipleThirdTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+                    MultipleThirdAnswer = false;
+                }else{
+                    HandlerMultiple(ladderMultipleThirdTitle);
+                    MultipleThirdAnswer = true;
+                }
+                break;
+            case R.id.ladder_multiple_fourth_title:
+                //处理多选第四个答案的逻辑
+                if(MultipleFourthAnswer){
+                    ladderMultipleFourthTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+                    MultipleFourthAnswer = false;
+                }else{
+                    HandlerMultiple(ladderMultipleFourthTitle);
+                    MultipleFourthAnswer = true;
+                }
+                break;
+            case R.id.ladder_fill_first_title:
+                //处理单选第一个答案的逻辑
+                HandlerFill(ladderFillFirstTitle,1);
+                break;
+            case R.id.ladder_fill_second_title:
+                //处理单选第二个答案的逻辑
+                HandlerFill(ladderFillSecondTitle,2);
+                break;
+            case R.id.ladder_fill_third_title:
+                //处理单选第三个答案的逻辑
+                HandlerFill(ladderFillThirdTitle,3);
+                break;
+            case R.id.ladder_fill_fourth_title:
+                //处理单选第四个答案的逻辑
+                HandlerFill(ladderFillFourthTitle,4);
+                break;
             case R.id.ladder_prepare_start:
                 mPresenter.showLadderLayout();
                 break;
@@ -267,7 +347,8 @@ public class LadderFragment extends BaseFragment implements LadderView {
                 mPresenter.TrailAnswer();
                 break;
             case R.id.ladder_win_start:
-                mPresenter.saveLadderData(ladderId);
+            case R.id.ladder_fail_start:
+                mPresenter.saveLadderData(mLadder);
                 mPresenter.showPrepareLayout();
                 break;
             case R.id.ladder_function_list:
@@ -283,31 +364,85 @@ public class LadderFragment extends BaseFragment implements LadderView {
             case R.id.ladder_mode:
                 //模式配置
                 LadderModeActivity.launch(getActivity());
+                functionLayout.setVisibility(View.GONE);
                 break;
             case R.id.ladder_communication:
                 //交流经验
                 LadderCommunicationActivity.launch(getActivity());
+                functionLayout.setVisibility(View.GONE);
                 break;
             case R.id.ladder_help:
                 //帮助中心
                 LadderHelpActivity.launch(getActivity());
+                functionLayout.setVisibility(View.GONE);
                 break;
             case R.id.ladder_rank:
                 //排行中心
                 LadderRankActivity.launch(getActivity());
+                functionLayout.setVisibility(View.GONE);
                 break;
             case R.id.ladder_difficulty:
                 //难度选择
                 LadderDifficultyActivity.launch(getActivity());
+                functionLayout.setVisibility(View.GONE);
                 break;
             case R.id.ladder_result:
                 //成绩展示
                 LadderResultActivity.launch(getActivity());
+                functionLayout.setVisibility(View.GONE);
                 break;
             case R.id.retry_button:
                 mPresenter.getLadderData(ladderId);
                 break;
         }
+    }
+
+    private void HandlerMultiple(TextView Multiple) {
+        initMultipleBackGround();
+        Multiple.setBackgroundResource(R.drawable.topic_select_anwser_bg);
+    }
+
+    private void initMultipleBackGround() {
+        ladderMultipleFirstTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderMultipleSecondTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderMultipleThirdTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderMultipleFourthTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+    }
+
+    private void HandlerFill(TextView fillTv,int answer) {
+        if(answer == fillAnswer){
+            fillTv.setBackgroundResource(R.drawable.topic_select_no_bg);
+            fillAnswer = 0;
+        }else{
+            initFillBackGround();
+            fillTv.setBackgroundResource(R.drawable.topic_select_anwser_bg);
+            fillAnswer = answer;
+        }
+    }
+
+    private void initFillBackGround(){
+        ladderFillFirstTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderFillSecondTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderFillThirdTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderFillFourthTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+    }
+
+    private void HandlerRadio(TextView radioTv,int answer) {
+        if(answer == RadioAnswer){
+            radioTv.setBackgroundResource(R.drawable.topic_select_no_bg);
+            RadioAnswer = 0;
+        }else{
+            initRadioBackGround();
+            radioTv.setBackgroundResource(R.drawable.topic_select_anwser_bg);
+            RadioAnswer = answer;
+        }
+    }
+
+    private void initRadioBackGround(){
+        ladderRadioFirstTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderRadioSecondTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderRadioThirdTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
+        ladderRadioFourthTitle.setBackgroundResource(R.drawable.topic_select_no_bg);
     }
 
     //处理天梯的问题正确性
@@ -447,10 +582,10 @@ public class LadderFragment extends BaseFragment implements LadderView {
 
     //处理登顶成功的数据
     private void initWinData() {
-        ladderWinTime.setText(mLadder.getTime());
-        ladderWinTotal.setText(mLadder.getTotal());
+        ladderWinTime.setText(String.valueOf(mLadder.getTime()));
+        ladderWinTotal.setText(String.valueOf(mLadder.getTotal()));
         ladderWinDifficulty.setText(mLadder.getDifficulty());
-        ladderWinUnavailable.setText(mLadder.getTotal_time());
+        ladderWinUnavailable.setText(String.valueOf(mLadder.getTotal_time()));
         ladderWinChange.setText(oldTitle +"->"+mLadder.getTitle());
     }
 
@@ -461,9 +596,10 @@ public class LadderFragment extends BaseFragment implements LadderView {
         mLadder.setTitle(mTitle[level]);
         mLadder.setTitle_level(level);
         mLadder.setFail(LadderLevel);
-        int time = Integer.parseInt(TimeUtils.getTime())-Integer.parseInt(mLadder.getTime());
-        mLadder.setTotal_time(String.valueOf(time));
-        mLadder.setTime(TimeUtils.getTime());
+        long time = TimeUtils.getLongTime() - mLadder.getTime();
+        //int time = Integer.valueOf(TimeUtils.getTime())-Integer.valueOf(mLadder.getTime());
+        mLadder.setTotal_time(time);
+        mLadder.setTime(TimeUtils.getLongTime());
     }
 
     //显示登顶失败布局
@@ -477,7 +613,7 @@ public class LadderFragment extends BaseFragment implements LadderView {
     //显示登顶失败的页面数据
     private void initFailData() {
         ladderFailLevel.setText(LadderLevel+"阶");
-        ladderFailTime.setText(mLadder.getTime());
+        ladderFailTime.setText(String.valueOf(mLadder.getTime()));
         ladderFailTotal.setText(mLadder.getTotal()+"阶");
         ladderFailDifficulty.setText(mLadder.getDifficulty());
         ladderFailChange.setText(oldTitle +"->"+mLadder.getTitle());
@@ -486,9 +622,9 @@ public class LadderFragment extends BaseFragment implements LadderView {
     //显示天梯布局
     @Override
     public void showLadderLayout() {
-        initLadderData();
-        prepareLayout.setVisibility(View.GONE);
         showLadderInterludeLayout();
+        prepareLayout.setVisibility(View.GONE);
+        initLadderData();
     }
 
     //显示天梯过场布局
@@ -519,7 +655,7 @@ public class LadderFragment extends BaseFragment implements LadderView {
 
     //处理天梯的各问题显示
     private void initProblem() {
-        LadderTopicBean mBean = mTopics.get(LadderLevel);
+        LadderTopicBean mBean = mTopics.get(LadderLevel-1);
         switch (mBean.getType()){
             case 1:
                 initRadioData(mBean);
@@ -594,10 +730,13 @@ public class LadderFragment extends BaseFragment implements LadderView {
         ladderPrepareDifficulty.setText(mLadder.getDifficulty());
         ladderPrepareHighest.setText(mLadder.getHighest()+"阶");
         ladderPrepareFail.setText(mLadder.getFail()+"阶");
-        ladderPrepareTime.setText(mLadder.getTime());
+        ladderPrepareTime.setText(String.valueOf(mLadder.getTime()));
         ladderPrepareTotal.setText(mLadder.getTotal()+"阶");
         ladderPrepareMaster.setText(mLadder.getMaster()+"题");
         ladderPrepareChance.setText(mLadder.getChance());
+        initRadioBackGround();
+        initMultipleBackGround();
+        initFillBackGround();
     }
 
     @Override

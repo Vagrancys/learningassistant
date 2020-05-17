@@ -11,7 +11,7 @@ import com.vargancys.learningassistant.base.BaseActivity;
  * @date 2020/5/7
  * Github: https:github.com/Vagrancys
  * Email:18050829067@163.com
- * Description: 天梯难度设置
+ * Description: 天梯成绩展示
  */
 public class LadderResultActivity extends BaseActivity {
     @Override

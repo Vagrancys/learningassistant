@@ -110,14 +110,12 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
     }
 
     private void initAdapter() {
-        slidingTab.setViewPager(viewPager,mTab);
-        slidingTab.setCurrentTab(mCurrent);
-
         mAdapter = new CommunicationPagerAdapter(getSupportFragmentManager(),mTab);
         viewPager.setAdapter(mAdapter);
         viewPager.setOffscreenPageLimit(mTab.length);
         viewPager.setCurrentItem(mCurrent);
-
+        slidingTab.setViewPager(viewPager,mTab);
+        slidingTab.setCurrentTab(mCurrent);
     }
 
     @Override

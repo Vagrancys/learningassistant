@@ -37,9 +37,9 @@ public class DifficultyCommentAdapter extends BaseRecyclerAdapter {
         LadderDifficultyCommentBean bean = mBean.get(position);
         mHolder.commentAuthor.setText(bean.getAuthor_title());
         mHolder.commentContent.setText(bean.getComment());
-        mHolder.commentFloorCount.setText(bean.getFloor());
+        mHolder.commentFloorCount.setText(String.valueOf(bean.getFloor()));
         mHolder.commentTime.setText(bean.getTime());
-        mHolder.commentLevel.setText(bean.getLevel());
+        mHolder.commentLevel.setText(String.valueOf(bean.getLevel()));
         Glide.with(mContext).load(bean.getAuthor()).into(mHolder.commentAvatar);
         super.onBindViewHolder(holder, position);
     }

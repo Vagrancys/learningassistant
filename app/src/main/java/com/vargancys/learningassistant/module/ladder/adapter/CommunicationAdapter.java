@@ -1,7 +1,9 @@
 package com.vargancys.learningassistant.module.ladder.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,11 +27,12 @@ import butterknife.BindView;
  * Description: 评论适配器
  */
 public class CommunicationAdapter extends BaseRecyclerAdapter {
+    private static String TAG = "CommunicationAdapter";
     private Context mContext;
     private List<LadderCommentBean> mBean;
-    public CommunicationAdapter(Context context, List<LadderCommentBean> mBean){
+    public CommunicationAdapter(Context context, List<LadderCommentBean> bean){
         mContext = context;
-        this.mBean = mBean;
+        mBean = bean;
     }
 
     @NonNull
@@ -47,6 +50,7 @@ public class CommunicationAdapter extends BaseRecyclerAdapter {
     public void onBindViewHolder(CommonViewHolder holder, final int position) {
         final CommunicationViewHolder mHolder = (CommunicationViewHolder) holder;
         final LadderCommentBean bean = mBean.get(position);
+        Log.e(TAG,"position ="+position);
         Glide.with(mContext).load(bean.getAvatar()).into(mHolder.commentAvatar);
         mHolder.commentAuthor.setText(bean.getAuthor_title());
         mHolder.commentLevel.setText(bean.getLevel());

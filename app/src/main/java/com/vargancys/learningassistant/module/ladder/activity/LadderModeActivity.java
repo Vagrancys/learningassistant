@@ -137,23 +137,22 @@ public class LadderModeActivity extends BaseActivity {
                 break;
         }
         switch (LadderModeUtils.CONFIG_TIME) {
-            case 1:
+            case 10:
                 modeTimeFirst.setSelected(true);
                 break;
-            case 2:
+            case 20:
                 modeTimeSecond.setSelected(true);
                 break;
-            case 3:
+            case 30:
                 modeTimeThird.setSelected(true);
                 break;
-            case 4:
+            case 40:
                 modeTimeFourth.setSelected(true);
                 break;
-            case 5:
+            case 50:
                 modeTimeFifth.setSelected(true);
                 break;
         }
-
         switch (LadderModeUtils.CONFIG_TYPE) {
             case 1:
                 modeTypeFirst.setSelected(true);
