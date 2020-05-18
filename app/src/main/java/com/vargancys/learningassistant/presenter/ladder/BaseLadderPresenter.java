@@ -21,6 +21,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderHelpDetailsView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
@@ -227,5 +228,13 @@ public class BaseLadderPresenter {
         }else{
             ((LadderZoneRankView) mView).showZoneRankDataError(404,"没有找到数据!");
         }
+    }
+
+    //获取排行配置的数据
+    public void getLadderRankSettingData() {
+    }
+
+    //保存排行配置的数据
+    public void saveLadderRankSettingData(ArrayList<Integer> mInteger) {
     }
 }

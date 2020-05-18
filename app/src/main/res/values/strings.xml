@@ -660,5 +660,17 @@
     <string name="zone_rank_total_text">150层</string>
     <string name="zone_rank_floor_text">250层</string>
     <string name="zone_rank_time_text">202020 20:20:20</string>
+    <string name="rank_type_text">排行类型!</string>
+    <string name="rank_type_hint_text">请选择4种排行类型!</string>
+    <string name="rank_type_first_text">单人榜</string>
+    <string name="rank_type_second_text">入门级榜</string>
+    <string name="rank_type_third_text">初级榜</string>
+    <string name="rank_type_fourth_text">中级榜</string>
+    <string name="rank_type_fifth_text">高级榜</string>
+    <string name="rank_type_sixth_text">专家榜</string>
+    <string name="rank_type_seventh_text">深资榜</string>
+    <string name="rank_type_eighth_text">特色榜</string>
+    <string name="rank_type_ninth_text">全区榜</string>
+    <string name="rank_setting_toolbar">天梯排行设置中心</string>
 </resources>
 

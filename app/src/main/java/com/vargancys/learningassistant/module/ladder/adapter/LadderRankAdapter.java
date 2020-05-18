@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.ladder.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import com.vargancys.learningassistant.module.ladder.fragment.ZoneRankFragment;
 
@@ -16,26 +17,26 @@ import com.vargancys.learningassistant.module.ladder.fragment.ZoneRankFragment;
 public class LadderRankAdapter extends FragmentPagerAdapter {
     private Fragment[] mFragment;
     private int mSize;
+    private static String TAG = "LadderRankAdapter";
     public LadderRankAdapter(FragmentManager fm,int size){
         super(fm);
         mSize = size;
-        mFragment = new Fragment[mSize];
+        mFragment = new Fragment[size];
     }
     @Override
     public Fragment getItem(int position) {
         if(mFragment[position] == null){
             switch (position){
                 case 0:
-                    ZoneRankFragment.newInstance(0);
-                    break;
                 case 1:
-                    ZoneRankFragment.newInstance(1);
-                    break;
                 case 2:
-                    ZoneRankFragment.newInstance(2);
+                    mFragment[position] = ZoneRankFragment.newInstance(position);
+                    break;
+                default:
                     break;
             }
         }
+        Log.e(TAG,"position ="+position);
         return mFragment[position];
     }
 

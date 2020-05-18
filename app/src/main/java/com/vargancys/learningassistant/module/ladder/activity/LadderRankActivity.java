@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
  * Description: 天梯排行中心
  */
 public class LadderRankActivity extends BaseActivity {
+    private static String TAG = "LadderRankActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title)
@@ -65,10 +67,9 @@ public class LadderRankActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        Log.e(TAG,"断点!");
         mAdapter = new LadderRankAdapter(getSupportFragmentManager(),mRank.length);
         viewPager.setAdapter(mAdapter);
-        slidingTab.setViewPager(viewPager,mRank);
-        slidingTab.setCurrentTab(0);
         viewPager.setOffscreenPageLimit(mRank.length);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -86,6 +87,9 @@ public class LadderRankActivity extends BaseActivity {
 
             }
         });
+
+        slidingTab.setViewPager(viewPager,mRank);
+        slidingTab.setCurrentTab(0);
         slidingTab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
