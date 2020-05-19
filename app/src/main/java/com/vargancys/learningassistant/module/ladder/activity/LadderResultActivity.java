@@ -21,7 +21,7 @@ public class LadderResultActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        //TODO 天梯成就页面
     }
 
     public static void launch(Activity activity){
