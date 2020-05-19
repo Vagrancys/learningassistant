@@ -9,6 +9,7 @@ import com.vagrancys.learningassistant.db.LadderDifficultyCommentBeanDao;
 import com.vagrancys.learningassistant.db.LadderDifficultyDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderHelpBeanDao;
 import com.vagrancys.learningassistant.db.LadderRankDataBeanDao;
+import com.vagrancys.learningassistant.db.LadderRankSettingBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.game.GameFillItem;
@@ -24,6 +25,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderModeUtils;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -52,6 +54,7 @@ public class LadderRequest {
     private LadderRankDataBeanDao mRankDataDao;
     private LadderHelpBeanDao mHelpDao;
     private GameSubjectItemDao mSubjectDao;
+    private LadderRankSettingBeanDao mSettingDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mCommentDao = mDaoSession.getLadderCommentBeanDao();
@@ -63,6 +66,7 @@ public class LadderRequest {
         mHelpDao = mDaoSession.getLadderHelpBeanDao();
         mRankDataDao = mDaoSession.getLadderRankDataBeanDao();
         mSubjectDao = mDaoSession.getGameSubjectItemDao();
+        mSettingDao = mDaoSession.getLadderRankSettingBeanDao();
     }
 
     public static LadderRequest getInstance(){
@@ -321,5 +325,26 @@ public class LadderRequest {
         mBean.setMaster(0);
         mBean.setChance("0%");
         return mDataDao.insert(mBean);
+    }
+
+    //得到所有的排行配置数据
+    public List<LadderRankSettingBean> getLadderRankSettingData() {
+        return mSettingDao.loadAll();
+    }
+
+    //保存所有的排行配置数据
+    public boolean saveLadderRankSettingData(List<Integer> mInteger) {
+        mSettingDao.deleteAll();
+        long result = 0;
+        for (Integer in :mInteger){
+            LadderRankSettingBean mBean = new LadderRankSettingBean();
+            mBean.setType(in);
+            result = mSettingDao.insert(mBean);
+        }
+        if(result == 0){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

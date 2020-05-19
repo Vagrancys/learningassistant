@@ -9,6 +9,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.request.LadderRequest;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpView;
@@ -18,6 +19,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationVie
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetailsView;
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpDetailsView;
+import com.vargancys.learningassistant.module.ladder.view.LadderRankSettingView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 
@@ -232,9 +234,21 @@ public class BaseLadderPresenter {
 
     //获取排行配置的数据
     public void getLadderRankSettingData() {
+        List<LadderRankSettingBean> mBean = mRequest.getLadderRankSettingData();
+        if(mBean != null && mBean.size() > 0){
+            ((LadderRankSettingView) mView).showRankSettingFinish(mBean);
+        }else{
+            ((LadderRankSettingView) mView).showRankSettingError();
+        }
     }
 
     //保存排行配置的数据
-    public void saveLadderRankSettingData(ArrayList<Integer> mInteger) {
+    public void saveLadderRankSettingData(List<Integer> mInteger) {
+        boolean result = mRequest.saveLadderRankSettingData(mInteger);
+        if(result){
+            ((LadderRankSettingView) mView).saveRankSettingFinish();
+        }else{
+            ((LadderRankSettingView) mView).saveRankSettingError(404,"保存失败了!");
+        }
     }
 }

@@ -1,6 +1,9 @@
 package com.vargancys.learningassistant.module.ladder.view;
 
+import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Vagrancy
@@ -10,6 +13,8 @@ import java.util.ArrayList;
  * Description: 天梯排行配置视图层
  */
 public interface LadderRankSettingView {
-    void showRankSettingFinish(ArrayList<Integer> bean);
+    void showRankSettingFinish(List<LadderRankSettingBean> bean);
     void showRankSettingError();
+    void saveRankSettingFinish();
+    void saveRankSettingError(int error,String message);
 }

@@ -672,5 +672,54 @@
     <string name="rank_type_eighth_text">特色榜</string>
     <string name="rank_type_ninth_text">全区榜</string>
     <string name="rank_setting_toolbar">天梯排行设置中心</string>
+    <string name="rank_setting_error_text">您还没有选择相应的选项!</string>
+    <string name="rank_setting_win_text">设置排行数据成功了</string>
+
+    <!--天梯成就-->
+    <string name="result_author_text">你好啊啊啊a</string>
+    <string name="result_level_text">初级攀登者</string>
+    <string name="result_ladder_data_text">天梯成就记录</string>
+    <string name="result_title_head_text">称号</string>
+    <string name="result_title_text">中级攀登者</string>
+    <string name="result_level_head_text">称号等级</string>
+    <string name="result_upgrade_head_text">升阶所需</string>
+    <string name="result_upgrade_text">25阶</string>
+    <string name="result_upgrade_total_head_text">升阶总数</string>
+    <string name="result_upgrade_total_text">156阶</string>
+    <string name="result_difficulty_head_text">天梯难度</string>
+    <string name="result_difficulty_text">2级</string>
+    <string name="result_highest_head_text">天梯最高阶层</string>
+    <string name="result_highest_text">159阶</string>
+    <string name="result_fail_head_text">失败阶层</string>
+    <string name="result_fail_text">110阶</string>
+    <string name="result_time_head_text">登梯时间</string>
+    <string name="result_time_text">2020.20.20</string>
+    <string name="result_total_time_head_text">登梯总时间</string>
+    <string name="result_total_time_text">2021.20.21</string>
+    <string name="result_total_head_text">总阶层</string>
+    <string name="result_total_text">259阶</string>
+    <string name="result_master_head_text">掌握数</string>
+    <string name="result_master_text">125</string>
+    <string name="result_chance_head_text">登顶概率</string>
+    <string name="result_chance_text">80%</string>
+    <string name="result_ladder_use_text">天梯生涯记录</string>
+    <string name="result_start_time_head_text">开始时间</string>
+    <string name="result_start_time_text">20.20.68</string>
+    <string name="result_day_head_text">挑战天数</string>
+    <string name="result_day_text">53天</string>
+    <string name="result_dare_total_head_text">挑战总层数</string>
+    <string name="result_dare_total_text">125阶</string>
+    <string name="result_fail_total_head_text">失败层数</string>
+    <string name="result_fail_total_text">95阶</string>
+    <string name="result_win_total_head_text">成功层数</string>
+    <string name="result_win_total_text">90阶</string>
+    <string name="result_long_time_head_text">挑战最长</string>
+    <string name="result_long_time_text">20.52.21</string>
+    <string name="result_short_time_head_text">挑战最短</string>
+    <string name="result_short_time_text">20.41.21</string>
+    <string name="result_highest_count_head_text">最高层</string>
+    <string name="result_highest_count_text">58阶</string>
+    <string name="result_score_head_text">挑战分数</string>
+    <string name="result_score_text">1258分</string>
 </resources>
 

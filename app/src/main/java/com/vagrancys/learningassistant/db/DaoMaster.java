@@ -48,6 +48,8 @@ public class DaoMaster extends AbstractDaoMaster {
         OverViewListContentDao.createTable(db, ifNotExists);
         OverViewListItemDao.createTable(db, ifNotExists);
         LadderRankDataBeanDao.createTable(db, ifNotExists);
+        LadderRankSettingBeanDao.createTable(db, ifNotExists);
+        LadderResultBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -79,6 +81,8 @@ public class DaoMaster extends AbstractDaoMaster {
         OverViewListContentDao.dropTable(db, ifExists);
         OverViewListItemDao.dropTable(db, ifExists);
         LadderRankDataBeanDao.dropTable(db, ifExists);
+        LadderRankSettingBeanDao.dropTable(db, ifExists);
+        LadderResultBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -124,6 +128,8 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(OverViewListContentDao.class);
         registerDaoClass(OverViewListItemDao.class);
         registerDaoClass(LadderRankDataBeanDao.class);
+        registerDaoClass(LadderRankSettingBeanDao.class);
+        registerDaoClass(LadderResultBeanDao.class);
     }
 
     public DaoSession newSession() {
