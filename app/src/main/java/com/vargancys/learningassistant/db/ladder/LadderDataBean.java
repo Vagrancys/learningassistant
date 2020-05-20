@@ -19,6 +19,8 @@ public class LadderDataBean {
     @Id
     @Unique
     private Long id;
+    //挑战姓名
+    private String name;
 
     //称号
     private String title;
@@ -56,11 +58,13 @@ public class LadderDataBean {
     //登顶概率
     private String chance;
 
-    @Generated(hash = 267002243)
-    public LadderDataBean(Long id, String title, int title_level, int upgrade,
-            int upgrade_total, String difficulty, int highest, int fail, long time,
-            long total_time, int total, int master, String chance) {
+    @Generated(hash = 1317033279)
+    public LadderDataBean(Long id, String name, String title, int title_level,
+            int upgrade, int upgrade_total, String difficulty, int highest,
+            int fail, long time, long total_time, int total, int master,
+            String chance) {
         this.id = id;
+        this.name = name;
         this.title = title;
         this.title_level = title_level;
         this.upgrade = upgrade;
@@ -181,5 +185,13 @@ public class LadderDataBean {
 
     public void setChance(String chance) {
         this.chance = chance;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

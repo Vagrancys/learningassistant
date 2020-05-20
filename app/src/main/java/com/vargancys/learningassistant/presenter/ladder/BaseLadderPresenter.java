@@ -10,6 +10,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
+import com.vargancys.learningassistant.db.ladder.LadderResultBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.request.LadderRequest;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpView;
@@ -20,6 +21,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetail
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpDetailsView;
 import com.vargancys.learningassistant.module.ladder.view.LadderRankSettingView;
+import com.vargancys.learningassistant.module.ladder.view.LadderResultView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 
@@ -33,7 +35,7 @@ import static android.support.constraint.Constraints.TAG;
  * @date 2020/5/5
  * Github: https:github.com/Vagrancys
  * Email:18050829067@163.com
- * Description:
+ * Description:基础天梯逻辑层
  */
 public class BaseLadderPresenter {
     private static String TAG = "BaseLadderPresenter";
@@ -249,6 +251,26 @@ public class BaseLadderPresenter {
             ((LadderRankSettingView) mView).saveRankSettingFinish();
         }else{
             ((LadderRankSettingView) mView).saveRankSettingError(404,"保存失败了!");
+        }
+    }
+
+    //得到天梯成就数据
+    public void getLadderResultData(long ladderId) {
+        LadderDataBean mBean = mRequest.getLadderResultData(ladderId);
+        if(mBean != null){
+            ((LadderResultView) mView).showResultDataFinish(mBean);
+        }else{
+            ((LadderResultView) mView).showResultDataError(404,"没有找到该数据哦!");
+        }
+    }
+
+    //得到天梯生涯数据
+    public void getLadderResultUse(long ladderId) {
+        LadderResultBean mBean = mRequest.getLadderResultUse(ladderId);
+        if(mBean != null){
+            ((LadderResultView) mView).showResultUseFinish(mBean);
+        }else{
+            ((LadderResultView) mView).showResultUseError(404,"没有找到该数据哦!");
         }
     }
 }

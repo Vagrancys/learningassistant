@@ -344,6 +344,22 @@
                             android:text="@string/result_score_text"/>
                     </LinearLayout>
                 </TableRow>
+                <TableRow
+                    android:layout_marginBottom="@dimen/margin_width_10dp">
+                    <LinearLayout
+                        android:layout_width="@dimen/margin_width_0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            style="@style/result_item_style"
+                            android:text="@string/result_short_time_head_text"/>
+                        <TextView
+                            android:id="@+id/result_short_time"
+                            style="@style/result_item_style"
+                            android:text="@string/result_short_time_text"/>
+                    </LinearLayout>
+                </TableRow>
             </TableLayout>
         </LinearLayout>
     </ScrollView>

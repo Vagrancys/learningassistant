@@ -10,6 +10,7 @@ import com.vagrancys.learningassistant.db.LadderDifficultyDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderHelpBeanDao;
 import com.vagrancys.learningassistant.db.LadderRankDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderRankSettingBeanDao;
+import com.vagrancys.learningassistant.db.LadderResultBeanDao;
 import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.game.GameFillItem;
@@ -26,6 +27,7 @@ import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.db.ladder.LadderModeUtils;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
+import com.vargancys.learningassistant.db.ladder.LadderResultBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -55,6 +57,7 @@ public class LadderRequest {
     private LadderHelpBeanDao mHelpDao;
     private GameSubjectItemDao mSubjectDao;
     private LadderRankSettingBeanDao mSettingDao;
+    private LadderResultBeanDao mUseDao;
     private LadderRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mCommentDao = mDaoSession.getLadderCommentBeanDao();
@@ -67,6 +70,7 @@ public class LadderRequest {
         mRankDataDao = mDaoSession.getLadderRankDataBeanDao();
         mSubjectDao = mDaoSession.getGameSubjectItemDao();
         mSettingDao = mDaoSession.getLadderRankSettingBeanDao();
+        mUseDao = mDaoSession.getLadderResultBeanDao();
     }
 
     public static LadderRequest getInstance(){
@@ -346,5 +350,15 @@ public class LadderRequest {
         }else{
             return true;
         }
+    }
+
+    //得到天梯成就数据
+    public LadderDataBean getLadderResultData(long ladderId) {
+        return mDataDao.load(ladderId);
+    }
+
+    //得到天梯生涯数据
+    public LadderResultBean getLadderResultUse(long ladderId) {
+        return mUseDao.load(ladderId);
     }
 }

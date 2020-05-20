@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.vargancys.learningassistant.module.game.fragment.GameFragment;
 import com.vargancys.learningassistant.module.home.fragment.HomeFragment;
 import com.vargancys.learningassistant.module.ladder.fragment.LadderFragment;
+import com.vargancys.learningassistant.module.mine.fragment.MineFragment;
 import com.vargancys.learningassistant.module.overview.fragment.OverViewFragment;
 
 /**
@@ -40,7 +41,7 @@ public class CommonFragmentAdapter extends FragmentPagerAdapter {
                     mFragment[position] = LadderFragment.newInstance();
                     break;
                 case 4:
-                    mFragment[position] = HomeFragment.newInstance();
+                    mFragment[position] = MineFragment.newInstance();
                     break;
             }
         }
