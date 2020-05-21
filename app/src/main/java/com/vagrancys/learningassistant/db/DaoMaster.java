@@ -50,6 +50,7 @@ public class DaoMaster extends AbstractDaoMaster {
         LadderRankDataBeanDao.createTable(db, ifNotExists);
         LadderRankSettingBeanDao.createTable(db, ifNotExists);
         LadderResultBeanDao.createTable(db, ifNotExists);
+        MineDataBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -83,6 +84,7 @@ public class DaoMaster extends AbstractDaoMaster {
         LadderRankDataBeanDao.dropTable(db, ifExists);
         LadderRankSettingBeanDao.dropTable(db, ifExists);
         LadderResultBeanDao.dropTable(db, ifExists);
+        MineDataBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -130,6 +132,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(LadderRankDataBeanDao.class);
         registerDaoClass(LadderRankSettingBeanDao.class);
         registerDaoClass(LadderResultBeanDao.class);
+        registerDaoClass(MineDataBeanDao.class);
     }
 
     public DaoSession newSession() {

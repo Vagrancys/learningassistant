@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.module.mine.view;
 
+import com.vargancys.learningassistant.db.mine.MineDataBean;
+
 /**
  * @author Vagrancy
  * @date 2020/5/20
@@ -8,4 +10,6 @@ package com.vargancys.learningassistant.module.mine.view;
  * Description: 基础我的中心视图层
  */
 public interface BaseMineView {
+    void showMineDataFinish(MineDataBean bean);
+    void showMineDataError(int error,String message);
 }

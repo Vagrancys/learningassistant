@@ -721,5 +721,13 @@
     <string name="result_highest_count_text">58阶</string>
     <string name="result_score_head_text">挑战分数</string>
     <string name="result_score_text">1258分</string>
+
+    <!--个人中心-->
+    <string name="mine_name_text">漂留在心上</string>
+    <string name="mine_progressbar_data_text">100/500</string>
+    <string name="mine_money_text">5024</string>
+    <string name="mine_real_level_text">12</string>
+    <string name="mine_knowledge_text">2563</string>
+    <string name="mine_influence_text">3561</string>
 </resources>
 

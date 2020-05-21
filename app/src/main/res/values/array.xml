@@ -58,4 +58,12 @@
         <item>专家难度</item>
         <item>科研难度</item>
     </string-array>
+
+    <string-array name="mine_sliding">
+        <item>知识</item>
+        <item>知识体系</item>
+        <item>天梯</item>
+        <item>问题</item>
+        <item>个人等级</item>
+    </string-array>
 </resources>

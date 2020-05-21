@@ -68,4 +68,7 @@ public class ConstantsUtils {
 
     //天梯排行类型id
     public static final String ZONE_RANK_POSITION = "zone_rank_position";
+
+    //个人中心id
+    public static final String MINE_DATA_ID = "mine_data_id";
 }
