@@ -32,7 +32,7 @@ public class OverViewSearchAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new OverViewSearchViewHolder(View.inflate(mContext, R.layout.overview_search_item,null));
+        return new OverViewSearchViewHolder(View.inflate(mContext, R.layout.overview_search_item,viewGroup));
     }
 
     @Override

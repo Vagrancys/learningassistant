@@ -47,7 +47,7 @@ public class DifficultyCommentAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new DifficultyCommentViewHolder(View.inflate(mContext, R.layout.difficulty_comment_item,null));
+        return new DifficultyCommentViewHolder(View.inflate(mContext, R.layout.difficulty_comment_item,viewGroup));
     }
 
     @Override

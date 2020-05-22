@@ -33,7 +33,7 @@ public class HomeKnowCommendAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeCommendViewHolder(View.inflate(mContext, R.layout.home_commend_item,null));
+        return new HomeCommendViewHolder(View.inflate(mContext, R.layout.home_commend_item,viewGroup));
     }
 
     @Override

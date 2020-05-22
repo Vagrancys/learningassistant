@@ -38,7 +38,7 @@ public class CommunicationAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
-        return new CommunicationViewHolder(View.inflate(mContext, R.layout.communication_comment_item,null));
+        return new CommunicationViewHolder(View.inflate(mContext, R.layout.communication_comment_item,viewGroup));
     }
 
     @Override

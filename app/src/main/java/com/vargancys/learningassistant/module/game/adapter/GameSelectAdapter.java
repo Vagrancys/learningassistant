@@ -45,7 +45,7 @@ public class GameSelectAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new GameSelectViewHolder(View.inflate(mContext, R.layout.game_select_item,null));
+        return new GameSelectViewHolder(View.inflate(mContext, R.layout.game_select_item,viewGroup));
     }
 
     @Override

@@ -33,7 +33,7 @@ public class HomeKnowFourthAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new KnowSecondViewHolder(View.inflate(mContext, R.layout.know_function_fourth_item,null));
+        return new KnowSecondViewHolder(View.inflate(mContext, R.layout.know_function_fourth_item,viewGroup));
     }
 
     @Override

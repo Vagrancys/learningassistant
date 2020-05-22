@@ -34,7 +34,7 @@ public class KnowSearchAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeContentViewHolder(View.inflate(context, R.layout.home_search_item,null));
+        return new HomeContentViewHolder(View.inflate(context, R.layout.home_search_item,viewGroup));
     }
 
     @Override

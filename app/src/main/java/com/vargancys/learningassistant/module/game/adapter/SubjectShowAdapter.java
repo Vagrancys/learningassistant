@@ -54,7 +54,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new SubjectShowViewHolder(View.inflate(mContext, R.layout.subject_show_item, null));
+        return new SubjectShowViewHolder(View.inflate(mContext, R.layout.subject_show_item, viewGroup));
     }
 
     @Override

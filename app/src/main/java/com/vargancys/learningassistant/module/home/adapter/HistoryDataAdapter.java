@@ -52,7 +52,7 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HistoryDataViewHolder(View.inflate(mContext, R.layout.history_data_item, null));
+        return new HistoryDataViewHolder(View.inflate(mContext, R.layout.history_data_item, viewGroup));
     }
 
     @Override

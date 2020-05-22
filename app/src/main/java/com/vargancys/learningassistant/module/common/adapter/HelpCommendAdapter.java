@@ -34,7 +34,7 @@ public class HelpCommendAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HelpCommendViewHolder(View.inflate(mContext, R.layout.help_commend_item,null));
+        return new HelpCommendViewHolder(View.inflate(mContext, R.layout.help_commend_item,viewGroup));
     }
 
     @Override

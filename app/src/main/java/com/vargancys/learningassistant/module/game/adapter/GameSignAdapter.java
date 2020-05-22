@@ -47,7 +47,7 @@ public class GameSignAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new GameSignViewHolder(View.inflate(mContext, R.layout.game_sign_item,null));
+        return new GameSignViewHolder(View.inflate(mContext, R.layout.game_sign_item,viewGroup));
     }
 
     @Override

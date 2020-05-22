@@ -37,7 +37,7 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeContentViewHolder(View.inflate(context, R.layout.home_content_item,null));
+        return new HomeContentViewHolder(View.inflate(context, R.layout.home_content_item,viewGroup));
     }
 
     @Override

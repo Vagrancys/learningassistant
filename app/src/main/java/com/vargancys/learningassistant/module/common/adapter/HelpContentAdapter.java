@@ -36,7 +36,7 @@ public class HelpContentAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HelpContentViewHolder(View.inflate(mContext, R.layout.help_content_item,null));
+        return new HelpContentViewHolder(View.inflate(mContext, R.layout.help_content_item,viewGroup));
     }
 
     @Override

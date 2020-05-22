@@ -32,7 +32,7 @@ public class LadderHelpAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new LadderHelpViewHolder(View.inflate(mContext, R.layout.ladder_help_item,null));
+        return new LadderHelpViewHolder(View.inflate(mContext, R.layout.ladder_help_item,viewGroup));
     }
 
     @Override

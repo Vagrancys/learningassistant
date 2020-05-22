@@ -34,7 +34,7 @@ public class HomeKnowHistoryAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeHistoryViewHolder(View.inflate(mContext, R.layout.know_history_item,null));
+        return new HomeHistoryViewHolder(View.inflate(mContext, R.layout.know_history_item,viewGroup));
     }
 
     @Override

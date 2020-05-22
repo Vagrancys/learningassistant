@@ -37,7 +37,7 @@ public class CommentReplyAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new CommentReplyViewHolder(View.inflate(mContext, R.layout.comment_reply_item,null));
+        return new CommentReplyViewHolder(View.inflate(mContext, R.layout.comment_reply_item,viewGroup));
     }
 
     @Override

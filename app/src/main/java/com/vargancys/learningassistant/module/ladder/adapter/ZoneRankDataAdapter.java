@@ -48,7 +48,7 @@ public class ZoneRankDataAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ZoneRankViewHolder(View.inflate(mContext, R.layout.zone_rank_item,null));
+        return new ZoneRankViewHolder(View.inflate(mContext, R.layout.zone_rank_item,viewGroup));
     }
 
     @Override
