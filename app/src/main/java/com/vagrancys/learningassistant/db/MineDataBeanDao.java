@@ -33,6 +33,9 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         public final static Property Knowledge = new Property(6, int.class, "knowledge", false, "KNOWLEDGE");
         public final static Property Influence = new Property(7, int.class, "influence", false, "INFLUENCE");
         public final static Property Money = new Property(8, int.class, "money", false, "MONEY");
+        public final static Property Day = new Property(9, int.class, "day", false, "DAY");
+        public final static Property Quality = new Property(10, int.class, "quality", false, "QUALITY");
+        public final static Property Result = new Property(11, int.class, "result", false, "RESULT");
     }
 
 
@@ -56,7 +59,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
                 "\"REAL_LEVEL\" INTEGER NOT NULL ," + // 5: real_level
                 "\"KNOWLEDGE\" INTEGER NOT NULL ," + // 6: knowledge
                 "\"INFLUENCE\" INTEGER NOT NULL ," + // 7: influence
-                "\"MONEY\" INTEGER NOT NULL );"); // 8: money
+                "\"MONEY\" INTEGER NOT NULL ," + // 8: money
+                "\"DAY\" INTEGER NOT NULL ," + // 9: day
+                "\"QUALITY\" INTEGER NOT NULL ," + // 10: quality
+                "\"RESULT\" INTEGER NOT NULL );"); // 11: result
     }
 
     /** Drops the underlying database table. */
@@ -85,6 +91,9 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         stmt.bindLong(7, entity.getKnowledge());
         stmt.bindLong(8, entity.getInfluence());
         stmt.bindLong(9, entity.getMoney());
+        stmt.bindLong(10, entity.getDay());
+        stmt.bindLong(11, entity.getQuality());
+        stmt.bindLong(12, entity.getResult());
     }
 
     @Override
@@ -107,6 +116,9 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         stmt.bindLong(7, entity.getKnowledge());
         stmt.bindLong(8, entity.getInfluence());
         stmt.bindLong(9, entity.getMoney());
+        stmt.bindLong(10, entity.getDay());
+        stmt.bindLong(11, entity.getQuality());
+        stmt.bindLong(12, entity.getResult());
     }
 
     @Override
@@ -125,7 +137,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
             cursor.getInt(offset + 5), // real_level
             cursor.getInt(offset + 6), // knowledge
             cursor.getInt(offset + 7), // influence
-            cursor.getInt(offset + 8) // money
+            cursor.getInt(offset + 8), // money
+            cursor.getInt(offset + 9), // day
+            cursor.getInt(offset + 10), // quality
+            cursor.getInt(offset + 11) // result
         );
         return entity;
     }
@@ -141,6 +156,9 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         entity.setKnowledge(cursor.getInt(offset + 6));
         entity.setInfluence(cursor.getInt(offset + 7));
         entity.setMoney(cursor.getInt(offset + 8));
+        entity.setDay(cursor.getInt(offset + 9));
+        entity.setQuality(cursor.getInt(offset + 10));
+        entity.setResult(cursor.getInt(offset + 11));
      }
     
     @Override

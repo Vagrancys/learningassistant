@@ -71,4 +71,6 @@ public class ConstantsUtils {
 
     //个人中心id
     public static final String MINE_DATA_ID = "mine_data_id";
+    //个人用户id
+    public static final String MINE_MEMBER_ID = "mine_member_id";
 }

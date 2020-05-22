@@ -4,6 +4,7 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.MineDataBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 
 /**
  * @author Vagrancy
@@ -35,5 +36,16 @@ public class MineRequest {
     //得到个人中心的数据
     public MineDataBean getMineData(long mineId) {
         return mMineDataDao.load(mineId);
+    }
+
+    //得到个人中心知识用户数据
+    public MineDataBean getKnowLedgeData(long mineId) {
+        return mMineDataDao.load(mineId);
+    }
+
+    //得到个人中心知识类型数据
+    public KnowLedgeTypeDataBean getKnowLedgeTypeData(long mineId) {
+        //TODO 知识类型数据
+        return null;
     }
 }

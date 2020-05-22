@@ -41,10 +41,19 @@ public class MineDataBean {
     //个人积累
     private int money;
 
-    @Generated(hash = 748354572)
+    //个人持续时间
+    private int day;
+
+    //个人质量
+    private int quality;
+
+    //个人成就
+    private int result;
+
+    @Generated(hash = 1771295407)
     public MineDataBean(Long id, String name, int level, int level_total,
             int level_current, int real_level, int knowledge, int influence,
-            int money) {
+            int money, int day, int quality, int result) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -54,6 +63,9 @@ public class MineDataBean {
         this.knowledge = knowledge;
         this.influence = influence;
         this.money = money;
+        this.day = day;
+        this.quality = quality;
+        this.result = result;
     }
 
     @Generated(hash = 193054536)
@@ -130,5 +142,29 @@ public class MineDataBean {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getDay() {
+        return this.day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getQuality() {
+        return this.quality;
+    }
+
+    public void setQuality(int quality) {
+        this.quality = quality;
+    }
+
+    public int getResult() {
+        return this.result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 }

@@ -729,5 +729,15 @@
     <string name="mine_real_level_text">12</string>
     <string name="mine_knowledge_text">2563</string>
     <string name="mine_influence_text">3561</string>
+
+    <!--个人中心知识模块-->
+    <string name="mine_knowledge_day_text">25天</string>
+    <string name="mine_knowledge_day_foot_text">连续贡献</string>
+    <string name="mine_knowledge_count_text">25个</string>
+    <string name="mine_knowledge_count_foot_text">知识传授</string>
+    <string name="mine_knowledge_quality_text">10个</string>
+    <string name="mine_knowledge_quality_foot_text">高质量</string>
+    <string name="mine_knowledge_result_text">2个</string>
+    <string name="mine_knowledge_result_foot_text">杰出贡献</string>
 </resources>
 
