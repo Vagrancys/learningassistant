@@ -28,6 +28,10 @@ public abstract class StatelessSection extends Section{
         this.footerResourceId = footerResourceId;
     }
 
+    public StatelessSection() {
+
+    }
+
     @Override
     public RecyclerView.ViewHolder getItemViewHolder(View view) {
         return null;

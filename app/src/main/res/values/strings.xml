@@ -739,5 +739,25 @@
     <string name="mine_knowledge_quality_foot_text">高质量</string>
     <string name="mine_knowledge_result_text">2个</string>
     <string name="mine_knowledge_result_foot_text">杰出贡献</string>
+
+    <!--个人中心知识类型模块-->
+    <string name="knowledge_title">Android</string>
+    <string name="knowledge_more">更多</string>
+    <string name="knowledge_count_text">25个</string>
+    <string name="knowledge_count_foot_text">知识输出</string>
+    <string name="knowledge_quality_text">10个</string>
+    <string name="knowledge_quality_foot_text">高质量</string>
+    <string name="knowledge_time_text">25天</string>
+    <string name="knowledge_time_foot_text">连续输出</string>
+    <string name="knowledge_people_text">25个</string>
+    <string name="knowledge_people_foot_text">使用人数</string>
+    <string name="knowledge_level_text">3级</string>
+    <string name="knowledge_level_foot_text">最高等级</string>
+    <string name="knowledge_prize_text">10个</string>
+    <string name="knowledge_prize_foot_text">官方奖励</string>
+    <string name="knowledge_title_text">标题踢踢踢</string>
+    <string name="knowledge_number_text">1</string>
+    <string name="knowledge_summary_text">等哈就打架啊就到家啊</string>
+    <string name="knowledge_look_text">25人观看</string>
 </resources>
 

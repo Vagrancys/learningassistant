@@ -11,6 +11,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import butterknife.ButterKnife;
+
 /**
  * @author Vagrancy
  * @date 2020/5/23
@@ -234,6 +236,7 @@ public class SectionedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
     public static class EmptyViewHolder extends RecyclerView.ViewHolder{
         public EmptyViewHolder(View itemView){
             super(itemView);
+            ButterKnife.bind(itemView);
         }
     }
 }

@@ -1,26 +1,23 @@
 package com.vargancys.learningassistant.module.mine.fragment;
 
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
+import com.vargancys.learningassistant.module.mine.adapter.KnowLedgeItemSection;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
+import com.vargancys.learningassistant.widget.section.SectionedRecyclerViewAdapter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @author Vagrancy
@@ -44,6 +41,7 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
     SwipeRefreshLayout swipeRefresh;
     private BaseMinePresenter mPresenter;
     private long mineId;
+    private SectionedRecyclerViewAdapter mSectionAdapter;
 
     public static KnowLedgeFragment newInstance() {
         return new KnowLedgeFragment();
@@ -61,6 +59,9 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
         mPresenter.getKnowLedgeData(mineId);
+        mSectionAdapter = new SectionedRecyclerViewAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(mSectionAdapter);
         autoRefresh();
     }
 
@@ -105,5 +106,9 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
     @Override
     public void showKnowLedgeTypeDataFinish(KnowLedgeTypeDataBean mBean) {
         swipeRefresh.setRefreshing(false);
+        for (int i=0; i<mBean.getItemBeans().size();i++){
+            mSectionAdapter.addSection(new KnowLedgeItemSection(getContext(),mBean.getItemBeans().get(i)));
+        }
+        mSectionAdapter.notifyDataSetChanged();
     }
 }
