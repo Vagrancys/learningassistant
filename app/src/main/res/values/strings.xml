@@ -759,5 +759,37 @@
     <string name="knowledge_number_text">1</string>
     <string name="knowledge_summary_text">等哈就打架啊就到家啊</string>
     <string name="knowledge_look_text">25人观看</string>
+
+    <!--个人中心天梯模块-->
+    <string name="mine_challenge_day_text">25天</string>
+    <string name="mine_challenge_day_foot_text">连续挑战</string>
+    <string name="mine_challenge_highest_text">25阶</string>
+    <string name="mine_challenge_highest_foot_text">最高阶层</string>
+    <string name="mine_challenge_level_text">中级攀登者</string>
+    <string name="mine_challenge_level_foot_text">最高称号</string>
+    <string name="mine_challenge_area_text">专家挑战区</string>
+    <string name="mine_challenge_area_foot_text">常去地区</string>
+
+    <!--个人中心天梯类型模块-->
+    <string name="challenge_title">初级天梯</string>
+    <string name="challenge_more">更多</string>
+    <string name="challenge_count_text">25天</string>
+    <string name="challenge_count_foot_text">挑战天数</string>
+    <string name="challenge_success_text">10次</string>
+    <string name="challenge_success_foot_text">挑战成功</string>
+    <string name="challenge_fail_text">25次</string>
+    <string name="challenge_fail_foot_text">挑战失败</string>
+    <string name="challenge_highest_text">25层</string>
+    <string name="challenge_highest_foot_text">最高阶层</string>
+    <string name="challenge_time_text">12</string>
+    <string name="challenge_time_foot_text">挑战时间</string>
+    <string name="challenge_number_text">10题</string>
+    <string name="challenge_number_foot_text">挑战题数</string>
+    <string name="challenge_difficulty_text">5级</string>
+    <string name="challenge_difficulty_foot_text">挑战难度</string>
+    <string name="challenge_situation_text">成</string>
+    <string name="challenge_summary_text">陈公公水水水水</string>
+    <string name="challenge_title_text">挑战25层天梯</string>
+    <string name="challenge_serial_text">25次</string>
 </resources>
 

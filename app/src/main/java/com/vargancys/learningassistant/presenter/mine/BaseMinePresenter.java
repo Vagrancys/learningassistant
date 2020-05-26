@@ -1,10 +1,16 @@
 package com.vargancys.learningassistant.presenter.mine;
 
+import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.request.MineRequest;
 import com.vargancys.learningassistant.module.mine.view.BaseMineView;
+import com.vargancys.learningassistant.module.mine.view.ChallengeView;
+import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
+
+import java.util.List;
 
 /**
  * @author Vagrancy
@@ -50,6 +56,36 @@ public class BaseMinePresenter {
             ((KnowLedgeView) mView).showKnowLedgeTypeDataFinish(mBean);
         }else{
             ((KnowLedgeView) mView).showKnowLedgeTypeDataError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人发布的所有知识
+    public void getHomeKnowData(int type) {
+        List<HomeKnowItem> mItem = mRequest.getHomeKnowData(type);
+        if(mItem != null && mItem.size() > 0){
+            ((KnowLedgeItemView) mView).loadKnowLedge(mItem);
+        }else{
+            ((KnowLedgeItemView) mView).loadKnowLedgeError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人中心知识用户数据
+    public void getChallengeData(long mineId) {
+        MineDataBean mBean = mRequest.getKnowLedgeData(mineId);
+        if(mBean != null){
+            ((ChallengeView) mView).loadChallengeDataFinish(mBean);
+        }else{
+            ((ChallengeView) mView).loadChallengeDataError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人中心天梯类型数据
+    public void getChallengeTypeData(long mineId) {
+        ChallengeTypeDataBean mBean = mRequest.getChallengeTypeData(mineId);
+        if(mBean != null){
+            ((ChallengeView) mView).loadChallengeTypeDataFinish(mBean);
+        }else{
+            ((ChallengeView) mView).loadChallengeTypeDataError(404,"没有找到数据!");
         }
     }
 }

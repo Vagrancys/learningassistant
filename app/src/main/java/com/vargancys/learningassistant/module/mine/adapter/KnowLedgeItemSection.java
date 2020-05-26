@@ -1,13 +1,25 @@
 package com.vargancys.learningassistant.module.mine.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
+import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
+import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowFirstActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
+import com.vargancys.learningassistant.module.mine.activity.KnowLedgeItemActivity;
+import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.section.SectionedRecyclerViewAdapter;
 import com.vargancys.learningassistant.widget.section.StatelessSection;
 
@@ -25,10 +37,12 @@ public class KnowLedgeItemSection extends StatelessSection {
     private Context mContext;
     private KnowLedgeItemBean mBean;
 
-    public KnowLedgeItemSection(Context context, KnowLedgeItemBean bean) {
+    private Activity mActivity;
+    public KnowLedgeItemSection(Context context, Activity activity, KnowLedgeItemBean bean) {
         super(R.layout.knowledge_item_header, R.layout.knowledge_item);
         mContext = context;
         mBean = bean;
+        mActivity = activity;
     }
 
     @Override
@@ -38,7 +52,7 @@ public class KnowLedgeItemSection extends StatelessSection {
         mHolder.knowledgeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 跳转到具体的知识详情页面
+                KnowLedgeItemActivity.launch(mActivity,mBean.getType());
             }
         });
         mHolder.knowledgeCount.setText(mBean.getCount());
@@ -54,7 +68,21 @@ public class KnowLedgeItemSection extends StatelessSection {
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
         KnowLedgeItemViewHolder mHolder = (KnowLedgeItemViewHolder) holder;
-        KnowLedgeItemBean.KnowLedgeItem mItem = mBean.getItems().get(position);
+        final KnowLedgeItemBean.KnowLedgeItem mItem = mBean.getItems().get(position);
+        mHolder.getParentView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    if(mItem.isCreateClass()){
+                        if(!mItem.isHave()){
+                            launchShowActivity(mItem.getId().intValue(),mItem.getLevel());
+                        }
+                    }else{
+                        if(mItem.isHave()){
+                            ToastUtils.ToastText(mContext,"这需要官方来创建!个人不能创建!");
+                        }
+                }
+            }
+        });
         mHolder.knowledgeNumber.setText(String.valueOf(mItem.getNumber()));
         mHolder.knowledgeLevel.setImageResource(mItem.getLevel());
         mHolder.knowledgeTitle.setText(mItem.getTitle());
@@ -63,6 +91,29 @@ public class KnowLedgeItemSection extends StatelessSection {
         mHolder.knowledgeSummary.setText(mItem.getSummary());
         mHolder.knowledgeTime.setText(String.valueOf(mItem.getTime()));
         super.onBindItemViewHolder(holder, position);
+    }
+
+    private void launchShowActivity(int item_id,int level) {
+        switch (level){
+            case 1:
+                KnowShowFirstActivity.launch(mActivity,item_id);
+                break;
+            case 2:
+                KnowShowSecondActivity.launch(mActivity,item_id);
+                break;
+            case 3:
+                KnowShowThirdActivity.launch(mActivity,item_id);
+                break;
+            case 4:
+                KnowShowFourthActivity.launch(mActivity,item_id);
+                break;
+            case 5:
+                KnowShowFifthActivity.launch(mActivity,item_id);
+                break;
+            default:
+                KnowShowDefaultActivity.launch(mActivity,item_id);
+                break;
+        }
     }
 
     @Override

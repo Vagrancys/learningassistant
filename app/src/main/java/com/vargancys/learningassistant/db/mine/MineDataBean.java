@@ -24,6 +24,17 @@ public class MineDataBean {
     //个人等级
     private int level;
 
+    //个人等级名称
+    private String level_name;
+
+    //天梯常去地区
+    private String area;
+    //天梯最高层
+    private int highest;
+
+    //天梯连续挑战
+    private int ladder_day;
+
     //个人等级升级总数
     private int level_total;
     //个人等级升级当前数
@@ -50,13 +61,18 @@ public class MineDataBean {
     //个人成就
     private int result;
 
-    @Generated(hash = 1771295407)
-    public MineDataBean(Long id, String name, int level, int level_total,
+    @Generated(hash = 761304873)
+    public MineDataBean(Long id, String name, int level, String level_name,
+            String area, int highest, int ladder_day, int level_total,
             int level_current, int real_level, int knowledge, int influence,
             int money, int day, int quality, int result) {
         this.id = id;
         this.name = name;
         this.level = level;
+        this.level_name = level_name;
+        this.area = area;
+        this.highest = highest;
+        this.ladder_day = ladder_day;
         this.level_total = level_total;
         this.level_current = level_current;
         this.real_level = real_level;
@@ -166,5 +182,37 @@ public class MineDataBean {
 
     public void setResult(int result) {
         this.result = result;
+    }
+
+    public String getLevel_name() {
+        return this.level_name;
+    }
+
+    public void setLevel_name(String level_name) {
+        this.level_name = level_name;
+    }
+
+    public String getArea() {
+        return this.area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public int getHighest() {
+        return this.highest;
+    }
+
+    public void setHighest(int highest) {
+        this.highest = highest;
+    }
+
+    public int getLadder_day() {
+        return this.ladder_day;
+    }
+
+    public void setLadder_day(int ladder_day) {
+        this.ladder_day = ladder_day;
     }
 }

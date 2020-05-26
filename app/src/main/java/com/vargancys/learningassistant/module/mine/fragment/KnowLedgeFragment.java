@@ -107,7 +107,7 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
     public void showKnowLedgeTypeDataFinish(KnowLedgeTypeDataBean mBean) {
         swipeRefresh.setRefreshing(false);
         for (int i=0; i<mBean.getItemBeans().size();i++){
-            mSectionAdapter.addSection(new KnowLedgeItemSection(getContext(),mBean.getItemBeans().get(i)));
+            mSectionAdapter.addSection(new KnowLedgeItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
         }
         mSectionAdapter.notifyDataSetChanged();
     }

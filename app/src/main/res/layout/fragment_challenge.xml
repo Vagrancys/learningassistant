@@ -21,42 +21,42 @@
                 <LinearLayout
                     style="@style/mine_data_linear_style">
                     <TextView
-                        android:id="@+id/mine_knowledge_day"
+                        android:id="@+id/mine_challenge_day"
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_day_text"/>
+                        android:text="@string/mine_challenge_day_text"/>
                     <TextView
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_day_foot_text"/>
+                        android:text="@string/mine_challenge_day_foot_text"/>
                 </LinearLayout>
                 <LinearLayout
                     style="@style/mine_data_linear_style">
                     <TextView
-                        android:id="@+id/mine_knowledge_count"
+                        android:id="@+id/mine_challenge_highest"
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_count_text"/>
+                        android:text="@string/mine_challenge_highest_text"/>
                     <TextView
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_count_foot_text"/>
+                        android:text="@string/mine_challenge_highest_foot_text"/>
                 </LinearLayout>
                 <LinearLayout
                     style="@style/mine_data_linear_style">
                     <TextView
-                        android:id="@+id/mine_knowledge_quality"
+                        android:id="@+id/mine_challenge_level"
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_quality_text"/>
+                        android:text="@string/mine_challenge_level_text"/>
                     <TextView
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_quality_foot_text"/>
+                        android:text="@string/mine_challenge_level_foot_text"/>
                 </LinearLayout>
                 <LinearLayout
                     style="@style/mine_data_linear_style">
                     <TextView
-                        android:id="@+id/mine_knowledge_result"
+                        android:id="@+id/mine_challenge_area"
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_result_text"/>
+                        android:text="@string/mine_challenge_area_text"/>
                     <TextView
                         style="@style/mine_data_style"
-                        android:text="@string/mine_knowledge_result_foot_text"/>
+                        android:text="@string/mine_challenge_area_foot_text"/>
                 </LinearLayout>
             </LinearLayout>
             <android.support.v7.widget.RecyclerView

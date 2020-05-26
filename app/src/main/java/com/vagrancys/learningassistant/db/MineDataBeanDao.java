@@ -27,15 +27,19 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Level = new Property(2, int.class, "level", false, "LEVEL");
-        public final static Property Level_total = new Property(3, int.class, "level_total", false, "LEVEL_TOTAL");
-        public final static Property Level_current = new Property(4, int.class, "level_current", false, "LEVEL_CURRENT");
-        public final static Property Real_level = new Property(5, int.class, "real_level", false, "REAL_LEVEL");
-        public final static Property Knowledge = new Property(6, int.class, "knowledge", false, "KNOWLEDGE");
-        public final static Property Influence = new Property(7, int.class, "influence", false, "INFLUENCE");
-        public final static Property Money = new Property(8, int.class, "money", false, "MONEY");
-        public final static Property Day = new Property(9, int.class, "day", false, "DAY");
-        public final static Property Quality = new Property(10, int.class, "quality", false, "QUALITY");
-        public final static Property Result = new Property(11, int.class, "result", false, "RESULT");
+        public final static Property Level_name = new Property(3, String.class, "level_name", false, "LEVEL_NAME");
+        public final static Property Area = new Property(4, String.class, "area", false, "AREA");
+        public final static Property Highest = new Property(5, int.class, "highest", false, "HIGHEST");
+        public final static Property Ladder_day = new Property(6, int.class, "ladder_day", false, "LADDER_DAY");
+        public final static Property Level_total = new Property(7, int.class, "level_total", false, "LEVEL_TOTAL");
+        public final static Property Level_current = new Property(8, int.class, "level_current", false, "LEVEL_CURRENT");
+        public final static Property Real_level = new Property(9, int.class, "real_level", false, "REAL_LEVEL");
+        public final static Property Knowledge = new Property(10, int.class, "knowledge", false, "KNOWLEDGE");
+        public final static Property Influence = new Property(11, int.class, "influence", false, "INFLUENCE");
+        public final static Property Money = new Property(12, int.class, "money", false, "MONEY");
+        public final static Property Day = new Property(13, int.class, "day", false, "DAY");
+        public final static Property Quality = new Property(14, int.class, "quality", false, "QUALITY");
+        public final static Property Result = new Property(15, int.class, "result", false, "RESULT");
     }
 
 
@@ -54,15 +58,19 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
                 "\"LEVEL\" INTEGER NOT NULL ," + // 2: level
-                "\"LEVEL_TOTAL\" INTEGER NOT NULL ," + // 3: level_total
-                "\"LEVEL_CURRENT\" INTEGER NOT NULL ," + // 4: level_current
-                "\"REAL_LEVEL\" INTEGER NOT NULL ," + // 5: real_level
-                "\"KNOWLEDGE\" INTEGER NOT NULL ," + // 6: knowledge
-                "\"INFLUENCE\" INTEGER NOT NULL ," + // 7: influence
-                "\"MONEY\" INTEGER NOT NULL ," + // 8: money
-                "\"DAY\" INTEGER NOT NULL ," + // 9: day
-                "\"QUALITY\" INTEGER NOT NULL ," + // 10: quality
-                "\"RESULT\" INTEGER NOT NULL );"); // 11: result
+                "\"LEVEL_NAME\" TEXT," + // 3: level_name
+                "\"AREA\" TEXT," + // 4: area
+                "\"HIGHEST\" INTEGER NOT NULL ," + // 5: highest
+                "\"LADDER_DAY\" INTEGER NOT NULL ," + // 6: ladder_day
+                "\"LEVEL_TOTAL\" INTEGER NOT NULL ," + // 7: level_total
+                "\"LEVEL_CURRENT\" INTEGER NOT NULL ," + // 8: level_current
+                "\"REAL_LEVEL\" INTEGER NOT NULL ," + // 9: real_level
+                "\"KNOWLEDGE\" INTEGER NOT NULL ," + // 10: knowledge
+                "\"INFLUENCE\" INTEGER NOT NULL ," + // 11: influence
+                "\"MONEY\" INTEGER NOT NULL ," + // 12: money
+                "\"DAY\" INTEGER NOT NULL ," + // 13: day
+                "\"QUALITY\" INTEGER NOT NULL ," + // 14: quality
+                "\"RESULT\" INTEGER NOT NULL );"); // 15: result
     }
 
     /** Drops the underlying database table. */
@@ -85,15 +93,27 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
             stmt.bindString(2, name);
         }
         stmt.bindLong(3, entity.getLevel());
-        stmt.bindLong(4, entity.getLevel_total());
-        stmt.bindLong(5, entity.getLevel_current());
-        stmt.bindLong(6, entity.getReal_level());
-        stmt.bindLong(7, entity.getKnowledge());
-        stmt.bindLong(8, entity.getInfluence());
-        stmt.bindLong(9, entity.getMoney());
-        stmt.bindLong(10, entity.getDay());
-        stmt.bindLong(11, entity.getQuality());
-        stmt.bindLong(12, entity.getResult());
+ 
+        String level_name = entity.getLevel_name();
+        if (level_name != null) {
+            stmt.bindString(4, level_name);
+        }
+ 
+        String area = entity.getArea();
+        if (area != null) {
+            stmt.bindString(5, area);
+        }
+        stmt.bindLong(6, entity.getHighest());
+        stmt.bindLong(7, entity.getLadder_day());
+        stmt.bindLong(8, entity.getLevel_total());
+        stmt.bindLong(9, entity.getLevel_current());
+        stmt.bindLong(10, entity.getReal_level());
+        stmt.bindLong(11, entity.getKnowledge());
+        stmt.bindLong(12, entity.getInfluence());
+        stmt.bindLong(13, entity.getMoney());
+        stmt.bindLong(14, entity.getDay());
+        stmt.bindLong(15, entity.getQuality());
+        stmt.bindLong(16, entity.getResult());
     }
 
     @Override
@@ -110,15 +130,27 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
             stmt.bindString(2, name);
         }
         stmt.bindLong(3, entity.getLevel());
-        stmt.bindLong(4, entity.getLevel_total());
-        stmt.bindLong(5, entity.getLevel_current());
-        stmt.bindLong(6, entity.getReal_level());
-        stmt.bindLong(7, entity.getKnowledge());
-        stmt.bindLong(8, entity.getInfluence());
-        stmt.bindLong(9, entity.getMoney());
-        stmt.bindLong(10, entity.getDay());
-        stmt.bindLong(11, entity.getQuality());
-        stmt.bindLong(12, entity.getResult());
+ 
+        String level_name = entity.getLevel_name();
+        if (level_name != null) {
+            stmt.bindString(4, level_name);
+        }
+ 
+        String area = entity.getArea();
+        if (area != null) {
+            stmt.bindString(5, area);
+        }
+        stmt.bindLong(6, entity.getHighest());
+        stmt.bindLong(7, entity.getLadder_day());
+        stmt.bindLong(8, entity.getLevel_total());
+        stmt.bindLong(9, entity.getLevel_current());
+        stmt.bindLong(10, entity.getReal_level());
+        stmt.bindLong(11, entity.getKnowledge());
+        stmt.bindLong(12, entity.getInfluence());
+        stmt.bindLong(13, entity.getMoney());
+        stmt.bindLong(14, entity.getDay());
+        stmt.bindLong(15, entity.getQuality());
+        stmt.bindLong(16, entity.getResult());
     }
 
     @Override
@@ -132,15 +164,19 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.getInt(offset + 2), // level
-            cursor.getInt(offset + 3), // level_total
-            cursor.getInt(offset + 4), // level_current
-            cursor.getInt(offset + 5), // real_level
-            cursor.getInt(offset + 6), // knowledge
-            cursor.getInt(offset + 7), // influence
-            cursor.getInt(offset + 8), // money
-            cursor.getInt(offset + 9), // day
-            cursor.getInt(offset + 10), // quality
-            cursor.getInt(offset + 11) // result
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // level_name
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // area
+            cursor.getInt(offset + 5), // highest
+            cursor.getInt(offset + 6), // ladder_day
+            cursor.getInt(offset + 7), // level_total
+            cursor.getInt(offset + 8), // level_current
+            cursor.getInt(offset + 9), // real_level
+            cursor.getInt(offset + 10), // knowledge
+            cursor.getInt(offset + 11), // influence
+            cursor.getInt(offset + 12), // money
+            cursor.getInt(offset + 13), // day
+            cursor.getInt(offset + 14), // quality
+            cursor.getInt(offset + 15) // result
         );
         return entity;
     }
@@ -150,15 +186,19 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setLevel(cursor.getInt(offset + 2));
-        entity.setLevel_total(cursor.getInt(offset + 3));
-        entity.setLevel_current(cursor.getInt(offset + 4));
-        entity.setReal_level(cursor.getInt(offset + 5));
-        entity.setKnowledge(cursor.getInt(offset + 6));
-        entity.setInfluence(cursor.getInt(offset + 7));
-        entity.setMoney(cursor.getInt(offset + 8));
-        entity.setDay(cursor.getInt(offset + 9));
-        entity.setQuality(cursor.getInt(offset + 10));
-        entity.setResult(cursor.getInt(offset + 11));
+        entity.setLevel_name(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setArea(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setHighest(cursor.getInt(offset + 5));
+        entity.setLadder_day(cursor.getInt(offset + 6));
+        entity.setLevel_total(cursor.getInt(offset + 7));
+        entity.setLevel_current(cursor.getInt(offset + 8));
+        entity.setReal_level(cursor.getInt(offset + 9));
+        entity.setKnowledge(cursor.getInt(offset + 10));
+        entity.setInfluence(cursor.getInt(offset + 11));
+        entity.setMoney(cursor.getInt(offset + 12));
+        entity.setDay(cursor.getInt(offset + 13));
+        entity.setQuality(cursor.getInt(offset + 14));
+        entity.setResult(cursor.getInt(offset + 15));
      }
     
     @Override

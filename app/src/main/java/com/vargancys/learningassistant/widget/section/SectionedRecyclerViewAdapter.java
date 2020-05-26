@@ -234,9 +234,15 @@ public class SectionedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     public static class EmptyViewHolder extends RecyclerView.ViewHolder{
+        private View parentView;
         public EmptyViewHolder(View itemView){
             super(itemView);
+            parentView = itemView;
             ButterKnife.bind(itemView);
+        }
+
+        public View getParentView() {
+            return parentView;
         }
     }
 }

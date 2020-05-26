@@ -1,10 +1,17 @@
 package com.vargancys.learningassistant.model.mine.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vagrancys.learningassistant.db.MineDataBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
+
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.List;
 
 /**
  * @author Vagrancy
@@ -17,9 +24,11 @@ public class MineRequest {
     private static MineRequest mRequest;
     private MineDataBeanDao mMineDataDao;
     private DaoSession mDaoSession;
+    private HomeKnowItemDao mKnowDao;
     private MineRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mMineDataDao = mDaoSession.getMineDataBeanDao();
+        mKnowDao = mDaoSession.getHomeKnowItemDao();
     }
     public static MineRequest getInstance(){
         if(mRequest == null){
@@ -46,6 +55,18 @@ public class MineRequest {
     //得到个人中心知识类型数据
     public KnowLedgeTypeDataBean getKnowLedgeTypeData(long mineId) {
         //TODO 知识类型数据
+        return null;
+    }
+
+    //得到个人发布的所有知识
+    public List<HomeKnowItem> getHomeKnowData(int type) {
+        QueryBuilder<HomeKnowItem> queryBuilder = mKnowDao.queryBuilder();
+        return queryBuilder.where(HomeKnowItemDao.Properties.Language.eq(type)).list();
+    }
+
+    //得到个人中心天梯类型数据
+    public ChallengeTypeDataBean getChallengeTypeData(long mineId) {
+        //TODO 天梯类型数据
         return null;
     }
 }

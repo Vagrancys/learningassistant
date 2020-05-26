@@ -73,4 +73,8 @@ public class ConstantsUtils {
     public static final String MINE_DATA_ID = "mine_data_id";
     //个人用户id
     public static final String MINE_MEMBER_ID = "mine_member_id";
+    //知识语言类型
+    public static final String KNOW_TYPE_ID = "know_type_id";
+    //天梯各项详情id
+    public static final String CHALLENGE_DETAILS_ID = "challenge_details_id";
 }

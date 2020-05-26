@@ -17,6 +17,16 @@ public class KnowLedgeItemBean {
     private int people;
     private int level;
     private int prize;
+    private int type;
+    private List<KnowLedgeItem> items;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getTitle() {
         return title;
@@ -74,7 +84,7 @@ public class KnowLedgeItemBean {
         this.quality = quality;
     }
 
-    private List<KnowLedgeItem> items;
+
 
     public List<KnowLedgeItem> getItems() {
         return items;
@@ -85,6 +95,7 @@ public class KnowLedgeItemBean {
     }
 
     public static class KnowLedgeItem{
+        private Long id;
         private String title;
         private int number;
         private int level;
@@ -92,6 +103,32 @@ public class KnowLedgeItemBean {
         private int time;
         private int problem;
         private int look;
+        private boolean createClass;
+        private boolean have;
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public boolean isHave() {
+            return have;
+        }
+
+        public void setHave(boolean have) {
+            this.have = have;
+        }
+
+        public void setCreateClass(boolean createClass) {
+            this.createClass = createClass;
+        }
+
+        public boolean isCreateClass() {
+            return createClass;
+        }
 
         public int getNumber() {
             return number;
