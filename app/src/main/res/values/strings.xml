@@ -791,5 +791,27 @@
     <string name="challenge_summary_text">陈公公水水水水</string>
     <string name="challenge_title_text">挑战25层天梯</string>
     <string name="challenge_serial_text">25次</string>
+
+    <!--个人中心天梯详细数据模块-->
+    <string name="challenge_details_toolbar">天梯数据详情</string>
+    <string name="challenge_details_title">201号天梯挑战数据</string>
+    <string name="challenge_details_title_text">当前称号:</string>
+    <string name="challenge_details_title_name_text">初级攀登者</string>
+    <string name="challenge_details_upgrade_text">升阶所需:</string>
+    <string name="challenge_details_upgrade_name_text">125阶</string>
+    <string name="challenge_details_difficulty_text">天梯难度:</string>
+    <string name="challenge_details_difficulty_name_text">专家</string>
+    <string name="challenge_details_highest_text">最高阶层:</string>
+    <string name="challenge_details_highest_name_text">1025阶</string>
+    <string name="challenge_details_fail_text">失败层级:</string>
+    <string name="challenge_details_fail_name_text">501阶</string>
+    <string name="challenge_details_time_text">登梯时间:</string>
+    <string name="challenge_details_time_name_text">2020.05.04 22:52</string>
+    <string name="challenge_details_total_text">总阶梯数:</string>
+    <string name="challenge_details_total_name_text">10245阶</string>
+    <string name="challenge_details_master_text">所掌握数:</string>
+    <string name="challenge_details_master_name_text">1025题</string>
+    <string name="challenge_details_chance_text">登顶概率:</string>
+    <string name="challenge_details_chance_name_text">15%</string>
 </resources>
 

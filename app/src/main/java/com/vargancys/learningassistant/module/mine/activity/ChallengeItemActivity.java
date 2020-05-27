@@ -11,7 +11,7 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
  * @date 2020/5/26
  * Github: https:github.com/Vagrancys
  * Email:18050829067@163.com
- * Description: 个人中心天梯挑战详细页面
+ * Description: 个人中心天梯挑战各项页面
  */
 public class ChallengeItemActivity extends BaseActivity {
     private int type = 1;
