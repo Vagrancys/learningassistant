@@ -813,5 +813,11 @@
     <string name="challenge_details_master_name_text">1025题</string>
     <string name="challenge_details_chance_text">登顶概率:</string>
     <string name="challenge_details_chance_name_text">15%</string>
+
+    <!--个人中心天梯各项模块-->
+    <string name="challenge_item_toolbar">初级攀登区</string>
+    <string name="challenge_item_number_text">12</string>
+    <string name="challenge_item_title_text">dahdjajda</string>
+    <string name="challenge_item_time_text">大家的急啊家的</string>
 </resources>
 

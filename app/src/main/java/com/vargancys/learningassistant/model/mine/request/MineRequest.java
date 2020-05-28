@@ -78,4 +78,9 @@ public class MineRequest {
     public LadderDataBean getChallengeDetailsData(long challengeId) {
         return mLadderDataDao.load(challengeId);
     }
+
+    //得到个人中心天梯各项数据
+    public List<LadderDataBean> getChallengeItemData(int type) {
+        return mLadderDataDao.loadAll();
+    }
 }

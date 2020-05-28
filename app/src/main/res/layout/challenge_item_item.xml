@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_width_10dp"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/challenge_item_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/challenge_item_number_text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_24sp"/>
+    <TextView
+        android:id="@+id/challenge_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="@string/challenge_item_title_text"
+        android:textSize="@dimen/text_size_24sp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/challenge_item_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/challenge_item_time_text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_24sp"/>
+</LinearLayout>

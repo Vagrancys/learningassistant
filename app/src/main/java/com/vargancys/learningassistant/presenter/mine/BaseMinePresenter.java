@@ -8,6 +8,7 @@ import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.request.MineRequest;
 import com.vargancys.learningassistant.module.mine.view.BaseMineView;
 import com.vargancys.learningassistant.module.mine.view.ChallengeDetailsView;
+import com.vargancys.learningassistant.module.mine.view.ChallengeItemView;
 import com.vargancys.learningassistant.module.mine.view.ChallengeView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
@@ -98,6 +99,16 @@ public class BaseMinePresenter {
             ((ChallengeDetailsView) mView).loadChallengeDetailsData(mBean);
         }else{
             ((ChallengeDetailsView) mView).loadChallengeDetailsDataError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人中心天梯各项数据
+    public void getChallengeItemData(int type) {
+        List<LadderDataBean> mBean = mRequest.getChallengeItemData(type);
+        if(mBean != null && mBean.size() > 0){
+            ((ChallengeItemView) mView).loadItemDataFinish(mBean);
+        }else{
+            ((ChallengeItemView) mView).loadItemDataError(404,"数据没有找到!");
         }
     }
 }

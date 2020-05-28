@@ -54,7 +54,6 @@ public class ChallengeFragment extends BaseFragment implements ChallengeView {
 
     @Override
     protected void initView() {
-        //TODO 多类型recycler
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
