@@ -61,11 +61,24 @@ public class MineDataBean {
     //个人成就
     private int result;
 
-    @Generated(hash = 761304873)
+    //体系个数
+    private int system_count;
+
+    //知识个数
+    private int knowledge_total;
+
+    //使用人数
+    private int people_count;
+
+    //专业度
+    private int speciality_total;
+
+    @Generated(hash = 19725502)
     public MineDataBean(Long id, String name, int level, String level_name,
             String area, int highest, int ladder_day, int level_total,
             int level_current, int real_level, int knowledge, int influence,
-            int money, int day, int quality, int result) {
+            int money, int day, int quality, int result, int system_count,
+            int knowledge_total, int people_count, int speciality_total) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -82,6 +95,10 @@ public class MineDataBean {
         this.day = day;
         this.quality = quality;
         this.result = result;
+        this.system_count = system_count;
+        this.knowledge_total = knowledge_total;
+        this.people_count = people_count;
+        this.speciality_total = speciality_total;
     }
 
     @Generated(hash = 193054536)
@@ -214,5 +231,37 @@ public class MineDataBean {
 
     public void setLadder_day(int ladder_day) {
         this.ladder_day = ladder_day;
+    }
+
+    public int getSystem_count() {
+        return this.system_count;
+    }
+
+    public void setSystem_count(int system_count) {
+        this.system_count = system_count;
+    }
+
+    public int getKnowledge_total() {
+        return this.knowledge_total;
+    }
+
+    public void setKnowledge_total(int knowledge_total) {
+        this.knowledge_total = knowledge_total;
+    }
+
+    public int getPeople_count() {
+        return this.people_count;
+    }
+
+    public void setPeople_count(int people_count) {
+        this.people_count = people_count;
+    }
+
+    public int getSpeciality_total() {
+        return this.speciality_total;
+    }
+
+    public void setSpeciality_total(int speciality_total) {
+        this.speciality_total = speciality_total;
     }
 }

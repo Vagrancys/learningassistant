@@ -4,10 +4,12 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.MineDataBeanDao;
+import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 
@@ -28,11 +30,13 @@ public class MineRequest {
     private DaoSession mDaoSession;
     private HomeKnowItemDao mKnowDao;
     private LadderDataBeanDao mLadderDataDao;
+    private OverViewListContentDao mOverViewDao;
     private MineRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mMineDataDao = mDaoSession.getMineDataBeanDao();
         mKnowDao = mDaoSession.getHomeKnowItemDao();
         mLadderDataDao = mDaoSession.getLadderDataBeanDao();
+        mOverViewDao = mDaoSession.getOverViewListContentDao();
     }
     public static MineRequest getInstance(){
         if(mRequest == null){
@@ -82,5 +86,9 @@ public class MineRequest {
     //得到个人中心天梯各项数据
     public List<LadderDataBean> getChallengeItemData(int type) {
         return mLadderDataDao.loadAll();
+    }
+
+    public List<OverViewListContent> getSystemTypeData(long mineId) {
+        return mOverViewDao.loadAll();
     }
 }

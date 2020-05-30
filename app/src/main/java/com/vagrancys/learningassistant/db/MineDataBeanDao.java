@@ -40,6 +40,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         public final static Property Day = new Property(13, int.class, "day", false, "DAY");
         public final static Property Quality = new Property(14, int.class, "quality", false, "QUALITY");
         public final static Property Result = new Property(15, int.class, "result", false, "RESULT");
+        public final static Property System_count = new Property(16, int.class, "system_count", false, "SYSTEM_COUNT");
+        public final static Property Knowledge_total = new Property(17, int.class, "knowledge_total", false, "KNOWLEDGE_TOTAL");
+        public final static Property People_count = new Property(18, int.class, "people_count", false, "PEOPLE_COUNT");
+        public final static Property Speciality_total = new Property(19, int.class, "speciality_total", false, "SPECIALITY_TOTAL");
     }
 
 
@@ -70,7 +74,11 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
                 "\"MONEY\" INTEGER NOT NULL ," + // 12: money
                 "\"DAY\" INTEGER NOT NULL ," + // 13: day
                 "\"QUALITY\" INTEGER NOT NULL ," + // 14: quality
-                "\"RESULT\" INTEGER NOT NULL );"); // 15: result
+                "\"RESULT\" INTEGER NOT NULL ," + // 15: result
+                "\"SYSTEM_COUNT\" INTEGER NOT NULL ," + // 16: system_count
+                "\"KNOWLEDGE_TOTAL\" INTEGER NOT NULL ," + // 17: knowledge_total
+                "\"PEOPLE_COUNT\" INTEGER NOT NULL ," + // 18: people_count
+                "\"SPECIALITY_TOTAL\" INTEGER NOT NULL );"); // 19: speciality_total
     }
 
     /** Drops the underlying database table. */
@@ -114,6 +122,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         stmt.bindLong(14, entity.getDay());
         stmt.bindLong(15, entity.getQuality());
         stmt.bindLong(16, entity.getResult());
+        stmt.bindLong(17, entity.getSystem_count());
+        stmt.bindLong(18, entity.getKnowledge_total());
+        stmt.bindLong(19, entity.getPeople_count());
+        stmt.bindLong(20, entity.getSpeciality_total());
     }
 
     @Override
@@ -151,6 +163,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         stmt.bindLong(14, entity.getDay());
         stmt.bindLong(15, entity.getQuality());
         stmt.bindLong(16, entity.getResult());
+        stmt.bindLong(17, entity.getSystem_count());
+        stmt.bindLong(18, entity.getKnowledge_total());
+        stmt.bindLong(19, entity.getPeople_count());
+        stmt.bindLong(20, entity.getSpeciality_total());
     }
 
     @Override
@@ -176,7 +192,11 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
             cursor.getInt(offset + 12), // money
             cursor.getInt(offset + 13), // day
             cursor.getInt(offset + 14), // quality
-            cursor.getInt(offset + 15) // result
+            cursor.getInt(offset + 15), // result
+            cursor.getInt(offset + 16), // system_count
+            cursor.getInt(offset + 17), // knowledge_total
+            cursor.getInt(offset + 18), // people_count
+            cursor.getInt(offset + 19) // speciality_total
         );
         return entity;
     }
@@ -199,6 +219,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         entity.setDay(cursor.getInt(offset + 13));
         entity.setQuality(cursor.getInt(offset + 14));
         entity.setResult(cursor.getInt(offset + 15));
+        entity.setSystem_count(cursor.getInt(offset + 16));
+        entity.setKnowledge_total(cursor.getInt(offset + 17));
+        entity.setPeople_count(cursor.getInt(offset + 18));
+        entity.setSpeciality_total(cursor.getInt(offset + 19));
      }
     
     @Override

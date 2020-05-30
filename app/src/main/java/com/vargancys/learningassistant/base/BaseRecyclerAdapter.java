@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.base;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -70,5 +71,9 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseRecyc
         View getParentView() {
             return parentView;
         }
+    }
+
+    public View getView(Context context,int Ids){
+        return View.inflate(context,Ids,null);
     }
 }

@@ -819,5 +819,15 @@
     <string name="challenge_item_number_text">12</string>
     <string name="challenge_item_title_text">dahdjajda</string>
     <string name="challenge_item_time_text">大家的急啊家的</string>
+
+    <!--个人中心知识体系模块-->
+    <string name="mine_system_count_text">2个</string>
+    <string name="mine_system_count_foot_text">知识体系</string>
+    <string name="mine_knowledge_total_text">250个</string>
+    <string name="mine_knowledge_total_foot_text">知识数量</string>
+    <string name="mine_people_count_text">235人</string>
+    <string name="mine_people_count_foot_text">使用人数</string>
+    <string name="mine_speciality_count_text">25个</string>
+    <string name="mine_speciality_count_foot_text">专业认证</string>
 </resources>
 

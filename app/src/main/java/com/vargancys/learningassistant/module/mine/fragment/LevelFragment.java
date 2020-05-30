@@ -20,6 +20,6 @@ public class LevelFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
+        //TODO 制作个人中心等级模块
     }
 }

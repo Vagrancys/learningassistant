@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.presenter.mine;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.request.MineRequest;
@@ -12,6 +13,7 @@ import com.vargancys.learningassistant.module.mine.view.ChallengeItemView;
 import com.vargancys.learningassistant.module.mine.view.ChallengeView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
+import com.vargancys.learningassistant.module.mine.view.SystemView;
 
 import java.util.List;
 
@@ -109,6 +111,26 @@ public class BaseMinePresenter {
             ((ChallengeItemView) mView).loadItemDataFinish(mBean);
         }else{
             ((ChallengeItemView) mView).loadItemDataError(404,"数据没有找到!");
+        }
+    }
+
+    //得到个人中心知识体系数据
+    public void getSystemData(long mineId) {
+        MineDataBean mBean = mRequest.getMineData(mineId);
+        if(mBean != null){
+            ((SystemView) mView).loadSystemDataFinish(mBean);
+        }else{
+            ((SystemView) mView).loadSystemDataError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人中心天梯类型数据
+    public void getSystemTypeData(long mineId) {
+        List<OverViewListContent> mBean = mRequest.getSystemTypeData(mineId);
+        if(mBean != null){
+            ((SystemView) mView).loadSystemTypeDataFinish(mBean);
+        }else{
+            ((SystemView) mView).loadSystemTypeDataError(404,"没有找到数据!");
         }
     }
 }
