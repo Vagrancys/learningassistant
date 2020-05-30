@@ -73,12 +73,25 @@ public class MineDataBean {
     //专业度
     private int speciality_total;
 
-    @Generated(hash = 19725502)
+    //等级最高
+    private int level_highest;
+
+    //等级最低
+    private int level_minimum;
+
+    //等级排行
+    private int level_rank;
+
+    //等级数量
+    private int level_count;
+
+    @Generated(hash = 1000219837)
     public MineDataBean(Long id, String name, int level, String level_name,
             String area, int highest, int ladder_day, int level_total,
             int level_current, int real_level, int knowledge, int influence,
             int money, int day, int quality, int result, int system_count,
-            int knowledge_total, int people_count, int speciality_total) {
+            int knowledge_total, int people_count, int speciality_total,
+            int level_highest, int level_minimum, int level_rank, int level_count) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -99,6 +112,10 @@ public class MineDataBean {
         this.knowledge_total = knowledge_total;
         this.people_count = people_count;
         this.speciality_total = speciality_total;
+        this.level_highest = level_highest;
+        this.level_minimum = level_minimum;
+        this.level_rank = level_rank;
+        this.level_count = level_count;
     }
 
     @Generated(hash = 193054536)
@@ -263,5 +280,37 @@ public class MineDataBean {
 
     public void setSpeciality_total(int speciality_total) {
         this.speciality_total = speciality_total;
+    }
+
+    public int getLevel_highest() {
+        return this.level_highest;
+    }
+
+    public void setLevel_highest(int level_highest) {
+        this.level_highest = level_highest;
+    }
+
+    public int getLevel_minimum() {
+        return this.level_minimum;
+    }
+
+    public void setLevel_minimum(int level_minimum) {
+        this.level_minimum = level_minimum;
+    }
+
+    public int getLevel_rank() {
+        return this.level_rank;
+    }
+
+    public void setLevel_rank(int level_rank) {
+        this.level_rank = level_rank;
+    }
+
+    public int getLevel_count() {
+        return this.level_count;
+    }
+
+    public void setLevel_count(int level_count) {
+        this.level_count = level_count;
     }
 }

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".module.common.MainActivity"/>
-
+        <activity android:name=".module.common.GroupActivity" />
         <activity android:name=".module.common.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.common.GroupActivity" />
         <activity android:name=".module.home.activity.show.KnowShowDefaultActivity"/>
         <activity android:name=".module.home.activity.show.KnowShowFirstActivity"/>
         <activity android:name=".module.home.activity.show.KnowShowThirdActivity"/>
@@ -77,6 +76,7 @@
         <activity android:name=".module.mine.activity.KnowLedgeItemActivity"/>
         <activity android:name=".module.mine.activity.ChallengeItemActivity"/>
         <activity android:name=".module.mine.activity.ChallengeDetailsActivity"/>
+        <activity android:name=".module.mine.activity.LevelDetailsActivity"/>
     </application>
 
 </manifest>

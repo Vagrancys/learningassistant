@@ -44,6 +44,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         public final static Property Knowledge_total = new Property(17, int.class, "knowledge_total", false, "KNOWLEDGE_TOTAL");
         public final static Property People_count = new Property(18, int.class, "people_count", false, "PEOPLE_COUNT");
         public final static Property Speciality_total = new Property(19, int.class, "speciality_total", false, "SPECIALITY_TOTAL");
+        public final static Property Level_highest = new Property(20, int.class, "level_highest", false, "LEVEL_HIGHEST");
+        public final static Property Level_minimum = new Property(21, int.class, "level_minimum", false, "LEVEL_MINIMUM");
+        public final static Property Level_rank = new Property(22, int.class, "level_rank", false, "LEVEL_RANK");
+        public final static Property Level_count = new Property(23, int.class, "level_count", false, "LEVEL_COUNT");
     }
 
 
@@ -78,7 +82,11 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
                 "\"SYSTEM_COUNT\" INTEGER NOT NULL ," + // 16: system_count
                 "\"KNOWLEDGE_TOTAL\" INTEGER NOT NULL ," + // 17: knowledge_total
                 "\"PEOPLE_COUNT\" INTEGER NOT NULL ," + // 18: people_count
-                "\"SPECIALITY_TOTAL\" INTEGER NOT NULL );"); // 19: speciality_total
+                "\"SPECIALITY_TOTAL\" INTEGER NOT NULL ," + // 19: speciality_total
+                "\"LEVEL_HIGHEST\" INTEGER NOT NULL ," + // 20: level_highest
+                "\"LEVEL_MINIMUM\" INTEGER NOT NULL ," + // 21: level_minimum
+                "\"LEVEL_RANK\" INTEGER NOT NULL ," + // 22: level_rank
+                "\"LEVEL_COUNT\" INTEGER NOT NULL );"); // 23: level_count
     }
 
     /** Drops the underlying database table. */
@@ -126,6 +134,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         stmt.bindLong(18, entity.getKnowledge_total());
         stmt.bindLong(19, entity.getPeople_count());
         stmt.bindLong(20, entity.getSpeciality_total());
+        stmt.bindLong(21, entity.getLevel_highest());
+        stmt.bindLong(22, entity.getLevel_minimum());
+        stmt.bindLong(23, entity.getLevel_rank());
+        stmt.bindLong(24, entity.getLevel_count());
     }
 
     @Override
@@ -167,6 +179,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         stmt.bindLong(18, entity.getKnowledge_total());
         stmt.bindLong(19, entity.getPeople_count());
         stmt.bindLong(20, entity.getSpeciality_total());
+        stmt.bindLong(21, entity.getLevel_highest());
+        stmt.bindLong(22, entity.getLevel_minimum());
+        stmt.bindLong(23, entity.getLevel_rank());
+        stmt.bindLong(24, entity.getLevel_count());
     }
 
     @Override
@@ -196,7 +212,11 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
             cursor.getInt(offset + 16), // system_count
             cursor.getInt(offset + 17), // knowledge_total
             cursor.getInt(offset + 18), // people_count
-            cursor.getInt(offset + 19) // speciality_total
+            cursor.getInt(offset + 19), // speciality_total
+            cursor.getInt(offset + 20), // level_highest
+            cursor.getInt(offset + 21), // level_minimum
+            cursor.getInt(offset + 22), // level_rank
+            cursor.getInt(offset + 23) // level_count
         );
         return entity;
     }
@@ -223,6 +243,10 @@ public class MineDataBeanDao extends AbstractDao<MineDataBean, Long> {
         entity.setKnowledge_total(cursor.getInt(offset + 17));
         entity.setPeople_count(cursor.getInt(offset + 18));
         entity.setSpeciality_total(cursor.getInt(offset + 19));
+        entity.setLevel_highest(cursor.getInt(offset + 20));
+        entity.setLevel_minimum(cursor.getInt(offset + 21));
+        entity.setLevel_rank(cursor.getInt(offset + 22));
+        entity.setLevel_count(cursor.getInt(offset + 23));
      }
     
     @Override

@@ -829,5 +829,28 @@
     <string name="mine_people_count_foot_text">使用人数</string>
     <string name="mine_speciality_count_text">25个</string>
     <string name="mine_speciality_count_foot_text">专业认证</string>
+
+    <!--个人中心等级模块-->
+    <string name="mine_level_highest_text">2个</string>
+    <string name="mine_level_highest_foot_text">知识体系</string>
+    <string name="mine_level_minimum_text">250个</string>
+    <string name="mine_level_minimum_foot_text">知识数量</string>
+    <string name="mine_level_rank_text">235人</string>
+    <string name="mine_level_rank_foot_text">使用人数</string>
+    <string name="mine_level_count_text">25个</string>
+    <string name="mine_level_count_foot_text">专业认证</string>
+
+    <!--个人中心等级类型模块-->
+    <string name="level_title">知识等级</string>
+    <string name="level_new_text">1级</string>
+    <string name="level_new_foot_text">当前等级</string>
+    <string name="level_next_text">2级</string>
+    <string name="level_next_foot_text">下一等级</string>
+    <string name="level_experience_text">100</string>
+    <string name="level_experience_foot_text">当前经验</string>
+    <string name="level_next_experience_text">500</string>
+    <string name="level_next_experience_foot_text">下级经验</string>
+    <string name="level_rank_text">120</string>
+    <string name="level_rank_foot_text">等级排名</string>
 </resources>
 
