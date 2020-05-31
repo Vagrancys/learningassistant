@@ -88,7 +88,69 @@ public class LevelItemBean {
         this.title = title;
     }
 
-    public class LevelItem{
+    public static class LevelItem{
+        private String title;
+        private String level;
+        private String experience;
+        private String next_experience;
+        private String rank;
+        private String time;
+        private String privilege;
 
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getExperience() {
+            return experience;
+        }
+
+        public void setLevel(String level) {
+            this.level = level;
+        }
+
+        public String getLevel() {
+            return level;
+        }
+
+        public void setExperience(String experience) {
+            this.experience = experience;
+        }
+
+        public String getNext_experience() {
+            return next_experience;
+        }
+
+        public void setNext_experience(String next_experience) {
+            this.next_experience = next_experience;
+        }
+
+        public String getPrivilege() {
+            return privilege;
+        }
+
+        public void setPrivilege(String privilege) {
+            this.privilege = privilege;
+        }
+
+        public String getRank() {
+            return rank;
+        }
+
+        public void setRank(String rank) {
+            this.rank = rank;
+        }
     }
 }

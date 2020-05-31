@@ -3,9 +3,11 @@ package com.vargancys.learningassistant.presenter.mine;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
+import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
 import com.vargancys.learningassistant.model.mine.request.MineRequest;
 import com.vargancys.learningassistant.module.mine.view.BaseMineView;
 import com.vargancys.learningassistant.module.mine.view.ChallengeDetailsView;
@@ -13,6 +15,7 @@ import com.vargancys.learningassistant.module.mine.view.ChallengeItemView;
 import com.vargancys.learningassistant.module.mine.view.ChallengeView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
+import com.vargancys.learningassistant.module.mine.view.LevelDetailsView;
 import com.vargancys.learningassistant.module.mine.view.SystemView;
 
 import java.util.List;
@@ -131,6 +134,26 @@ public class BaseMinePresenter {
             ((SystemView) mView).loadSystemTypeDataFinish(mBean);
         }else{
             ((SystemView) mView).loadSystemTypeDataError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人中心等级详情数据
+    public void getLevelDetailsData(long levelId) {
+        LevelItemBean.LevelItem mItem = mRequest.getLevelDetailsData(levelId);
+        if(mItem != null){
+            ((LevelDetailsView) mView).loadLevelDetailsDataFinish(mItem);
+        }else{
+            ((LevelDetailsView) mView).loadLevelDetailsDataError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人中心等级权力数据
+    public void getLevelPrivilegeData() {
+        List<MineLevelPrivilegeBean> mBean = mRequest.getLevelPrivilegeData();
+        if(mBean!=null && mBean.size() > 0){
+            ((LevelDetailsView) mView).loadLevelPrivilegeDataFinish(mBean);
+        }else{
+            ((LevelDetailsView) mView).loadLevelPrivilegeDataError(404,"没有找到数据!");
         }
     }
 }

@@ -852,5 +852,29 @@
     <string name="level_next_experience_foot_text">下级经验</string>
     <string name="level_rank_text">120</string>
     <string name="level_rank_foot_text">等级排名</string>
+
+    <!--个人中心等级详细模块-->
+    <string name="level_details_toolbar">等级详情中心</string>
+    <string name="level_details_title_text">初级攀登者</string>
+    <string name="level_details_level_text">初级等级</string>
+    <string name="level_details_level_foot_text">当前等级</string>
+    <string name="level_details_experience_text">200</string>
+    <string name="level_details_experience_foot_text">当前经验</string>
+    <string name="level_details_next_experience_text">300</string>
+    <string name="level_details_next_experience_foot_text">下一级经验</string>
+    <string name="level_details_privilege_text">6项</string>
+    <string name="level_details_privilege_foot_text">等级权力</string>
+    <string name="level_details_rank_text">6</string>
+    <string name="level_details_rank_foot_text">等级排行</string>
+    <string name="level_details_time_text">上衣次</string>
+    <string name="level_details_time_foot_text">更新时间</string>
+    <string name="level_details_line_text">权限详情</string>
+
+    <!--等级权力模块-->
+    <string name="level_privilege_level_text">1级</string>
+    <string name="level_privilege_title_text">不错啊啊啊</string>
+    <string name="level_privilege_summary_text">hdhadajda方式</string>
+    <string name="level_privilege_condition_text">的急啊急啊大</string>
+    <string name="level_privilege_time_text">机会大</string>
 </resources>
 

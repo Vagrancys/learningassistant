@@ -4,14 +4,17 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.MineDataBeanDao;
+import com.vagrancys.learningassistant.db.MineLevelPrivilegeBeanDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
+import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -31,12 +34,14 @@ public class MineRequest {
     private HomeKnowItemDao mKnowDao;
     private LadderDataBeanDao mLadderDataDao;
     private OverViewListContentDao mOverViewDao;
+    private MineLevelPrivilegeBeanDao mPrivilegeDao;
     private MineRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mMineDataDao = mDaoSession.getMineDataBeanDao();
         mKnowDao = mDaoSession.getHomeKnowItemDao();
         mLadderDataDao = mDaoSession.getLadderDataBeanDao();
         mOverViewDao = mDaoSession.getOverViewListContentDao();
+        mPrivilegeDao = mDaoSession.getMineLevelPrivilegeBeanDao();
     }
     public static MineRequest getInstance(){
         if(mRequest == null){
@@ -90,5 +95,15 @@ public class MineRequest {
 
     public List<OverViewListContent> getSystemTypeData(long mineId) {
         return mOverViewDao.loadAll();
+    }
+
+    //得到个人中心等级详细数据
+    public LevelItemBean.LevelItem getLevelDetailsData(long levelId) {
+        return null;
+    }
+
+    //得到个人中心等级权力数据
+    public List<MineLevelPrivilegeBean> getLevelPrivilegeData() {
+        return mPrivilegeDao.loadAll();
     }
 }

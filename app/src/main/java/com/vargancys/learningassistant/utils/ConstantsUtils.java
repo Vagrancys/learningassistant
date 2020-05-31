@@ -77,4 +77,6 @@ public class ConstantsUtils {
     public static final String KNOW_TYPE_ID = "know_type_id";
     //天梯各项详情id
     public static final String CHALLENGE_DETAILS_ID = "challenge_details_id";
+    //个人中心等级详情id
+    public static final String MINE_LEVEL_ID = "mine_level_id";
 }
