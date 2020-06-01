@@ -876,5 +876,35 @@
     <string name="level_privilege_summary_text">hdhadajda方式</string>
     <string name="level_privilege_condition_text">的急啊急啊大</string>
     <string name="level_privilege_time_text">机会大</string>
+
+    <!--个人中心问题模块-->
+    <string name="mine_problem_count_text">25个</string>
+    <string name="mine_problem_count_foot_text">问题</string>
+    <string name="mine_level_text">2级</string>
+    <string name="mine_level_foot_text">最高等级</string>
+    <string name="mine_people_text">25人</string>
+    <string name="mine_people_foot_text">观看</string>
+    <string name="mine_use_text">25人</string>
+    <string name="mine_use_foot_text">使用</string>
+
+    <!--个人中心问题类型模块-->
+    <string name="problem_title">一级</string>
+    <string name="problem_more">更多</string>
+    <string name="problem_count_text">25个</string>
+    <string name="problem_count_foot_text">知识输出</string>
+    <string name="problem_level_text">10级</string>
+    <string name="problem_level_foot_text">最高等级</string>
+    <string name="problem_people_text">25人</string>
+    <string name="problem_people_foot_text">使用人数</string>
+    <string name="problem_use_text">25次</string>
+    <string name="problem_use_foot_text">使用次数</string>
+    <string name="problem_time_text">2012</string>
+    <string name="problem_time_foot_text">发布时间</string>
+    <string name="problem_type_text">单选</string>
+    <string name="knowledge_title_text">标题踢踢踢</string>
+    <string name="knowledge_number_text">1</string>
+    <string name="knowledge_summary_text">等哈就打架啊就到家啊</string>
+    <string name="knowledge_look_text">25人观看</string>
 </resources>
+
 

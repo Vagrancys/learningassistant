@@ -89,6 +89,7 @@ public class LevelItemBean {
     }
 
     public static class LevelItem{
+
         private String title;
         private String level;
         private String experience;
@@ -96,6 +97,8 @@ public class LevelItemBean {
         private String rank;
         private String time;
         private String privilege;
+
+
 
         public String getTitle() {
             return title;

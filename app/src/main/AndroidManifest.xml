@@ -77,6 +77,8 @@
         <activity android:name=".module.mine.activity.ChallengeItemActivity"/>
         <activity android:name=".module.mine.activity.ChallengeDetailsActivity"/>
         <activity android:name=".module.mine.activity.LevelDetailsActivity"/>
+        <activity android:name=".module.mine.activity.ProblemItemActivity"/>
+        <activity android:name=".module.mine.activity.ProblemDetailsActivity"/>
     </application>
 
 </manifest>

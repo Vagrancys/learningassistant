@@ -15,6 +15,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
+import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -105,5 +106,10 @@ public class MineRequest {
     //得到个人中心等级权力数据
     public List<MineLevelPrivilegeBean> getLevelPrivilegeData() {
         return mPrivilegeDao.loadAll();
+    }
+
+    //得到个人中心问题数据
+    public ProblemTypeDataBean getProblemTypeData(long mineId) {
+        return null;
     }
 }
