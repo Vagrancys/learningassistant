@@ -8,6 +8,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
+import com.vargancys.learningassistant.model.mine.bean.ProblemDetailsBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
 import com.vargancys.learningassistant.model.mine.request.MineRequest;
 import com.vargancys.learningassistant.module.mine.view.BaseMineView;
@@ -17,6 +18,7 @@ import com.vargancys.learningassistant.module.mine.view.ChallengeView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
 import com.vargancys.learningassistant.module.mine.view.LevelDetailsView;
+import com.vargancys.learningassistant.module.mine.view.ProblemDetailsView;
 import com.vargancys.learningassistant.module.mine.view.ProblemView;
 import com.vargancys.learningassistant.module.mine.view.SystemView;
 
@@ -176,6 +178,16 @@ public class BaseMinePresenter {
             ((ProblemView) mView).loadProblemTypeDataFinish(mBean);
         }else{
             ((ProblemView) mView).loadProblemTypeDataError(404,"没有找到数据!");
+        }
+    }
+
+    //得到个人中心问题详情数据
+    public void getProblemDetailsData(long detailsId) {
+        ProblemDetailsBean mBean = mRequest.getProblemDetailsData(detailsId);
+        if(mBean != null){
+            ((ProblemDetailsView) mView).loadDetailsDataFinish(mBean);
+        }else{
+            ((ProblemDetailsView) mView).loadDetailsDataError(404,"多是啊啊");
         }
     }
 }

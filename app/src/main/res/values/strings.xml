@@ -723,6 +723,7 @@
     <string name="result_score_text">1258分</string>
 
     <!--个人中心-->
+    <string name="mine_toolbar">个人中心</string>
     <string name="mine_name_text">漂留在心上</string>
     <string name="mine_progressbar_data_text">100/500</string>
     <string name="mine_money_text">5024</string>
@@ -901,10 +902,38 @@
     <string name="problem_time_text">2012</string>
     <string name="problem_time_foot_text">发布时间</string>
     <string name="problem_type_text">单选</string>
-    <string name="knowledge_title_text">标题踢踢踢</string>
-    <string name="knowledge_number_text">1</string>
-    <string name="knowledge_summary_text">等哈就打架啊就到家啊</string>
-    <string name="knowledge_look_text">25人观看</string>
+
+    <!--个人中心问题详情页面-->
+    <string name="problem_details_toolbar">个人中心问题详情</string>
+    <string name="problem_details_title_text">这是什么啊</string>
+    <string name="problem_answer_head">问题:</string>
+    <string name="problem_details_answer_text">不错啊啊啊啊 </string>
+    <string name="problem_answer_radio_first_text">第一个单选答案</string>
+    <string name="problem_answer_radio_first_title">第一个单选安徽对哈对哈好的</string>
+    <string name="problem_answer_radio_second_text">第二个单选答案</string>
+    <string name="problem_answer_radio_second_title">第二个单选安徽对哈对哈好的答对</string>
+    <string name="problem_answer_radio_third_text">第三个单选答案</string>
+    <string name="problem_answer_radio_third_title">第三个单选安徽对哈大大对哈好的</string>
+    <string name="problem_answer_radio_fourth_text">第四个单选答案</string>
+    <string name="problem_answer_radio_fourth_title">第四个单选安徽对大大哈对哈好的</string>
+    <string name="problem_answer_multiple_first_text">第一个多选答案</string>
+    <string name="problem_answer_multiple_first_title">第一个多选安徽对哈对哈好的</string>
+    <string name="problem_answer_multiple_second_text">第二个多选答案</string>
+    <string name="problem_answer_multiple_second_title">第二个多选安徽对哈对哈好的答对</string>
+    <string name="problem_answer_multiple_third_text">第三个多选答案</string>
+    <string name="problem_answer_multiple_third_title">第三个多选安徽对哈大大对哈好的</string>
+    <string name="problem_answer_multiple_fourth_text">第四个多选答案</string>
+    <string name="problem_answer_multiple_fourth_title">第四个多选安徽对大大哈对哈好的</string>
+    <string name="problem_answer_fill_first_text">第一个填空答案</string>
+    <string name="problem_answer_fill_first_title">第一个填空安徽对哈对哈好的</string>
+    <string name="problem_answer_fill_second_text">第二个填空答案</string>
+    <string name="problem_answer_fill_second_title">第二个填空安徽对哈对哈好的答对</string>
+    <string name="problem_answer_fill_third_text">第三个填空答案</string>
+    <string name="problem_answer_fill_third_title">第三个填空安徽对哈大大对哈好的</string>
+    <string name="problem_answer_fill_fourth_text">第四个填空答案</string>
+    <string name="problem_answer_fill_fourth_title">第四个填空安徽对大大哈对哈好的</string>
+    <string name="problem_answer_subjective_text">主观题答案</string>
+    <string name="problem_answer_subjective_title">等哈杀害的哈</string>
 </resources>
 
 

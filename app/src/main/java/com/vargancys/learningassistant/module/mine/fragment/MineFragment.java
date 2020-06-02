@@ -15,6 +15,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.module.mine.activity.SettingActivity;
 import com.vargancys.learningassistant.module.mine.adapter.MineSlidingAdapter;
 import com.vargancys.learningassistant.module.mine.view.BaseMineView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
@@ -92,6 +93,14 @@ public class MineFragment extends BaseFragment implements BaseMineView {
     public void initData() {
         mTitle = getResources().getStringArray(R.array.mine_sliding);
         mPresenter.getMineData(mineId);
+        commonBack.setVisibility(View.GONE);
+        commonTitle.setText(getResources().getString(R.string.mine_toolbar));
+        commonImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingActivity.launch(getActivity());
+            }
+        });
         mAdapter = new MineSlidingAdapter(getFragmentManager(),mTitle);
         slidingTab.setViewPager(viewPager);
         slidingTab.setOnTabSelectListener(new OnTabSelectListener() {
