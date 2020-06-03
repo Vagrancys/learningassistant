@@ -80,6 +80,7 @@
         <activity android:name=".module.mine.activity.ProblemItemActivity"/>
         <activity android:name=".module.mine.activity.ProblemDetailsActivity"/>
         <activity android:name=".module.mine.activity.SettingActivity"/>
+        <activity android:name=".module.mine.activity.SettingMineActivity"/>
     </application>
 
 </manifest>

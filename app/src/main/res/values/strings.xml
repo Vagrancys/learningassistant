@@ -934,6 +934,11 @@
     <string name="problem_answer_fill_fourth_title">第四个填空安徽对大大哈对哈好的</string>
     <string name="problem_answer_subjective_text">主观题答案</string>
     <string name="problem_answer_subjective_title">等哈杀害的哈</string>
+
+    <!--设置中心-->
+    <string name="setting_toolbar">设置中心</string>
+    <string name="setting_mine_text">个人信息</string>
+    <string name="setting_exit_text">退出</string>
 </resources>
 
 
