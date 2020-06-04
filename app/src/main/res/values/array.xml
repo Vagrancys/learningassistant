@@ -66,4 +66,10 @@
         <item>问题</item>
         <item>个人等级</item>
     </string-array>
+    
+    <string-array name="about_author_information">
+        <item>作者: vagrancy</item>
+        <item>博客: https://www.github.com/vagrancys</item>
+        <item>邮箱: 18050829067@163.com</item>
+    </string-array>
 </resources>

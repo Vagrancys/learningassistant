@@ -939,6 +939,38 @@
     <string name="setting_toolbar">设置中心</string>
     <string name="setting_mine_text">个人信息</string>
     <string name="setting_exit_text">退出</string>
+    <string name="setting_currency_text">通用</string>
+    <string name="setting_score_text">评分</string>
+    <string name="setting_feedback_text">意见反馈</string>
+    <string name="setting_protocol_text">协议</string>
+    <string name="setting_about_text">关于我</string>
+    <string name="setting_push_head_text">推送通知</string>
+    <string name="setting_push_foot_text">推送重要的信息</string>
+    <string name="setting_recommend_text">个性化推荐设置</string>
+    <string name="setting_currency_recommend_text">您点击了个性化推荐</string>
+    <string name="setting_currency_toolbar">通用配置</string>
+    <string name="setting_push_successful_text">开启推送服务成功!</string>
+    <string name="setting_push_fail_text">关闭推送服务成功!</string>
+    <string name="setting_score_fail_text">您没有安装应用市场!</string>
+    <string name="about_version_text">v0.0.8</string>
+    <string name="about_update_text">检查更新</string>
+    <string name="about_explain_text">资质与规则</string>
+    <string name="about_author_text">作者: vagrancy</string>
+    <string name="about_blog_text">博客: https://www.github.com/vagrancys</string>
+    <string name="about_email_text">邮箱: 18050829067@163.com</string>
+
+    <!--设置关于我-->
+    <string name="setting_about_toolbar">关于作者</string>
+    <string name="setting_about_update_text">没有做更新功能!</string>
+    <string name="setting_about_explain_text">没有做规则功能!</string>
+
+    <!--设置隐私-->
+    <string name="setting_protocol_toolbar">隐私</string>
+    <string name="setting_permission_text">系统权限</string>
+    <string name="setting_permission_explain_text">授权使用的手机权限</string>
+    <string name="setting_privacy_text">隐私政策</string>
+    <string name="setting_permission_hint_text">系统权限的提示!</string>
+    <string name="setting_privacy_hint_text">隐私政策的提示!</string>
 </resources>
 
 

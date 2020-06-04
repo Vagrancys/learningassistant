@@ -81,6 +81,10 @@
         <activity android:name=".module.mine.activity.ProblemDetailsActivity"/>
         <activity android:name=".module.mine.activity.SettingActivity"/>
         <activity android:name=".module.mine.activity.SettingMineActivity"/>
+        <activity android:name=".module.mine.activity.SettingCurrencyActivity"/>
+        <activity android:name=".module.mine.activity.SettingAboutActivity"/>
+        <activity android:name=".module.mine.activity.SettingProtocolActivity"/>
+        <activity android:name=".module.mine.activity.SettingFeedbackActivity"/>
     </application>
 
 </manifest>

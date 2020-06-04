@@ -14,6 +14,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.ladder.adapter.LadderRankAdapter;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,7 +57,7 @@ public class LadderRankActivity extends BaseActivity {
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.ladder_rank_toolbar));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.ladder_rank_toolbar));
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
