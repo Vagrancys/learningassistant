@@ -26,6 +26,7 @@ import com.vargancys.learningassistant.module.game.view.GameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.widget.TreeDirectory.Node;
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 
@@ -116,7 +117,7 @@ public class GameFragment extends BaseFragment implements GameView {
             e.printStackTrace();
         }
         swipeRefreshLayout.setRefreshing(true);
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefreshLayout.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -194,7 +195,7 @@ public class GameFragment extends BaseFragment implements GameView {
     @Override
     public void showGameContentError(int error, String message) {
         Log.e(TAG,"Error ="+error+", Message ="+message);
-        gameTitle.setText(getResources().getString(R.string.game_title_error));
+        gameTitle.setText(ResourceUtils.getString(getContext(),R.string.game_title_error));
         gameSubject.setText("--");
         gameError.setText("--");
         gameScore.setText("--");

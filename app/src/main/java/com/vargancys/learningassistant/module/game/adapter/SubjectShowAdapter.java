@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.db.game.GameMultipleItem;
 import com.vargancys.learningassistant.db.game.GameRadioItem;
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import java.util.List;
 
@@ -94,8 +95,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
             public void onClick(View v) {
                 Log.e(TAG,"断点");
                 if(mHolder.subjectDetails.getText().toString()
-                        .equals(mContext.getResources()
-                                .getString(R.string.subject_details_show))){
+                        .equals(ResourceUtils.getString(mContext,R.string.subject_details_show))){
                     mHolder.subjectDetails.setText(R.string.subject_details_hide);
                     mHolder.subjectIndicate.startAnimation(mDownRotateAnimation);
                     showLayout(mHolder,mItem);

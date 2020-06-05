@@ -14,6 +14,7 @@ import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpDetailsView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -63,7 +64,7 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
 
     private void initListener() {
         swipeRefresh.setRefreshing(true);
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -82,7 +83,7 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.help_details_toolbar));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.help_details_toolbar));
         commonImg.setVisibility(View.GONE);
     }
 

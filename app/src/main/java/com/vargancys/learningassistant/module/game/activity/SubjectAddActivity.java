@@ -29,6 +29,7 @@ import com.vargancys.learningassistant.module.game.view.AddGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.SubjectRadioGroup;
@@ -178,19 +179,19 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
                     hideItemLayout();
                     switch (mSelect){
                         case 1:
-                            addClassTitle.setText(getResources().getString(R.string.add_class_first_title));
+                            addClassTitle.setText(ResourceUtils.getString(getContext(),R.string.add_class_first_title));
                             addRadioModule.setVisibility(View.VISIBLE);
                             break;
                         case 2:
-                            addClassTitle.setText(getResources().getString(R.string.add_class_second_title));
+                            addClassTitle.setText(ResourceUtils.getString(getContext(),R.string.add_class_second_title));
                             addMultipleModule.setVisibility(View.VISIBLE);
                             break;
                         case 3:
-                            addClassTitle.setText(getResources().getString(R.string.add_class_third_title));
+                            addClassTitle.setText(ResourceUtils.getString(getContext(),R.string.add_class_third_title));
                             addFillModule.setVisibility(View.VISIBLE);
                             break;
                         case 4:
-                            addClassTitle.setText(getResources().getString(R.string.add_class_fourth_title));
+                            addClassTitle.setText(ResourceUtils.getString(getContext(),R.string.add_class_fourth_title));
                             addSubjectiveModule.setVisibility(View.VISIBLE);
                             break;
                     }
@@ -313,7 +314,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.subject_add_title));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.subject_add_title));
 
         commonImg.setImageResource(R.drawable.subject_save_normal);
         commonImg.setOnClickListener(new View.OnClickListener() {

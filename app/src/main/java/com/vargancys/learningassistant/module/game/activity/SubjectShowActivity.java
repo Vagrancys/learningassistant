@@ -20,6 +20,7 @@ import com.vargancys.learningassistant.module.game.adapter.SubjectShowAdapter;
 import com.vargancys.learningassistant.module.game.view.SubjectShowView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.common_subject_title));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_subject_title));
 
         commonImg.setImageResource(R.drawable.know_add_normal);
 
@@ -120,7 +121,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
                 mPresenter.getSubjectData(knowItemId);
             }
         });
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefreshLayout.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
     }
 
     public static void launch(Activity activity, long know_id) {
@@ -165,11 +166,11 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     private void clearItemData() {
         recyclerView.setVisibility(View.GONE);
         fragmentEmpty.setVisibility(View.VISIBLE);
-        fragmentContent.setText(getResources().getString(R.string.subject_item_empty));
+        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.subject_item_empty));
     }
 
     private void clearContentData() {
-        subjectTitle.setText(getResources().getString(R.string.subject_title_empty));
+        subjectTitle.setText(ResourceUtils.getString(getContext(),R.string.subject_title_empty));
         subjectLastTime.setText("--");
         subjectAnswer.setText("--");
         subjectError.setText("--");

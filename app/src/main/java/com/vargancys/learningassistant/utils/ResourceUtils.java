@@ -1,6 +1,7 @@
 package com.vargancys.learningassistant.utils;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 /**
  * @author Vagrancy
@@ -23,5 +24,10 @@ public class ResourceUtils {
     //返回字符串数组
     public static String[] getStringArray(Context context,int id){
         return context.getResources().getStringArray(id);
+    }
+
+    //返回drawable
+    public static Drawable getDrawable(Context context,int drawable){
+        return context.getResources().getDrawable(drawable);
     }
 }

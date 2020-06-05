@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.module.game.view.SignAddView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -81,7 +82,7 @@ public class GameSignAddActivity extends BaseActivity implements SignAddView {
                 finish();
             }
         });
-        commonTitle.setText(getResources().getString(R.string.sign_game_add_title));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.sign_game_add_title));
 
         commonImg.setImageResource(R.drawable.sign_add_normal);
 

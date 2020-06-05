@@ -20,6 +20,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationVie
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -60,7 +61,7 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
 
     @Override
     public void initView() {
-        mTab = getResources().getStringArray(R.array.ladder_communication);
+        mTab = ResourceUtils.getStringArray(getContext(),R.array.ladder_communication);
         mPresenter = new BaseLadderPresenter(this);
         initAdapter();
         initListener();
@@ -103,7 +104,7 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
                 if(commentEdit.getText().length()>0){
                     mPresenter.saveCommentData(mCurrent,commentEdit.getText().toString());
                 }else{
-                    ToastUtils.ToastText(getBaseContext(), getResources().getString(R.string.ladder_communication_empty));
+                    ToastUtils.ToastText(getBaseContext(), ResourceUtils.getString(getContext(),R.string.ladder_communication_empty));
                 }
             }
         });

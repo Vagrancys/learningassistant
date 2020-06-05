@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.db.game.GameSignContent;
 import com.vargancys.learningassistant.module.game.adapter.GameSignAdapter;
 import com.vargancys.learningassistant.module.game.view.SignGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.game_sign_title));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.game_sign_title));
 
         commonImg.setImageResource(R.drawable.game_sign_add_normal);
         commonImg.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +85,7 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
 
     private void initData() {
         mHandler = new Handler();
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefresh.setRefreshing(true);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -117,7 +118,7 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
     public void showGameSignAllError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
         swipeRefresh.setRefreshing(false);
-        fragmentContent.setText(getResources().getString(R.string.fragment_sign_empty));
+        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.fragment_sign_empty));
         fragmentEmpty.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }

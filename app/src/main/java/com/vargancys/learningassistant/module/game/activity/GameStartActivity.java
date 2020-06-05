@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.module.game.view.StartGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -173,8 +174,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryFill();
-                if(startFillFirstTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startFillFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startFillFirstTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startFillAnswer = 1;
                 }
             }
@@ -183,8 +184,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryFill();
-                if(startFillSecondTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startFillSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startFillSecondTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startFillAnswer = 2;
                 }
             }
@@ -193,8 +194,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryFill();
-                if(startFillThirdTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startFillThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startFillThirdTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startFillAnswer = 1;
                 }
             }
@@ -203,8 +204,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryFill();
-                if(startFillFourthTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startFillFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startFillFourthTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startFillAnswer = 1;
                 }
             }
@@ -235,10 +236,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
 
     //重置填空问题
     private void recoveryFill() {
-        startFillFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startFillSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startFillThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startFillFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
+        startFillFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startFillSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startFillThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startFillFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
     }
 
     //注册多选的监听器
@@ -248,10 +249,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             public void onClick(View view) {
                 if(multipleFirstAnswer){
                     multipleFirstAnswer = false;
-                    startMultipleFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
+                    startMultipleFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
                 }else{
                     multipleFirstAnswer = true;
-                    startMultipleFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                    startMultipleFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                 }
             }
         });
@@ -260,10 +261,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             public void onClick(View view) {
                 if(multipleSecondAnswer){
                     multipleSecondAnswer = false;
-                    startMultipleSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
+                    startMultipleSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
                 }else{
                     multipleSecondAnswer = true;
-                    startMultipleSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                    startMultipleSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                 }
             }
         });
@@ -272,10 +273,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             public void onClick(View view) {
                 if(multipleThirdAnswer){
                     multipleThirdAnswer = false;
-                    startMultipleThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
+                    startMultipleThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
                 }else{
                     multipleThirdAnswer = true;
-                    startMultipleThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                    startMultipleThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                 }
             }
         });
@@ -284,10 +285,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             public void onClick(View view) {
                 if(multipleFourthAnswer){
                     multipleFourthAnswer = false;
-                    startMultipleFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
+                    startMultipleFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
                 }else{
                     multipleFourthAnswer = true;
-                    startMultipleFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                    startMultipleFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                 }
             }
         });
@@ -345,8 +346,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryRadio();
-                if(startRadioFirstTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startRadioFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startRadioFirstTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startRadioAnswer = 1;
                 }
             }
@@ -355,8 +356,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryRadio();
-                if(startRadioSecondTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startRadioSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startRadioSecondTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startRadioAnswer = 2;
                 }
             }
@@ -365,8 +366,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryRadio();
-                if(startRadioThirdTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startRadioThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startRadioThirdTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startRadioAnswer = 3;
                 }
             }
@@ -375,8 +376,8 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             @Override
             public void onClick(View view) {
                 recoveryRadio();
-                if(startRadioFourthTitle.getBackground() == getResources().getDrawable(R.drawable.topic_select_no_bg)){
-                    startRadioFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_anwser_bg));
+                if(startRadioFourthTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
                     startRadioAnswer = 4;
                 }
             }
@@ -435,30 +436,30 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         GameStartContent mContent = mContents.get(startProgress);
         switch (startFillAnswer){
             case 1:
-                startFillFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startFillFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
             case 2:
-                startFillSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startFillSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
             case 3:
-                startFillThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startFillThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
             case 4:
-                startFillFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startFillFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
         }
         switch (mContent.getFill_answer()){
             case 1:
-                startFillFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startFillFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
             case 2:
-                startFillSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startFillSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
             case 3:
-                startFillThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startFillThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
             case 4:
-                startFillFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startFillFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
         }
     }
@@ -467,26 +468,26 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
     private void JudgeMultipleLayout() {
         GameStartContent mContent = mContents.get(startProgress);
         if(multipleFirstAnswer == mContent.isMultiple_first_answer()){
-            startRadioFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+            startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
         }else{
-            startRadioFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+            startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
         }
         if(multipleSecondAnswer == mContent.isMultiple_second_answer()){
-            startRadioSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+            startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
         }else{
-            startRadioSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+            startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
         }
 
         if(multipleThirdAnswer == mContent.isMultiple_third_answer()){
-            startRadioThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+            startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
         }else{
-            startRadioThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+            startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
         }
 
         if(multipleFourthAnswer == mContent.isMultiple_fourth_answer()){
-            startRadioFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+            startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
         }else{
-            startRadioFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+            startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
         }
     }
 
@@ -495,30 +496,30 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         GameStartContent mContent = mContents.get(startProgress);
         switch (startRadioAnswer){
             case 1:
-                startRadioFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
             case 2:
-                startRadioSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
             case 3:
-                startRadioThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
             case 4:
-                startRadioFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_fail_bg));
+                startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_fail_bg));
                 break;
         }
         switch (mContent.getRadio_yes()){
             case 1:
-                startRadioFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
             case 2:
-                startRadioSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
             case 3:
-                startRadioThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
             case 4:
-                startRadioFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_win_bg));
+                startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_win_bg));
                 break;
         }
     }
@@ -545,10 +546,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
 
     //重置单选问题
     private void recoveryRadio() {
-        startRadioFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startRadioSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startRadioThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startRadioFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
+        startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
     }
 
     public static void launch(Activity activity) {
@@ -630,10 +631,10 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
 
     //重置多选
     private void recoveryMultiple(){
-        startMultipleFirstTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startMultipleSecondTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startMultipleThirdTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
-        startMultipleFourthTitle.setBackground(getResources().getDrawable(R.drawable.topic_select_no_bg));
+        startMultipleFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startMultipleSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startMultipleThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+        startMultipleFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
     }
 
     //显示需要显示的视图
