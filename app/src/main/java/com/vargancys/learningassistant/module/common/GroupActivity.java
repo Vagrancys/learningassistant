@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.DensityUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +60,7 @@ public class GroupActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        mTitle = getResources().getStringArray(R.array.group_title);
+        mTitle = ResourceUtils.getStringArray(getContext(),R.array.group_title);
         addPoint();
         viewPager.setAdapter(new GroupPagerAdapter());
 
@@ -112,8 +113,8 @@ public class GroupActivity extends BaseActivity {
             TextView textView = new TextView(getContext());
             textView.setGravity(Gravity.CENTER);
             textView.setText(mTitle[position]);
-            textView.setTextSize(getResources().getDimension(R.dimen.text_size_24sp));
-            textView.setTextColor(getResources().getColor(R.color.black));
+            textView.setTextSize(ResourceUtils.getDimension(getContext(),R.dimen.text_size_24sp));
+            textView.setTextColor(ResourceUtils.getColor(getContext(),R.color.black));
             container.addView(textView);
             return textView;
         }

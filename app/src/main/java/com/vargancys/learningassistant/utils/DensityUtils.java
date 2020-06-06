@@ -10,7 +10,7 @@ import android.content.Context;
  */
 public class DensityUtils {
     public static int dip2px(Context context,int deValue){
-        float density= context.getResources().getDisplayMetrics().density;
+        float density= context.().getDisplayMetrics().density;
         return (int) (density * deValue +0.5f);
     }
 }

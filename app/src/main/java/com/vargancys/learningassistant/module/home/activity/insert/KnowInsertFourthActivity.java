@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.module.home.adapter.HomeKnowFourthAdapter
 import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
 import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.FunctionDialog;
 
@@ -88,7 +89,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getResources().getString(R.string.common_fourth));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_fourth));
 
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override

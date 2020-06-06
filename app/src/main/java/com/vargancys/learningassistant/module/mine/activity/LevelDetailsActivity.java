@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.module.mine.adapter.LevelPrivilegeAdapter
 import com.vargancys.learningassistant.module.mine.view.LevelDetailsView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -103,7 +104,7 @@ public class LevelDetailsActivity extends BaseActivity implements LevelDetailsVi
             }
         });
 
-        commonTitleData.setText(getResources().getString(R.string.level_details_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.level_details_toolbar));
     }
 
     @Override

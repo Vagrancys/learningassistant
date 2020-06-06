@@ -45,7 +45,7 @@ public class KnowSettingContentActivity extends BaseActivity {
             }
         });
 
-        commonTitleData.setText(getResources().getString(R.string.common_setting_content));
+        commonTitleData.setText(multiple().getString(R.string.common_setting_content));
     }
 
     public static void launch(Activity activity, Long know_id) {

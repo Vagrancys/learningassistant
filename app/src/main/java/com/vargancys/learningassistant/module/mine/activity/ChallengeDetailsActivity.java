@@ -12,6 +12,7 @@ import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.module.mine.view.ChallengeDetailsView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -72,7 +73,7 @@ public class ChallengeDetailsActivity extends BaseActivity implements ChallengeD
             }
         });
 
-        commonTitleData.setText(getResources().getString(R.string.challenge_details_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.challenge_details_toolbar));
     }
 
     public static void launch(Activity activity, long id) {

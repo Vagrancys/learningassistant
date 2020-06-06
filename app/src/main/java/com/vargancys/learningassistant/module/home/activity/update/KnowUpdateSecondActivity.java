@@ -23,6 +23,7 @@ import com.vargancys.learningassistant.module.home.adapter.HomeKnowSecondAdapter
 import com.vargancys.learningassistant.module.home.view.KnowUpdateSecondView;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.FunctionDialog;
 
@@ -109,7 +110,7 @@ public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdat
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.common_update_second));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_update_second));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
 

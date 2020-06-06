@@ -24,6 +24,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -71,7 +72,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
 
     private void initData() {
         mPresenter = new BaseLadderPresenter(this);
-        mDifficulty = getResources().getStringArray(R.array.ladder_difficulty);
+        mDifficulty = ResourceUtils.getStringArray(getContext(),R.array.ladder_difficulty);
         mAdapter = new DifficultyPagerAdapter(getSupportFragmentManager(),mDifficulty);
         viewPager.setAdapter(mAdapter);
 
@@ -93,13 +94,13 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
         });
 
         mDialog = new AlertDialog.Builder(this);
-        mDialog.setPositiveButton(getResources().getText(R.string.common_cancel_text), new DialogInterface.OnClickListener() {
+        mDialog.setPositiveButton(ResourceUtils.getString(getContext(),R.string.common_cancel_text), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i){
                 dialogInterface.dismiss();
             }
         });
-        mDialog.setNegativeButton(getResources().getText(R.string.common_determine_text), new DialogInterface.OnClickListener() {
+        mDialog.setNegativeButton(ResourceUtils.getString(getContext(),R.string.common_determine_text), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 mPresenter.showSelectType();
@@ -115,7 +116,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
                 if(difficultyEdit.getText().length()>0){
                     mPresenter.saveDifficultData(selectDifficulty,difficultyEdit.getText().toString());
                 }else{
-                    ToastUtils.ToastText(getBaseContext(),getResources().getString(R.string.difficulty_edit_empty_text));
+                    ToastUtils.ToastText(getBaseContext(),ResourceUtils.getString(getContext(),R.string.difficulty_edit_empty_text));
                 }
             }
         });
@@ -129,7 +130,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
                 finish();
             }
         });
-        commonTitle.setText(getResources().getString(R.string.difficulty_toolbar));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.difficulty_toolbar));
 
         commonImg.setImageResource(R.drawable.difficulty_select_normal);
 
@@ -138,7 +139,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
             @Override
             public void onClick(View view) {
                 mDialog.setTitle(mDifficulty[slidingTab.getCurrentTab()]);
-                mDialog.setMessage(String.format(getResources().getString(R.string.difficulty_select_type_text),mDifficulty[slidingTab.getCurrentTab()]));
+                mDialog.setMessage(String.format(ResourceUtils.getString(getContext(),R.string.difficulty_select_type_text),mDifficulty[slidingTab.getCurrentTab()]));
                 mDialog.show();
             }
         });
@@ -151,7 +152,7 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
 
     @Override
     public void showDifficultySendFinish() {
-        ToastUtils.ToastText(getContext(),getResources().getString(R.string.difficulty_send_successful_text));
+        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.difficulty_send_successful_text));
         DifficultyFragment mFragment = (DifficultyFragment) mAdapter.getItem(selectDifficulty);
         mFragment.autoRefreshData();
     }
@@ -164,6 +165,6 @@ public class LadderDifficultyActivity extends BaseActivity implements LadderDiff
 
     @Override
     public void showSelectType() {
-        ToastUtils.ToastText(getContext(),getResources().getString(R.string.difficulty_select_successful_text));
+        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.difficulty_select_successful_text));
     }
 }

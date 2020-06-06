@@ -13,6 +13,7 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;
 import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -64,7 +65,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getResources().getString(R.string.common_third));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_third));
 
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override

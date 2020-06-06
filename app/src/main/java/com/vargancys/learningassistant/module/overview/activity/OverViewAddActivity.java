@@ -21,6 +21,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.adapter.AddTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.AddKnowItemDialog;
@@ -285,7 +286,7 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.overview_toolbar_title));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.overview_toolbar_title));
 
         commonImg.setImageResource(R.drawable.overview_add_normal);
 

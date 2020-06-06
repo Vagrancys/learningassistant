@@ -21,6 +21,7 @@ import com.vargancys.learningassistant.module.mine.view.BaseMineView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -91,10 +92,10 @@ public class MineFragment extends BaseFragment implements BaseMineView {
 
     @Override
     public void initData() {
-        mTitle = getResources().getStringArray(R.array.mine_sliding);
+        mTitle = ResourceUtils.getStringArray(getContext(),R.array.mine_sliding);
         mPresenter.getMineData(mineId);
         commonBack.setVisibility(View.GONE);
-        commonTitle.setText(getResources().getString(R.string.mine_toolbar));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.mine_toolbar));
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

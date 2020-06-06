@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.module.ladder.adapter.DifficultyCommentAd
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetailsView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class DifficultyFragment extends BaseFragment implements LadderDifficulty
     }
 
     private void initListener() {
-        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefreshLayout.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -15,6 +15,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -72,7 +73,7 @@ public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpd
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getResources().getString(R.string.common_first));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_first));
     }
 
     private void initListener() {
@@ -84,7 +85,7 @@ public class KnowUpdateFirstActivity extends BaseActivity implements BaseKnowUpd
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.common_update_first));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_update_first));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
 

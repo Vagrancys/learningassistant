@@ -12,6 +12,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.common.adapter.CommonFragmentAdapter;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        mTitle = getResources().getStringArray(R.array.main_title);
+        mTitle = ResourceUtils.getStringArray(getContext(),R.array.main_title);
         initEntity();
         commonAdapter = new CommonFragmentAdapter(getSupportFragmentManager(), mTitle.length);
         viewPager.setAdapter(commonAdapter);

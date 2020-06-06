@@ -12,6 +12,7 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
 import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -61,7 +62,7 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getResources().getString(R.string.common_fifth));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_fifth));
     }
 
     private void initListener() {

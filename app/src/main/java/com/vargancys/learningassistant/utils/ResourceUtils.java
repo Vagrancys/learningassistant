@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Dimension;
 
 /**
  * @author Vagrancy
@@ -29,5 +30,10 @@ public class ResourceUtils {
     //返回drawable
     public static Drawable getDrawable(Context context,int drawable){
         return context.getResources().getDrawable(drawable);
+    }
+
+    //返回Dimension
+    public static float getDimension(Context context,int dimension){
+        return context.getResources().getDimension(dimension);
     }
 }

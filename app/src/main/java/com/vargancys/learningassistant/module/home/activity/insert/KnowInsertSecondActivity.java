@@ -20,6 +20,7 @@ import com.vargancys.learningassistant.module.home.adapter.HomeKnowSecondAdapter
 import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
 import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.FunctionDialog;
 
@@ -90,7 +91,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getResources().getString(R.string.common_second));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_second));
 
         commonBack.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -127,7 +127,7 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
                 finish();
             }
         });
-        commonTitle.setText(getResources().getText(R.string.ladder_communication_toolbar));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.ladder_communication_toolbar));
         commonImg.setImageResource(R.drawable.permission_setting_normal);
         commonImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +145,7 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
 
     @Override
     public void sendCommentFinish() {
-        ToastUtils.ToastText(getContext(),getResources().getString(R.string.ladder_comment_success));
+        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.ladder_comment_success));
         mPresenter.refreshCommentLayout();
         commentEdit.setText("");
     }

@@ -14,6 +14,7 @@ import com.vargancys.learningassistant.module.mine.view.SystemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class SystemFragment extends BaseFragment  implements SystemView {
     }
 
     private void initRefresh() {
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

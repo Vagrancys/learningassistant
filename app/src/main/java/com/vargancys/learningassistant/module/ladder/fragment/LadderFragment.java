@@ -27,6 +27,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -214,7 +215,7 @@ public class LadderFragment extends BaseFragment implements LadderView {
     protected void initView() {
         ladderId = CacheUtils.getLong(getContext(), ConstantsUtils.LADDER_DATA_ID, 0);
         mPresenter = new BaseLadderPresenter(this);
-        mTitle = getResources().getStringArray(R.array.ladder_title);
+        mTitle = ResourceUtils.getStringArray(getContext(),R.array.ladder_title);
         initHideLayout();
         difficulty = CacheUtils.getInt(getContext(),ConstantsUtils.LADDER_DIFFICULTY_TYPE,0);
         mPresenter.getLadderData(ladderId);

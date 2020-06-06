@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -45,7 +46,7 @@ public class SettingAboutActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        String[] mInformation = getResources().getStringArray(R.array.about_author_information);
+        String[] mInformation = ResourceUtils.getStringArray(getContext(),R.array.about_author_information);
         aboutMe.setText(mInformation[0]);
         aboutBlog.setText(mInformation[1]);
         aboutEmail.setText(mInformation[2]);
@@ -67,7 +68,7 @@ public class SettingAboutActivity extends BaseActivity {
             }
         });
 
-        commonTitleData.setText(getResources().getString(R.string.setting_about_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.setting_about_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -79,10 +80,10 @@ public class SettingAboutActivity extends BaseActivity {
     public void onViewClicked(View itemView) {
         switch (itemView.getId()){
             case R.id.about_update:
-                ToastUtils.ToastText(getContext(),getResources().getString(R.string.setting_about_update_text));
+                ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_about_update_text));
                 break;
             case R.id.about_explain:
-                ToastUtils.ToastText(getContext(),getResources().getString(R.string.setting_about_explain_text));
+                ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_about_explain_text));
                 break;
         }
     }

@@ -31,6 +31,7 @@ import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapte
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
 import com.vargancys.learningassistant.presenter.home.KnowDataPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -139,8 +140,8 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-                dialog.setTitle(getResources().getString(R.string.dialog_data_delete_title));
-                dialog.setMessage(getResources().getString(R.string.dialog_data_delete_message));
+                dialog.setTitle(ResourceUtils.getString(getContext(),R.string.dialog_data_delete_title));
+                dialog.setMessage(ResourceUtils.getString(getContext(),R.string.dialog_data_delete_message));
                 dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

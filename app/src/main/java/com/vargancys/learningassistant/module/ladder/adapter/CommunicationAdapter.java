@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class CommunicationAdapter extends BaseRecyclerAdapter {
         mHolder.praiseLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mHolder.commentPraiseImg.getBackground() == mContext.getResources().getDrawable(R.drawable.comment_praise_selected_normal)){
+                if(mHolder.commentPraiseImg.getBackground() == ResourceUtils.getDrawable(mContext,R.drawable.comment_praise_selected_normal)){
                     mHolder.commentPraiseImg.setImageResource(R.drawable.comment_praise_unselected_normal);
                     mHolder.commentPraiseCount.setText(bean.getPraise()-1);
                     if(onCommentClickListener != null){
@@ -81,7 +82,7 @@ public class CommunicationAdapter extends BaseRecyclerAdapter {
         mHolder.stepLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mHolder.commentStepImg.getBackground() == mContext.getResources().getDrawable(R.drawable.comment_step_selected_normal)){
+                if(mHolder.commentStepImg.getBackground() == ResourceUtils.getDrawable(mContext,R.drawable.comment_step_selected_normal)){
                     mHolder.commentStepImg.setImageResource(R.drawable.comment_step_unselected_normal);
                     mHolder.commentStepCount.setText(bean.getStep()-1);
                     if(onCommentClickListener != null){

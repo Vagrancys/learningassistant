@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.module.mine.adapter.ChallengeItemAdapter;
 import com.vargancys.learningassistant.module.mine.view.ChallengeItemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class ChallengeItemActivity extends BaseActivity implements ChallengeItem
     public void initView() {
         type = getIntent().getIntExtra(ConstantsUtils.KNOW_TYPE_ID, 0);
         mPresenter = new BaseMinePresenter(this);
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -85,7 +86,7 @@ public class ChallengeItemActivity extends BaseActivity implements ChallengeItem
                 finish();
             }
         });
-        commonTitleData.setText(getResources().getString(R.string.challenge_item_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.challenge_item_toolbar));
     }
 
     private void autoRefresh(){

@@ -22,6 +22,7 @@ import com.vargancys.learningassistant.module.ladder.adapter.CommentReplyAdapter
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentReplyView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
         mAdapter = new CommentReplyAdapter(getContext(), mReplyBean);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -102,7 +103,7 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
                 if (commentEdit.getText().length() > 0) {
                     mPresenter.saveCommentReplyData(commentId, commentEdit.getText().toString());
                 } else {
-                    ToastUtils.ToastText(getBaseContext(), getResources().getString(R.string.comment_data_empty_text));
+                    ToastUtils.ToastText(getBaseContext(), ResourceUtils.getString(getContext(),R.string.comment_data_empty_text));
                 }
             }
         });
@@ -117,7 +118,7 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.comment_reply_toolbar));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.comment_reply_toolbar));
 
         commonImg.setVisibility(View.GONE);
     }
@@ -145,13 +146,13 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
 
     @Override
     public void showSaveCommentDataFinish() {
-        ToastUtils.ToastText(getContext(), getResources().getString(R.string.comment_save_data_finish_text));
+        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.comment_save_data_finish_text));
         autoRefresh();
     }
 
     @Override
     public void showSaveCommentDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(), getResources().getString(R.string.comment_save_data_error_text));
+        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.comment_save_data_error_text));
         commentEdit.setText("");
     }
 
@@ -168,7 +169,7 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
 
     @Override
     public void showCommentDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(), getResources().getString(R.string.comment_empty_text));
+        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.comment_empty_text));
         commentAuthor.setText("--");
         commentContent.setText("--");
         commentLevel.setText("--");

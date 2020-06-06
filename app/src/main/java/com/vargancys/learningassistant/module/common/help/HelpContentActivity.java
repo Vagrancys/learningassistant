@@ -22,6 +22,7 @@ import com.vargancys.learningassistant.module.common.adapter.HelpContentAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpContentView;
 import com.vargancys.learningassistant.presenter.common.help.HelpContentPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     @Override
     public void initView() {
         helpContentPresenter = new HelpContentPresenter(this);
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         helpContentAdapter = new HelpContentAdapter(getContext(),mBean);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(helpContentAdapter);

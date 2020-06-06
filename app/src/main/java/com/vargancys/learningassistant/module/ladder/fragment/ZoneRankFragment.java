@@ -16,6 +16,7 @@ import com.vargancys.learningassistant.module.ladder.adapter.ZoneRankDataAdapter
 import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class ZoneRankFragment extends BaseFragment implements LadderZoneRankView
             zoneId = getArguments().getInt(ConstantsUtils.ZONE_RANK_POSITION,0);
         }
         mPresenter = new BaseLadderPresenter(this);
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

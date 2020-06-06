@@ -18,6 +18,7 @@ import com.vargancys.learningassistant.module.overview.view.OverViewContentView;
 import com.vargancys.learningassistant.presenter.overview.OverViewContentPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 
@@ -76,7 +77,7 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
 
     private void init() {
         getSelectId();
-        overViewSwipe.setColorSchemeColors(getResources().getColor(R.color.pink));
+        overViewSwipe.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         overViewSwipe.setRefreshing(true);
         overViewSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

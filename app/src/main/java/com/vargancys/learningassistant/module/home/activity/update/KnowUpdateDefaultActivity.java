@@ -15,6 +15,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -78,7 +79,7 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.common_update_default));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_update_default));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
 

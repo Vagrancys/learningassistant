@@ -23,6 +23,7 @@ import com.vargancys.learningassistant.module.home.adapter.HistoryDataAdapter;
 import com.vargancys.learningassistant.module.home.view.BaseHistoryView;
 import com.vargancys.learningassistant.presenter.home.KnowHistoryPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -112,7 +113,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
             }
         });
 
-        commonTitle.setText(getResources().getString(R.string.common_history_title));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_history_title));
 
         commonImg.setVisibility(View.GONE);
     }

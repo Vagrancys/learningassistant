@@ -16,6 +16,7 @@ import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.module.ladder.adapter.LadderHelpAdapter;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -87,7 +88,7 @@ public class LadderHelpActivity extends BaseActivity implements LadderHelpView {
         });
 
         commonImg.setVisibility(View.GONE);
-        commonTitle.setText(getResources().getString(R.string.ladder_help_title_text));
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.ladder_help_title_text));
     }
 
     public static void launch(Activity activity) {

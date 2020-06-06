@@ -13,6 +13,7 @@ import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
 import com.vargancys.learningassistant.module.ladder.view.LadderRankSettingView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ public class LadderRankSettingActivity extends BaseActivity implements LadderRan
             }
         });
 
-        commonTitleData.setText(getResources().getString(R.string.rank_setting_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.rank_setting_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -187,12 +188,12 @@ public class LadderRankSettingActivity extends BaseActivity implements LadderRan
 
     @Override
     public void showRankSettingError() {
-        ToastUtils.ToastText(getContext(),getResources().getString(R.string.rank_setting_error_text));
+        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.rank_setting_error_text));
     }
 
     @Override
     public void saveRankSettingFinish() {
-        ToastUtils.ToastText(getContext(),getResources().getString(R.string.rank_setting_win_text));
+        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.rank_setting_win_text));
         finish();
     }
 

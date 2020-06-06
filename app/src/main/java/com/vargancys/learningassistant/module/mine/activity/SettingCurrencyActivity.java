@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -43,14 +44,14 @@ public class SettingCurrencyActivity extends BaseActivity {
 
     @Override
     public void initToolbar() {
-        commonTitleData.setText(getResources().getString(R.string.setting_currency_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.setting_currency_toolbar));
         settingCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    ToastUtils.ToastText(getContext(),getResources().getString(R.string.setting_push_successful_text));
+                    ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_push_successful_text));
                 }else{
-                    ToastUtils.ToastText(getContext(),getResources().getString(R.string.setting_push_fail_text));
+                    ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_push_fail_text));
                 }
             }
         });
@@ -68,7 +69,7 @@ public class SettingCurrencyActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.ll_setting_recommend:
-                ToastUtils.ToastText(getContext(),getResources().getString(R.string.setting_currency_recommend_text));
+                ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_currency_recommend_text));
                 break;
         }
     }

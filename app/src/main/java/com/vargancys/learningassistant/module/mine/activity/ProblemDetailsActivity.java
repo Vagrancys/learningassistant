@@ -14,6 +14,7 @@ import com.vargancys.learningassistant.model.mine.bean.ProblemDetailsBean;
 import com.vargancys.learningassistant.module.mine.view.ProblemDetailsView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -125,7 +126,7 @@ public class ProblemDetailsActivity extends BaseActivity implements ProblemDetai
             }
         });
 
-        commonTitleData.setText(getResources().getString(R.string.problem_details_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.problem_details_toolbar));
     }
 
     public static void launch(Activity activity, long type) {

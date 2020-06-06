@@ -44,6 +44,7 @@ import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
 import com.vargancys.learningassistant.presenter.home.HomeContentPresenter;
 import com.vargancys.learningassistant.utils.JumpRouteUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -128,7 +129,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         homeContentAdapter.setOnItemLongClickListener(new HomeContentItemLongClickListener());
 
         jumpRouteUtils = new JumpRouteUtils().getJumpRouteUtils();
-        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         swipeRefresh.setOnRefreshListener(new HomeContentOnRefreshListener());
         addMenu.setOnClickListener(this);
 

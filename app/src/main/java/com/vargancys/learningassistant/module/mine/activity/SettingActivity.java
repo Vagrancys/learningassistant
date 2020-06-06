@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -48,7 +49,7 @@ public class SettingActivity extends BaseActivity {
             }
         });
 
-        commonTitleData.setText(getResources().getString(R.string.setting_toolbar));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.setting_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -93,7 +94,7 @@ public class SettingActivity extends BaseActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }catch (Exception e){
-            ToastUtils.ToastText(getContext(),getResources().getString(R.string.setting_score_fail_text));
+            ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_score_fail_text));
             e.printStackTrace();
         }
     }
