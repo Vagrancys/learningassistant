@@ -971,6 +971,14 @@
     <string name="setting_privacy_text">隐私政策</string>
     <string name="setting_permission_hint_text">系统权限的提示!</string>
     <string name="setting_privacy_hint_text">隐私政策的提示!</string>
+
+    <!--设置反馈-->
+    <string name="setting_feedback_toolbar">意见反馈</string>
+    <string name="feedback_header_text">意见反馈</string>
+    <string name="feedback_edit_hint">请输入你的反馈意见!</string>
+    <string name="feedback_submit_text">提交</string>
+    <string name="feedback_edit_empty">请输入反馈的内容!</string>
+    <string name="feedback_successful_text">保存意见反馈成功!</string>
 </resources>
 
 

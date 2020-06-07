@@ -32,7 +32,6 @@ public class MineSlidingAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
         if(mFragment[i] == null){
-            //TODO 处理这五个fragment页面
             switch (i){
                 case 0:
                     mFragment[i] = KnowLedgeFragment.newInstance();

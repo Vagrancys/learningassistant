@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top">
+    <include layout="@layout/include_toolbar_data"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_width_10dp"
+        android:text="@string/feedback_header_text"
+        android:textSize="@dimen/text_size_24sp"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/feedback_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/feedback_edit_hint"
+        android:gravity="top|start"
+        android:padding="@dimen/margin_width_5dp"
+        android:textColor="@color/black_1"
+        android:background="@drawable/bg_feedback_edit_shape"
+        android:layout_margin="@dimen/margin_width_10dp"
+        android:inputType="text"
+        android:minHeight="@dimen/margin_width_200dp"/>
+    <TextView
+        android:id="@+id/feedback_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_width_10dp"
+        android:paddingBottom="@dimen/margin_width_10dp"
+        android:layout_marginBottom="@dimen/margin_width_10dp"
+        android:text="@string/feedback_submit_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_24sp"
+        android:layout_marginTop="@dimen/margin_width_10dp"
+        android:background="@drawable/feedback_submit_shape"
+        android:layout_marginLeft="@dimen/margin_width_10dp"
+        android:layout_marginRight="@dimen/margin_width_10dp"
+        android:gravity="center"/>
+</LinearLayout>

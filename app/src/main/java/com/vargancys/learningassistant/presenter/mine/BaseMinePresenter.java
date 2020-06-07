@@ -20,6 +20,7 @@ import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
 import com.vargancys.learningassistant.module.mine.view.LevelDetailsView;
 import com.vargancys.learningassistant.module.mine.view.ProblemDetailsView;
 import com.vargancys.learningassistant.module.mine.view.ProblemView;
+import com.vargancys.learningassistant.module.mine.view.SettingFeedbackView;
 import com.vargancys.learningassistant.module.mine.view.SystemView;
 
 import java.util.List;
@@ -188,6 +189,16 @@ public class BaseMinePresenter {
             ((ProblemDetailsView) mView).loadDetailsDataFinish(mBean);
         }else{
             ((ProblemDetailsView) mView).loadDetailsDataError(404,"多是啊啊");
+        }
+    }
+
+    //保存反馈意见的数据
+    public void saveFeedbackData(String edit) {
+        boolean result = mRequest.saveFeedbackData(edit);
+        if(result){
+            ((SettingFeedbackView) mView).saveFeedbackFinish();
+        }else{
+            ((SettingFeedbackView) mView).saveFeedbackError(404,"都市里的");
         }
     }
 }

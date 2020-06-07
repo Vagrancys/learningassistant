@@ -4,12 +4,14 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.MineDataBeanDao;
+import com.vagrancys.learningassistant.db.MineFeedbackBeanDao;
 import com.vagrancys.learningassistant.db.MineLevelPrivilegeBeanDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.db.mine.MineFeedbackBean;
 import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
@@ -17,9 +19,11 @@ import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemDetailsBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
+import com.vargancys.learningassistant.utils.TimeUtils;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.io.StringReader;
 import java.util.List;
 
 /**
@@ -37,6 +41,7 @@ public class MineRequest {
     private LadderDataBeanDao mLadderDataDao;
     private OverViewListContentDao mOverViewDao;
     private MineLevelPrivilegeBeanDao mPrivilegeDao;
+    private MineFeedbackBeanDao mFeedbackDao;
     private MineRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mMineDataDao = mDaoSession.getMineDataBeanDao();
@@ -44,6 +49,7 @@ public class MineRequest {
         mLadderDataDao = mDaoSession.getLadderDataBeanDao();
         mOverViewDao = mDaoSession.getOverViewListContentDao();
         mPrivilegeDao = mDaoSession.getMineLevelPrivilegeBeanDao();
+        mFeedbackDao = mDaoSession.getMineFeedbackBeanDao();
     }
     public static MineRequest getInstance(){
         if(mRequest == null){
@@ -118,5 +124,18 @@ public class MineRequest {
     public ProblemDetailsBean getProblemDetailsData(long detailsId) {
         //TODO 处理个人中心问题详情数据
         return null;
+    }
+
+    //保存反馈的数据
+    public boolean saveFeedbackData(String edit) {
+        MineFeedbackBean mBean = new MineFeedbackBean();
+        mBean.setCommon(edit);
+        mBean.setTime(TimeUtils.getLongTime());
+        long result = mFeedbackDao.insert(mBean);
+        if(result != 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
