@@ -102,7 +102,9 @@ public class MineFragment extends BaseFragment implements BaseMineView {
                 SettingActivity.launch(getActivity());
             }
         });
-        mAdapter = new MineSlidingAdapter(getFragmentManager(),mTitle);
+        mAdapter = new MineSlidingAdapter(getChildFragmentManager(),mTitle);
+        viewPager.setAdapter(mAdapter);
+        viewPager.setOffscreenPageLimit(5);
         slidingTab.setViewPager(viewPager);
         slidingTab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -116,6 +118,7 @@ public class MineFragment extends BaseFragment implements BaseMineView {
             }
         });
 
+        slidingTab.setCurrentTab(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {

@@ -15,8 +15,10 @@ import com.vargancys.learningassistant.db.mine.MineFeedbackBean;
 import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
+import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
+import com.vargancys.learningassistant.model.mine.bean.LevelTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemDetailsBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -137,5 +139,15 @@ public class MineRequest {
         }else{
             return false;
         }
+    }
+
+    //得到问题各项数据
+    public List<KnowLedgeItemBean.KnowLedgeItem> getProblemItemData(long problemId) {
+        return null;
+    }
+
+    //得到等级的各个等级数据
+    public LevelTypeDataBean getLevelTypeData(long mineId) {
+        return null;
     }
 }

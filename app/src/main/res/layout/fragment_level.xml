@@ -2,70 +2,75 @@
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipeRefresh"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-        <LinearLayout
+        android:layout_height="match_parent">
+        <ScrollView
+            android:id="@+id/level_scrollview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/margin_width_10dp">
+                android:orientation="vertical">
                 <LinearLayout
-                    style="@style/mine_data_linear_style">
-                    <TextView
-                        android:id="@+id/mine_level_highest"
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_highest_text"/>
-                    <TextView
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_highest_foot_text"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_width_10dp">
+                    <LinearLayout
+                        style="@style/mine_data_linear_style">
+                        <TextView
+                            android:id="@+id/mine_level_highest"
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_highest_text"/>
+                        <TextView
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_highest_foot_text"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/mine_data_linear_style">
+                        <TextView
+                            android:id="@+id/mine_level_minimum"
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_minimum_text"/>
+                        <TextView
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_minimum_foot_text"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/mine_data_linear_style">
+                        <TextView
+                            android:id="@+id/mine_level_rank"
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_rank_text"/>
+                        <TextView
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_rank_foot_text"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/mine_data_linear_style">
+                        <TextView
+                            android:id="@+id/mine_level_count"
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_count_text"/>
+                        <TextView
+                            style="@style/mine_data_style"
+                            android:text="@string/mine_level_count_foot_text"/>
+                    </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    style="@style/mine_data_linear_style">
-                    <TextView
-                        android:id="@+id/mine_level_minimum"
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_minimum_text"/>
-                    <TextView
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_minimum_foot_text"/>
-                </LinearLayout>
-                <LinearLayout
-                    style="@style/mine_data_linear_style">
-                    <TextView
-                        android:id="@+id/mine_level_rank"
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_rank_text"/>
-                    <TextView
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_rank_foot_text"/>
-                </LinearLayout>
-                <LinearLayout
-                    style="@style/mine_data_linear_style">
-                    <TextView
-                        android:id="@+id/mine_level_count"
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_count_text"/>
-                    <TextView
-                        style="@style/mine_data_style"
-                        android:text="@string/mine_level_count_foot_text"/>
-                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"/>
             </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none"
-                android:overScrollMode="never"/>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+        <include layout="@layout/fragment_empty"/>
+    </FrameLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

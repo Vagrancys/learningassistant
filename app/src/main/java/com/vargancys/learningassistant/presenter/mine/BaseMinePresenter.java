@@ -6,8 +6,10 @@ import com.vargancys.learningassistant.db.mine.MineDataBean;
 import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
+import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
+import com.vargancys.learningassistant.model.mine.bean.LevelTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemDetailsBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
 import com.vargancys.learningassistant.model.mine.request.MineRequest;
@@ -18,7 +20,9 @@ import com.vargancys.learningassistant.module.mine.view.ChallengeView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeView;
 import com.vargancys.learningassistant.module.mine.view.LevelDetailsView;
+import com.vargancys.learningassistant.module.mine.view.LevelView;
 import com.vargancys.learningassistant.module.mine.view.ProblemDetailsView;
+import com.vargancys.learningassistant.module.mine.view.ProblemItemView;
 import com.vargancys.learningassistant.module.mine.view.ProblemView;
 import com.vargancys.learningassistant.module.mine.view.SettingFeedbackView;
 import com.vargancys.learningassistant.module.mine.view.SystemView;
@@ -132,6 +136,16 @@ public class BaseMinePresenter {
         }
     }
 
+    //得到个人中心等级体系数据
+    public void getLevelData(long mineId) {
+        MineDataBean mBean = mRequest.getMineData(mineId);
+        if(mBean != null){
+            ((LevelView) mView).loadLevelDataFinish(mBean);
+        }else{
+            ((LevelView) mView).loadLevelDataError(404,"没有找到数据!");
+        }
+    }
+
     //得到个人中心天梯类型数据
     public void getSystemTypeData(long mineId) {
         List<OverViewListContent> mBean = mRequest.getSystemTypeData(mineId);
@@ -199,6 +213,27 @@ public class BaseMinePresenter {
             ((SettingFeedbackView) mView).saveFeedbackFinish();
         }else{
             ((SettingFeedbackView) mView).saveFeedbackError(404,"都市里的");
+        }
+    }
+
+    //得到问题的各项知识
+    public void getProblemItemData(long problemId) {
+        List<KnowLedgeItemBean.KnowLedgeItem> mItem = mRequest.getProblemItemData(problemId);
+        if(mItem != null && mItem.size() > 0){
+            ((ProblemItemView) mView).loadProblemData(mItem);
+        }else{
+            ((ProblemItemView) mView).loadProblemDataError(404,"没有找到数据!");
+        }
+    }
+
+
+    //得到个人中心天梯类型数据
+    public void getLevelTypeData(long mineId) {
+        LevelTypeDataBean mBean = mRequest.getLevelTypeData(mineId);
+        if(mBean != null){
+            ((LevelView) mView).loadLevelTypeDataFinish(mBean);
+        }else{
+            ((LevelView) mView).loadLevelTypeDataError(404,"没有找到数据!");
         }
     }
 }

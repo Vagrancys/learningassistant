@@ -732,6 +732,7 @@
     <string name="mine_influence_text">3561</string>
 
     <!--个人中心知识模块-->
+    <string name="knowledge_data_empty_text">知识模块没有数据!请去贡献知识!</string>
     <string name="mine_knowledge_day_text">25天</string>
     <string name="mine_knowledge_day_foot_text">连续贡献</string>
     <string name="mine_knowledge_count_text">25个</string>
@@ -792,6 +793,8 @@
     <string name="challenge_summary_text">陈公公水水水水</string>
     <string name="challenge_title_text">挑战25层天梯</string>
     <string name="challenge_serial_text">25次</string>
+    <string name="challenge_data_empty_text">天梯挑战数据为空!</string>
+    <string name="system_data_empty_text">没有知识体系数据!请添加!</string>
 
     <!--个人中心天梯详细数据模块-->
     <string name="challenge_details_toolbar">天梯数据详情</string>
@@ -842,6 +845,7 @@
     <string name="mine_level_count_foot_text">专业认证</string>
 
     <!--个人中心等级类型模块-->
+    <string name="level_data_empty_text">等级模块没有数据!请反馈给官方!</string>
     <string name="level_title">知识等级</string>
     <string name="level_new_text">1级</string>
     <string name="level_new_foot_text">当前等级</string>
@@ -889,6 +893,7 @@
     <string name="mine_use_foot_text">使用</string>
 
     <!--个人中心问题类型模块-->
+    <string name="problem_data_empty_text">没有问题类型数据!请参与发布问题!</string>
     <string name="problem_title">一级</string>
     <string name="problem_more">更多</string>
     <string name="problem_count_text">25个</string>

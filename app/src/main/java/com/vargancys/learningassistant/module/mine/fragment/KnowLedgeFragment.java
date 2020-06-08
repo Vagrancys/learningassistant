@@ -3,6 +3,10 @@ package com.vargancys.learningassistant.module.mine.fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
@@ -28,6 +32,7 @@ import butterknife.BindView;
  * Description: 个人中心知识碎片页面
  */
 public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
+    private static String TAG = "KnowLedgeFragment";
     @BindView(R.id.mine_knowledge_day)
     TextView mineKnowledgeDay;
     @BindView(R.id.mine_knowledge_count)
@@ -40,6 +45,12 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.knowledge_scrollview)
+    ScrollView knowledgeScrollview;
+    @BindView(R.id.fragment_content)
+    TextView fragmentContent;
+    @BindView(R.id.fragment_empty)
+    LinearLayout fragmentEmpty;
     private BaseMinePresenter mPresenter;
     private long mineId;
     private SectionedRecyclerViewAdapter mSectionAdapter;
@@ -55,6 +66,7 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
 
     @Override
     protected void initView() {
+        Log.e(TAG,"知识断点");
         mineId = CacheUtils.getLong(getContext(),ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -62,6 +74,7 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
         mSectionAdapter = new SectionedRecyclerViewAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mSectionAdapter);
+        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.knowledge_data_empty_text));
         autoRefresh();
     }
 
@@ -101,11 +114,15 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
     public void showKnowLedgeTypeDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
         swipeRefresh.setRefreshing(false);
+        fragmentEmpty.setVisibility(View.VISIBLE);
+        knowledgeScrollview.setVisibility(View.GONE);
     }
 
     @Override
     public void showKnowLedgeTypeDataFinish(KnowLedgeTypeDataBean mBean) {
         swipeRefresh.setRefreshing(false);
+        fragmentEmpty.setVisibility(View.GONE);
+        knowledgeScrollview.setVisibility(View.VISIBLE);
         for (int i=0; i<mBean.getItemBeans().size();i++){
             mSectionAdapter.addSection(new KnowLedgeItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
         }

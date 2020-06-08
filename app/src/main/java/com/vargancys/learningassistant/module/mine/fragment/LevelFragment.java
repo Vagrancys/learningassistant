@@ -3,6 +3,10 @@ package com.vargancys.learningassistant.module.mine.fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
@@ -29,6 +33,7 @@ import butterknife.BindView;
  * Description: 个人中心个人等级碎片页面
  */
 public class LevelFragment extends BaseFragment implements LevelView {
+    private static String TAG = "LevelFragment";
     public static LevelFragment newInstance(){
         return new LevelFragment();
     }
@@ -45,24 +50,32 @@ public class LevelFragment extends BaseFragment implements LevelView {
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.fragment_empty)
+    LinearLayout fragmentEmpty;
+    @BindView(R.id.fragment_content)
+    TextView fragmentContent;
+    @BindView(R.id.level_scrollview)
+    ScrollView levelScrollview;
     private BaseMinePresenter mPresenter;
     private long mineId;
     private SectionedRecyclerViewAdapter mSectionAdapter;
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_knowledge;
+        return R.layout.fragment_level;
     }
 
     @Override
     protected void initView() {
+        Log.e(TAG,"等级断点");
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
-        mPresenter.getSystemData(mineId);
+        mPresenter.getLevelData(mineId);
         mSectionAdapter = new SectionedRecyclerViewAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mSectionAdapter);
+        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.level_data_empty_text));
         autoRefresh();
     }
 
@@ -78,7 +91,7 @@ public class LevelFragment extends BaseFragment implements LevelView {
 
     private void autoRefresh(){
         swipeRefresh.setRefreshing(true);
-        mPresenter.getSystemTypeData(mineId);
+        mPresenter.getLevelTypeData(mineId);
     }
 
     @Override
@@ -102,11 +115,15 @@ public class LevelFragment extends BaseFragment implements LevelView {
     public void loadLevelTypeDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
         swipeRefresh.setRefreshing(false);
+        levelScrollview.setVisibility(View.GONE);
+        fragmentEmpty.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void loadLevelTypeDataFinish(LevelTypeDataBean mBean) {
         swipeRefresh.setRefreshing(false);
+        levelScrollview.setVisibility(View.VISIBLE);
+        fragmentEmpty.setVisibility(View.GONE);
         for (int i=0; i<mBean.getItemBeans().size();i++){
             mSectionAdapter.addSection(new LevelItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
         }

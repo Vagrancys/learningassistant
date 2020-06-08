@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import com.vargancys.learningassistant.module.mine.fragment.ChallengeFragment;
 import com.vargancys.learningassistant.module.mine.fragment.KnowLedgeFragment;
@@ -19,19 +20,23 @@ import com.vargancys.learningassistant.module.mine.fragment.SystemFragment;
  * Description: 个人中心滑动条适配器
  */
 public class MineSlidingAdapter extends FragmentPagerAdapter {
+    private static String TAG = "MineSlidingAdapter";
     private Fragment[] mFragment;
     private int mSize;
     private String[] mTitle;
     public MineSlidingAdapter(FragmentManager fm, String[] title){
         super(fm);
+
         mTitle = title;
         mSize = mTitle.length;
+        Log.e(TAG,"length ="+mTitle.length+",size ="+mSize);
         mFragment = new Fragment[mSize];
     }
 
     @Override
     public Fragment getItem(int i) {
         if(mFragment[i] == null){
+            Log.e(TAG,"fragment = "+i);
             switch (i){
                 case 0:
                     mFragment[i] = KnowLedgeFragment.newInstance();
@@ -55,7 +60,7 @@ public class MineSlidingAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return mSize;
+        return mFragment.length;
     }
 
     @Nullable

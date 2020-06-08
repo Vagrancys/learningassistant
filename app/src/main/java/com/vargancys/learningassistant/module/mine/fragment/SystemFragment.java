@@ -3,6 +3,10 @@ package com.vargancys.learningassistant.module.mine.fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
@@ -30,6 +34,7 @@ import butterknife.BindView;
  * Description: 个人中心知识体系碎片页面
  */
 public class SystemFragment extends BaseFragment  implements SystemView {
+    private static String TAG = "SystemFragment";
     public static SystemFragment newInstance(){
         return new SystemFragment();
     }
@@ -46,6 +51,12 @@ public class SystemFragment extends BaseFragment  implements SystemView {
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.fragment_content)
+    TextView fragmentContent;
+    @BindView(R.id.fragment_empty)
+    LinearLayout fragmentEmpty;
+    @BindView(R.id.system_scrollview)
+    ScrollView systemScrollview;
     private BaseMinePresenter mPresenter;
     private long mineId;
     private SystemDataAdapter mAdapter;
@@ -53,11 +64,12 @@ public class SystemFragment extends BaseFragment  implements SystemView {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_knowledge;
+        return R.layout.fragment_system;
     }
 
     @Override
     protected void initView() {
+        Log.e(TAG,"体系断点");
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -65,6 +77,7 @@ public class SystemFragment extends BaseFragment  implements SystemView {
         mAdapter = new SystemDataAdapter(getContext(),mBean);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
+        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.system_data_empty_text));
         autoRefresh();
     }
 
@@ -104,11 +117,15 @@ public class SystemFragment extends BaseFragment  implements SystemView {
     public void loadSystemTypeDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
         swipeRefresh.setRefreshing(false);
+        fragmentEmpty.setVisibility(View.VISIBLE);
+        systemScrollview.setVisibility(View.GONE);
     }
 
     @Override
     public void loadSystemTypeDataFinish(List<OverViewListContent> bean) {
         swipeRefresh.setRefreshing(false);
+        fragmentEmpty.setVisibility(View.GONE);
+        systemScrollview.setVisibility(View.VISIBLE);
         mBean.clear();
         mBean.addAll(bean);
         mAdapter.notifyDataSetChanged();

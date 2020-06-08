@@ -105,6 +105,15 @@ public class KnowLedgeItemBean {
         private int look;
         private boolean createClass;
         private boolean have;
+        private int type;
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
 
         public void setId(Long id) {
             this.id = id;

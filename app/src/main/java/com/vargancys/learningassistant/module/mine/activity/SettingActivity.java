@@ -37,7 +37,6 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        //TODO 设置页面
     }
 
     @Override

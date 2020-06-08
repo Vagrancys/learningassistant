@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +46,7 @@ public class KnowSettingContentActivity extends BaseActivity {
             }
         });
 
-        commonTitleData.setText(multiple().getString(R.string.common_setting_content));
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.common_setting_content));
     }
 
     public static void launch(Activity activity, Long know_id) {
