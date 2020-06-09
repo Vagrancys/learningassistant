@@ -52,6 +52,7 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
     SwipeRefreshLayout swipeRefresh;
     private BaseMinePresenter mPresenter;
     private long problemId;
+    private int type;
     private ProblemItemAdapter mAdapter;
     private List<KnowLedgeItemBean.KnowLedgeItem> mProblem = new ArrayList<>();
 
@@ -63,6 +64,7 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
     @Override
     public void initView() {
         problemId = CacheUtils.getLong(getContext(),ConstantsUtils.MINE_MEMBER_ID,0);
+        type = getIntent().getIntExtra(ConstantsUtils.PROBLEM_ID,0);
         mPresenter = new BaseMinePresenter(this);
 
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -90,7 +92,7 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
             }
         });
 
-        mPresenter.getProblemItemData(problemId);
+        mPresenter.getProblemItemData(problemId,type);
     }
 
     private void launchShowActivity(int item_id,int level) {
@@ -118,7 +120,7 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
 
     private void autoData(){
         swipeRefresh.setRefreshing(true);
-        mPresenter.getProblemItemData(problemId);
+        mPresenter.getProblemItemData(problemId,type);
     }
 
     public static void launch(Activity activity, int type) {

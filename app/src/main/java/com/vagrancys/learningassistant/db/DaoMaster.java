@@ -53,6 +53,11 @@ public class DaoMaster extends AbstractDaoMaster {
         MineDataBeanDao.createTable(db, ifNotExists);
         MineLevelPrivilegeBeanDao.createTable(db, ifNotExists);
         MineFeedbackBeanDao.createTable(db, ifNotExists);
+        KnowLedgeDataBeanDao.createTable(db, ifNotExists);
+        ChallengeDataBeanDao.createTable(db, ifNotExists);
+        ChallengePartBeanDao.createTable(db, ifNotExists);
+        LevelDataBeanDao.createTable(db, ifNotExists);
+        LevelPartBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -89,6 +94,11 @@ public class DaoMaster extends AbstractDaoMaster {
         MineDataBeanDao.dropTable(db, ifExists);
         MineLevelPrivilegeBeanDao.dropTable(db, ifExists);
         MineFeedbackBeanDao.dropTable(db, ifExists);
+        KnowLedgeDataBeanDao.dropTable(db, ifExists);
+        ChallengeDataBeanDao.dropTable(db, ifExists);
+        ChallengePartBeanDao.dropTable(db, ifExists);
+        LevelDataBeanDao.dropTable(db, ifExists);
+        LevelPartBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -139,6 +149,11 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(MineDataBeanDao.class);
         registerDaoClass(MineLevelPrivilegeBeanDao.class);
         registerDaoClass(MineFeedbackBeanDao.class);
+        registerDaoClass(KnowLedgeDataBeanDao.class);
+        registerDaoClass(ChallengeDataBeanDao.class);
+        registerDaoClass(ChallengePartBeanDao.class);
+        registerDaoClass(LevelDataBeanDao.class);
+        registerDaoClass(LevelPartBeanDao.class);
     }
 
     public DaoSession newSession() {

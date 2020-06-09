@@ -18,7 +18,7 @@ public class LevelItemBean {
     private String next_experience;
     private String rank;
 
-    public List<LevelItem> getmItems() {
+    public List<LevelItem> getItems() {
         return mItems;
     }
 
@@ -31,10 +31,6 @@ public class LevelItemBean {
     }
 
     private List<LevelItem> mItems;
-
-    public List<LevelItem> getItems() {
-        return mItems;
-    }
 
     public void setItems(List<LevelItem> mItems) {
         this.mItems = mItems;

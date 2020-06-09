@@ -66,7 +66,6 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
 
     @Override
     protected void initView() {
-        Log.e(TAG,"知识断点");
         mineId = CacheUtils.getLong(getContext(),ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -90,7 +89,7 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
 
     private void autoRefresh(){
         swipeRefresh.setRefreshing(true);
-        mPresenter.getKnowLedgeTypeData(mineId);
+        mPresenter.getKnowLedgeTypeData(getContext(),mineId);
     }
 
     @Override

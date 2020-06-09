@@ -90,7 +90,7 @@ public class ChallengeFragment extends BaseFragment implements ChallengeView {
 
     private void autoRefresh(){
         swipeRefresh.setRefreshing(true);
-        mPresenter.getChallengeTypeData(mineId);
+        mPresenter.getChallengeTypeData(getContext(),mineId);
     }
 
     @Override

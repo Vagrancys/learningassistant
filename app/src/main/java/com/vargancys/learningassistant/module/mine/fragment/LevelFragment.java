@@ -91,7 +91,7 @@ public class LevelFragment extends BaseFragment implements LevelView {
 
     private void autoRefresh(){
         swipeRefresh.setRefreshing(true);
-        mPresenter.getLevelTypeData(mineId);
+        mPresenter.getLevelTypeData(getContext(),mineId);
     }
 
     @Override

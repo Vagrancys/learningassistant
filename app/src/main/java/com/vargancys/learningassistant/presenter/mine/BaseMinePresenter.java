@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.presenter.mine;
 
+import android.content.Context;
+
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
@@ -67,8 +69,8 @@ public class BaseMinePresenter {
     }
 
     //得到个人中心知识类型数据
-    public void getKnowLedgeTypeData(long mineId) {
-        KnowLedgeTypeDataBean mBean = mRequest.getKnowLedgeTypeData(mineId);
+    public void getKnowLedgeTypeData(Context context,long mineId) {
+        KnowLedgeTypeDataBean mBean = mRequest.getKnowLedgeTypeData(context,mineId);
         if(mBean != null){
             ((KnowLedgeView) mView).showKnowLedgeTypeDataFinish(mBean);
         }else{
@@ -97,8 +99,8 @@ public class BaseMinePresenter {
     }
 
     //得到个人中心天梯类型数据
-    public void getChallengeTypeData(long mineId) {
-        ChallengeTypeDataBean mBean = mRequest.getChallengeTypeData(mineId);
+    public void getChallengeTypeData(Context context,long mineId) {
+        ChallengeTypeDataBean mBean = mRequest.getChallengeTypeData(context,mineId);
         if(mBean != null){
             ((ChallengeView) mView).loadChallengeTypeDataFinish(mBean);
         }else{
@@ -217,8 +219,8 @@ public class BaseMinePresenter {
     }
 
     //得到问题的各项知识
-    public void getProblemItemData(long problemId) {
-        List<KnowLedgeItemBean.KnowLedgeItem> mItem = mRequest.getProblemItemData(problemId);
+    public void getProblemItemData(long problemId,int type) {
+        List<KnowLedgeItemBean.KnowLedgeItem> mItem = mRequest.getProblemItemData(problemId,type);
         if(mItem != null && mItem.size() > 0){
             ((ProblemItemView) mView).loadProblemData(mItem);
         }else{
@@ -228,8 +230,8 @@ public class BaseMinePresenter {
 
 
     //得到个人中心天梯类型数据
-    public void getLevelTypeData(long mineId) {
-        LevelTypeDataBean mBean = mRequest.getLevelTypeData(mineId);
+    public void getLevelTypeData(Context context,long mineId) {
+        LevelTypeDataBean mBean = mRequest.getLevelTypeData(context,mineId);
         if(mBean != null){
             ((LevelView) mView).loadLevelTypeDataFinish(mBean);
         }else{

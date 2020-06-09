@@ -23,6 +23,25 @@
         <item>5</item>
     </string-array>
 
+    <string-array name="knowledge_count">
+        <item>android</item>
+        <item>java</item>
+        <item>c#</item>
+        <item>php</item>
+        <item>html</item>
+        <item>javaScript</item>
+        <item>css</item>
+    </string-array>
+
+    <string-array name="level_count">
+        <item>用户等级</item>
+        <item>知识等级</item>
+        <item>活跃等级</item>
+        <item>天梯等级</item>
+        <item>体系等级</item>
+        <item>影响力等级</item>
+    </string-array>
+
     <string-array name="common_level">
         <item>1</item>
         <item>2</item>

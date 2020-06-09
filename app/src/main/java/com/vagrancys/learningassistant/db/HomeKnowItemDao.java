@@ -31,21 +31,26 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property ContentId = new Property(1, long.class, "contentId", false, "CONTENT_ID");
-        public final static Property DataId = new Property(2, long.class, "dataId", false, "DATA_ID");
-        public final static Property Official = new Property(3, boolean.class, "official", false, "OFFICIAL");
-        public final static Property Activity = new Property(4, String.class, "activity", false, "ACTIVITY");
-        public final static Property Have = new Property(5, boolean.class, "have", false, "HAVE");
-        public final static Property Title = new Property(6, String.class, "title", false, "TITLE");
-        public final static Property Level = new Property(7, int.class, "level", false, "LEVEL");
-        public final static Property Summary = new Property(8, String.class, "summary", false, "SUMMARY");
-        public final static Property Progress = new Property(9, int.class, "progress", false, "PROGRESS");
-        public final static Property Count = new Property(10, int.class, "count", false, "COUNT");
-        public final static Property Max = new Property(11, int.class, "max", false, "MAX");
-        public final static Property MasterLevel = new Property(12, int.class, "masterLevel", false, "MASTER_LEVEL");
-        public final static Property StudyTitle = new Property(13, String.class, "studyTitle", false, "STUDY_TITLE");
-        public final static Property CreateClass = new Property(14, boolean.class, "createClass", false, "CREATE_CLASS");
-        public final static Property Language = new Property(15, int.class, "language", false, "LANGUAGE");
+        public final static Property MemberId = new Property(1, long.class, "memberId", false, "MEMBER_ID");
+        public final static Property ContentId = new Property(2, long.class, "contentId", false, "CONTENT_ID");
+        public final static Property DataId = new Property(3, long.class, "dataId", false, "DATA_ID");
+        public final static Property Official = new Property(4, boolean.class, "official", false, "OFFICIAL");
+        public final static Property Look = new Property(5, int.class, "look", false, "LOOK");
+        public final static Property Activity = new Property(6, String.class, "activity", false, "ACTIVITY");
+        public final static Property Have = new Property(7, boolean.class, "have", false, "HAVE");
+        public final static Property Title = new Property(8, String.class, "title", false, "TITLE");
+        public final static Property Level = new Property(9, int.class, "level", false, "LEVEL");
+        public final static Property Summary = new Property(10, String.class, "summary", false, "SUMMARY");
+        public final static Property Progress = new Property(11, int.class, "progress", false, "PROGRESS");
+        public final static Property Count = new Property(12, int.class, "count", false, "COUNT");
+        public final static Property Max = new Property(13, int.class, "max", false, "MAX");
+        public final static Property MasterLevel = new Property(14, int.class, "masterLevel", false, "MASTER_LEVEL");
+        public final static Property StudyTitle = new Property(15, String.class, "studyTitle", false, "STUDY_TITLE");
+        public final static Property CreateClass = new Property(16, boolean.class, "createClass", false, "CREATE_CLASS");
+        public final static Property Language = new Property(17, int.class, "language", false, "LANGUAGE");
+        public final static Property Time = new Property(18, int.class, "time", false, "TIME");
+        public final static Property Problem = new Property(19, int.class, "problem", false, "PROBLEM");
+        public final static Property Type = new Property(20, int.class, "type", false, "TYPE");
     }
 
     private DaoSession daoSession;
@@ -65,21 +70,26 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"HOME_KNOW_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE ," + // 0: id
-                "\"CONTENT_ID\" INTEGER NOT NULL ," + // 1: contentId
-                "\"DATA_ID\" INTEGER NOT NULL ," + // 2: dataId
-                "\"OFFICIAL\" INTEGER NOT NULL ," + // 3: official
-                "\"ACTIVITY\" TEXT," + // 4: activity
-                "\"HAVE\" INTEGER NOT NULL ," + // 5: have
-                "\"TITLE\" TEXT," + // 6: title
-                "\"LEVEL\" INTEGER NOT NULL ," + // 7: level
-                "\"SUMMARY\" TEXT," + // 8: summary
-                "\"PROGRESS\" INTEGER NOT NULL ," + // 9: progress
-                "\"COUNT\" INTEGER NOT NULL ," + // 10: count
-                "\"MAX\" INTEGER NOT NULL ," + // 11: max
-                "\"MASTER_LEVEL\" INTEGER NOT NULL ," + // 12: masterLevel
-                "\"STUDY_TITLE\" TEXT," + // 13: studyTitle
-                "\"CREATE_CLASS\" INTEGER NOT NULL ," + // 14: createClass
-                "\"LANGUAGE\" INTEGER NOT NULL );"); // 15: language
+                "\"MEMBER_ID\" INTEGER NOT NULL ," + // 1: memberId
+                "\"CONTENT_ID\" INTEGER NOT NULL ," + // 2: contentId
+                "\"DATA_ID\" INTEGER NOT NULL ," + // 3: dataId
+                "\"OFFICIAL\" INTEGER NOT NULL ," + // 4: official
+                "\"LOOK\" INTEGER NOT NULL ," + // 5: look
+                "\"ACTIVITY\" TEXT," + // 6: activity
+                "\"HAVE\" INTEGER NOT NULL ," + // 7: have
+                "\"TITLE\" TEXT," + // 8: title
+                "\"LEVEL\" INTEGER NOT NULL ," + // 9: level
+                "\"SUMMARY\" TEXT," + // 10: summary
+                "\"PROGRESS\" INTEGER NOT NULL ," + // 11: progress
+                "\"COUNT\" INTEGER NOT NULL ," + // 12: count
+                "\"MAX\" INTEGER NOT NULL ," + // 13: max
+                "\"MASTER_LEVEL\" INTEGER NOT NULL ," + // 14: masterLevel
+                "\"STUDY_TITLE\" TEXT," + // 15: studyTitle
+                "\"CREATE_CLASS\" INTEGER NOT NULL ," + // 16: createClass
+                "\"LANGUAGE\" INTEGER NOT NULL ," + // 17: language
+                "\"TIME\" INTEGER NOT NULL ," + // 18: time
+                "\"PROBLEM\" INTEGER NOT NULL ," + // 19: problem
+                "\"TYPE\" INTEGER NOT NULL );"); // 20: type
     }
 
     /** Drops the underlying database table. */
@@ -96,37 +106,42 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getContentId());
-        stmt.bindLong(3, entity.getDataId());
-        stmt.bindLong(4, entity.getOfficial() ? 1L: 0L);
+        stmt.bindLong(2, entity.getMemberId());
+        stmt.bindLong(3, entity.getContentId());
+        stmt.bindLong(4, entity.getDataId());
+        stmt.bindLong(5, entity.getOfficial() ? 1L: 0L);
+        stmt.bindLong(6, entity.getLook());
  
         String activity = entity.getActivity();
         if (activity != null) {
-            stmt.bindString(5, activity);
+            stmt.bindString(7, activity);
         }
-        stmt.bindLong(6, entity.getHave() ? 1L: 0L);
+        stmt.bindLong(8, entity.getHave() ? 1L: 0L);
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(7, title);
+            stmt.bindString(9, title);
         }
-        stmt.bindLong(8, entity.getLevel());
+        stmt.bindLong(10, entity.getLevel());
  
         String summary = entity.getSummary();
         if (summary != null) {
-            stmt.bindString(9, summary);
+            stmt.bindString(11, summary);
         }
-        stmt.bindLong(10, entity.getProgress());
-        stmt.bindLong(11, entity.getCount());
-        stmt.bindLong(12, entity.getMax());
-        stmt.bindLong(13, entity.getMasterLevel());
+        stmt.bindLong(12, entity.getProgress());
+        stmt.bindLong(13, entity.getCount());
+        stmt.bindLong(14, entity.getMax());
+        stmt.bindLong(15, entity.getMasterLevel());
  
         String studyTitle = entity.getStudyTitle();
         if (studyTitle != null) {
-            stmt.bindString(14, studyTitle);
+            stmt.bindString(16, studyTitle);
         }
-        stmt.bindLong(15, entity.getCreateClass() ? 1L: 0L);
-        stmt.bindLong(16, entity.getLanguage());
+        stmt.bindLong(17, entity.getCreateClass() ? 1L: 0L);
+        stmt.bindLong(18, entity.getLanguage());
+        stmt.bindLong(19, entity.getTime());
+        stmt.bindLong(20, entity.getProblem());
+        stmt.bindLong(21, entity.getType());
     }
 
     @Override
@@ -137,37 +152,42 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getContentId());
-        stmt.bindLong(3, entity.getDataId());
-        stmt.bindLong(4, entity.getOfficial() ? 1L: 0L);
+        stmt.bindLong(2, entity.getMemberId());
+        stmt.bindLong(3, entity.getContentId());
+        stmt.bindLong(4, entity.getDataId());
+        stmt.bindLong(5, entity.getOfficial() ? 1L: 0L);
+        stmt.bindLong(6, entity.getLook());
  
         String activity = entity.getActivity();
         if (activity != null) {
-            stmt.bindString(5, activity);
+            stmt.bindString(7, activity);
         }
-        stmt.bindLong(6, entity.getHave() ? 1L: 0L);
+        stmt.bindLong(8, entity.getHave() ? 1L: 0L);
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(7, title);
+            stmt.bindString(9, title);
         }
-        stmt.bindLong(8, entity.getLevel());
+        stmt.bindLong(10, entity.getLevel());
  
         String summary = entity.getSummary();
         if (summary != null) {
-            stmt.bindString(9, summary);
+            stmt.bindString(11, summary);
         }
-        stmt.bindLong(10, entity.getProgress());
-        stmt.bindLong(11, entity.getCount());
-        stmt.bindLong(12, entity.getMax());
-        stmt.bindLong(13, entity.getMasterLevel());
+        stmt.bindLong(12, entity.getProgress());
+        stmt.bindLong(13, entity.getCount());
+        stmt.bindLong(14, entity.getMax());
+        stmt.bindLong(15, entity.getMasterLevel());
  
         String studyTitle = entity.getStudyTitle();
         if (studyTitle != null) {
-            stmt.bindString(14, studyTitle);
+            stmt.bindString(16, studyTitle);
         }
-        stmt.bindLong(15, entity.getCreateClass() ? 1L: 0L);
-        stmt.bindLong(16, entity.getLanguage());
+        stmt.bindLong(17, entity.getCreateClass() ? 1L: 0L);
+        stmt.bindLong(18, entity.getLanguage());
+        stmt.bindLong(19, entity.getTime());
+        stmt.bindLong(20, entity.getProblem());
+        stmt.bindLong(21, entity.getType());
     }
 
     @Override
@@ -185,21 +205,26 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
     public HomeKnowItem readEntity(Cursor cursor, int offset) {
         HomeKnowItem entity = new HomeKnowItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // contentId
-            cursor.getLong(offset + 2), // dataId
-            cursor.getShort(offset + 3) != 0, // official
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // activity
-            cursor.getShort(offset + 5) != 0, // have
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // title
-            cursor.getInt(offset + 7), // level
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // summary
-            cursor.getInt(offset + 9), // progress
-            cursor.getInt(offset + 10), // count
-            cursor.getInt(offset + 11), // max
-            cursor.getInt(offset + 12), // masterLevel
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // studyTitle
-            cursor.getShort(offset + 14) != 0, // createClass
-            cursor.getInt(offset + 15) // language
+            cursor.getLong(offset + 1), // memberId
+            cursor.getLong(offset + 2), // contentId
+            cursor.getLong(offset + 3), // dataId
+            cursor.getShort(offset + 4) != 0, // official
+            cursor.getInt(offset + 5), // look
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // activity
+            cursor.getShort(offset + 7) != 0, // have
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // title
+            cursor.getInt(offset + 9), // level
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // summary
+            cursor.getInt(offset + 11), // progress
+            cursor.getInt(offset + 12), // count
+            cursor.getInt(offset + 13), // max
+            cursor.getInt(offset + 14), // masterLevel
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // studyTitle
+            cursor.getShort(offset + 16) != 0, // createClass
+            cursor.getInt(offset + 17), // language
+            cursor.getInt(offset + 18), // time
+            cursor.getInt(offset + 19), // problem
+            cursor.getInt(offset + 20) // type
         );
         return entity;
     }
@@ -207,21 +232,26 @@ public class HomeKnowItemDao extends AbstractDao<HomeKnowItem, Long> {
     @Override
     public void readEntity(Cursor cursor, HomeKnowItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setContentId(cursor.getLong(offset + 1));
-        entity.setDataId(cursor.getLong(offset + 2));
-        entity.setOfficial(cursor.getShort(offset + 3) != 0);
-        entity.setActivity(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setHave(cursor.getShort(offset + 5) != 0);
-        entity.setTitle(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setLevel(cursor.getInt(offset + 7));
-        entity.setSummary(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setProgress(cursor.getInt(offset + 9));
-        entity.setCount(cursor.getInt(offset + 10));
-        entity.setMax(cursor.getInt(offset + 11));
-        entity.setMasterLevel(cursor.getInt(offset + 12));
-        entity.setStudyTitle(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setCreateClass(cursor.getShort(offset + 14) != 0);
-        entity.setLanguage(cursor.getInt(offset + 15));
+        entity.setMemberId(cursor.getLong(offset + 1));
+        entity.setContentId(cursor.getLong(offset + 2));
+        entity.setDataId(cursor.getLong(offset + 3));
+        entity.setOfficial(cursor.getShort(offset + 4) != 0);
+        entity.setLook(cursor.getInt(offset + 5));
+        entity.setActivity(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setHave(cursor.getShort(offset + 7) != 0);
+        entity.setTitle(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setLevel(cursor.getInt(offset + 9));
+        entity.setSummary(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setProgress(cursor.getInt(offset + 11));
+        entity.setCount(cursor.getInt(offset + 12));
+        entity.setMax(cursor.getInt(offset + 13));
+        entity.setMasterLevel(cursor.getInt(offset + 14));
+        entity.setStudyTitle(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setCreateClass(cursor.getShort(offset + 16) != 0);
+        entity.setLanguage(cursor.getInt(offset + 17));
+        entity.setTime(cursor.getInt(offset + 18));
+        entity.setProblem(cursor.getInt(offset + 19));
+        entity.setType(cursor.getInt(offset + 20));
      }
     
     @Override

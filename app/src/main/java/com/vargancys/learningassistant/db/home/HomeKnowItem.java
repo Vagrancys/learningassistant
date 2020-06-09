@@ -27,11 +27,16 @@ public class HomeKnowItem{
     @Unique
     private Long id;
 
+    //用户id
+    private long memberId;
     private long contentId;
     private long dataId;
 
     //官方知识
     private boolean official;
+
+    //知识项观看人数
+    private int look;
 
     //知识项的演示需要类
     private String activity;
@@ -68,6 +73,15 @@ public class HomeKnowItem{
     //知识的语言类别language
     private int language;
 
+    //知识的时间
+    private int time;
+
+    //问题数量
+    private int problem;
+
+    //知识的类型
+    private int type;
+
     @ToOne(joinProperty = "contentId")
     private HomeKnowContent homeKnowContent;
     @ToOne(joinProperty = "dataId")
@@ -81,14 +95,17 @@ public class HomeKnowItem{
     @Generated(hash = 1329440142)
     private transient HomeKnowItemDao myDao;
 
-    @Generated(hash = 48619158)
-    public HomeKnowItem(Long id, long contentId, long dataId, boolean official, String activity,
-            boolean have, String title, int level, String summary, int progress, int count, int max,
-            int masterLevel, String studyTitle, boolean createClass, int language) {
+    @Generated(hash = 1652913238)
+    public HomeKnowItem(Long id, long memberId, long contentId, long dataId, boolean official, int look,
+            String activity, boolean have, String title, int level, String summary, int progress,
+            int count, int max, int masterLevel, String studyTitle, boolean createClass, int language,
+            int time, int problem, int type) {
         this.id = id;
+        this.memberId = memberId;
         this.contentId = contentId;
         this.dataId = dataId;
         this.official = official;
+        this.look = look;
         this.activity = activity;
         this.have = have;
         this.title = title;
@@ -101,6 +118,9 @@ public class HomeKnowItem{
         this.studyTitle = studyTitle;
         this.createClass = createClass;
         this.language = language;
+        this.time = time;
+        this.problem = problem;
+        this.type = type;
     }
 
     @Generated(hash = 2077989770)
@@ -348,5 +368,45 @@ public class HomeKnowItem{
 
     public void setLanguage(int language) {
         this.language = language;
+    }
+
+    public long getMemberId() {
+        return this.memberId;
+    }
+
+    public void setMemberId(long memberId) {
+        this.memberId = memberId;
+    }
+
+    public int getLook() {
+        return this.look;
+    }
+
+    public void setLook(int look) {
+        this.look = look;
+    }
+
+    public int getTime() {
+        return this.time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public int getProblem() {
+        return this.problem;
+    }
+
+    public void setProblem(int problem) {
+        this.problem = problem;
+    }
+
+    public int getType() {
+        return this.type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }
