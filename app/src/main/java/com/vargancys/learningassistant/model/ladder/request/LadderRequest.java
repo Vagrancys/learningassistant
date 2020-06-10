@@ -127,7 +127,6 @@ public class LadderRequest {
             }
             return mBeans;
         }
-        //TODO 天梯所有问题
         return null;
     }
 
@@ -181,7 +180,6 @@ public class LadderRequest {
 
     //保存天梯数据
     public void saveLadderData(LadderDataBean bean) {
-        //TODO 天梯数据
         mDataDao.update(bean);
     }
 

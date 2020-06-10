@@ -92,7 +92,7 @@ public class ProblemFragment extends BaseFragment implements ProblemView {
 
     private void autoRefresh(){
         swipeRefresh.setRefreshing(true);
-        mPresenter.getProblemTypeData(mineId);
+        mPresenter.getProblemTypeData(getContext(),mineId);
     }
 
     @Override

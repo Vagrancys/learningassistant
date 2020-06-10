@@ -26,6 +26,21 @@ public class GameSubjectItem {
     @Unique
     private Long id;
 
+    //使用人数
+    private int people;
+
+    //使用次数
+    private int use;
+
+    //数量
+    private int count;
+
+    //用户id
+    private long mineId;
+
+    //语言类型
+    private int language;
+
     //父id
     private long subjectId;
 
@@ -88,10 +103,16 @@ public class GameSubjectItem {
     @Generated(hash = 604438555)
     private transient Long subjectiveItem__resolvedKey;
 
-    @Generated(hash = 1689043981)
-    public GameSubjectItem(Long id, long subjectId, long radioId, long multipleId, long fillId, long subjectiveId,
-            String title, int select, String time, int level, boolean isError, boolean isRepeat) {
+    @Generated(hash = 1286584924)
+    public GameSubjectItem(Long id, int people, int use, int count, long mineId, int language, long subjectId,
+            long radioId, long multipleId, long fillId, long subjectiveId, String title, int select, String time,
+            int level, boolean isError, boolean isRepeat) {
         this.id = id;
+        this.people = people;
+        this.use = use;
+        this.count = count;
+        this.mineId = mineId;
+        this.language = language;
         this.subjectId = subjectId;
         this.radioId = radioId;
         this.multipleId = multipleId;
@@ -378,5 +399,45 @@ public class GameSubjectItem {
 
     public void setIsRepeat(boolean isRepeat) {
         this.isRepeat = isRepeat;
+    }
+
+    public long getMineId() {
+        return this.mineId;
+    }
+
+    public void setMineId(long mineId) {
+        this.mineId = mineId;
+    }
+
+    public int getLanguage() {
+        return this.language;
+    }
+
+    public void setLanguage(int language) {
+        this.language = language;
+    }
+
+    public int getPeople() {
+        return this.people;
+    }
+
+    public void setPeople(int people) {
+        this.people = people;
+    }
+
+    public int getUse() {
+        return this.use;
+    }
+
+    public void setUse(int use) {
+        this.use = use;
+    }
+
+    public int getCount() {
+        return this.count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

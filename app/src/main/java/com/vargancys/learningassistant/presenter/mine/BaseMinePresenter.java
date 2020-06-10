@@ -189,8 +189,8 @@ public class BaseMinePresenter {
     }
 
     //得到个人中心问题数据
-    public void getProblemTypeData(long mineId) {
-        ProblemTypeDataBean mBean = mRequest.getProblemTypeData(mineId);
+    public void getProblemTypeData(Context context,long mineId) {
+        ProblemTypeDataBean mBean = mRequest.getProblemTypeData(context,mineId);
         if(mBean != null){
             ((ProblemView) mView).loadProblemTypeDataFinish(mBean);
         }else{

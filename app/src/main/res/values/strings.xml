@@ -676,6 +676,7 @@
     <string name="rank_setting_win_text">设置排行数据成功了</string>
 
     <!--天梯成就-->
+    <string name="ladder_result_toolbar">天梯成就</string>
     <string name="result_author_text">你好啊啊啊a</string>
     <string name="result_level_text">初级攀登者</string>
     <string name="result_ladder_data_text">天梯成就记录</string>
@@ -984,6 +985,13 @@
     <string name="feedback_submit_text">提交</string>
     <string name="feedback_edit_empty">请输入反馈的内容!</string>
     <string name="feedback_successful_text">保存意见反馈成功!</string>
+
+    <!--登录模块-->
+    <string name="login_toolbar">登录</string>
+    <string name="login_submit_text">登录</string>
+    <string name="login_forget_password_text">忘记密码?</string>
+    <string name="login_password_hint_text">登录密码</string>
+    <string name="login_name_hint_text">用户名</string>
 </resources>
 
 

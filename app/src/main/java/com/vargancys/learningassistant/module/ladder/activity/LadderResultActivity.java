@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.ladder.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderResultView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -91,9 +93,20 @@ public class LadderResultActivity extends BaseActivity implements LadderResultVi
         ladderId = CacheUtils.getLong(getContext(), ConstantsUtils.LADDER_DATA_ID, 0);
         mPresenter = new BaseLadderPresenter(this);
 
-        //TODO 天梯成就页面
         mPresenter.getLadderResultData(ladderId);
         mPresenter.getLadderResultUse(ladderId);
+    }
+
+    @Override
+    public void initToolbar() {
+        commonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.ladder_result_toolbar));
     }
 
     public static void launch(Activity activity) {

@@ -35,17 +35,22 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
      */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property SubjectId = new Property(1, long.class, "subjectId", false, "SUBJECT_ID");
-        public final static Property RadioId = new Property(2, long.class, "radioId", false, "RADIO_ID");
-        public final static Property MultipleId = new Property(3, long.class, "multipleId", false, "MULTIPLE_ID");
-        public final static Property FillId = new Property(4, long.class, "fillId", false, "FILL_ID");
-        public final static Property SubjectiveId = new Property(5, long.class, "subjectiveId", false, "SUBJECTIVE_ID");
-        public final static Property Title = new Property(6, String.class, "title", false, "TITLE");
-        public final static Property Select = new Property(7, int.class, "select", false, "SELECT");
-        public final static Property Time = new Property(8, String.class, "time", false, "TIME");
-        public final static Property Level = new Property(9, int.class, "level", false, "LEVEL");
-        public final static Property IsError = new Property(10, boolean.class, "isError", false, "IS_ERROR");
-        public final static Property IsRepeat = new Property(11, boolean.class, "isRepeat", false, "IS_REPEAT");
+        public final static Property People = new Property(1, int.class, "people", false, "PEOPLE");
+        public final static Property Use = new Property(2, int.class, "use", false, "USE");
+        public final static Property Count = new Property(3, int.class, "count", false, "COUNT");
+        public final static Property MineId = new Property(4, long.class, "mineId", false, "MINE_ID");
+        public final static Property Language = new Property(5, int.class, "language", false, "LANGUAGE");
+        public final static Property SubjectId = new Property(6, long.class, "subjectId", false, "SUBJECT_ID");
+        public final static Property RadioId = new Property(7, long.class, "radioId", false, "RADIO_ID");
+        public final static Property MultipleId = new Property(8, long.class, "multipleId", false, "MULTIPLE_ID");
+        public final static Property FillId = new Property(9, long.class, "fillId", false, "FILL_ID");
+        public final static Property SubjectiveId = new Property(10, long.class, "subjectiveId", false, "SUBJECTIVE_ID");
+        public final static Property Title = new Property(11, String.class, "title", false, "TITLE");
+        public final static Property Select = new Property(12, int.class, "select", false, "SELECT");
+        public final static Property Time = new Property(13, String.class, "time", false, "TIME");
+        public final static Property Level = new Property(14, int.class, "level", false, "LEVEL");
+        public final static Property IsError = new Property(15, boolean.class, "isError", false, "IS_ERROR");
+        public final static Property IsRepeat = new Property(16, boolean.class, "isRepeat", false, "IS_REPEAT");
     }
 
     private DaoSession daoSession;
@@ -66,17 +71,22 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GAME_SUBJECT_ITEM\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY UNIQUE ," + // 0: id
-                "\"SUBJECT_ID\" INTEGER NOT NULL ," + // 1: subjectId
-                "\"RADIO_ID\" INTEGER NOT NULL ," + // 2: radioId
-                "\"MULTIPLE_ID\" INTEGER NOT NULL ," + // 3: multipleId
-                "\"FILL_ID\" INTEGER NOT NULL ," + // 4: fillId
-                "\"SUBJECTIVE_ID\" INTEGER NOT NULL ," + // 5: subjectiveId
-                "\"TITLE\" TEXT," + // 6: title
-                "\"SELECT\" INTEGER NOT NULL ," + // 7: select
-                "\"TIME\" TEXT," + // 8: time
-                "\"LEVEL\" INTEGER NOT NULL ," + // 9: level
-                "\"IS_ERROR\" INTEGER NOT NULL ," + // 10: isError
-                "\"IS_REPEAT\" INTEGER NOT NULL );"); // 11: isRepeat
+                "\"PEOPLE\" INTEGER NOT NULL ," + // 1: people
+                "\"USE\" INTEGER NOT NULL ," + // 2: use
+                "\"COUNT\" INTEGER NOT NULL ," + // 3: count
+                "\"MINE_ID\" INTEGER NOT NULL ," + // 4: mineId
+                "\"LANGUAGE\" INTEGER NOT NULL ," + // 5: language
+                "\"SUBJECT_ID\" INTEGER NOT NULL ," + // 6: subjectId
+                "\"RADIO_ID\" INTEGER NOT NULL ," + // 7: radioId
+                "\"MULTIPLE_ID\" INTEGER NOT NULL ," + // 8: multipleId
+                "\"FILL_ID\" INTEGER NOT NULL ," + // 9: fillId
+                "\"SUBJECTIVE_ID\" INTEGER NOT NULL ," + // 10: subjectiveId
+                "\"TITLE\" TEXT," + // 11: title
+                "\"SELECT\" INTEGER NOT NULL ," + // 12: select
+                "\"TIME\" TEXT," + // 13: time
+                "\"LEVEL\" INTEGER NOT NULL ," + // 14: level
+                "\"IS_ERROR\" INTEGER NOT NULL ," + // 15: isError
+                "\"IS_REPEAT\" INTEGER NOT NULL );"); // 16: isRepeat
     }
 
     /** Drops the underlying database table. */
@@ -93,25 +103,30 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
-        stmt.bindLong(3, entity.getRadioId());
-        stmt.bindLong(4, entity.getMultipleId());
-        stmt.bindLong(5, entity.getFillId());
-        stmt.bindLong(6, entity.getSubjectiveId());
+        stmt.bindLong(2, entity.getPeople());
+        stmt.bindLong(3, entity.getUse());
+        stmt.bindLong(4, entity.getCount());
+        stmt.bindLong(5, entity.getMineId());
+        stmt.bindLong(6, entity.getLanguage());
+        stmt.bindLong(7, entity.getSubjectId());
+        stmt.bindLong(8, entity.getRadioId());
+        stmt.bindLong(9, entity.getMultipleId());
+        stmt.bindLong(10, entity.getFillId());
+        stmt.bindLong(11, entity.getSubjectiveId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(7, title);
+            stmt.bindString(12, title);
         }
-        stmt.bindLong(8, entity.getSelect());
+        stmt.bindLong(13, entity.getSelect());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(9, time);
+            stmt.bindString(14, time);
         }
-        stmt.bindLong(10, entity.getLevel());
-        stmt.bindLong(11, entity.getIsError() ? 1L: 0L);
-        stmt.bindLong(12, entity.getIsRepeat() ? 1L: 0L);
+        stmt.bindLong(15, entity.getLevel());
+        stmt.bindLong(16, entity.getIsError() ? 1L: 0L);
+        stmt.bindLong(17, entity.getIsRepeat() ? 1L: 0L);
     }
 
     @Override
@@ -122,25 +137,30 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getSubjectId());
-        stmt.bindLong(3, entity.getRadioId());
-        stmt.bindLong(4, entity.getMultipleId());
-        stmt.bindLong(5, entity.getFillId());
-        stmt.bindLong(6, entity.getSubjectiveId());
+        stmt.bindLong(2, entity.getPeople());
+        stmt.bindLong(3, entity.getUse());
+        stmt.bindLong(4, entity.getCount());
+        stmt.bindLong(5, entity.getMineId());
+        stmt.bindLong(6, entity.getLanguage());
+        stmt.bindLong(7, entity.getSubjectId());
+        stmt.bindLong(8, entity.getRadioId());
+        stmt.bindLong(9, entity.getMultipleId());
+        stmt.bindLong(10, entity.getFillId());
+        stmt.bindLong(11, entity.getSubjectiveId());
  
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(7, title);
+            stmt.bindString(12, title);
         }
-        stmt.bindLong(8, entity.getSelect());
+        stmt.bindLong(13, entity.getSelect());
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(9, time);
+            stmt.bindString(14, time);
         }
-        stmt.bindLong(10, entity.getLevel());
-        stmt.bindLong(11, entity.getIsError() ? 1L: 0L);
-        stmt.bindLong(12, entity.getIsRepeat() ? 1L: 0L);
+        stmt.bindLong(15, entity.getLevel());
+        stmt.bindLong(16, entity.getIsError() ? 1L: 0L);
+        stmt.bindLong(17, entity.getIsRepeat() ? 1L: 0L);
     }
 
     @Override
@@ -158,17 +178,22 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     public GameSubjectItem readEntity(Cursor cursor, int offset) {
         GameSubjectItem entity = new GameSubjectItem( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getLong(offset + 1), // subjectId
-            cursor.getLong(offset + 2), // radioId
-            cursor.getLong(offset + 3), // multipleId
-            cursor.getLong(offset + 4), // fillId
-            cursor.getLong(offset + 5), // subjectiveId
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // title
-            cursor.getInt(offset + 7), // select
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // time
-            cursor.getInt(offset + 9), // level
-            cursor.getShort(offset + 10) != 0, // isError
-            cursor.getShort(offset + 11) != 0 // isRepeat
+            cursor.getInt(offset + 1), // people
+            cursor.getInt(offset + 2), // use
+            cursor.getInt(offset + 3), // count
+            cursor.getLong(offset + 4), // mineId
+            cursor.getInt(offset + 5), // language
+            cursor.getLong(offset + 6), // subjectId
+            cursor.getLong(offset + 7), // radioId
+            cursor.getLong(offset + 8), // multipleId
+            cursor.getLong(offset + 9), // fillId
+            cursor.getLong(offset + 10), // subjectiveId
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // title
+            cursor.getInt(offset + 12), // select
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // time
+            cursor.getInt(offset + 14), // level
+            cursor.getShort(offset + 15) != 0, // isError
+            cursor.getShort(offset + 16) != 0 // isRepeat
         );
         return entity;
     }
@@ -176,17 +201,22 @@ public class GameSubjectItemDao extends AbstractDao<GameSubjectItem, Long> {
     @Override
     public void readEntity(Cursor cursor, GameSubjectItem entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setSubjectId(cursor.getLong(offset + 1));
-        entity.setRadioId(cursor.getLong(offset + 2));
-        entity.setMultipleId(cursor.getLong(offset + 3));
-        entity.setFillId(cursor.getLong(offset + 4));
-        entity.setSubjectiveId(cursor.getLong(offset + 5));
-        entity.setTitle(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setSelect(cursor.getInt(offset + 7));
-        entity.setTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setLevel(cursor.getInt(offset + 9));
-        entity.setIsError(cursor.getShort(offset + 10) != 0);
-        entity.setIsRepeat(cursor.getShort(offset + 11) != 0);
+        entity.setPeople(cursor.getInt(offset + 1));
+        entity.setUse(cursor.getInt(offset + 2));
+        entity.setCount(cursor.getInt(offset + 3));
+        entity.setMineId(cursor.getLong(offset + 4));
+        entity.setLanguage(cursor.getInt(offset + 5));
+        entity.setSubjectId(cursor.getLong(offset + 6));
+        entity.setRadioId(cursor.getLong(offset + 7));
+        entity.setMultipleId(cursor.getLong(offset + 8));
+        entity.setFillId(cursor.getLong(offset + 9));
+        entity.setSubjectiveId(cursor.getLong(offset + 10));
+        entity.setTitle(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setSelect(cursor.getInt(offset + 12));
+        entity.setTime(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setLevel(cursor.getInt(offset + 14));
+        entity.setIsError(cursor.getShort(offset + 15) != 0);
+        entity.setIsRepeat(cursor.getShort(offset + 16) != 0);
      }
     
     @Override

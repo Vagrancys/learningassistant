@@ -58,6 +58,7 @@ public class DaoMaster extends AbstractDaoMaster {
         ChallengePartBeanDao.createTable(db, ifNotExists);
         LevelDataBeanDao.createTable(db, ifNotExists);
         LevelPartBeanDao.createTable(db, ifNotExists);
+        ProblemDataBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -99,6 +100,7 @@ public class DaoMaster extends AbstractDaoMaster {
         ChallengePartBeanDao.dropTable(db, ifExists);
         LevelDataBeanDao.dropTable(db, ifExists);
         LevelPartBeanDao.dropTable(db, ifExists);
+        ProblemDataBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -154,6 +156,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(ChallengePartBeanDao.class);
         registerDaoClass(LevelDataBeanDao.class);
         registerDaoClass(LevelPartBeanDao.class);
+        registerDaoClass(ProblemDataBeanDao.class);
     }
 
     public DaoSession newSession() {

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.vagrancys.learningassistant.db.ChallengeDataBeanDao;
 import com.vagrancys.learningassistant.db.ChallengePartBeanDao;
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.GameSubjectItemDao;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vagrancys.learningassistant.db.KnowLedgeDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
@@ -14,8 +15,14 @@ import com.vagrancys.learningassistant.db.MineDataBeanDao;
 import com.vagrancys.learningassistant.db.MineFeedbackBeanDao;
 import com.vagrancys.learningassistant.db.MineLevelPrivilegeBeanDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
+import com.vagrancys.learningassistant.db.ProblemDataBeanDao;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.game.GameFillItem;
+import com.vargancys.learningassistant.db.game.GameMultipleItem;
+import com.vargancys.learningassistant.db.game.GameRadioItem;
+import com.vargancys.learningassistant.db.game.GameSubjectItem;
+import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.ChallengeDataBean;
@@ -26,6 +33,7 @@ import com.vargancys.learningassistant.db.mine.LevelPartBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
 import com.vargancys.learningassistant.db.mine.MineFeedbackBean;
 import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
+import com.vargancys.learningassistant.db.mine.ProblemDataBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeItemBean;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
@@ -34,6 +42,7 @@ import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemDetailsBean;
+import com.vargancys.learningassistant.model.mine.bean.ProblemItemBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
@@ -42,6 +51,7 @@ import com.vargancys.learningassistant.utils.TimeUtils;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.io.StringReader;
+import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -68,6 +78,8 @@ public class MineRequest {
     private ChallengePartBeanDao mChallengePartDao;
     private LevelDataBeanDao mLevelDao;
     private LevelPartBeanDao mLevelPartDao;
+    private ProblemDataBeanDao mProblemDao;
+    private GameSubjectItemDao mGameSubjectDao;
     private MineRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mMineDataDao = mDaoSession.getMineDataBeanDao();
@@ -82,7 +94,10 @@ public class MineRequest {
         mChallengePartDao = mDaoSession.getChallengePartBeanDao();
         mLevelDao = mDaoSession.getLevelDataBeanDao();
         mLevelPartDao = mDaoSession.getLevelPartBeanDao();
+        mProblemDao = mDaoSession.getProblemDataBeanDao();
+        mGameSubjectDao = mDaoSession.getGameSubjectItemDao();
     }
+
     public static MineRequest getInstance(){
         if(mRequest == null){
             synchronized (MineRequest.class){
@@ -93,7 +108,6 @@ public class MineRequest {
         }
         return mRequest;
     }
-
 
     //得到个人中心的数据
     public MineDataBean getMineData(long mineId) {
@@ -220,14 +234,97 @@ public class MineRequest {
     }
 
     //得到个人中心问题数据
-    public ProblemTypeDataBean getProblemTypeData(long mineId) {
-        return null;
+    public ProblemTypeDataBean getProblemTypeData(Context mContext,long mineId) {
+        //1:android 2:java 3:c# 4:php 5:html 6:javascript 7:css
+        ProblemTypeDataBean mBean = new ProblemTypeDataBean();
+        String[] count = ResourceUtils.getStringArray(mContext, R.array.knowledge_count);
+        for (int i = 0;i<count.length;i++){
+            ProblemItemBean mItem = new ProblemItemBean();
+            ProblemDataBean data = mProblemDao.queryBuilder().where(ProblemDataBeanDao.Properties.MineId.eq(mineId),
+                    ProblemDataBeanDao.Properties.Type.eq(i)).unique();
+            mItem.setCount(data.getCount());
+            mItem.setType(data.getType());
+            mItem.setLevel(data.getLevel());
+            mItem.setPeople(data.getPeople());
+            mItem.setTime(data.getTime());
+            mItem.setTitle(data.getTitle());
+            mItem.setUse(data.getUse());
+            List<GameSubjectItem> mHome = mGameSubjectDao.queryBuilder().where(GameSubjectItemDao.Properties.MineId.eq(mineId),GameSubjectItemDao.Properties.Language.eq(i)).list();
+            List<ProblemItemBean.ProblemItem> mLedge = new ArrayList<>();
+            for (GameSubjectItem home:mHome){
+                ProblemItemBean.ProblemItem mKnow = new ProblemItemBean.ProblemItem();
+                mKnow.setPeople(String.valueOf(home.getPeople()));
+                mKnow.setContext(home.getTitle());
+                mKnow.setLevel(String.valueOf(home.getLevel()));
+                mKnow.setId(home.getId().intValue());
+                mKnow.setTitle(home.getTitle());
+                mKnow.setTime(home.getTime());
+                mKnow.setType(String.valueOf(home.getSelect()));
+                mKnow.setUse(String.valueOf(home.getUse()));
+                mLedge.add(mKnow);
+            }
+            mItem.setItems(mLedge);
+            mBean.getItemBeans().add(mItem);
+        }
+        return mBean;
     }
 
     //得到个人中心问题详情数据
     public ProblemDetailsBean getProblemDetailsData(long detailsId) {
-        //TODO 处理个人中心问题详情数据
-        return null;
+        ProblemDetailsBean mBean = new ProblemDetailsBean();
+        GameSubjectItem mItem = mGameSubjectDao.load(detailsId);
+        mBean.setCount(mItem.getCount());
+        mBean.setLevel(mItem.getLevel());
+        mBean.setPeople(mItem.getPeople());
+        mBean.setUse(mItem.getUse());
+        mBean.setType(mItem.getSelect());
+        mBean.setTitle(mItem.getTitle());
+        switch (mItem.getSelect()){
+            case 1:
+                ProblemDetailsBean.RadioItem mRadioItem = new ProblemDetailsBean.RadioItem();
+                GameRadioItem mRadio = mItem.getRadioItem();
+                mRadioItem.setTitle(mRadio.getTitle());
+                mRadioItem.setAnswer(mRadio.getYes());
+                mRadioItem.setRadio_first_answer(mRadio.getFirst_title());
+                mRadioItem.setRadio_second_answer(mRadio.getSecond_title());
+                mRadioItem.setRadio_third_answer(mRadio.getThird_title());
+                mRadioItem.setRadio_fourth_answer(mRadio.getFourth_title());
+                mBean.setRadio(mRadioItem);
+                break;
+            case 2:
+                ProblemDetailsBean.MultipleItem mMultipleItem = new ProblemDetailsBean.MultipleItem();
+                GameMultipleItem mMultiple = mItem.getMultipleItem();
+                mMultipleItem.setTitle(mMultiple.getTitle());
+                mMultipleItem.setMultiple_first_title(mMultiple.getFirst_title());
+                mMultipleItem.setMultiple_second_title(mMultiple.getSecond_title());
+                mMultipleItem.setMultiple_third_title(mMultiple.getThird_title());
+                mMultipleItem.setMultiple_fourth_title(mMultiple.getFourth_title());
+                mMultipleItem.setMultiple_first_answer(mMultiple.getFirst_answer());
+                mMultipleItem.setMultiple_second_answer(mMultiple.getSecond_answer());
+                mMultipleItem.setMultiple_third_answer(mMultiple.getThird_answer());
+                mMultipleItem.setMultiple_fourth_answer(mMultiple.getFourth_answer());
+                mBean.setMultiple(mMultipleItem);
+                break;
+            case 3:
+                ProblemDetailsBean.FillItem mFillItem = new ProblemDetailsBean.FillItem();
+                GameFillItem mFill = mItem.getFillItem();
+                mFillItem.setTitle(mFill.getTitle());
+                mFillItem.setFill_answer(mFill.getAnswer());
+                mFillItem.setFill_first_title(mFill.getFirst_answer());
+                mFillItem.setFill_second_title(mFill.getSecond_answer());
+                mFillItem.setFill_third_title(mFill.getThird_answer());
+                mFillItem.setFill_fourth_title(mFill.getFourth_answer());
+                mBean.setFill(mFillItem);
+                break;
+            case 4:
+                ProblemDetailsBean.SubjectiveItem mSubjectiveItem = new ProblemDetailsBean.SubjectiveItem();
+                GameSubjectiveItem mSubjective = mItem.getSubjectiveItem();
+                mSubjectiveItem.setTitle(mSubjective.getTitle());
+                mSubjectiveItem.setAnswer(mSubjective.getAnswer());
+                mBean.setSubjective(mSubjectiveItem);
+                break;
+        }
+        return mBean;
     }
 
     //保存反馈的数据
