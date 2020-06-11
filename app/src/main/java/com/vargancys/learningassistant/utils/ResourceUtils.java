@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Dimension;
 
+import com.vargancys.learningassistant.R;
+
 /**
  * @author Vagrancy
  * @date 2020/6/4
@@ -35,5 +37,9 @@ public class ResourceUtils {
     //返回Dimension
     public static float getDimension(Context context,int dimension){
         return context.getResources().getDimension(dimension);
+    }
+
+    public static int getInt(Context context, int drawable) {
+        return context.getResources().getInteger(drawable);
     }
 }

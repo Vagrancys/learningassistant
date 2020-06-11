@@ -38,11 +38,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/13
- * version:1.0
- * 添加单个问题
+ * @author Vagrancy
+ * @date 2020/4/13
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 添加单个问题
  */
 public class SubjectAddActivity extends BaseActivity implements AddGameView {
     private static String TAG = "SubjectAddActivity";

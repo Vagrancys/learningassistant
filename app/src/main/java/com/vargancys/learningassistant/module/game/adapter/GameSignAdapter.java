@@ -22,10 +22,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/11
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/11
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 关卡签到适配器
  */
 public class GameSignAdapter extends BaseRecyclerAdapter {
     private Context mContext;

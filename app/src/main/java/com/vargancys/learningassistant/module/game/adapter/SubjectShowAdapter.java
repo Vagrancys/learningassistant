@@ -27,10 +27,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/12
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/12
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 关卡问题展示适配器
  */
 public class SubjectShowAdapter extends BaseRecyclerAdapter {
     private List<GameSubjectItem> mItems;
@@ -177,7 +178,6 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
     private void initFillData(SubjectShowViewHolder mHolder, GameFillItem mFill) {
         mHolder.fillSubjectTitle.setText(mFill.getTitle());
         initFillState(mHolder);
-        Log.e(TAG,"Answer ="+mFill.getAnswer());
         switch (mFill.getAnswer()){
             case 1:
                 mHolder.fillSubjectFirstImg.setImageResource(R.drawable.subject_yes_normal);

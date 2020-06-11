@@ -32,10 +32,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/10
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/10
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 关卡选择页面
  */
 public class GameSelectActivity extends BaseActivity implements SelectGameView {
     @BindView(R.id.game_select)

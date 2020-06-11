@@ -20,7 +20,7 @@ import butterknife.BindView;
  * @date 2020/4/28
  * Github: https:github.com/Vagrancys
  * Email:18050829067@163.com
- * Description:
+ * Description: 关卡答题卡适配器
  */
 public class AnswerSheetAdapter extends BaseRecyclerAdapter {
     private ArrayList<GameAnswerSheetBean> mBeans;

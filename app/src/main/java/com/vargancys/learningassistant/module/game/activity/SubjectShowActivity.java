@@ -30,10 +30,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/12
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/12
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 问题展示页面
  */
 public class SubjectShowActivity extends BaseActivity implements SubjectShowView {
     @BindView(R.id.common_back)

@@ -20,6 +20,7 @@ import com.vargancys.learningassistant.module.game.view.BaseGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -27,6 +28,13 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author Vagrancy
+ * @date 2020/5/5
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 关卡答题卡页面
+ */
 public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheetView {
     @BindView(R.id.common_back)
     ImageView commonBack;
@@ -64,7 +72,6 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
     public void initView() {
         mBean = getIntent().getParcelableArrayListExtra(ConstantsUtils.ANSWER_SHEET_NAME);
         gameId = CacheUtils.getLong(getContext(), ConstantsUtils.GAME_ID, 0);
-        Log.e("GameAnswerSheetActivity", "测试");
         mAdapter = new AnswerSheetAdapter(getContext(), mBean);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
         recyclerView.setAdapter(mAdapter);
@@ -85,7 +92,7 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
 
     @Override
     public void updateDataFinish() {
-        ToastUtils.ToastText(getContext(),"答题确定成功!");
+        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.answer_sheet_success_text));
     }
 
     @Override

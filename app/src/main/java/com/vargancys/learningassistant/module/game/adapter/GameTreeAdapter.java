@@ -21,11 +21,13 @@ import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 import java.util.List;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/10
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/10
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 关卡树适配器
  */
+
 public class GameTreeAdapter<T> extends TreeListViewAdapter<T> {
     private static String TAG = "GameTreeAdapter";
     private List<OverViewListItem> mItems;

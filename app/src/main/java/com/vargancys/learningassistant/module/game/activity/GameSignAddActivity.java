@@ -25,10 +25,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * author: Vagrancy
- * e-mail: 18050829067@163.com
- * time  : 2020/04/12
- * version:1.0
+ * @author Vagrancy
+ * @date 2020/4/12
+ * Github: https:github.com/Vagrancys
+ * Email:18050829067@163.com
+ * Description: 关卡签到添加页面
  */
 public class GameSignAddActivity extends BaseActivity implements SignAddView {
     @BindView(R.id.common_back)

@@ -81,4 +81,6 @@ public class ConstantsUtils {
     public static final String MINE_LEVEL_ID = "mine_level_id";
     //个人中心问题id
     public static final String PROBLEM_ID = "problem_id";
+    //登录状态
+    public static final String LOGIN_STATE = "login_state";
 }

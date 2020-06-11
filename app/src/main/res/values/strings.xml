@@ -506,9 +506,11 @@
     <string name="start_empty_title">正在处理数据中</string>
     <string name="next_problem">下一题</string>
 
+    //关卡签到
     <string name="answer_sheet_determine">确定</string>
     <string name="answer_sheet_title">1</string>
     <string name="answer_sheet_toolbar">答题卡</string>
+    <string name="answer_sheet_success_text">答题确定成功!</string>
 
     <!--天梯-->
     <string name="ladder_level_text">25阶</string>
@@ -992,6 +994,9 @@
     <string name="login_forget_password_text">忘记密码?</string>
     <string name="login_password_hint_text">登录密码</string>
     <string name="login_name_hint_text">用户名</string>
+    <string name="login_name_exist_text">账户不存在!</string>
+    <string name="login_name_empty_text">帐号不能为空!</string>
+    <string name="login_password_empty_text">密码不能为空!</string>
 </resources>
 
 

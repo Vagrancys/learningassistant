@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.module.common.member.LoginActivity;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -55,7 +56,11 @@ public class SplashActivity extends BaseActivity {
                 if(CacheUtils.getBoolean(getContext(), ConstantsUtils.GROUP_STATE)){
 
                     Log.e(TAG,"Cache");
-                    MainActivity.launch(SplashActivity.this);
+                    if(CacheUtils.getBoolean(getContext(),ConstantsUtils.LOGIN_STATE)){
+                        MainActivity.launch(SplashActivity.this);
+                    }else{
+                        LoginActivity.launch(SplashActivity.this);
+                    }
                 }else{
                     GroupActivity.launch(SplashActivity.this);
                 }

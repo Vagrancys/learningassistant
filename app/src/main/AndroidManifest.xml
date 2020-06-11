@@ -85,7 +85,8 @@
         <activity android:name=".module.mine.activity.SettingAboutActivity"/>
         <activity android:name=".module.mine.activity.SettingProtocolActivity"/>
         <activity android:name=".module.mine.activity.SettingFeedbackActivity"/>
-        <activity android:name=".module.common.LoginActivity"/>
+        <activity android:name=".module.common.member.LoginActivity"/>
+        <activity android:name=".module.common.member.LoginForgetActivity"/>
     </application>
 
 </manifest>
