@@ -997,6 +997,10 @@
     <string name="login_name_exist_text">账户不存在!</string>
     <string name="login_name_empty_text">帐号不能为空!</string>
     <string name="login_password_empty_text">密码不能为空!</string>
+    <string name="login_forget_time_text">获取</string>
+    <string name="login_forget_submit_text">提交</string>
+    <string name="login_submit_update_text">提交更新</string>
+    <string name="login_forget_update_successful_text">更新密码成功!跳转中</string>
 </resources>
 
 

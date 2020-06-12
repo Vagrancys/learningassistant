@@ -8,4 +8,8 @@ package com.vargancys.learningassistant.module.common.view;
  * Description: 忘记密码视图层
  */
 public interface LoginForgetView {
+    void loadCodeFinish();
+    void loadCodeError(int error,String message);
+    void updatePasswordFinish();
+    void updatePasswordError(int error,String message);
 }
