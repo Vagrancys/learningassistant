@@ -1001,6 +1001,19 @@
     <string name="login_forget_submit_text">提交</string>
     <string name="login_submit_update_text">提交更新</string>
     <string name="login_forget_update_successful_text">更新密码成功!跳转中</string>
+    <string name="login_forget_toolbar">密码找回</string>
+    <string name="login_forget_empty_text">帐号不能为空!</string>
+    <string name="login_forget_code_fail_text">验证码错误!</string>
+    <string name="login_forget_update_empty_text">密码不能为空!</string>
+    <string name="login_forget_update_password_empty_text">确定密码不能为空!</string>
+    <string name="login_forget_different_text">两次密码都不同!</string>
+
+    <!--注册模块-->
+    <string name="register_toolbar">注册</string>
+    <string name="register_submit_text">注册</string>
+    <string name="register_name_empty_text">注册用户不能为空!</string>
+    <string name="register_password_empty_text">注册密码不能为空!</string>
+    <string name="register_save_win_text">注册成功了!</string>
 </resources>
 
 

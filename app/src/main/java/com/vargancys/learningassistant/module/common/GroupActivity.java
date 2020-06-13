@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.module.common;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -24,6 +25,7 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
@@ -50,7 +52,7 @@ public class GroupActivity extends BaseActivity {
     private int leftMax;
 
     public static void launch(Activity activity) {
-        Intent intent = new Intent(activity,GroupActivity.class);
+        Intent intent = new Intent(activity, GroupActivity.class);
         activity.startActivity(intent);
     }
 
@@ -61,33 +63,19 @@ public class GroupActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        mTitle = ResourceUtils.getStringArray(getContext(),R.array.group_title);
+        mTitle = ResourceUtils.getStringArray(getContext(), R.array.group_title);
         addPoint();
         viewPager.setAdapter(new GroupPagerAdapter());
-
-        groupNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CacheUtils.putBoolean(getContext(), ConstantsUtils.GROUP_STATE,true);
-                if(CacheUtils.getBoolean(getContext(),ConstantsUtils.LOGIN_STATE)){
-                    MainActivity.launch(GroupActivity.this);
-                }else{
-                    LoginActivity.launch(GroupActivity.this);
-                }
-
-                finish();
-            }
-        });
     }
 
     private void addPoint() {
-        widthDpi = DensityUtils.dip2px(getContext(),10);
-        heightDpi = DensityUtils.dip2px(getContext(),10);
-        for (int i = 0 ; i <mTitle.length; i ++){
+        widthDpi = DensityUtils.dip2px(getContext(), 10);
+        heightDpi = DensityUtils.dip2px(getContext(), 10);
+        for (int i = 0; i < mTitle.length; i++) {
             ImageView imgPoint = new ImageView(getContext());
             imgPoint.setBackgroundResource(R.drawable.group_point_grey_shape);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(widthDpi,heightDpi);
-            if(i != 0){
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(widthDpi, heightDpi);
+            if (i != 0) {
                 params.leftMargin = widthDpi;
             }
             imgPoint.setLayoutParams(params);
@@ -99,9 +87,20 @@ public class GroupActivity extends BaseActivity {
         viewPager.addOnPageChangeListener(new MyOnPageChangeListener());
     }
 
+    @OnClick(R.id.group_next)
+    public void onViewClicked() {
+        CacheUtils.putBoolean(getContext(), ConstantsUtils.GROUP_STATE, true);
+        if (CacheUtils.getBoolean(getContext(), ConstantsUtils.LOGIN_STATE)) {
+            MainActivity.launch(GroupActivity.this);
+        } else {
+            LoginActivity.launch(GroupActivity.this);
+        }
+
+        finish();
+    }
 
 
-    class GroupPagerAdapter extends PagerAdapter{
+    class GroupPagerAdapter extends PagerAdapter {
 
         @Override
         public int getCount() {
@@ -119,8 +118,8 @@ public class GroupActivity extends BaseActivity {
             TextView textView = new TextView(getContext());
             textView.setGravity(Gravity.CENTER);
             textView.setText(mTitle[position]);
-            textView.setTextSize(ResourceUtils.getDimension(getContext(),R.dimen.text_size_24sp));
-            textView.setTextColor(ResourceUtils.getColor(getContext(),R.color.black));
+            textView.setTextSize(ResourceUtils.getDimension(getContext(), R.dimen.text_size_24sp));
+            textView.setTextColor(ResourceUtils.getColor(getContext(), R.color.black));
             container.addView(textView);
             return textView;
         }
@@ -144,7 +143,7 @@ public class GroupActivity extends BaseActivity {
 
         @Override
         public void onPageScrolled(int i, float v, int i1) {
-            int leftMargin = (int) (i * leftMax +(v * leftMax));
+            int leftMargin = (int) (i * leftMax + (v * leftMax));
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) groupPoint.getLayoutParams();
             params.leftMargin = leftMargin;
             groupPoint.setLayoutParams(params);
@@ -152,9 +151,9 @@ public class GroupActivity extends BaseActivity {
 
         @Override
         public void onPageSelected(int i) {
-            if(i == mTitle.length - 1){
+            if (i == mTitle.length - 1) {
                 groupNext.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 groupNext.setVisibility(View.GONE);
             }
         }

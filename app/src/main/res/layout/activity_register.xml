@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:gravity="center|top">
     <include layout="@layout/include_toolbar"/>
+
     <ImageView
-        android:id="@+id/login_logo"
+        android:id="@+id/register_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
@@ -21,7 +22,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true">
         <EditText
-            android:id="@+id/login_name_edit"
+            android:id="@+id/register_name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/common_edit_shape"
@@ -29,7 +30,7 @@
             android:textSize="@dimen/text_size_18sp"
             android:textColor="@color/black"/>
         <ImageView
-            android:id="@+id/login_name_close"
+            android:id="@+id/register_name_close"
             android:layout_width="@dimen/margin_width_30dp"
             android:layout_height="@dimen/margin_width_30dp"
             android:layout_alignParentRight="true"
@@ -46,7 +47,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true">
         <EditText
-            android:id="@+id/login_password_edit"
+            android:id="@+id/register_password_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/common_edit_shape"
@@ -54,7 +55,7 @@
             android:textSize="@dimen/text_size_18sp"
             android:textColor="@color/black"/>
         <ImageView
-            android:id="@+id/login_password_close"
+            android:id="@+id/register_password_close"
             android:layout_width="@dimen/margin_width_30dp"
             android:layout_height="@dimen/margin_width_30dp"
             android:layout_alignParentRight="true"
@@ -62,27 +63,11 @@
             android:layout_marginRight="@dimen/margin_width_10dp"/>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center|end"
-        android:layout_marginRight="@dimen/margin_width_30dp"
-        android:layout_marginLeft="@dimen/margin_width_30dp"
-        android:layout_marginBottom="@dimen/margin_width_10dp">
-        <TextView
-            android:id="@+id/login_forget_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_forget_password_text"
-            android:textSize="@dimen/text_size_18sp"
-            android:textColor="@color/black"/>
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/login_submit"
+        android:id="@+id/register_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_submit_text"
+        android:text="@string/register_submit_text"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_18sp"
         android:background="@drawable/login_submit_shape"

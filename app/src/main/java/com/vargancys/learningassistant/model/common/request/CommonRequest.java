@@ -1,7 +1,9 @@
 package com.vargancys.learningassistant.model.common.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
+import com.vagrancys.learningassistant.db.MemberBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.common.MemberBean;
 
 /**
  * @author Vagrancy
@@ -13,8 +15,11 @@ import com.vargancys.learningassistant.base.BaseApplication;
 public class CommonRequest {
     private static CommonRequest mRequest;
     private DaoSession mDaoSession;
+    private MemberBeanDao mMember;
+
     private CommonRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
+        mMember = mDaoSession.getMemberBeanDao();
     }
 
     public static CommonRequest getInstance(){
@@ -35,5 +40,36 @@ public class CommonRequest {
 
     public boolean loginName(String name, String password) {
         return true;
+    }
+
+    //保存密码!
+    public boolean updatePasswordData(String name) {
+        MemberBean member = new MemberBean();
+        member.setPassword(name);
+        member.setTitle("2222");
+        long result = mMember.insert(member);
+        if(result != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //发送验证码
+    public boolean loadCodeName() {
+        return true;
+    }
+
+    //注册用户
+    public boolean saveMember(String name, String password) {
+        MemberBean mBean = new MemberBean();
+        mBean.setTitle(name);
+        mBean.setPassword(password);
+        long result = mMember.insert(mBean);
+        if(result != 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -23,7 +23,6 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 
 /**
  * @author Vagrancy
@@ -47,6 +46,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
     EditText loginPasswordEdit;
     @BindView(R.id.login_password_close)
     ImageView loginPasswordClose;
+    @BindView(R.id.common_img)
+    ImageView commonImg;
 
     private BaseCommonPresenter mPresenter;
 
@@ -67,9 +68,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(loginNameEdit.getText().length() > 0){
+                if (loginNameEdit.getText().length() > 0) {
                     loginNameClose.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     loginNameClose.setVisibility(View.GONE);
                 }
             }
@@ -88,9 +89,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(loginPasswordEdit.getText().length() > 0){
+                if (loginPasswordEdit.getText().length() > 0) {
                     loginPasswordClose.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     loginPasswordClose.setVisibility(View.GONE);
                 }
             }
@@ -106,9 +107,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void initToolbar() {
         commonBack.setVisibility(View.GONE);
         commonTitleData.setText(ResourceUtils.getString(getContext(), R.string.login_toolbar));
+        commonImg.setImageResource(R.drawable.register_normal);
     }
 
-    @OnClick({R.id.login_forget_password, R.id.login_submit,R.id.login_name_close, R.id.login_password_close})
+    @OnClick({R.id.login_forget_password, R.id.login_submit, R.id.login_name_close, R.id.login_password_close
+    ,R.id.common_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login_forget_password:
@@ -124,6 +127,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
             case R.id.login_password_close:
                 loginPasswordClose.setVisibility(View.GONE);
                 loginPasswordEdit.setText("");
+                break;
+            case R.id.common_img:
+                RegisterActivity.launch(this);
                 break;
         }
     }
@@ -161,8 +167,15 @@ public class LoginActivity extends BaseActivity implements LoginView {
         loginPasswordEdit.setText("");
     }
 
-    public static void launch(Activity activity){
-        Intent intent = new Intent(activity,LoginActivity.class);
+    public static void launch(Activity activity) {
+        Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
