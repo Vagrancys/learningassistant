@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
@@ -37,7 +38,8 @@ import butterknife.BindView;
  * version:1.0
  * 帮助中心页
  */
-public class HelpContentActivity extends BaseActivity implements HelpContentView{
+public class HelpContentActivity extends BaseActivity
+        implements HelpContentView{
     private static String TAG = "HelpContentActivity";
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -80,8 +82,6 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
 
     @Override
     public void showContentBean(List<HelpContentItem> bean) {
-        Log.e("helpContentActivity","showContentBean = "+bean.size());
-        Log.e("helpContentActivity","showContentBean = "+bean.get(0).getTitle());
         mBean.clear();
         mBean.addAll(bean);
         helpContentAdapter.notifyDataSetChanged();
@@ -111,7 +111,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
 
     @Override
     public void deleteFinish(int position) {
-        ToastUtils.ToastText(getContext(),"删除帮助成功了!");
+        ToastUtils.ToastText(getContext(),R.string.help_delete_successful_text);
         helpContentAdapter.notifyItemRemoved(position);
         mBean.remove(position);
         helpContentAdapter.notifyItemRangeChanged(position,mBean.size()-1);
@@ -119,7 +119,7 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
 
     @Override
     public void deleteError() {
-        ToastUtils.ToastText(getContext(),"删除帮助失败了!");
+        ToastUtils.ToastText(getContext(),R.string.help_delete_fail_text);
     }
 
     class HelpContentOnItemLongClickListener implements BaseRecyclerAdapter.OnItemLongClickListener{
@@ -150,9 +150,8 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     class HelpContentOnItemClickListener implements BaseRecyclerAdapter.OnItemClickListener{
         @Override
         public void OnItemClick(int position) {
-            ToastUtils.ToastText(getContext(),"跳转到帮助详情页面!");
+            ToastUtils.ToastText(getContext(),R.string.help_content_details_text);
             HelpContentItem helpContentItem =mBean.get(position);
-            Log.e(TAG,"data = "+helpContentItem.getId()+"help="+helpContentItem.getContentId());
             HelpSummaryActivity.launch(HelpContentActivity.this,helpContentItem.getId().intValue());
         }
     }
@@ -163,23 +162,6 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
             swipeRefresh.setRefreshing(true);
             helpContentPresenter.getAllBean();
         }
-    }
-
-    @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HelpAddActivity.launch(HelpContentActivity.this,RequestCode);
-            }
-        });
     }
 
     @Override
@@ -201,5 +183,17 @@ public class HelpContentActivity extends BaseActivity implements HelpContentView
     @Override
     public void showRefreshView() {
         swipeRefresh.setRefreshing(true);
+    }
+
+    @OnClick({R.id.common_add,R.id.common_back})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_add:
+                HelpAddActivity.launch(HelpContentActivity.this,RequestCode);
+                break;
+        }
     }
 }

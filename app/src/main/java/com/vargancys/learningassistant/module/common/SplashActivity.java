@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.CountDownTimer;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,7 +14,6 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.common.member.LoginActivity;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
-import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -55,7 +53,6 @@ public class SplashActivity extends BaseActivity {
             public void onFinish() {
                 if(CacheUtils.getBoolean(getContext(), ConstantsUtils.GROUP_STATE)){
 
-                    Log.e(TAG,"Cache");
                     if(CacheUtils.getBoolean(getContext(),ConstantsUtils.LOGIN_STATE)){
                         MainActivity.launch(SplashActivity.this);
                     }else{

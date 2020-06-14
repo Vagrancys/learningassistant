@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.game.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import com.vargancys.learningassistant.db.game.GameConfigUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -220,14 +218,8 @@ public class GameConfigActivity extends BaseActivity {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitleData.setText(R.string.config_title);
+        commonTitleData.setText(getText(R.string.config_title));
     }
 
     public static void launch(Activity activity) {
@@ -248,7 +240,8 @@ public class GameConfigActivity extends BaseActivity {
             R.id.config_single_fourth,R.id.config_single_fifth,R.id.config_type_first,R.id.config_type_second,R.id.config_type_third,
             R.id.config_type_fourth,R.id.config_type_fifth,R.id.config_difficulty_first,R.id.config_difficulty_second,
             R.id.config_difficulty_third,R.id.config_difficulty_fourth,R.id.config_difficulty_fifth,R.id.config_contain_first,
-            R.id.config_contain_second,R.id.config_repeat_first,R.id.config_repeat_second,R.id.config_save})
+            R.id.config_contain_second,R.id.config_repeat_first,R.id.config_repeat_second,R.id.config_save,
+            R.id.common_back})
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.config_number_first:
@@ -368,8 +361,11 @@ public class GameConfigActivity extends BaseActivity {
                 GameConfigUtils.CONFIG_REPEAT = true;
                 break;
             case R.id.config_save:
-                ToastUtils.ToastText(getContext(), "保存成功了哦!");
+                ToastUtils.ToastText(getContext(), R.string.game_config_success_text);
                 GameStartActivity.launch(GameConfigActivity.this);
+                finish();
+                break;
+            case R.id.common_back:
                 finish();
                 break;
         }

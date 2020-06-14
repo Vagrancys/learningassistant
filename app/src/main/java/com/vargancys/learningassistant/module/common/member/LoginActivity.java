@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.common.member;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -21,7 +20,6 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -110,8 +108,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         commonImg.setImageResource(R.drawable.register_normal);
     }
 
-    @OnClick({R.id.login_forget_password, R.id.login_submit, R.id.login_name_close, R.id.login_password_close
-    ,R.id.common_img})
+    @OnClick({R.id.login_forget_password, R.id.login_submit, R.id.login_name_close,
+            R.id.login_password_close,R.id.common_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login_forget_password:
@@ -136,17 +134,17 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     private void submitLogin() {
         if (loginNameEdit.getText().toString().isEmpty()) {
-            ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(), R.string.login_name_empty_text));
+            ToastUtils.ToastText(getContext(), R.string.login_name_empty_text);
             return;
         }
         if (loginPasswordEdit.getText().toString().isEmpty()) {
-            ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(), R.string.login_password_empty_text));
+            ToastUtils.ToastText(getContext(),R.string.login_password_empty_text);
             return;
         }
         String name = loginNameEdit.getText().toString();
         String password = loginPasswordEdit.getText().toString();
         if (!mPresenter.isExistName(name)) {
-            ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(), R.string.login_name_exist_text));
+            ToastUtils.ToastText(getContext(),R.string.login_name_exist_text);
             return;
         }
         mPresenter.loginName(name, password);
@@ -170,12 +168,5 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public static void launch(Activity activity) {
         Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

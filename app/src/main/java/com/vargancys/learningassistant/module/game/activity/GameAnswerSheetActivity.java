@@ -2,11 +2,9 @@ package com.vargancys.learningassistant.module.game.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,17 +14,15 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
 import com.vargancys.learningassistant.module.game.adapter.AnswerSheetAdapter;
 import com.vargancys.learningassistant.module.game.view.AnswerSheetView;
-import com.vargancys.learningassistant.module.game.view.BaseGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
-import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -56,16 +52,7 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
 
     @Override
     public void initToolbar() {
-        super.initToolbar();
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
         commonTitle.setText(R.string.answer_sheet_toolbar);
-
     }
 
     @Override
@@ -76,12 +63,6 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
         recyclerView.setAdapter(mAdapter);
         mPresenter = new BaseGamePresenter(this);
-        sheetDetermine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.updateAnswerSheetData(gameId,mBean);
-            }
-        });
     }
 
     public static void launch(Activity activity, Parcelable parcelable) {
@@ -92,11 +73,23 @@ public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheet
 
     @Override
     public void updateDataFinish() {
-        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.answer_sheet_success_text));
+        ToastUtils.ToastText(getContext(),R.string.answer_sheet_success_text);
     }
 
     @Override
     public void updateDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error +",Message ="+message);
+    }
+
+    @OnClick({R.id.common_back,R.id.sheet_determine})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.sheet_determine:
+                mPresenter.updateAnswerSheetData(gameId,mBean);
+                break;
+        }
     }
 }

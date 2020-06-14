@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,14 +25,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/07
  * version:1.0
+ * 帮助内容页面
  */
-public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView{
+public class HelpSummaryActivity extends BaseActivity
+        implements HelpSummaryView{
+    private String TAG = "HelpSummaryActivity";
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_update)
@@ -65,13 +68,12 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     @BindView(R.id.commend_number_text)
     TextView commendNumberText;
 
-
     private HelpSummaryPresenter helpSummaryPresenter;
     private HelpCommendAdapter helpCommendAdapter;
     private int Request = 2001;
     private int help_summary_id;
     private int commendNumber;
-    private String TAG = "HelpSummaryActivity";
+
     private List<HelpCommendItem> helpCommendItems = new ArrayList<>();
 
     @Override
@@ -82,7 +84,6 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     @Override
     public void initView() {
         help_summary_id = getIntent().getIntExtra(ConstantsUtils.HELP_SUMMARY_ID,0);
-        Log.e(TAG,"help_id"+help_summary_id);
         helpSummaryPresenter = new HelpSummaryPresenter(this);
         helpCommendAdapter = new HelpCommendAdapter(getContext(),helpCommendItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -93,46 +94,6 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     }
 
     private void initListener() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HelpUpdateActivity.launch(HelpSummaryActivity.this,help_summary_id,Request);
-            }
-        });
-
-        helpPraise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(helpPraise.isSelected()){
-                    helpPraise.setSelected(false);
-                    helpSummaryPresenter.addPraiseOrPoor(0,help_summary_id);
-                }else{
-                    helpPraise.setSelected(true);
-                    helpSummaryPresenter.subPraiseOrPoor(0,help_summary_id);
-                }
-            }
-        });
-
-        helpPoor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(helpPraise.isSelected()){
-                    helpPraise.setSelected(false);
-                    helpSummaryPresenter.addPraiseOrPoor(1,help_summary_id);
-                }else{
-                    helpPraise.setSelected(true);
-                    helpSummaryPresenter.subPraiseOrPoor(1,help_summary_id);
-                }
-            }
-        });
-
         commendEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -141,13 +102,6 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
                 }else{
                     commendEdit.setMinLines(1);
                 }
-            }
-        });
-
-        commendSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                helpSummaryPresenter.saveCommendData(help_summary_id,commendEdit.getText().toString());
             }
         });
     }
@@ -159,13 +113,13 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
                 &&data !=null){
             switch (data.getIntExtra(ConstantsUtils.HELP_UPDATE_STATE,0)){
                 case 0:
-                    Log.e(TAG,"没有修改该帮助!");
+                    ToastUtils.ToastText(getContext(), R.string.help_update_not_text);
                     break;
                 case 1:
                     helpSummaryPresenter.reFreshSummary(help_summary_id);
                     break;
                 case 2:
-                    Log.e(TAG,"修改该帮助失败了!");
+                    ToastUtils.ToastText(getContext(),R.string.help_update_fail_text);
                     break;
             }
         }
@@ -242,7 +196,7 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
 
     @Override
     public void saveCommendFinish(HelpCommendItem item) {
-        ToastUtils.ToastText(getContext(),"发表评论成功了!");
+        ToastUtils.ToastText(getContext(),R.string.help_update_commend_successful_text);
         helpSummaryPresenter.reFreshSummary(help_summary_id);
         commendNumberText.setText(String.valueOf(++commendNumber));
         recyclerView.setVisibility(View.VISIBLE);
@@ -254,5 +208,39 @@ public class HelpSummaryActivity extends BaseActivity implements HelpSummaryView
     @Override
     public void saveCommendError(int error, String msg) {
         ToastUtils.ToastText(getContext(),"Error = "+error+", Msg = "+msg);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_update,R.id.help_praise,
+            R.id.help_poor,R.id.commend_send})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_update:
+                HelpUpdateActivity.launch(HelpSummaryActivity.this,help_summary_id,Request);
+                break;
+            case R.id.help_praise:
+                if(helpPraise.isSelected()){
+                    helpPraise.setSelected(false);
+                    helpSummaryPresenter.addPraiseOrPoor(0,help_summary_id);
+                }else{
+                    helpPraise.setSelected(true);
+                    helpSummaryPresenter.subPraiseOrPoor(0,help_summary_id);
+                }
+                break;
+            case R.id.help_poor:
+                if(helpPraise.isSelected()){
+                    helpPraise.setSelected(false);
+                    helpSummaryPresenter.addPraiseOrPoor(1,help_summary_id);
+                }else{
+                    helpPraise.setSelected(true);
+                    helpSummaryPresenter.subPraiseOrPoor(1,help_summary_id);
+                }
+                break;
+            case R.id.commend_send:
+                helpSummaryPresenter.saveCommendData(help_summary_id,commendEdit.getText().toString());
+                break;
+        }
     }
 }

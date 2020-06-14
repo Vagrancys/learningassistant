@@ -30,6 +30,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -114,12 +115,6 @@ public class GameSelectActivity extends BaseActivity implements SelectGameView {
     @Override
     public void initToolbar() {
         gameSelect.setImageResource(R.drawable.common_back_normal);
-        gameSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         gameSign.setVisibility(View.GONE);
     }
@@ -158,18 +153,27 @@ public class GameSelectActivity extends BaseActivity implements SelectGameView {
 
     @Override
     public void saveSelectGameFinish(long gameId) {
-        ToastUtils.ToastText(getContext(),"选择成功!");
+        ToastUtils.ToastText(getContext(),R.string.game_select_success_text);
         setGameId(gameId);
         finish();
     }
 
     @Override
     public void isGameContentEmptyFinish(long gameId) {
-        ToastUtils.ToastText(getContext(),"已经选择该关卡");
+        ToastUtils.ToastText(getContext(),R.string.game_select_repeat_text);
         setGameId(gameId);
     }
 
     private void setGameId(long gameId){
         CacheUtils.putLong(getContext(), ConstantsUtils.GAME_ID,gameId);
+    }
+
+    @OnClick({R.id.game_select})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.game_select:
+                finish();
+                break;
+        }
     }
 }

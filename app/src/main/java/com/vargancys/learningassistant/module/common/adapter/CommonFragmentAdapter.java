@@ -15,6 +15,7 @@ import com.vargancys.learningassistant.module.overview.fragment.OverViewFragment
  * e-mail: 18050829067@163.com
  * time  : 2020/03/01
  * version:1.0
+ * 主页各模块适配器
  */
 public class CommonFragmentAdapter extends FragmentPagerAdapter {
     private Fragment[] mFragment;
@@ -22,7 +23,6 @@ public class CommonFragmentAdapter extends FragmentPagerAdapter {
         super(fragmentManager);
         mFragment = new Fragment[size];
     }
-
 
     @Override
     public Fragment getItem(int position) {

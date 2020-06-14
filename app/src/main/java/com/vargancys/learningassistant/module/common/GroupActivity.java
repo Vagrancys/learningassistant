@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.common;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -24,7 +23,6 @@ import com.vargancys.learningassistant.utils.DensityUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

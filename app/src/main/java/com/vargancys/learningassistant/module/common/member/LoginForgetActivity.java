@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.common.member;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,7 +19,6 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -30,7 +28,8 @@ import butterknife.OnClick;
  * Email:18050829067@163.com
  * Description: 忘记密码页面
  */
-public class LoginForgetActivity extends BaseActivity implements LoginForgetView {
+public class LoginForgetActivity extends BaseActivity
+        implements LoginForgetView {
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_title_data)
@@ -106,14 +105,6 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
             }
         });
 
-        loginNameClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginNameClose.setVisibility(View.GONE);
-                loginNameEdit.setText("");
-            }
-        });
-
         loginNameUpdateEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -132,14 +123,6 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
             @Override
             public void afterTextChanged(Editable s) {
 
-            }
-        });
-
-        loginNameUpdateClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginNameUpdateClose.setVisibility(View.GONE);
-                loginNameUpdateEdit.setText("");
             }
         });
 
@@ -164,27 +147,12 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
             }
         });
 
-        loginPasswordUpdateClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginPasswordUpdateClose.setVisibility(View.GONE);
-                loginPasswordUpdateEdit.setText("");
-            }
-        });
     }
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         commonTitleData.setText(ResourceUtils.getString(getContext(), R.string.login_forget_toolbar));
     }
-
 
     public static void launch(Activity activity) {
         Intent intent = new Intent(activity, LoginForgetActivity.class);
@@ -203,7 +171,7 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
 
     @Override
     public void updatePasswordFinish() {
-        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(), R.string.login_forget_update_successful_text));
+        ToastUtils.ToastText(getContext(), R.string.login_forget_update_successful_text);
         finish();
     }
 
@@ -212,7 +180,9 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
         ToastUtils.ToastText(getContext(), "Error =" + error + ", Message =" + message);
     }
 
-    @OnClick({R.id.login_code_time,R.id.login_forget_submit,R.id.login_submit_update})
+    @OnClick({R.id.login_code_time,R.id.login_forget_submit,
+            R.id.login_submit_update,R.id.common_back,
+            R.id.login_name_close,R.id.login_name_update_close})
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.login_code_time:
@@ -227,6 +197,22 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
             case R.id.login_submit_update:
                 isUpdateName();
                 break;
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.login_name_close:
+                loginNameClose.setVisibility(View.GONE);
+                loginNameEdit.setText("");
+                break;
+            case R.id.login_name_update_close:
+                loginNameUpdateClose.setVisibility(View.GONE);
+                loginNameUpdateEdit.setText("");
+                break;
+            case R.id.login_password_update_close:
+                loginPasswordUpdateClose.setVisibility(View.GONE);
+                loginPasswordUpdateEdit.setText("");
+                break;
+
         }
     }
 
@@ -234,16 +220,16 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
         String name = loginNameUpdateEdit.getText().toString();
         String password = loginPasswordUpdateEdit.getText().toString();
         if(name.isEmpty()){
-            ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.login_forget_update_empty_text));
+            ToastUtils.ToastText(getContext(),R.string.login_forget_update_empty_text);
             return;
         }
         if(password.isEmpty()){
-            ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.login_forget_update_password_empty_text));
+            ToastUtils.ToastText(getContext(),R.string.login_forget_update_password_empty_text);
             return;
         }
 
         if(!name.equals(password)){
-            ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.login_forget_different_text));
+            ToastUtils.ToastText(getContext(),R.string.login_forget_different_text);
             return;
         }
         mPresenter.updatePasswordData(name);
@@ -252,13 +238,13 @@ public class LoginForgetActivity extends BaseActivity implements LoginForgetView
     private void isName() {
         String name = loginNameEdit.getText().toString();
         if(name.isEmpty()){
-           ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.login_forget_empty_text));
+           ToastUtils.ToastText(getContext(),R.string.login_forget_empty_text);
             return;
         }
         if(mPresenter.isCodeSuccessful(loginCodeEdit.getText().toString())){
             launchLayout();
         }else{
-            ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.login_forget_code_fail_text));
+            ToastUtils.ToastText(getContext(),R.string.login_forget_code_fail_text);
             return;
         }
     }

@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.common.view.HelpAddView;
 import com.vargancys.learningassistant.presenter.common.help.HelpAddPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
@@ -31,9 +34,11 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
     EditText helpTitleEdit;
     @BindView(R.id.help_summary_edit)
     EditText helpSummaryEdit;
+    @BindView(R.id.common_title)
+    TextView commonTitle;
     private HelpAddPresenter helpAddPresenter;
     public static int ResultCode = 2005;
-    private int addCount=0;
+    private int addCount = 0;
 
     @Override
     public int getLayoutId() {
@@ -43,50 +48,55 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
     @Override
     public void initView() {
         helpAddPresenter = new HelpAddPresenter(this);
-        initListener();
     }
 
-    private void initListener() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(ConstantsUtils.HELP_ADD_COUNT,addCount);
-                setResult(ResultCode,intent);
-                finish();
-            }
-        });
-
+    @Override
+    public void initToolbar() {
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.help_add_toolbar));
         commonImg.setBackgroundResource(R.drawable.comment_complete_selector);
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                helpAddPresenter.saveHelpData(helpTitleEdit.getText().toString(),
-                        helpSummaryEdit.getText().toString());
-            }
-        });
     }
 
-    public static void launch(Activity activity,int requestCode) {
+    public static void launch(Activity activity, int requestCode) {
         Intent intent = new Intent(activity, HelpAddActivity.class);
-        activity.startActivityForResult(intent,requestCode);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override
     public void addFinish() {
-        ToastUtils.ToastText(getContext(), "添加帮助成功了哦!");
+        ToastUtils.ToastText(getContext(), R.string.help_add_successful_text);
         addCount++;
         resetView();
     }
 
     @Override
     public void addError(int error, String msg) {
-        ToastUtils.ToastText(getContext(), "添加帮助失败了哦!");
+        ToastUtils.ToastText(getContext(), R.string.help_add_fail_text);
         resetView();
     }
 
     private void resetView() {
         helpTitleEdit.setText("");
         helpSummaryEdit.setText("");
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView) {
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finishHelp();
+                break;
+            case R.id.common_img:
+                helpAddPresenter.saveHelpData(helpTitleEdit.getText().toString(),
+                        helpSummaryEdit.getText().toString());
+                break;
+        }
+    }
+
+    //添加数据返回
+    private void finishHelp(){
+        Intent intent = new Intent();
+        intent.putExtra(ConstantsUtils.HELP_ADD_COUNT, addCount);
+        setResult(ResultCode, intent);
+        finish();
     }
 }

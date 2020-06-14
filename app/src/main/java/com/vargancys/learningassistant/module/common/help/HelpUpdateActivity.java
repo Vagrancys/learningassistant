@@ -17,14 +17,17 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/08
  * version:1.0
+ * 帮助更新页面
  */
-public class HelpUpdateActivity extends BaseActivity implements HelpUpdateView {
+public class HelpUpdateActivity extends BaseActivity
+        implements HelpUpdateView {
     @BindView(R.id.common_back)
     ImageView commonBack;
     @BindView(R.id.common_img)
@@ -62,30 +65,7 @@ public class HelpUpdateActivity extends BaseActivity implements HelpUpdateView {
     }
 
     private void initListener() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(ConstantsUtils.HELP_UPDATE_STATE,0);
-                setResult(ResultCode,intent);
-                finish();
-            }
-        });
-
         commonImg.setBackgroundResource(R.drawable.comment_complete_selector);
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean equals = helpUpdatePresenter.equalsHelpData(helpTitleEdit.getText().toString(),
-                        helpSummaryEdit.getText().toString());
-                if(equals){
-                    ToastUtils.ToastText(getContext(),"该帮助没有任何修改!请考虑清楚要不要修改!");
-                }else{
-                    helpUpdatePresenter.updateHelpData(SummaryId,helpTitleEdit.getText().toString(),
-                            helpSummaryEdit.getText().toString());
-                }
-            }
-        });
     }
 
     public static void launch(Activity activity, int id, int requestCode) {
@@ -110,14 +90,14 @@ public class HelpUpdateActivity extends BaseActivity implements HelpUpdateView {
 
     @Override
     public void getHelpError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"获取数据库数据失败!");
+        ToastUtils.ToastText(getContext(),R.string.help_database_error_text);
         updateRelative.setVisibility(View.GONE);
         updateEmpty.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void updateError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"更新该帮助失败!请稍后再试或者联系官方!");
+        ToastUtils.ToastText(getContext(),R.string.help_update_error_text);
         Intent intent = new Intent();
         intent.putExtra(ConstantsUtils.HELP_UPDATE_STATE,2);
         setResult(ResultCode,intent);
@@ -126,10 +106,32 @@ public class HelpUpdateActivity extends BaseActivity implements HelpUpdateView {
 
     @Override
     public void updateFinish() {
-        ToastUtils.ToastText(getContext(),"更新该帮助成功!返回中!");
+        ToastUtils.ToastText(getContext(),R.string.help_update_success_text);
         Intent intent = new Intent();
         intent.putExtra(ConstantsUtils.HELP_UPDATE_STATE,1);
         setResult(ResultCode,intent);
         finish();
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                Intent intent = new Intent();
+                intent.putExtra(ConstantsUtils.HELP_UPDATE_STATE,0);
+                setResult(ResultCode,intent);
+                finish();
+                break;
+            case R.id.common_img:
+                boolean equals = helpUpdatePresenter.equalsHelpData(helpTitleEdit.getText().toString(),
+                    helpSummaryEdit.getText().toString());
+                if(equals){
+                    ToastUtils.ToastText(getContext(),R.string.help_update_original_text);
+                }else{
+                    helpUpdatePresenter.updateHelpData(SummaryId,helpTitleEdit.getText().toString(),
+                            helpSummaryEdit.getText().toString());
+                }
+                break;
+        }
     }
 }

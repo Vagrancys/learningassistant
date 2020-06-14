@@ -11,6 +11,11 @@
     <string name="content_item_count">0 / 10 次</string>
     <string name="fragment_content">没有数据!您可以试着添加几条知识！</string>
     <string name="fragment_error">请求数据失败了!您可以进反馈页面反馈!</string>
+
+    <!--帮助添加模块-->
+    <string name="help_add_toolbar">添加帮助信息</string>
+    <string name="help_add_successful_text">添加帮助成功了哦!</string>
+    <string name="help_add_fail_text">添加帮助失败了哦!</string>
     <string name="help_number">10</string>
     <string name="help_title">关于有没有源码展示的页面</string>
     <string name="help_time">2020.3.7</string>
@@ -29,6 +34,24 @@
     <string name="update_empty">该数据请求失败了!请重试!</string>
     <string name="help_head">标题:</string>
 
+    <!--删除帮助模块-->
+    <string name="help_delete_successful_text">删除帮助成功了!</string>
+    <string name="help_delete_fail_text">删除帮助失败了!</string>
+
+    <!--帮助内容模块-->
+    <string name="help_content_details_text">跳F转到帮助详情页面!</string>
+
+    <!--修改帮助模块-->
+    <string name="help_update_not_text">没有修改该帮助!</string>
+    <string name="help_update_fail_text">修改该帮助失败了!</string>
+    <string name="help_update_commend_successful_text">发表评论成功了!</string>
+
+    <!--帮助更新模块-->
+    <string name="help_database_error_text">获取数据库数据失败!</string>
+    <string name="help_update_error_text">更新该帮助失败!请稍后再试或者联系官方!</string>
+    <string name="help_update_success_text">更新该帮助成功!返回中!</string>
+    <string name="help_update_original_text">该帮助没有任何修改!请考虑清楚要不要修改!</string>
+    
     <string name="add_know_title">知识标题:</string>
     <string name="add_know_class">设置展示的类名:</string>
     <string name="add_know_have">是否有展示</string>
@@ -327,6 +350,10 @@
     <string name="information_recommend">推荐</string>
     <string name="information_grade">分数</string>
     <string name="information_people">201人</string>
+    
+    <!--关卡选择模块-->
+    <string name="game_select_success_text">选择成功!</string>
+    <string name="game_select_repeat_text">已经选择该关卡!</string>
 
     <string name="game_subject">24</string>
     <string name="game_subject_text">题</string>
@@ -457,6 +484,8 @@
     <string name="add_subjective_consult_title_hint">请输入主观答案!</string>
     <string name="game_tidy">准备闯关</string>
 
+    <!--关卡配置模块-->
+    <string name="game_config_success_text">保存成功了哦!</string>
     <string name="config_number_first">10题</string>
     <string name="config_number_second">20题</string>
     <string name="config_number_third">30题</string>

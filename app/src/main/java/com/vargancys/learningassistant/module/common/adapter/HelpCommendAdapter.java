@@ -2,8 +2,6 @@ package com.vargancys.learningassistant.module.common.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,13 +13,13 @@ import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/08
  * version:1.0
+ * 帮助评论添加适配器
  */
 public class HelpCommendAdapter extends BaseRecyclerAdapter {
     private String TAG = "HelpCommentAdapter";
@@ -39,7 +37,6 @@ public class HelpCommendAdapter extends BaseRecyclerAdapter {
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        Log.e(TAG,"position = "+position);
         HelpCommendViewHolder mHolder = (HelpCommendViewHolder) holder;
         HelpCommendItem helpCommendItem = helpCommendItems.get(position);
         mHolder.commendSummary.setText(helpCommendItem.getSummary());
