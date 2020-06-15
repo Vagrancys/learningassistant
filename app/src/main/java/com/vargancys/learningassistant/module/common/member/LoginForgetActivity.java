@@ -30,8 +30,6 @@ import butterknife.OnClick;
  */
 public class LoginForgetActivity extends BaseActivity
         implements LoginForgetView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.login_name_edit)

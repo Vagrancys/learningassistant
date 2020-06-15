@@ -49,10 +49,6 @@ public class HelpContentActivity extends BaseActivity
     LinearLayout fragmentEmpty;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
-    @BindView(R.id.common_add)
-    ImageView commonAdd;
-    @BindView(R.id.common_back)
-    ImageView commonBack;
 
     private HelpContentPresenter helpContentPresenter;
     private HelpContentAdapter helpContentAdapter;

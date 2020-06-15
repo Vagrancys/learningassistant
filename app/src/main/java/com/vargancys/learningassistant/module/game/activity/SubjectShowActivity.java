@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -37,8 +38,6 @@ import butterknife.ButterKnife;
  * Description: 问题展示页面
  */
 public class SubjectShowActivity extends BaseActivity implements SubjectShowView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.common_img)
@@ -89,24 +88,10 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_subject_title));
 
         commonImg.setImageResource(R.drawable.know_add_normal);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //添加问题的各种答题方法
-                SubjectAddActivity.launch(SubjectShowActivity.this,knowItemId,mSubjectContent);
-            }
-        });
     }
 
     private void init() {
@@ -176,5 +161,18 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
         subjectAnswer.setText("--");
         subjectError.setText("--");
         subjectProblem.setText("--");
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                //添加问题的各种答题方法
+                SubjectAddActivity.launch(SubjectShowActivity.this,knowItemId,mSubjectContent);
+                break;
+        }
     }
 }

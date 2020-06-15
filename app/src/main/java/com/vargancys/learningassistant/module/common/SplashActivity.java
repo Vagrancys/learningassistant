@@ -28,8 +28,6 @@ import butterknife.OnClick;
 public class SplashActivity extends BaseActivity {
 
     private static final String TAG = "SplashActivity";
-    @BindView(R.id.splash_image)
-    ImageView splashImage;
     @BindView(R.id.splash_countdown)
     TextView splashCountdown;
     @BindView(R.id.splash_version)

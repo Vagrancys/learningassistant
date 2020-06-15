@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -66,22 +67,10 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         commonTitle.setText(ResourceUtils.getString(getContext(),R.string.game_sign_title));
 
         commonImg.setImageResource(R.drawable.game_sign_add_normal);
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GameSignAddActivity.launch(GameSignActivity.this);
-            }
-        });
     }
 
     private void initData() {
@@ -122,5 +111,17 @@ public class GameSignActivity extends BaseActivity implements SignGameView {
         fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.fragment_sign_empty));
         fragmentEmpty.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                GameSignAddActivity.launch(GameSignActivity.this);
+                break;
+        }
     }
 }

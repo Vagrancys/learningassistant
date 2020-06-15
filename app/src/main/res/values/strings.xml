@@ -378,6 +378,8 @@
     <string name="game_number">5</string>
     <string name="game_state">有</string>
     <string name="game_time">20.2.3</string>
+
+    <!--关卡打卡添加模块-->
     <string name="fragment_sign_empty">还没有任何的打卡记录,是否现在开始呢?</string>
     <string name="sign_time">2020:30:21</string>
     <string name="sign_title">不错的打卡的啊!</string>
@@ -389,6 +391,7 @@
     <string name="game_score_schedule">25分/总96分</string>
     <string name="game_error_schedule">总25道</string>
     <string name="game_sign_title">关卡签到打卡</string>
+    <string name="game_sign_success_text">保存成功了哦!</string>
 
     <string name="sign_title_text">主题:</string>
     <string name="sign_title_hint">请说说你的进步!</string>
@@ -524,6 +527,8 @@
 
     <string name="config_save">完成</string>
     <string name="config_title">闯关配置中心</string>
+
+    <!--关卡开始模块-->
     <string name="start_progress_title">5/40</string>
     <string name="start_radio_item_title">答案</string>
     <string name="start_radio_title">这是神马一道踢踢踢踢踢啊！</string>
@@ -534,12 +539,16 @@
     <string name="start_subjective_hint_title">请输入您所理解的知识</string>
     <string name="start_empty_title">正在处理数据中</string>
     <string name="next_problem">下一题</string>
+    <string name="game_start_select_text">你还没有选择答案呢!</string>
 
     //关卡签到
     <string name="answer_sheet_determine">确定</string>
     <string name="answer_sheet_title">1</string>
     <string name="answer_sheet_toolbar">答题卡</string>
     <string name="answer_sheet_success_text">答题确定成功!</string>
+
+    <!--项目添加模块-->
+    <string name="subject_add_success_text">添加成功了!</string>
 
     <!--天梯-->
     <string name="ladder_level_text">25阶</string>

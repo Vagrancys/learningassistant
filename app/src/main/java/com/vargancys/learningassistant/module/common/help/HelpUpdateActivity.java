@@ -28,8 +28,6 @@ import butterknife.OnClick;
  */
 public class HelpUpdateActivity extends BaseActivity
         implements HelpUpdateView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.help_number)

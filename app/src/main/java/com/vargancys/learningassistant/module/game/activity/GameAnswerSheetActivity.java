@@ -32,8 +32,6 @@ import butterknife.OnClick;
  * Description: 关卡答题卡页面
  */
 public class GameAnswerSheetActivity extends BaseActivity implements AnswerSheetView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.recyclerView)

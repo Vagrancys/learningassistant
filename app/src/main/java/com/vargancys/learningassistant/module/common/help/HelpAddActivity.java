@@ -26,8 +26,7 @@ import butterknife.OnClick;
  * 帮助添加页
  */
 public class HelpAddActivity extends BaseActivity implements HelpAddView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
+
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.help_title_edit)

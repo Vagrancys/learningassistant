@@ -36,6 +36,7 @@ import com.vargancys.learningassistant.widget.SubjectRadioGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -46,8 +47,6 @@ import butterknife.ButterKnife;
  */
 public class SubjectAddActivity extends BaseActivity implements AddGameView {
     private static String TAG = "SubjectAddActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.common_img)
@@ -307,22 +306,10 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         commonTitle.setText(ResourceUtils.getString(getContext(),R.string.subject_add_title));
 
         commonImg.setImageResource(R.drawable.subject_save_normal);
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isSubjectDataEmpty();
-            }
-        });
     }
 
     public static void launch(Activity activity, long knowId,long subjectId) {
@@ -397,7 +384,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
 
     @Override
     public void showAddDataFinish() {
-        ToastUtils.ToastText(getContext(),"添加成功了!");
+        ToastUtils.ToastText(getContext(),R.string.subject_add_success_text);
         finish();
     }
 
@@ -476,5 +463,17 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
         mSubjective.setTitle(addSubjectiveTitleEdit.getText().toString());
         mSubjective.setAnswer(addSubjectiveConsultTitleEdit.getText().toString());
         return mPresenter.saveGameSubjectiveItemData(mSubjective,mSubjectContent,gameId);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isSubjectDataEmpty();
+                break;
+        }
     }
 }

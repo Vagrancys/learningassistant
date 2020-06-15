@@ -23,6 +23,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -77,22 +78,9 @@ public class GameSignAddActivity extends BaseActivity implements SignAddView {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         commonTitle.setText(ResourceUtils.getString(getContext(),R.string.sign_game_add_title));
 
         commonImg.setImageResource(R.drawable.sign_add_normal);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isSignDataEmpty();
-            }
-        });
     }
 
     public static void launch(Activity activity) {
@@ -167,12 +155,24 @@ public class GameSignAddActivity extends BaseActivity implements SignAddView {
 
     @Override
     public void saveSignDataFinish() {
-        ToastUtils.ToastText(getContext(),"保存成功了哦!");
+        ToastUtils.ToastText(getContext(),R.string.game_sign_success_text);
         finish();
     }
 
     @Override
     public void saveSignDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isSignDataEmpty();
+                break;
+        }
     }
 }

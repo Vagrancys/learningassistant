@@ -22,8 +22,6 @@ import butterknife.OnClick;
  * Description: 关卡配置页面
  */
 public class GameConfigActivity extends BaseActivity {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.config_number_first)

@@ -71,14 +71,14 @@ public class GameSelectActivity extends BaseActivity implements SelectGameView {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
         mAlertDialog = new AlertDialog.Builder(getContext());
-        mAlertDialog.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+        mAlertDialog.setNegativeButton(ResourceUtils.getString(getContext(),R.string.common_determine_text), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mPresenter.saveGameSelectData(gameId);
                 dialog.dismiss();
             }
         });
-        mAlertDialog.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+        mAlertDialog.setPositiveButton(ResourceUtils.getString(getContext(),R.string.common_cancel_text), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 gameId = 0;

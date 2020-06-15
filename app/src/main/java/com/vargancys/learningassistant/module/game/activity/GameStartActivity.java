@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -35,12 +36,8 @@ import butterknife.BindView;
  * Description: 关卡挑战页面
  */
 public class GameStartActivity extends BaseActivity implements StartGameView {
-    @BindView(R.id.start_back)
-    ImageView startBack;
     @BindView(R.id.start_progress_title)
     TextView startProgressTitle;
-    @BindView(R.id.start_answer_sheet)
-    ImageView startAnswerSheet;
     @BindView(R.id.start_progress)
     ProgressBar startProgressBar;
     @BindView(R.id.start_radio_title)
@@ -125,41 +122,6 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         mPresenter.getGameStartAllData(mHandler, gameId);
         mAnswerSheetParcelable = new AnswerSheetParcelable();
         mBean = new ArrayList<>();
-        initLayoutListener();
-    }
-
-    //注册监听器
-    private void initLayoutListener() {
-        startBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        startAnswerSheet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GameAnswerSheetActivity.launch(GameStartActivity.this,mAnswerSheetParcelable);
-            }
-        });
-        initRadioLayout();
-        initMultipleLayout();
-        initFillLayout();
-        initSubjectiveLayout();
-    }
-
-    //注册主观的监听器
-    private void initSubjectiveLayout() {
-        startSubjectiveSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(startSubjectiveEdit.getText().length()>0){
-                    handlerSubjectiveAnswer();
-                }else{
-                    ToastUtils.ToastText(getContext(),"你还没有选择答案呢!");
-                }
-            }
-        });
     }
 
     //处理主观的问题正确
@@ -167,60 +129,6 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         startFillSubmit.setVisibility(View.GONE);
         nextProblem.setVisibility(View.VISIBLE);
         JudgeAnswer(4);
-    }
-
-    //注册填空的监听器
-    private void initFillLayout() {
-        startFillFirstTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryFill();
-                if(startFillFirstTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startFillFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startFillAnswer = 1;
-                }
-            }
-        });
-        startFillSecondTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryFill();
-                if(startFillSecondTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startFillSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startFillAnswer = 2;
-                }
-            }
-        });
-        startFillThirdTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryFill();
-                if(startFillThirdTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startFillThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startFillAnswer = 1;
-                }
-            }
-        });
-        startFillFourthTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryFill();
-                if(startFillFourthTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startFillFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startFillAnswer = 1;
-                }
-            }
-        });
-        startFillSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(startFillAnswer == 0){
-                    ToastUtils.ToastText(getContext(),"你还没有选择答案呢!");
-                }else{
-                    handlerFillAnswer();
-                }
-            }
-        });
     }
 
     //处理填空的问题正确
@@ -241,68 +149,6 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         startFillSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
         startFillThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
         startFillFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
-    }
-
-    //注册多选的监听器
-    private void initMultipleLayout() {
-        startMultipleFirstTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(multipleFirstAnswer){
-                    multipleFirstAnswer = false;
-                    startMultipleFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
-                }else{
-                    multipleFirstAnswer = true;
-                    startMultipleFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                }
-            }
-        });
-        startMultipleSecondTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(multipleSecondAnswer){
-                    multipleSecondAnswer = false;
-                    startMultipleSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
-                }else{
-                    multipleSecondAnswer = true;
-                    startMultipleSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                }
-            }
-        });
-        startMultipleThirdTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(multipleThirdAnswer){
-                    multipleThirdAnswer = false;
-                    startMultipleThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
-                }else{
-                    multipleThirdAnswer = true;
-                    startMultipleThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                }
-            }
-        });
-        startMultipleFourthTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(multipleFourthAnswer){
-                    multipleFourthAnswer = false;
-                    startMultipleFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
-                }else{
-                    multipleFourthAnswer = true;
-                    startMultipleFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                }
-            }
-        });
-        startMultipleSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(multipleFirstAnswer|multipleSecondAnswer|multipleThirdAnswer|multipleFourthAnswer){
-                    handlerMultipleAnswer();
-                }else{
-                    ToastUtils.ToastText(getContext(),"你还没有选择答案呢!");
-                }
-            }
-        });
     }
 
     //处理多选的问题正确
@@ -339,60 +185,6 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
             nextProblem.setVisibility(View.VISIBLE);
             JudgeAnswer(2);
         }
-    }
-
-    //注册单选的监听器
-    private void initRadioLayout() {
-        startRadioFirstTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryRadio();
-                if(startRadioFirstTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startRadioAnswer = 1;
-                }
-            }
-        });
-        startRadioSecondTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryRadio();
-                if(startRadioSecondTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startRadioAnswer = 2;
-                }
-            }
-        });
-        startRadioThirdTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryRadio();
-                if(startRadioThirdTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startRadioAnswer = 3;
-                }
-            }
-        });
-        startRadioFourthTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recoveryRadio();
-                if(startRadioFourthTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
-                    startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
-                    startRadioAnswer = 4;
-                }
-            }
-        });
-
-        startRadioSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(startRadioAnswer == 0){
-                    ToastUtils.ToastText(getContext(),"你还没有选择答案呢!");
-                }
-                handlerRadioAnswer();
-            }
-        });
     }
 
     //处理单选的问题正确
@@ -683,5 +475,140 @@ public class GameStartActivity extends BaseActivity implements StartGameView {
         llStartEmpty.setVisibility(View.GONE);
         ToastUtils.ToastText(getContext(), "Error = " + error + ", Message =" + message);
         finish();
+    }
+
+    @OnClick({R.id.start_back,R.id.start_answer_sheet,R.id.start_radio_submit,R.id.start_radio_first_title,
+            R.id.start_radio_second_title,R.id.start_radio_third_title,R.id.start_radio_fourth_title,
+            R.id.start_multiple_submit,R.id.start_multiple_first_title,R.id.start_multiple_second_title,R.id.start_multiple_third_title,
+            R.id.start_multiple_fourth_title,R.id.start_fill_submit,R.id.start_fill_first_title,R.id.start_fill_second_title,R.id.start_fill_third_title,
+            R.id.start_fill_fourth_title,R.id.start_subjective_submit})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.start_back:
+                finish();
+                break;
+            case R.id.start_answer_sheet:
+                GameAnswerSheetActivity.launch(GameStartActivity.this,mAnswerSheetParcelable);
+                break;
+            case R.id.start_radio_submit:
+                if(startRadioAnswer == 0){
+                    ToastUtils.ToastText(getContext(),R.string.game_start_select_text);
+                }
+                handlerRadioAnswer();
+                break;
+            case R.id.start_radio_first_title:
+                recoveryRadio();
+                if(startRadioFirstTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startRadioAnswer = 1;
+                }
+                break;
+            case R.id.start_radio_second_title:
+                recoveryRadio();
+                if(startRadioSecondTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startRadioAnswer = 2;
+                }
+                break;
+            case R.id.start_radio_third_title:
+                recoveryRadio();
+                if(startRadioThirdTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startRadioAnswer = 3;
+                }
+                break;
+            case R.id.start_radio_fourth_title:
+                recoveryRadio();
+                if(startRadioFourthTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startRadioFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startRadioAnswer = 4;
+                }
+                break;
+            case R.id.start_multiple_submit:
+                if(multipleFirstAnswer|multipleSecondAnswer|multipleThirdAnswer|multipleFourthAnswer){
+                    handlerMultipleAnswer();
+                }else{
+                    ToastUtils.ToastText(getContext(),R.string.game_start_select_text);
+                }
+                break;
+            case R.id.start_multiple_first_title:
+                if(multipleFirstAnswer){
+                    multipleFirstAnswer = false;
+                    startMultipleFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+                }else{
+                    multipleFirstAnswer = true;
+                    startMultipleFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                }
+                break;
+            case R.id.start_multiple_second_title:
+                if(multipleSecondAnswer){
+                    multipleSecondAnswer = false;
+                    startMultipleSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+                }else{
+                    multipleSecondAnswer = true;
+                    startMultipleSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                }
+                break;
+            case R.id.start_multiple_third_title:
+                if(multipleThirdAnswer){
+                    multipleThirdAnswer = false;
+                    startMultipleThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+                }else{
+                    multipleThirdAnswer = true;
+                    startMultipleThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                }
+                break;
+            case R.id.start_multiple_fourth_title:
+                if(multipleFourthAnswer){
+                    multipleFourthAnswer = false;
+                    startMultipleFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg));
+                }else{
+                    multipleFourthAnswer = true;
+                    startMultipleFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                }
+                break;
+            case R.id.start_fill_submit:
+                if(startFillAnswer == 0){
+                    ToastUtils.ToastText(getContext(),R.string.game_start_select_text);
+                }else{
+                    handlerFillAnswer();
+                }
+                break;
+            case R.id.start_fill_first_title:
+                recoveryFill();
+                if(startFillFirstTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillFirstTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startFillAnswer = 1;
+                }
+                break;
+            case R.id.start_fill_second_title:
+                recoveryFill();
+                if(startFillSecondTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillSecondTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startFillAnswer = 2;
+                }
+                break;
+            case R.id.start_fill_third_title:
+                recoveryFill();
+                if(startFillThirdTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillThirdTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startFillAnswer = 1;
+                }
+                break;
+            case R.id.start_fill_fourth_title:
+                recoveryFill();
+                if(startFillFourthTitle.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_no_bg)){
+                    startFillFourthTitle.setBackground(ResourceUtils.getDrawable(getContext(),R.drawable.topic_select_anwser_bg));
+                    startFillAnswer = 1;
+                }
+                break;
+            case R.id.start_subjective_submit:
+                if(startSubjectiveEdit.getText().length()>0){
+                    handlerSubjectiveAnswer();
+                }else{
+                    ToastUtils.ToastText(getContext(),R.string.game_start_select_text);
+                }
+                break;
+        }
     }
 }

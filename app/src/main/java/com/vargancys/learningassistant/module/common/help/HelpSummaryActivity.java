@@ -37,10 +37,6 @@ import butterknife.OnClick;
 public class HelpSummaryActivity extends BaseActivity
         implements HelpSummaryView{
     private String TAG = "HelpSummaryActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
-    @BindView(R.id.common_update)
-    ImageView commonUpdate;
     @BindView(R.id.help_number)
     TextView helpNumber;
     @BindView(R.id.help_title)
@@ -63,8 +59,6 @@ public class HelpSummaryActivity extends BaseActivity
     LinearLayout commendLinear;
     @BindView(R.id.commend_edit)
     EditText commendEdit;
-    @BindView(R.id.commend_send)
-    ImageView commendSend;
     @BindView(R.id.commend_number_text)
     TextView commendNumberText;
 
