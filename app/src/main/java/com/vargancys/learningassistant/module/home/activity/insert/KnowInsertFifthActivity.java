@@ -16,16 +16,16 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 知识添加五级页面
  */
 public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsertFifthView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -57,31 +57,12 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
             know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
         mPresenter = new KnowInsertPresenter(this);
-        initListener();
     }
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_fifth));
-    }
-
-    private void initListener() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
+        commonTitle.setText(getText(R.string.common_fifth));
         commonImg.setImageResource(R.drawable.comment_complete_selector);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isFifthEmpty();
-            }
-        });
-
     }
 
     @Override
@@ -93,8 +74,6 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
                 &&insertShowEdit.getText().toString().isEmpty()
                 &&insertExplainEdit.getText().toString().isEmpty();
     }
-
-
 
     @Override
     public void isFifthEmptyError(int error, String msg) {
@@ -134,7 +113,7 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
 
     @Override
     public void saveFifthItemFinish() {
-        ToastUtils.ToastText(getContext(),"保存成功了哦!");
+        ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
         initEmpty();
         finish();
     }
@@ -146,6 +125,18 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
         insertExperienceEdit.setText("");
         insertShowEdit.setText("");
         insertExplainEdit.setText("");
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isFifthEmpty();
+                break;
+        }
     }
 }
 

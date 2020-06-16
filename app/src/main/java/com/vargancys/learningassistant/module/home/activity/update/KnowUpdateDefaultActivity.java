@@ -19,17 +19,18 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/28
  * version:1.0
+ * 知识更新默认页面
  */
 public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowUpdateView {
     private static String TAG = "KnowUpdateDefaultActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
+
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.common_img)
@@ -71,24 +72,11 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CODE);
-                finish();
-            }
-        });
 
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_update_default));
+        commonTitle.setText(getText(R.string.common_update_default));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
 
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isKnowUpdateDefaultEmpty();
-            }
-        });
     }
 
     public static void launch(Activity activity,int request_code,long content_id,long data_id) {
@@ -121,7 +109,6 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
 
     private void addHistory(HomeKnowContent content) {
         mOldHistory = new HomeKnowHistory();
-        Log.e(TAG,"dataId ="+dataId);
         mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());
@@ -184,6 +171,19 @@ public class KnowUpdateDefaultActivity extends BaseActivity implements BaseKnowU
         intent.putExtra(ConstantsUtils.ITEM_UPDATE_STATUS,1);
         setResult(RESULT_CODE,intent);
         finish();
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                setResult(RESULT_CODE);
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isKnowUpdateDefaultEmpty();
+                break;
+        }
     }
 }
 

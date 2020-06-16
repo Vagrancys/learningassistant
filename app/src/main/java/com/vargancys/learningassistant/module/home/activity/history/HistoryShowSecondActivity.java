@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -35,12 +36,8 @@ import butterknife.BindView;
  */
 public class HistoryShowSecondActivity extends BaseActivity implements HistoryShowView {
     private static String TAG = "HistoryShowSecondActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.insert_show_title)
     TextView insertShowTitle;
     @BindView(R.id.insert_show_summary)
@@ -87,19 +84,6 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
         recyclerView.setAdapter(mAdapter);
     }
 
-    @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-
-        commonImg.setVisibility(View.GONE);
-    }
-
     public static void launch(Activity activity,long history_id) {
         Intent intent = new Intent(activity, HistoryShowSecondActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_HISTORY_ID, history_id);
@@ -125,7 +109,6 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
         insertShowSummary.setText(homeKnowHistory.getSummary());
         insertShowHeed.setText(homeKnowHistory.getHeed());
         insertShowExperience.setText(homeKnowHistory.getExperience());
-        Log.e(TAG,"id ="+homeKnowHistory.getId()+"size ="+homeKnowHistory.getHomeKnowHistoryFunctions().size());
         int count = homeKnowHistory.getHomeKnowHistoryFunctions().size();
         if(count <= 0){
             showEmptySecond.setVisibility(View.VISIBLE);
@@ -140,5 +123,8 @@ public class HistoryShowSecondActivity extends BaseActivity implements HistorySh
         mAdapter.notifyDataSetChanged();
     }
 
-
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
+    }
 }

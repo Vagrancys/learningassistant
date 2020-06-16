@@ -20,21 +20,19 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/06
  * version:1.0
+ * 知识展示默认页面
  */
 public class KnowShowDefaultActivity extends BaseActivity implements KnowShowView {
     private static String TAG = "KnowShowDefaultActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.insert_show_title)
     TextView insertShowTitle;
     @BindView(R.id.insert_show_summary)
@@ -71,23 +69,6 @@ public class KnowShowDefaultActivity extends BaseActivity implements KnowShowVie
     }
 
     @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowKnowDataActivity.launch(KnowShowDefaultActivity.this,REQUEST_CODE,item_id);
-            }
-        });
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
@@ -97,7 +78,6 @@ public class KnowShowDefaultActivity extends BaseActivity implements KnowShowVie
             }else if(state == 2){
                 mPresenter.getRefreshDefaultShowData(item_id);
             }
-            Log.e(TAG,"state = "+state);
         }
     }
 
@@ -129,5 +109,17 @@ public class KnowShowDefaultActivity extends BaseActivity implements KnowShowVie
         insertShowExperience.setText(content.getExperience());
         insertShowExplain.setText(content.getExplain());
         insertShowHeed.setText(content.getHeed());
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                ShowKnowDataActivity.launch(KnowShowDefaultActivity.this,REQUEST_CODE,item_id);
+                break;
+        }
     }
 }

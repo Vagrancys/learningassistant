@@ -22,6 +22,7 @@ import butterknife.BindView;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/02
  * version:1.0
+ * 知识搜索适配器
  */
 public class KnowSearchAdapter extends BaseRecyclerAdapter {
     private Context context;
@@ -34,7 +35,7 @@ public class KnowSearchAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeContentViewHolder(View.inflate(context, R.layout.home_search_item,viewGroup));
+        return new HomeContentViewHolder(getView(context, R.layout.home_search_item));
     }
 
     @Override

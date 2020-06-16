@@ -550,6 +550,9 @@
     <!--项目添加模块-->
     <string name="subject_add_success_text">添加成功了!</string>
 
+    <!--知识添加模块-->
+    <string name="know_insert_success_text">保存成功了哦!</string>
+
     <!--天梯-->
     <string name="ladder_level_text">25阶</string>
     <string name="ladder_time_text">9s</string>

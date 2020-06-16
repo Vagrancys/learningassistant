@@ -11,6 +11,7 @@ import com.vargancys.learningassistant.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -18,8 +19,9 @@ import butterknife.Unbinder;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/31
  * version:1.0
+ * 首页类别碎片
  */
-public class HomeClassFragment extends BaseFragment implements View.OnClickListener {
+public class HomeClassFragment extends BaseFragment{
     @BindView(R.id.know_language_all)
     TextView knowLanguageAll;
     @BindView(R.id.know_language_android)
@@ -75,34 +77,7 @@ public class HomeClassFragment extends BaseFragment implements View.OnClickListe
     @Override
     protected void initView() {
         initItem();
-        initListener();
     }
-
-    private void initListener() {
-        knowLanguageAll.setOnClickListener(this);
-        knowLanguageAndroid.setOnClickListener(this);
-        knowLanguageJava.setOnClickListener(this);
-        knowLanguagePhp.setOnClickListener(this);
-
-        knowLevelAll.setOnClickListener(this);
-        knowLevelFirst.setOnClickListener(this);
-        knowLevelSecond.setOnClickListener(this);
-        knowLevelThird.setOnClickListener(this);
-        knowLevelFourth.setOnClickListener(this);
-        knowLevelFifth.setOnClickListener(this);
-
-        knowShowAll.setOnClickListener(this);
-        knowShowYes.setOnClickListener(this);
-        knowShowNo.setOnClickListener(this);
-
-        knowMasterAll.setOnClickListener(this);
-        knowMasterFirst.setOnClickListener(this);
-        knowMasterSecond.setOnClickListener(this);
-        knowMasterThird.setOnClickListener(this);
-        knowMasterFourth.setOnClickListener(this);
-        knowMasterFifth.setOnClickListener(this);
-    }
-
     private void initItem() {
         knowLanguageAll.setSelected(true);
         knowLevelAll.setSelected(true);
@@ -111,8 +86,12 @@ public class HomeClassFragment extends BaseFragment implements View.OnClickListe
     }
 
 
-    @Override
-    public void onClick(View v) {
+    @OnClick({ R.id.know_language_all,R.id.know_language_android,R.id.know_language_java,R.id.know_language_php,
+            R.id.know_level_all,R.id.know_level_first,R.id.know_level_second,R.id.know_level_third,R.id.know_level_fourth,
+            R.id.know_level_fifth,R.id.know_show_all,R.id.know_show_yes,R.id.know_show_no,R.id.know_master_all,
+            R.id.know_master_first,R.id.know_master_second,R.id.know_master_third,R.id.know_master_fourth,
+            R.id.know_master_fifth})
+    public void onViewClicked(View v) {
         switch (v.getId()){
             case R.id.know_language_all:
                 selectedLanguage(0);
@@ -366,4 +345,6 @@ public class HomeClassFragment extends BaseFragment implements View.OnClickListe
     public int getMaster() {
         return mMaster;
     }
+
+
 }

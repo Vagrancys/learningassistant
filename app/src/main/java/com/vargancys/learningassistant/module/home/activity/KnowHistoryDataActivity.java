@@ -30,20 +30,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/26
  * version:1.0
+ * 知识历史数据页面
  */
 public class KnowHistoryDataActivity extends BaseActivity implements BaseHistoryView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private long dataId;
@@ -106,16 +104,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_history_title));
-
-        commonImg.setVisibility(View.GONE);
+        commonTitle.setText(getText(R.string.common_history_title));
     }
 
     @Override
@@ -139,5 +128,10 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
     @Override
     public void showHistoryDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error = "+error+",Message ="+message);
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

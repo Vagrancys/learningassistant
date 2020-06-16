@@ -35,18 +35,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/04/01
  * version:1.0
+ * 知识搜索页面
  */
 public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
-    @BindView(R.id.back_menu)
-    ImageView backMenu;
-    @BindView(R.id.search_menu)
-    ImageView searchMenu;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.search_edit)
@@ -102,7 +100,6 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
     }
 
     private void launchInsertActivity(int item_id,int level) {
-        Log.e("launch","level="+level);
         switch (level){
             case 1:
                 KnowInsertFirstActivity.launch(this,item_id);
@@ -148,26 +145,6 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
         }
     }
 
-    @Override
-    public void initToolbar() {
-        backMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        searchMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!searchEdit.getText().toString().isEmpty()){
-                    mPresenter.getSearchAllData(searchEdit.getText().toString());
-                }
-                searchEdit.setText("");
-            }
-        });
-    }
-
     public static void launch(Activity activity) {
         Intent intent = new Intent(activity, KnowSearchActivity.class);
         activity.startActivity(intent);
@@ -183,5 +160,20 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
         homeKnowItems.clear();
         homeKnowItems.addAll(homeKnowItem);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick({R.id.back_menu,R.id.search_menu})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.back_menu:
+                finish();
+                break;
+            case R.id.search_menu:
+                if(!searchEdit.getText().toString().isEmpty()){
+                    mPresenter.getSearchAllData(searchEdit.getText().toString());
+                }
+                searchEdit.setText("");
+                break;
+        }
     }
 }

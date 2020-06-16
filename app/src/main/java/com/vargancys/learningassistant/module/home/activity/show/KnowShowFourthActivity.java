@@ -27,21 +27,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/06
  * version:1.0
+ * 知识展示四级页面
  */
 public class KnowShowFourthActivity extends BaseActivity implements KnowShowView {
     private static final String TAG = "KnowShowFourthActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.insert_show_title)
     TextView insertShowTitle;
     @BindView(R.id.insert_show_summary)
@@ -88,23 +86,6 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
         recyclerView.setAdapter(mAdapter);
     }
 
-    @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowKnowDataActivity.launch(KnowShowFourthActivity.this,REQUEST_CODE,item_id);
-            }
-        });
-    }
-
     public static void launch(Activity activity, long item_id) {
         Intent intent = new Intent(activity, KnowShowFourthActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
@@ -121,7 +102,6 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
             }else if(state == 2){
                 mPresenter.getRefreshDefaultShowData(item_id);
             }
-            Log.e(TAG,"state ="+state);
         }
     }
 
@@ -156,6 +136,18 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
         mFunction.addAll(homeKnowContent.getHomeKnowFunctions());
         commonTitle.setText(homeKnowContent.getTitle());
         mAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                ShowKnowDataActivity.launch(KnowShowFourthActivity.this,REQUEST_CODE,item_id);
+                break;
+        }
     }
 }
 

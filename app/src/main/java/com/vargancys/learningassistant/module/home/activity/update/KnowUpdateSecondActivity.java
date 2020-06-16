@@ -31,17 +31,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 知识更新二级页面
  */
 public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdateSecondView {
     private String TAG = "KnowInsertSecondActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -101,25 +101,9 @@ public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdat
 
     @Override
     public void initToolbar() {
-
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CODE);
-                finish();
-            }
-        });
-
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_update_second));
+        commonTitle.setText(getText(R.string.common_update_second));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isKnowUpdateSecondEmpty();
-            }
-        });
     }
 
     private void initListener() {
@@ -129,13 +113,13 @@ public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdat
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(homeKnowFunctions.get(position).getTitle());
                 alert.setMessage(homeKnowFunctions.get(position).getSummary());
-                alert.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton(R.string.common_cancel_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 });
-                alert.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton(R.string.common_determine_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         homeKnowFunctions.remove(position);
@@ -236,7 +220,6 @@ public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdat
     @Override
     public void showFunctionWindow() {
         mDialog.show();
-        Log.e(TAG,"popupWindow");
     }
 
     @Override
@@ -260,13 +243,10 @@ public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdat
             showHintSecond.setVisibility(View.VISIBLE);
             updateShowCount.setVisibility(View.GONE);
         }
-
-
     }
 
     private void addHistory(HomeKnowContent content){
         mOldHistory = new HomeKnowHistory();
-        Log.e(TAG,"ResultDataId ="+dataId);
         mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());
@@ -343,5 +323,18 @@ public class KnowUpdateSecondActivity extends BaseActivity  implements KnowUpdat
     @Override
     public void showKnowSaveError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                setResult(RESULT_CODE);
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isKnowUpdateSecondEmpty();
+                break;
+        }
     }
 }

@@ -27,6 +27,7 @@ import butterknife.BindView;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/28
  * version:1.0
+ * 历史数据适配器
  */
 public class HistoryDataAdapter extends BaseRecyclerAdapter {
 
@@ -52,12 +53,11 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HistoryDataViewHolder(View.inflate(mContext, R.layout.history_data_item, viewGroup));
+        return new HistoryDataViewHolder(getView(mContext, R.layout.history_data_item));
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        Log.e(TAG, "position = " + position);
         final HistoryDataViewHolder mHolder = (HistoryDataViewHolder) holder;
         final HomeKnowHistory homeKnowHistory = homeKnowHistorys.get(position);
         mHolder.historyDataNumber.setText(String.valueOf(homeKnowHistory.getId()));

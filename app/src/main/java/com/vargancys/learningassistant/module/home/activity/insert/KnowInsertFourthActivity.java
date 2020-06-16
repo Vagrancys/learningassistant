@@ -2,8 +2,10 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -27,16 +29,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 知识添加四级页面
  */
 public class KnowInsertFourthActivity extends BaseActivity implements KnowInsertFourthView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -89,28 +91,12 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_fourth));
-
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        commonTitle.setText(getText(R.string.common_fourth));
 
         commonImg.setImageResource(R.drawable.comment_complete_selector);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isFourthEmpty();
-            }
-        });
     }
 
-
     private void initListener() {
-
 
         mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
             @Override
@@ -134,13 +120,6 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
                 });
             }
         });
-
-        insertShowAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.showFourthFunctionWindow();
-            }
-        });
     }
 
     @Override
@@ -151,8 +130,6 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
                 &&insertExperienceEdit.getText().toString().isEmpty()
                 &&homeKnowFunctions.size() > 0;
     }
-
-
 
     @Override
     public void isFourthEmptyError(int error, String msg) {
@@ -199,8 +176,6 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
         });
     }
 
-
-
     @Override
     public void isFourthEqualsError(int error, String msg) {
         ToastUtils.ToastText(getContext(),"Error = "+error+",Msg = "+msg+"该知识已经添加了!请重新输入!");
@@ -219,7 +194,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
 
     @Override
     public void saveFourthItemFinish() {
-        ToastUtils.ToastText(getContext(),"保存成功了哦!");
+        ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
         initEmpty();
         finish();
     }
@@ -273,6 +248,21 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
     @Override
     public void showFunctionWindow() {
         mDialog.show();
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img,R.id.insert_show_add})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isFourthEmpty();
+                break;
+            case R.id.insert_show_add:
+                mPresenter.showFourthFunctionWindow();
+                break;
+        }
     }
 }
 

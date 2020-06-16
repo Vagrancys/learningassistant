@@ -19,17 +19,17 @@ import com.vargancys.learningassistant.presenter.home.HomeKnowPresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/07
  * version:1.0
+ * 添加知识页面
  */
 public class AddKnowActivity extends BaseActivity implements HomeAddView {
     private static final String TAG = "AddKnowActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.add_know_title)
@@ -62,21 +62,12 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
         initListener();
     }
 
-    private void initListener() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+    @Override
+    public void initToolbar() {
         commonImg.setBackgroundResource(R.drawable.comment_complete_selector);
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homeKnowPresenter.queryKnowRepeat(addKnowTitle.getText().toString());
+    }
 
-            }
-        });
+    private void initListener() {
         addKnowHave.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -92,7 +83,6 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mLevel = position+1;
-                Log.e(TAG,"level="+mLevel);
             }
 
             @Override
@@ -120,7 +110,6 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
     @Override
     public void queryRepeatFinish() {
         addItem();
-        Log.e(TAG,"没有重复添加!");
     }
 
     @Override
@@ -145,5 +134,17 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
         addKnowClass.setText("");
         addKnowMaster.setText("");
         addKnowSummary.setText("");
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                homeKnowPresenter.queryKnowRepeat(addKnowTitle.getText().toString());
+                break;
+        }
     }
 }

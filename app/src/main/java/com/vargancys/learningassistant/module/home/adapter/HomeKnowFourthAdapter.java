@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 首页知识第四适配器
  */
 public class HomeKnowFourthAdapter extends BaseRecyclerAdapter {
     private List<HomeKnowFunction> homeKnowFunctions;
@@ -33,7 +34,7 @@ public class HomeKnowFourthAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new KnowSecondViewHolder(View.inflate(mContext, R.layout.know_function_fourth_item,viewGroup));
+        return new KnowSecondViewHolder(getView(mContext, R.layout.know_function_fourth_item));
     }
 
     @Override

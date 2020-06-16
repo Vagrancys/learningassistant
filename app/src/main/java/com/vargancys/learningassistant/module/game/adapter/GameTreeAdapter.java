@@ -90,7 +90,6 @@ public class GameTreeAdapter<T> extends TreeListViewAdapter<T> {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        Log.e(TAG,"动画监控!");
                         viewHolder.gameLayout.setVisibility(View.GONE);
                     }
 

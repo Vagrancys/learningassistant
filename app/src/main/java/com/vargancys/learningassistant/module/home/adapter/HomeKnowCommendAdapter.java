@@ -21,6 +21,7 @@ import butterknife.BindView;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/08
  * version:1.0
+ *首页知识评论适配器
  */
 public class HomeKnowCommendAdapter extends BaseRecyclerAdapter {
     private String TAG = "HomeKnowCommendAdapter";
@@ -33,12 +34,11 @@ public class HomeKnowCommendAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeCommendViewHolder(View.inflate(mContext, R.layout.home_commend_item,viewGroup));
+        return new HomeCommendViewHolder(getView(mContext, R.layout.home_commend_item));
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        Log.e(TAG,"position = "+position);
         HomeCommendViewHolder mHolder = (HomeCommendViewHolder) holder;
         HomeKnowCommend homeKnowCommend = homeKnowCommends.get(position);
         mHolder.commendNumber.setText(String.valueOf(homeKnowCommend.getId()));

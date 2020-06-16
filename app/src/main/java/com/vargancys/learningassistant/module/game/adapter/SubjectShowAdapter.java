@@ -34,6 +34,7 @@ import butterknife.ButterKnife;
  * Description: 关卡问题展示适配器
  */
 public class SubjectShowAdapter extends BaseRecyclerAdapter {
+    private String TAG = "SubjectShowAdapter";
     private List<GameSubjectItem> mItems;
     private Context mContext;
     private Handler mHandler;
@@ -41,7 +42,6 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
     private Animation mDownScaleAnimation;
     private Animation mUpRotateAnimation;
     private Animation mDownRotateAnimation;
-    private String TAG = "SubjectShowAdapter";
 
     public SubjectShowAdapter(Context context, List<GameSubjectItem> mItems, Handler mHandler) {
         this.mHandler = mHandler;
@@ -56,7 +56,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new SubjectShowViewHolder(View.inflate(mContext, R.layout.subject_show_item, viewGroup));
+        return new SubjectShowViewHolder(getView(mContext, R.layout.subject_show_item));
     }
 
     @Override
@@ -94,7 +94,6 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
         mHolder.subjectDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG,"断点");
                 if(mHolder.subjectDetails.getText().toString()
                         .equals(ResourceUtils.getString(mContext,R.string.subject_details_show))){
                     mHolder.subjectDetails.setText(R.string.subject_details_hide);

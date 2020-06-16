@@ -22,6 +22,7 @@ import butterknife.Unbinder;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/01
  * version:1.0
+ * 首页碎片
  */
 public class HomeFragment extends BaseFragment {
     @BindView(R.id.fl_content)

@@ -89,7 +89,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     @Override
     public void initToolbar() {
 
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_subject_title));
+        commonTitle.setText(getText(R.string.common_subject_title));
 
         commonImg.setImageResource(R.drawable.know_add_normal);
     }
@@ -152,11 +152,11 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     private void clearItemData() {
         recyclerView.setVisibility(View.GONE);
         fragmentEmpty.setVisibility(View.VISIBLE);
-        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.subject_item_empty));
+        fragmentContent.setText(getText(R.string.subject_item_empty));
     }
 
     private void clearContentData() {
-        subjectTitle.setText(ResourceUtils.getString(getContext(),R.string.subject_title_empty));
+        subjectTitle.setText(getText(R.string.subject_title_empty));
         subjectLastTime.setText("--");
         subjectAnswer.setText("--");
         subjectError.setText("--");

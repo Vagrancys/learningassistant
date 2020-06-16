@@ -22,6 +22,7 @@ import butterknife.BindView;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/08
  * version:1.0
+ * 首页知识历史适配器
  */
 public class HomeKnowHistoryAdapter extends BaseRecyclerAdapter {
     private String TAG = "HomeHistoryAdapter";
@@ -34,12 +35,11 @@ public class HomeKnowHistoryAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeHistoryViewHolder(View.inflate(mContext, R.layout.know_history_item,viewGroup));
+        return new HomeHistoryViewHolder(getView(mContext, R.layout.know_history_item));
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        Log.e(TAG,"position = "+position);
         HomeHistoryViewHolder mHolder = (HomeHistoryViewHolder) holder;
         HomeKnowHistory homeKnowHistory = homeKnowHistories.get(position);
         mHolder.historyNumber.setText(String.valueOf(homeKnowHistory.getId()));

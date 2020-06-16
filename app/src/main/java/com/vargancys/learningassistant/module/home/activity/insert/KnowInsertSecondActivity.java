@@ -28,17 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 知识添加二级页面
  */
 public class KnowInsertSecondActivity extends BaseActivity  implements KnowInsertSecondView {
     private String TAG = "KnowInsertSecondActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -91,28 +91,12 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_second));
-
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        commonTitle.setText(getText(R.string.common_second));
 
         commonImg.setImageResource(R.drawable.comment_complete_selector);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isSecondEmpty();
-            }
-        });
     }
 
     private void initListener() {
-
-
         mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
             @Override
             public void OnItemLongClick(final int position) {
@@ -152,8 +136,6 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
                 &&insertExperienceEdit.getText().toString().isEmpty()
                 &&homeKnowFunctions.size() > 0;
     }
-
-
 
     @Override
     public void isSecondEmptyError(int error, String msg) {
@@ -217,7 +199,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
 
     @Override
     public void saveSecondItemFinish() {
-        ToastUtils.ToastText(getContext(),"保存成功了哦!");
+        ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
         initEmpty();
         finish();
     }
@@ -271,6 +253,17 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     @Override
     public void showFunctionWindow() {
         mDialog.show();
-        Log.e(TAG,"popupWindow");
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isSecondEmpty();
+                break;
+        }
     }
 }

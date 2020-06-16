@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.module.game.fragment;
 
+import android.content.Context;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
@@ -43,12 +45,6 @@ import butterknife.BindView;
  */
 public class GameFragment extends BaseFragment implements GameView {
     private static String TAG = "GameFragment";
-    @BindView(R.id.game_select)
-    ImageView gameSelect;
-    @BindView(R.id.game_text)
-    TextView gameText;
-    @BindView(R.id.game_sign)
-    ImageView gameSign;
     @BindView(R.id.game_title)
     TextView gameTitle;
     @BindView(R.id.game_subject)
@@ -94,22 +90,11 @@ public class GameFragment extends BaseFragment implements GameView {
         getGameId();
         init();
         gameList.setAdapter(mAdapter);
-        initToolbar();
         mPresenter.getGameListData(gameId);
     }
 
     private void init(){
-        gameTidy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(CacheUtils.getBoolean(getContext(),ConstantsUtils.GAME_STATE)){
-                    GameConfigActivity.launch(getActivity());
-                }else{
-                    GameStartActivity.launch(getActivity());
-                }
 
-            }
-        });
         mHandler = new Handler();
         try {
             mAdapter = new GameTreeAdapter<>(gameList,getContext(),mBeans,mItems,mHandler,10);
@@ -117,7 +102,9 @@ public class GameFragment extends BaseFragment implements GameView {
             e.printStackTrace();
         }
         swipeRefreshLayout.setRefreshing(true);
+
         swipeRefreshLayout.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -148,6 +135,7 @@ public class GameFragment extends BaseFragment implements GameView {
 
             }
         });
+
         gameList.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -160,22 +148,6 @@ public class GameFragment extends BaseFragment implements GameView {
                 }else{
                     swipeRefreshLayout.setEnabled(true);
                 }
-            }
-        });
-    }
-
-    private void initToolbar(){
-        gameSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GameSelectActivity.launch(getActivity());
-            }
-        });
-
-        gameSign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GameSignActivity.launch(getActivity());
             }
         });
     }
@@ -194,8 +166,7 @@ public class GameFragment extends BaseFragment implements GameView {
 
     @Override
     public void showGameContentError(int error, String message) {
-        Log.e(TAG,"Error ="+error+", Message ="+message);
-        gameTitle.setText(ResourceUtils.getString(getContext(),R.string.game_title_error));
+        gameTitle.setText(getText(R.string.game_title_error));
         gameSubject.setText("--");
         gameError.setText("--");
         gameScore.setText("--");
@@ -229,11 +200,29 @@ public class GameFragment extends BaseFragment implements GameView {
             mBeans.add(mBean);
         }
         try {
-            Log.e(TAG,"断点 mBeans ="+mBeans.size());
             mAdapter.swipeData(mBeans);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick({R.id.game_select,R.id.game_sign,R.id.game_tidy})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.game_select:
+                GameSelectActivity.launch(getActivity());
+                break;
+            case R.id.game_sign:
+                GameSignActivity.launch(getActivity());
+                break;
+            case R.id.game_tidy:
+                if(CacheUtils.getBoolean(getContext(),ConstantsUtils.GAME_STATE)){
+                    GameConfigActivity.launch(getActivity());
+                }else{
+                    GameStartActivity.launch(getActivity());
+                }
+                break;
+        }
     }
 }

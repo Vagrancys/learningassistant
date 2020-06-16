@@ -33,7 +33,7 @@ public class AnswerSheetAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new AnswerSheetViewHolder(View.inflate(mContext, R.layout.item_answer_sheet,viewGroup));
+        return new AnswerSheetViewHolder(getView(mContext,R.layout.item_answer_sheet));
     }
 
     @Override

@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/02
  * version:1.0
+ * 首页中心适配器
  */
 public class HomeContentAdapter extends BaseRecyclerAdapter {
     private Context context;
@@ -37,7 +38,7 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeContentViewHolder(View.inflate(context, R.layout.home_content_item,viewGroup));
+        return new HomeContentViewHolder(getView(context, R.layout.home_content_item));
     }
 
     @Override

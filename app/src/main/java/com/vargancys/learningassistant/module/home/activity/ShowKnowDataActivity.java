@@ -38,17 +38,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/25
  * version:1.0
+ * 展示知识数据页面
  */
 public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private static String TAG = "ShowKnowDataActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.know_data_title)
@@ -61,12 +61,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     TextView knowDataMaster;
     @BindView(R.id.know_data_time)
     TextView knowDataTime;
-    @BindView(R.id.know_data_update)
-    ImageView knowDataUpdate;
-    @BindView(R.id.know_data_delete)
-    ImageView knowDataDelete;
-    @BindView(R.id.know_data_setting)
-    ImageView knowDataSetting;
     @BindView(R.id.know_data_history_text)
     TextView knowDataHistoryText;
     @BindView(R.id.know_data_history_count)
@@ -79,8 +73,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     RecyclerView commendRecycler;
     @BindView(R.id.know_data_commend_edit)
     EditText knowDataCommendEdit;
-    @BindView(R.id.know_data_commend_send)
-    ImageView knowDataCommendSend;
     @BindView(R.id.know_data_history_time)
     TextView knowDataHistoryTime;
     @BindView(R.id.history_empty)
@@ -113,7 +105,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         if(intent !=null){
             itemId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
-        Log.e(TAG,"item_id"+dataId);
         init();
         mPresenter = new KnowDataPresenter(this);
         mPresenter.getShowData(itemId);
@@ -126,50 +117,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
             @Override
             public void OnItemClick(int position) {
                 KnowHistoryDataActivity.launch(ShowKnowDataActivity.this,dataId,mData.getLevel());
-            }
-        });
-
-        knowDataCommendSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isCommendEmpty(knowDataCommendEdit.getText().toString());
-            }
-        });
-
-        knowDataDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-                dialog.setTitle(ResourceUtils.getString(getContext(),R.string.dialog_data_delete_title));
-                dialog.setMessage(ResourceUtils.getString(getContext(),R.string.dialog_data_delete_message));
-                dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        mPresenter.deleteDataItem(itemId);
-                    }
-                });
-                dialog.show();
-            }
-        });
-
-        knowDataUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectUpdateLevel(mData.getLevel());
-            }
-        });
-
-        knowDataSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KnowSettingContentActivity.launch(ShowKnowDataActivity.this,dataId);
             }
         });
     }
@@ -195,22 +142,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
                 KnowUpdateDefaultActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
         }
-    }
-
-    @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //0表示没有状态，1表示删除状态,2表示更新状态
-                if(update_status){
-                    Intent intent = new Intent();
-                    intent.putExtra(ConstantsUtils.ITEM_DELETE_STATUS,2);
-                    setResult(RESULT_CODE,intent);
-                }
-                finish();
-            }
-        });
     }
 
     private void init(){
@@ -239,7 +170,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         knowDataMaster.setText(homeKnowData.getMaster());
         knowDataTime.setText(homeKnowData.getTime());
         if(homeKnowData.getHistorycount() >0&&homeKnowData.getHomeKnowHistorys().size()>0){
-            Log.e(TAG,"CountDataId ="+homeKnowData.getHomeKnowHistorys().get(0).getDataId()+",DataId ="+homeKnowData.getId()+",ItemId ="+itemId);
             historyRecycler.setVisibility(View.VISIBLE);
             knowDataHistoryCount.setVisibility(View.VISIBLE);
             knowDataHistoryTime.setVisibility(View.VISIBLE);
@@ -304,9 +234,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE&&resultCode == RESULT_UPDATE_CODE&&data !=null){
             if(data.getIntExtra(ConstantsUtils.ITEM_UPDATE_STATUS,0) == 1){
-                Log.e(TAG,"update_id = 更新了吗!");
                 update_status = true;
-                Log.e(TAG,"ResultDataId ="+dataId);
                 mPresenter.getHistoryRefreshData(dataId,contentId);
             }
         }
@@ -357,7 +285,6 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     @Override
     public void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories,HomeKnowContent homeKnowContent) {
         int count = homeKnowHistories.size();
-        Log.e(TAG,"CountFinish ="+count);
         mHistory.clear();
         if(count>0){
             historyRecycler.setVisibility(View.VISIBLE);
@@ -372,5 +299,49 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
 
         commonTitleData.setText(homeKnowContent.getTitle());
         knowDataTitle.setText(homeKnowContent.getTitle());
+    }
+
+    @OnClick({R.id.common_back,R.id.know_data_setting,R.id.know_data_update,R.id.know_data_delete
+            ,R.id.know_data_commend_send})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                //0表示没有状态，1表示删除状态,2表示更新状态
+                if(update_status){
+                    Intent intent = new Intent();
+                    intent.putExtra(ConstantsUtils.ITEM_DELETE_STATUS,2);
+                    setResult(RESULT_CODE,intent);
+                }
+                finish();
+                break;
+            case R.id.know_data_setting:
+                KnowSettingContentActivity.launch(ShowKnowDataActivity.this,dataId);
+                break;
+            case R.id.know_data_update:
+                selectUpdateLevel(mData.getLevel());
+                break;
+            case R.id.know_data_delete:
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle(ResourceUtils.getString(getContext(),R.string.dialog_data_delete_title));
+                dialog.setMessage(ResourceUtils.getString(getContext(),R.string.dialog_data_delete_message));
+                dialog.setNegativeButton(R.string.common_cancel_text, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.setPositiveButton(R.string.common_determine_text, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        mPresenter.deleteDataItem(itemId);
+                    }
+                });
+                dialog.show();
+                break;
+            case R.id.know_data_commend_send:
+                mPresenter.isCommendEmpty(knowDataCommendEdit.getText().toString());
+                break;
+        }
     }
 }

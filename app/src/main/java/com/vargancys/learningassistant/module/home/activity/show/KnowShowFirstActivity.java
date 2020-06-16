@@ -20,22 +20,21 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/06
  * version:1.0
+ * 知识展示一级页面
  */
 public class KnowShowFirstActivity extends BaseActivity implements KnowShowView {
 
     private static final String TAG = "KnowShowFirstActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
+
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.insert_show_title)
     TextView insertShowTitle;
     @BindView(R.id.insert_show_summary)
@@ -72,23 +71,6 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     }
 
     @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowKnowDataActivity.launch(KnowShowFirstActivity.this,REQUEST_CODE,itemId);
-            }
-        });
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
@@ -98,7 +80,6 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
             }else if(state == 2){
                 mPresenter.getRefreshDefaultShowData(itemId);
             }
-            Log.e(TAG,"state ="+state);
         }
     }
 
@@ -130,5 +111,17 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
         insertShowExperience.setText(homeKnowContent.getExperience());
         insertShowHeed.setText(homeKnowContent.getHeed());
         commonTitle.setText(homeKnowContent.getTitle());
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                ShowKnowDataActivity.launch(KnowShowFirstActivity.this,REQUEST_CODE,itemId);
+                break;
+        }
     }
 }

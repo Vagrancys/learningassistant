@@ -11,19 +11,21 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 知识添加默认页面
  */
 public class KnowInsertDefaultActivity extends BaseActivity implements KnowInsertDefaultView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
+
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.insert_title_edit)
@@ -41,7 +43,6 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
     private KnowInsertPresenter mPresenter;
     private int know_item_id;
 
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_know_insert_default;
@@ -54,25 +55,11 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
             know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
         mPresenter = new KnowInsertPresenter(this);
-        initListener();
     }
 
-    private void initListener() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
+    @Override
+    public void initToolbar() {
         commonImg.setImageResource(R.drawable.comment_complete_selector);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isDefaultEmpty();
-            }
-        });
     }
 
     @Override
@@ -105,8 +92,6 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
                 insertExperienceEdit.getText().toString());
     }
 
-
-
     @Override
     public void isDefaultEqualsError(int error, String msg) {
         ToastUtils.ToastText(getContext(),"Error = "+error+",Msg = "+msg+"该知识已经添加了!请重新输入!");
@@ -125,7 +110,7 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
 
     @Override
     public void saveDefaultItemFinish() {
-        ToastUtils.ToastText(getContext(),"保存成功了哦!");
+        ToastUtils.ToastText(getContext(), R.string.know_insert_success_text);
         initEmpty();
     }
 
@@ -136,5 +121,17 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
         insertExplainEdit.setText("");
         insertHeedEdit.setText("");
         insertExperienceEdit.setText("");
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isDefaultEmpty();
+                break;
+        }
     }
 }

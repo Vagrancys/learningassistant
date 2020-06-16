@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -27,12 +28,8 @@ import butterknife.BindView;
  */
 public class HistoryShowFirstActivity extends BaseActivity implements HistoryShowView {
 
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.insert_show_title)
     TextView insertShowTitle;
     @BindView(R.id.insert_show_summary)
@@ -67,17 +64,6 @@ public class HistoryShowFirstActivity extends BaseActivity implements HistorySho
         mPresenter.getDefaultShowData(historyId);
     }
 
-    @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        commonImg.setVisibility(View.GONE);
-    }
-
     public static void launch(Activity activity, long history_id) {
         Intent intent = new Intent(activity, HistoryShowFirstActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_HISTORY_ID, history_id);
@@ -106,5 +92,10 @@ public class HistoryShowFirstActivity extends BaseActivity implements HistorySho
         insertShowExperience.setText(homeKnowContent.getExperience());
         insertShowHeed.setText(homeKnowContent.getHeed());
         commonTitle.setText(homeKnowContent.getTitle());
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

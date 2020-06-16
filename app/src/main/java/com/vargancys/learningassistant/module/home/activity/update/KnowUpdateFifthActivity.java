@@ -19,17 +19,17 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 知识更新五级页面
  */
 public class KnowUpdateFifthActivity extends BaseActivity implements BaseKnowUpdateView {
     private static final String TAG = "KnowUpdateFifthActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -71,23 +71,10 @@ public class KnowUpdateFifthActivity extends BaseActivity implements BaseKnowUpd
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CODE);
-                finish();
-            }
-        });
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.common_update_fifth));
+        commonTitle.setText(getText(R.string.common_update_fifth));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
 
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.isKnowUpdateFifthEmpty();
-            }
-        });
     }
 
     public static void launch(Activity activity,int REQUEST_CODE, long content_id,long data_id){
@@ -152,7 +139,6 @@ public class KnowUpdateFifthActivity extends BaseActivity implements BaseKnowUpd
 
     private void addHistory(HomeKnowContent content){
         mOldHistory = new HomeKnowHistory();
-        Log.e(TAG,"ResultDataId ="+dataId);
         mOldHistory.setDataId(dataId);
         mOldHistory.setTitle(content.getTitle());
         mOldHistory.setSummary(content.getSummary());
@@ -180,6 +166,19 @@ public class KnowUpdateFifthActivity extends BaseActivity implements BaseKnowUpd
     @Override
     public void showKnowSaveError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                setResult(RESULT_CODE);
+                finish();
+                break;
+            case R.id.common_img:
+                mPresenter.isKnowUpdateFifthEmpty();
+                break;
+        }
     }
 }
 
