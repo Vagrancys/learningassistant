@@ -24,16 +24,15 @@ import butterknife.BindView;
  */
 public class AnswerSheetAdapter extends BaseRecyclerAdapter {
     private ArrayList<GameAnswerSheetBean> mBeans;
-    private Context mContext;
 
     public AnswerSheetAdapter(Context context,ArrayList<GameAnswerSheetBean> mBean){
+        super(context);
         this.mBeans = mBean;
-        mContext = context;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new AnswerSheetViewHolder(getView(mContext,R.layout.item_answer_sheet));
+        return new AnswerSheetViewHolder(getView(R.layout.item_answer_sheet));
     }
 
     @Override

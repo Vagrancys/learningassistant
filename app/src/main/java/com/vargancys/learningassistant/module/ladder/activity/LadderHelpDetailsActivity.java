@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -28,12 +29,8 @@ import butterknife.ButterKnife;
  * Description: 帮助详情页
  */
 public class LadderHelpDetailsActivity extends BaseActivity implements LadderHelpDetailsView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.help_details_number)
     TextView helpDetailsNumber;
     @BindView(R.id.help_details_title)
@@ -76,15 +73,7 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.help_details_toolbar));
-        commonImg.setVisibility(View.GONE);
+        commonTitle.setText(getText(R.string.help_details_toolbar));
     }
 
     public static void launch(Activity activity, long helpId) {
@@ -112,5 +101,10 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
         helpDetailsSummary.setText(mBean.getSummary());
         helpDetailsNumber.setText(mBean.getNumber());
         helpDetailsContent.setText(mBean.getContent());
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

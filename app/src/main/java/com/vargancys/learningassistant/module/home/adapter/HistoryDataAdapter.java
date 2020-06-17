@@ -33,7 +33,6 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
 
     private static final long DELAYED_TIME = 3000;
     private String TAG = "HistoryDataAdapter";
-    private Context mContext;
     private List<HomeKnowHistory> homeKnowHistorys;
     private Animation mTopRotateAnimation;
     private Animation mBottomRotateAnimation;
@@ -41,19 +40,19 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
     private Animation mBottomScaleAnimation;
     private Handler mHandler;
     public HistoryDataAdapter(Context context, Handler handler,List<HomeKnowHistory> items) {
-        this.mContext = context;
+        super(context);
         this.homeKnowHistorys = items;
-        mTopRotateAnimation = AnimationUtils.loadAnimation(mContext,R.anim.common_rotate_top_anim);
-        mBottomRotateAnimation = AnimationUtils.loadAnimation(mContext,R.anim.common_rotate_buttom_anim);
-        mTopScaleAnimation = AnimationUtils.loadAnimation(mContext,R.anim.common_scale_top_anim);
-        mBottomScaleAnimation = AnimationUtils.loadAnimation(mContext,R.anim.common_scale_buttom_anim);
+        mTopRotateAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_rotate_top_anim);
+        mBottomRotateAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_rotate_buttom_anim);
+        mTopScaleAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_top_anim);
+        mBottomScaleAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_buttom_anim);
         mHandler = handler;
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HistoryDataViewHolder(getView(mContext, R.layout.history_data_item));
+        return new HistoryDataViewHolder(getView(R.layout.history_data_item));
     }
 
     @Override
@@ -73,7 +72,7 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
                         mHolder.historyAnimLayout.startAnimation(mTopScaleAnimation);
                         mHolder.historyAnimImg.startAnimation(mBottomRotateAnimation);
                         mHolder.historyAnimLayout.setVisibility(View.GONE);
-                        mHolder.historyAnimTitle.setText(mContext.getString(R.string.history_anim_show_title));
+                        mHolder.historyAnimTitle.setText(getString(R.string.history_anim_show_title));
                     }
                 };
                 mHandler.removeCallbacksAndMessages(null);
@@ -82,13 +81,13 @@ public class HistoryDataAdapter extends BaseRecyclerAdapter {
                     mHolder.historyAnimLayout.setVisibility(View.VISIBLE);
                     mHolder.historyAnimLayout.startAnimation(mBottomScaleAnimation);
                     mHolder.historyAnimImg.startAnimation(mTopRotateAnimation);
-                    mHolder.historyAnimTitle.setText(mContext.getString(R.string.history_anim_hide_title));
+                    mHolder.historyAnimTitle.setText(getString(R.string.history_anim_hide_title));
                     mHandler.postDelayed(mRunnable,DELAYED_TIME);
                 }else{
                     mHolder.historyAnimLayout.startAnimation(mTopScaleAnimation);
                     mHolder.historyAnimImg.startAnimation(mBottomRotateAnimation);
                     mHolder.historyAnimLayout.setVisibility(View.GONE);
-                    mHolder.historyAnimTitle.setText(mContext.getString(R.string.history_anim_show_title));
+                    mHolder.historyAnimTitle.setText(getString(R.string.history_anim_show_title));
                 }
             }
         });

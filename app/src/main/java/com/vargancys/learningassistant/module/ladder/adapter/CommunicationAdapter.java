@@ -29,17 +29,16 @@ import butterknife.BindView;
  */
 public class CommunicationAdapter extends BaseRecyclerAdapter {
     private static String TAG = "CommunicationAdapter";
-    private Context mContext;
     private List<LadderCommentBean> mBean;
     public CommunicationAdapter(Context context, List<LadderCommentBean> bean){
-        mContext = context;
+        super(context);
         mBean = bean;
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
-        return new CommunicationViewHolder(View.inflate(mContext, R.layout.communication_comment_item,viewGroup));
+        return new CommunicationViewHolder(getView(R.layout.communication_comment_item));
     }
 
     @Override
@@ -51,8 +50,7 @@ public class CommunicationAdapter extends BaseRecyclerAdapter {
     public void onBindViewHolder(CommonViewHolder holder, final int position) {
         final CommunicationViewHolder mHolder = (CommunicationViewHolder) holder;
         final LadderCommentBean bean = mBean.get(position);
-        Log.e(TAG,"position ="+position);
-        Glide.with(mContext).load(bean.getAvatar()).into(mHolder.commentAvatar);
+        Glide.with(getContext()).load(bean.getAvatar()).into(mHolder.commentAvatar);
         mHolder.commentAuthor.setText(bean.getAuthor_title());
         mHolder.commentLevel.setText(bean.getLevel());
         mHolder.commentPraiseCount.setText(String.valueOf(bean.getPraise()));
@@ -64,7 +62,7 @@ public class CommunicationAdapter extends BaseRecyclerAdapter {
         mHolder.praiseLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mHolder.commentPraiseImg.getBackground() == ResourceUtils.getDrawable(mContext,R.drawable.comment_praise_selected_normal)){
+                if(mHolder.commentPraiseImg.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.comment_praise_selected_normal)){
                     mHolder.commentPraiseImg.setImageResource(R.drawable.comment_praise_unselected_normal);
                     mHolder.commentPraiseCount.setText(bean.getPraise()-1);
                     if(onCommentClickListener != null){
@@ -82,7 +80,7 @@ public class CommunicationAdapter extends BaseRecyclerAdapter {
         mHolder.stepLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mHolder.commentStepImg.getBackground() == ResourceUtils.getDrawable(mContext,R.drawable.comment_step_selected_normal)){
+                if(mHolder.commentStepImg.getBackground() == ResourceUtils.getDrawable(getContext(),R.drawable.comment_step_selected_normal)){
                     mHolder.commentStepImg.setImageResource(R.drawable.comment_step_unselected_normal);
                     mHolder.commentStepCount.setText(bean.getStep()-1);
                     if(onCommentClickListener != null){

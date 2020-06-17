@@ -25,6 +25,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -34,8 +35,6 @@ import butterknife.ButterKnife;
  * Description: 天梯交流中心
  */
 public class LadderCommunicationActivity extends BaseActivity implements LadderCommunicationView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.common_img)
@@ -46,8 +45,6 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
     ViewPager viewPager;
     @BindView(R.id.comment_edit)
     EditText commentEdit;
-    @BindView(R.id.comment_send)
-    ImageView commentSend;
     private String[] mTab;
     private BaseLadderPresenter mPresenter;
     private CommunicationPagerAdapter mAdapter;
@@ -97,17 +94,6 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
 
             }
         });
-
-        commentSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(commentEdit.getText().length()>0){
-                    mPresenter.saveCommentData(mCurrent,commentEdit.getText().toString());
-                }else{
-                    ToastUtils.ToastText(getBaseContext(), ResourceUtils.getString(getContext(),R.string.ladder_communication_empty));
-                }
-            }
-        });
     }
 
     private void initAdapter() {
@@ -121,21 +107,8 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.ladder_communication_toolbar));
+        commonTitle.setText(getText(R.string.ladder_communication_toolbar));
         commonImg.setImageResource(R.drawable.permission_setting_normal);
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO 权限设置
-
-            }
-        });
     }
 
     public static void launch(Activity activity) {
@@ -145,7 +118,7 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
 
     @Override
     public void sendCommentFinish() {
-        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.ladder_comment_success));
+        ToastUtils.ToastText(getContext(),R.string.ladder_comment_success);
         mPresenter.refreshCommentLayout();
         commentEdit.setText("");
     }
@@ -159,5 +132,24 @@ public class LadderCommunicationActivity extends BaseActivity implements LadderC
     @Override
     public void sendCommentError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img,R.id.comment_send})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                //TODO 权限设置
+                break;
+            case R.id.comment_send:
+                if(commentEdit.getText().length()>0){
+                    mPresenter.saveCommentData(mCurrent,commentEdit.getText().toString());
+                }else{
+                    ToastUtils.ToastText(getBaseContext(), R.string.ladder_communication_empty);
+                }
+                break;
+        }
     }
 }

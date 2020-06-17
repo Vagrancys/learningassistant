@@ -23,11 +23,10 @@ import butterknife.ButterKnife;
  * Description: 关卡选择适配器
  */
 public class GameSelectAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<OverViewListContent> mContents;
     public GameSelectAdapter(Context context,List<OverViewListContent> contents){
+        super(context);
         this.mContents = contents;
-        this.mContext = context;
     }
 
     @Override
@@ -46,7 +45,7 @@ public class GameSelectAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new GameSelectViewHolder(getView(mContext,R.layout.game_select_item));
+        return new GameSelectViewHolder(getView(R.layout.game_select_item));
     }
 
     @Override

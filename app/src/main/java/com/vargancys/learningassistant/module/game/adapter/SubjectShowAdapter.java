@@ -36,7 +36,6 @@ import butterknife.ButterKnife;
 public class SubjectShowAdapter extends BaseRecyclerAdapter {
     private String TAG = "SubjectShowAdapter";
     private List<GameSubjectItem> mItems;
-    private Context mContext;
     private Handler mHandler;
     private Animation mUpScaleAnimation;
     private Animation mDownScaleAnimation;
@@ -44,19 +43,19 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
     private Animation mDownRotateAnimation;
 
     public SubjectShowAdapter(Context context, List<GameSubjectItem> mItems, Handler mHandler) {
+        super(context);
         this.mHandler = mHandler;
-        this.mContext = context;
         this.mItems = mItems;
-        mUpScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_top_anim);
-        mDownScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_buttom_anim);
-        mUpRotateAnimation = AnimationUtils.loadAnimation(context,R.anim.common_rotate_buttom_anim);
-        mDownRotateAnimation = AnimationUtils.loadAnimation(context,R.anim.common_rotate_top_anim);
+        mUpScaleAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_top_anim);
+        mDownScaleAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_buttom_anim);
+        mUpRotateAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_rotate_buttom_anim);
+        mDownRotateAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_rotate_top_anim);
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new SubjectShowViewHolder(getView(mContext, R.layout.subject_show_item));
+        return new SubjectShowViewHolder(getView(R.layout.subject_show_item));
     }
 
     @Override
@@ -68,7 +67,7 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
         final Runnable mRunnable = new Runnable() {
             @Override
             public void run() {
-                mHolder.subjectDetails.setText(R.string.subject_details_show);
+                mHolder.subjectDetails.setText(getString(R.string.subject_details_show));
                 mHolder.subjectIndicate.startAnimation(mUpRotateAnimation);
                 hideLayout(mHolder,mItem.getSelect());
             }
@@ -89,19 +88,19 @@ public class SubjectShowAdapter extends BaseRecyclerAdapter {
                 break;
         }
 
-        mHolder.subjectClass.setText(mContext.getString(selectText));
+        mHolder.subjectClass.setText(getString(selectText));
 
         mHolder.subjectDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mHolder.subjectDetails.getText().toString()
-                        .equals(ResourceUtils.getString(mContext,R.string.subject_details_show))){
-                    mHolder.subjectDetails.setText(R.string.subject_details_hide);
+                        .equals(getString(R.string.subject_details_show))){
+                    mHolder.subjectDetails.setText(getString(R.string.subject_details_hide));
                     mHolder.subjectIndicate.startAnimation(mDownRotateAnimation);
                     showLayout(mHolder,mItem);
                     mHandler.postDelayed(mRunnable,2000);
                 }else{
-                    mHolder.subjectDetails.setText(R.string.subject_details_show);
+                    mHolder.subjectDetails.setText(getString(R.string.subject_details_show));
                     mHolder.subjectIndicate.startAnimation(mUpRotateAnimation);
                     mHandler.removeCallbacks(mRunnable);
                     hideLayout(mHolder,mItem.getSelect());

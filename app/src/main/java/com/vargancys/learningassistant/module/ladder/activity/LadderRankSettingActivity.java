@@ -31,8 +31,6 @@ import butterknife.OnClick;
  * Description: 天梯排行配置中心
  */
 public class LadderRankSettingActivity extends BaseActivity implements LadderRankSettingView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.rank_type_first)
@@ -72,14 +70,8 @@ public class LadderRankSettingActivity extends BaseActivity implements LadderRan
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.rank_setting_toolbar));
+        commonTitleData.setText(getText(R.string.rank_setting_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -89,7 +81,7 @@ public class LadderRankSettingActivity extends BaseActivity implements LadderRan
 
     @OnClick({R.id.rank_type_second, R.id.rank_type_third,R.id.rank_type_first,R.id.rank_type_fourth,
     R.id.rank_type_fifth,R.id.rank_type_sixth,R.id.rank_type_seventh,R.id.rank_type_eighth,
-    R.id.rank_type_ninth,R.id.rank_save})
+    R.id.rank_type_ninth,R.id.rank_save,R.id.common_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rank_type_first:
@@ -121,6 +113,9 @@ public class LadderRankSettingActivity extends BaseActivity implements LadderRan
                 break;
             case R.id.rank_save:
                 mPresenter.saveLadderRankSettingData(mInteger);
+                break;
+            case R.id.common_back:
+                finish();
                 break;
         }
     }
@@ -188,12 +183,12 @@ public class LadderRankSettingActivity extends BaseActivity implements LadderRan
 
     @Override
     public void showRankSettingError() {
-        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.rank_setting_error_text));
+        ToastUtils.ToastText(getContext(),R.string.rank_setting_error_text);
     }
 
     @Override
     public void saveRankSettingFinish() {
-        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.rank_setting_win_text));
+        ToastUtils.ToastText(getContext(),R.string.rank_setting_win_text);
         finish();
     }
 

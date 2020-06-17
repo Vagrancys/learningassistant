@@ -29,7 +29,6 @@ import butterknife.ButterKnife;
  * Description: 关卡签到适配器
  */
 public class GameSignAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<GameSignContent> mSigns;
     private Animation mUpScaleAnimation;
     private Animation mDownScaleAnimation;
@@ -37,18 +36,18 @@ public class GameSignAdapter extends BaseRecyclerAdapter {
     private Animation mDownRotateAnimation;
     private Handler mHandler;
     public GameSignAdapter(Context context, List<GameSignContent> mSigns, Handler mHandler){
-        mContext = context;
+        super(context);
         this.mSigns = mSigns;
         this.mHandler = mHandler;
-        mUpScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_top_anim);
-        mDownScaleAnimation = AnimationUtils.loadAnimation(context,R.anim.common_scale_buttom_anim);
-        mUpRotateAnimation = AnimationUtils.loadAnimation(context,R.anim.common_rotate_buttom_anim);
-        mDownRotateAnimation = AnimationUtils.loadAnimation(context,R.anim.common_rotate_top_anim);
+        mUpScaleAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_top_anim);
+        mDownScaleAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_buttom_anim);
+        mUpRotateAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_rotate_buttom_anim);
+        mDownRotateAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.common_rotate_top_anim);
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new GameSignViewHolder(getView(mContext, R.layout.game_sign_item));
+        return new GameSignViewHolder(getView(R.layout.game_sign_item));
     }
 
     @Override
@@ -100,7 +99,7 @@ public class GameSignAdapter extends BaseRecyclerAdapter {
         final Runnable mRunnable = new Runnable() {
             @Override
             public void run() {
-                mHolder.signIndicate.setText(R.string.sign_show_indicate);
+                mHolder.signIndicate.setText(getString(R.string.sign_show_indicate));
                 mHolder.signIndicateImg.startAnimation(mUpRotateAnimation);
                 mHolder.signLayout.startAnimation(mUpScaleAnimation);
             }
@@ -110,11 +109,11 @@ public class GameSignAdapter extends BaseRecyclerAdapter {
             public void onClick(View v) {
                 mHandler.removeCallbacks(mRunnable);
                 if(mHolder.signLayout.getVisibility() == View.VISIBLE){
-                    mHolder.signIndicate.setText(R.string.sign_show_indicate);
+                    mHolder.signIndicate.setText(getString(R.string.sign_show_indicate));
                     mHolder.signIndicateImg.startAnimation(mUpRotateAnimation);
                     mHolder.signLayout.startAnimation(mUpScaleAnimation);
                 }else{
-                    mHolder.signIndicate.setText(R.string.sign_hide_indicate);
+                    mHolder.signIndicate.setText(getString(R.string.sign_hide_indicate));
                     mHolder.signIndicateImg.startAnimation(mDownRotateAnimation);
                     mHolder.signLayout.startAnimation(mDownScaleAnimation);
                     mHolder.signLayout.setVisibility(View.VISIBLE);

@@ -22,16 +22,15 @@ import butterknife.BindView;
  * 帮助内容适配器
  */
 public class HelpContentAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<HelpContentItem> mBean;
     public HelpContentAdapter(Context context,List<HelpContentItem> bean){
+        super(context);
         mBean = bean;
-        mContext = context;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HelpContentViewHolder(getView(mContext, R.layout.help_content_item));
+        return new HelpContentViewHolder(getView(R.layout.help_content_item));
     }
 
     @Override

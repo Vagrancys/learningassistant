@@ -18,6 +18,7 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -50,25 +51,11 @@ public class LadderRankActivity extends BaseActivity {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.ladder_rank_toolbar));
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LadderRankSettingActivity.launch(LadderRankActivity.this);
-            }
-        });
+        commonTitle.setText(getText(R.string.ladder_rank_toolbar));
     }
 
     @Override
     public void initView() {
-        Log.e(TAG,"断点!");
         mAdapter = new LadderRankAdapter(getSupportFragmentManager(),mRank.length);
         viewPager.setAdapter(mAdapter);
         viewPager.setOffscreenPageLimit(mRank.length);
@@ -107,5 +94,17 @@ public class LadderRankActivity extends BaseActivity {
     public static void launch(Activity activity) {
         Intent intent = new Intent(activity, LadderRankActivity.class);
         activity.startActivity(intent);
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                LadderRankSettingActivity.launch(LadderRankActivity.this);
+                break;
+        }
     }
 }

@@ -26,16 +26,15 @@ import butterknife.BindView;
  */
 public class HomeKnowHistoryAdapter extends BaseRecyclerAdapter {
     private String TAG = "HomeHistoryAdapter";
-    private Context mContext;
     private List<HomeKnowHistory> homeKnowHistories;
     public HomeKnowHistoryAdapter(Context context, List<HomeKnowHistory> items){
-        this.mContext = context;
+        super(context);
         this.homeKnowHistories = items;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeHistoryViewHolder(getView(mContext, R.layout.know_history_item));
+        return new HomeHistoryViewHolder(getView(R.layout.know_history_item));
     }
 
     @Override

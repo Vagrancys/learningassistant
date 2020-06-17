@@ -28,23 +28,22 @@ import butterknife.BindView;
  * Description: 评论回复适配器
  */
 public class CommentReplyAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<LadderCommentReplyBean> mBean;
     public CommentReplyAdapter(Context context, List<LadderCommentReplyBean> mBean){
-        this.mContext = context;
+        super(context);
         this.mBean = mBean;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new CommentReplyViewHolder(View.inflate(mContext, R.layout.comment_reply_item,viewGroup));
+        return new CommentReplyViewHolder(getView(R.layout.comment_reply_item));
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         CommentReplyViewHolder mHolder = (CommentReplyViewHolder) holder;
         LadderCommentReplyBean bean = mBean.get(position);
-        Glide.with(mContext).load(bean.getAvatar()).into(mHolder.commentAvatar);
+        Glide.with(getContext()).load(bean.getAvatar()).into(mHolder.commentAvatar);
         mHolder.commentAuthor.setText(bean.getAuthor_title());
         mHolder.commentContent.setText(bean.getComment());
         mHolder.commentLevel.setText(bean.getLevel());

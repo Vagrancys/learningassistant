@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -36,12 +37,8 @@ public class LadderHelpActivity extends BaseActivity implements LadderHelpView {
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
 
     private List<LadderHelpBean> mBean = new ArrayList<>();
     private BaseLadderPresenter mPresenter;
@@ -80,15 +77,7 @@ public class LadderHelpActivity extends BaseActivity implements LadderHelpView {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        commonImg.setVisibility(View.GONE);
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.ladder_help_title_text));
+        commonTitle.setText(getText(R.string.ladder_help_title_text));
     }
 
     public static void launch(Activity activity) {
@@ -105,5 +94,10 @@ public class LadderHelpActivity extends BaseActivity implements LadderHelpView {
     @Override
     public void showAllDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+", Message =" +message);
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

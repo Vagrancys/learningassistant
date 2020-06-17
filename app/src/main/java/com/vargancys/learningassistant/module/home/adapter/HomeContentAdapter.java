@@ -28,17 +28,16 @@ import butterknife.ButterKnife;
  * 首页中心适配器
  */
 public class HomeContentAdapter extends BaseRecyclerAdapter {
-    private Context context;
     private List<?> contentBean;
     public HomeContentAdapter(Context context, List<?> contentBean){
+        super(context);
         this.contentBean = contentBean;
-        this.context = context;
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeContentViewHolder(getView(context, R.layout.home_content_item));
+        return new HomeContentViewHolder(getView(R.layout.home_content_item));
     }
 
     @Override

@@ -25,17 +25,16 @@ import butterknife.ButterKnife;
  */
 public class HomeHistoryFourthAdapter extends BaseRecyclerAdapter {
     private List<HomeKnowHistoryFunction> homeKnowFunctions;
-    private Context mContext;
     private String[] mCommon = {"不认识","偶尔","经常","已遗忘"};
     public HomeHistoryFourthAdapter(Context context, List<HomeKnowHistoryFunction> homeKnowFunctions){
-        this.mContext = context;
+        super(context);
         this.homeKnowFunctions = homeKnowFunctions;
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new KnowSecondViewHolder(getView(mContext, R.layout.know_function_fourth_item));
+        return new KnowSecondViewHolder(getView(R.layout.know_function_fourth_item));
     }
 
     @Override

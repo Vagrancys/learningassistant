@@ -24,10 +24,9 @@ import butterknife.BindView;
  * Description: 难度区评论的适配器
  */
 public class DifficultyCommentAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<LadderDifficultyCommentBean> mBean;
     public DifficultyCommentAdapter(Context context, List<LadderDifficultyCommentBean> bean){
-        mContext = context;
+        super(context);
         mBean = bean;
     }
 
@@ -40,14 +39,14 @@ public class DifficultyCommentAdapter extends BaseRecyclerAdapter {
         mHolder.commentFloorCount.setText(String.valueOf(bean.getFloor()));
         mHolder.commentTime.setText(bean.getTime());
         mHolder.commentLevel.setText(String.valueOf(bean.getLevel()));
-        Glide.with(mContext).load(bean.getAuthor()).into(mHolder.commentAvatar);
+        Glide.with(getContext()).load(bean.getAuthor()).into(mHolder.commentAvatar);
         super.onBindViewHolder(holder, position);
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new DifficultyCommentViewHolder(View.inflate(mContext, R.layout.difficulty_comment_item,viewGroup));
+        return new DifficultyCommentViewHolder(getView(R.layout.difficulty_comment_item));
     }
 
     @Override

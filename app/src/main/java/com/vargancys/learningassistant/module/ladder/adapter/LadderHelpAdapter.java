@@ -23,16 +23,15 @@ import butterknife.BindView;
  */
 public class LadderHelpAdapter extends BaseRecyclerAdapter {
     private List<LadderHelpBean> mBean;
-    private Context mContext;
     public LadderHelpAdapter(Context context,List<LadderHelpBean> bean){
-        mContext = context;
+        super(context);
         mBean = bean;
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new LadderHelpViewHolder(View.inflate(mContext, R.layout.ladder_help_item,viewGroup));
+        return new LadderHelpViewHolder(getView(R.layout.ladder_help_item));
     }
 
     @Override

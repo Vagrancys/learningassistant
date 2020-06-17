@@ -56,16 +56,10 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
     RecyclerView recyclerView;
     @BindView(R.id.comment_edit)
     EditText commentEdit;
-    @BindView(R.id.comment_send)
-    ImageView commentSend;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     private BaseLadderPresenter mPresenter;
 
     private long commentId;
@@ -96,31 +90,11 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
                 autoRefresh();
             }
         });
-
-        commentSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (commentEdit.getText().length() > 0) {
-                    mPresenter.saveCommentReplyData(commentId, commentEdit.getText().toString());
-                } else {
-                    ToastUtils.ToastText(getBaseContext(), ResourceUtils.getString(getContext(),R.string.comment_data_empty_text));
-                }
-            }
-        });
     }
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.comment_reply_toolbar));
-
-        commonImg.setVisibility(View.GONE);
+        commonTitle.setText(getText(R.string.comment_reply_toolbar));
     }
 
     private void autoRefresh() {
@@ -146,13 +120,13 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
 
     @Override
     public void showSaveCommentDataFinish() {
-        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.comment_save_data_finish_text));
+        ToastUtils.ToastText(getContext(), R.string.comment_save_data_finish_text);
         autoRefresh();
     }
 
     @Override
     public void showSaveCommentDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.comment_save_data_error_text));
+        ToastUtils.ToastText(getContext(), R.string.comment_save_data_error_text);
         commentEdit.setText("");
     }
 
@@ -169,11 +143,27 @@ public class LadderCommentReplyActivity extends BaseActivity implements LadderCo
 
     @Override
     public void showCommentDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.comment_empty_text));
+        ToastUtils.ToastText(getContext(), R.string.comment_empty_text);
         commentAuthor.setText("--");
         commentContent.setText("--");
         commentLevel.setText("--");
         commentTime.setText("--");
         commentReplyCount.setText("0");
+    }
+
+    @OnClick({R.id.common_back,R.id.comment_send})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.comment_send:
+                if (commentEdit.getText().length() > 0) {
+                    mPresenter.saveCommentReplyData(commentId, commentEdit.getText().toString());
+                } else {
+                    ToastUtils.ToastText(getBaseContext(),R.string.comment_data_empty_text);
+                }
+                break;
+        }
     }
 }

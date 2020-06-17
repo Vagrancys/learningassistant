@@ -23,16 +23,15 @@ import butterknife.BindView;
  */
 public class HelpCommendAdapter extends BaseRecyclerAdapter {
     private String TAG = "HelpCommentAdapter";
-    private Context mContext;
     private List<HelpCommendItem> helpCommendItems;
     public HelpCommendAdapter(Context context,List<HelpCommendItem> items){
-        this.mContext = context;
+        super(context);
         this.helpCommendItems = items;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HelpCommendViewHolder(getView(mContext, R.layout.help_commend_item));
+        return new HelpCommendViewHolder(getView(R.layout.help_commend_item));
     }
 
     @Override

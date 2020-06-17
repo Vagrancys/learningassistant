@@ -20,6 +20,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -29,8 +30,6 @@ import butterknife.ButterKnife;
  * Description: 天梯成绩展示
  */
 public class LadderResultActivity extends BaseActivity implements LadderResultView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.result_author)
@@ -99,14 +98,8 @@ public class LadderResultActivity extends BaseActivity implements LadderResultVi
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.ladder_result_toolbar));
+        commonTitleData.setText(getText(R.string.ladder_result_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -196,5 +189,14 @@ public class LadderResultActivity extends BaseActivity implements LadderResultVi
         resultHighestCount.setText("--");
         resultScore.setText("--");
         resultShortTime.setText("--");
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+        }
     }
 }

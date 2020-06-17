@@ -25,8 +25,6 @@ import butterknife.OnClick;
  * Description: 天梯模式配置中心
  */
 public class LadderModeActivity extends BaseActivity {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.mode_number_first)
@@ -192,14 +190,8 @@ public class LadderModeActivity extends BaseActivity {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitleData.setText(R.string.ladder_mode_toolbar);
+        commonTitleData.setText(getText(R.string.ladder_mode_toolbar));
     }
 
     // 确定闯关的题数 10 20 30 40 50
@@ -214,7 +206,7 @@ public class LadderModeActivity extends BaseActivity {
             R.id.mode_number_fifth,R.id.mode_time_first,R.id.mode_time_second,R.id.mode_time_third,
             R.id.mode_time_fourth,R.id.mode_time_fifth,R.id.mode_type_first,R.id.mode_type_second,R.id.mode_type_third,
             R.id.mode_type_fourth,R.id.mode_type_fifth,R.id.mode_class_first,R.id.mode_class_second,
-            R.id.mode_class_third,R.id.mode_class_fourth,R.id.mode_class_fifth,R.id.mode_save})
+            R.id.mode_class_third,R.id.mode_class_fourth,R.id.mode_class_fifth,R.id.mode_save,R.id.common_back})
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.mode_number_first:
@@ -319,6 +311,9 @@ public class LadderModeActivity extends BaseActivity {
                 break;
             case R.id.mode_save:
                 ToastUtils.ToastText(getContext(), "保存成功了哦!");
+                finish();
+                break;
+            case R.id.common_back:
                 finish();
                 break;
         }

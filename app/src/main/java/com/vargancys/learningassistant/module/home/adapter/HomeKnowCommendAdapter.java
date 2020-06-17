@@ -25,16 +25,15 @@ import butterknife.BindView;
  */
 public class HomeKnowCommendAdapter extends BaseRecyclerAdapter {
     private String TAG = "HomeKnowCommendAdapter";
-    private Context mContext;
     private List<HomeKnowCommend> homeKnowCommends;
     public HomeKnowCommendAdapter(Context context, List<HomeKnowCommend> items){
-        this.mContext = context;
+        super(context);
         this.homeKnowCommends = items;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new HomeCommendViewHolder(getView(mContext, R.layout.home_commend_item));
+        return new HomeCommendViewHolder(getView(R.layout.home_commend_item));
     }
 
     @Override

@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.vargancys.learningassistant.R;
+
+import org.greenrobot.greendao.annotation.Id;
+
 import butterknife.ButterKnife;
 
 /**
@@ -17,6 +21,14 @@ import butterknife.ButterKnife;
  * version:1.0
  */
 public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseRecyclerAdapter.CommonViewHolder> {
+    private Context mContext;
+    public BaseRecyclerAdapter(Context context){
+        mContext = context;
+    }
+
+    public Context getContext() {
+        return mContext;
+    }
 
     @Override
     public void onBindViewHolder(final CommonViewHolder holder, final int position) {
@@ -73,7 +85,11 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseRecyc
         }
     }
 
-    public View getView(Context context,int Ids){
-        return View.inflate(context,Ids,null);
+    public View getView(int Ids){
+        return View.inflate(mContext,Ids,null);
+    }
+
+    public String getString(int Ids){
+        return mContext.getString(Ids);
     }
 }
