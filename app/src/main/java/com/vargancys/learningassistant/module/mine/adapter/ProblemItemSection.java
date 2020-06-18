@@ -24,13 +24,11 @@ import butterknife.BindView;
  */
 public class ProblemItemSection extends StatelessSection {
 
-    private Context mContext;
     private ProblemItemBean mBean;
 
     private Activity mActivity;
     public ProblemItemSection(Context context, Activity activity, ProblemItemBean bean) {
-        super(R.layout.problem_item_header, R.layout.problem_item);
-        mContext = context;
+        super(context,R.layout.problem_item_header, R.layout.problem_item);
         mBean = bean;
         mActivity = activity;
     }

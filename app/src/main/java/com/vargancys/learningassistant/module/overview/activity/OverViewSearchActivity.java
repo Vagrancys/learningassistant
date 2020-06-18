@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -73,13 +74,13 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
 
     private void initData(){
         mAlert = new AlertDialog.Builder(getContext());
-        mAlert.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+        mAlert.setPositiveButton(R.string.common_cancel_text, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 overviewId = 0;
             }
         });
-        mAlert.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+        mAlert.setNegativeButton(R.string.common_determine_text, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 CacheUtils.putLong(getContext(), ConstantsUtils.OVERVIEW_ID,overviewId);
@@ -94,7 +95,6 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
             @Override
             public void OnItemClick(int position) {
                 overviewId = mObjects.get(position).getId();
-                Log.e(TAG,"overviewId ="+overviewId);
                 mAlert.setTitle(mObjects.get(position).getTitle());
                 mAlert.setMessage(mObjects.get(position).getSummary());
                 mAlert.show();
@@ -104,23 +104,10 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         commonTitle.setVisibility(View.GONE);
 
         commonImg.setImageResource(R.drawable.common_add_normal);
-
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OverViewAddActivity.launch(OverViewSearchActivity.this,REQUEST_CODE);
-            }
-        });
     }
 
     public static void launch(Activity activity) {
@@ -145,4 +132,15 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
         fragmentEmpty.setVisibility(View.VISIBLE);
     }
 
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                OverViewAddActivity.launch(OverViewSearchActivity.this,REQUEST_CODE);
+                break;
+        }
+    }
 }

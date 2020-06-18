@@ -42,8 +42,6 @@ import butterknife.OnClick;
  * Description: 个人中心问题各项页面
  */
 public class ProblemItemActivity extends BaseActivity implements ProblemItemView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.recyclerView)

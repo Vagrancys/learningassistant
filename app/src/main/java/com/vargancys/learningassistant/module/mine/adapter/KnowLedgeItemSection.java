@@ -34,13 +34,11 @@ import butterknife.BindView;
  */
 public class KnowLedgeItemSection extends StatelessSection {
 
-    private Context mContext;
     private KnowLedgeItemBean mBean;
 
     private Activity mActivity;
     public KnowLedgeItemSection(Context context, Activity activity, KnowLedgeItemBean bean) {
-        super(R.layout.knowledge_item_header, R.layout.knowledge_item);
-        mContext = context;
+        super(context,R.layout.knowledge_item_header, R.layout.knowledge_item);
         mBean = bean;
         mActivity = activity;
     }
@@ -78,7 +76,7 @@ public class KnowLedgeItemSection extends StatelessSection {
                         }
                     }else{
                         if(mItem.isHave()){
-                            ToastUtils.ToastText(mContext,"这需要官方来创建!个人不能创建!");
+                            ToastUtils.ToastText(getContext(),"这需要官方来创建!个人不能创建!");
                         }
                 }
             }

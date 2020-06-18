@@ -25,10 +25,9 @@ import butterknife.BindView;
  * Description: 个人中心知识体系各项适配器
  */
 public class SystemDataAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<OverViewListContent> mContent;
     public SystemDataAdapter(Context context,List<OverViewListContent> content){
-        this.mContext = context;
+        super(context);
         this.mContent = content;
     }
 
@@ -38,7 +37,7 @@ public class SystemDataAdapter extends BaseRecyclerAdapter {
         OverViewListContent mData = mContent.get(position);
         mHolder.systemTitle.setText(mData.getTitle());
         mHolder.systemAuthor.setText(mData.getAuthor());
-        Glide.with(mContext).load(mData.getAuthor()).into(mHolder.systemAvatar);
+        Glide.with(getContext()).load(mData.getAuthor()).into(mHolder.systemAvatar);
         mHolder.systemGrade.setText(mData.getGrade());
         mHolder.systemLayer.setText(mData.getLayer());
         mHolder.systemLevel.setText(mData.getLevel());
@@ -52,7 +51,7 @@ public class SystemDataAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new SystemViewHolder(getView(mContext, R.layout.system_data_item));
+        return new SystemViewHolder(getView(R.layout.system_data_item));
     }
 
     @Override

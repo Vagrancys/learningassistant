@@ -26,6 +26,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -41,10 +42,6 @@ public class MineFragment extends BaseFragment implements BaseMineView {
     ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.common_img_one)
-    ImageView commonImgOne;
-    @BindView(R.id.common_img)
-    ImageView commonImg;
     @BindView(R.id.mine_avatar)
     ImageView mineAvatar;
     @BindView(R.id.mine_name)
@@ -95,13 +92,7 @@ public class MineFragment extends BaseFragment implements BaseMineView {
         mTitle = ResourceUtils.getStringArray(getContext(),R.array.mine_sliding);
         mPresenter.getMineData(mineId);
         commonBack.setVisibility(View.GONE);
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.mine_toolbar));
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SettingActivity.launch(getActivity());
-            }
-        });
+        commonTitle.setText(getText(R.string.mine_toolbar));
         mAdapter = new MineSlidingAdapter(getChildFragmentManager(),mTitle);
         viewPager.setAdapter(mAdapter);
         viewPager.setOffscreenPageLimit(5);
@@ -189,4 +180,8 @@ public class MineFragment extends BaseFragment implements BaseMineView {
         mineInfluence.setText("--");
     }
 
+    @OnClick({R.id.common_img})
+    public void onViewClicked(View itemView){
+        SettingActivity.launch(getActivity());
+    }
 }

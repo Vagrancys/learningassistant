@@ -34,11 +34,10 @@ import butterknife.BindView;
  */
 public class ProblemItemAdapter extends BaseRecyclerAdapter {
     private List<KnowLedgeItemBean.KnowLedgeItem> mProblem;
-    private Context mContext;
     private Activity mActivity;
     public ProblemItemAdapter(Context context, Activity activity,List<KnowLedgeItemBean.KnowLedgeItem> mProblem){
+        super(context);
         this.mProblem = mProblem;
-        this.mContext = context;
         this.mActivity = activity;
     }
 
@@ -57,12 +56,10 @@ public class ProblemItemAdapter extends BaseRecyclerAdapter {
         super.onBindViewHolder(holder, position);
     }
 
-
-
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ProblemItemViewHolder(getView(mContext, R.layout.problem_item));
+        return new ProblemItemViewHolder(getView(R.layout.problem_item));
     }
 
     @Override

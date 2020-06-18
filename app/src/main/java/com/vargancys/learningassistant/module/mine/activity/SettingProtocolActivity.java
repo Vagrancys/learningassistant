@@ -36,7 +36,7 @@ public class SettingProtocolActivity extends BaseActivity {
 
     @Override
     public void initToolbar() {
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.setting_protocol_toolbar));
+        commonTitleData.setText(getText(R.string.setting_protocol_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -51,10 +51,10 @@ public class SettingProtocolActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.ll_setting_permission:
-                ToastUtils.ToastText(getContext(), ResourceUtils.getString(getContext(),R.string.setting_permission_hint_text));
+                ToastUtils.ToastText(getContext(),R.string.setting_permission_hint_text);
                 break;
             case R.id.ll_setting_privacy:
-                ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_privacy_hint_text));
+                ToastUtils.ToastText(getContext(),R.string.setting_privacy_hint_text);
                 break;
         }
     }

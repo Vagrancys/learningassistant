@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -71,7 +72,6 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
         }
         init();
         overviewListView.setAdapter(mAdapter);
-        initToolbar();
         mPresenter.getOverViewListData(selectId);
     }
 
@@ -91,22 +91,6 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
 
     public void getSelectId(){
         selectId = CacheUtils.getLong(getContext(), ConstantsUtils.OVERVIEW_ID,0);
-    }
-
-    public void initToolbar(){
-        overviewSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OverViewSearchActivity.launch(getActivity());
-            }
-        });
-
-        overviewInformation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OverViewInformationActivity.launch(getActivity(),selectId);
-            }
-        });
     }
 
     @Override
@@ -131,7 +115,6 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
             mBeans.add(mBean);
         }
         try {
-            Log.e(TAG,"断点 mBeans ="+mBeans.size());
             mAdapter.swipeData(mBeans);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -139,6 +122,16 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
         mAdapter.notifyDataSetChanged();
     }
 
-
+    @OnClick({R.id.overview_select,R.id.overview_information})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.overview_select:
+                OverViewSearchActivity.launch(getActivity());
+                break;
+            case R.id.overview_information:
+                OverViewInformationActivity.launch(getActivity(),selectId);
+                break;
+        }
+    }
 }
 

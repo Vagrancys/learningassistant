@@ -69,7 +69,6 @@ public class SystemFragment extends BaseFragment  implements SystemView {
 
     @Override
     protected void initView() {
-        Log.e(TAG,"体系断点");
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -77,7 +76,7 @@ public class SystemFragment extends BaseFragment  implements SystemView {
         mAdapter = new SystemDataAdapter(getContext(),mBean);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
-        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.system_data_empty_text));
+        fragmentContent.setText(getText(R.string.system_data_empty_text));
         autoRefresh();
     }
 

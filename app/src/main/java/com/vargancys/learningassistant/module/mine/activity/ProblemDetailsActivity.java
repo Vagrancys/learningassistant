@@ -19,6 +19,7 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -28,8 +29,6 @@ import butterknife.ButterKnife;
  * Description: 个人中心问题详情页面
  */
 public class ProblemDetailsActivity extends BaseActivity implements ProblemDetailsView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.problem_details_title)
@@ -119,14 +118,7 @@ public class ProblemDetailsActivity extends BaseActivity implements ProblemDetai
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.problem_details_toolbar));
+        commonTitleData.setText(getText(R.string.problem_details_toolbar));
     }
 
     public static void launch(Activity activity, long type) {
@@ -279,5 +271,10 @@ public class ProblemDetailsActivity extends BaseActivity implements ProblemDetai
         problemAnswerMultipleSecondAnswer.setVisibility(View.GONE);
         problemAnswerMultipleThirdAnswer.setVisibility(View.GONE);
         problemAnswerMultipleFourthAnswer.setVisibility(View.GONE);
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

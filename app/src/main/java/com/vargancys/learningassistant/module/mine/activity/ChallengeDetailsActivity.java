@@ -16,6 +16,7 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -25,8 +26,6 @@ import butterknife.BindView;
  * Description: 个人中心天梯各项详情页面
  */
 public class ChallengeDetailsActivity extends BaseActivity implements ChallengeDetailsView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.challenge_details_title)
@@ -66,14 +65,8 @@ public class ChallengeDetailsActivity extends BaseActivity implements ChallengeD
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.challenge_details_toolbar));
+        commonTitleData.setText(getText(R.string.challenge_details_toolbar));
     }
 
     public static void launch(Activity activity, long id) {
@@ -109,5 +102,10 @@ public class ChallengeDetailsActivity extends BaseActivity implements ChallengeD
         challengeDetailsTitle.setText(String.valueOf(mBean.getTitle()));
         challengeDetailsTotal.setText(String.valueOf(mBean.getTotal()));
         challengeDetailsUpgrade.setText(String.valueOf(mBean.getUpgrade()));
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

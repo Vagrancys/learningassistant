@@ -41,14 +41,8 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.setting_toolbar));
+        commonTitleData.setText(getText(R.string.setting_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -56,13 +50,14 @@ public class SettingActivity extends BaseActivity {
         activity.startActivity(intent);
     }
 
-    @OnClick({R.id.ll_setting_mine, R.id.ll_setting_exit,
-            R.id.ll_setting_currency, R.id.ll_setting_score, R.id.ll_setting_about, R.id.ll_setting_protocol, R.id.ll_setting_feedback})
+    @OnClick({R.id.ll_setting_mine, R.id.ll_setting_exit,R.id.ll_setting_currency,R.id.common_back,
+            R.id.ll_setting_score, R.id.ll_setting_about, R.id.ll_setting_protocol, R.id.ll_setting_feedback})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_setting_mine:
                 SettingMineActivity.launch(this);
                 break;
+            case R.id.common_back:
             case R.id.ll_setting_exit:
                 //TODO 跳转到登录界面
                 finish();
@@ -93,7 +88,7 @@ public class SettingActivity extends BaseActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }catch (Exception e){
-            ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_score_fail_text));
+            ToastUtils.ToastText(getContext(),R.string.setting_score_fail_text);
             e.printStackTrace();
         }
     }

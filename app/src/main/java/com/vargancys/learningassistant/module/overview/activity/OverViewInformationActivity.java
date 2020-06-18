@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -31,8 +32,6 @@ import butterknife.ButterKnife;
  */
 public class OverViewInformationActivity extends BaseActivity implements OverViewInformationView{
     private static String TAG = "OverViewInformationActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.information_title)
@@ -71,20 +70,8 @@ public class OverViewInformationActivity extends BaseActivity implements OverVie
         if(intent !=null){
             selectId = intent.getLongExtra(ConstantsUtils.OVERVIEW_SELECTED_ID,0);
         }
-        Log.e(TAG,"断点"+selectId);
         mPresenter = new BaseOverViewPresenter(this);
         mPresenter.getContentData(selectId);
-    }
-
-    @Override
-    public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
     }
 
     public static void launch(Activity activity, long selectId) {
@@ -105,7 +92,6 @@ public class OverViewInformationActivity extends BaseActivity implements OverVie
 
     @Override
     public void getContentData(OverViewListContent mContent) {
-        Log.e(TAG,"断点");
         informationTitle.setText(mContent.getTitle());
         commonTitleData.setText(mContent.getTitle());
         informationSummary.setText(mContent.getSummary());
@@ -145,4 +131,8 @@ public class OverViewInformationActivity extends BaseActivity implements OverVie
     public void getContentDataError(int error, String message) {
         ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
     }
-}
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
+    }}

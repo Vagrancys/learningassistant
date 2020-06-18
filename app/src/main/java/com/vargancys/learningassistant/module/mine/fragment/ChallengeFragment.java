@@ -66,7 +66,6 @@ public class ChallengeFragment extends BaseFragment implements ChallengeView {
 
     @Override
     protected void initView() {
-        Log.e(TAG,"天梯断点");
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -74,7 +73,7 @@ public class ChallengeFragment extends BaseFragment implements ChallengeView {
         mSectionAdapter = new SectionedRecyclerViewAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mSectionAdapter);
-        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.challenge_data_empty_text));
+        fragmentContent.setText(getText(R.string.challenge_data_empty_text));
         autoRefresh();
     }
 

@@ -24,8 +24,6 @@ import butterknife.OnClick;
  * Description: 关于我页面
  */
 public class SettingAboutActivity extends BaseActivity {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.about_icon)
@@ -61,14 +59,8 @@ public class SettingAboutActivity extends BaseActivity {
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.setting_about_toolbar));
+        commonTitleData.setText(getText(R.string.setting_about_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -76,14 +68,17 @@ public class SettingAboutActivity extends BaseActivity {
         activity.startActivity(intent);
     }
 
-    @OnClick(R.id.about_update)
+    @OnClick({R.id.about_update,R.id.common_back,R.id.about_explain})
     public void onViewClicked(View itemView) {
         switch (itemView.getId()){
             case R.id.about_update:
-                ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_about_update_text));
+                ToastUtils.ToastText(getContext(),R.string.setting_about_update_text);
                 break;
             case R.id.about_explain:
-                ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.setting_about_explain_text));
+                ToastUtils.ToastText(getContext(),R.string.setting_about_explain_text);
+                break;
+            case R.id.common_back:
+                finish();
                 break;
         }
     }

@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -43,8 +44,6 @@ import butterknife.BindView;
  */
 public class OverViewAddActivity extends BaseActivity implements OverViewAddView {
     private static String TAG = "OverViewAddActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.common_img)
@@ -53,8 +52,6 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
     LinearLayout overviewAddEmpty;
     @BindView(R.id.tree_roof_title)
     TextView treeRoofTitle;
-    @BindView(R.id.overview_roof_layout)
-    RelativeLayout overviewRoofLayout;
     @BindView(R.id.overview_add_layout)
     LinearLayout overviewAddLayout;
     @BindView(R.id.overview_list)
@@ -63,10 +60,6 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
     LinearLayout treeToolLayout;
     @BindView(R.id.tree_roof_tool)
     ImageView treeRoofTool;
-    @BindView(R.id.tree_tool_update)
-    ImageView treeToolUpdate;
-    @BindView(R.id.tree_tool_delete)
-    ImageView treeToolDelete;
     @BindView(R.id.common_img_one)
     ImageView commonInsert;
 
@@ -173,7 +166,6 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
         if(selectNode == 0){
 
             KnowListBean mBean = new KnowListBean(mId,mPid,title);
-            Log.e(TAG,"Node ="+mBean.getParentId());
             mBean.setLevel(Integer.valueOf(level));
             mBean.setScore(Integer.valueOf(score));
             mAdapter.addNode(mBean);
@@ -193,61 +185,6 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
     }
 
     private void initListener() {
-        overviewRoofLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mItemAlert.show();
-            }
-        });
-
-        treeRoofTool.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                treeRoofTool.setVisibility(View.GONE);
-                treeToolLayout.setVisibility(View.VISIBLE);
-                treeToolLayout.startAnimation(mShowAnim);
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        treeToolLayout.startAnimation(mHideAnim);
-                        mHideAnim.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                treeRoofTool.setVisibility(View.VISIBLE);
-                                treeToolLayout.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-
-                            }
-                        });
-
-                    }
-                },3000);
-            }
-        });
-
-        treeToolUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTitleAlert.show();
-            }
-        });
-
-        treeToolDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hideKnowItem();
-            }
-        });
-
         mAdapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener() {
             @Override
             public void onShow(int position) {
@@ -257,7 +194,6 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
             @Override
             public void onClick(Node node, int position) {
                 mPid = node.getId();
-                Log.e(TAG,"mPid = "+mPid);
                 mItemAlert.show();
             }
 
@@ -279,31 +215,12 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.overview_toolbar_title));
+        commonTitle.setText(getText(R.string.overview_toolbar_title));
 
         commonImg.setImageResource(R.drawable.overview_add_normal);
 
-        commonImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTitleAlert.show();
-            }
-        });
-
         commonInsert.setVisibility(View.VISIBLE);
-        commonInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.TidyAllData();
-            }
-        });
     }
 
     private void showKnowItem(String message) {
@@ -428,5 +345,58 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
         mItems.clear();
         mContent = null;
         hideKnowItem();
+    }
+
+    @OnClick({R.id.common_back,R.id.common_img,R.id.common_img_one,R.id.overview_roof_layout,R.id.tree_roof_tool,
+            R.id.tree_tool_update,R.id.tree_tool_delete})
+    public void onViewClicked(View itemView){
+        switch (itemView.getId()){
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                mTitleAlert.show();
+                break;
+            case R.id.common_img_one:
+                mPresenter.TidyAllData();
+                break;
+            case R.id.tree_tool_update:
+            case R.id.overview_roof_layout:
+                mItemAlert.show();
+                break;
+            case R.id.tree_roof_tool:
+                treeRoofTool.setVisibility(View.GONE);
+                treeToolLayout.setVisibility(View.VISIBLE);
+                treeToolLayout.startAnimation(mShowAnim);
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        treeToolLayout.startAnimation(mHideAnim);
+                        mHideAnim.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                treeRoofTool.setVisibility(View.VISIBLE);
+                                treeToolLayout.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
+
+                    }
+                },3000);
+                break;
+            case R.id.tree_tool_delete:
+                hideKnowItem();
+                break;
+        }
     }
 }

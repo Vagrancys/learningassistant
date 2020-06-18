@@ -27,8 +27,6 @@ import butterknife.OnClick;
  * Description: 意见反馈页面
  */
 public class SettingFeedbackActivity extends BaseActivity implements SettingFeedbackView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.feedback_edit)
@@ -47,14 +45,7 @@ public class SettingFeedbackActivity extends BaseActivity implements SettingFeed
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonTitleData.setText(ResourceUtils.getString(getContext(), R.string.setting_feedback_toolbar));
+        commonTitleData.setText(getText(R.string.setting_feedback_toolbar));
     }
 
     public static void launch(Activity activity) {
@@ -65,7 +56,7 @@ public class SettingFeedbackActivity extends BaseActivity implements SettingFeed
     @OnClick(R.id.feedback_submit)
     public void onViewClicked() {
         if(feedbackEdit.getText().toString().isEmpty()){
-            ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.feedback_edit_empty));
+            ToastUtils.ToastText(getContext(),R.string.feedback_edit_empty);
             return;
         }
         mPresenter.saveFeedbackData(feedbackEdit.getText().toString());
@@ -78,6 +69,11 @@ public class SettingFeedbackActivity extends BaseActivity implements SettingFeed
 
     @Override
     public void saveFeedbackFinish() {
-        ToastUtils.ToastText(getContext(),ResourceUtils.getString(getContext(),R.string.feedback_successful_text));
+        ToastUtils.ToastText(getContext(),R.string.feedback_successful_text);
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

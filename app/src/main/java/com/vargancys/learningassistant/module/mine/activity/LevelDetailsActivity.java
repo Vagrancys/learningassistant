@@ -27,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Vagrancy
@@ -36,8 +37,6 @@ import butterknife.ButterKnife;
  * Description: 个人中心等级详情页面
  */
 public class LevelDetailsActivity extends BaseActivity implements LevelDetailsView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.level_details_title)
@@ -97,14 +96,7 @@ public class LevelDetailsActivity extends BaseActivity implements LevelDetailsVi
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.level_details_toolbar));
+        commonTitleData.setText(getText(R.string.level_details_toolbar));
     }
 
     @Override
@@ -142,5 +134,10 @@ public class LevelDetailsActivity extends BaseActivity implements LevelDetailsVi
         mBean.clear();
         mBean.addAll(mPrivilege);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }

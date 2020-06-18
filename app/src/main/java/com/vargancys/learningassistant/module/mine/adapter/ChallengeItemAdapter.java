@@ -24,10 +24,9 @@ import butterknife.BindView;
  */
 public class ChallengeItemAdapter extends BaseRecyclerAdapter {
     private List<LadderDataBean> mBean;
-    private Context mContext;
     public ChallengeItemAdapter(Context context, List<LadderDataBean> bean){
+        super(context);
         mBean = bean;
-        mContext =context;
     }
 
     @Override
@@ -43,7 +42,7 @@ public class ChallengeItemAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ChallengeItemViewHolder(View.inflate(mContext, R.layout.challenge_item_item,viewGroup));
+        return new ChallengeItemViewHolder(getView(R.layout.challenge_item_item));
     }
 
     @Override

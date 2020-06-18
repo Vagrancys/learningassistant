@@ -29,14 +29,12 @@ public class MineSlidingAdapter extends FragmentPagerAdapter {
 
         mTitle = title;
         mSize = mTitle.length;
-        Log.e(TAG,"length ="+mTitle.length+",size ="+mSize);
         mFragment = new Fragment[mSize];
     }
 
     @Override
     public Fragment getItem(int i) {
         if(mFragment[i] == null){
-            Log.e(TAG,"fragment = "+i);
             switch (i){
                 case 0:
                     mFragment[i] = KnowLedgeFragment.newInstance();

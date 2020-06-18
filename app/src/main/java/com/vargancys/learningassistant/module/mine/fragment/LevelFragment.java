@@ -67,7 +67,6 @@ public class LevelFragment extends BaseFragment implements LevelView {
 
     @Override
     protected void initView() {
-        Log.e(TAG,"等级断点");
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -75,7 +74,7 @@ public class LevelFragment extends BaseFragment implements LevelView {
         mSectionAdapter = new SectionedRecyclerViewAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mSectionAdapter);
-        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.level_data_empty_text));
+        fragmentContent.setText(getText(R.string.level_data_empty_text));
         autoRefresh();
     }
 

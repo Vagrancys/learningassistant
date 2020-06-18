@@ -23,16 +23,15 @@ import butterknife.BindView;
  * Description: 知识体系搜索适配器
  */
 public class OverViewSearchAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<OverViewListContent> mObjects;
     public OverViewSearchAdapter(Context context, List<OverViewListContent> objects){
-        this.mContext = context;
+        super(context);
         this.mObjects = objects;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new OverViewSearchViewHolder(View.inflate(mContext, R.layout.overview_search_item,viewGroup));
+        return new OverViewSearchViewHolder(getView(R.layout.overview_search_item));
     }
 
     @Override

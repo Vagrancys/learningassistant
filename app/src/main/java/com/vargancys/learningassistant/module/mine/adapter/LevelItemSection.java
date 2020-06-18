@@ -22,14 +22,11 @@ import butterknife.BindView;
  * Description: 个人中心等级各项适配器
  */
 public class LevelItemSection extends StatelessSection {
-
-    private Context mContext;
     private LevelItemBean mBean;
 
     private Activity mActivity;
     public LevelItemSection(Context context, Activity activity, LevelItemBean bean) {
-        super(R.layout.level_item_header, R.layout.level_item);
-        mContext = context;
+        super(context,R.layout.level_item_header, R.layout.level_item);
         mBean = bean;
         mActivity = activity;
     }

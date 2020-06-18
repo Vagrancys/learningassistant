@@ -22,11 +22,10 @@ import butterknife.BindView;
  * Description: 个人中心等级权力适配器
  */
 public class LevelPrivilegeAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<MineLevelPrivilegeBean> mBean;
 
     public LevelPrivilegeAdapter(Context context, List<MineLevelPrivilegeBean> bean) {
-        mContext = context;
+        super(context);
         mBean = bean;
     }
 
@@ -45,7 +44,7 @@ public class LevelPrivilegeAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new LevelPrivilegeViewHolder(getView(mContext, R.layout.level_privilege_item));
+        return new LevelPrivilegeViewHolder(getView(R.layout.level_privilege_item));
     }
 
     @Override

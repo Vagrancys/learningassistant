@@ -68,7 +68,6 @@ public class ProblemFragment extends BaseFragment implements ProblemView {
 
     @Override
     protected void initView() {
-        Log.e(TAG,"问题断点");
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -76,7 +75,7 @@ public class ProblemFragment extends BaseFragment implements ProblemView {
         mSectionAdapter = new SectionedRecyclerViewAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mSectionAdapter);
-        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.problem_data_empty_text));
+        fragmentContent.setText(getText(R.string.problem_data_empty_text));
         autoRefresh();
     }
 

@@ -73,7 +73,7 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
         mSectionAdapter = new SectionedRecyclerViewAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mSectionAdapter);
-        fragmentContent.setText(ResourceUtils.getString(getContext(),R.string.knowledge_data_empty_text));
+        fragmentContent.setText(getText(R.string.knowledge_data_empty_text));
         autoRefresh();
     }
 

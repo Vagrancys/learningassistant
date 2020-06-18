@@ -24,14 +24,11 @@ import butterknife.BindView;
  * Description: 个人中心天梯各项挑战section
  */
 public class ChallengeItemSection extends StatelessSection {
-
-    private Context mContext;
     private ChallengeItemBean mBean;
 
     private Activity mActivity;
     public ChallengeItemSection(Context context, Activity activity, ChallengeItemBean bean) {
-        super(R.layout.challenge_item_header, R.layout.challenge_item);
-        mContext = context;
+        super(context,R.layout.challenge_item_header, R.layout.challenge_item);
         mBean = bean;
         mActivity = activity;
     }

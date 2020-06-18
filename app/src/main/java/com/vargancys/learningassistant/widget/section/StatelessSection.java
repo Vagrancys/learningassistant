@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.widget.section;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -11,25 +12,32 @@ import android.view.View;
  * Description: 封装基础类型适配器
  */
 public abstract class StatelessSection extends Section{
-    public StatelessSection(int itemResourceId){
+    private Context mContext;
+
+    public StatelessSection(Context context,int itemResourceId){
         super();
+        this.mContext =context;
         this.itemResourceId = itemResourceId;
     }
 
-    public StatelessSection(int headerResourceId,int itemResourceId){
-        this(itemResourceId);
+    public StatelessSection(Context context,int headerResourceId,int itemResourceId){
+        this(context,itemResourceId);
         this.hasHeader = true;
         this.headerResourceId = headerResourceId;
     }
 
-    public StatelessSection(int headerResourceId,int footerResourceId,int itemResourceId){
-        this(headerResourceId, itemResourceId);
+    public StatelessSection(Context context,int headerResourceId,int footerResourceId,int itemResourceId){
+        this(context,headerResourceId, itemResourceId);
         this.hasFooter =true;
         this.footerResourceId = footerResourceId;
     }
 
-    public StatelessSection() {
+    public StatelessSection(Context context) {
+        mContext = context;
+    }
 
+    public Context getContext() {
+        return mContext;
     }
 
     @Override

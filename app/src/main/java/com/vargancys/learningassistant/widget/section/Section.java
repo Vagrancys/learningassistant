@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.widget.section;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import android.view.View;
  * Description: 基础类型适配器
  */
 public abstract class Section {
+
     public enum State{
         LOADING,LOADED,FAILED
     }

@@ -80,13 +80,7 @@ public class ChallengeItemActivity extends BaseActivity implements ChallengeItem
 
     @Override
     public void initToolbar() {
-        commonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        commonTitleData.setText(ResourceUtils.getString(getContext(),R.string.challenge_item_toolbar));
+        commonTitleData.setText(getText(R.string.challenge_item_toolbar));
     }
 
     private void autoRefresh(){
@@ -110,5 +104,10 @@ public class ChallengeItemActivity extends BaseActivity implements ChallengeItem
         mBean.clear();
         mBean.addAll(bean);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick({R.id.common_back})
+    public void onViewClicked(View itemView){
+        finish();
     }
 }
