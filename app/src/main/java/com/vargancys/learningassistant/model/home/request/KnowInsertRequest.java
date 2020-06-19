@@ -97,7 +97,6 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
-        Log.e(TAG,"id = "+know_id+"know_id");
         long result = mContentDao.insert(homeKnowContent);
         long dataId = addHomeKnowData(title,1);
         HomeKnowItem homeKnowItem = mItemDao.load(know_id);
@@ -130,7 +129,6 @@ public class KnowInsertRequest {
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         homeKnowItem.setDataId(dataId);
-        Log.e(TAG,"id = "+know_id+"know_id"+homeKnowItem.getId());
         mItemDao.save(homeKnowItem);
         //Log.e("save","is=" +is);
         if(result == 0){
@@ -158,7 +156,6 @@ public class KnowInsertRequest {
         long result = mContentDao.insert(homeKnowContent);
         HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
-        Log.e(TAG,"id = "+know_id);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,3);
         homeKnowItem.setDataId(dataId);
@@ -185,7 +182,6 @@ public class KnowInsertRequest {
         long result = mContentDao.insert(homeKnowContent);
         HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
-        Log.e(TAG,"id = "+know_id);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,4);
         homeKnowItem.setDataId(dataId);
@@ -217,7 +213,6 @@ public class KnowInsertRequest {
         homeKnowContent.setExplain(explain);
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
-        Log.e(TAG,"id = "+know_id);
         long result = mContentDao.insert(homeKnowContent);
         HomeKnowItem homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
@@ -239,7 +234,6 @@ public class KnowInsertRequest {
 
     private boolean isEqualsTitle(String title){
         long number = mContentDao.queryBuilder().where(HomeKnowContentDao.Properties.Title.eq(title)).count();
-        Log.e(TAG,"number = "+number);
         if(number == 0){
             return true;
         }

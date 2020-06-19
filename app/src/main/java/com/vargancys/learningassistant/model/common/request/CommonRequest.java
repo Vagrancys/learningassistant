@@ -35,11 +35,19 @@ public class CommonRequest {
 
     //判断帐号是否存在
     public boolean isExistName(String name) {
-        return true;
+        MemberBean member = mMember.queryBuilder().where(MemberBeanDao.Properties.Title.eq(name)).unique();
+        if(member != null){
+            return true;
+        }
+        return false;
     }
 
     public boolean loginName(String name, String password) {
-        return true;
+        MemberBean member = mMember.queryBuilder().where(MemberBeanDao.Properties.Title.eq(name),MemberBeanDao.Properties.Password.eq(password)).unique();
+        if(member != null){
+            return true;
+        }
+        return false;
     }
 
     //保存密码!

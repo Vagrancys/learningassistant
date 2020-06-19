@@ -348,7 +348,6 @@ public class BaseGameRequest {
         gameContent.setError(gameContent.getError()+gameError);
         gameContent.setError_current(gameContent.getError_current()+gameError);
         mGameContentDao.update(gameContent);
-        //TODO 处理知识模块和知识单项的数据
         return true;
     }
 }

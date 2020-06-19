@@ -57,7 +57,6 @@ public class KnowDataRequest {
     public HomeKnowCommend saveCommend(long data_id,String commend) {
         HomeKnowCommend homeKnowCommend = new HomeKnowCommend();
         homeKnowCommend.setCommendId(data_id);
-        Log.e(TAG,"know_id"+data_id);
         homeKnowCommend.setTime(TimeUtils.getTime());
         homeKnowCommend.setTitle(commend);
         HomeKnowData homeKnowData = mKnowDataDao.load(data_id);
