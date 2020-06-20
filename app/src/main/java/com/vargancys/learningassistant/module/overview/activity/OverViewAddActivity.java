@@ -127,7 +127,7 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
             @Override
             public void OnDeterMine(String title,String summary) {
                 if(title.isEmpty()&&summary.isEmpty()){
-                    ToastUtils.ToastText(getContext(),"请填写完整!");
+                    ToastUtils.ToastText(getContext(),R.string.overview_add_tidy_text);
                 }else{
                     showKnowItem(title);
                     mSummary = summary;
@@ -147,7 +147,7 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
             @Override
             public void OnDeterMine(String title,String level,String score) {
                 if(title.isEmpty()&&level.isEmpty()&&score.isEmpty()){
-                    ToastUtils.ToastText(getContext(),"请输入完成!");
+                    ToastUtils.ToastText(getContext(),R.string.overview_add_success_text);
                 }else{
                     try {
                         addKnowContent(title,level,score);

@@ -177,6 +177,10 @@
     <string name="insert_experience_fifth">心得:</string>
     <string name="insert_hint_experience_fifth">经验分享(你对该体系的深入理解)</string>
 
+    <!--知识体系添加-->
+    <string name="overview_add_tidy_text">请填写完整!</string>
+    <string name="overview_add_success_text">请输入完成!</string>
+
     <string name="know_empty">没有找到该数据，请反馈!</string>
 
     <string name="know_data_title">TextView</string>
@@ -321,6 +325,7 @@
 
     <string name="common_setting_content">知识设置中心</string>
     <string name="know_search_hint">请输入你要查找的知识</string>
+
 
     <string name="overview_title">安卓知识集</string>
     <string name="overview_score">1分</string>
