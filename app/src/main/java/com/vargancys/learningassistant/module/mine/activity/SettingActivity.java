@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.module.common.member.LoginActivity;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -59,7 +60,7 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.common_back:
             case R.id.ll_setting_exit:
-                //TODO 跳转到登录界面
+                LoginActivity.launch(this);
                 finish();
                 break;
             case R.id.ll_setting_currency:

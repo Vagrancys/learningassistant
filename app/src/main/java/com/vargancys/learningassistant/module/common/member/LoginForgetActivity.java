@@ -66,7 +66,6 @@ public class LoginForgetActivity extends BaseActivity
 
     @Override
     public void initView() {
-        //TODO 做到忘记密码
         mPresenter = new BaseCommonPresenter(this);
         mTimer = new CountDownTimer(60000,1000) {
             @Override
