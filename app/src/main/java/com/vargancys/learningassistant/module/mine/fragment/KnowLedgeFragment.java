@@ -122,9 +122,12 @@ public class KnowLedgeFragment extends BaseFragment implements KnowLedgeView {
         swipeRefresh.setRefreshing(false);
         fragmentEmpty.setVisibility(View.GONE);
         knowledgeScrollview.setVisibility(View.VISIBLE);
-        for (int i=0; i<mBean.getItemBeans().size();i++){
-            mSectionAdapter.addSection(new KnowLedgeItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
+        if(mBean.getItemBeans() != null){
+            for (int i=0; i<mBean.getItemBeans().size();i++){
+                mSectionAdapter.addSection(new KnowLedgeItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
+            }
+            mSectionAdapter.notifyDataSetChanged();
         }
-        mSectionAdapter.notifyDataSetChanged();
+
     }
 }

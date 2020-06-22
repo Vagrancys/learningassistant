@@ -64,8 +64,81 @@ public class ChallengeFragment extends BaseFragment implements ChallengeView {
         return R.layout.fragment_challenge;
     }
 
+    /**
+     * 业务架构
+     * 界面重构
+     * 后台处理
+     */
+
+    /**
+     * 知识型数据
+     * 1.知识
+     * 添加，修改,删除和查询知识
+     * 多种语言 2种模式(文章和函数模式)
+     * 查询知识
+     * 筛选知识
+     * 修改历史
+     * 中心 和 知识单向
+     * 2.知识体系
+     * 添加，修改，删除和查询
+     * 选择知识的，而不是自己添加
+     * 特定查询
+     *
+     * 知识模块 自己的和大众的区分 然后弹出确认 以及权限控制 查看详情
+     *
+     * 3.关卡
+     * 2种模式，一种是闯关模式，一种是题目阅读模式
+     *
+     * 4.个人中心
+     * 5种等级联动
+     *
+     * 问题模块 成为编辑者
+     * 关卡模块 2种模式一种是原知识闯关 一种是超级闯关模式 等级控制
+     * 成就勋章选择显示
+     * 知识
+     * 注册要创建一堆表
+     * 关卡选项换成图案
+     *
+     */
+
+    /**
+     * 1.知识等级
+     * 分类别 java,android,php,html
+     * 1.知识数量 详细页面 时间:参与时间和更新时间
+     * 2.观看人数 收藏人数
+     * 3.欢迎页面加数据流
+     * 登录模式3中 手机 用户名
+     * 注册 手机 用户名或邮箱 安全 和通用配置
+     */
+
+    /**
+     * 帮助模块
+     * 多级分类
+     * 一个大类下面有多个小类 小类进去是详情
+     * 大类字段 id 标题
+     * 小类字段 id 上级id 标题 时间
+     * 增删改查
+     *
+     */
+
+    /**
+     * 个人中心
+     * 处理数据为空的情况
+     * 封装好数据为空
+     * 数据出错的情况
+     */
+
+    /**
+     * 设置功能
+     * 帐号设置
+     * 权限设置
+     * 反馈设置
+     *
+     */
+
     @Override
     protected void initView() {
+        //TODO 需求制作
         mineId = CacheUtils.getLong(getContext(), ConstantsUtils.MINE_MEMBER_ID,0);
         mPresenter = new BaseMinePresenter(this);
         initRefresh();
@@ -122,9 +195,11 @@ public class ChallengeFragment extends BaseFragment implements ChallengeView {
         swipeRefresh.setRefreshing(false);
         fragmentEmpty.setVisibility(View.GONE);
         challengeScrollView.setVisibility(View.VISIBLE);
-        for (int i=0; i<mBean.getItemBeans().size();i++){
-            mSectionAdapter.addSection(new ChallengeItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
+        if(mBean.getItemBeans() != null){
+            for (int i=0; i<mBean.getItemBeans().size();i++){
+                mSectionAdapter.addSection(new ChallengeItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
+            }
+            mSectionAdapter.notifyDataSetChanged();
         }
-        mSectionAdapter.notifyDataSetChanged();
     }
 }

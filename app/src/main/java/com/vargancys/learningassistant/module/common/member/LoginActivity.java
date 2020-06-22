@@ -32,8 +32,8 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.common_back)
     ImageView commonBack;
-    @BindView(R.id.common_title_data)
-    TextView commonTitleData;
+    @BindView(R.id.common_title)
+    TextView commonTitle;
     @BindView(R.id.login_logo)
     ImageView loginLogo;
     @BindView(R.id.login_name_edit)
@@ -56,7 +56,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void initView() {
-        loginLogo.setImageResource(ResourceUtils.getInt(getContext(), R.drawable.login_logo_normal));
+        loginLogo.setImageResource(R.drawable.login_logo_normal);
         mPresenter = new BaseCommonPresenter(this);
         loginNameEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -104,7 +104,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     public void initToolbar() {
         commonBack.setVisibility(View.GONE);
-        commonTitleData.setText(ResourceUtils.getString(getContext(), R.string.login_toolbar));
+        commonTitle.setText(getText(R.string.login_toolbar));
         commonImg.setImageResource(R.drawable.register_normal);
     }
 

@@ -25,10 +25,9 @@ import butterknife.BindView;
  * Description: 排行数据详情适配器
  */
 public class ZoneRankDataAdapter extends BaseRecyclerAdapter {
-    private Context mContext;
     private List<LadderRankDataBean> mBean;
     public ZoneRankDataAdapter(Context context,List<LadderRankDataBean> bean){
-        mContext = context;
+        super(context);
         mBean = bean;
     }
 
@@ -36,7 +35,7 @@ public class ZoneRankDataAdapter extends BaseRecyclerAdapter {
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         ZoneRankViewHolder mHolder = (ZoneRankViewHolder) holder;
         LadderRankDataBean bean = mBean.get(position);
-        Glide.with(mContext).load(bean.getAvatar()).into(mHolder.zoneRankAvatar);
+        Glide.with(getContext()).load(bean.getAvatar()).into(mHolder.zoneRankAvatar);
         mHolder.zoneRankAuthor.setText(bean.getAuthor());
         mHolder.zoneRankFloor.setText(bean.getFloor());
         mHolder.zoneRankLevel.setText(bean.getLevel());
@@ -48,7 +47,7 @@ public class ZoneRankDataAdapter extends BaseRecyclerAdapter {
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ZoneRankViewHolder(View.inflate(mContext, R.layout.zone_rank_item,viewGroup));
+        return new ZoneRankViewHolder(getView(R.layout.zone_rank_item));
     }
 
     @Override

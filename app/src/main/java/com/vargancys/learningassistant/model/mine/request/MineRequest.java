@@ -128,7 +128,9 @@ public class MineRequest {
             KnowLedgeItemBean mItem = new KnowLedgeItemBean();
             KnowLedgeDataBean data = mKnowLedgeDao.queryBuilder().where(KnowLedgeDataBeanDao.Properties.MineId.eq(mineId),
                     KnowLedgeDataBeanDao.Properties.Type.eq(i)).unique();
-            mItem.setCount(data.getCount());
+            if(data == null){
+                break;
+            }
             mItem.setType(data.getType());
             mItem.setLevel(data.getLevel());
             mItem.setPrize(data.getPrize());
@@ -172,6 +174,9 @@ public class MineRequest {
             ChallengeItemBean mItem = new ChallengeItemBean();
             ChallengeDataBean data = mChallengeDao.queryBuilder().where(ChallengeDataBeanDao.Properties.MineId.eq(mineId),
                     ChallengeDataBeanDao.Properties.Type.eq(i)).unique();
+            if(data == null){
+                break;
+            }
             mItem.setCount(data.getCount());
             mItem.setType(data.getType());
             mItem.setFail(data.getFail());
