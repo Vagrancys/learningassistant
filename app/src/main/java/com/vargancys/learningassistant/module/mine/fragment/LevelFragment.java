@@ -123,10 +123,12 @@ public class LevelFragment extends BaseFragment implements LevelView {
         swipeRefresh.setRefreshing(false);
         levelScrollview.setVisibility(View.VISIBLE);
         fragmentEmpty.setVisibility(View.GONE);
-        for (int i=0; i<mBean.getItemBeans().size();i++){
-            mSectionAdapter.addSection(new LevelItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
+        if(mBean != null && mBean.getItemBeans() != null){
+            for (int i=0; i<mBean.getItemBeans().size();i++){
+                mSectionAdapter.addSection(new LevelItemSection(getContext(),getActivity(),mBean.getItemBeans().get(i)));
+            }
+            mSectionAdapter.notifyDataSetChanged();
         }
-        mSectionAdapter.notifyDataSetChanged();
     }
 }
 

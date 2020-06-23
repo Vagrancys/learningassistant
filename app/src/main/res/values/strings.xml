@@ -180,6 +180,7 @@
     <!--知识体系添加-->
     <string name="overview_add_tidy_text">请填写完整!</string>
     <string name="overview_add_success_text">请输入完成!</string>
+    <string name="overview_query_empty_text">请输入您要查询的知识体系名称!</string>
 
     <string name="know_empty">没有找到该数据，请反馈!</string>
 

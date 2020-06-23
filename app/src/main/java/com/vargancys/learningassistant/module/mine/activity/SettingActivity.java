@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.common.member.LoginActivity;
+import com.vargancys.learningassistant.utils.CacheUtils;
+import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -60,6 +62,7 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.common_back:
             case R.id.ll_setting_exit:
+                CacheUtils.putBoolean(getContext(), ConstantsUtils.LOGIN_STATE, false);
                 LoginActivity.launch(this);
                 finish();
                 break;

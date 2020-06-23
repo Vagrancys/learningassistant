@@ -5,47 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentInsetStart="@dimen/margin_width_0dp">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/margin_width_10dp"
-                android:paddingEnd="@dimen/margin_width_10dp">
-                <ImageView
-                    android:id="@+id/back_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/common_back_normal"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/search_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/search_edit_shape"
-                    android:layout_toEndOf="@+id/back_menu"
-                    android:layout_toStartOf="@+id/search_menu"
-                    android:layout_centerVertical="true"
-                    android:hint="@string/know_search_hint"
-                    android:textSize="@dimen/text_size_18sp"
-                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
-                <ImageView
-                    android:id="@+id/search_menu"
-                    android:layout_width="@dimen/margin_width_30dp"
-                    android:layout_height="@dimen/margin_width_30dp"
-                    android:src="@drawable/know_search_normal"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true" />
-            </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/include_search_toolbar"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

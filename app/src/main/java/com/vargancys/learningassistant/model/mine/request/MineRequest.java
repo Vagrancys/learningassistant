@@ -374,6 +374,9 @@ public class MineRequest {
             LevelItemBean mItem = new LevelItemBean();
             LevelDataBean data = mLevelDao.queryBuilder().where(LevelDataBeanDao.Properties.MineId.eq(levelId),
                     LevelDataBeanDao.Properties.Type.eq(i)).unique();
+            if(data == null){
+                break;
+            }
             mItem.setExperience(data.getExperience());
             mItem.setNext_experience(data.getNext_experience());
             mItem.setNews(data.getNews());

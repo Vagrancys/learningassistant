@@ -9,6 +9,7 @@ import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
 import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
+import com.vargancys.learningassistant.module.overview.view.OverViewQueryView;
 
 import java.util.List;
 
@@ -73,5 +74,20 @@ public class BaseOverViewPresenter {
             ((OverViewInformationView)mView).getContentDataError(404,"没有该数据!");
         }
 
+    }
+
+    //判断知识体系查询是否为空
+    public void isQueryDataEmpty(String query) {
+        boolean result = ((OverViewQueryView) mView).isDataEmpty(query);
+        if(!result){
+            List<OverViewListContent> mBean = mRequest.queryOverViewData(query);
+            if(mBean != null){
+                ((OverViewQueryView) mView).queryDataFinish(mBean);
+            }else{
+                ((OverViewQueryView) mView).queryDataError(404,"没有数据!");
+            }
+        }else{
+            ((OverViewQueryView) mView).queryDataEmpty();
+        }
     }
 }

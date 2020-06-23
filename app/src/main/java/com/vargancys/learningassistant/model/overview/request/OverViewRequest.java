@@ -90,4 +90,9 @@ public class OverViewRequest {
     public OverViewListContent getContentData(long selectId) {
         return mListContentDao.load(selectId);
     }
+
+    //获取知识体系数据
+    public List<OverViewListContent> queryOverViewData(String query) {
+        return mListContentDao.queryBuilder().where(OverViewListContentDao.Properties.Title.like(query)).list();
+    }
 }

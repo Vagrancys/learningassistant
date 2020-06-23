@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -49,6 +49,8 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
     RecyclerView recyclerView;
     @BindView(R.id.fragment_empty)
     LinearLayout fragmentEmpty;
+    @BindView(R.id.common_img_one)
+    ImageView commonImgOne;
     private long overviewId = 0;
     private OverViewSearchAdapter mAdapter;
     private int REQUEST_CODE = 2000;
@@ -64,7 +66,7 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
     @Override
     public void initView() {
         mPresenter = new BaseOverViewPresenter(this);
-        mAdapter = new OverViewSearchAdapter(getContext(),mObjects);
+        mAdapter = new OverViewSearchAdapter(getContext(), mObjects);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
         mPresenter.getAllContentData();
@@ -72,7 +74,7 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
         initListener();
     }
 
-    private void initData(){
+    private void initData() {
         mAlert = new AlertDialog.Builder(getContext());
         mAlert.setPositiveButton(R.string.common_cancel_text, new DialogInterface.OnClickListener() {
             @Override
@@ -83,7 +85,7 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
         mAlert.setNegativeButton(R.string.common_determine_text, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                CacheUtils.putLong(getContext(), ConstantsUtils.OVERVIEW_ID,overviewId);
+                CacheUtils.putLong(getContext(), ConstantsUtils.OVERVIEW_ID, overviewId);
                 overviewId = 0;
                 finish();
             }
@@ -108,6 +110,8 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
         commonTitle.setVisibility(View.GONE);
 
         commonImg.setImageResource(R.drawable.common_add_normal);
+
+        commonImgOne.setImageResource(R.drawable.know_search_selector);
     }
 
     public static void launch(Activity activity) {
@@ -117,7 +121,7 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
 
     @Override
     public void getAllData(List<OverViewListContent> objects) {
-        if(fragmentEmpty.getVisibility() == View.VISIBLE){
+        if (fragmentEmpty.getVisibility() == View.VISIBLE) {
             fragmentEmpty.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }
@@ -127,19 +131,22 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
 
     @Override
     public void getAllDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
+        ToastUtils.ToastText(getContext(), "Error = " + error + ", Message =" + message);
         recyclerView.setVisibility(View.GONE);
         fragmentEmpty.setVisibility(View.VISIBLE);
     }
 
-    @OnClick({R.id.common_back})
-    public void onViewClicked(View itemView){
-        switch (itemView.getId()){
+    @OnClick({R.id.common_back,R.id.common_img,R.id.common_img_one})
+    public void onViewClicked(View itemView) {
+        switch (itemView.getId()) {
             case R.id.common_back:
                 finish();
                 break;
             case R.id.common_img:
-                OverViewAddActivity.launch(OverViewSearchActivity.this,REQUEST_CODE);
+                OverViewAddActivity.launch(OverViewSearchActivity.this, REQUEST_CODE);
+                break;
+            case R.id.common_img_one:
+                OverViewQueryActivity.launch(this);
                 break;
         }
     }
