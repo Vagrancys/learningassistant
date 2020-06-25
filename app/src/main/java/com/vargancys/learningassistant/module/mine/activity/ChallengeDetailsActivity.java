@@ -65,7 +65,6 @@ public class ChallengeDetailsActivity extends BaseActivity implements ChallengeD
 
     @Override
     public void initToolbar() {
-
         commonTitleData.setText(getText(R.string.challenge_details_toolbar));
     }
 
