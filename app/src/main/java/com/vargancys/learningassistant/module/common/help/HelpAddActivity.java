@@ -51,7 +51,7 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.help_add_toolbar));
+        commonTitle.setText(getText(R.string.help_add_toolbar));
         commonImg.setBackgroundResource(R.drawable.comment_complete_selector);
     }
 
