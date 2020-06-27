@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.module.overview.fragment;
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -12,7 +11,7 @@ import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.activity.OverViewInformationActivity;
-import com.vargancys.learningassistant.module.overview.activity.OverViewSearchActivity;
+import com.vargancys.learningassistant.module.overview.activity.OverViewSelectActivity;
 import com.vargancys.learningassistant.module.overview.adapter.SimpleTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewContentView;
 import com.vargancys.learningassistant.presenter.overview.OverViewContentPresenter;
@@ -126,7 +125,7 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
             case R.id.overview_select:
-                OverViewSearchActivity.launch(getActivity());
+                OverViewSelectActivity.launch(getActivity());
                 break;
             case R.id.overview_information:
                 OverViewInformationActivity.launch(getActivity(),selectId);

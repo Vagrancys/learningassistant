@@ -126,13 +126,13 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     class HomeContentItemLongClickListener implements BaseRecyclerAdapter.OnItemLongClickListener{
         @Override
         public void OnItemLongClick(int position) {
-            final HomeKnowItem homeKnowItem = (HomeKnowItem) mBean.get(position);
+            final HomeKnowItem homeKnowItem = mBean.get(position);
             if(homeKnowItem.getOfficial()){
                 ToastUtils.ToastText(getContext(),"官方的知识不能删除!您可以选择其他的知识删除");
             }else{
                 final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(homeKnowItem.getTitle());
-                alert.setMessage(homeKnowItem.getSummary());
+                alert.setMessage("您确定要删除"+homeKnowItem.getTitle()+"吗?");
                 alert.setNegativeButton(R.string.common_determine_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

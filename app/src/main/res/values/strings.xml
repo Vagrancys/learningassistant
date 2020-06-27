@@ -329,6 +329,7 @@
 
 
     <string name="overview_title">安卓知识集</string>
+    <string name="overview_select_empty">您还没有关注任何知识路径,您可以前往体系大厅里选择或者自己创造体系!</string>
     <string name="overview_score">1分</string>
     <string name="overview_author">游戏神</string>
     <string name="overview_summary">想要提升自己的话就来学习吧!想要提升自己的话就来学习吧!</string>
@@ -345,6 +346,14 @@
     <string name="item_title_text">标题</string>
     <string name="item_level_text">等级</string>
     <string name="item_score_text">分数</string>
+
+    <!--知识体系选择模块-->
+    <string name="overview_select_toolbar">知识体系选择</string>
+
+    <!--知识体系大厅模块-->
+    <string name="overview_hall_toolbar">知识体系大厅</string>
+    <string name="overview_hall_empty">知识体系大厅刚起步,没有任何的数据，快发布第一个知识体系吧!</string>
+    <string name="overview_hall_select_success_text">知识体系选择成功!</string>
 
     <string name="information_title">初级工程师合集</string>
     <string name="information_author">Vagrancy</string>

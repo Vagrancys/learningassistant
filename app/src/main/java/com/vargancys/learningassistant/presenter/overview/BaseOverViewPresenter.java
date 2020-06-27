@@ -5,9 +5,11 @@ import android.util.Log;
 
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
+import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
 import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
 import com.vargancys.learningassistant.module.overview.view.OverViewQueryView;
 
@@ -19,12 +21,12 @@ import java.util.List;
  * time  : 2020/04/03
  * version:1.0
  */
-public class BaseOverViewPresenter {
+public class BaseOverViewPresenter<T> {
     private static String TAG = "BaseOverViewPresenter";
-    private Object mView;
+    private T mView;
     private OverViewRequest mRequest;
 
-    public BaseOverViewPresenter(Object view){
+    public BaseOverViewPresenter(T view){
         this.mView = view;
         mRequest = OverViewRequest.getInstance();
     }
@@ -88,6 +90,26 @@ public class BaseOverViewPresenter {
             }
         }else{
             ((OverViewQueryView) mView).queryDataEmpty();
+        }
+    }
+
+    //得到知识体系大厅的数据
+    public void getOverViewHallData() {
+        OverViewHallBean mBean = mRequest.getOverViewHallData();
+        if(mBean != null){
+            ((OverViewHallView) mView).getOverViewHallDataSuccess(mBean);
+        }else{
+            ((OverViewHallView) mView).getOverViewHallDataFail(404,"没有查询成功!");
+        }
+    }
+
+    //选择知识体系大厅数据
+    public void selectHallData(long hallId) {
+        boolean result = mRequest.selectHallData(hallId);
+        if(result){
+            ((OverViewHallView) mView).selectHallDataSuccess();
+        }else{
+            ((OverViewHallView) mView).selectHallDataFail(404,"没有选择该知识体系!");
         }
     }
 }

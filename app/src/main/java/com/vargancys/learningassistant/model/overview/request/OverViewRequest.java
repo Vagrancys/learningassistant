@@ -11,6 +11,7 @@ import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
+import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 
 import java.util.List;
 
@@ -94,5 +95,17 @@ public class OverViewRequest {
     //获取知识体系数据
     public List<OverViewListContent> queryOverViewData(String query) {
         return mListContentDao.queryBuilder().where(OverViewListContentDao.Properties.Title.like(query)).list();
+    }
+
+    //得到知识体系大厅的数据
+    public OverViewHallBean getOverViewHallData() {
+        //TODO 知识大厅数据
+        return null;
+    }
+
+    //选择知识体系大厅数据
+    public boolean selectHallData(long hallId) {
+        //TODO 选择知识大厅数据
+        return true;
     }
 }

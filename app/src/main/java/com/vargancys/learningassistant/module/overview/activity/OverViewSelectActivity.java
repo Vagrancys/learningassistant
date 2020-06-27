@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -37,10 +35,8 @@ import butterknife.OnClick;
  * Email:18050829067@163.com
  * Description: 知识体系搜索页面
  */
-public class OverViewSearchActivity extends BaseActivity implements BaseOverView {
-    private static String TAG = "OverViewSearchActivity";
-    @BindView(R.id.common_back)
-    ImageView commonBack;
+public class OverViewSelectActivity extends BaseActivity implements BaseOverView {
+    private static String TAG = "OverViewSelectActivity";
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.common_img)
@@ -49,6 +45,8 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
     RecyclerView recyclerView;
     @BindView(R.id.fragment_empty)
     LinearLayout fragmentEmpty;
+    @BindView(R.id.fragment_content)
+    TextView fragmentContent;
     @BindView(R.id.common_img_one)
     ImageView commonImgOne;
     private long overviewId = 0;
@@ -60,7 +58,7 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_overview_search;
+        return R.layout.activity_overview_select;
     }
 
     @Override
@@ -90,6 +88,8 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
                 finish();
             }
         });
+
+        fragmentContent.setText(getText(R.string.overview_select_empty));
     }
 
     private void initListener() {
@@ -107,7 +107,7 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
     @Override
     public void initToolbar() {
 
-        commonTitle.setVisibility(View.GONE);
+        commonTitle.setText(getText(R.string.overview_select_toolbar));
 
         commonImg.setImageResource(R.drawable.common_add_normal);
 
@@ -115,7 +115,7 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
     }
 
     public static void launch(Activity activity) {
-        Intent intent = new Intent(activity, OverViewSearchActivity.class);
+        Intent intent = new Intent(activity, OverViewSelectActivity.class);
         activity.startActivity(intent);
     }
 
@@ -143,10 +143,10 @@ public class OverViewSearchActivity extends BaseActivity implements BaseOverView
                 finish();
                 break;
             case R.id.common_img:
-                OverViewAddActivity.launch(OverViewSearchActivity.this, REQUEST_CODE);
+                OverViewHallActivity.launch(this);
                 break;
             case R.id.common_img_one:
-                OverViewQueryActivity.launch(this);
+                OverViewCreateActivity.launch(this);
                 break;
         }
     }
