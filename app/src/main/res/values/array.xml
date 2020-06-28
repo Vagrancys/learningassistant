@@ -91,4 +91,10 @@
         <item>博客: https://www.github.com/vagrancys</item>
         <item>邮箱: 18050829067@163.com</item>
     </string-array>
+
+    <string-array name="overview_hall_rank">
+        <item>热门</item>
+        <item>体系</item>
+        <item>质量</item>
+    </string-array>
 </resources>

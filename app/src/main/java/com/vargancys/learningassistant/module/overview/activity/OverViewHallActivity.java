@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.module.overview.adapter.OverViewHallBannerSection;
+import com.vargancys.learningassistant.module.overview.adapter.OverViewHallRankSection;
 import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -122,8 +124,8 @@ public class OverViewHallActivity extends BaseActivity implements OverViewHallVi
         //1.轮播 最新消息
         //2.排行 厉害的要排一排 分类
         //3.展示 最需要曝光的展示 分类
-        mAdapter.addSection(new OverViewHallBannerSection(getContext(),mBean.getBanner()));
-        mAdapter.addSection(new OverViewHallRankSection(getContext()));
+        mAdapter.addSection(new OverViewHallBannerSection(getContext(),new Handler(),mBean.getBanner()));
+        mAdapter.addSection(new OverViewHallRankSection(getContext(),getSupportFragmentManager()));
         mAdapter.addSection(new OverViewHallSection(getContext(),mBean.getHall()));
     }
 

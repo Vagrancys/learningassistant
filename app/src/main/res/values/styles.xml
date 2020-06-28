@@ -100,5 +100,11 @@
         <item name="android:orientation">vertical</item>
    </style>
 
-
+    <!--基础样式配置-->
+    <style name="base_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+    </style>
 </resources>
