@@ -11,6 +11,7 @@ import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.module.overview.view.BaseHallView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
+import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,16 @@ public class OverViewHallQualityFragment extends BaseFragment implements BaseHal
     protected void initView() {
         mPresenter = new BaseOverViewPresenter<BaseHallView>(this);
         mPresenter.getHallQualityData();
-
     }
 
 
+    @Override
+    public void getHallDataSuccess(List<OverViewHallRankBean> mBean) {
+
+    }
+
+    @Override
+    public void getHallDataFail(int error, String message) {
+        ToastUtils.ToastText(getContext(),R.string.overview_hall_quality_fail_text);
+    }
 }

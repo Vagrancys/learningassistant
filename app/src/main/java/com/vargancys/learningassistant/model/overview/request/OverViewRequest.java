@@ -12,7 +12,9 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
+import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -107,5 +109,23 @@ public class OverViewRequest {
     public boolean selectHallData(long hallId) {
         //TODO 选择知识大厅数据
         return true;
+    }
+
+    //根据质量来排序知识体系大厅数据
+    public List<OverViewHallRankBean> getHallQualityData() {
+        List<OverViewListContent> mContent = mListContentDao.queryBuilder().orderDesc(OverViewListContentDao.Properties.Grade).limit(10).list();
+        List<OverViewHallRankBean> mBean = new ArrayList<>();
+        for(OverViewListContent mOver : mContent){
+            OverViewHallRankBean bean = new OverViewHallRankBean();
+            bean.setTitle(mOver.getTitle());
+            bean.setHot(mOver.getPeople());
+            bean.setId(mOver.getId());
+            bean.setQuality(mOver.getGrade());
+            bean.setSummary(mOver.getSummary());
+            bean.setSystem(mOver.getNumber());
+            bean.setTime(mOver.getTime());
+            mBean.add(bean);
+        }
+        return mBean;
     }
 }

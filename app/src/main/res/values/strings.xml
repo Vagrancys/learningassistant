@@ -354,6 +354,7 @@
     <string name="overview_hall_toolbar">知识体系大厅</string>
     <string name="overview_hall_empty">知识体系大厅刚起步,没有任何的数据，快发布第一个知识体系吧!</string>
     <string name="overview_hall_select_success_text">知识体系选择成功!</string>
+    <string name="overview_hall_quality_fail_text">没有找到知识体系大厅质量数据!</string>
 
     <string name="information_title">初级工程师合集</string>
     <string name="information_author">Vagrancy</string>

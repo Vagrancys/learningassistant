@@ -6,7 +6,9 @@ import android.util.Log;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
+import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
+import com.vargancys.learningassistant.module.overview.view.BaseHallView;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
 import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
@@ -110,6 +112,20 @@ public class BaseOverViewPresenter<T> {
             ((OverViewHallView) mView).selectHallDataSuccess();
         }else{
             ((OverViewHallView) mView).selectHallDataFail(404,"没有选择该知识体系!");
+        }
+    }
+
+    //根据质量获取知识体系数据
+    public void getHallQualityData() {
+        BaseHallData(mRequest.getHallQualityData());
+    }
+
+    //公共知识体系大厅获取数据
+    private void BaseHallData(List<OverViewHallRankBean> mBean){
+        if(mBean != null){
+            ((BaseHallView) mView).getHallDataSuccess(mBean);
+        }else{
+            ((BaseHallView) mView).getHallDataFail(404,"沒有找到数据!");
         }
     }
 }
