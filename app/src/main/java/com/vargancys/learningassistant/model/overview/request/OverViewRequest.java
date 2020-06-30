@@ -128,4 +128,47 @@ public class OverViewRequest {
         }
         return mBean;
     }
+
+    //添加关注到个人体系中
+    public boolean insertOverViewData(long overviewId) {
+        //TODO 没处理好
+        return true;
+    }
+
+
+    //根据热度来排序知识体系大厅数据
+    public List<OverViewHallRankBean> getHallHotData() {
+        List<OverViewListContent> mContent = mListContentDao.queryBuilder().orderDesc(OverViewListContentDao.Properties.People).limit(10).list();
+        List<OverViewHallRankBean> mBean = new ArrayList<>();
+        for(OverViewListContent mOver : mContent){
+            OverViewHallRankBean bean = new OverViewHallRankBean();
+            bean.setTitle(mOver.getTitle());
+            bean.setHot(mOver.getPeople());
+            bean.setId(mOver.getId());
+            bean.setQuality(mOver.getGrade());
+            bean.setSummary(mOver.getSummary());
+            bean.setSystem(mOver.getNumber());
+            bean.setTime(mOver.getTime());
+            mBean.add(bean);
+        }
+        return mBean;
+    }
+
+    //根据系统来排序知识体系大厅数据
+    public List<OverViewHallRankBean> getHallSystemData() {
+        List<OverViewListContent> mContent = mListContentDao.queryBuilder().orderDesc(OverViewListContentDao.Properties.Layer).limit(10).list();
+        List<OverViewHallRankBean> mBean = new ArrayList<>();
+        for(OverViewListContent mOver : mContent){
+            OverViewHallRankBean bean = new OverViewHallRankBean();
+            bean.setTitle(mOver.getTitle());
+            bean.setHot(mOver.getPeople());
+            bean.setId(mOver.getId());
+            bean.setQuality(mOver.getGrade());
+            bean.setSummary(mOver.getSummary());
+            bean.setSystem(mOver.getNumber());
+            bean.setTime(mOver.getTime());
+            mBean.add(bean);
+        }
+        return mBean;
+    }
 }

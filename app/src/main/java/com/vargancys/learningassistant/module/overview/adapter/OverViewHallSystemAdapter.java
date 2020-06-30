@@ -21,29 +21,29 @@ import butterknife.BindView;
  * Email:18050829067@163.com
  * Description: 知识体系大厅质量适配器
  */
-public class OverViewHallQualityAdapter extends BaseRecyclerAdapter {
+public class OverViewHallSystemAdapter extends BaseRecyclerAdapter {
     private List<OverViewHallRankBean> mBean;
-    public OverViewHallQualityAdapter(Context context,List<OverViewHallRankBean> bean){
+    public OverViewHallSystemAdapter(Context context, List<OverViewHallRankBean> bean){
         super(context);
         mBean = bean;
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        OverViewHallQualityViewHolder mHolder =(OverViewHallQualityViewHolder) holder;
+        OverViewHallSystemViewHolder mHolder =(OverViewHallSystemViewHolder) holder;
         OverViewHallRankBean bean = mBean.get(position);
-        mHolder.qualityCount.setText(bean.getQuality());
-        mHolder.qualityNumber.setText(String.valueOf(bean.getId()));
-        mHolder.qualitySummary.setText(bean.getSummary());
-        mHolder.qualityTime.setText(bean.getTime());
-        mHolder.qualityTitle.setText(bean.getTitle());
+        mHolder.systemCount.setText(bean.getSystem());
+        mHolder.systemNumber.setText(String.valueOf(bean.getId()));
+        mHolder.systemSummary.setText(bean.getSummary());
+        mHolder.systemTime.setText(bean.getTime());
+        mHolder.systemTitle.setText(bean.getTitle());
         super.onBindViewHolder(holder, position);
     }
 
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new OverViewHallQualityViewHolder(getView(R.layout.item_overview_hall_quality));
+        return new OverViewHallSystemViewHolder(getView(R.layout.item_overview_hall_system));
     }
 
     @Override
@@ -51,18 +51,18 @@ public class OverViewHallQualityAdapter extends BaseRecyclerAdapter {
         return mBean.size();
     }
 
-    public class OverViewHallQualityViewHolder extends CommonViewHolder{
-        @BindView(R.id.quality_count)
-        TextView qualityCount;
-        @BindView(R.id.quality_number)
-        TextView qualityNumber;
-        @BindView(R.id.quality_summary)
-        TextView qualitySummary;
-        @BindView(R.id.quality_time)
-        TextView qualityTime;
-        @BindView(R.id.quality_title)
-        TextView qualityTitle;
-        public OverViewHallQualityViewHolder(View itemView){
+    public class OverViewHallSystemViewHolder extends CommonViewHolder{
+        @BindView(R.id.system_count)
+        TextView systemCount;
+        @BindView(R.id.system_number)
+        TextView systemNumber;
+        @BindView(R.id.system_summary)
+        TextView systemSummary;
+        @BindView(R.id.system_time)
+        TextView systemTime;
+        @BindView(R.id.system_title)
+        TextView systemTitle;
+        public OverViewHallSystemViewHolder(View itemView){
             super(itemView);
         }
     }

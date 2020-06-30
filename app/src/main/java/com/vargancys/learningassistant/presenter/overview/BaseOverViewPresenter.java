@@ -128,4 +128,24 @@ public class BaseOverViewPresenter<T> {
             ((BaseHallView) mView).getHallDataFail(404,"沒有找到数据!");
         }
     }
+
+    //添加知识体系数据
+    public void insertOverViewData(long overviewId) {
+        boolean result = mRequest.insertOverViewData(overviewId);
+        if(result){
+            ((BaseHallView) mView).insertHallDataSuccess();
+        }else{
+            ((BaseHallView) mView).insertHallDataFail(404,"关注失败!");
+        }
+    }
+
+    //根据热度获取知识体系数据
+    public void getHallHotData() {
+        BaseHallData(mRequest.getHallHotData());
+    }
+
+    //根据系统获取知识体系数据
+    public void getHallSystemData() {
+        BaseHallData(mRequest.getHallSystemData());
+    }
 }

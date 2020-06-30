@@ -63,7 +63,7 @@ public class OverViewSelectActivity extends BaseActivity implements BaseOverView
 
     @Override
     public void initView() {
-        mPresenter = new BaseOverViewPresenter(this);
+        mPresenter = new BaseOverViewPresenter<BaseOverView>(this);
         mAdapter = new OverViewSearchAdapter(getContext(), mObjects);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);

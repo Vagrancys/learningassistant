@@ -14,4 +14,6 @@ import java.util.List;
 public interface BaseHallView {
     void getHallDataSuccess(List<OverViewHallRankBean> mBean);
     void getHallDataFail(int error,String message);
+    void insertHallDataSuccess();
+    void insertHallDataFail(int error,String message);
 }

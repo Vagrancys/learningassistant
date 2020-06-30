@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.module.overview.adapter.OverViewHallBannerSection;
+import com.vargancys.learningassistant.module.overview.adapter.OverViewHallItemSection;
 import com.vargancys.learningassistant.module.overview.adapter.OverViewHallRankSection;
 import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
@@ -126,7 +127,7 @@ public class OverViewHallActivity extends BaseActivity implements OverViewHallVi
         //3.展示 最需要曝光的展示 分类
         mAdapter.addSection(new OverViewHallBannerSection(getContext(),new Handler(),mBean.getBanner()));
         mAdapter.addSection(new OverViewHallRankSection(getContext(),getSupportFragmentManager()));
-        mAdapter.addSection(new OverViewHallSection(getContext(),mBean.getHall()));
+        mAdapter.addSection(new OverViewHallItemSection(getContext(),mBean.getHall()));
     }
 
     private void selectHallData(long id,String title){

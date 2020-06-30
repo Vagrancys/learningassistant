@@ -6,38 +6,38 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/margin_width_10dp">
     <TextView
-        android:id="@+id/quality_number"
+        android:id="@+id/hot_number"
         style="@style/base_text_style"
         android:text="1"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/margin_width_10dp"/>
     <TextView
-        android:id="@+id/quality_title"
+        android:id="@+id/hot_title"
         style="@style/base_text_style"
         android:text="标题"
-        android:layout_toEndOf="@+id/quality_number"
+        android:layout_toEndOf="@+id/hot_number"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/margin_width_10dp"/>
     <TextView
-        android:id="@+id/quality_summary"
+        android:id="@+id/hot_summary"
         style="@style/base_text_style"
         android:text="简介"
-        android:layout_below="@+id/quality_title"
-        android:layout_toEndOf="@+id/quality_number"
+        android:layout_below="@+id/hot_title"
+        android:layout_toEndOf="@+id/hot_number"
         android:layout_marginBottom="@dimen/margin_width_10dp"/>
     <LinearLayout
-        android:layout_toEndOf="@+id/quality_number"
+        android:layout_toEndOf="@+id/hot_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/quality_summary"
+        android:layout_below="@id/hot_summary"
         android:gravity="end">
         <TextView
-            android:id="@+id/quality_count"
+            android:id="@+id/hot_count"
             style="@style/base_text_style"
             android:text="10"
             android:layout_marginRight="@dimen/margin_width_10dp"/>
         <TextView
-            android:id="@+id/quality_time"
+            android:id="@+id/hot_time"
             style="@style/base_text_style"
             android:text="时间"/>
     </LinearLayout>
