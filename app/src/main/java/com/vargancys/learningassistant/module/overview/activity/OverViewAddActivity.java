@@ -44,6 +44,7 @@ import butterknife.OnClick;
  */
 public class OverViewAddActivity extends BaseActivity implements OverViewAddView {
     private static String TAG = "OverViewAddActivity";
+    public static int OVERVIEW_RESULT_CODE = 30001;
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.common_img)

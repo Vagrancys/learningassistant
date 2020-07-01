@@ -1,10 +1,36 @@
 package com.vargancys.learningassistant.module.overview.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
+import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
+import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
+import com.vargancys.learningassistant.module.overview.adapter.OverViewCreateAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewCreateView;
+import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
+import com.vargancys.learningassistant.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -15,18 +41,142 @@ import com.vargancys.learningassistant.module.overview.view.OverViewCreateView;
  * Description: 个人知识体系管理中心
  */
 public class OverViewCreateActivity extends BaseActivity implements OverViewCreateView {
+    @BindView(R.id.common_title)
+    TextView commonTitle;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.swipeRefresh)
+    SwipeRefreshLayout swipeRefresh;
+    private BaseOverViewPresenter mPresenter;
+    private OverViewCreateAdapter mAdapter;
+    private int OVERVIEW_CREATE = 2001;
+    private AlertDialog.Builder mAlert;
+    private long overviewId = 0;
+    private long createId = 1;
+    private OverViewCreateDialog mPopup;
+    private List<OverViewListItem> mItems = new ArrayList<>();
+
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_overview_create;
     }
 
     @Override
     public void initView() {
+
+        mPresenter = new BaseOverViewPresenter<OverViewCreateView>(this);
+        swipeRefresh.setColorSchemeResources(R.color.pink);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                autoData();
+            }
+        });
+
+        mAlert = new AlertDialog.Builder(getContext());
+        mAlert.setNegativeButton(R.string.common_cancel_text, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                overviewId = 0;
+                dialog.dismiss();
+            }
+        });
+        mAlert.setPositiveButton(R.string.common_determine_text, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(overviewId != 0){
+                    mPresenter.insertOverViewCreateData(overviewId);
+                }
+                dialog.dismiss();
+            }
+        });
         //TODO 个人知识体系中心管理
+        mPopup = new OverViewCreateDialog(this);
+
+        mAdapter = new OverViewCreateAdapter(getContext(),mItems);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+                OverViewListItem bean = mItems.get(position);
+                overviewId = bean.getId();
+                mAlert.setTitle(bean.getTitle());
+                mAlert.setMessage("是否关注"+bean.getTitle()+"并学习该体系!");
+                mAlert.show();
+            }
+        });
+        mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
+            @Override
+            public void OnItemLongClick(int position) {
+
+            }
+        });
     }
 
-    public static void launch(Activity activity){
-        Intent intent = new Intent(activity,OverViewCreateActivity.class);
+    @Override
+    public void initToolbar() {
+        commonTitle.setText(getText(R.string.overview_create_toolbar));
+    }
+
+    private void autoData(){
+        swipeRefresh.setRefreshing(true);
+        mPresenter.getOverViewData(createId);
+    }
+
+    public static void launch(Activity activity) {
+        Intent intent = new Intent(activity, OverViewCreateActivity.class);
         activity.startActivity(intent);
+    }
+
+    @OnClick({R.id.common_back, R.id.common_img})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.common_back:
+                finish();
+                break;
+            case R.id.common_img:
+                OverViewAddActivity.launch(this,OVERVIEW_CREATE);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data.getData() != null){
+            if(requestCode == OVERVIEW_CREATE){
+                switch (resultCode){
+                    case 30001:
+                        break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void getOverViewCreateDataSuccess(List<OverViewListItem> mItem) {
+        swipeRefresh.setRefreshing(false);
+        mItems.clear();
+
+        this.mItems.addAll(mItem);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void getOverViewCreateDataFail(int error, String message) {
+        swipeRefresh.setRefreshing(false);
+        ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
+    }
+
+    @Override
+    public void insertCreateDataFail(int error, String message) {
+        ToastUtils.ToastText(getContext(),R.string.overview_hall_insert_fail_text);
+    }
+
+    @Override
+    public void insertCreateDataSuccess() {
+        ToastUtils.ToastText(getContext(),R.string.overview_hall_insert_win_text);
+        finish();
     }
 }

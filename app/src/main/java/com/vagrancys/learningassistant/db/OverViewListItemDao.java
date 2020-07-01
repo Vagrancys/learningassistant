@@ -38,6 +38,8 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         public final static Property Study = new Property(8, boolean.class, "study", false, "STUDY");
         public final static Property Score = new Property(9, int.class, "score", false, "SCORE");
         public final static Property Time = new Property(10, int.class, "time", false, "TIME");
+        public final static Property Count = new Property(11, int.class, "count", false, "COUNT");
+        public final static Property Summary = new Property(12, String.class, "summary", false, "SUMMARY");
     }
 
     private Query<OverViewListItem> overViewListContent_OverViewListItemQuery;
@@ -64,7 +66,9 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
                 "\"LEVEL\" INTEGER NOT NULL ," + // 7: level
                 "\"STUDY\" INTEGER NOT NULL ," + // 8: study
                 "\"SCORE\" INTEGER NOT NULL ," + // 9: score
-                "\"TIME\" INTEGER NOT NULL );"); // 10: time
+                "\"TIME\" INTEGER NOT NULL ," + // 10: time
+                "\"COUNT\" INTEGER NOT NULL ," + // 11: count
+                "\"SUMMARY\" TEXT);"); // 12: summary
     }
 
     /** Drops the underlying database table. */
@@ -95,6 +99,12 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         stmt.bindLong(9, entity.getStudy() ? 1L: 0L);
         stmt.bindLong(10, entity.getScore());
         stmt.bindLong(11, entity.getTime());
+        stmt.bindLong(12, entity.getCount());
+ 
+        String summary = entity.getSummary();
+        if (summary != null) {
+            stmt.bindString(13, summary);
+        }
     }
 
     @Override
@@ -119,6 +129,12 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         stmt.bindLong(9, entity.getStudy() ? 1L: 0L);
         stmt.bindLong(10, entity.getScore());
         stmt.bindLong(11, entity.getTime());
+        stmt.bindLong(12, entity.getCount());
+ 
+        String summary = entity.getSummary();
+        if (summary != null) {
+            stmt.bindString(13, summary);
+        }
     }
 
     @Override
@@ -139,7 +155,9 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
             cursor.getInt(offset + 7), // level
             cursor.getShort(offset + 8) != 0, // study
             cursor.getInt(offset + 9), // score
-            cursor.getInt(offset + 10) // time
+            cursor.getInt(offset + 10), // time
+            cursor.getInt(offset + 11), // count
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // summary
         );
         return entity;
     }
@@ -157,6 +175,8 @@ public class OverViewListItemDao extends AbstractDao<OverViewListItem, Long> {
         entity.setStudy(cursor.getShort(offset + 8) != 0);
         entity.setScore(cursor.getInt(offset + 9));
         entity.setTime(cursor.getInt(offset + 10));
+        entity.setCount(cursor.getInt(offset + 11));
+        entity.setSummary(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
      }
     
     @Override

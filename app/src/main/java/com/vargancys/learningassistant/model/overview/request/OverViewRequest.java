@@ -30,12 +30,14 @@ public class OverViewRequest {
     private OverViewListContentDao mListContentDao;
     private GameSubjectContentDao mSubjectContentDao;
     private GameContentDao mGameContentDao;
+    private OverViewListItemDao mItemDao;
     private OverViewRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mListItemDao = mDaoSession.getOverViewListItemDao();
         mListContentDao = mDaoSession.getOverViewListContentDao();
         mSubjectContentDao = mDaoSession.getGameSubjectContentDao();
         mGameContentDao = mDaoSession.getGameContentDao();
+        mItemDao = mDaoSession.getOverViewListItemDao();
     }
 
     public static OverViewRequest getInstance(){
@@ -170,5 +172,16 @@ public class OverViewRequest {
             mBean.add(bean);
         }
         return mBean;
+    }
+
+    //得到个人数据
+    public List<OverViewListItem> getOverViewData(long createId) {
+        return mItemDao.queryBuilder().where(OverViewListItemDao.Properties.Create.eq(createId)).list();
+    }
+
+    //添加关注到个人体系中
+    public boolean insertOverViewCreateData(long overviewId) {
+        //TODO 没处理好
+        return true;
     }
 }

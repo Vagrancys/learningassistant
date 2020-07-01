@@ -11,6 +11,7 @@ import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
 import com.vargancys.learningassistant.module.overview.view.BaseHallView;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
+import com.vargancys.learningassistant.module.overview.view.OverViewCreateView;
 import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
 import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
 import com.vargancys.learningassistant.module.overview.view.OverViewQueryView;
@@ -139,6 +140,16 @@ public class BaseOverViewPresenter<T> {
         }
     }
 
+    //添加个人知识体系数据
+    public void insertOverViewCreateData(long overviewId) {
+        boolean result = mRequest.insertOverViewCreateData(overviewId);
+        if(result){
+            ((OverViewCreateView) mView).insertCreateDataSuccess();
+        }else{
+            ((OverViewCreateView) mView).insertCreateDataFail(404,"关注失败!");
+        }
+    }
+
     //根据热度获取知识体系数据
     public void getHallHotData() {
         BaseHallData(mRequest.getHallHotData());
@@ -147,5 +158,16 @@ public class BaseOverViewPresenter<T> {
     //根据系统获取知识体系数据
     public void getHallSystemData() {
         BaseHallData(mRequest.getHallSystemData());
+    }
+
+    //得到个人知识体系数据
+    public void getOverViewData(long createId) {
+        List<OverViewListItem> mItems = mRequest.getOverViewData(createId);
+        if(mItems != null && mItems.size() > 0){
+            ((OverViewCreateView) mView).getOverViewCreateDataSuccess(mItems);
+        }else{
+            ((OverViewCreateView) mView).getOverViewCreateDataFail(404,"没有找到数据!");
+        }
+
     }
 }

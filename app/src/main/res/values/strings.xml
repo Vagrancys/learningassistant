@@ -347,6 +347,13 @@
     <string name="item_level_text">等级</string>
     <string name="item_score_text">分数</string>
 
+    <!--知识体系个人中心创建模块-->
+    <string name="overview_create_toolbar">个人知识体系中心</string>
+    <string name="overview_create_count_text">知识体量</string>
+    <string name="overview_create_score_text">知识总分</string>
+    <string name="overview_create_level_text">知识难度</string>
+    <string name="overview_create_time_text">创建时间</string>
+
     <!--知识体系选择模块-->
     <string name="overview_select_toolbar">知识体系选择</string>
 

@@ -1,5 +1,9 @@
 package com.vargancys.learningassistant.module.overview.view;
 
+import com.vargancys.learningassistant.db.overview.OverViewListItem;
+
+import java.util.List;
+
 /**
  * @author Vagrancy
  * @date 2020/6/30
@@ -8,4 +12,8 @@ package com.vargancys.learningassistant.module.overview.view;
  * Description: 个人知识体系中心视图层
  */
 public interface OverViewCreateView {
+    void getOverViewCreateDataSuccess(List<OverViewListItem> mItem);
+    void getOverViewCreateDataFail(int error,String message);
+    void insertCreateDataSuccess();
+    void insertCreateDataFail(int error,String message);
 }

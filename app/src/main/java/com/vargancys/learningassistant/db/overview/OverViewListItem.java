@@ -46,10 +46,17 @@ public class OverViewListItem{
     //目录的创建时间
     private int time;
 
-    @Generated(hash = 679926223)
+    //目录总数
+    private int count;
+
+    //目录简介
+    private String summary;
+
+
+    @Generated(hash = 1596218461)
     public OverViewListItem(Long id, long contentId, long sortId, long create,
             long parentId, String title, int masterLevel, int level, boolean study,
-            int score, int time) {
+            int score, int time, int count, String summary) {
         this.id = id;
         this.contentId = contentId;
         this.sortId = sortId;
@@ -61,6 +68,8 @@ public class OverViewListItem{
         this.study = study;
         this.score = score;
         this.time = time;
+        this.count = count;
+        this.summary = summary;
     }
 
     @Generated(hash = 1807338273)
@@ -153,5 +162,21 @@ public class OverViewListItem{
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public int getCount() {
+        return this.count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getSummary() {
+        return this.summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
