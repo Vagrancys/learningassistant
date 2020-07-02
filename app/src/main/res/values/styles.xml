@@ -107,4 +107,9 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/text_size_18sp</item>
     </style>
+
+    <style name="dialog_animation_style">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>
+    </style>
 </resources>

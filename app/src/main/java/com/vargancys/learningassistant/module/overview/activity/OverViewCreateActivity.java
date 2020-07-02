@@ -19,17 +19,16 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
-import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.module.overview.adapter.OverViewCreateAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewCreateView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
+import com.vargancys.learningassistant.widget.dialog.OverViewCreateDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -90,8 +89,38 @@ public class OverViewCreateActivity extends BaseActivity implements OverViewCrea
                 dialog.dismiss();
             }
         });
-        //TODO 个人知识体系中心管理
+        /**
+         * 数据库缓存 知识缓存到数据库中
+         * 同步 主动同步服务器的知识或者设置被动时间同步服务器的知识
+         * 上传 更新,添加,修改,刪除本地知识,然后上传到服务器里
+         * 下载 下载最新的知识或者其他人的知识
+         *
+         */
         mPopup = new OverViewCreateDialog(this);
+        mPopup.setOnDialogClickListener(new OverViewCreateDialog.OnDialogClickListener() {
+            @Override
+            public void onClose() {
+                mPopup.dismiss();
+            }
+
+            @Override
+            public void onDelete(int position) {
+                OverViewListItem mItem = mItems.get(position);
+                mPresenter.deleteOverViewCreateData(mItem.getId());
+            }
+
+            @Override
+            public void onUpdate(int position) {
+                OverViewListItem mItem = mItems.get(position);
+                OverViewUpdateActivity.launch(OverViewCreateActivity.this,mItem.getId(),OVERVIEW_CREATE);
+            }
+
+            @Override
+            public void onInsert(int position) {
+                OverViewListItem mItem = mItems.get(position);
+                OverViewInsertActivity.launch(OverViewCreateActivity.this,mItem.getId(),OVERVIEW_CREATE);
+            }
+        });
 
         mAdapter = new OverViewCreateAdapter(getContext(),mItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -109,7 +138,10 @@ public class OverViewCreateActivity extends BaseActivity implements OverViewCrea
         mAdapter.setOnItemLongClickListener(new BaseRecyclerAdapter.OnItemLongClickListener() {
             @Override
             public void OnItemLongClick(int position) {
-
+                OverViewListItem mItem = mItems.get(position);
+                mPopup.setTitle(mItem.getTitle());
+                mPopup.setPosition(position);
+                mPopup.showAsDropDown(recyclerView);
             }
         });
     }
@@ -178,5 +210,16 @@ public class OverViewCreateActivity extends BaseActivity implements OverViewCrea
     public void insertCreateDataSuccess() {
         ToastUtils.ToastText(getContext(),R.string.overview_hall_insert_win_text);
         finish();
+    }
+
+    @Override
+    public void deleteCreateDataFail(int error, String message) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+",Message ="+message);
+    }
+
+    @Override
+    public void deleteCreateDataSuccess() {
+        ToastUtils.ToastText(getContext(),R.string.overview_delete_success_text);
+        autoData();
     }
 }

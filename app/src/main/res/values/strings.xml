@@ -353,6 +353,7 @@
     <string name="overview_create_score_text">知识总分</string>
     <string name="overview_create_level_text">知识难度</string>
     <string name="overview_create_time_text">创建时间</string>
+    <string name="overview_delete_success_text">删除该知识体系成功!</string>
 
     <!--知识体系选择模块-->
     <string name="overview_select_toolbar">知识体系选择</string>
@@ -366,6 +367,7 @@
     <string name="overview_hall_system_fail_text">没有找到知识体系大厅系统数据!</string>
     <string name="overview_hall_insert_fail_text">关注该知识体系失败,您可以重新关注!</string>
     <string name="overview_hall_insert_win_text">关注该知识体系成功,跳转中!</string>
+
 
     <string name="information_title">初级工程师合集</string>
     <string name="information_author">Vagrancy</string>

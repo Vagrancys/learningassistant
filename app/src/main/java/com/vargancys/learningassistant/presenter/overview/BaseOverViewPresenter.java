@@ -170,4 +170,14 @@ public class BaseOverViewPresenter<T> {
         }
 
     }
+
+    //删除知识体系
+    public void deleteOverViewCreateData(Long id) {
+        boolean result = mRequest.deleteOverViewCreateData(id);
+        if(result){
+            ((OverViewCreateView) mView).deleteCreateDataSuccess();
+        }else{
+            ((OverViewCreateView) mView).deleteCreateDataFail(404,"删除失败了!");
+        }
+    }
 }

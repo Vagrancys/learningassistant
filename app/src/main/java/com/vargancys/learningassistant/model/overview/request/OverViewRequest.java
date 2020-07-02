@@ -184,4 +184,10 @@ public class OverViewRequest {
         //TODO 没处理好
         return true;
     }
+
+    //删除知识体系
+    public boolean deleteOverViewCreateData(Long id) {
+        mListItemDao.deleteByKey(id);
+        return true;
+    }
 }

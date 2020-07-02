@@ -16,4 +16,6 @@ public interface OverViewCreateView {
     void getOverViewCreateDataFail(int error,String message);
     void insertCreateDataSuccess();
     void insertCreateDataFail(int error,String message);
+    void deleteCreateDataSuccess();
+    void deleteCreateDataFail(int error,String message);
 }
