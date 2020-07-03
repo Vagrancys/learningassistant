@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.presenter.overview;
 import android.os.Handler;
 import android.util.Log;
 
+import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
@@ -15,6 +16,7 @@ import com.vargancys.learningassistant.module.overview.view.OverViewCreateView;
 import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
 import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
 import com.vargancys.learningassistant.module.overview.view.OverViewQueryView;
+import com.vargancys.learningassistant.module.overview.view.OverViewUpdateView;
 
 import java.util.List;
 
@@ -178,6 +180,16 @@ public class BaseOverViewPresenter<T> {
             ((OverViewCreateView) mView).deleteCreateDataSuccess();
         }else{
             ((OverViewCreateView) mView).deleteCreateDataFail(404,"删除失败了!");
+        }
+    }
+
+    //获取知识体系数据
+    public void getOverViewUpdateData(long overViewId) {
+        List<KnowListBean> mBean = mRequest.getOverViewUpdateData(overViewId);
+        if(mBean !=null && mBean.size() >0){
+            ((OverViewUpdateView)mView).getOverViewDataSuccess(mBean);
+        }else{
+            ((OverViewUpdateView)mView).getOverViewDataFail(403,"获取数据失败!");
         }
     }
 }

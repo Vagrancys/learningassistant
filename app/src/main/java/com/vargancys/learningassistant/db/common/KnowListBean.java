@@ -21,10 +21,19 @@ public class KnowListBean {
     private int masterLevel;
     private boolean study;
     private int score;
+    private long knowId;
     public KnowListBean(long _id, long parentId, String title){
         this._id = _id;
         this.parentId = parentId;
         this.title = title;
+    }
+
+    public long getKnowId() {
+        return knowId;
+    }
+
+    public void setKnowId(long knowId) {
+        this.knowId = knowId;
     }
 
     public void setTitle(String title) {

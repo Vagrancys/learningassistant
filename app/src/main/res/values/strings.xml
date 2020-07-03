@@ -368,6 +368,12 @@
     <string name="overview_hall_insert_fail_text">关注该知识体系失败,您可以重新关注!</string>
     <string name="overview_hall_insert_win_text">关注该知识体系成功,跳转中!</string>
 
+    <!--知识体系更新-->
+    <string name="overview_update_toolbar">知识体系更新</string>
+    <string name="overview_update_data_fail_text">获取更新数据失败!</string>
+    <string name="overview_update_list_fail_text">更新知识体系数据失败了!</string>
+    <string name="overview_update_list_success_text">更新知识体系数据成功了!</string>
+
 
     <string name="information_title">初级工程师合集</string>
     <string name="information_author">Vagrancy</string>

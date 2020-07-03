@@ -77,7 +77,6 @@ public class OverViewFragment extends BaseFragment implements OverViewContentVie
     private void init() {
         getSelectId();
         overViewSwipe.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
-        overViewSwipe.setRefreshing(true);
         overViewSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -6,6 +6,7 @@ import com.vagrancys.learningassistant.db.GameSubjectContentDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
@@ -189,5 +190,22 @@ public class OverViewRequest {
     public boolean deleteOverViewCreateData(Long id) {
         mListItemDao.deleteByKey(id);
         return true;
+    }
+
+    //获取知识体系数据
+    public List<KnowListBean> getOverViewUpdateData(long overViewId) {
+        List<KnowListBean> mItems = new ArrayList<>();
+        List<OverViewListItem> mBean =mListItemDao.queryBuilder().where(OverViewListItemDao.Properties.ContentId.eq(overViewId)).list();
+        for (OverViewListItem item:mBean){
+            KnowListBean mItem = new KnowListBean(item.getSortId(),item.getParentId(),item.getTitle());
+            mItem.setMasterLevel(item.getMasterLevel());
+            mItem.setScore(item.getScore());
+            mItem.setStudy(item.getStudy());
+            mItem.setKnowId(item.getId());
+            mItem.setLevel(item.getLevel());
+            mItem.setTitle(item.getTitle());
+            mItems.add(mItem);
+        }
+        return mItems;
     }
 }
