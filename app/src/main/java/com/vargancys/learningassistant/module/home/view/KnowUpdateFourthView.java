@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.module.home.view;
 
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com

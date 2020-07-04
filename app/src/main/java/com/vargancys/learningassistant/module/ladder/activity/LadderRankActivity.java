@@ -2,9 +2,7 @@ package com.vargancys.learningassistant.module.ladder.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,10 +12,8 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.ladder.adapter.LadderRankAdapter;
-import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

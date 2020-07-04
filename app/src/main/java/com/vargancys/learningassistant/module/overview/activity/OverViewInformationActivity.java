@@ -2,8 +2,6 @@ package com.vargancys.learningassistant.module.overview.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
-import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
@@ -20,7 +17,6 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

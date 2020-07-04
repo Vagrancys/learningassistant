@@ -3,7 +3,6 @@ package com.vargancys.learningassistant.module.mine.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
@@ -12,7 +11,6 @@ import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.module.mine.view.ChallengeDetailsView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
-import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;

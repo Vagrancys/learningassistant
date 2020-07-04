@@ -1,8 +1,6 @@
 package com.vargancys.learningassistant.module.common.view;
 
-import com.vargancys.learningassistant.base.BaseView;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
-import com.vargancys.learningassistant.model.home.bean.HomeContentBean;
 
 import java.util.List;
 

@@ -373,6 +373,9 @@
     <string name="overview_update_data_fail_text">获取更新数据失败!</string>
     <string name="overview_update_list_fail_text">更新知识体系数据失败了!</string>
     <string name="overview_update_list_success_text">更新知识体系数据成功了!</string>
+    <string name="overview_update_hint_text">更新知识体系!</string>
+    <string name="overview_update_empty_text">请输入您要更改的知识!</string>
+    <string name="overview_update_equals_text">您重复输入知识了!</string>
 
 
     <string name="information_title">初级工程师合集</string>

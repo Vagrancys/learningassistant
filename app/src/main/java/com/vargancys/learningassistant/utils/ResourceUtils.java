@@ -2,9 +2,6 @@ package com.vargancys.learningassistant.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Dimension;
-
-import com.vargancys.learningassistant.R;
 
 /**
  * @author Vagrancy

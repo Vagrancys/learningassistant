@@ -12,7 +12,6 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 
-import java.lang.invoke.MethodHandle;
 import java.util.List;
 
 import butterknife.BindView;

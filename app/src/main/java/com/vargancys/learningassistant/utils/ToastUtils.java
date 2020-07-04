@@ -1,6 +1,5 @@
 package com.vargancys.learningassistant.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 

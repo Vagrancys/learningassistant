@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.overview.view.OverViewInsertView;
-import com.vargancys.learningassistant.module.overview.view.OverViewUpdateView;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 
 /**

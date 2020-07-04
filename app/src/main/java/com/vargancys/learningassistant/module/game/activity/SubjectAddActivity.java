@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.game.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,10 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
@@ -35,7 +31,6 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.SubjectRadioGroup;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.base;
 
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.design.widget.AppBarLayout;
 
 import com.vagrancys.learningassistant.db.DaoMaster;
 import com.vagrancys.learningassistant.db.DaoSession;

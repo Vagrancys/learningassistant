@@ -2,14 +2,8 @@ package com.vargancys.learningassistant.db.home;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Unique;
-
-import com.vagrancys.learningassistant.db.DaoSession;
-import com.vagrancys.learningassistant.db.HomeKnowContentDao;
-import com.vagrancys.learningassistant.db.HomeKnowFunctionDao;
 
 /**
  * author: Vagrancy

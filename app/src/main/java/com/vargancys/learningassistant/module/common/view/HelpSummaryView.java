@@ -1,6 +1,5 @@
 package com.vargancys.learningassistant.module.common.view;
 
-import com.vargancys.learningassistant.base.BaseView;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
 

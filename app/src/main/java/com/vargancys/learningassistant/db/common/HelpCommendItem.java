@@ -3,15 +3,7 @@ package com.vargancys.learningassistant.db.common;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Keep;
-import org.greenrobot.greendao.annotation.Property;
-import org.greenrobot.greendao.annotation.ToOne;
-import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Unique;
-
-import com.vagrancys.learningassistant.db.DaoSession;
-import com.vagrancys.learningassistant.db.HelpContentItemDao;
-import com.vagrancys.learningassistant.db.HelpCommendItemDao;
 
 /**
  * author: Vagrancy

@@ -192,4 +192,14 @@ public class BaseOverViewPresenter<T> {
             ((OverViewUpdateView)mView).getOverViewDataFail(403,"获取数据失败!");
         }
     }
+
+    //更新知识体系的数据
+    public void updateOverViewData(long id, String message) {
+        boolean result = mRequest.updateOverViewData(id,message);
+        if(result){
+            ((OverViewUpdateView) mView).updateOverViewDataSuccess();
+        }else{
+            ((OverViewUpdateView)mView).updateOverViewDataFail(403,"获取数据失败!");
+        }
+    }
 }

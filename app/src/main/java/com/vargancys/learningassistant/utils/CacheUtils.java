@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.provider.SyncStateContract;
 
 /**
  * author: Vagrancy

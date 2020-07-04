@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.model.overview.bean;
 
-import java.util.List;
-
 /**
  * @author Vagrancy
  * @date 2020/6/28

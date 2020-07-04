@@ -1,18 +1,13 @@
 package com.vargancys.learningassistant.model.home.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
-import com.vagrancys.learningassistant.db.HomeKnowDataDao;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowItem;
-import com.vargancys.learningassistant.utils.TimeUtils;
 
 
 import org.greenrobot.greendao.query.QueryBuilder;
-import org.greenrobot.greendao.query.WhereCondition;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.model.common.request;
 
-import android.util.Log;
-
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HelpCommendItemDao;
 import com.vagrancys.learningassistant.db.HelpContentItemDao;

@@ -16,7 +16,6 @@ import com.vargancys.learningassistant.module.common.view.LoginView;
 import com.vargancys.learningassistant.presenter.common.BaseCommonPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
-import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;

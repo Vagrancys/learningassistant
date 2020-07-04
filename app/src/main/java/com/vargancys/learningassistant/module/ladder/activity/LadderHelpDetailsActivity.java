@@ -2,10 +2,8 @@ package com.vargancys.learningassistant.module.ladder.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
@@ -18,7 +16,6 @@ import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -46,6 +43,12 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
     private BaseLadderPresenter mPresenter;
     private long helpId;
 
+    public static void launch(Activity activity, long helpId) {
+        Intent intent = new Intent(activity, LadderHelpDetailsActivity.class);
+        intent.putExtra(ConstantsUtils.LADDER_HELP_ID, helpId);
+        activity.startActivity(intent);
+    }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_help_details;
@@ -53,7 +56,7 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
 
     @Override
     public void initView() {
-        helpId = getIntent().getIntExtra(ConstantsUtils.LADDER_HELP_ID,0);
+        helpId = getIntent().getIntExtra(ConstantsUtils.LADDER_HELP_ID, 0);
         mPresenter = new BaseLadderPresenter(this);
         initListener();
         mPresenter.getLadderHelpDetailsData(helpId);
@@ -61,7 +64,7 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
 
     private void initListener() {
         swipeRefresh.setRefreshing(true);
-        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
+        swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(), R.color.pink));
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -76,16 +79,10 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
         commonTitle.setText(getText(R.string.help_details_toolbar));
     }
 
-    public static void launch(Activity activity, long helpId) {
-        Intent intent = new Intent(activity, LadderHelpDetailsActivity.class);
-        intent.putExtra(ConstantsUtils.LADDER_HELP_ID, helpId);
-        activity.startActivity(intent);
-    }
-
     @Override
     public void showHelpDetailsError(int error, String message) {
         swipeRefresh.setRefreshing(false);
-        ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
+        ToastUtils.ToastText(getContext(), "Error = " + error + ", Message =" + message);
         helpDetailsNumber.setText("--");
         helpDetailsContent.setText("--");
         helpDetailsSummary.setText("--");
@@ -104,7 +101,7 @@ public class LadderHelpDetailsActivity extends BaseActivity implements LadderHel
     }
 
     @OnClick({R.id.common_back})
-    public void onViewClicked(View itemView){
+    public void onViewClicked(View itemView) {
         finish();
     }
 }

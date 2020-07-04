@@ -1,19 +1,15 @@
 package com.vargancys.learningassistant.module.overview.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.module.overview.adapter.SimpleTreeAdapter;
 import com.vargancys.learningassistant.module.overview.adapter.UpdateTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewUpdateView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
@@ -21,13 +17,12 @@ import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
-import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
+import com.vargancys.learningassistant.widget.dialog.OverViewUpdatePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -39,8 +34,6 @@ import butterknife.OnClick;
  * Description: 知识体系更新模块
  */
 public class OverViewUpdateActivity extends BaseActivity implements OverViewUpdateView {
-    @BindView(R.id.common_back)
-    ImageView commonBack;
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.listView)
@@ -51,6 +44,7 @@ public class OverViewUpdateActivity extends BaseActivity implements OverViewUpda
     private List<KnowListBean> mBean = new ArrayList<>();
     private long overViewId;
     private UpdateTreeAdapter mAdapter;
+    private OverViewUpdatePopupWindow mPopupWindow;
 
     @Override
     public int getLayoutId() {
@@ -67,12 +61,41 @@ public class OverViewUpdateActivity extends BaseActivity implements OverViewUpda
                 autoData();
             }
         });
+        mPopupWindow = new OverViewUpdatePopupWindow(this);
+        mPopupWindow.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+        mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+        mPopupWindow.setOnUpdateClickListener(new OverViewUpdatePopupWindow.OnUpdateClickListener() {
+            @Override
+            public void exit() {
+                mPopupWindow.dismiss();
+            }
+
+            @Override
+            public void TextEmpty() {
+                ToastUtils.ToastText(getContext(),R.string.overview_update_empty_text);
+            }
+
+            @Override
+            public void determine(long id, String message) {
+                mPresenter.updateOverViewData(id,message);
+            }
+
+            @Override
+            public void cancel() {
+                mPopupWindow.dismiss();
+            }
+        });
         try {
             mAdapter = new UpdateTreeAdapter(listView,getContext(),mBean,10);
             mAdapter.setOnUpdateClickListener(new UpdateTreeAdapter.OnUpdateClickListener() {
                 @Override
                 public void update(int position, long id) {
-                    //TODO 自定义弹窗
+                    KnowListBean mItem =mBean.get(position);
+                    mPopupWindow.setUpdateId(id);
+                    mPopupWindow.setEdit(mItem.getTitle());
+                    mPopupWindow.setMessage("要修改这"+mItem.getTitle()+"吗?");
+                    mPopupWindow.setTitle(mItem.getTitle());
+                    mPopupWindow.showAsDropDown(listView);
                 }
             });
         } catch (IllegalAccessException e) {

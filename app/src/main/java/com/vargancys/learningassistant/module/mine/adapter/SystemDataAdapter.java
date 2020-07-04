@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.module.mine.adapter;
 
 import android.content.Context;
-import android.support.annotation.BinderThread;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;

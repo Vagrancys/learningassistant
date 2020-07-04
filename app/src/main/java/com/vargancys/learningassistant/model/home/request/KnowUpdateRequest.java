@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.model.home.request;
 
-import android.util.Log;
-
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
 import com.vagrancys.learningassistant.db.HomeKnowDataDao;

@@ -2,12 +2,10 @@ package com.vargancys.learningassistant.module.ladder.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
@@ -18,13 +16,10 @@ import com.vargancys.learningassistant.module.ladder.adapter.CommunicationPagerA
 import com.vargancys.learningassistant.module.ladder.fragment.CommunicationFragment;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommunicationView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
-import com.vargancys.learningassistant.utils.CacheUtils;
-import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

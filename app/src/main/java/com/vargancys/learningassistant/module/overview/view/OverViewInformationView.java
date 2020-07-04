@@ -2,8 +2,6 @@ package com.vargancys.learningassistant.module.overview.view;
 
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 
-import java.util.List;
-
 /**
  * @author Vagrancy
  * @date 2020/4/6

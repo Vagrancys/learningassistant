@@ -1,6 +1,5 @@
 package com.vargancys.learningassistant.widget.dialog;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;

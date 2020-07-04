@@ -33,4 +33,5 @@
     <dimen name="margin_width_1dp">1dp</dimen>
     <dimen name="margin_width_0dp">0dp</dimen>
     <dimen name="margin_width_05dp">0.5dp</dimen>
+    <dimen name="margin_width__60dp">-60dp</dimen>
 </resources>

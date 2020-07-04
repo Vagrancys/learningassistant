@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.game.adapter;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;

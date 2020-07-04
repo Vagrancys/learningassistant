@@ -3,7 +3,6 @@ package com.vargancys.learningassistant.module.game.adapter;
 import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -19,7 +18,6 @@ import com.vargancys.learningassistant.db.game.GameMultipleItem;
 import com.vargancys.learningassistant.db.game.GameRadioItem;
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
-import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import java.util.List;
 

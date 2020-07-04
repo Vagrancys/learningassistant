@@ -25,10 +25,7 @@ import com.vargancys.learningassistant.module.ladder.view.LadderResultView;
 import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static android.support.constraint.Constraints.TAG;
 
 /**
  * @author Vagrancy

@@ -12,10 +12,6 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 
-import org.w3c.dom.Comment;
-
-import java.lang.invoke.MethodHandle;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

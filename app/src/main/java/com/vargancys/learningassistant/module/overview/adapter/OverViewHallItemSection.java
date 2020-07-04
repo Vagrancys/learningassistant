@@ -1,16 +1,12 @@
 package com.vargancys.learningassistant.module.overview.adapter;
 
 import android.content.Context;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
-import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.widget.section.SectionedRecyclerViewAdapter;
 import com.vargancys.learningassistant.widget.section.StatelessSection;

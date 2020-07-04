@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.module.common.view;
 
-import com.vargancys.learningassistant.base.BaseView;
-
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com

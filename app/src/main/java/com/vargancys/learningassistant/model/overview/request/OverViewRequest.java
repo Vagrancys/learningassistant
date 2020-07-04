@@ -11,7 +11,6 @@ import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameSubjectContent;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
-import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 
@@ -207,5 +206,13 @@ public class OverViewRequest {
             mItems.add(mItem);
         }
         return mItems;
+    }
+
+    //更新知识体系数据
+    public boolean updateOverViewData(long id, String message) {
+        OverViewListItem mItem = mListItemDao.load(id);
+        mItem.setTitle(message);
+        mListItemDao.update(mItem);
+        return true;
     }
 }

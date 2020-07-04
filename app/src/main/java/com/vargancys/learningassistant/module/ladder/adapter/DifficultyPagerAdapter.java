@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.vargancys.learningassistant.module.ladder.fragment.CommunicationFragment;
 import com.vargancys.learningassistant.module.ladder.fragment.DifficultyFragment;
 
 /**

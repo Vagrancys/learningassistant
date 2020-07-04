@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
@@ -23,7 +22,6 @@ import com.vargancys.learningassistant.module.home.adapter.HistoryDataAdapter;
 import com.vargancys.learningassistant.module.home.view.BaseHistoryView;
 import com.vargancys.learningassistant.presenter.home.KnowHistoryPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
-import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;

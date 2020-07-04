@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.db.ladder;
 
-import android.support.annotation.IdRes;
-
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Unique;

@@ -3,7 +3,6 @@ package com.vargancys.learningassistant.module.mine.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,15 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.game.GameStartContent;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFirstActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
-import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.List;
 

@@ -2,25 +2,20 @@ package com.vargancys.learningassistant.module.ladder.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
 import com.vargancys.learningassistant.module.ladder.view.LadderRankSettingView;
-import com.vargancys.learningassistant.module.ladder.view.LadderView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
-import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

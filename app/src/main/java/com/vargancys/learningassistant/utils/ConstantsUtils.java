@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.utils;
 
-import android.content.Context;
-
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com

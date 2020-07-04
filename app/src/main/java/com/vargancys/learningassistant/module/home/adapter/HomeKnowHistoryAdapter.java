@@ -2,15 +2,12 @@ package com.vargancys.learningassistant.module.home.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.home.HomeKnowCommend;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 
 import java.util.List;

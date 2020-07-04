@@ -3,15 +3,11 @@ package com.vargancys.learningassistant.module.ladder.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.GameConfigUtils;
 import com.vargancys.learningassistant.db.ladder.LadderModeUtils;
-import com.vargancys.learningassistant.module.game.activity.GameConfigActivity;
-import com.vargancys.learningassistant.module.game.activity.GameStartActivity;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;

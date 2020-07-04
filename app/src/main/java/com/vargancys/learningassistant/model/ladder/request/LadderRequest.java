@@ -29,7 +29,6 @@ import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
 import com.vargancys.learningassistant.db.ladder.LadderResultBean;
 import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
-import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import org.greenrobot.greendao.query.QueryBuilder;

@@ -44,17 +44,13 @@ import com.vargancys.learningassistant.model.mine.bean.LevelTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemDetailsBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemItemBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
-import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
-import java.io.StringReader;
-import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * @author Vagrancy

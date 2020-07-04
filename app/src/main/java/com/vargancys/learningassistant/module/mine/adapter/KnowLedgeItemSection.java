@@ -3,14 +3,11 @@ package com.vargancys.learningassistant.module.mine.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;

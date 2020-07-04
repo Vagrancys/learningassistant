@@ -3,15 +3,12 @@ package com.vargancys.learningassistant.db.home;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
-import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Unique;
 
 import com.vagrancys.learningassistant.db.DaoSession;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vagrancys.learningassistant.db.HomeKnowDataDao;
-import org.greenrobot.greendao.annotation.NotNull;
 
 import java.util.List;
 import com.vagrancys.learningassistant.db.HomeKnowCommendDao;
