@@ -15,6 +15,7 @@ import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
 import com.vargancys.learningassistant.module.overview.view.OverViewCreateView;
 import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
 import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
+import com.vargancys.learningassistant.module.overview.view.OverViewInsertView;
 import com.vargancys.learningassistant.module.overview.view.OverViewQueryView;
 import com.vargancys.learningassistant.module.overview.view.OverViewUpdateView;
 
@@ -142,6 +143,16 @@ public class BaseOverViewPresenter<T> {
         }
     }
 
+    //添加新知识体系
+    public void insertOverViewInsertDta(long id,long contentId,long parent,long author,String title, String summary, String score, int level){
+        boolean result = mRequest.insertOverViewData(id,contentId,parent,author,title,summary,score,level);
+        if(result){
+            ((OverViewInsertView) mView).insertOverViewDataSuccess();
+        }else{
+            ((OverViewInsertView) mView).insertOverViewDataFail(404,"添加失败了!");
+        }
+    }
+
     //添加个人知识体系数据
     public void insertOverViewCreateData(long overviewId) {
         boolean result = mRequest.insertOverViewCreateData(overviewId);
@@ -200,6 +211,17 @@ public class BaseOverViewPresenter<T> {
             ((OverViewUpdateView) mView).updateOverViewDataSuccess();
         }else{
             ((OverViewUpdateView)mView).updateOverViewDataFail(403,"获取数据失败!");
+        }
+    }
+
+
+    //获取添加知识体系数据
+    public void getOverViewInsertData(long overViewId) {
+        List<OverViewListItem> mBean = mRequest.getOverViewInsertData(overViewId);
+        if(mBean !=null && mBean.size() >0){
+            ((OverViewInsertView)mView).getOverViewDataSuccess(mBean);
+        }else{
+            ((OverViewInsertView)mView).getOverViewDataFail(403,"获取数据失败!");
         }
     }
 }

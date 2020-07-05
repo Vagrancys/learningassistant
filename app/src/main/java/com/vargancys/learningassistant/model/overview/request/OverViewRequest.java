@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.model.overview.request;
 
+import android.content.Intent;
+
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.GameContentDao;
 import com.vagrancys.learningassistant.db.GameSubjectContentDao;
@@ -13,6 +15,7 @@ import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
+import com.vargancys.learningassistant.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -214,5 +217,32 @@ public class OverViewRequest {
         mItem.setTitle(message);
         mListItemDao.update(mItem);
         return true;
+    }
+
+    //添加新知识体系
+    public boolean insertOverViewData(long id,long contentId, long parent, long author, String title, String summary, String score, int level) {
+        OverViewListItem mItem = new OverViewListItem();
+        mItem.setTitle(title);
+        mItem.setContentId(contentId);
+        mItem.setCount(0);
+        mItem.setCreate(author);
+        mItem.setLevel(level);
+        mItem.setMasterLevel(0);
+        mItem.setParentId(parent);
+        mItem.setScore(Integer.parseInt(score));
+        mItem.setSortId(0);
+        mItem.setStudy(false);
+        mItem.setSummary(summary);
+        mItem.setTime(Integer.parseInt(TimeUtils.getTime()));
+        long result = mItemDao.insert(mItem);
+        if(result != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public List<OverViewListItem> getOverViewInsertData(long overViewId) {
+        return mListItemDao.queryBuilder().where(OverViewListItemDao.Properties.ContentId.eq(overViewId)).list();
     }
 }

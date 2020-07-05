@@ -377,6 +377,18 @@
     <string name="overview_update_empty_text">请输入您要更改的知识!</string>
     <string name="overview_update_equals_text">您重复输入知识了!</string>
 
+    <!--知识体系添加-->
+    <string name="overview_insert_toolbar">知识体系添加</string>
+    <string name="overview_insert_data_fail_text">获取添加数据失败!</string>
+    <string name="overview_insert_list_fail_text">添加知识体系数据失败了!</string>
+    <string name="overview_insert_list_success_text">添加知识体系数据成功了!</string>
+    <string name="overview_insert_hint_text">添加知识体系!</string>
+    <string name="overview_insert_empty_text">请输入您要添加的知识!</string>
+    <string name="overview_insert_equals_text">您重复输入知识了!</string>
+    <string name="dialog_insert_title_text">标题:</string>
+    <string name="dialog_insert_level_text">等级:</string>
+    <string name="overview_insert_level_text">请选择您的等级!</string>
+
 
     <string name="information_title">初级工程师合集</string>
     <string name="information_author">Vagrancy</string>
