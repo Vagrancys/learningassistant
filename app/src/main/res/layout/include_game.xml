@@ -29,6 +29,14 @@
                 android:textSize="@dimen/text_size_24sp"
                 android:layout_centerInParent="true"/>
             <ImageView
+                android:id="@+id/game_hall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/overview_hall_normal"
+                android:layout_toStartOf="@+id/game_sign"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_width_10dp"/>
+            <ImageView
                 android:id="@+id/game_sign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

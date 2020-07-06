@@ -92,6 +92,7 @@
         <activity android:name=".module.overview.activity.OverViewUpdateActivity"/>
         <activity android:name=".module.overview.activity.OverViewInsertActivity"/>
         <activity android:name=".module.overview.activity.OverViewCreateActivity"/>
+        <activity android:name=".module.game.activity.GameHallActivity"/>
         <activity android:name=".module.overview.activity.OverViewQueryActivity"
             android:launchMode="singleTask"/>
     </application>

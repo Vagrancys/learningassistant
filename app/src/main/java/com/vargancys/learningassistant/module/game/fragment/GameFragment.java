@@ -15,6 +15,7 @@ import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.db.common.KnowListBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.module.game.activity.GameHallActivity;
 import com.vargancys.learningassistant.module.game.activity.GameSelectActivity;
 import com.vargancys.learningassistant.module.game.activity.GameSignActivity;
 import com.vargancys.learningassistant.module.game.activity.GameStartActivity;
@@ -205,7 +206,7 @@ public class GameFragment extends BaseFragment implements GameView {
         mAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.game_select,R.id.game_sign,R.id.game_tidy})
+    @OnClick({R.id.game_select,R.id.game_sign,R.id.game_tidy,R.id.game_hall})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
             case R.id.game_select:
@@ -213,6 +214,9 @@ public class GameFragment extends BaseFragment implements GameView {
                 break;
             case R.id.game_sign:
                 GameSignActivity.launch(getActivity());
+                break;
+            case R.id.game_hall:
+                GameHallActivity.launch(getActivity());
                 break;
             case R.id.game_tidy:
                 if(CacheUtils.getBoolean(getContext(),ConstantsUtils.GAME_STATE)){
