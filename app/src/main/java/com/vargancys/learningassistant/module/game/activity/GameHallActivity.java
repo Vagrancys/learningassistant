@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.game.activity;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.game.view.GameHallView;
 
@@ -17,7 +18,7 @@ import com.vargancys.learningassistant.module.game.view.GameHallView;
 public class GameHallActivity extends BaseActivity implements GameHallView {
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_game_hall;
     }
 
     @Override

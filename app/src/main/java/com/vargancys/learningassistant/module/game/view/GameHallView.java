@@ -8,4 +8,5 @@ package com.vargancys.learningassistant.module.game.view;
  * Description: 关卡大厅视图层
  */
 public interface GameHallView {
+
 }
