@@ -16,6 +16,7 @@ import com.vargancys.learningassistant.utils.DensityUtils;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/02
  * version:1.0
+ * 掌握难度视图
  */
 public class MasterProgressView extends View {
     //圆圈的笔画

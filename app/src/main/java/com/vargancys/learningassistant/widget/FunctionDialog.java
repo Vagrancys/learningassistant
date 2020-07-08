@@ -17,6 +17,7 @@ import com.vargancys.learningassistant.R;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/23
  * version:1.0
+ * 函数弹窗
  */
 public class FunctionDialog extends AlertDialog {
     private View parentView;

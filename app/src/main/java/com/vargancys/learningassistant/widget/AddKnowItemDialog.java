@@ -14,6 +14,7 @@ import com.vargancys.learningassistant.R;
  * e-mail: 18050829067@163.com
  * time  : 2020/04/04
  * version:1.0
+ * 添加知识弹窗
  */
 public class AddKnowItemDialog extends AlertDialog {
     private View parentView;

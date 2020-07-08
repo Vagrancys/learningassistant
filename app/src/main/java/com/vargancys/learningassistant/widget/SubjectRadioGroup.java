@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
  * e-mail: 18050829067@163.com
  * time  : 2020/04/13
  * version:1.0
+ * 项目选择按钮组
  */
 public class SubjectRadioGroup extends LinearLayout {
     // holds the checked id; the selection is empty by default
