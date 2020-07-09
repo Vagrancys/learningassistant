@@ -55,6 +55,7 @@ public class BaseGameRequest {
     private GameFillItemDao mFillItemDao;
     private GameSubjectiveItemDao mSubjectiveItemDao;
     private OverViewListItemDao mOverViewItemDao;
+
     private BaseGameRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mGameContentDao = mDaoSession.getGameContentDao();
@@ -107,9 +108,11 @@ public class BaseGameRequest {
         }
     }
 
+
     public OverViewListContent getOverViewListContentData(long overviewId) {
         return mListContentDao.load(overviewId);
     }
+
 
     public List<GameSignContent> getGameSignAllData() {
         return mSignContentDao.loadAll();
