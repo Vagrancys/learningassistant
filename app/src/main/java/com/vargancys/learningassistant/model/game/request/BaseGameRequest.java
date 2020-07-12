@@ -27,6 +27,8 @@ import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.model.game.bean.GameHallBean;
+import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
@@ -351,5 +353,17 @@ public class BaseGameRequest {
         gameContent.setError_current(gameContent.getError_current()+gameError);
         mGameContentDao.update(gameContent);
         return true;
+    }
+
+    //选择关卡大厅数据
+    public boolean selectHallData(long hallId) {
+        //TODO 选择关卡大厅数据
+        return true;
+    }
+
+    //得到知识体系大厅的数据
+    public GameHallBean getGameHallData() {
+        //TODO 知识大厅数据
+        return null;
     }
 }

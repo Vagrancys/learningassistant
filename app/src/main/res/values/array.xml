@@ -97,4 +97,10 @@
         <item>体系</item>
         <item>质量</item>
     </string-array>
+
+    <string-array name="game_hall_rank">
+        <item>难度</item>
+        <item>专业度</item>
+        <item>高度</item>
+    </string-array>
 </resources>
