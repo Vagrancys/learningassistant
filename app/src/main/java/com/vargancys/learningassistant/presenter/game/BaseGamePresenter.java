@@ -15,10 +15,13 @@ import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.game.bean.GameHallBean;
+import com.vargancys.learningassistant.model.game.bean.GameHallRankBean;
 import com.vargancys.learningassistant.model.game.request.BaseGameRequest;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
+import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.module.game.view.AddGameView;
 import com.vargancys.learningassistant.module.game.view.AnswerSheetView;
+import com.vargancys.learningassistant.module.game.view.BaseGameHallView;
 import com.vargancys.learningassistant.module.game.view.BaseGameView;
 import com.vargancys.learningassistant.module.game.view.GameHallView;
 import com.vargancys.learningassistant.module.game.view.GameView;
@@ -27,6 +30,7 @@ import com.vargancys.learningassistant.module.game.view.SignAddView;
 import com.vargancys.learningassistant.module.game.view.SignGameView;
 import com.vargancys.learningassistant.module.game.view.StartGameView;
 import com.vargancys.learningassistant.module.game.view.SubjectShowView;
+import com.vargancys.learningassistant.module.overview.view.BaseHallView;
 import com.vargancys.learningassistant.module.overview.view.OverViewHallView;
 
 import java.util.ArrayList;
@@ -240,6 +244,40 @@ public class BaseGamePresenter<T> {
             ((GameHallView) mView).getGameHallDataSuccess(mBean);
         }else{
             ((GameHallView) mView).getGameHallDataFail(404,"没有查询成功!");
+        }
+    }
+
+    //添加关卡体系数据
+    public void insertGameData(long overviewId) {
+        boolean result = mRequest.insertGameData(overviewId);
+        if(result){
+            ((BaseGameHallView) mView).insertHallDataSuccess();
+        }else{
+            ((BaseGameHallView) mView).insertHallDataFail(404,"关注失败!");
+        }
+    }
+
+    //根据难度获取知识体系数据
+    public void getHallDifferentData() {
+        BaseHallData(mRequest.getHallDifferentData());
+    }
+
+    //根据质量获取知识体系数据
+    public void getHallSpecialityData() {
+        BaseHallData(mRequest.getHallSpecialityData());
+    }
+
+    //根据数量获取知识体系数据
+    public void getHallHeightData() {
+        BaseHallData(mRequest.getHallHeightData());
+    }
+
+    //公共关卡体系大厅获取数据
+    private void BaseHallData(List<GameHallRankBean> mBean){
+        if(mBean != null){
+            ((BaseGameHallView) mView).getHallDataSuccess(mBean);
+        }else{
+            ((BaseGameHallView) mView).getHallDataFail(404,"沒有找到数据!");
         }
     }
 }

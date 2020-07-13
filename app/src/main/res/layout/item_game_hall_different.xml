@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_width_10dp">
+    <TextView
+        android:id="@+id/different_number"
+        style="@style/base_text_style"
+        android:text="1"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_width_10dp"/>
+    <TextView
+        android:id="@+id/different_title"
+        style="@style/base_text_style"
+        android:text="标题"
+        android:layout_toEndOf="@+id/different_number"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/margin_width_10dp"/>
+    <TextView
+        android:id="@+id/different_summary"
+        style="@style/base_text_style"
+        android:text="简介"
+        android:layout_below="@+id/different_title"
+        android:layout_toEndOf="@+id/different_number"
+        android:layout_marginBottom="@dimen/margin_width_10dp"/>
+    <LinearLayout
+        android:layout_toEndOf="@+id/different_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/different_summary"
+        android:gravity="end">
+        <TextView
+            android:id="@+id/different_count"
+            style="@style/base_text_style"
+            android:text="10"
+            android:layout_marginRight="@dimen/margin_width_10dp"/>
+        <TextView
+            android:id="@+id/different_time"
+            style="@style/base_text_style"
+            android:text="时间"/>
+    </LinearLayout>
+</RelativeLayout>

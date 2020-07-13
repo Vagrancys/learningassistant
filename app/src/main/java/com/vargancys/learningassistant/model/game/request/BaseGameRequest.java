@@ -28,6 +28,7 @@ import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.db.overview.OverViewListContent;
 import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.game.bean.GameHallBean;
+import com.vargancys.learningassistant.model.game.bean.GameHallRankBean;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.TimeUtils;
@@ -364,6 +365,32 @@ public class BaseGameRequest {
     //得到知识体系大厅的数据
     public GameHallBean getGameHallData() {
         //TODO 知识大厅数据
+        return null;
+    }
+
+
+    //添加关注到个人体系中
+    public boolean insertGameData(long gameId) {
+        //TODO 没处理好
+        return true;
+    }
+
+    //根据难度来排序关卡体系大厅数据
+    public List<GameHallRankBean> getHallDifferentData() {
+        //TODO 没处理
+
+        return null;
+    }
+
+    //根据质量来排序关卡体系大厅数据
+    public List<GameHallRankBean> getHallSpecialityData() {
+        //TODO 没处理
+        return null;
+    }
+
+    //根据数量来排序关卡体系大厅数据
+    public List<GameHallRankBean> getHallHeightData() {
+        //TODO 没处理
         return null;
     }
 }

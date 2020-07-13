@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.vargancys.learningassistant.module.game.fragment.GameHallDifferentFragment;
+import com.vargancys.learningassistant.module.game.fragment.GameHallHeightFragment;
+import com.vargancys.learningassistant.module.game.fragment.GameHallSpecialityFragment;
 import com.vargancys.learningassistant.module.overview.fragment.OverViewHallHotFragment;
 import com.vargancys.learningassistant.module.overview.fragment.OverViewHallQualityFragment;
 import com.vargancys.learningassistant.module.overview.fragment.OverViewHallSystemFragment;

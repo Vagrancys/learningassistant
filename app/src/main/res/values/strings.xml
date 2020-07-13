@@ -1099,6 +1099,11 @@
     <string name="login_forget_update_password_empty_text">确定密码不能为空!</string>
     <string name="login_forget_different_text">两次密码都不同!</string>
 
+    <!--关卡大厅模块-->
+    <string name="game_hall_different_fail_text">没有找到关卡体系大厅难度数据!</string>
+    <string name="game_hall_insert_fail_text">关注该关卡体系失败,您可以重新关注!</string>
+    <string name="game_hall_insert_win_text">关注该关卡体系成功,跳转中!</string>
+
     <!--注册模块-->
     <string name="register_toolbar">注册</string>
     <string name="register_submit_text">注册</string>
