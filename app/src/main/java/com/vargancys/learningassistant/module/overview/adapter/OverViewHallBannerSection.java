@@ -67,7 +67,7 @@ public class OverViewHallBannerSection extends StatelessSection {
         return 1;
     }
 
-    private static class OverViewHallBannerViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder {
+    public static class OverViewHallBannerViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder {
         @BindView(R.id.viewPager)
         ViewPager viewPager;
         public OverViewHallBannerViewHolder(View itemView){

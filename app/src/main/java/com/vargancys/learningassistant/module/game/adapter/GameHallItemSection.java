@@ -55,7 +55,7 @@ public class GameHallItemSection extends StatelessSection {
         return mBean.size();
     }
 
-    private static class GameHallItemViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder{
+    public static class GameHallItemViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder{
         @BindView(R.id.item_author)
         TextView itemAuthor;
         @BindView(R.id.item_number)

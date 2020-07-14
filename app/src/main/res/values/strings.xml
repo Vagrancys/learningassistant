@@ -1100,6 +1100,7 @@
     <string name="login_forget_different_text">两次密码都不同!</string>
 
     <!--关卡大厅模块-->
+    <string name="game_hall_toolbar">关卡大厅</string>
     <string name="game_hall_different_fail_text">没有找到关卡体系大厅难度数据!</string>
     <string name="game_hall_insert_fail_text">关注该关卡体系失败,您可以重新关注!</string>
     <string name="game_hall_insert_win_text">关注该关卡体系成功,跳转中!</string>

@@ -53,7 +53,7 @@ public class OverViewHallRankSection extends StatelessSection {
         return 1;
     }
 
-    private static class OverViewHallRankViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder{
+    public static class OverViewHallRankViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder{
         @BindView(R.id.viewPager)
         ViewPager viewPager;
         @BindView(R.id.tab_layout)

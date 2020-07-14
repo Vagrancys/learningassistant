@@ -55,7 +55,7 @@ public class OverViewHallItemSection extends StatelessSection {
         return mBean.size();
     }
 
-    private static class OverViewHallItemViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder{
+    public static class OverViewHallItemViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder{
         @BindView(R.id.item_author)
         TextView itemAuthor;
         @BindView(R.id.item_number)

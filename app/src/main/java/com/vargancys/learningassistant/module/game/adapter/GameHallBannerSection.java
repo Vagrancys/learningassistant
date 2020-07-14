@@ -42,7 +42,7 @@ public class GameHallBannerSection extends StatelessSection {
 
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final OverViewHallBannerViewHolder mHolder = (OverViewHallBannerViewHolder) holder;
+        final GameHallBannerViewHolder mHolder = (GameHallBannerViewHolder) holder;
         mPager = new BannerViewPager(getContext(),mBean);
         mHolder.viewPager.setAdapter(mPager);
         mHolder.viewPager.setOffscreenPageLimit(mBean.size());
@@ -60,7 +60,7 @@ public class GameHallBannerSection extends StatelessSection {
 
     @Override
     public RecyclerView.ViewHolder getItemViewHolder(View view) {
-        return new OverViewHallBannerViewHolder(view);
+        return new GameHallBannerViewHolder(view);
     }
 
     @Override
@@ -68,15 +68,15 @@ public class GameHallBannerSection extends StatelessSection {
         return 1;
     }
 
-    private static class OverViewHallBannerViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder {
+    public static class GameHallBannerViewHolder extends SectionedRecyclerViewAdapter.EmptyViewHolder {
         @BindView(R.id.viewPager)
         ViewPager viewPager;
-        public OverViewHallBannerViewHolder(View itemView){
+        public GameHallBannerViewHolder(View itemView){
             super(itemView);
         }
     }
 
-    private static class BannerViewPager extends PagerAdapter{
+    public static class BannerViewPager extends PagerAdapter{
         private List<GameHallBean.Banner> mBean;
         private View[] mView;
         private Context mContext;

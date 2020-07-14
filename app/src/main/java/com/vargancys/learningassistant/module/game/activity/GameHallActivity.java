@@ -101,7 +101,7 @@ public class GameHallActivity extends BaseActivity implements GameHallView {
 
     @Override
     public void initToolbar() {
-        commonTitleData.setText(getText(R.string.overview_hall_toolbar));
+        commonTitleData.setText(getText(R.string.game_hall_toolbar));
     }
 
     @OnClick({R.id.common_back})
