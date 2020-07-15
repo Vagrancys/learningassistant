@@ -35,11 +35,14 @@ dependencies {
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.jakewharton:butterknife:8.6.0'
 
+
     //图片框架层
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
+    implementation 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+
     implementation 'org.greenrobot:greendao:3.2.0'
     implementation 'org.greenrobot:greendao-generator:3.2.0'
     testImplementation 'junit:junit:4.12'
