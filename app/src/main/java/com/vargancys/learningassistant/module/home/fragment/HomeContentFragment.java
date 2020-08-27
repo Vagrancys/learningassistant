@@ -93,6 +93,12 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         initClass();
     }
 
+    @Override
+    public void initData() {
+        swipeRefresh.setRefreshing(true);
+        homeContentPresenter.getKnowledge();
+    }
+
     private void initClass() {
         mUpScaleAnim = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_top_anim);
         mDownScaleAnim = AnimationUtils.loadAnimation(getContext(),R.anim.common_scale_buttom_anim);
@@ -153,7 +159,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         @Override
         public void onRefresh() {
             swipeRefresh.setRefreshing(true);
-            homeContentPresenter.getData();
+            homeContentPresenter.getKnowledge();
         }
     }
 
