@@ -1,12 +1,17 @@
 package com.vargancys.learningassistant.http;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import android.util.Log;
+
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
@@ -19,12 +24,13 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static String BASE_URI = "";
+    private static String BASE_URI = "http://192.168.1.103:8080/";
     private static ApiClient apiClient;
     private static Retrofit mRetrofit;
     private ApiService mService;
@@ -34,6 +40,7 @@ public class ApiClient {
         okHttp.connectTimeout(5, TimeUnit.SECONDS);
         okHttp.readTimeout(5,TimeUnit.SECONDS);
         OkHttpClient client = okHttp.build();
+        okHttp.addInterceptor((new HttpLoggingInterceptor(message -> Log.i("HttpLoggingInterceptor", message)).setLevel(HttpLoggingInterceptor.Level.BODY)));
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URI)
                 .client(client)
@@ -94,8 +101,26 @@ public class ApiClient {
     /**
      * 获取知识
      */
-    public void getKnowledge(MySubscriber<BaseBean<HomeKnowItem>> subscriber) {
-        toSubscribe(mService.getKnowledge(), subscriber);
+    public void getKnowledge(int page,int limit,MySubscriber<BaseBean<List<KnowLedgeBean>>> subscriber) {
+        toSubscribe(mService.getKnowledge(page,limit), subscriber);
+    }
+
+    /**
+     * 查询知识是否重复
+     * @param title 校验知识
+     * @param subscriber
+     */
+    public void queryKnowLedgeRepeat(String title, MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.queryKnowLedgeRepeat(title),subscriber);
+    }
+
+    /**
+     * 添加知识数据
+     * @param knowLedge
+     * @param subscriber
+     */
+    public void saveKnowLedge(Map<String,Object> knowLedge,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.saveKnowLedge(knowLedge),subscriber);
     }
 
     private <T> void toSubscribe(Observable<T> o, MySubscriber<T> s) {

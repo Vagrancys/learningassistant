@@ -10,6 +10,7 @@ import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.MemberBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameFillItem;
 import com.vargancys.learningassistant.db.game.GameMultipleItem;
@@ -24,69 +25,28 @@ import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowFunction;
 import com.vargancys.learningassistant.db.home.HomeKnowHistory;
 import com.vargancys.learningassistant.db.home.HomeKnowHistoryFunction;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
 import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
-import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
 import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
 import com.vargancys.learningassistant.db.ladder.LadderResultBean;
-import com.vargancys.learningassistant.db.mine.MineDataBean;
-import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
-import com.vargancys.learningassistant.db.mine.MineFeedbackBean;
-import com.vargancys.learningassistant.db.mine.KnowLedgeDataBean;
+import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.db.mine.ChallengeDataBean;
 import com.vargancys.learningassistant.db.mine.ChallengePartBean;
+import com.vargancys.learningassistant.db.mine.KnowLedgeDataBean;
 import com.vargancys.learningassistant.db.mine.LevelDataBean;
 import com.vargancys.learningassistant.db.mine.LevelPartBean;
+import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.db.mine.MineFeedbackBean;
+import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.db.mine.ProblemDataBean;
-import com.vargancys.learningassistant.db.common.MemberBean;
-
-import com.vagrancys.learningassistant.db.HelpCommendItemDao;
-import com.vagrancys.learningassistant.db.HelpContentItemDao;
-import com.vagrancys.learningassistant.db.GameContentDao;
-import com.vagrancys.learningassistant.db.GameFillItemDao;
-import com.vagrancys.learningassistant.db.GameMultipleItemDao;
-import com.vagrancys.learningassistant.db.GameRadioItemDao;
-import com.vagrancys.learningassistant.db.GameSignContentDao;
-import com.vagrancys.learningassistant.db.GameSubjectContentDao;
-import com.vagrancys.learningassistant.db.GameSubjectItemDao;
-import com.vagrancys.learningassistant.db.GameSubjectiveItemDao;
-import com.vagrancys.learningassistant.db.HomeKnowCommendDao;
-import com.vagrancys.learningassistant.db.HomeKnowContentDao;
-import com.vagrancys.learningassistant.db.HomeKnowDataDao;
-import com.vagrancys.learningassistant.db.HomeKnowFunctionDao;
-import com.vagrancys.learningassistant.db.HomeKnowHistoryDao;
-import com.vagrancys.learningassistant.db.HomeKnowHistoryFunctionDao;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
-import com.vagrancys.learningassistant.db.LadderCommentBeanDao;
-import com.vagrancys.learningassistant.db.LadderCommentReplyBeanDao;
-import com.vagrancys.learningassistant.db.LadderDataBeanDao;
-import com.vagrancys.learningassistant.db.LadderDifficultyCommentBeanDao;
-import com.vagrancys.learningassistant.db.LadderDifficultyDataBeanDao;
-import com.vagrancys.learningassistant.db.LadderHelpBeanDao;
-import com.vagrancys.learningassistant.db.LadderTopicBeanDao;
-import com.vagrancys.learningassistant.db.OverViewListContentDao;
-import com.vagrancys.learningassistant.db.OverViewListItemDao;
-import com.vagrancys.learningassistant.db.LadderRankDataBeanDao;
-import com.vagrancys.learningassistant.db.LadderRankSettingBeanDao;
-import com.vagrancys.learningassistant.db.LadderResultBeanDao;
-import com.vagrancys.learningassistant.db.MineDataBeanDao;
-import com.vagrancys.learningassistant.db.MineLevelPrivilegeBeanDao;
-import com.vagrancys.learningassistant.db.MineFeedbackBeanDao;
-import com.vagrancys.learningassistant.db.KnowLedgeDataBeanDao;
-import com.vagrancys.learningassistant.db.ChallengeDataBeanDao;
-import com.vagrancys.learningassistant.db.ChallengePartBeanDao;
-import com.vagrancys.learningassistant.db.LevelDataBeanDao;
-import com.vagrancys.learningassistant.db.LevelPartBeanDao;
-import com.vagrancys.learningassistant.db.ProblemDataBeanDao;
-import com.vagrancys.learningassistant.db.MemberBeanDao;
+import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.db.overview.OverViewListItem;
 
 // THIS CODE IS GENERATED BY greenDAO, DO NOT EDIT.
 
@@ -99,6 +59,7 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig helpCommendItemDaoConfig;
     private final DaoConfig helpContentItemDaoConfig;
+    private final DaoConfig memberBeanDaoConfig;
     private final DaoConfig gameContentDaoConfig;
     private final DaoConfig gameFillItemDaoConfig;
     private final DaoConfig gameMultipleItemDaoConfig;
@@ -120,25 +81,25 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig ladderDifficultyCommentBeanDaoConfig;
     private final DaoConfig ladderDifficultyDataBeanDaoConfig;
     private final DaoConfig ladderHelpBeanDaoConfig;
-    private final DaoConfig ladderTopicBeanDaoConfig;
-    private final DaoConfig overViewListContentDaoConfig;
-    private final DaoConfig overViewListItemDaoConfig;
     private final DaoConfig ladderRankDataBeanDaoConfig;
     private final DaoConfig ladderRankSettingBeanDaoConfig;
     private final DaoConfig ladderResultBeanDaoConfig;
-    private final DaoConfig mineDataBeanDaoConfig;
-    private final DaoConfig mineLevelPrivilegeBeanDaoConfig;
-    private final DaoConfig mineFeedbackBeanDaoConfig;
-    private final DaoConfig knowLedgeDataBeanDaoConfig;
+    private final DaoConfig ladderTopicBeanDaoConfig;
     private final DaoConfig challengeDataBeanDaoConfig;
     private final DaoConfig challengePartBeanDaoConfig;
+    private final DaoConfig knowLedgeDataBeanDaoConfig;
     private final DaoConfig levelDataBeanDaoConfig;
     private final DaoConfig levelPartBeanDaoConfig;
+    private final DaoConfig mineDataBeanDaoConfig;
+    private final DaoConfig mineFeedbackBeanDaoConfig;
+    private final DaoConfig mineLevelPrivilegeBeanDaoConfig;
     private final DaoConfig problemDataBeanDaoConfig;
-    private final DaoConfig memberBeanDaoConfig;
+    private final DaoConfig overViewListContentDaoConfig;
+    private final DaoConfig overViewListItemDaoConfig;
 
     private final HelpCommendItemDao helpCommendItemDao;
     private final HelpContentItemDao helpContentItemDao;
+    private final MemberBeanDao memberBeanDao;
     private final GameContentDao gameContentDao;
     private final GameFillItemDao gameFillItemDao;
     private final GameMultipleItemDao gameMultipleItemDao;
@@ -160,22 +121,21 @@ public class DaoSession extends AbstractDaoSession {
     private final LadderDifficultyCommentBeanDao ladderDifficultyCommentBeanDao;
     private final LadderDifficultyDataBeanDao ladderDifficultyDataBeanDao;
     private final LadderHelpBeanDao ladderHelpBeanDao;
-    private final LadderTopicBeanDao ladderTopicBeanDao;
-    private final OverViewListContentDao overViewListContentDao;
-    private final OverViewListItemDao overViewListItemDao;
     private final LadderRankDataBeanDao ladderRankDataBeanDao;
     private final LadderRankSettingBeanDao ladderRankSettingBeanDao;
     private final LadderResultBeanDao ladderResultBeanDao;
-    private final MineDataBeanDao mineDataBeanDao;
-    private final MineLevelPrivilegeBeanDao mineLevelPrivilegeBeanDao;
-    private final MineFeedbackBeanDao mineFeedbackBeanDao;
-    private final KnowLedgeDataBeanDao knowLedgeDataBeanDao;
+    private final LadderTopicBeanDao ladderTopicBeanDao;
     private final ChallengeDataBeanDao challengeDataBeanDao;
     private final ChallengePartBeanDao challengePartBeanDao;
+    private final KnowLedgeDataBeanDao knowLedgeDataBeanDao;
     private final LevelDataBeanDao levelDataBeanDao;
     private final LevelPartBeanDao levelPartBeanDao;
+    private final MineDataBeanDao mineDataBeanDao;
+    private final MineFeedbackBeanDao mineFeedbackBeanDao;
+    private final MineLevelPrivilegeBeanDao mineLevelPrivilegeBeanDao;
     private final ProblemDataBeanDao problemDataBeanDao;
-    private final MemberBeanDao memberBeanDao;
+    private final OverViewListContentDao overViewListContentDao;
+    private final OverViewListItemDao overViewListItemDao;
 
     public DaoSession(Database db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
@@ -186,6 +146,9 @@ public class DaoSession extends AbstractDaoSession {
 
         helpContentItemDaoConfig = daoConfigMap.get(HelpContentItemDao.class).clone();
         helpContentItemDaoConfig.initIdentityScope(type);
+
+        memberBeanDaoConfig = daoConfigMap.get(MemberBeanDao.class).clone();
+        memberBeanDaoConfig.initIdentityScope(type);
 
         gameContentDaoConfig = daoConfigMap.get(GameContentDao.class).clone();
         gameContentDaoConfig.initIdentityScope(type);
@@ -250,15 +213,6 @@ public class DaoSession extends AbstractDaoSession {
         ladderHelpBeanDaoConfig = daoConfigMap.get(LadderHelpBeanDao.class).clone();
         ladderHelpBeanDaoConfig.initIdentityScope(type);
 
-        ladderTopicBeanDaoConfig = daoConfigMap.get(LadderTopicBeanDao.class).clone();
-        ladderTopicBeanDaoConfig.initIdentityScope(type);
-
-        overViewListContentDaoConfig = daoConfigMap.get(OverViewListContentDao.class).clone();
-        overViewListContentDaoConfig.initIdentityScope(type);
-
-        overViewListItemDaoConfig = daoConfigMap.get(OverViewListItemDao.class).clone();
-        overViewListItemDaoConfig.initIdentityScope(type);
-
         ladderRankDataBeanDaoConfig = daoConfigMap.get(LadderRankDataBeanDao.class).clone();
         ladderRankDataBeanDaoConfig.initIdentityScope(type);
 
@@ -268,17 +222,8 @@ public class DaoSession extends AbstractDaoSession {
         ladderResultBeanDaoConfig = daoConfigMap.get(LadderResultBeanDao.class).clone();
         ladderResultBeanDaoConfig.initIdentityScope(type);
 
-        mineDataBeanDaoConfig = daoConfigMap.get(MineDataBeanDao.class).clone();
-        mineDataBeanDaoConfig.initIdentityScope(type);
-
-        mineLevelPrivilegeBeanDaoConfig = daoConfigMap.get(MineLevelPrivilegeBeanDao.class).clone();
-        mineLevelPrivilegeBeanDaoConfig.initIdentityScope(type);
-
-        mineFeedbackBeanDaoConfig = daoConfigMap.get(MineFeedbackBeanDao.class).clone();
-        mineFeedbackBeanDaoConfig.initIdentityScope(type);
-
-        knowLedgeDataBeanDaoConfig = daoConfigMap.get(KnowLedgeDataBeanDao.class).clone();
-        knowLedgeDataBeanDaoConfig.initIdentityScope(type);
+        ladderTopicBeanDaoConfig = daoConfigMap.get(LadderTopicBeanDao.class).clone();
+        ladderTopicBeanDaoConfig.initIdentityScope(type);
 
         challengeDataBeanDaoConfig = daoConfigMap.get(ChallengeDataBeanDao.class).clone();
         challengeDataBeanDaoConfig.initIdentityScope(type);
@@ -286,20 +231,36 @@ public class DaoSession extends AbstractDaoSession {
         challengePartBeanDaoConfig = daoConfigMap.get(ChallengePartBeanDao.class).clone();
         challengePartBeanDaoConfig.initIdentityScope(type);
 
+        knowLedgeDataBeanDaoConfig = daoConfigMap.get(KnowLedgeDataBeanDao.class).clone();
+        knowLedgeDataBeanDaoConfig.initIdentityScope(type);
+
         levelDataBeanDaoConfig = daoConfigMap.get(LevelDataBeanDao.class).clone();
         levelDataBeanDaoConfig.initIdentityScope(type);
 
         levelPartBeanDaoConfig = daoConfigMap.get(LevelPartBeanDao.class).clone();
         levelPartBeanDaoConfig.initIdentityScope(type);
 
+        mineDataBeanDaoConfig = daoConfigMap.get(MineDataBeanDao.class).clone();
+        mineDataBeanDaoConfig.initIdentityScope(type);
+
+        mineFeedbackBeanDaoConfig = daoConfigMap.get(MineFeedbackBeanDao.class).clone();
+        mineFeedbackBeanDaoConfig.initIdentityScope(type);
+
+        mineLevelPrivilegeBeanDaoConfig = daoConfigMap.get(MineLevelPrivilegeBeanDao.class).clone();
+        mineLevelPrivilegeBeanDaoConfig.initIdentityScope(type);
+
         problemDataBeanDaoConfig = daoConfigMap.get(ProblemDataBeanDao.class).clone();
         problemDataBeanDaoConfig.initIdentityScope(type);
 
-        memberBeanDaoConfig = daoConfigMap.get(MemberBeanDao.class).clone();
-        memberBeanDaoConfig.initIdentityScope(type);
+        overViewListContentDaoConfig = daoConfigMap.get(OverViewListContentDao.class).clone();
+        overViewListContentDaoConfig.initIdentityScope(type);
+
+        overViewListItemDaoConfig = daoConfigMap.get(OverViewListItemDao.class).clone();
+        overViewListItemDaoConfig.initIdentityScope(type);
 
         helpCommendItemDao = new HelpCommendItemDao(helpCommendItemDaoConfig, this);
         helpContentItemDao = new HelpContentItemDao(helpContentItemDaoConfig, this);
+        memberBeanDao = new MemberBeanDao(memberBeanDaoConfig, this);
         gameContentDao = new GameContentDao(gameContentDaoConfig, this);
         gameFillItemDao = new GameFillItemDao(gameFillItemDaoConfig, this);
         gameMultipleItemDao = new GameMultipleItemDao(gameMultipleItemDaoConfig, this);
@@ -321,25 +282,25 @@ public class DaoSession extends AbstractDaoSession {
         ladderDifficultyCommentBeanDao = new LadderDifficultyCommentBeanDao(ladderDifficultyCommentBeanDaoConfig, this);
         ladderDifficultyDataBeanDao = new LadderDifficultyDataBeanDao(ladderDifficultyDataBeanDaoConfig, this);
         ladderHelpBeanDao = new LadderHelpBeanDao(ladderHelpBeanDaoConfig, this);
-        ladderTopicBeanDao = new LadderTopicBeanDao(ladderTopicBeanDaoConfig, this);
-        overViewListContentDao = new OverViewListContentDao(overViewListContentDaoConfig, this);
-        overViewListItemDao = new OverViewListItemDao(overViewListItemDaoConfig, this);
         ladderRankDataBeanDao = new LadderRankDataBeanDao(ladderRankDataBeanDaoConfig, this);
         ladderRankSettingBeanDao = new LadderRankSettingBeanDao(ladderRankSettingBeanDaoConfig, this);
         ladderResultBeanDao = new LadderResultBeanDao(ladderResultBeanDaoConfig, this);
-        mineDataBeanDao = new MineDataBeanDao(mineDataBeanDaoConfig, this);
-        mineLevelPrivilegeBeanDao = new MineLevelPrivilegeBeanDao(mineLevelPrivilegeBeanDaoConfig, this);
-        mineFeedbackBeanDao = new MineFeedbackBeanDao(mineFeedbackBeanDaoConfig, this);
-        knowLedgeDataBeanDao = new KnowLedgeDataBeanDao(knowLedgeDataBeanDaoConfig, this);
+        ladderTopicBeanDao = new LadderTopicBeanDao(ladderTopicBeanDaoConfig, this);
         challengeDataBeanDao = new ChallengeDataBeanDao(challengeDataBeanDaoConfig, this);
         challengePartBeanDao = new ChallengePartBeanDao(challengePartBeanDaoConfig, this);
+        knowLedgeDataBeanDao = new KnowLedgeDataBeanDao(knowLedgeDataBeanDaoConfig, this);
         levelDataBeanDao = new LevelDataBeanDao(levelDataBeanDaoConfig, this);
         levelPartBeanDao = new LevelPartBeanDao(levelPartBeanDaoConfig, this);
+        mineDataBeanDao = new MineDataBeanDao(mineDataBeanDaoConfig, this);
+        mineFeedbackBeanDao = new MineFeedbackBeanDao(mineFeedbackBeanDaoConfig, this);
+        mineLevelPrivilegeBeanDao = new MineLevelPrivilegeBeanDao(mineLevelPrivilegeBeanDaoConfig, this);
         problemDataBeanDao = new ProblemDataBeanDao(problemDataBeanDaoConfig, this);
-        memberBeanDao = new MemberBeanDao(memberBeanDaoConfig, this);
+        overViewListContentDao = new OverViewListContentDao(overViewListContentDaoConfig, this);
+        overViewListItemDao = new OverViewListItemDao(overViewListItemDaoConfig, this);
 
         registerDao(HelpCommendItem.class, helpCommendItemDao);
         registerDao(HelpContentItem.class, helpContentItemDao);
+        registerDao(MemberBean.class, memberBeanDao);
         registerDao(GameContent.class, gameContentDao);
         registerDao(GameFillItem.class, gameFillItemDao);
         registerDao(GameMultipleItem.class, gameMultipleItemDao);
@@ -354,34 +315,34 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(HomeKnowFunction.class, homeKnowFunctionDao);
         registerDao(HomeKnowHistory.class, homeKnowHistoryDao);
         registerDao(HomeKnowHistoryFunction.class, homeKnowHistoryFunctionDao);
-        registerDao(HomeKnowItem.class, homeKnowItemDao);
+        registerDao(KnowLedgeBean.class, homeKnowItemDao);
         registerDao(LadderCommentBean.class, ladderCommentBeanDao);
         registerDao(LadderCommentReplyBean.class, ladderCommentReplyBeanDao);
         registerDao(LadderDataBean.class, ladderDataBeanDao);
         registerDao(LadderDifficultyCommentBean.class, ladderDifficultyCommentBeanDao);
         registerDao(LadderDifficultyDataBean.class, ladderDifficultyDataBeanDao);
         registerDao(LadderHelpBean.class, ladderHelpBeanDao);
-        registerDao(LadderTopicBean.class, ladderTopicBeanDao);
-        registerDao(OverViewListContent.class, overViewListContentDao);
-        registerDao(OverViewListItem.class, overViewListItemDao);
         registerDao(LadderRankDataBean.class, ladderRankDataBeanDao);
         registerDao(LadderRankSettingBean.class, ladderRankSettingBeanDao);
         registerDao(LadderResultBean.class, ladderResultBeanDao);
-        registerDao(MineDataBean.class, mineDataBeanDao);
-        registerDao(MineLevelPrivilegeBean.class, mineLevelPrivilegeBeanDao);
-        registerDao(MineFeedbackBean.class, mineFeedbackBeanDao);
-        registerDao(KnowLedgeDataBean.class, knowLedgeDataBeanDao);
+        registerDao(LadderTopicBean.class, ladderTopicBeanDao);
         registerDao(ChallengeDataBean.class, challengeDataBeanDao);
         registerDao(ChallengePartBean.class, challengePartBeanDao);
+        registerDao(KnowLedgeDataBean.class, knowLedgeDataBeanDao);
         registerDao(LevelDataBean.class, levelDataBeanDao);
         registerDao(LevelPartBean.class, levelPartBeanDao);
+        registerDao(MineDataBean.class, mineDataBeanDao);
+        registerDao(MineFeedbackBean.class, mineFeedbackBeanDao);
+        registerDao(MineLevelPrivilegeBean.class, mineLevelPrivilegeBeanDao);
         registerDao(ProblemDataBean.class, problemDataBeanDao);
-        registerDao(MemberBean.class, memberBeanDao);
+        registerDao(OverViewListContent.class, overViewListContentDao);
+        registerDao(OverViewListItem.class, overViewListItemDao);
     }
     
     public void clear() {
         helpCommendItemDaoConfig.clearIdentityScope();
         helpContentItemDaoConfig.clearIdentityScope();
+        memberBeanDaoConfig.clearIdentityScope();
         gameContentDaoConfig.clearIdentityScope();
         gameFillItemDaoConfig.clearIdentityScope();
         gameMultipleItemDaoConfig.clearIdentityScope();
@@ -403,22 +364,21 @@ public class DaoSession extends AbstractDaoSession {
         ladderDifficultyCommentBeanDaoConfig.clearIdentityScope();
         ladderDifficultyDataBeanDaoConfig.clearIdentityScope();
         ladderHelpBeanDaoConfig.clearIdentityScope();
-        ladderTopicBeanDaoConfig.clearIdentityScope();
-        overViewListContentDaoConfig.clearIdentityScope();
-        overViewListItemDaoConfig.clearIdentityScope();
         ladderRankDataBeanDaoConfig.clearIdentityScope();
         ladderRankSettingBeanDaoConfig.clearIdentityScope();
         ladderResultBeanDaoConfig.clearIdentityScope();
-        mineDataBeanDaoConfig.clearIdentityScope();
-        mineLevelPrivilegeBeanDaoConfig.clearIdentityScope();
-        mineFeedbackBeanDaoConfig.clearIdentityScope();
-        knowLedgeDataBeanDaoConfig.clearIdentityScope();
+        ladderTopicBeanDaoConfig.clearIdentityScope();
         challengeDataBeanDaoConfig.clearIdentityScope();
         challengePartBeanDaoConfig.clearIdentityScope();
+        knowLedgeDataBeanDaoConfig.clearIdentityScope();
         levelDataBeanDaoConfig.clearIdentityScope();
         levelPartBeanDaoConfig.clearIdentityScope();
+        mineDataBeanDaoConfig.clearIdentityScope();
+        mineFeedbackBeanDaoConfig.clearIdentityScope();
+        mineLevelPrivilegeBeanDaoConfig.clearIdentityScope();
         problemDataBeanDaoConfig.clearIdentityScope();
-        memberBeanDaoConfig.clearIdentityScope();
+        overViewListContentDaoConfig.clearIdentityScope();
+        overViewListItemDaoConfig.clearIdentityScope();
     }
 
     public HelpCommendItemDao getHelpCommendItemDao() {
@@ -427,6 +387,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public HelpContentItemDao getHelpContentItemDao() {
         return helpContentItemDao;
+    }
+
+    public MemberBeanDao getMemberBeanDao() {
+        return memberBeanDao;
     }
 
     public GameContentDao getGameContentDao() {
@@ -513,18 +477,6 @@ public class DaoSession extends AbstractDaoSession {
         return ladderHelpBeanDao;
     }
 
-    public LadderTopicBeanDao getLadderTopicBeanDao() {
-        return ladderTopicBeanDao;
-    }
-
-    public OverViewListContentDao getOverViewListContentDao() {
-        return overViewListContentDao;
-    }
-
-    public OverViewListItemDao getOverViewListItemDao() {
-        return overViewListItemDao;
-    }
-
     public LadderRankDataBeanDao getLadderRankDataBeanDao() {
         return ladderRankDataBeanDao;
     }
@@ -537,20 +489,8 @@ public class DaoSession extends AbstractDaoSession {
         return ladderResultBeanDao;
     }
 
-    public MineDataBeanDao getMineDataBeanDao() {
-        return mineDataBeanDao;
-    }
-
-    public MineLevelPrivilegeBeanDao getMineLevelPrivilegeBeanDao() {
-        return mineLevelPrivilegeBeanDao;
-    }
-
-    public MineFeedbackBeanDao getMineFeedbackBeanDao() {
-        return mineFeedbackBeanDao;
-    }
-
-    public KnowLedgeDataBeanDao getKnowLedgeDataBeanDao() {
-        return knowLedgeDataBeanDao;
+    public LadderTopicBeanDao getLadderTopicBeanDao() {
+        return ladderTopicBeanDao;
     }
 
     public ChallengeDataBeanDao getChallengeDataBeanDao() {
@@ -561,6 +501,10 @@ public class DaoSession extends AbstractDaoSession {
         return challengePartBeanDao;
     }
 
+    public KnowLedgeDataBeanDao getKnowLedgeDataBeanDao() {
+        return knowLedgeDataBeanDao;
+    }
+
     public LevelDataBeanDao getLevelDataBeanDao() {
         return levelDataBeanDao;
     }
@@ -569,12 +513,28 @@ public class DaoSession extends AbstractDaoSession {
         return levelPartBeanDao;
     }
 
+    public MineDataBeanDao getMineDataBeanDao() {
+        return mineDataBeanDao;
+    }
+
+    public MineFeedbackBeanDao getMineFeedbackBeanDao() {
+        return mineFeedbackBeanDao;
+    }
+
+    public MineLevelPrivilegeBeanDao getMineLevelPrivilegeBeanDao() {
+        return mineLevelPrivilegeBeanDao;
+    }
+
     public ProblemDataBeanDao getProblemDataBeanDao() {
         return problemDataBeanDao;
     }
 
-    public MemberBeanDao getMemberBeanDao() {
-        return memberBeanDao;
+    public OverViewListContentDao getOverViewListContentDao() {
+        return overViewListContentDao;
+    }
+
+    public OverViewListItemDao getOverViewListItemDao() {
+        return overViewListItemDao;
     }
 
 }

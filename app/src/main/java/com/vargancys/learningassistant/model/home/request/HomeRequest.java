@@ -3,7 +3,7 @@ package com.vargancys.learningassistant.model.home.request;
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -27,8 +27,8 @@ public class HomeRequest{
 
     }
     //等到所有的知识项
-    public List<HomeKnowItem> getBean() {
-        List<HomeKnowItem> mContentBean = mItemDao.loadAll();
+    public List<KnowLedgeBean> getBean() {
+        List<KnowLedgeBean> mContentBean = mItemDao.loadAll();
         if(mContentBean !=null){
             return mContentBean;
         }else{
@@ -37,21 +37,21 @@ public class HomeRequest{
     }
 
     public void updateCount(long position){
-        HomeKnowItem homeKnowItem = mItemDao.load(position);
+        KnowLedgeBean homeKnowItem = mItemDao.load(position);
         homeKnowItem.setMax(homeKnowItem.getMax()+1);
         homeKnowItem.setCount(homeKnowItem.getCount()+1);
         mItemDao.save(homeKnowItem);
     }
 
     public boolean queryKnowRepeat(String title){
-        HomeKnowItem homeKnowItem = mItemDao.queryBuilder().where(HomeKnowItemDao.Properties.Title.eq(title)).unique();
+        KnowLedgeBean homeKnowItem = mItemDao.queryBuilder().where(HomeKnowItemDao.Properties.Title.eq(title)).unique();
         if(homeKnowItem == null){
             return true;
         }
         return false;
     }
 
-    public boolean saveKnowData(HomeKnowItem item){
+    public boolean saveKnowData(KnowLedgeBean item){
         item.setMax(1);
         item.setCount(0);
         item.setCreateClass(false);
@@ -72,8 +72,8 @@ public class HomeRequest{
         return true;
     }
 
-    public List<HomeKnowItem> getSelectBean(int language, int level, int show, int master) {
-        QueryBuilder<HomeKnowItem> queryBuilder = mItemDao.queryBuilder();
+    public List<KnowLedgeBean> getSelectBean(int language, int level, int show, int master) {
+        QueryBuilder<KnowLedgeBean> queryBuilder = mItemDao.queryBuilder();
         if(language != 0){
             queryBuilder.where(HomeKnowItemDao.Properties.Language.eq(language));
         }

@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.home.view;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
  * version:1.0
  */
 public interface HomeCommonView {
-    void showAllDataFinish(List<HomeKnowItem> homeKnowItems);
+    void showAllDataFinish(List<KnowLedgeBean> homeKnowItems);
     void showAllDataError(int error,String message);
 }

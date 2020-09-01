@@ -51,7 +51,11 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.0.8"
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
+    //日志
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 
+    //日志框架
+    implementation 'com.orhanobut:logger:1.15'
 
     //图片框架层
     implementation 'com.github.bumptech.glide:glide:4.9.0'

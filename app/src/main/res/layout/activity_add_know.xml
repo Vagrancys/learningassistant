@@ -106,6 +106,7 @@
             android:layout_height="match_parent"
             android:prompt="@string/add_know_level_text"
             android:gravity="center"
+            android:spinnerMode="dropdown"
             android:entries="@array/level_title"/>
     </LinearLayout>
 

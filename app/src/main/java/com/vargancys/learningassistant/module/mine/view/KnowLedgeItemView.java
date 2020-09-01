@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.mine.view;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ import java.util.List;
  * Description: 各语言知识展示视图层
  */
 public interface KnowLedgeItemView {
-    void loadKnowLedge(List<HomeKnowItem> mItem);
+    void loadKnowLedge(List<KnowLedgeBean> mItem);
     void loadKnowLedgeError(int error,String message);
 }

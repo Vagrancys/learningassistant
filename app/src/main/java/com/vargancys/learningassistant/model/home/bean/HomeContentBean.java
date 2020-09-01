@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.model.home.bean;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class HomeContentBean {
     private int error;
     private String msg;
-    private List<HomeKnowItem> contentBeans;
+    private List<KnowLedgeBean> contentBeans;
 
     public int getError() {
         return error;
@@ -31,11 +31,11 @@ public class HomeContentBean {
         this.msg = msg;
     }
 
-    public List<HomeKnowItem> getContentBeans() {
+    public List<KnowLedgeBean> getContentBeans() {
         return contentBeans;
     }
 
-    public void setContentBeans(List<HomeKnowItem> contentBeans) {
+    public void setContentBeans(List<KnowLedgeBean> contentBeans) {
         this.contentBeans = contentBeans;
     }
 }

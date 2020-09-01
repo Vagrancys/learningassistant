@@ -23,7 +23,7 @@ import com.vargancys.learningassistant.db.game.GameMultipleItem;
 import com.vargancys.learningassistant.db.game.GameRadioItem;
 import com.vargancys.learningassistant.db.game.GameSubjectItem;
 import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.ChallengeDataBean;
 import com.vargancys.learningassistant.db.mine.ChallengePartBean;
@@ -134,9 +134,9 @@ public class MineRequest {
             mItem.setQuality(data.getQuality());
             mItem.setTime(data.getTime());
             mItem.setTitle(data.getTitle());
-            List<HomeKnowItem> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(mineId),HomeKnowItemDao.Properties.Language.eq(i)).list();
+            List<KnowLedgeBean> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(mineId),HomeKnowItemDao.Properties.Language.eq(i)).list();
             List<KnowLedgeItemBean.KnowLedgeItem> mLedge = new ArrayList<>();
-            for (HomeKnowItem home:mHome){
+            for (KnowLedgeBean home:mHome){
                 KnowLedgeItemBean.KnowLedgeItem mKnow = new KnowLedgeItemBean.KnowLedgeItem();
                 mKnow.setCreateClass(home.getCreateClass());
                 mKnow.setHave(home.getHave());
@@ -157,8 +157,8 @@ public class MineRequest {
     }
 
     //得到个人发布的所有知识
-    public List<HomeKnowItem> getHomeKnowData(int type) {
-        QueryBuilder<HomeKnowItem> queryBuilder = mKnowDao.queryBuilder();
+    public List<KnowLedgeBean> getHomeKnowData(int type) {
+        QueryBuilder<KnowLedgeBean> queryBuilder = mKnowDao.queryBuilder();
         return queryBuilder.where(HomeKnowItemDao.Properties.Language.eq(type)).list();
     }
 
@@ -343,9 +343,9 @@ public class MineRequest {
 
     //得到问题各项数据
     public List<KnowLedgeItemBean.KnowLedgeItem> getProblemItemData(long problemId,int type) {
-        List<HomeKnowItem> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(problemId),HomeKnowItemDao.Properties.Language.eq(type)).list();
+        List<KnowLedgeBean> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(problemId),HomeKnowItemDao.Properties.Language.eq(type)).list();
         List<KnowLedgeItemBean.KnowLedgeItem> mLedge = new ArrayList<>();
-        for (HomeKnowItem home:mHome){
+        for (KnowLedgeBean home:mHome){
             KnowLedgeItemBean.KnowLedgeItem mKnow = new KnowLedgeItemBean.KnowLedgeItem();
             mKnow.setCreateClass(home.getCreateClass());
             mKnow.setHave(home.getHave());

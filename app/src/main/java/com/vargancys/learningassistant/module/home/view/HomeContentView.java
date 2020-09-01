@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.home.view;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import java.util.List;
  * version:1.0
  */
 public interface  HomeContentView {
-    void showContentBean(List<HomeKnowItem> bean);
+    void showContentBean(List<KnowLedgeBean> bean);
     void showError(int error,String msg);
     void hideEmpty();
     void showEmpty();
     void deleteFinish(long item_id);
     void deleteError(int error,String msg);
-    void showRefreshContentBean(List<HomeKnowItem> bean);
+    void showRefreshContentBean(List<KnowLedgeBean> bean);
 }

@@ -2,7 +2,7 @@ package com.vargancys.learningassistant.presenter.home;
 
 import android.util.Log;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.home.request.HomeRequest;
 import com.vargancys.learningassistant.model.home.request.KnowledgeRequest;
@@ -23,7 +23,7 @@ public class HomeContentPresenter{
     public HomeContentPresenter(HomeContentView view){
         mView = view;
         homeContentRequest = new HomeRequest();
-        mKnowLedge = new KnowledgeRequest();
+        mKnowLedge = KnowledgeRequest.getInstance();
     }
 
     //增加知识项的浏览记录
@@ -31,12 +31,12 @@ public class HomeContentPresenter{
         homeContentRequest.updateCount(position);
     }
 
-    public void getKnowledge(){
+    public void getKnowledge(int page,int limit){
         CommonHttpListener listener = new CommonHttpListener() {
             @Override
             public void onSuccess(int code, Object data) {
                 if(data !=null){
-                    List<HomeKnowItem> mBean = (List<HomeKnowItem>) data;
+                    List<KnowLedgeBean> mBean = (List<KnowLedgeBean>) data;
                     if(mBean.size() > 0){
                         Log.e("HomePresenter","hideEmpty");
                         mView.hideEmpty();
@@ -52,19 +52,19 @@ public class HomeContentPresenter{
 
             @Override
             public void onError(Throwable t) {
-
+                mView.showError(404,t.getMessage());
             }
 
             @Override
             public void onFinish() {
-
+                mView.hideEmpty();
             }
         };
-        mKnowLedge.getKnowLedge(listener);
+        mKnowLedge.getKnowLedge(page,limit,listener);
     }
 
     public void getData(){
-        List<HomeKnowItem> mBean = homeContentRequest.getBean();
+        List<KnowLedgeBean> mBean = homeContentRequest.getBean();
         if(mBean !=null){
             if(mBean.size() > 0){
                 Log.e("HomePresenter","hideEmpty");
@@ -89,7 +89,7 @@ public class HomeContentPresenter{
     }
 
     public void getSelectContentData(int language, int level, int show, int master) {
-        List<HomeKnowItem> mBean = homeContentRequest.getSelectBean(language,level,show,master);
+        List<KnowLedgeBean> mBean = homeContentRequest.getSelectBean(language,level,show,master);
         if(mBean !=null){
             if(mBean.size() > 0){
                 Log.e("HomePresenter","hideEmpty");

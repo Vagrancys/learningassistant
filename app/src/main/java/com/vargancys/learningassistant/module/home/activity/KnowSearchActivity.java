@@ -10,7 +10,7 @@ import android.widget.EditText;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFirstActivity;
@@ -51,7 +51,7 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
     private HomeCommonPresenter mPresenter;
     private KnowSearchAdapter mAdapter;
     private JumpRouteUtils jumpRouteUtils;
-    private ArrayList<HomeKnowItem> homeKnowItems = new ArrayList<>();
+    private ArrayList<KnowLedgeBean> homeKnowItems = new ArrayList<>();
     @Override
     public int getLayoutId() {
         return R.layout.activity_know_search;
@@ -71,7 +71,7 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
         mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                HomeKnowItem homeKnowItem =homeKnowItems.get(position);
+                KnowLedgeBean homeKnowItem =homeKnowItems.get(position);
                 if(homeKnowItem.getCreateClass()){
                     if(homeKnowItem.getHave()){
                         launchDemonstrateActivity(homeKnowItem.getActivity());
@@ -154,7 +154,7 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
     }
 
     @Override
-    public void showAllDataFinish(List<HomeKnowItem> homeKnowItem) {
+    public void showAllDataFinish(List<KnowLedgeBean> homeKnowItem) {
         homeKnowItems.clear();
         homeKnowItems.addAll(homeKnowItem);
         mAdapter.notifyDataSetChanged();

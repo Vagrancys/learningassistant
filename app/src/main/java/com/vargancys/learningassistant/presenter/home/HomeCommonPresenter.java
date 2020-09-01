@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.home.request.HomeCommonRequest;
 import com.vargancys.learningassistant.module.home.view.HomeCommonView;
 
@@ -21,7 +21,7 @@ public class HomeCommonPresenter {
     }
 
     public void getSearchAllData(String title) {
-        List<HomeKnowItem> homeKnowItems = homeCommonRequest.getSearchAllData(title);
+        List<KnowLedgeBean> homeKnowItems = homeCommonRequest.getSearchAllData(title);
         if(homeKnowItems.size() >0){
             mView.showAllDataFinish(homeKnowItems);
         }else{

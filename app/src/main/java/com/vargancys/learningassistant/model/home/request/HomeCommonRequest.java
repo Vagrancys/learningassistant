@@ -3,7 +3,7 @@ package com.vargancys.learningassistant.model.home.request;
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -36,8 +36,8 @@ public class HomeCommonRequest {
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mKnowItemDao = mDaoSession.getHomeKnowItemDao();
     }
-    public List<HomeKnowItem> getSearchAllData(String title) {
-        QueryBuilder<HomeKnowItem> queryBuilder =mKnowItemDao.queryBuilder();
+    public List<KnowLedgeBean> getSearchAllData(String title) {
+        QueryBuilder<KnowLedgeBean> queryBuilder =mKnowItemDao.queryBuilder();
         queryBuilder.and(HomeKnowItemDao.Properties.Title.like(title),HomeKnowItemDao.Properties.Summary.like(title));
         return queryBuilder.list();
     }

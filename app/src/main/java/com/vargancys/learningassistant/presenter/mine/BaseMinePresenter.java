@@ -2,7 +2,7 @@ package com.vargancys.learningassistant.presenter.mine;
 
 import android.content.Context;
 
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.db.ladder.LadderDataBean;
 import com.vargancys.learningassistant.db.mine.MineDataBean;
 import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
@@ -80,7 +80,7 @@ public class BaseMinePresenter {
 
     //得到个人发布的所有知识
     public void getHomeKnowData(int type) {
-        List<HomeKnowItem> mItem = mRequest.getHomeKnowData(type);
+        List<KnowLedgeBean> mItem = mRequest.getHomeKnowData(type);
         if(mItem != null && mItem.size() > 0){
             ((KnowLedgeItemView) mView).loadKnowLedge(mItem);
         }else{

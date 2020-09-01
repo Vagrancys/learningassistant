@@ -11,7 +11,7 @@ import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
 import com.vargancys.learningassistant.db.home.HomeKnowFunction;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import java.util.List;
@@ -72,7 +72,7 @@ public class KnowInsertRequest {
         homeKnowContent.setExperience(experience);
         Log.e(TAG,"id = "+know_id);
         long dataId = addHomeKnowData(title,0);
-        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setDataId(dataId);
         homeKnowItem.update();
         long result = mContentDao.insert(homeKnowContent);
@@ -99,7 +99,7 @@ public class KnowInsertRequest {
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
         long dataId = addHomeKnowData(title,1);
-        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setContentId(result);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setDataId(dataId);
@@ -125,7 +125,7 @@ public class KnowInsertRequest {
             mFunctionDao.insert(function);
         }
         long dataId = addHomeKnowData(title,2);
-        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         homeKnowItem.setDataId(dataId);
@@ -154,7 +154,7 @@ public class KnowInsertRequest {
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
-        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,3);
@@ -180,7 +180,7 @@ public class KnowInsertRequest {
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
-        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,4);
@@ -214,7 +214,7 @@ public class KnowInsertRequest {
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
-        HomeKnowItem homeKnowItem = mItemDao.load(know_id);
+        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,5);

@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
@@ -35,7 +35,7 @@ public class KnowLedgeItemActivity extends BaseActivity implements KnowLedgeItem
     SwipeRefreshLayout swipeRefresh;
     private BaseMinePresenter mPresenter;
     private HomeContentAdapter mAdapter;
-    private List<HomeKnowItem> mItems = new ArrayList<>();
+    private List<KnowLedgeBean> mItems = new ArrayList<>();
     private int type = 1;
 
     @Override
@@ -69,7 +69,7 @@ public class KnowLedgeItemActivity extends BaseActivity implements KnowLedgeItem
     }
 
     @Override
-    public void loadKnowLedge(List<HomeKnowItem> mItem) {
+    public void loadKnowLedge(List<KnowLedgeBean> mItem) {
         swipeRefresh.setRefreshing(false);
         mItems.addAll(mItem);
         mAdapter.notifyDataSetChanged();

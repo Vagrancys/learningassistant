@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ import butterknife.BindView;
  * 知识搜索适配器
  */
 public class KnowSearchAdapter extends BaseRecyclerAdapter {
-    private List<HomeKnowItem> contentBean;
-    public KnowSearchAdapter(Context context, List<HomeKnowItem> contentBean){
+    private List<KnowLedgeBean> contentBean;
+    public KnowSearchAdapter(Context context, List<KnowLedgeBean> contentBean){
         super(context);
         this.contentBean = contentBean;
     }
@@ -38,7 +38,7 @@ public class KnowSearchAdapter extends BaseRecyclerAdapter {
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         HomeContentViewHolder viewHolder = (HomeContentViewHolder) holder;
-        HomeKnowItem bean = contentBean.get(position);
+        KnowLedgeBean bean = contentBean.get(position);
 
         viewHolder.contentTitle.setText(bean.getTitle());
         int ImageId;

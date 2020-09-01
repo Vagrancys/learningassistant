@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.widget.MasterProgressView;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class HomeContentAdapter extends BaseRecyclerAdapter {
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         HomeContentViewHolder viewHolder = (HomeContentViewHolder) holder;
-        HomeKnowItem bean = (HomeKnowItem) contentBean.get(position);
+        KnowLedgeBean bean = (KnowLedgeBean) contentBean.get(position);
         if(bean.getHave()){
             viewHolder.contentHave.setImageResource(R.drawable.know_have_selected);
         }else{

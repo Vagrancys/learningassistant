@@ -23,6 +23,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void createAllTables(Database db, boolean ifNotExists) {
         HelpCommendItemDao.createTable(db, ifNotExists);
         HelpContentItemDao.createTable(db, ifNotExists);
+        MemberBeanDao.createTable(db, ifNotExists);
         GameContentDao.createTable(db, ifNotExists);
         GameFillItemDao.createTable(db, ifNotExists);
         GameMultipleItemDao.createTable(db, ifNotExists);
@@ -44,28 +45,28 @@ public class DaoMaster extends AbstractDaoMaster {
         LadderDifficultyCommentBeanDao.createTable(db, ifNotExists);
         LadderDifficultyDataBeanDao.createTable(db, ifNotExists);
         LadderHelpBeanDao.createTable(db, ifNotExists);
-        LadderTopicBeanDao.createTable(db, ifNotExists);
-        OverViewListContentDao.createTable(db, ifNotExists);
-        OverViewListItemDao.createTable(db, ifNotExists);
         LadderRankDataBeanDao.createTable(db, ifNotExists);
         LadderRankSettingBeanDao.createTable(db, ifNotExists);
         LadderResultBeanDao.createTable(db, ifNotExists);
-        MineDataBeanDao.createTable(db, ifNotExists);
-        MineLevelPrivilegeBeanDao.createTable(db, ifNotExists);
-        MineFeedbackBeanDao.createTable(db, ifNotExists);
-        KnowLedgeDataBeanDao.createTable(db, ifNotExists);
+        LadderTopicBeanDao.createTable(db, ifNotExists);
         ChallengeDataBeanDao.createTable(db, ifNotExists);
         ChallengePartBeanDao.createTable(db, ifNotExists);
+        KnowLedgeDataBeanDao.createTable(db, ifNotExists);
         LevelDataBeanDao.createTable(db, ifNotExists);
         LevelPartBeanDao.createTable(db, ifNotExists);
+        MineDataBeanDao.createTable(db, ifNotExists);
+        MineFeedbackBeanDao.createTable(db, ifNotExists);
+        MineLevelPrivilegeBeanDao.createTable(db, ifNotExists);
         ProblemDataBeanDao.createTable(db, ifNotExists);
-        MemberBeanDao.createTable(db, ifNotExists);
+        OverViewListContentDao.createTable(db, ifNotExists);
+        OverViewListItemDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         HelpCommendItemDao.dropTable(db, ifExists);
         HelpContentItemDao.dropTable(db, ifExists);
+        MemberBeanDao.dropTable(db, ifExists);
         GameContentDao.dropTable(db, ifExists);
         GameFillItemDao.dropTable(db, ifExists);
         GameMultipleItemDao.dropTable(db, ifExists);
@@ -87,22 +88,21 @@ public class DaoMaster extends AbstractDaoMaster {
         LadderDifficultyCommentBeanDao.dropTable(db, ifExists);
         LadderDifficultyDataBeanDao.dropTable(db, ifExists);
         LadderHelpBeanDao.dropTable(db, ifExists);
-        LadderTopicBeanDao.dropTable(db, ifExists);
-        OverViewListContentDao.dropTable(db, ifExists);
-        OverViewListItemDao.dropTable(db, ifExists);
         LadderRankDataBeanDao.dropTable(db, ifExists);
         LadderRankSettingBeanDao.dropTable(db, ifExists);
         LadderResultBeanDao.dropTable(db, ifExists);
-        MineDataBeanDao.dropTable(db, ifExists);
-        MineLevelPrivilegeBeanDao.dropTable(db, ifExists);
-        MineFeedbackBeanDao.dropTable(db, ifExists);
-        KnowLedgeDataBeanDao.dropTable(db, ifExists);
+        LadderTopicBeanDao.dropTable(db, ifExists);
         ChallengeDataBeanDao.dropTable(db, ifExists);
         ChallengePartBeanDao.dropTable(db, ifExists);
+        KnowLedgeDataBeanDao.dropTable(db, ifExists);
         LevelDataBeanDao.dropTable(db, ifExists);
         LevelPartBeanDao.dropTable(db, ifExists);
+        MineDataBeanDao.dropTable(db, ifExists);
+        MineFeedbackBeanDao.dropTable(db, ifExists);
+        MineLevelPrivilegeBeanDao.dropTable(db, ifExists);
         ProblemDataBeanDao.dropTable(db, ifExists);
-        MemberBeanDao.dropTable(db, ifExists);
+        OverViewListContentDao.dropTable(db, ifExists);
+        OverViewListItemDao.dropTable(db, ifExists);
     }
 
     /**
@@ -123,6 +123,7 @@ public class DaoMaster extends AbstractDaoMaster {
         super(db, SCHEMA_VERSION);
         registerDaoClass(HelpCommendItemDao.class);
         registerDaoClass(HelpContentItemDao.class);
+        registerDaoClass(MemberBeanDao.class);
         registerDaoClass(GameContentDao.class);
         registerDaoClass(GameFillItemDao.class);
         registerDaoClass(GameMultipleItemDao.class);
@@ -144,22 +145,21 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(LadderDifficultyCommentBeanDao.class);
         registerDaoClass(LadderDifficultyDataBeanDao.class);
         registerDaoClass(LadderHelpBeanDao.class);
-        registerDaoClass(LadderTopicBeanDao.class);
-        registerDaoClass(OverViewListContentDao.class);
-        registerDaoClass(OverViewListItemDao.class);
         registerDaoClass(LadderRankDataBeanDao.class);
         registerDaoClass(LadderRankSettingBeanDao.class);
         registerDaoClass(LadderResultBeanDao.class);
-        registerDaoClass(MineDataBeanDao.class);
-        registerDaoClass(MineLevelPrivilegeBeanDao.class);
-        registerDaoClass(MineFeedbackBeanDao.class);
-        registerDaoClass(KnowLedgeDataBeanDao.class);
+        registerDaoClass(LadderTopicBeanDao.class);
         registerDaoClass(ChallengeDataBeanDao.class);
         registerDaoClass(ChallengePartBeanDao.class);
+        registerDaoClass(KnowLedgeDataBeanDao.class);
         registerDaoClass(LevelDataBeanDao.class);
         registerDaoClass(LevelPartBeanDao.class);
+        registerDaoClass(MineDataBeanDao.class);
+        registerDaoClass(MineFeedbackBeanDao.class);
+        registerDaoClass(MineLevelPrivilegeBeanDao.class);
         registerDaoClass(ProblemDataBeanDao.class);
-        registerDaoClass(MemberBeanDao.class);
+        registerDaoClass(OverViewListContentDao.class);
+        registerDaoClass(OverViewListItemDao.class);
     }
 
     public DaoSession newSession() {

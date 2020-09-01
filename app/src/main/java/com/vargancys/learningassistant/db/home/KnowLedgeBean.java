@@ -21,15 +21,26 @@ import com.vagrancys.learningassistant.db.HomeKnowItemDao;
  * 首页知识item的表结构
  */
 @Entity
-public class HomeKnowItem{
+public class KnowLedgeBean {
+    public static String MASTERLEVEL = "master_level";
+    public static String PROGRESS = "progress";
+    public static String TITLE = "title";
+    public static String ACTIVITY = "activity";
+    public static String HAVE = "have";
+    public static String LEVEL = "level";
+    public static String SUMMARY = "summary";
+    public static String STUDTTITLE = "study_title";
+    public static String MAX = "max";
+    public static String COUNT = "count";
+    public static String CREATECLASS = "create_class";
     //知识项id
     @Id(autoincrement = true)
     @Unique
     private Long id;
 
     //用户id
-    private long memberId;
-    private long contentId;
+    public long memberId;
+    public long contentId;
     private long dataId;
 
     //官方知识
@@ -96,10 +107,10 @@ public class HomeKnowItem{
     private transient HomeKnowItemDao myDao;
 
     @Generated(hash = 1652913238)
-    public HomeKnowItem(Long id, long memberId, long contentId, long dataId, boolean official, int look,
-            String activity, boolean have, String title, int level, String summary, int progress,
-            int count, int max, int masterLevel, String studyTitle, boolean createClass, int language,
-            int time, int problem, int type) {
+    public KnowLedgeBean(Long id, long memberId, long contentId, long dataId, boolean official, int look,
+                         String activity, boolean have, String title, int level, String summary, int progress,
+                         int count, int max, int masterLevel, String studyTitle, boolean createClass, int language,
+                         int time, int problem, int type) {
         this.id = id;
         this.memberId = memberId;
         this.contentId = contentId;
@@ -124,7 +135,7 @@ public class HomeKnowItem{
     }
 
     @Generated(hash = 2077989770)
-    public HomeKnowItem() {
+    public KnowLedgeBean() {
     }
 
     @Generated(hash = 1769914776)

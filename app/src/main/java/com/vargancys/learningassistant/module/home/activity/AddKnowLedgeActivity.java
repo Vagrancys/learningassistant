@@ -12,10 +12,13 @@ import android.widget.Spinner;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.view.HomeAddView;
 import com.vargancys.learningassistant.presenter.home.HomeKnowPresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,7 +30,7 @@ import butterknife.OnClick;
  * version:1.0
  * 添加知识页面
  */
-public class AddKnowActivity extends BaseActivity implements HomeAddView {
+public class AddKnowLedgeActivity extends BaseActivity implements HomeAddView {
     private static final String TAG = "AddKnowActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
@@ -90,25 +93,25 @@ public class AddKnowActivity extends BaseActivity implements HomeAddView {
         });
     }
 
-    public void addItem(){
-        HomeKnowItem homeKnowItem = new HomeKnowItem();
-        homeKnowItem.setTitle(addKnowTitle.getText().toString());
-        homeKnowItem.setActivity(addKnowClass.getText().toString());
-        homeKnowItem.setHave(mHave);
-        homeKnowItem.setLevel(mLevel);
-        homeKnowItem.setSummary(addKnowSummary.getText().toString());
-        homeKnowItem.setStudyTitle(addKnowMaster.getText().toString());
-        homeKnowPresenter.saveKnowData(homeKnowItem);
+    public void addKnowLedge(){
+        Map<String,Object> knowLedge = new HashMap<>();
+        knowLedge.put(KnowLedgeBean.TITLE,addKnowTitle.getText().toString());
+        knowLedge.put(KnowLedgeBean.ACTIVITY,addKnowClass.getText().toString());
+        knowLedge.put(KnowLedgeBean.HAVE,mHave);
+        knowLedge.put(KnowLedgeBean.LEVEL,mLevel);
+        knowLedge.put(KnowLedgeBean.SUMMARY,addKnowSummary.getText().toString());
+        knowLedge.put(KnowLedgeBean.STUDTTITLE,addKnowMaster.getText().toString());
+        homeKnowPresenter.saveKnowData(knowLedge);
     }
 
     public static void launch(Activity activity) {
-        Intent intent = new Intent(activity, AddKnowActivity.class);
+        Intent intent = new Intent(activity, AddKnowLedgeActivity.class);
         activity.startActivity(intent);
     }
 
     @Override
     public void queryRepeatFinish() {
-        addItem();
+        addKnowLedge();
     }
 
     @Override

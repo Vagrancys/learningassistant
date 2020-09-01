@@ -20,10 +20,10 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowItem;
+import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.common.help.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
-import com.vargancys.learningassistant.module.home.activity.AddKnowActivity;
+import com.vargancys.learningassistant.module.home.activity.AddKnowLedgeActivity;
 import com.vargancys.learningassistant.module.home.activity.KnowSearchActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
@@ -72,7 +72,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
 
     private HomeContentAdapter homeContentAdapter;
     private HomeContentPresenter homeContentPresenter;
-    private List<HomeKnowItem> mBean = new ArrayList<>();
+    private List<KnowLedgeBean> mBean = new ArrayList<>();
     private JumpRouteUtils jumpRouteUtils;
     private HomeClassFragment mClassFragment;
     private Animation mUpScaleAnim;
@@ -96,7 +96,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     @Override
     public void initData() {
         swipeRefresh.setRefreshing(true);
-        homeContentPresenter.getKnowledge();
+        homeContentPresenter.getKnowledge(1,10);
     }
 
     private void initClass() {
@@ -129,7 +129,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     class HomeContentItemLongClickListener implements BaseRecyclerAdapter.OnItemLongClickListener{
         @Override
         public void OnItemLongClick(int position) {
-            final HomeKnowItem homeKnowItem = mBean.get(position);
+            final KnowLedgeBean homeKnowItem = mBean.get(position);
             if(homeKnowItem.getOfficial()){
                 ToastUtils.ToastText(getContext(),"官方的知识不能删除!您可以选择其他的知识删除");
             }else{
@@ -159,14 +159,14 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
         @Override
         public void onRefresh() {
             swipeRefresh.setRefreshing(true);
-            homeContentPresenter.getKnowledge();
+            homeContentPresenter.getKnowledge(1,10);
         }
     }
 
     class HomeContentItemClickListener implements BaseRecyclerAdapter.OnItemClickListener{
         @Override
         public void OnItemClick(int position) {
-            HomeKnowItem homeKnowItem =mBean.get(position);
+            KnowLedgeBean homeKnowItem =mBean.get(position);
             if(homeKnowItem.getCreateClass()){
                 homeContentPresenter.updateCount(homeKnowItem.getId());
                 if(homeKnowItem.getHave()){
@@ -189,7 +189,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.add_menu:
-                AddKnowActivity.launch(getActivity());
+                AddKnowLedgeActivity.launch(getActivity());
                 break;
             case R.id.help_menu:
                 HelpContentActivity.launch(getActivity());
@@ -305,7 +305,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     }
 
     @Override
-    public void showContentBean(List<HomeKnowItem> bean) {
+    public void showContentBean(List<KnowLedgeBean> bean) {
         mBean.clear();
         mBean.addAll(bean);
         homeContentAdapter.notifyDataSetChanged();
@@ -354,7 +354,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     }
 
     @Override
-    public void showRefreshContentBean(List<HomeKnowItem> bean) {
+    public void showRefreshContentBean(List<KnowLedgeBean> bean) {
         mBean.clear();
         mBean.addAll(bean);
         homeContentAdapter.notifyDataSetChanged();

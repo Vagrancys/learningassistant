@@ -7,7 +7,7 @@ import java.net.ConnectException;
 import io.reactivex.observers.DisposableObserver;
 import retrofit2.HttpException;
 
-public abstract class MySubscriber<T> extends DisposableObserver<BaseBean<T>> {
+public abstract class MySubscriber<T> extends DisposableObserver<T> {
     protected abstract void onSuccess(T t);
 
     protected void onFinish() {
@@ -21,17 +21,20 @@ public abstract class MySubscriber<T> extends DisposableObserver<BaseBean<T>> {
     public void onComplete() {
         onFinish();
     }
-    
+
     @Override
-    public void onNext(BaseBean<T> baseModel) {
-        if (baseModel.getCode() == 1 || baseModel.getCode() == 0) {
-            onSuccess(baseModel.getData());
-        } else if (baseModel.getCode() == 303) {
-            //比如 做token无效统一处理
-            onFailed(baseModel.getCode(), baseModel.getMsg());
-        } else {
-            onFailed(baseModel.getCode(), baseModel.getMsg());
+    public void onNext(T baseModel) {
+        if (baseModel instanceof BaseBean) {
+            if (((BaseBean) baseModel).getCode() == 200) {
+                onSuccess(baseModel);
+            } else if (((BaseBean) baseModel).getCode() == 303) {
+                //比如 做token无效统一处理
+//                onFailed(((BaseBean) baseModel).getCode(), ((BaseBean) baseModel).getMsg());
+            } else {
+                onFailed(((BaseBean) baseModel).getCode(), ((BaseBean) baseModel).getMsg());
+            }
         }
+
     }
 
     @Override
