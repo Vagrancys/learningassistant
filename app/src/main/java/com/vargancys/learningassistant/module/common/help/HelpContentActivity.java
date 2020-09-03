@@ -15,10 +15,10 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 import com.vargancys.learningassistant.module.common.adapter.HelpContentAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpContentView;
-import com.vargancys.learningassistant.presenter.common.help.HelpContentPresenter;
+import com.vargancys.learningassistant.presenter.common.help.HelpPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -48,10 +48,10 @@ public class HelpContentActivity extends BaseActivity
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
 
-    private HelpContentPresenter helpContentPresenter;
+    private HelpPresenter helpPresenter;
     private HelpContentAdapter helpContentAdapter;
     private int RequestCode = 2003;
-    private List<HelpContentItem> mBean = new ArrayList<>();
+    private List<HelpContentBean> mBean = new ArrayList<>();
     @Override
     public int getLayoutId() {
         return R.layout.activity_help_content;
@@ -59,13 +59,13 @@ public class HelpContentActivity extends BaseActivity
 
     @Override
     public void initView() {
-        helpContentPresenter = new HelpContentPresenter(this);
+        helpPresenter = new HelpPresenter<HelpContentView>(this);
         swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
         helpContentAdapter = new HelpContentAdapter(getContext(),mBean);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(helpContentAdapter);
         initListener();
-        helpContentPresenter.getAllBean();
+        helpPresenter.getAllData();
     }
 
     private void initListener(){
@@ -75,7 +75,7 @@ public class HelpContentActivity extends BaseActivity
     }
 
     @Override
-    public void showContentBean(List<HelpContentItem> bean) {
+    public void showContentBean(List<HelpContentBean> bean) {
         mBean.clear();
         mBean.addAll(bean);
         helpContentAdapter.notifyDataSetChanged();
@@ -120,23 +120,15 @@ public class HelpContentActivity extends BaseActivity
         @Override
         public void OnItemLongClick(int position) {
             final int mPosition = position;
-            final HelpContentItem helpContentItem = (HelpContentItem) mBean.get(position);
+            final HelpContentBean mItem = mBean.get(position);
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-            alertDialog.setTitle(helpContentItem.getTitle());
-            alertDialog.setMessage(helpContentItem.getSummary());
-            alertDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    helpContentPresenter.deleteHelpData(mPosition,helpContentItem.getId().intValue());
-                    dialog.dismiss();
-                }
+            alertDialog.setTitle(mItem.getTitle());
+            alertDialog.setMessage(mItem.getSummary());
+            alertDialog.setPositiveButton("确定", (dialog, which) -> {
+                helpPresenter.deleteData(mPosition,mItem.getId());
+                dialog.dismiss();
             });
-            alertDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+            alertDialog.setNegativeButton("取消", (dialog, which) -> dialog.dismiss());
             alertDialog.show();
         }
     }
@@ -145,8 +137,8 @@ public class HelpContentActivity extends BaseActivity
         @Override
         public void OnItemClick(int position) {
             ToastUtils.ToastText(getContext(),R.string.help_content_details_text);
-            HelpContentItem helpContentItem =mBean.get(position);
-            HelpSummaryActivity.launch(HelpContentActivity.this,helpContentItem.getId().intValue());
+            HelpContentBean mItem =mBean.get(position);
+            HelpSummaryActivity.launch(HelpContentActivity.this,mItem.getId());
         }
     }
 
@@ -154,7 +146,7 @@ public class HelpContentActivity extends BaseActivity
         @Override
         public void onRefresh() {
             swipeRefresh.setRefreshing(true);
-            helpContentPresenter.getAllBean();
+            helpPresenter.getAllData();
         }
     }
 
@@ -164,7 +156,7 @@ public class HelpContentActivity extends BaseActivity
         if(requestCode == RequestCode&&resultCode == HelpAddActivity.ResultCode&&data != null){
             int addCount = data.getIntExtra(ConstantsUtils.HELP_ADD_COUNT,0);
             if(addCount >0){
-                helpContentPresenter.getAllBean();
+                helpPresenter.getAllData();
             }
         }
     }

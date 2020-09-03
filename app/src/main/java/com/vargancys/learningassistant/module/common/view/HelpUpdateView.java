@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.common.view;
 
-import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 
 /**
  * author: Vagrancy
@@ -9,9 +9,9 @@ import com.vargancys.learningassistant.db.common.HelpContentItem;
  * version:1.0
  */
 public interface HelpUpdateView{
-    void getHelpData(HelpContentItem item);
+    void getHelpData(HelpContentBean item);
     void getHelpError(int error,String msg);
-    boolean equalsHelpData(String title,String summary);
+    boolean equalSingleHelpData(String title,String summary);
     void updateFinish();
     void updateError(int error,String msg);
 }

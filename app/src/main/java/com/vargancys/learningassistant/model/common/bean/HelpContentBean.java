@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.model.common.bean;
 
-import com.vargancys.learningassistant.db.common.HelpContentItem;
-
 import java.util.List;
 
 /**
@@ -13,7 +11,7 @@ import java.util.List;
 public class HelpContentBean {
     private String msg;
     private int error;
-    private List<HelpContentItem> helpContentItems;
+    private List<com.vargancys.learningassistant.db.common.HelpContentBean> helpContentItems;
 
     public String getMsg() {
         return msg;
@@ -31,11 +29,11 @@ public class HelpContentBean {
         this.error = error;
     }
 
-    public List<HelpContentItem> getHelpContentItems() {
+    public List<com.vargancys.learningassistant.db.common.HelpContentBean> getHelpContentItems() {
         return helpContentItems;
     }
 
-    public void setHelpContentItems(List<HelpContentItem> helpContentItems) {
+    public void setHelpContentItems(List<com.vargancys.learningassistant.db.common.HelpContentBean> helpContentItems) {
         this.helpContentItems = helpContentItems;
     }
 }

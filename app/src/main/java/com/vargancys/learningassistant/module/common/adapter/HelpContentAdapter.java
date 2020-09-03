@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ import butterknife.BindView;
  * 帮助内容适配器
  */
 public class HelpContentAdapter extends BaseRecyclerAdapter {
-    private List<HelpContentItem> mBean;
-    public HelpContentAdapter(Context context,List<HelpContentItem> bean){
+    private List<HelpContentBean> mBean;
+    public HelpContentAdapter(Context context,List<HelpContentBean> bean){
         super(context);
         mBean = bean;
     }

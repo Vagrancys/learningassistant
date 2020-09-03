@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.module.common.view.HelpAddView;
-import com.vargancys.learningassistant.presenter.common.help.HelpAddPresenter;
+import com.vargancys.learningassistant.presenter.common.help.HelpPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -34,7 +34,7 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
     EditText helpSummaryEdit;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    private HelpAddPresenter helpAddPresenter;
+    private HelpPresenter helpPresenter;
     public static int ResultCode = 2005;
     private int addCount = 0;
 
@@ -45,7 +45,7 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
 
     @Override
     public void initView() {
-        helpAddPresenter = new HelpAddPresenter(this);
+        helpPresenter = new HelpPresenter<HelpAddView>(this);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class HelpAddActivity extends BaseActivity implements HelpAddView {
                 finishHelp();
                 break;
             case R.id.common_img:
-                helpAddPresenter.saveHelpData(helpTitleEdit.getText().toString(),
+                helpPresenter.saveHelpData(helpTitleEdit.getText().toString(),
                         helpSummaryEdit.getText().toString());
                 break;
         }

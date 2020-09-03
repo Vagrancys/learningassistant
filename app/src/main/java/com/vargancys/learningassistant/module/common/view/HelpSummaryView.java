@@ -1,7 +1,7 @@
 package com.vargancys.learningassistant.module.common.view;
 
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface HelpSummaryView{
 
-    void findFinish(HelpContentItem object);
+    void findFinish(HelpContentBean object);
     void findError(int error,String msg);
     void findCommendError(int error,String msg);
 
@@ -21,7 +21,7 @@ public interface HelpSummaryView{
 
     void findCommend(List<HelpCommendItem> items);
 
-    void reFreshSummary(HelpContentItem item);
+    void reFreshSummary(HelpContentBean item);
 
     void PraiseOrPoor(int state,int number,String msg);
 

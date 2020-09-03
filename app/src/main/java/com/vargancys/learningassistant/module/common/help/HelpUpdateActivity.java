@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 import com.vargancys.learningassistant.module.common.view.HelpUpdateView;
-import com.vargancys.learningassistant.presenter.common.help.HelpUpdatePresenter;
+import com.vargancys.learningassistant.presenter.common.help.HelpPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -42,7 +42,7 @@ public class HelpUpdateActivity extends BaseActivity
     TextView updateEmpty;
     private int ResultCode = 2002;
     private int SummaryId;
-    private HelpUpdatePresenter helpUpdatePresenter;
+    private HelpPresenter helpPresenter;
     private String mTitle;
     private String mSummary;
 
@@ -57,8 +57,8 @@ public class HelpUpdateActivity extends BaseActivity
         if (intent != null) {
             SummaryId = intent.getIntExtra(ConstantsUtils.HELP_SUMMARY_ID, 0);
         }
-        helpUpdatePresenter = new HelpUpdatePresenter(this);
-        helpUpdatePresenter.getHelpData(SummaryId);
+        helpPresenter = new HelpPresenter<HelpUpdateView>(this);
+        helpPresenter.getSingleHelpData(SummaryId);
         initListener();
     }
 
@@ -73,12 +73,12 @@ public class HelpUpdateActivity extends BaseActivity
     }
 
     @Override
-    public boolean equalsHelpData(String title, String summary) {
+    public boolean equalSingleHelpData(String title, String summary) {
         return mTitle.equals(title)&&mSummary.equals(summary);
     }
 
     @Override
-    public void getHelpData(HelpContentItem item) {
+    public void getHelpData(HelpContentBean item) {
         mTitle = item.getTitle();
         mSummary = item.getSummary();
         helpNumber.setText(String.valueOf(item.getNumber()));
@@ -121,12 +121,12 @@ public class HelpUpdateActivity extends BaseActivity
                 finish();
                 break;
             case R.id.common_img:
-                boolean equals = helpUpdatePresenter.equalsHelpData(helpTitleEdit.getText().toString(),
+                boolean equals = helpPresenter.equalSingleHelpData(helpTitleEdit.getText().toString(),
                     helpSummaryEdit.getText().toString());
                 if(equals){
                     ToastUtils.ToastText(getContext(),R.string.help_update_original_text);
                 }else{
-                    helpUpdatePresenter.updateHelpData(SummaryId,helpTitleEdit.getText().toString(),
+                    helpPresenter.updateHelpData(SummaryId,helpTitleEdit.getText().toString(),
                             helpSummaryEdit.getText().toString());
                 }
                 break;

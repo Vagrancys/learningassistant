@@ -9,7 +9,7 @@ import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 import com.vargancys.learningassistant.db.common.MemberBean;
 import com.vargancys.learningassistant.db.game.GameContent;
 import com.vargancys.learningassistant.db.game.GameFillItem;
@@ -299,7 +299,7 @@ public class DaoSession extends AbstractDaoSession {
         overViewListItemDao = new OverViewListItemDao(overViewListItemDaoConfig, this);
 
         registerDao(HelpCommendItem.class, helpCommendItemDao);
-        registerDao(HelpContentItem.class, helpContentItemDao);
+        registerDao(HelpContentBean.class, helpContentItemDao);
         registerDao(MemberBean.class, memberBeanDao);
         registerDao(GameContent.class, gameContentDao);
         registerDao(GameFillItem.class, gameFillItemDao);

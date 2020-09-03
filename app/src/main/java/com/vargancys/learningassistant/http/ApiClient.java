@@ -2,6 +2,8 @@ package com.vargancys.learningassistant.http;
 
 import android.util.Log;
 
+import com.vargancys.learningassistant.db.common.HelpCommendItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
@@ -121,6 +123,92 @@ public class ApiClient {
      */
     public void saveKnowLedge(Map<String,Object> knowLedge,MySubscriber<BaseBean<NoDataBean>> subscriber){
         toSubscribe(mService.saveKnowLedge(knowLedge),subscriber);
+    }
+
+    /**
+     * 获取所有的帮助数据
+     * @param subscriber
+     */
+    public void getAllHelpData(MySubscriber<BaseBean<List<HelpContentBean>>> subscriber){
+        toSubscribe(mService.getAllHelpData(),subscriber);
+    }
+
+    /**
+     * 删除数组中的帮助数据
+     * @param delete
+     * @param subscriber
+     */
+    public void deleteHelpData(List<Integer> delete,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteHelpData(delete),subscriber);
+    }
+
+    /**
+     * 得到单条帮助数据
+     * @param id
+     * @param subscriber
+     */
+    public void getSingleHelpData(int id,MySubscriber<BaseBean<HelpContentBean>> subscriber){
+        toSubscribe(mService.getSingleHelpData(id),subscriber);
+    }
+
+    /**
+     * 更新帮助
+     * @param id 帮助的id
+     * @param title 帮助的标题
+     * @param summary 帮助的内容
+     * @param subscriber
+     */
+    public void updateHelpData(int id,String title,String summary,long time,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.updateHelpData(id,title,summary,time),subscriber);
+    }
+
+    /**
+     * 添加帮助数据
+     * @param map 帮助数据合集
+     * @param subscriber
+     */
+    public void addSingleHelpData(Map<String,Object> map,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.addSingleHelpData(map),subscriber);
+    }
+
+    /**
+     * 根据id得到该帮助下的所有评论
+     * @param id id
+     * @param subscriber
+     */
+    public void getAllCommendData(int id, MySubscriber<BaseBean<List<HelpCommendItem>>> subscriber){
+        toSubscribe(mService.getAllCommendData(id),subscriber);
+    }
+
+    /**
+     * 添加赞扁的数据
+     * @param state 判断是否是那个
+     * @param id 帮助id
+     * @param subscriber
+     */
+    public void addPraiseOrPoor(int state,int id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.addPraiseOrPoor(state,id),subscriber);
+    }
+
+    /**
+     * 取消赞扁的数据
+     * @param state 判断是否是那个
+     * @param id 帮助id
+     * @param subscriber
+     */
+    public void subPraiseOrPoor(int state,int id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.subPraiseOrPoor(state,id),subscriber);
+    }
+
+    /**
+     * 添加评论
+     * @param id 帮助id
+     * @param title 内容
+     * @param time 时间
+     * @param subscriber
+     */
+    public void addHelpCommendData(int id,String title,long time,MySubscriber<BaseBean<HelpCommendItem>> subscriber){
+        toSubscribe(mService.addHelpCommendData(id,title,time),subscriber);
     }
 
     private <T> void toSubscribe(Observable<T> o, MySubscriber<T> s) {

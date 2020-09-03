@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.common.HelpContentItem;
+import com.vargancys.learningassistant.db.common.HelpContentBean;
 import com.vargancys.learningassistant.module.common.adapter.HelpCommendAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpSummaryView;
-import com.vargancys.learningassistant.presenter.common.help.HelpSummaryPresenter;
+import com.vargancys.learningassistant.presenter.common.help.HelpPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -62,7 +62,7 @@ public class HelpSummaryActivity extends BaseActivity
     @BindView(R.id.commend_number_text)
     TextView commendNumberText;
 
-    private HelpSummaryPresenter helpSummaryPresenter;
+    private HelpPresenter helpPresenter;
     private HelpCommendAdapter helpCommendAdapter;
     private int Request = 2001;
     private int help_summary_id;
@@ -78,24 +78,21 @@ public class HelpSummaryActivity extends BaseActivity
     @Override
     public void initView() {
         help_summary_id = getIntent().getIntExtra(ConstantsUtils.HELP_SUMMARY_ID,0);
-        helpSummaryPresenter = new HelpSummaryPresenter(this);
+        helpPresenter = new HelpPresenter<HelpSummaryView>(this);
         helpCommendAdapter = new HelpCommendAdapter(getContext(),helpCommendItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(helpCommendAdapter);
-        helpSummaryPresenter.getHelpData(help_summary_id);
-        helpSummaryPresenter.getCommendData(help_summary_id);
+        helpPresenter.getSingleHelpData(help_summary_id);
+        helpPresenter.getAllCommendData(help_summary_id);
         initListener();
     }
 
     private void initListener() {
-        commendEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    commendEdit.setMinLines(5);
-                }else{
-                    commendEdit.setMinLines(1);
-                }
+        commendEdit.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus){
+                commendEdit.setMinLines(5);
+            }else{
+                commendEdit.setMinLines(1);
             }
         });
     }
@@ -110,7 +107,7 @@ public class HelpSummaryActivity extends BaseActivity
                     ToastUtils.ToastText(getContext(), R.string.help_update_not_text);
                     break;
                 case 1:
-                    helpSummaryPresenter.reFreshSummary(help_summary_id);
+                    helpPresenter.reFreshSummary(help_summary_id);
                     break;
                 case 2:
                     ToastUtils.ToastText(getContext(),R.string.help_update_fail_text);
@@ -125,7 +122,7 @@ public class HelpSummaryActivity extends BaseActivity
         activity.startActivity(intent);
     }
 
-    private void updateData(HelpContentItem helpContentItem){
+    private void updateData(HelpContentBean helpContentItem){
         helpNumber.setText(String.valueOf(helpContentItem.getId()));
         helpTitle.setText(helpContentItem.getTitle());
         helpSummary.setText(helpContentItem.getSummary());
@@ -136,7 +133,7 @@ public class HelpSummaryActivity extends BaseActivity
     }
 
     @Override
-    public void findFinish(HelpContentItem object) {
+    public void findFinish(HelpContentBean object) {
         updateData(object);
     }
 
@@ -171,7 +168,7 @@ public class HelpSummaryActivity extends BaseActivity
     }
 
     @Override
-    public void reFreshSummary(HelpContentItem item) {
+    public void reFreshSummary(HelpContentBean item) {
         updateData(item);
     }
 
@@ -191,7 +188,7 @@ public class HelpSummaryActivity extends BaseActivity
     @Override
     public void saveCommendFinish(HelpCommendItem item) {
         ToastUtils.ToastText(getContext(),R.string.help_update_commend_successful_text);
-        helpSummaryPresenter.reFreshSummary(help_summary_id);
+        helpPresenter.reFreshSummary(help_summary_id);
         commendNumberText.setText(String.valueOf(++commendNumber));
         recyclerView.setVisibility(View.VISIBLE);
         commendLinear.setVisibility(View.GONE);
@@ -217,23 +214,23 @@ public class HelpSummaryActivity extends BaseActivity
             case R.id.help_praise:
                 if(helpPraise.isSelected()){
                     helpPraise.setSelected(false);
-                    helpSummaryPresenter.addPraiseOrPoor(0,help_summary_id);
+                    helpPresenter.addPraiseOrPoor(0,help_summary_id);
                 }else{
                     helpPraise.setSelected(true);
-                    helpSummaryPresenter.subPraiseOrPoor(0,help_summary_id);
+                    helpPresenter.subPraiseOrPoor(0,help_summary_id);
                 }
                 break;
             case R.id.help_poor:
                 if(helpPraise.isSelected()){
                     helpPraise.setSelected(false);
-                    helpSummaryPresenter.addPraiseOrPoor(1,help_summary_id);
+                    helpPresenter.addPraiseOrPoor(1,help_summary_id);
                 }else{
                     helpPraise.setSelected(true);
-                    helpSummaryPresenter.subPraiseOrPoor(1,help_summary_id);
+                    helpPresenter.subPraiseOrPoor(1,help_summary_id);
                 }
                 break;
             case R.id.commend_send:
-                helpSummaryPresenter.saveCommendData(help_summary_id,commendEdit.getText().toString());
+                helpPresenter.saveCommendData(help_summary_id,commendEdit.getText().toString());
                 break;
         }
     }
