@@ -14,7 +14,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.view.HomeAddView;
-import com.vargancys.learningassistant.presenter.home.HomeKnowPresenter;
+import com.vargancys.learningassistant.presenter.home.KnowLedgePresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class AddKnowLedgeActivity extends BaseActivity implements HomeAddView {
     @BindView(R.id.add_know_master)
     EditText addKnowMaster;
 
-    private HomeKnowPresenter homeKnowPresenter;
+    private KnowLedgePresenter knowLedgePresenter;
     private boolean mHave = false;
     private int mLevel = 1;
     @Override
@@ -57,7 +57,7 @@ public class AddKnowLedgeActivity extends BaseActivity implements HomeAddView {
 
     @Override
     public void initView() {
-        homeKnowPresenter = new HomeKnowPresenter(this);
+        knowLedgePresenter = new KnowLedgePresenter(this);
         ArrayAdapter simpleAdapter = ArrayAdapter.createFromResource(getContext(),R.array.level_title,
                 R.layout.support_simple_spinner_dropdown_item);
         addKnowLevel.setAdapter(simpleAdapter);
@@ -101,7 +101,7 @@ public class AddKnowLedgeActivity extends BaseActivity implements HomeAddView {
         knowLedge.put(KnowLedgeBean.LEVEL,mLevel);
         knowLedge.put(KnowLedgeBean.SUMMARY,addKnowSummary.getText().toString());
         knowLedge.put(KnowLedgeBean.STUDTTITLE,addKnowMaster.getText().toString());
-        homeKnowPresenter.saveKnowData(knowLedge);
+        knowLedgePresenter.saveKnowData(knowLedge);
     }
 
     public static void launch(Activity activity) {
@@ -145,7 +145,7 @@ public class AddKnowLedgeActivity extends BaseActivity implements HomeAddView {
                 finish();
                 break;
             case R.id.common_img:
-                homeKnowPresenter.queryKnowRepeat(addKnowTitle.getText().toString());
+                knowLedgePresenter.queryKnowRepeat(addKnowTitle.getText().toString());
                 break;
         }
     }

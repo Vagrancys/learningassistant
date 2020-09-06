@@ -15,16 +15,18 @@ import java.util.Map;
  * time  : 2020/03/08
  * version:1.0
  */
-public class HomeKnowPresenter {
-    private HomeRequest homeRequest;
+public class KnowLedgePresenter {
     private KnowledgeRequest mKnowLedge;
     private HomeAddView mView;
-    public HomeKnowPresenter(HomeAddView view){
+    public KnowLedgePresenter(HomeAddView view){
         mView = view;
-        homeRequest = new HomeRequest();
         mKnowLedge = KnowledgeRequest.getInstance();
     }
 
+    /**
+     * 查询知识是否相同
+     * @param title
+     */
     public void queryKnowRepeat(String title){
         CommonHttpListener listener = new CommonHttpListener() {
             @Override
@@ -50,6 +52,10 @@ public class HomeKnowPresenter {
         mKnowLedge.queryKnowLedgeRepeat(title,listener);
     }
 
+    /**
+     * 保存知识的基本信息
+     * @param knowLedgeBean 知识数据map
+     */
     public void saveKnowData(Map<String,Object> knowLedgeBean){
         CommonHttpListener listener = new CommonHttpListener() {
             @Override
