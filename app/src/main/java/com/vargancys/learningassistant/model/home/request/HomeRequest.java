@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.model.home.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
@@ -17,42 +16,39 @@ import java.util.List;
  * version:1.0
  */
 public class HomeRequest{
-    private HomeKnowItemDao mItemDao;
     private DaoSession daoSession;
 
     public HomeRequest(){
         daoSession = BaseApplication.getInstance().getDaoSession();
-        mItemDao = daoSession.getHomeKnowItemDao();
-
 
     }
     //等到所有的知识项
     public List<KnowLedgeBean> getBean() {
-        List<KnowLedgeBean> mContentBean = mItemDao.loadAll();
-        if(mContentBean !=null){
-            return mContentBean;
-        }else{
+        //List<KnowLedgeBean> mContentBean = mItemDao.loadAll();
+        //if(mContentBean !=null){
+         //   return mContentBean;
+        //}else{
             return null;
-        }
+        //}
     }
 
     public void updateCount(long position){
-        KnowLedgeBean homeKnowItem = mItemDao.load(position);
+        /*KnowLedgeBean homeKnowItem = mItemDao.load(position);
         homeKnowItem.setMax(homeKnowItem.getMax()+1);
         homeKnowItem.setCount(homeKnowItem.getCount()+1);
-        mItemDao.save(homeKnowItem);
+        mItemDao.save(homeKnowItem);*/
     }
 
     public boolean queryKnowRepeat(String title){
-        KnowLedgeBean homeKnowItem = mItemDao.queryBuilder().where(HomeKnowItemDao.Properties.Title.eq(title)).unique();
+        /*KnowLedgeBean homeKnowItem = mItemDao.queryBuilder().where(HomeKnowItemDao.Properties.Title.eq(title)).unique();
         if(homeKnowItem == null){
             return true;
-        }
+        }*/
         return false;
     }
 
     public boolean saveKnowData(KnowLedgeBean item){
-        item.setMax(1);
+        /*item.setMax(1);
         item.setCount(0);
         item.setCreateClass(false);
         item.setProgress(0);
@@ -61,19 +57,19 @@ public class HomeRequest{
         long result = mItemDao.insert(item);
         if(result == 0){
             return false;
-        }
+        }*/
         return true;
     }
 
 
 
     public boolean deleteKnowData(long item_id) {
-        mItemDao.deleteByKey(item_id);
+        //mItemDao.deleteByKey(item_id);
         return true;
     }
 
     public List<KnowLedgeBean> getSelectBean(int language, int level, int show, int master) {
-        QueryBuilder<KnowLedgeBean> queryBuilder = mItemDao.queryBuilder();
+        /*QueryBuilder<KnowLedgeBean> queryBuilder = mItemDao.queryBuilder();
         if(language != 0){
             queryBuilder.where(HomeKnowItemDao.Properties.Language.eq(language));
         }
@@ -92,7 +88,8 @@ public class HomeRequest{
         if(master != 0){
             queryBuilder.where(HomeKnowItemDao.Properties.MasterLevel.eq(master));
         }
-        return queryBuilder.list();
+        return queryBuilder.list();*/
+        return null;
     }
 
 }

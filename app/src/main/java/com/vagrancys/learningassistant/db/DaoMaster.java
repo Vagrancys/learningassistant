@@ -22,7 +22,6 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         HelpCommendItemDao.createTable(db, ifNotExists);
-        HelpContentItemDao.createTable(db, ifNotExists);
         MemberBeanDao.createTable(db, ifNotExists);
         GameContentDao.createTable(db, ifNotExists);
         GameFillItemDao.createTable(db, ifNotExists);
@@ -38,7 +37,6 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowFunctionDao.createTable(db, ifNotExists);
         HomeKnowHistoryDao.createTable(db, ifNotExists);
         HomeKnowHistoryFunctionDao.createTable(db, ifNotExists);
-        HomeKnowItemDao.createTable(db, ifNotExists);
         LadderCommentBeanDao.createTable(db, ifNotExists);
         LadderCommentReplyBeanDao.createTable(db, ifNotExists);
         LadderDataBeanDao.createTable(db, ifNotExists);
@@ -65,7 +63,6 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         HelpCommendItemDao.dropTable(db, ifExists);
-        HelpContentItemDao.dropTable(db, ifExists);
         MemberBeanDao.dropTable(db, ifExists);
         GameContentDao.dropTable(db, ifExists);
         GameFillItemDao.dropTable(db, ifExists);
@@ -81,7 +78,6 @@ public class DaoMaster extends AbstractDaoMaster {
         HomeKnowFunctionDao.dropTable(db, ifExists);
         HomeKnowHistoryDao.dropTable(db, ifExists);
         HomeKnowHistoryFunctionDao.dropTable(db, ifExists);
-        HomeKnowItemDao.dropTable(db, ifExists);
         LadderCommentBeanDao.dropTable(db, ifExists);
         LadderCommentReplyBeanDao.dropTable(db, ifExists);
         LadderDataBeanDao.dropTable(db, ifExists);
@@ -122,7 +118,6 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(HelpCommendItemDao.class);
-        registerDaoClass(HelpContentItemDao.class);
         registerDaoClass(MemberBeanDao.class);
         registerDaoClass(GameContentDao.class);
         registerDaoClass(GameFillItemDao.class);
@@ -138,7 +133,6 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(HomeKnowFunctionDao.class);
         registerDaoClass(HomeKnowHistoryDao.class);
         registerDaoClass(HomeKnowHistoryFunctionDao.class);
-        registerDaoClass(HomeKnowItemDao.class);
         registerDaoClass(LadderCommentBeanDao.class);
         registerDaoClass(LadderCommentReplyBeanDao.class);
         registerDaoClass(LadderDataBeanDao.class);

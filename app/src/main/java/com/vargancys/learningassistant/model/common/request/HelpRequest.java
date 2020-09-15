@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.model.common.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HelpCommendItemDao;
-import com.vagrancys.learningassistant.db.HelpContentItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentBean;
@@ -14,7 +13,6 @@ import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,12 +26,10 @@ import java.util.Map;
  * Description: 帮助数据请求中心
  */
 public class HelpRequest{
-    private HelpContentItemDao mContentDao;
     private HelpCommendItemDao mCommendDao;
     private DaoSession daoSession;
     public HelpRequest(){
         daoSession = BaseApplication.getInstance().getDaoSession();
-        mContentDao = daoSession.getHelpContentItemDao();
         mCommendDao = daoSession.getHelpCommendItemDao();
     }
 

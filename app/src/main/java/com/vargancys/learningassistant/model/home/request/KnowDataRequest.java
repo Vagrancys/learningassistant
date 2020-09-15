@@ -4,7 +4,6 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowCommendDao;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
 import com.vagrancys.learningassistant.db.HomeKnowDataDao;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowCommend;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
@@ -26,13 +25,12 @@ public class KnowDataRequest {
     private static KnowDataRequest mRequest;
     private HomeKnowCommendDao mKnowCommendDao;
     private HomeKnowDataDao mKnowDataDao;
-    private HomeKnowItemDao mKnowItemDao;
+    //private HomeKnowItemDao mKnowItemDao;
     private DaoSession mDaoSession;
     private HomeKnowContentDao mContentDao;
     private KnowDataRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mKnowDataDao = mDaoSession.getHomeKnowDataDao();
-        mKnowItemDao = mDaoSession.getHomeKnowItemDao();
         mKnowCommendDao = mDaoSession.getHomeKnowCommendDao();
         mContentDao = mDaoSession.getHomeKnowContentDao();
     }
@@ -65,7 +63,7 @@ public class KnowDataRequest {
     }
 
     public int deleteDataItem(long know_id) {
-        mKnowItemDao.deleteByKey(know_id);
+        //mKnowItemDao.deleteByKey(know_id);
         return 200;
     }
 
@@ -76,7 +74,8 @@ public class KnowDataRequest {
 
     //得到内容的id
     public long getContentId(long know_id) {
-        return mKnowItemDao.load(know_id).getContentId();
+        //return mKnowItemDao.load(know_id).getContentId();
+        return 0;
     }
 
     //得到更新后的内容

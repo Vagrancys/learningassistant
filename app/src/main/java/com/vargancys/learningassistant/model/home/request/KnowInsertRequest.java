@@ -6,7 +6,6 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
 import com.vagrancys.learningassistant.db.HomeKnowDataDao;
 import com.vagrancys.learningassistant.db.HomeKnowFunctionDao;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.HomeKnowContent;
 import com.vargancys.learningassistant.db.home.HomeKnowData;
@@ -25,14 +24,13 @@ import java.util.List;
 public class KnowInsertRequest {
     private static String TAG = "KnowInsertRequest";
     private HomeKnowContentDao mContentDao;
-    private HomeKnowItemDao mItemDao;
+    //private HomeKnowItemDao mItemDao;
     private HomeKnowFunctionDao mFunctionDao;
     private DaoSession daoSession;
     private HomeKnowDataDao mDataDao;
     public KnowInsertRequest(){
         daoSession = BaseApplication.getInstance().getDaoSession();
         mContentDao = daoSession.getHomeKnowContentDao();
-        mItemDao = daoSession.getHomeKnowItemDao();
         mFunctionDao = daoSession.getHomeKnowFunctionDao();
         mDataDao = daoSession.getHomeKnowDataDao();
     }
@@ -72,9 +70,8 @@ public class KnowInsertRequest {
         homeKnowContent.setExperience(experience);
         Log.e(TAG,"id = "+know_id);
         long dataId = addHomeKnowData(title,0);
-        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
-        homeKnowItem.setDataId(dataId);
-        homeKnowItem.update();
+        //KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
+        //homeKnowItem.setDataId(dataId);
         long result = mContentDao.insert(homeKnowContent);
         if(result == 0){
             return false;
@@ -99,11 +96,11 @@ public class KnowInsertRequest {
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
         long dataId = addHomeKnowData(title,1);
-        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
-        homeKnowItem.setContentId(result);
+        //KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
+        /*homeKnowItem.setContentId(result);
         homeKnowItem.setCreateClass(true);
         homeKnowItem.setDataId(dataId);
-        mItemDao.update(homeKnowItem);
+        mItemDao.update(homeKnowItem);*/
         //Log.e("save","is=" +is+"know=" +know_id);
         return insertHomeKnowContent(result);
     }
@@ -125,11 +122,11 @@ public class KnowInsertRequest {
             mFunctionDao.insert(function);
         }
         long dataId = addHomeKnowData(title,2);
-        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
-        homeKnowItem.setCreateClass(true);
+        //KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
+        /*homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         homeKnowItem.setDataId(dataId);
-        mItemDao.save(homeKnowItem);
+        mItemDao.save(homeKnowItem);*/
         //Log.e("save","is=" +is);
         if(result == 0){
             return false;
@@ -154,12 +151,12 @@ public class KnowInsertRequest {
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
-        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
-        homeKnowItem.setCreateClass(true);
+        //KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
+        /*homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,3);
         homeKnowItem.setDataId(dataId);
-        mItemDao.save(homeKnowItem);
+        mItemDao.save(homeKnowItem);*/
         //Log.e("save","is=" +is);
         return insertHomeKnowContent(result);
     }
@@ -180,12 +177,12 @@ public class KnowInsertRequest {
         homeKnowContent.setHeed(heed);
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
-        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
-        homeKnowItem.setCreateClass(true);
+        //KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
+        /*homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,4);
         homeKnowItem.setDataId(dataId);
-        mItemDao.save(homeKnowItem);
+        mItemDao.save(homeKnowItem);*/
         for (HomeKnowFunction function:homeKnowFunctions){
             function.setFunctionId((int) result);
             mFunctionDao.insert(function);
@@ -214,12 +211,12 @@ public class KnowInsertRequest {
         homeKnowContent.setShow(show);
         homeKnowContent.setExperience(experience);
         long result = mContentDao.insert(homeKnowContent);
-        KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
-        homeKnowItem.setCreateClass(true);
+        //KnowLedgeBean homeKnowItem = mItemDao.load(know_id);
+        /*homeKnowItem.setCreateClass(true);
         homeKnowItem.setContentId(result);
         long dataId = addHomeKnowData(title,5);
         homeKnowItem.setDataId(dataId);
-        mItemDao.save(homeKnowItem);
+        mItemDao.save(homeKnowItem);*/
         if(result == 0){
             return false;
         }

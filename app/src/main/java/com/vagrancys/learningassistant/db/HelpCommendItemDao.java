@@ -1,6 +1,5 @@
 package com.vagrancys.learningassistant.db;
 
-import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -9,8 +8,6 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
-import org.greenrobot.greendao.query.Query;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 
@@ -33,7 +30,6 @@ public class HelpCommendItemDao extends AbstractDao<HelpCommendItem, Long> {
         public final static Property Time = new Property(3, String.class, "time", false, "TIME");
     }
 
-    private Query<HelpCommendItem> helpContentItem_CommendItemsQuery;
 
     public HelpCommendItemDao(DaoConfig config) {
         super(config);
@@ -150,18 +146,4 @@ public class HelpCommendItemDao extends AbstractDao<HelpCommendItem, Long> {
         return true;
     }
     
-    /** Internal query to resolve the "commendItems" to-many relationship of HelpContentItem. */
-    public List<HelpCommendItem> _queryHelpContentItem_CommendItems(long commendId) {
-        synchronized (this) {
-            if (helpContentItem_CommendItemsQuery == null) {
-                QueryBuilder<HelpCommendItem> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.CommendId.eq(null));
-                helpContentItem_CommendItemsQuery = queryBuilder.build();
-            }
-        }
-        Query<HelpCommendItem> query = helpContentItem_CommendItemsQuery.forCurrentThread();
-        query.setParameter(0, commendId);
-        return query.list();
-    }
-
 }

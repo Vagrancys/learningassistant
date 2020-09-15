@@ -6,7 +6,6 @@ import com.vagrancys.learningassistant.db.ChallengeDataBeanDao;
 import com.vagrancys.learningassistant.db.ChallengePartBeanDao;
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.GameSubjectItemDao;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vagrancys.learningassistant.db.KnowLedgeDataBeanDao;
 import com.vagrancys.learningassistant.db.LadderDataBeanDao;
 import com.vagrancys.learningassistant.db.LevelDataBeanDao;
@@ -63,13 +62,13 @@ public class MineRequest {
     private static MineRequest mRequest;
     private MineDataBeanDao mMineDataDao;
     private DaoSession mDaoSession;
-    private HomeKnowItemDao mKnowDao;
+    //private HomeKnowItemDao mKnowDao;
     private LadderDataBeanDao mLadderDataDao;
     private OverViewListContentDao mOverViewDao;
     private MineLevelPrivilegeBeanDao mPrivilegeDao;
     private MineFeedbackBeanDao mFeedbackDao;
     private KnowLedgeDataBeanDao mKnowLedgeDao;
-    private HomeKnowItemDao mKnowItemDao;
+    //private HomeKnowItemDao mKnowItemDao;
     private ChallengeDataBeanDao mChallengeDao;
     private ChallengePartBeanDao mChallengePartDao;
     private LevelDataBeanDao mLevelDao;
@@ -79,13 +78,11 @@ public class MineRequest {
     private MineRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
         mMineDataDao = mDaoSession.getMineDataBeanDao();
-        mKnowDao = mDaoSession.getHomeKnowItemDao();
         mLadderDataDao = mDaoSession.getLadderDataBeanDao();
         mOverViewDao = mDaoSession.getOverViewListContentDao();
         mPrivilegeDao = mDaoSession.getMineLevelPrivilegeBeanDao();
         mFeedbackDao = mDaoSession.getMineFeedbackBeanDao();
         mKnowLedgeDao = mDaoSession.getKnowLedgeDataBeanDao();
-        mKnowItemDao = mDaoSession.getHomeKnowItemDao();
         mChallengeDao = mDaoSession.getChallengeDataBeanDao();
         mChallengePartDao = mDaoSession.getChallengePartBeanDao();
         mLevelDao = mDaoSession.getLevelDataBeanDao();
@@ -134,23 +131,23 @@ public class MineRequest {
             mItem.setQuality(data.getQuality());
             mItem.setTime(data.getTime());
             mItem.setTitle(data.getTitle());
-            List<KnowLedgeBean> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(mineId),HomeKnowItemDao.Properties.Language.eq(i)).list();
-            List<KnowLedgeItemBean.KnowLedgeItem> mLedge = new ArrayList<>();
+            //List<KnowLedgeBean> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(mineId),HomeKnowItemDao.Properties.Language.eq(i)).list();
+            /*List<KnowLedgeItemBean.KnowLedgeItem> mLedge = new ArrayList<>();
             for (KnowLedgeBean home:mHome){
                 KnowLedgeItemBean.KnowLedgeItem mKnow = new KnowLedgeItemBean.KnowLedgeItem();
                 mKnow.setCreateClass(home.getCreateClass());
                 mKnow.setHave(home.getHave());
                 mKnow.setLevel(home.getLevel());
                 mKnow.setLook(home.getLook());
-                mKnow.setNumber(home.getId().intValue());
+                mKnow.setNumber(home.getId());
                 mKnow.setProblem(home.getProblem());
                 mKnow.setSummary(home.getSummary());
                 mKnow.setTitle(home.getTitle());
                 mKnow.setTime(home.getTime());
                 mKnow.setType(home.getType());
                 mLedge.add(mKnow);
-            }
-            mItem.setItems(mLedge);
+            }*/
+            //mItem.setItems(mLedge);
             mBean.getItemBeans().add(mItem);
         }
         return mBean;
@@ -158,8 +155,9 @@ public class MineRequest {
 
     //得到个人发布的所有知识
     public List<KnowLedgeBean> getHomeKnowData(int type) {
-        QueryBuilder<KnowLedgeBean> queryBuilder = mKnowDao.queryBuilder();
-        return queryBuilder.where(HomeKnowItemDao.Properties.Language.eq(type)).list();
+        //QueryBuilder<KnowLedgeBean> queryBuilder = mKnowDao.queryBuilder();
+        //return queryBuilder.where(HomeKnowItemDao.Properties.Language.eq(type)).list();
+        return null;
     }
 
     //得到个人中心天梯类型数据
@@ -343,23 +341,24 @@ public class MineRequest {
 
     //得到问题各项数据
     public List<KnowLedgeItemBean.KnowLedgeItem> getProblemItemData(long problemId,int type) {
-        List<KnowLedgeBean> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(problemId),HomeKnowItemDao.Properties.Language.eq(type)).list();
-        List<KnowLedgeItemBean.KnowLedgeItem> mLedge = new ArrayList<>();
+        //List<KnowLedgeBean> mHome = mKnowItemDao.queryBuilder().where(HomeKnowItemDao.Properties.MemberId.eq(problemId),HomeKnowItemDao.Properties.Language.eq(type)).list();
+        /*List<KnowLedgeItemBean.KnowLedgeItem> mLedge = new ArrayList<>();
         for (KnowLedgeBean home:mHome){
             KnowLedgeItemBean.KnowLedgeItem mKnow = new KnowLedgeItemBean.KnowLedgeItem();
             mKnow.setCreateClass(home.getCreateClass());
             mKnow.setHave(home.getHave());
             mKnow.setLevel(home.getLevel());
             mKnow.setLook(home.getLook());
-            mKnow.setNumber(home.getId().intValue());
+            mKnow.setNumber(home.getId());
             mKnow.setProblem(home.getProblem());
             mKnow.setSummary(home.getSummary());
             mKnow.setTitle(home.getTitle());
             mKnow.setTime(home.getTime());
             mKnow.setType(home.getType());
             mLedge.add(mKnow);
-        }
-        return mLedge;
+        }*/
+        //return mLedge;
+        return null;
     }
 
     //得到等级的各个等级数据

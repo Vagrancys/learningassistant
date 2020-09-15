@@ -13,6 +13,8 @@ import com.vargancys.learningassistant.module.common.member.LoginActivity;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -42,7 +44,7 @@ public class SplashActivity extends BaseActivity {
         countDownTimer = new CountDownTimer(4000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                splashCountdown.setText("跳过 "+millisUntilFinished/1000+"秒");
+                splashCountdown.setText(String.format(Locale.CHINA,"跳过 %d秒", millisUntilFinished / 1000));
             }
 
             @Override
@@ -64,7 +66,7 @@ public class SplashActivity extends BaseActivity {
 
         try {
             @SuppressLint("WrongConstant") PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(),PackageInfo.INSTALL_LOCATION_AUTO);
-            splashVersion.setText(packageInfo.versionName);
+            splashVersion.setText(String.format("版本号 : %s", packageInfo.versionName));
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -86,6 +88,8 @@ public class SplashActivity extends BaseActivity {
                 break;
         }
     }
+
+
 
     @Override
     protected void onDestroy() {

@@ -1,18 +1,5 @@
 package com.vargancys.learningassistant.db.home;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.ToOne;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.DaoException;
-import com.vagrancys.learningassistant.db.DaoSession;
-import com.vagrancys.learningassistant.db.HomeKnowDataDao;
-import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.Unique;
-
-import com.vagrancys.learningassistant.db.HomeKnowContentDao;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
-
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
@@ -20,7 +7,6 @@ import com.vagrancys.learningassistant.db.HomeKnowItemDao;
  * version:1.0
  * 首页知识item的表结构
  */
-@Entity
 public class KnowLedgeBean {
     public static String MASTERLEVEL = "master_level";
     public static String PROGRESS = "progress";
@@ -34,9 +20,7 @@ public class KnowLedgeBean {
     public static String COUNT = "count";
     public static String CREATECLASS = "create_class";
     //知识项id
-    @Id(autoincrement = true)
-    @Unique
-    private Long id;
+    private int id;
 
     //用户id
     public long memberId;
@@ -93,168 +77,12 @@ public class KnowLedgeBean {
     //知识的类型
     private int type;
 
-    @ToOne(joinProperty = "contentId")
-    private HomeKnowContent homeKnowContent;
-    @ToOne(joinProperty = "dataId")
-    private HomeKnowData homeKnowData;
+    public int getId() {
+        return id;
+    }
 
-    /** Used to resolve relations */
-    @Generated(hash = 2040040024)
-    private transient DaoSession daoSession;
-
-    /** Used for active entity operations. */
-    @Generated(hash = 1329440142)
-    private transient HomeKnowItemDao myDao;
-
-    @Generated(hash = 1652913238)
-    public KnowLedgeBean(Long id, long memberId, long contentId, long dataId, boolean official, int look,
-                         String activity, boolean have, String title, int level, String summary, int progress,
-                         int count, int max, int masterLevel, String studyTitle, boolean createClass, int language,
-                         int time, int problem, int type) {
+    public void setId(int id) {
         this.id = id;
-        this.memberId = memberId;
-        this.contentId = contentId;
-        this.dataId = dataId;
-        this.official = official;
-        this.look = look;
-        this.activity = activity;
-        this.have = have;
-        this.title = title;
-        this.level = level;
-        this.summary = summary;
-        this.progress = progress;
-        this.count = count;
-        this.max = max;
-        this.masterLevel = masterLevel;
-        this.studyTitle = studyTitle;
-        this.createClass = createClass;
-        this.language = language;
-        this.time = time;
-        this.problem = problem;
-        this.type = type;
-    }
-
-    @Generated(hash = 2077989770)
-    public KnowLedgeBean() {
-    }
-
-    @Generated(hash = 1769914776)
-    private transient Long homeKnowContent__resolvedKey;
-
-    @Generated(hash = 967281064)
-    private transient Long homeKnowData__resolvedKey;
-
-    /** To-one relationship, resolved on first access. */
-    @Generated(hash = 754192494)
-    public HomeKnowContent getHomeKnowContent() {
-        long __key = this.contentId;
-        if (homeKnowContent__resolvedKey == null || !homeKnowContent__resolvedKey.equals(__key)) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            HomeKnowContentDao targetDao = daoSession.getHomeKnowContentDao();
-            HomeKnowContent homeKnowContentNew = targetDao.load(__key);
-            synchronized (this) {
-                homeKnowContent = homeKnowContentNew;
-                homeKnowContent__resolvedKey = __key;
-            }
-        }
-        return homeKnowContent;
-    }
-
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 935763122)
-    public void setHomeKnowContent(@NotNull HomeKnowContent homeKnowContent) {
-        if (homeKnowContent == null) {
-            throw new DaoException(
-                    "To-one property 'contentId' has not-null constraint; cannot set to-one to null");
-        }
-        synchronized (this) {
-            this.homeKnowContent = homeKnowContent;
-            contentId = homeKnowContent.getId();
-            homeKnowContent__resolvedKey = contentId;
-        }
-    }
-
-    /** To-one relationship, resolved on first access. */
-    @Generated(hash = 2039737166)
-    public HomeKnowData getHomeKnowData() {
-        long __key = this.dataId;
-        if (homeKnowData__resolvedKey == null || !homeKnowData__resolvedKey.equals(__key)) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            HomeKnowDataDao targetDao = daoSession.getHomeKnowDataDao();
-            HomeKnowData homeKnowDataNew = targetDao.load(__key);
-            synchronized (this) {
-                homeKnowData = homeKnowDataNew;
-                homeKnowData__resolvedKey = __key;
-            }
-        }
-        return homeKnowData;
-    }
-
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1590170270)
-    public void setHomeKnowData(@NotNull HomeKnowData homeKnowData) {
-        if (homeKnowData == null) {
-            throw new DaoException(
-                    "To-one property 'dataId' has not-null constraint; cannot set to-one to null");
-        }
-        synchronized (this) {
-            this.homeKnowData = homeKnowData;
-            dataId = homeKnowData.getId();
-            homeKnowData__resolvedKey = dataId;
-        }
-    }
-
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 128553479)
-    public void delete() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.delete(this);
-    }
-
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 1942392019)
-    public void refresh() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.refresh(this);
-    }
-
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 713229351)
-    public void update() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.update(this);
-    }
-
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 786071706)
-    public void __setDaoSession(DaoSession daoSession) {
-        this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getHomeKnowItemDao() : null;
-    }
-
-    public Long getId() {
-        return this.id;
     }
 
     public boolean getOfficial() {
@@ -351,10 +179,6 @@ public class KnowLedgeBean {
 
     public void setCreateClass(boolean createClass) {
         this.createClass = createClass;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public long getContentId() {

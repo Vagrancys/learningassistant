@@ -23,6 +23,7 @@
     <dimen name="margin_width_80dp">80dp</dimen>
     <dimen name="margin_width_60dp">60dp</dimen>
     <dimen name="margin_width_50dp">50dp</dimen>
+    <dimen name="margin_width_45dp">45dp</dimen>
     <dimen name="margin_width_40dp">40dp</dimen>
     <dimen name="margin_width_30dp">30dp</dimen>
     <dimen name="margin_width_25dp">25dp</dimen>

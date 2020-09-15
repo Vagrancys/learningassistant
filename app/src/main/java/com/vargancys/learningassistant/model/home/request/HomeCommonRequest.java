@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.model.home.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
-import com.vagrancys.learningassistant.db.HomeKnowItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 
@@ -18,7 +17,6 @@ import java.util.List;
 public class HomeCommonRequest {
     private static String TAG = "KnowDataRequest";
     private static HomeCommonRequest mRequest;
-    private HomeKnowItemDao mKnowItemDao;
     private DaoSession mDaoSession;
 
     public static HomeCommonRequest getRequest() {
@@ -34,11 +32,11 @@ public class HomeCommonRequest {
 
     private HomeCommonRequest(){
         mDaoSession = BaseApplication.getInstance().getDaoSession();
-        mKnowItemDao = mDaoSession.getHomeKnowItemDao();
     }
     public List<KnowLedgeBean> getSearchAllData(String title) {
-        QueryBuilder<KnowLedgeBean> queryBuilder =mKnowItemDao.queryBuilder();
+        /*QueryBuilder<KnowLedgeBean> queryBuilder =mKnowItemDao.queryBuilder();
         queryBuilder.and(HomeKnowItemDao.Properties.Title.like(title),HomeKnowItemDao.Properties.Summary.like(title));
-        return queryBuilder.list();
+        return queryBuilder.list();*/
+        return null;
     }
 }

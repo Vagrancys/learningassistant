@@ -76,13 +76,13 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
                     if(homeKnowItem.getHave()){
                         launchDemonstrateActivity(homeKnowItem.getActivity());
                     }else{
-                        launchShowActivity(homeKnowItem.getId().intValue(),homeKnowItem.getLevel());
+                        launchShowActivity(homeKnowItem.getId(),homeKnowItem.getLevel());
                     }
                 }else{
                     if(homeKnowItem.getHave()){
                         ToastUtils.ToastText(getContext(),"这需要官方来创建!个人不能创建!");
                     }else{
-                        launchInsertActivity(homeKnowItem.getId().intValue(),homeKnowItem.getLevel());
+                        launchInsertActivity(homeKnowItem.getId(),homeKnowItem.getLevel());
                     }
                 }
             }

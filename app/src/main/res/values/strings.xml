@@ -2,6 +2,7 @@
     <string name="app_name">知识 Or 成就</string>
     <string name="splash_countdown">跳过 3 秒</string>
     <string name="splash_version">版本号 1.0</string>
+    <string name="splash_hint">这是一个学习·挑战·记录·总结·实现的世界!</string>
     <string name="group_next">开始学习</string>
     <string name="know_add">添加知识</string>
     <string name="know_help">帮助</string>
