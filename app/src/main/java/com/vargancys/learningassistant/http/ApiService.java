@@ -61,4 +61,8 @@ public interface ApiService {
     @POST("add_help_commend")
     @FormUrlEncoded
     Observable<BaseBean<HelpCommendItem>> addHelpCommendData(@Field("help_id") int id,@Field("title") String title,@Field("time") long time);
+
+    @POST("add_single_article")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> addArticleData(@FieldMap Map<String,Object> map);
 }

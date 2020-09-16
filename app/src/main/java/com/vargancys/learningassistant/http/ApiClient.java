@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.vargancys.learningassistant.db.common.HelpCommendItem;
 import com.vargancys.learningassistant.db.common.HelpContentBean;
+import com.vargancys.learningassistant.db.home.ArticleBean;
 import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
@@ -211,6 +212,15 @@ public class ApiClient {
         toSubscribe(mService.addHelpCommendData(id,title,time),subscriber);
     }
 
+    /**
+     * 添加文章型知识
+     * @param article map
+     * @param subscriber
+     */
+    public void addArticle(Map<String,Object> article, MySubscriber<BaseBean<NoDataBean>> subscriber) {
+        toSubscribe(mService.addArticleData(article),subscriber);
+    }
+
     private <T> void toSubscribe(Observable<T> o, MySubscriber<T> s) {
         o.subscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
@@ -218,4 +228,6 @@ public class ApiClient {
                 //回调在主线程
                 .observeOn(AndroidSchedulers.mainThread()).subscribe((Observer<? super T>) s);
     }
+
+
 }
