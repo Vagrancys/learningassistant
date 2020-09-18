@@ -10,8 +10,39 @@ package com.vargancys.learningassistant.db.home;
 public class ArticleBean {
     //id
     public static String ARTICLE_ID = "article_id";
+    public static String KNOWLEDGE_ID = "knowledge_id";
+    public static String TITLE = "title";
+    public static String CONTENT = "content";
 
     private int id;
+    private int knowledge_id;
+    private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getKnowledge_id() {
+        return knowledge_id;
+    }
+
+    public void setKnowledge_id(int knowledge_id) {
+        this.knowledge_id = knowledge_id;
+    }
+
+    public String title;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 
     public int getId() {
         return id;

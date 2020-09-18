@@ -18,8 +18,8 @@ public class ConstantsUtils {
 
     public static final String KNOW_LEVEL_ID = "know_level_id";
 
-    //知识项的id
-    public static final String KNOW_ITEM_ID = "know_item_id";
+    //知识的id
+    public static final String KNOWLEDGE_ID = "knowledge_id";
 
     //知识项数据的id
     public static final String KNOW_DATA_ID = "know_data_id";

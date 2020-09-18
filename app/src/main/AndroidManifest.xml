@@ -33,7 +33,7 @@
         <activity android:name=".module.home.activity.AddKnowLedgeActivity"/>
         <activity android:name=".module.common.help.HelpSummaryActivity"/>
         <activity android:name=".module.common.help.HelpAddActivity"/>
-        <activity android:name=".module.home.activity.insert.KnowInsertFirstActivity"/>
+        <activity android:name=".module.home.activity.insert.InsertArticleActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertSecondActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertThirdActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertFourthActivity"/>

@@ -1,9 +1,11 @@
 package com.vargancys.learningassistant.presenter.home;
 
+import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.db.home.ArticleBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
+import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.BasePresenter;
 
@@ -19,7 +21,7 @@ import java.util.List;
  */
 public class ArticlePresenter implements BasePresenter<ArticleBean> {
     private BaseCallBackListener mView;
-    private ArticlePresenter(BaseCallBackListener view){
+    public ArticlePresenter(BaseCallBackListener view){
         this.mView = view;
     }
 
@@ -40,17 +42,33 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
 
     @Override
     public void query(int id) {
-        ArticleRequest.getInstance().queryArticle(id,getNoDataListener());
+        ArticleRequest.getInstance().queryArticle(id,getDataListener());
     }
 
     @Override
     public void query(int[] ids) {
-        ArticleRequest.getInstance().queryAllArticle(ids,getNoDataListener());
+        ArticleRequest.getInstance().queryAllArticle(ids,getArrayListener());
     }
+
+    @Override
+    public void nativeQuery(int id) {
+
+    }
+
 
     @Override
     public void update(ArticleBean object) {
         ArticleRequest.getInstance().updateArticle(object,getNoDataListener());
+    }
+
+    public void isEmpty(){
+        InsertArticleView view = ((InsertArticleView) mView);
+        boolean result = view.isEmpty();
+        if(result){
+            view.isEmptyFinish();
+        }else{
+            view.isEmptyError(200);
+        }
     }
 
     public CommonHttpListener getNoDataListener(){
@@ -123,5 +141,13 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
                 mView.onFinish();
             }
         };
+    }
+
+    public void nativeDelete(int knowLedge_id) {
+
+    }
+
+    public void addArticle() {
+        ((InsertArticleView) mView).addArticle();
     }
 }

@@ -6,7 +6,7 @@ import com.vargancys.learningassistant.db.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
-import com.vargancys.learningassistant.module.home.view.KnowInsertFirstView;
+import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;
@@ -39,11 +39,11 @@ public class KnowInsertPresenter {
 
     //入门级判断是否为空
     public void isFirstEmpty(){
-        boolean result = ((KnowInsertFirstView) mView).isFirstEmpty();
+        boolean result = ((InsertArticleView) mView).isFirstEmpty();
         if(!result){
-            ((KnowInsertFirstView) mView).isFirstEqualsItem();
+            ((InsertArticleView) mView).isFirstEqualsItem();
         }else{
-            ((KnowInsertFirstView) mView).isFirstEmptyError(502,"没有填写完!");
+            ((InsertArticleView) mView).isFirstEmptyError(502,"没有填写完!");
         }
     }
 
@@ -61,9 +61,9 @@ public class KnowInsertPresenter {
     public void isEqualsFirstItem(String title){
         boolean result = mRequest.isEqualsFirstItem(title);
         if(result){
-            ((KnowInsertFirstView) mView).saveFirstKnowItem();
+            ((InsertArticleView) mView).saveFirstKnowItem();
         }else{
-            ((KnowInsertFirstView) mView).isFirstEqualsError(501,"已经有该数据了!");
+            ((InsertArticleView) mView).isFirstEqualsError(501,"已经有该数据了!");
         }
     }
 
@@ -86,9 +86,9 @@ public class KnowInsertPresenter {
         boolean result = mRequest.saveKnowFirstItem(know_id,title,summary,show,
                 explain,heed,experience);
         if(result){
-            ((KnowInsertFirstView) mView).saveFirstItemFinish();
+            ((InsertArticleView) mView).saveFirstItemFinish();
         }else{
-            ((KnowInsertFirstView) mView).saveFirstItemError(501,"该数据项保存失败了!");
+            ((InsertArticleView) mView).saveFirstItemError(501,"该数据项保存失败了!");
         }
     }
 

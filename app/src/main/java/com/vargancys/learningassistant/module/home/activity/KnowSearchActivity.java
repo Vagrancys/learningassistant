@@ -11,9 +11,9 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.module.home.activity.insert.InsertArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFirstActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFourthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertSecondActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertThirdActivity;
@@ -100,7 +100,7 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
     private void launchInsertActivity(int item_id,int level) {
         switch (level){
             case 1:
-                KnowInsertFirstActivity.launch(this,item_id);
+                InsertArticleActivity.launch(this,item_id);
                 break;
             case 2:
                 KnowInsertSecondActivity.launch(this,item_id);

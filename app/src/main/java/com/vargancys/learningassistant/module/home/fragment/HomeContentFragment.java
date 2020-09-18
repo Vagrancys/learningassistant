@@ -25,9 +25,9 @@ import com.vargancys.learningassistant.module.common.help.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
 import com.vargancys.learningassistant.module.home.activity.AddKnowLedgeActivity;
 import com.vargancys.learningassistant.module.home.activity.KnowSearchActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.InsertArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFirstActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFourthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertSecondActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertThirdActivity;
@@ -259,7 +259,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     private void launchInsertActivity(int item_id,int level) {
         switch (level){
             case 1:
-                KnowInsertFirstActivity.launch(getActivity(),item_id);
+                InsertArticleActivity.launch(getActivity(),item_id);
                 break;
             case 2:
                 KnowInsertSecondActivity.launch(getActivity(),item_id);

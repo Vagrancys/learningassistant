@@ -13,5 +13,6 @@ public interface BasePresenter<T> {
     void delete(int[] ids);
     void query(int id);
     void query(int[] ids);
+    void nativeQuery(int id);
     void update(T object);
 }
