@@ -1,16 +1,14 @@
 package com.vargancys.learningassistant.http;
 
-import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.common.HelpContentBean;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.common.HelpCommendItem;
+import com.vargancys.learningassistant.bean.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;

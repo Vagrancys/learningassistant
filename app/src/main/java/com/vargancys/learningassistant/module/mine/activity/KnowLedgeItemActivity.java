@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.mine.view.KnowLedgeItemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;

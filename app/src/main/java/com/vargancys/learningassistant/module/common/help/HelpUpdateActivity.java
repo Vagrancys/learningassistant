@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.common.HelpContentBean;
 import com.vargancys.learningassistant.module.common.view.HelpUpdateView;
 import com.vargancys.learningassistant.presenter.common.help.HelpPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;

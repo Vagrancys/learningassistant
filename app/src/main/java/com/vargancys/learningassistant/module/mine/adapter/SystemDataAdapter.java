@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
 
 import java.util.List;
 

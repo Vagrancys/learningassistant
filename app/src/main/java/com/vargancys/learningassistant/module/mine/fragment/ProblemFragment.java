@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.bean.mine.MineDataBean;
 import com.vargancys.learningassistant.model.mine.bean.ProblemTypeDataBean;
 import com.vargancys.learningassistant.module.mine.adapter.ProblemItemSection;
 import com.vargancys.learningassistant.module.mine.view.ProblemView;

@@ -2,7 +2,7 @@ package com.vargancys.learningassistant.presenter.home;
 
 import android.util.Log;
 
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.home.request.HomeRequest;
 import com.vargancys.learningassistant.model.home.request.KnowledgeRequest;

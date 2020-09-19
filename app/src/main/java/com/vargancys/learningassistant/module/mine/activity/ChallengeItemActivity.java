@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
 import com.vargancys.learningassistant.module.mine.adapter.ChallengeItemAdapter;
 import com.vargancys.learningassistant.module.mine.view.ChallengeItemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;

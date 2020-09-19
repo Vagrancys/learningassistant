@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.GameContent;
-import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.bean.game.GameContent;
+import com.vargancys.learningassistant.bean.game.GameSignContent;
 import com.vargancys.learningassistant.module.game.view.SignAddView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;

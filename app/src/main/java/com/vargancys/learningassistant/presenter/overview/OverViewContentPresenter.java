@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.presenter.overview;
 
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.request.OverViewRequest;
 import com.vargancys.learningassistant.module.overview.view.OverViewContentView;
 

@@ -86,6 +86,8 @@
     <string name="article_edit_empty">不能没有任何编辑的保存!请写点什么!</string>
     <string name="article_fail">服务器没有回复!要不等等..</string>
     <string name="article_error">服务器出故障了!正在抢救中..</string>
+    <string name="article_native_message">没有编辑完成的文章会保存起来,等待下次的编辑</string>
+    <string name="article_native_title">是否保存本次的编辑数据!</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>

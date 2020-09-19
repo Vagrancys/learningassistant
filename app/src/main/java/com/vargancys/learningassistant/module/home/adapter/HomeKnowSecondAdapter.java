@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 
 import java.util.List;
 

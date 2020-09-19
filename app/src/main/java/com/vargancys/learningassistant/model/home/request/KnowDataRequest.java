@@ -5,10 +5,10 @@ import com.vagrancys.learningassistant.db.HomeKnowCommendDao;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
 import com.vagrancys.learningassistant.db.HomeKnowDataDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.home.HomeKnowCommend;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.db.home.HomeKnowData;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowCommend;
+import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowData;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import java.util.List;

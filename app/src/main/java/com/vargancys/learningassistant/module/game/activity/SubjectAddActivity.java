@@ -16,11 +16,11 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.GameFillItem;
-import com.vargancys.learningassistant.db.game.GameMultipleItem;
-import com.vargancys.learningassistant.db.game.GameRadioItem;
-import com.vargancys.learningassistant.db.game.GameSubjectItem;
-import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
+import com.vargancys.learningassistant.bean.game.GameFillItem;
+import com.vargancys.learningassistant.bean.game.GameMultipleItem;
+import com.vargancys.learningassistant.bean.game.GameRadioItem;
+import com.vargancys.learningassistant.bean.game.GameSubjectItem;
+import com.vargancys.learningassistant.bean.game.GameSubjectiveItem;
 import com.vargancys.learningassistant.module.game.view.AddGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
@@ -149,7 +149,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            knowId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            knowId = intent.getLongExtra(ConstantsUtils.KNOWLEDGE_ID, 0);
             mSubjectContent = intent.getLongExtra(ConstantsUtils.KNOW_SUBJECT_ID,0);
         }
         initData();
@@ -309,7 +309,7 @@ public class SubjectAddActivity extends BaseActivity implements AddGameView {
 
     public static void launch(Activity activity, long knowId,long subjectId) {
         Intent intent = new Intent(activity, SubjectAddActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, knowId);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ID, knowId);
         intent.putExtra(ConstantsUtils.KNOW_SUBJECT_ID,subjectId);
         activity.startActivity(intent);
     }

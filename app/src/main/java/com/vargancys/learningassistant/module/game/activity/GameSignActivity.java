@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.bean.game.GameSignContent;
 import com.vargancys.learningassistant.module.game.adapter.GameSignAdapter;
 import com.vargancys.learningassistant.module.game.view.SignGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;

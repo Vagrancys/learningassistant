@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderResultBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderResultBean;
 import com.vargancys.learningassistant.module.ladder.view.LadderResultView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;

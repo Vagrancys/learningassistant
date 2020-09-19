@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
 import com.vargancys.learningassistant.module.overview.adapter.OverViewSearchAdapter;
 import com.vargancys.learningassistant.module.overview.view.BaseOverView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;

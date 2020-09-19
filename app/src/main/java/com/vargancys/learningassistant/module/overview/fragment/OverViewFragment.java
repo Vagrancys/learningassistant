@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.activity.OverViewInformationActivity;
 import com.vargancys.learningassistant.module.overview.activity.OverViewSelectActivity;
 import com.vargancys.learningassistant.module.overview.adapter.SimpleTreeAdapter;

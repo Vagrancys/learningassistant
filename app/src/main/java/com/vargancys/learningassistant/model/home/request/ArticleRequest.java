@@ -1,15 +1,18 @@
 package com.vargancys.learningassistant.model.home.request;
 
-import com.vargancys.learningassistant.db.home.ArticleBean;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vagrancys.learningassistant.db.TemporaryArticleDbDao;
+import com.vargancys.learningassistant.base.BaseApplication;
+import com.vargancys.learningassistant.bean.home.ArticleBean;
+import com.vargancys.learningassistant.db.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.ApiClient;
 import com.vargancys.learningassistant.http.BaseBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.http.MySubscriber;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
+import com.vargancys.learningassistant.module.home.view.InsertArticleView;
+import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,8 +24,9 @@ import java.util.Map;
  */
 public class ArticleRequest {
     private static ArticleRequest instance;
+    private TemporaryArticleDbDao articleDao;
     private ArticleRequest(){
-
+        articleDao = BaseApplication.getInstance().getDaoSession().getTemporaryArticleDbDao();
     }
     public static ArticleRequest getInstance(){
         if(instance == null){
@@ -102,5 +106,30 @@ public class ArticleRequest {
      * @param noDataListener
      */
     public void updateArticle(ArticleBean object, CommonHttpListener noDataListener) {
+    }
+
+    /**
+     * 查询本地的临时文章数据
+     * @param id
+     * @param mView
+     */
+    public TemporaryArticleDb nativeQuery(int article, BaseCallBackListener mView) {
+        return articleDao.queryBuilder().where(TemporaryArticleDbDao.Properties.Article_id.eq(article)).unique();
+    }
+
+    /**
+     * 添加本地文章数据
+     * @param mDB
+     */
+    public void nativeAdd(TemporaryArticleDb mDB) {
+        articleDao.insert(mDB);
+    }
+
+    /**
+     * 删除本地文章数据
+     * @param knowLedge_id
+     */
+    public void nativeDelete(long native_id) {
+        articleDao.deleteByKey(native_id);
     }
 }

@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.game.view;
 
-import com.vargancys.learningassistant.db.game.GameStartContent;
+import com.vargancys.learningassistant.bean.game.GameStartContent;
 
 import java.util.List;
 

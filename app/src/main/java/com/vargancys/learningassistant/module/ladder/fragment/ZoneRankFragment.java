@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderRankDataBean;
 import com.vargancys.learningassistant.module.ladder.adapter.ZoneRankDataAdapter;
 import com.vargancys.learningassistant.module.ladder.view.LadderZoneRankView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;

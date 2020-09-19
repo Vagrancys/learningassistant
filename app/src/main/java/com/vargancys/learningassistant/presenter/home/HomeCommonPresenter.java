@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.home.request.HomeCommonRequest;
 import com.vargancys.learningassistant.module.home.view.HomeCommonView;
 

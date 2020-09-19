@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.home.view;
 
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 
 import java.util.List;
 

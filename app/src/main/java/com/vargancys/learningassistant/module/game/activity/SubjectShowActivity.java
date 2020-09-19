@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.GameSubjectContent;
-import com.vargancys.learningassistant.db.game.GameSubjectItem;
+import com.vargancys.learningassistant.bean.game.GameSubjectContent;
+import com.vargancys.learningassistant.bean.game.GameSubjectItem;
 import com.vargancys.learningassistant.module.game.adapter.SubjectShowAdapter;
 import com.vargancys.learningassistant.module.game.view.SubjectShowView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
@@ -77,7 +77,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            knowItemId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            knowItemId = intent.getLongExtra(ConstantsUtils.KNOWLEDGE_ID, 0);
         }
         init();
         mPresenter = new BaseGamePresenter(this);
@@ -110,7 +110,7 @@ public class SubjectShowActivity extends BaseActivity implements SubjectShowView
 
     public static void launch(Activity activity, long know_id) {
         Intent intent = new Intent(activity, SubjectShowActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, know_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ID, know_id);
         activity.startActivity(intent);
     }
 

@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.mine.MineDataBean;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.mine.MineDataBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
 import com.vargancys.learningassistant.module.mine.adapter.SystemDataAdapter;
 import com.vargancys.learningassistant.module.mine.view.SystemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;

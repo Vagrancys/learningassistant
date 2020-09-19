@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.game.view;
 
-import com.vargancys.learningassistant.db.game.GameContent;
+import com.vargancys.learningassistant.bean.game.GameContent;
 
 /**
  * author: Vagrancy

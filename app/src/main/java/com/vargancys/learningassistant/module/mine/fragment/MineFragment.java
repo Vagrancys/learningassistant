@@ -11,7 +11,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.bean.mine.MineDataBean;
 import com.vargancys.learningassistant.module.mine.activity.SettingActivity;
 import com.vargancys.learningassistant.module.mine.adapter.MineSlidingAdapter;
 import com.vargancys.learningassistant.module.mine.view.BaseMineView;

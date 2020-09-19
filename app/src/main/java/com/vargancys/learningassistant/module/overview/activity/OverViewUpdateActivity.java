@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.common.KnowListBean;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
 import com.vargancys.learningassistant.module.overview.adapter.UpdateTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewUpdateView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;

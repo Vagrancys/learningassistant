@@ -1,7 +1,7 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.db.home.ArticleBean;
+import com.vargancys.learningassistant.bean.home.ArticleBean;
+import com.vargancys.learningassistant.db.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
@@ -9,7 +9,6 @@ import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.BasePresenter;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -50,9 +49,17 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
         ArticleRequest.getInstance().queryAllArticle(ids,getArrayListener());
     }
 
+    /**
+     * 编辑过但是没有完成会保存在本地数据库里
+     * @param id
+     */
     @Override
     public void nativeQuery(int id) {
-
+        InsertArticleView view = ((InsertArticleView) mView);
+        TemporaryArticleDb articleBean = ArticleRequest.getInstance().nativeQuery(id,mView);
+        if(articleBean != null){
+            view.nativeQueryFinish(articleBean);
+        }
     }
 
 
@@ -143,11 +150,16 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
         };
     }
 
-    public void nativeDelete(int knowLedge_id) {
-
+    public void nativeDelete(long knowLedge_id) {
+        ArticleRequest.getInstance().nativeDelete(knowLedge_id);
     }
 
     public void addArticle() {
         ((InsertArticleView) mView).addArticle();
+    }
+
+
+    public void nativeAdd(TemporaryArticleDb mDB) {
+        ArticleRequest.getInstance().nativeAdd(mDB);
     }
 }

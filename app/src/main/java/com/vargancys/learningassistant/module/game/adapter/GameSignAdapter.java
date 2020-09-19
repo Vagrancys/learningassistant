@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.game.GameSignContent;
+import com.vargancys.learningassistant.bean.game.GameSignContent;
 
 import java.util.List;
 

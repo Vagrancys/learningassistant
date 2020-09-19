@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyDataBean;
 import com.vargancys.learningassistant.module.ladder.adapter.DifficultyCommentAdapter;
 import com.vargancys.learningassistant.module.ladder.view.LadderDifficultyDetailsView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;

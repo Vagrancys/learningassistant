@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;

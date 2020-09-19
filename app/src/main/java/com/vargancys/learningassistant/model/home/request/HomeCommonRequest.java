@@ -2,9 +2,7 @@ package com.vargancys.learningassistant.model.home.request;
 
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
-
-import org.greenrobot.greendao.query.QueryBuilder;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 
 import java.util.List;
 

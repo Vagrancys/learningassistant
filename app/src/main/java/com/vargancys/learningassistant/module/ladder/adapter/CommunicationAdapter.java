@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 
 import java.util.List;

@@ -4,8 +4,8 @@ import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.HomeKnowContentDao;
 import com.vagrancys.learningassistant.db.HomeKnowHistoryDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 
 /**
  * author: Vagrancy

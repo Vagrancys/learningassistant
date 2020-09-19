@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.common.HelpCommendItem;
+import com.vargancys.learningassistant.bean.common.HelpContentBean;
 import com.vargancys.learningassistant.module.common.adapter.HelpCommendAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpSummaryView;
 import com.vargancys.learningassistant.presenter.common.help.HelpPresenter;

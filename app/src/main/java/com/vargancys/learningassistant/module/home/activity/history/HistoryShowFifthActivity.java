@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.view.HistoryShowView;
 import com.vargancys.learningassistant.presenter.home.HistoryShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;

@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.common.help.HelpContentActivity;
 import com.vargancys.learningassistant.module.common.MainActivity;
 import com.vargancys.learningassistant.module.home.activity.AddKnowLedgeActivity;

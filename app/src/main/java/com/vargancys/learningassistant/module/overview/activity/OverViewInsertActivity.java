@@ -9,19 +9,16 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.adapter.InsertTreeAdapter;
-import com.vargancys.learningassistant.module.overview.adapter.UpdateTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewInsertView;
-import com.vargancys.learningassistant.module.overview.view.OverViewUpdateView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.dialog.OverViewInsertPopupWindow;
-import com.vargancys.learningassistant.widget.dialog.OverViewUpdatePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;

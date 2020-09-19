@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.bean.ladder.LadderHelpBean;
 import com.vargancys.learningassistant.module.ladder.adapter.LadderHelpAdapter;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpView;
 import com.vargancys.learningassistant.presenter.ladder.BaseLadderPresenter;

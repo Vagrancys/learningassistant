@@ -1,7 +1,7 @@
 package com.vargancys.learningassistant.module.ladder.view;
 
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderResultBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderResultBean;
 
 /**
  * @author Vagrancy

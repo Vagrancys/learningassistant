@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.db.home.HomeKnowFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowFourthAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowShowView;

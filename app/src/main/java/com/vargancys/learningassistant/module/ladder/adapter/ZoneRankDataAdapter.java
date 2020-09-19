@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderRankDataBean;
 
 import java.util.List;
 

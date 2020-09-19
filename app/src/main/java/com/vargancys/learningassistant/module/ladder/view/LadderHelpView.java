@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.ladder.view;
 
-import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.bean.ladder.LadderHelpBean;
 
 import java.util.List;
 

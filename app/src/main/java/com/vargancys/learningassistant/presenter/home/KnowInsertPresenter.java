@@ -2,7 +2,7 @@ package com.vargancys.learningassistant.presenter.home;
 
 import android.util.Log;
 
-import com.vargancys.learningassistant.db.home.HomeKnowFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;

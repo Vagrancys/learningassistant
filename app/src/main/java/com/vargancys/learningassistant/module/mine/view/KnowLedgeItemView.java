@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.mine.view;
 
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 
 import java.util.List;
 

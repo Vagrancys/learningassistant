@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.mine.view;
 
-import com.vargancys.learningassistant.db.mine.MineDataBean;
+import com.vargancys.learningassistant.bean.mine.MineDataBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelTypeDataBean;
 
 /**

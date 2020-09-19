@@ -1,9 +1,9 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.db.home.HomeKnowFunction;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
-import com.vargancys.learningassistant.db.home.HomeKnowHistoryFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
 import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
 import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
 import com.vargancys.learningassistant.module.home.view.KnowUpdateFourthView;

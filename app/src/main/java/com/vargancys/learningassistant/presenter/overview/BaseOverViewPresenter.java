@@ -3,9 +3,9 @@ package com.vargancys.learningassistant.presenter.overview;
 import android.os.Handler;
 import android.util.Log;
 
-import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.model.overview.request.OverViewRequest;

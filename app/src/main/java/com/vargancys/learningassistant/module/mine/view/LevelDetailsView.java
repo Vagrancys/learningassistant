@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.mine.view;
 
-import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
+import com.vargancys.learningassistant.bean.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
 
 import java.util.List;

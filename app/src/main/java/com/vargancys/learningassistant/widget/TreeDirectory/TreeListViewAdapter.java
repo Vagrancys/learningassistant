@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.vargancys.learningassistant.db.common.KnowListBean;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
 import com.vargancys.learningassistant.utils.DensityUtils;
 
 import java.util.List;

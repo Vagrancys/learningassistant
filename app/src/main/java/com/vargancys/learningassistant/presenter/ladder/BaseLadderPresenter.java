@@ -2,16 +2,16 @@ package com.vargancys.learningassistant.presenter.ladder;
 
 import android.util.Log;
 
-import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
-import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
-import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
-import com.vargancys.learningassistant.db.ladder.LadderResultBean;
-import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
+import com.vargancys.learningassistant.bean.ladder.LadderCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderCommentReplyBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.bean.ladder.LadderRankDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderRankSettingBean;
+import com.vargancys.learningassistant.bean.ladder.LadderResultBean;
+import com.vargancys.learningassistant.bean.ladder.LadderTopicBean;
 import com.vargancys.learningassistant.model.ladder.request.LadderRequest;
 import com.vargancys.learningassistant.module.ladder.view.LadderHelpView;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentReplyView;

@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.utils;
 
+import android.content.Context;
+
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
@@ -81,4 +83,8 @@ public class ConstantsUtils {
     public static final String PROBLEM_ID = "problem_id";
     //登录状态
     public static final String LOGIN_STATE = "login_state";
+    //是否第一次提示保存文章数据;
+    public static final String ARTICLE_NATIVE_HINT_STATE = "article_native_hint_state";
+    //是否保存文章数据;
+    public static final String ARTICLE_NATIVE_SAVE_STATE = "article_native_save_state";
 }

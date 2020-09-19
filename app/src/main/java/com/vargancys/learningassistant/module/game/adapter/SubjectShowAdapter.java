@@ -13,11 +13,11 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.game.GameFillItem;
-import com.vargancys.learningassistant.db.game.GameMultipleItem;
-import com.vargancys.learningassistant.db.game.GameRadioItem;
-import com.vargancys.learningassistant.db.game.GameSubjectItem;
-import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
+import com.vargancys.learningassistant.bean.game.GameFillItem;
+import com.vargancys.learningassistant.bean.game.GameMultipleItem;
+import com.vargancys.learningassistant.bean.game.GameRadioItem;
+import com.vargancys.learningassistant.bean.game.GameSubjectItem;
+import com.vargancys.learningassistant.bean.game.GameSubjectiveItem;
 
 import java.util.List;
 

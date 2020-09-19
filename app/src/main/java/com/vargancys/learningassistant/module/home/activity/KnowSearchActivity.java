@@ -10,7 +10,7 @@ import android.widget.EditText;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;

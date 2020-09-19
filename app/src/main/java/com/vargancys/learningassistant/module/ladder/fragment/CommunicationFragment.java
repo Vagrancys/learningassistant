@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderCommentBean;
 import com.vargancys.learningassistant.module.ladder.activity.LadderCommentReplyActivity;
 import com.vargancys.learningassistant.module.ladder.adapter.CommunicationAdapter;
 import com.vargancys.learningassistant.module.ladder.view.LadderCommentView;

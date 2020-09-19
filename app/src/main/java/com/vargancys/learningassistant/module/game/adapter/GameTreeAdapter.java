@@ -12,8 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.widget.TreeDirectory.Node;
 import com.vargancys.learningassistant.widget.TreeDirectory.TreeListViewAdapter;
 

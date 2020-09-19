@@ -8,43 +8,44 @@ import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
-import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.common.MemberBean;
-import com.vargancys.learningassistant.db.game.GameContent;
-import com.vargancys.learningassistant.db.game.GameFillItem;
-import com.vargancys.learningassistant.db.game.GameMultipleItem;
-import com.vargancys.learningassistant.db.game.GameRadioItem;
-import com.vargancys.learningassistant.db.game.GameSignContent;
-import com.vargancys.learningassistant.db.game.GameSubjectContent;
-import com.vargancys.learningassistant.db.game.GameSubjectItem;
-import com.vargancys.learningassistant.db.game.GameSubjectiveItem;
-import com.vargancys.learningassistant.db.home.HomeKnowCommend;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.db.home.HomeKnowData;
-import com.vargancys.learningassistant.db.home.HomeKnowFunction;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
-import com.vargancys.learningassistant.db.home.HomeKnowHistoryFunction;
-import com.vargancys.learningassistant.db.ladder.LadderCommentBean;
-import com.vargancys.learningassistant.db.ladder.LadderCommentReplyBean;
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderHelpBean;
-import com.vargancys.learningassistant.db.ladder.LadderRankDataBean;
-import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
-import com.vargancys.learningassistant.db.ladder.LadderResultBean;
-import com.vargancys.learningassistant.db.ladder.LadderTopicBean;
-import com.vargancys.learningassistant.db.mine.ChallengeDataBean;
-import com.vargancys.learningassistant.db.mine.ChallengePartBean;
-import com.vargancys.learningassistant.db.mine.KnowLedgeDataBean;
-import com.vargancys.learningassistant.db.mine.LevelDataBean;
-import com.vargancys.learningassistant.db.mine.LevelPartBean;
-import com.vargancys.learningassistant.db.mine.MineDataBean;
-import com.vargancys.learningassistant.db.mine.MineFeedbackBean;
-import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
-import com.vargancys.learningassistant.db.mine.ProblemDataBean;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.HelpCommendItem;
+import com.vargancys.learningassistant.bean.common.MemberBean;
+import com.vargancys.learningassistant.bean.game.GameContent;
+import com.vargancys.learningassistant.bean.game.GameFillItem;
+import com.vargancys.learningassistant.bean.game.GameMultipleItem;
+import com.vargancys.learningassistant.bean.game.GameRadioItem;
+import com.vargancys.learningassistant.bean.game.GameSignContent;
+import com.vargancys.learningassistant.bean.game.GameSubjectContent;
+import com.vargancys.learningassistant.bean.game.GameSubjectItem;
+import com.vargancys.learningassistant.bean.game.GameSubjectiveItem;
+import com.vargancys.learningassistant.bean.home.HomeKnowCommend;
+import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowData;
+import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
+import com.vargancys.learningassistant.bean.ladder.LadderCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderCommentReplyBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderHelpBean;
+import com.vargancys.learningassistant.bean.ladder.LadderRankDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderRankSettingBean;
+import com.vargancys.learningassistant.bean.ladder.LadderResultBean;
+import com.vargancys.learningassistant.bean.ladder.LadderTopicBean;
+import com.vargancys.learningassistant.bean.mine.ChallengeDataBean;
+import com.vargancys.learningassistant.bean.mine.ChallengePartBean;
+import com.vargancys.learningassistant.bean.mine.KnowLedgeDataBean;
+import com.vargancys.learningassistant.bean.mine.LevelDataBean;
+import com.vargancys.learningassistant.bean.mine.LevelPartBean;
+import com.vargancys.learningassistant.bean.mine.MineDataBean;
+import com.vargancys.learningassistant.bean.mine.MineFeedbackBean;
+import com.vargancys.learningassistant.bean.mine.MineLevelPrivilegeBean;
+import com.vargancys.learningassistant.bean.mine.ProblemDataBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
+import com.vargancys.learningassistant.db.TemporaryArticleDb;
 
 import com.vagrancys.learningassistant.db.HelpCommendItemDao;
 import com.vagrancys.learningassistant.db.MemberBeanDao;
@@ -83,6 +84,7 @@ import com.vagrancys.learningassistant.db.MineLevelPrivilegeBeanDao;
 import com.vagrancys.learningassistant.db.ProblemDataBeanDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
+import com.vagrancys.learningassistant.db.TemporaryArticleDbDao;
 
 // THIS CODE IS GENERATED BY greenDAO, DO NOT EDIT.
 
@@ -130,6 +132,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig problemDataBeanDaoConfig;
     private final DaoConfig overViewListContentDaoConfig;
     private final DaoConfig overViewListItemDaoConfig;
+    private final DaoConfig temporaryArticleDbDaoConfig;
 
     private final HelpCommendItemDao helpCommendItemDao;
     private final MemberBeanDao memberBeanDao;
@@ -168,6 +171,7 @@ public class DaoSession extends AbstractDaoSession {
     private final ProblemDataBeanDao problemDataBeanDao;
     private final OverViewListContentDao overViewListContentDao;
     private final OverViewListItemDao overViewListItemDao;
+    private final TemporaryArticleDbDao temporaryArticleDbDao;
 
     public DaoSession(Database db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
@@ -284,6 +288,9 @@ public class DaoSession extends AbstractDaoSession {
         overViewListItemDaoConfig = daoConfigMap.get(OverViewListItemDao.class).clone();
         overViewListItemDaoConfig.initIdentityScope(type);
 
+        temporaryArticleDbDaoConfig = daoConfigMap.get(TemporaryArticleDbDao.class).clone();
+        temporaryArticleDbDaoConfig.initIdentityScope(type);
+
         helpCommendItemDao = new HelpCommendItemDao(helpCommendItemDaoConfig, this);
         memberBeanDao = new MemberBeanDao(memberBeanDaoConfig, this);
         gameContentDao = new GameContentDao(gameContentDaoConfig, this);
@@ -321,6 +328,7 @@ public class DaoSession extends AbstractDaoSession {
         problemDataBeanDao = new ProblemDataBeanDao(problemDataBeanDaoConfig, this);
         overViewListContentDao = new OverViewListContentDao(overViewListContentDaoConfig, this);
         overViewListItemDao = new OverViewListItemDao(overViewListItemDaoConfig, this);
+        temporaryArticleDbDao = new TemporaryArticleDbDao(temporaryArticleDbDaoConfig, this);
 
         registerDao(HelpCommendItem.class, helpCommendItemDao);
         registerDao(MemberBean.class, memberBeanDao);
@@ -359,6 +367,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(ProblemDataBean.class, problemDataBeanDao);
         registerDao(OverViewListContent.class, overViewListContentDao);
         registerDao(OverViewListItem.class, overViewListItemDao);
+        registerDao(TemporaryArticleDb.class, temporaryArticleDbDao);
     }
     
     public void clear() {
@@ -399,6 +408,7 @@ public class DaoSession extends AbstractDaoSession {
         problemDataBeanDaoConfig.clearIdentityScope();
         overViewListContentDaoConfig.clearIdentityScope();
         overViewListItemDaoConfig.clearIdentityScope();
+        temporaryArticleDbDaoConfig.clearIdentityScope();
     }
 
     public HelpCommendItemDao getHelpCommendItemDao() {
@@ -547,6 +557,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public OverViewListItemDao getOverViewListItemDao() {
         return overViewListItemDao;
+    }
+
+    public TemporaryArticleDbDao getTemporaryArticleDbDao() {
+        return temporaryArticleDbDao;
     }
 
 }

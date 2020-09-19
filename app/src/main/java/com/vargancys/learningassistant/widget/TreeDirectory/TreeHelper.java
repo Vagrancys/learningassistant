@@ -1,7 +1,7 @@
 package com.vargancys.learningassistant.widget.TreeDirectory;
 
 import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.db.common.KnowListBean;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

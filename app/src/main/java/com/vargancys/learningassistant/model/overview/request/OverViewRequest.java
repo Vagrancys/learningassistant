@@ -1,18 +1,16 @@
 package com.vargancys.learningassistant.model.overview.request;
 
-import android.content.Intent;
-
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.GameContentDao;
 import com.vagrancys.learningassistant.db.GameSubjectContentDao;
 import com.vagrancys.learningassistant.db.OverViewListContentDao;
 import com.vagrancys.learningassistant.db.OverViewListItemDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.db.game.GameContent;
-import com.vargancys.learningassistant.db.game.GameSubjectContent;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
+import com.vargancys.learningassistant.bean.game.GameContent;
+import com.vargancys.learningassistant.bean.game.GameSubjectContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.utils.TimeUtils;

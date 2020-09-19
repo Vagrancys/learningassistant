@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.db.game.GameContent;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
+import com.vargancys.learningassistant.bean.game.GameContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.game.activity.GameHallActivity;
 import com.vargancys.learningassistant.module.game.activity.GameSelectActivity;
 import com.vargancys.learningassistant.module.game.activity.GameSignActivity;

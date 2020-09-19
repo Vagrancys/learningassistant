@@ -1,7 +1,7 @@
 package com.vargancys.learningassistant.module.mine.view;
 
-import com.vargancys.learningassistant.db.mine.MineDataBean;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.mine.MineDataBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
 
 import java.util.List;
 

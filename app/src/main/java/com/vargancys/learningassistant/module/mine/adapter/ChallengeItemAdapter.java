@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
 
 import java.util.List;
 

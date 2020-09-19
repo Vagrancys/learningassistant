@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowFirstActivity;

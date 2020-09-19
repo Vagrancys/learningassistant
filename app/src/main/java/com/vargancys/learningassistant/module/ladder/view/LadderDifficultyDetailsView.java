@@ -1,7 +1,7 @@
 package com.vargancys.learningassistant.module.ladder.view;
 
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyCommentBean;
-import com.vargancys.learningassistant.db.ladder.LadderDifficultyDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyCommentBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDifficultyDataBean;
 
 import java.util.List;
 

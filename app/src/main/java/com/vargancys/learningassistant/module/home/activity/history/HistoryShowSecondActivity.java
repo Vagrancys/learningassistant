@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
-import com.vargancys.learningassistant.db.home.HomeKnowHistoryFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
 import com.vargancys.learningassistant.module.home.adapter.HomeHistorySecondAdapter;
 import com.vargancys.learningassistant.module.home.view.HistoryShowView;
 import com.vargancys.learningassistant.presenter.home.HistoryShowPresenter;

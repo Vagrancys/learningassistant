@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
+import com.vargancys.learningassistant.bean.game.GameAnswerSheetBean;
 
 import java.util.ArrayList;
 

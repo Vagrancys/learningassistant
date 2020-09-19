@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.common.KnowListBean;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 import com.vargancys.learningassistant.module.overview.adapter.AddTreeAdapter;
 import com.vargancys.learningassistant.module.overview.view.OverViewAddView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;

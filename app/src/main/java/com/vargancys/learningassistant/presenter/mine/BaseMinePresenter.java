@@ -2,11 +2,11 @@ package com.vargancys.learningassistant.presenter.mine;
 
 import android.content.Context;
 
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
-import com.vargancys.learningassistant.db.mine.MineDataBean;
-import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.mine.MineDataBean;
+import com.vargancys.learningassistant.bean.mine.MineLevelPrivilegeBean;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
 import com.vargancys.learningassistant.model.mine.bean.ChallengeTypeDataBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeTypeDataBean;

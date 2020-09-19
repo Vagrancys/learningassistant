@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.overview.view;
 
-import com.vargancys.learningassistant.db.overview.OverViewListItem;
+import com.vargancys.learningassistant.bean.overview.OverViewListItem;
 
 import java.util.List;
 

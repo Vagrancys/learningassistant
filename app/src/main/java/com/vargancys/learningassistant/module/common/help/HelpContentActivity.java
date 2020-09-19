@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.module.common.help;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.db.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.common.HelpContentBean;
 import com.vargancys.learningassistant.module.common.adapter.HelpContentAdapter;
 import com.vargancys.learningassistant.module.common.view.HelpContentView;
 import com.vargancys.learningassistant.presenter.common.help.HelpPresenter;

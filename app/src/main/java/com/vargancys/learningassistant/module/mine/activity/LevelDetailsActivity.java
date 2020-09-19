@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.mine.MineLevelPrivilegeBean;
+import com.vargancys.learningassistant.bean.mine.MineLevelPrivilegeBean;
 import com.vargancys.learningassistant.model.mine.bean.LevelItemBean;
 import com.vargancys.learningassistant.module.mine.adapter.LevelPrivilegeAdapter;
 import com.vargancys.learningassistant.module.mine.view.LevelDetailsView;

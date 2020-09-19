@@ -51,7 +51,7 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            know_item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ID,0);
         }
         mPresenter = new KnowInsertPresenter(this);
     }
@@ -98,7 +98,7 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
 
     public static void launch(Activity activity,int know_id){
         Intent intent = new Intent(activity,KnowInsertDefaultActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ID,know_id);
         activity.startActivity(intent);
     }
 

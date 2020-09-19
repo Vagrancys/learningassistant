@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
+import com.vargancys.learningassistant.bean.game.GameAnswerSheetBean;
 import com.vargancys.learningassistant.module.game.adapter.AnswerSheetAdapter;
 import com.vargancys.learningassistant.module.game.view.AnswerSheetView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;

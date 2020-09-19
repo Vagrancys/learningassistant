@@ -11,7 +11,7 @@ import java.util.List;
 public class HelpContentBean {
     private String msg;
     private int error;
-    private List<com.vargancys.learningassistant.db.common.HelpContentBean> helpContentItems;
+    private List<com.vargancys.learningassistant.bean.common.HelpContentBean> helpContentItems;
 
     public String getMsg() {
         return msg;
@@ -29,11 +29,11 @@ public class HelpContentBean {
         this.error = error;
     }
 
-    public List<com.vargancys.learningassistant.db.common.HelpContentBean> getHelpContentItems() {
+    public List<com.vargancys.learningassistant.bean.common.HelpContentBean> getHelpContentItems() {
         return helpContentItems;
     }
 
-    public void setHelpContentItems(List<com.vargancys.learningassistant.db.common.HelpContentBean> helpContentItems) {
+    public void setHelpContentItems(List<com.vargancys.learningassistant.bean.common.HelpContentBean> helpContentItems) {
         this.helpContentItems = helpContentItems;
     }
 }

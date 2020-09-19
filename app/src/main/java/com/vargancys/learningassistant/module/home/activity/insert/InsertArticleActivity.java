@@ -1,18 +1,21 @@
 package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.PopupWindow;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.ArticleBean;
+import com.vargancys.learningassistant.bean.home.ArticleBean;
+import com.vargancys.learningassistant.db.TemporaryArticleDb;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
-import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
+import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -32,6 +35,9 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
     private ArticlePresenter mPresenter;
     //知识的id
     private int KnowLedge_Id;
+    //本地文章id
+    private long nativeArticle_id;
+    private boolean isArticle = false;
 
     @Override
     public int getLayoutId() {
@@ -45,6 +51,7 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
             KnowLedge_Id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ID,0);
         }
         mPresenter = new ArticlePresenter(this);
+        mPresenter.nativeQuery(KnowLedge_Id);
     }
 
     @Override
@@ -75,6 +82,14 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
         mPresenter.add(mBean);
     }
 
+    @Override
+    public void nativeQueryFinish(Object object) {
+        isArticle = true;
+        TemporaryArticleDb db = (TemporaryArticleDb) object;
+        nativeArticle_id = db.getTemporary_article_id();
+        articleEdit.setText(db.getContent());
+    }
+
     public static void launch(Activity activity, int knowledge_id){
         Intent intent = new Intent(activity, InsertArticleActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ID,knowledge_id);
@@ -100,14 +115,42 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
 
     private void finishArticle() {
         if(articleEdit.getText().length() > 0){
-            // TODO
+            if(CacheUtils.getBoolean(getContext(),ConstantsUtils.ARTICLE_NATIVE_HINT_STATE)){
+                if(CacheUtils.getBoolean(getContext(),ConstantsUtils.ARTICLE_NATIVE_SAVE_STATE)){
+                    nativeAdd();
+                }
+
+            }else{
+                CacheUtils.putBoolean(getContext(),ConstantsUtils.ARTICLE_NATIVE_HINT_STATE,true);
+                new AlertDialog.Builder(getContext())
+                        .setMessage(R.string.article_native_message)
+                        .setTitle(R.string.article_native_title)
+                        .setPositiveButton(R.string.common_cancel_text, (dialog, which) -> {
+                            CacheUtils.putBoolean(getContext(),ConstantsUtils.ARTICLE_NATIVE_HINT_STATE,false);
+                        })
+                        .setNegativeButton(R.string.common_determine_text, (dialog, which) -> {
+                            CacheUtils.putBoolean(getContext(),ConstantsUtils.ARTICLE_NATIVE_HINT_STATE,true);
+                           nativeAdd();
+                        });
+            }
+
         }else{
             finish();
         }
     }
 
+    private void nativeAdd(){
+        TemporaryArticleDb mDB = new TemporaryArticleDb();
+        mDB.setArticle_id(KnowLedge_Id);
+        mDB.setContent(articleEdit.getText().toString());
+        mPresenter.nativeAdd(mDB);
+    }
+
     @Override
     public void onSuccess() {
+        if(isArticle){
+            mPresenter.nativeDelete(nativeArticle_id);
+        }
         ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
         initEmpty();
         finish();

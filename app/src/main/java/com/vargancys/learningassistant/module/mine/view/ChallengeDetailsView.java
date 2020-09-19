@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.mine.view;
 
-import com.vargancys.learningassistant.db.ladder.LadderDataBean;
+import com.vargancys.learningassistant.bean.ladder.LadderDataBean;
 
 /**
  * @author Vagrancy

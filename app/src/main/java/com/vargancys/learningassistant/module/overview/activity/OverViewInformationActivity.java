@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
 import com.vargancys.learningassistant.module.overview.view.OverViewInformationView;
 import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;

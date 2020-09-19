@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.AnswerSheetParcelable;
-import com.vargancys.learningassistant.db.game.GameAnswerSheetBean;
-import com.vargancys.learningassistant.db.game.GameStartContent;
+import com.vargancys.learningassistant.bean.game.AnswerSheetParcelable;
+import com.vargancys.learningassistant.bean.game.GameAnswerSheetBean;
+import com.vargancys.learningassistant.bean.game.GameStartContent;
 import com.vargancys.learningassistant.module.game.view.StartGameView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;

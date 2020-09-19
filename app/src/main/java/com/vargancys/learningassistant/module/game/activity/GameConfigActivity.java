@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.game.GameConfigUtils;
+import com.vargancys.learningassistant.bean.game.GameConfigUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;

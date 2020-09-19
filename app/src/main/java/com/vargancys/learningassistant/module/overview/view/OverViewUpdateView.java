@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.overview.view;
 
-import com.vargancys.learningassistant.db.common.KnowListBean;
+import com.vargancys.learningassistant.bean.common.KnowListBean;
 
 import java.util.List;
 

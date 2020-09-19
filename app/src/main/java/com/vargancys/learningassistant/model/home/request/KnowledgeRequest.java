@@ -1,8 +1,6 @@
 package com.vargancys.learningassistant.model.home.request;
 
-import android.util.Log;
-
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.http.ApiClient;
 import com.vargancys.learningassistant.http.BaseBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;

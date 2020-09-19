@@ -1,9 +1,7 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
-import com.vargancys.learningassistant.model.home.request.HomeRequest;
 import com.vargancys.learningassistant.model.home.request.KnowledgeRequest;
 import com.vargancys.learningassistant.module.home.view.HomeAddView;
 

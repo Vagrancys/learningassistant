@@ -12,7 +12,7 @@ import android.widget.Spinner;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.view.HomeAddView;
 import com.vargancys.learningassistant.presenter.home.KnowLedgePresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;

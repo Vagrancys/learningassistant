@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.ladder.view;
 
-import com.vargancys.learningassistant.db.ladder.LadderRankSettingBean;
+import com.vargancys.learningassistant.bean.ladder.LadderRankSettingBean;
 
 import java.util.List;
 

@@ -7,11 +7,11 @@ import com.vagrancys.learningassistant.db.HomeKnowFunctionDao;
 import com.vagrancys.learningassistant.db.HomeKnowHistoryDao;
 import com.vagrancys.learningassistant.db.HomeKnowHistoryFunctionDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.home.HomeKnowContent;
-import com.vargancys.learningassistant.db.home.HomeKnowData;
-import com.vargancys.learningassistant.db.home.HomeKnowFunction;
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
-import com.vargancys.learningassistant.db.home.HomeKnowHistoryFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowData;
+import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
 import com.vargancys.learningassistant.utils.TimeUtils;
 
 import java.util.List;

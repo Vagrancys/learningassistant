@@ -2,10 +2,9 @@ package com.vargancys.learningassistant.http;
 
 import android.util.Log;
 
-import com.vargancys.learningassistant.db.common.HelpCommendItem;
-import com.vargancys.learningassistant.db.common.HelpContentBean;
-import com.vargancys.learningassistant.db.home.ArticleBean;
-import com.vargancys.learningassistant.db.home.KnowLedgeBean;
+import com.vargancys.learningassistant.bean.common.HelpCommendItem;
+import com.vargancys.learningassistant.bean.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
 import java.security.KeyManagementException;

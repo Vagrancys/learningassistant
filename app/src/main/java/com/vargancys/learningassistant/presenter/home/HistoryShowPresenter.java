@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.db.home.HomeKnowHistory;
+import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.model.home.request.KnowShowRequest;
 import com.vargancys.learningassistant.module.home.view.HistoryShowView;
 

@@ -3,7 +3,7 @@ package com.vargancys.learningassistant.model.common.request;
 import com.vagrancys.learningassistant.db.DaoSession;
 import com.vagrancys.learningassistant.db.MemberBeanDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.common.MemberBean;
+import com.vargancys.learningassistant.bean.common.MemberBean;
 
 /**
  * @author Vagrancy

@@ -1,6 +1,6 @@
 package com.vargancys.learningassistant.module.overview.view;
 
-import com.vargancys.learningassistant.db.overview.OverViewListContent;
+import com.vargancys.learningassistant.bean.overview.OverViewListContent;
 
 /**
  * @author Vagrancy
