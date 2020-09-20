@@ -11,12 +11,12 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFirstActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonThirdActivity;
 import com.vargancys.learningassistant.module.mine.adapter.ProblemItemAdapter;
 import com.vargancys.learningassistant.module.mine.view.ProblemItemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
@@ -92,22 +92,22 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
     private void launchShowActivity(int item_id,int level) {
         switch (level){
             case 1:
-                KnowShowFirstActivity.launch(this,item_id);
+                ShowArticleActivity.launch(this,item_id);
                 break;
             case 2:
-                KnowShowSecondActivity.launch(this,item_id);
+                ShowCommonSecondActivity.launch(this,item_id);
                 break;
             case 3:
-                KnowShowThirdActivity.launch(this,item_id);
+                ShowCommonThirdActivity.launch(this,item_id);
                 break;
             case 4:
-                KnowShowFourthActivity.launch(this,item_id);
+                ShowCommonFourthActivity.launch(this,item_id);
                 break;
             case 5:
-                KnowShowFifthActivity.launch(this,item_id);
+                ShowCommonFifthActivity.launch(this,item_id);
                 break;
             default:
-                KnowShowDefaultActivity.launch(this,item_id);
+                ShowCommonDefaultActivity.launch(this,item_id);
                 break;
         }
     }

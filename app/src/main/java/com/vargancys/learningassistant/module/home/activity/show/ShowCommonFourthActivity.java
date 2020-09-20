@@ -3,6 +3,8 @@ package com.vargancys.learningassistant.module.home.activity.show;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -11,11 +13,16 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
+import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
-import com.vargancys.learningassistant.module.home.view.KnowShowView;
+import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowFourthAdapter;
+import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 import com.vargancys.learningassistant.presenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,22 +32,22 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/06
  * version:1.0
- * 知识展示一级页面
+ * 知识展示四级页面
  */
-public class KnowShowFirstActivity extends BaseActivity implements KnowShowView {
-
-    private static final String TAG = "KnowShowFirstActivity";
-
+public class ShowCommonFourthActivity extends BaseActivity implements ShowCommonView {
+    private static final String TAG = "KnowShowFourthActivity";
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.insert_show_title)
     TextView insertShowTitle;
     @BindView(R.id.insert_show_summary)
     TextView insertShowSummary;
-    @BindView(R.id.insert_show_show)
-    TextView insertShowShow;
-    @BindView(R.id.insert_show_explain)
-    TextView insertShowExplain;
+    @BindView(R.id.insert_show_count)
+    TextView insertShowCount;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.show_empty_fourth)
+    TextView showEmptyFourth;
     @BindView(R.id.insert_show_heed)
     TextView insertShowHeed;
     @BindView(R.id.insert_show_experience)
@@ -49,23 +56,38 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
     ScrollView scrollView;
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
-    private KnowShowPresenter mPresenter;
-    private long itemId;
-    private static int REQUEST_CODE = 2001;
 
+    private KnowShowPresenter mPresenter;
+    private long item_id;
+    private static int REQUEST_CODE = 2001;
+    private HomeKnowShowFourthAdapter mAdapter;
+    private List<HomeKnowFunction> mFunction = new ArrayList<>();
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_first;
+        return R.layout.activity_know_show_fourth;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
-        if (intent != null) {
-            itemId = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+        if(intent !=null){
+            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
         mPresenter = new KnowShowPresenter(this);
-        mPresenter.getDefaultShowData(itemId);
+        init();
+        mPresenter.getDefaultShowData(item_id);
+    }
+
+    private void init() {
+        mAdapter = new HomeKnowShowFourthAdapter(getContext(),mFunction);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    public static void launch(Activity activity, long item_id) {
+        Intent intent = new Intent(activity, ShowCommonFourthActivity.class);
+        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
+        activity.startActivity(intent);
     }
 
     @Override
@@ -76,15 +98,16 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
             if(state == 1){
                 finish();
             }else if(state == 2){
-                mPresenter.getRefreshDefaultShowData(itemId);
+                mPresenter.getRefreshDefaultShowData(item_id);
             }
         }
     }
 
-    public static void launch(Activity activity, long item_id) {
-        Intent intent = new Intent(activity, KnowShowFirstActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
-        activity.startActivity(intent);
+    @Override
+    public void showContentError(int error, String msg) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+"msg ="+msg);
+        scrollView.setVisibility(View.GONE);
+        includeKnowEmpty.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -94,21 +117,23 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
         initData(homeKnowContent);
     }
 
-    @Override
-    public void showContentError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+"Msg = "+msg);
-        scrollView.setVisibility(View.GONE);
-        includeKnowEmpty.setVisibility(View.VISIBLE);
-    }
-
-    private void initData(HomeKnowContent homeKnowContent){
+    private void initData(HomeKnowContent homeKnowContent) {
         insertShowTitle.setText(homeKnowContent.getTitle());
         insertShowSummary.setText(homeKnowContent.getSummary());
-        insertShowShow.setText(homeKnowContent.getShow());
-        insertShowExplain.setText(homeKnowContent.getExplain());
-        insertShowExperience.setText(homeKnowContent.getExperience());
         insertShowHeed.setText(homeKnowContent.getHeed());
+        insertShowExperience.setText(homeKnowContent.getExperience());
+        int count = homeKnowContent.getHomeKnowFunctions().size();
+        if(count <= 0){
+            showEmptyFourth.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }else{
+            showEmptyFourth.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+        insertShowCount.setText(String.valueOf(homeKnowContent.getHomeKnowFunctions().size()));
+        mFunction.addAll(homeKnowContent.getHomeKnowFunctions());
         commonTitle.setText(homeKnowContent.getTitle());
+        mAdapter.notifyDataSetChanged();
     }
 
     @OnClick({R.id.common_back,R.id.common_img})
@@ -118,8 +143,9 @@ public class KnowShowFirstActivity extends BaseActivity implements KnowShowView 
                 finish();
                 break;
             case R.id.common_img:
-                ShowKnowDataActivity.launch(KnowShowFirstActivity.this,REQUEST_CODE,itemId);
+                ShowKnowDataActivity.launch(ShowCommonFourthActivity.this,REQUEST_CODE,item_id);
                 break;
         }
     }
 }
+

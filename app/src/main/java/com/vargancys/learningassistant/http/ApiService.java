@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.http;
 
 import com.vargancys.learningassistant.bean.common.HelpCommendItem;
 import com.vargancys.learningassistant.bean.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.home.ArticleDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
@@ -63,4 +64,8 @@ public interface ApiService {
     @POST("add_single_article")
     @FormUrlEncoded
     Observable<BaseBean<NoDataBean>> addArticleData(@FieldMap Map<String,Object> map);
+
+    @POST("query_single_article_data")
+    @FormUrlEncoded
+    Observable<BaseBean<ArticleDataBean>> queryArticleData(@Field("article_id") int id);
 }

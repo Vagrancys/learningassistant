@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.vargancys.learningassistant.bean.common.HelpCommendItem;
 import com.vargancys.learningassistant.bean.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.home.ArticleDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
@@ -228,5 +229,12 @@ public class ApiClient {
                 .observeOn(AndroidSchedulers.mainThread()).subscribe((Observer<? super T>) s);
     }
 
-
+    /**
+     * 查询文章的数据
+     * @param article_id
+     * @param baseBeanMySubscriber
+     */
+    public void queryArticleData(int article_id, MySubscriber<BaseBean<ArticleDataBean>> subscriber) {
+        toSubscribe(mService.queryArticleData(article_id),subscriber);
+    }
 }

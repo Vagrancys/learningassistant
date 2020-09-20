@@ -23,12 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.home.activity.show.KnowShowDefaultActivity"/>
-        <activity android:name=".module.home.activity.show.KnowShowFirstActivity"/>
-        <activity android:name=".module.home.activity.show.KnowShowThirdActivity"/>
-        <activity android:name=".module.home.activity.show.KnowShowFifthActivity"/>
-        <activity android:name=".module.home.activity.show.KnowShowFourthActivity"/>
-        <activity android:name=".module.home.activity.show.KnowShowSecondActivity"/>
+        <activity android:name=".module.home.activity.show.ShowCommonDefaultActivity"/>
+        <activity android:name=".module.home.activity.show.ShowArticleActivity"/>
+        <activity android:name=".module.home.activity.show.ShowCommonThirdActivity"/>
+        <activity android:name=".module.home.activity.show.ShowCommonFifthActivity"/>
+        <activity android:name=".module.home.activity.show.ShowCommonFourthActivity"/>
+        <activity android:name=".module.home.activity.show.ShowCommonSecondActivity"/>
         <activity android:name=".module.common.help.HelpContentActivity"/>
         <activity android:name=".module.home.activity.AddKnowLedgeActivity"/>
         <activity android:name=".module.common.help.HelpSummaryActivity"/>
@@ -96,6 +96,7 @@
         <activity android:name=".module.overview.activity.OverViewInsertActivity"/>
         <activity android:name=".module.overview.activity.OverViewCreateActivity"/>
         <activity android:name=".module.game.activity.GameHallActivity"/>
+        <activity android:name=".module.home.activity.data.DataArticleActivity"/>
         <activity android:name=".module.overview.activity.OverViewQueryActivity"
             android:launchMode="singleTask"/>
     </application>

@@ -31,12 +31,12 @@ import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFif
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFourthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertSecondActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertThirdActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFirstActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
 import com.vargancys.learningassistant.presenter.home.HomeContentPresenter;
@@ -236,22 +236,22 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
     private void launchShowActivity(int item_id,int level) {
         switch (level){
             case 1:
-                KnowShowFirstActivity.launch(getActivity(),item_id);
+                ShowArticleActivity.launch(getActivity(),item_id);
                 break;
             case 2:
-                KnowShowSecondActivity.launch(getActivity(),item_id);
+                ShowCommonSecondActivity.launch(getActivity(),item_id);
                 break;
             case 3:
-                KnowShowThirdActivity.launch(getActivity(),item_id);
+                ShowCommonThirdActivity.launch(getActivity(),item_id);
                 break;
             case 4:
-                KnowShowFourthActivity.launch(getActivity(),item_id);
+                ShowCommonFourthActivity.launch(getActivity(),item_id);
                 break;
             case 5:
-                KnowShowFifthActivity.launch(getActivity(),item_id);
+                ShowCommonFifthActivity.launch(getActivity(),item_id);
                 break;
             default:
-                KnowShowDefaultActivity.launch(getActivity(),item_id);
+                ShowCommonDefaultActivity.launch(getActivity(),item_id);
                 break;
         }
     }

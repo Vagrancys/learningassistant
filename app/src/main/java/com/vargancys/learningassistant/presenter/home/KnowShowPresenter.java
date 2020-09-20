@@ -2,7 +2,7 @@ package com.vargancys.learningassistant.presenter.home;
 
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.model.home.request.KnowShowRequest;
-import com.vargancys.learningassistant.module.home.view.KnowShowView;
+import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 
 /**
  * author: Vagrancy
@@ -21,18 +21,18 @@ public class KnowShowPresenter {
     public void getDefaultShowData(long id){
         HomeKnowContent homeKnowContent = mRequest.getDefaultShowData(id);
         if(homeKnowContent !=null){
-            ((KnowShowView) mView).showContentFinish(homeKnowContent);
+            ((ShowCommonView) mView).showContentFinish(homeKnowContent);
         }else{
-            ((KnowShowView) mView).showContentError(404,"没有该数据!");
+            ((ShowCommonView) mView).showContentError(404,"没有该数据!");
         }
     }
 
     public void getRefreshDefaultShowData(long id) {
         HomeKnowContent homeKnowContent = mRequest.getRefreshDefaultShowData(id);
         if(homeKnowContent !=null){
-            ((KnowShowView) mView).showContentFinish(homeKnowContent);
+            ((ShowCommonView) mView).showContentFinish(homeKnowContent);
         }else{
-            ((KnowShowView) mView).showContentError(404,"没有该数据!");
+            ((ShowCommonView) mView).showContentError(404,"没有该数据!");
         }
     }
 }

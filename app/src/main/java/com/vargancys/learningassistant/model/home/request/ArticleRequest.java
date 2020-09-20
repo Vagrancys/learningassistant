@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.model.home.request;
 import com.vagrancys.learningassistant.db.TemporaryArticleDbDao;
 import com.vargancys.learningassistant.base.BaseApplication;
 import com.vargancys.learningassistant.bean.home.ArticleBean;
+import com.vargancys.learningassistant.bean.home.ArticleDataBean;
 import com.vargancys.learningassistant.db.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.ApiClient;
 import com.vargancys.learningassistant.http.BaseBean;
@@ -131,5 +132,31 @@ public class ArticleRequest {
      */
     public void nativeDelete(long native_id) {
         articleDao.deleteByKey(native_id);
+    }
+
+    /**
+     * 查询文章的数据情况
+     * @param id
+     * @param dataListener
+     */
+    public void queryArticleData(int article_id, CommonHttpListener listener) {
+        ApiClient.getInstance().queryArticleData(article_id,new MySubscriber<BaseBean<ArticleDataBean>>() {
+            @Override
+            protected void onSuccess(BaseBean<ArticleDataBean> baseBean) {
+                listener.onSuccess(baseBean.getCode(),baseBean.getData());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                super.onError(t);
+                listener.onError(t);
+            }
+
+            @Override
+            protected void onFinish() {
+                super.onFinish();
+                listener.onFinish();
+            }
+        });
     }
 }

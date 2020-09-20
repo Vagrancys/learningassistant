@@ -2,17 +2,15 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.bean.home.ArticleBean;
 import com.vargancys.learningassistant.db.TemporaryArticleDb;
+import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
@@ -27,7 +25,7 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
- * 知识添加一级页面
+ * 知识文章型页面
  */
 public class InsertArticleActivity extends BaseActivity implements InsertArticleView {
     @BindView(R.id.article_edit)
@@ -101,7 +99,7 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
         articleEdit.setText(null);
     }
 
-    @OnClick({R.id.common_back,R.id.article_save})
+    @OnClick({R.id.common_back,R.id.article_save,R.id.article_set,R.id.article_data})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
             case R.id.common_back:
@@ -110,6 +108,12 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
             case R.id.article_save:
                 mPresenter.isEmpty();
                 break;
+            case R.id.article_data:
+            case R.id.article_set:
+                // TODO 功能等待....
+                ToastUtils.DefaultToast(getContext());
+                break;
+
         }
     }
 
@@ -148,17 +152,18 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
 
     @Override
     public void onSuccess() {
+
+    }
+
+    @Override
+    public void onSuccess(Object object) {
         if(isArticle){
             mPresenter.nativeDelete(nativeArticle_id);
         }
         ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
         initEmpty();
+        ShowArticleActivity.launch(this,(int)object);
         finish();
-    }
-
-    @Override
-    public void onSuccess(Object object) {
-
     }
 
     @Override

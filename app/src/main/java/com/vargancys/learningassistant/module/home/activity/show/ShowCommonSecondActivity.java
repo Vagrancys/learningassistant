@@ -15,8 +15,8 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowFourthAdapter;
-import com.vargancys.learningassistant.module.home.view.KnowShowView;
+import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowSecondAdapter;
+import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 import com.vargancys.learningassistant.presenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -32,10 +32,11 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/06
  * version:1.0
- * 知识展示四级页面
+ * 知识展示二级页面
  */
-public class KnowShowFourthActivity extends BaseActivity implements KnowShowView {
-    private static final String TAG = "KnowShowFourthActivity";
+public class ShowCommonSecondActivity extends BaseActivity implements ShowCommonView {
+    private static final String TAG = "KnowShowSecondActivity";
+
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.insert_show_title)
@@ -46,8 +47,8 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
     TextView insertShowCount;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.show_empty_fourth)
-    TextView showEmptyFourth;
+    @BindView(R.id.show_empty_second)
+    TextView showEmptySecond;
     @BindView(R.id.insert_show_heed)
     TextView insertShowHeed;
     @BindView(R.id.insert_show_experience)
@@ -60,11 +61,11 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
     private KnowShowPresenter mPresenter;
     private long item_id;
     private static int REQUEST_CODE = 2001;
-    private HomeKnowShowFourthAdapter mAdapter;
+    private HomeKnowShowSecondAdapter mAdapter;
     private List<HomeKnowFunction> mFunction = new ArrayList<>();
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_fourth;
+        return R.layout.activity_know_show_second;
     }
 
     @Override
@@ -73,19 +74,20 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
         if(intent !=null){
             item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
         }
-        mPresenter = new KnowShowPresenter(this);
         init();
+        mPresenter = new KnowShowPresenter(this);
         mPresenter.getDefaultShowData(item_id);
+
     }
 
     private void init() {
-        mAdapter = new HomeKnowShowFourthAdapter(getContext(),mFunction);
+        mAdapter = new HomeKnowShowSecondAdapter(getContext(),mFunction);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
     }
 
     public static void launch(Activity activity, long item_id) {
-        Intent intent = new Intent(activity, KnowShowFourthActivity.class);
+        Intent intent = new Intent(activity, ShowCommonSecondActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
         activity.startActivity(intent);
     }
@@ -124,10 +126,10 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
         insertShowExperience.setText(homeKnowContent.getExperience());
         int count = homeKnowContent.getHomeKnowFunctions().size();
         if(count <= 0){
-            showEmptyFourth.setVisibility(View.VISIBLE);
+            showEmptySecond.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }else{
-            showEmptyFourth.setVisibility(View.GONE);
+            showEmptySecond.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         }
         insertShowCount.setText(String.valueOf(homeKnowContent.getHomeKnowFunctions().size()));
@@ -143,9 +145,8 @@ public class KnowShowFourthActivity extends BaseActivity implements KnowShowView
                 finish();
                 break;
             case R.id.common_img:
-                ShowKnowDataActivity.launch(KnowShowFourthActivity.this,REQUEST_CODE,item_id);
+                ShowKnowDataActivity.launch(ShowCommonSecondActivity.this,REQUEST_CODE,item_id);
                 break;
         }
     }
 }
-

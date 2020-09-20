@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFirstActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowSecondActivity;
-import com.vargancys.learningassistant.module.home.activity.show.KnowShowThirdActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowCommonThirdActivity;
 import com.vargancys.learningassistant.module.mine.activity.KnowLedgeItemActivity;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.section.SectionedRecyclerViewAdapter;
@@ -91,22 +91,22 @@ public class KnowLedgeItemSection extends StatelessSection {
     private void launchShowActivity(int item_id,int level) {
         switch (level){
             case 1:
-                KnowShowFirstActivity.launch(mActivity,item_id);
+                ShowArticleActivity.launch(mActivity,item_id);
                 break;
             case 2:
-                KnowShowSecondActivity.launch(mActivity,item_id);
+                ShowCommonSecondActivity.launch(mActivity,item_id);
                 break;
             case 3:
-                KnowShowThirdActivity.launch(mActivity,item_id);
+                ShowCommonThirdActivity.launch(mActivity,item_id);
                 break;
             case 4:
-                KnowShowFourthActivity.launch(mActivity,item_id);
+                ShowCommonFourthActivity.launch(mActivity,item_id);
                 break;
             case 5:
-                KnowShowFifthActivity.launch(mActivity,item_id);
+                ShowCommonFifthActivity.launch(mActivity,item_id);
                 break;
             default:
-                KnowShowDefaultActivity.launch(mActivity,item_id);
+                ShowCommonDefaultActivity.launch(mActivity,item_id);
                 break;
         }
     }

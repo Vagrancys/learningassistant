@@ -87,4 +87,6 @@ public class ConstantsUtils {
     public static final String ARTICLE_NATIVE_HINT_STATE = "article_native_hint_state";
     //是否保存文章数据;
     public static final String ARTICLE_NATIVE_SAVE_STATE = "article_native_save_state";
+    //文章内容的id
+    public static final String KNOWLEDGE_ARTICLE_ID = "knowledge_article_id";
 }

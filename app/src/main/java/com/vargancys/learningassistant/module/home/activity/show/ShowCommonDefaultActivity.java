@@ -12,7 +12,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
-import com.vargancys.learningassistant.module.home.view.KnowShowView;
+import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 import com.vargancys.learningassistant.presenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -25,11 +25,10 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/06
  * version:1.0
- * 知识展示五级页面
+ * 知识展示默认页面
  */
-public class KnowShowFifthActivity extends BaseActivity implements KnowShowView {
-    private static final String TAG = "KnowShowFifthActivity";
-
+public class ShowCommonDefaultActivity extends BaseActivity implements ShowCommonView {
+    private static String TAG = "KnowShowDefaultActivity";
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.insert_show_title)
@@ -51,9 +50,10 @@ public class KnowShowFifthActivity extends BaseActivity implements KnowShowView 
     private KnowShowPresenter mPresenter;
     private long item_id;
     private static int REQUEST_CODE = 2001;
+
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_fifth;
+        return R.layout.activity_know_show_default;
     }
 
     @Override
@@ -62,7 +62,6 @@ public class KnowShowFifthActivity extends BaseActivity implements KnowShowView 
         if (intent != null) {
             item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
         }
-
         mPresenter = new KnowShowPresenter(this);
         mPresenter.getDefaultShowData(item_id);
     }
@@ -80,15 +79,15 @@ public class KnowShowFifthActivity extends BaseActivity implements KnowShowView 
         }
     }
 
-    public static void launch(Activity activity, long item_id) {
-        Intent intent = new Intent(activity, KnowShowFifthActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,item_id);
+    public static void launch(Activity activity,long id) {
+        Intent intent = new Intent(activity, ShowCommonDefaultActivity.class);
+        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, id);
         activity.startActivity(intent);
     }
 
     @Override
     public void showContentError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error +"Msg ="+msg);
+        ToastUtils.ToastText(getContext(),"Error = "+error+"Msg = "+msg);
         scrollView.setVisibility(View.GONE);
         includeKnowEmpty.setVisibility(View.VISIBLE);
     }
@@ -100,14 +99,14 @@ public class KnowShowFifthActivity extends BaseActivity implements KnowShowView 
         initData(homeKnowContent);
     }
 
-    private void initData(HomeKnowContent homeKnowContent) {
-        insertShowTitle.setText(homeKnowContent.getTitle());
-        insertShowSummary.setText(homeKnowContent.getSummary());
-        insertShowShow.setText(homeKnowContent.getShow());
-        insertShowHeed.setText(homeKnowContent.getHeed());
-        insertShowExperience.setText(homeKnowContent.getExperience());
-        insertShowExplain.setText(homeKnowContent.getExplain());
-        commonTitle.setText(homeKnowContent.getTitle());
+    private void initData(HomeKnowContent content){
+        commonTitle.setText(content.getTitle());
+        insertShowTitle.setText(content.getTitle());
+        insertShowSummary.setText(content.getSummary());
+        insertShowShow.setText(content.getShow());
+        insertShowExperience.setText(content.getExperience());
+        insertShowExplain.setText(content.getExplain());
+        insertShowHeed.setText(content.getHeed());
     }
 
     @OnClick({R.id.common_back,R.id.common_img})
@@ -117,7 +116,7 @@ public class KnowShowFifthActivity extends BaseActivity implements KnowShowView 
                 finish();
                 break;
             case R.id.common_img:
-                ShowKnowDataActivity.launch(KnowShowFifthActivity.this,REQUEST_CODE,item_id);
+                ShowKnowDataActivity.launch(ShowCommonDefaultActivity.this,REQUEST_CODE,item_id);
                 break;
         }
     }

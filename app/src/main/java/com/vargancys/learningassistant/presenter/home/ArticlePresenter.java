@@ -26,7 +26,7 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
 
     @Override
     public void add(ArticleBean object) {
-        ArticleRequest.getInstance().addArticle(object,getNoDataListener());
+        ArticleRequest.getInstance().addArticle(object,getIdListener());
     }
 
     @Override
@@ -47,6 +47,10 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
     @Override
     public void query(int[] ids) {
         ArticleRequest.getInstance().queryAllArticle(ids,getArrayListener());
+    }
+
+    public void queryData(int id) {
+        ArticleRequest.getInstance().queryArticleData(id,getDataListener());
     }
 
     /**
@@ -85,6 +89,30 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
                 NoDataBean mBean = (NoDataBean) data;
                 if(mBean.getCode()){
                     mView.onSuccess();
+                }else{
+                    mView.onFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                mView.onError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
+    }
+
+    public CommonHttpListener getIdListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                NoDataBean mBean = (NoDataBean) data;
+                if(mBean != null){
+                    mView.onSuccess(mBean.getMessage());
                 }else{
                     mView.onFail();
                 }

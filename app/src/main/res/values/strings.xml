@@ -52,6 +52,9 @@
     <string name="help_update_error_text">更新该帮助失败!请稍后再试或者联系官方!</string>
     <string name="help_update_success_text">更新该帮助成功!返回中!</string>
     <string name="help_update_original_text">该帮助没有任何修改!请考虑清楚要不要修改!</string>
+
+    <!--默认系统提示-->
+    <string name="default_hint">该功能暂时未制作!请等待或上门做客!</string>
     
     <string name="add_know_title">知识标题:</string>
     <string name="add_know_class">设置展示的类名:</string>
@@ -88,6 +91,7 @@
     <string name="article_error">服务器出故障了!正在抢救中..</string>
     <string name="article_native_message">没有编辑完成的文章会保存起来,等待下次的编辑</string>
     <string name="article_native_title">是否保存本次的编辑数据!</string>
+    <string name="article_query_empty">该文章可能已经被删除或者隐藏了</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>
