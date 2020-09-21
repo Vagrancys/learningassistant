@@ -41,9 +41,9 @@ public class KnowSettingContentActivity extends BaseActivity {
         commonTitleData.setText(getText(R.string.common_setting_content));
     }
 
-    public static void launch(Activity activity, Long know_id) {
+    public static void launch(Activity activity, int article_id) {
         Intent intent = new Intent(activity, KnowSettingContentActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, know_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ID, article_id);
         activity.startActivity(intent);
     }
 

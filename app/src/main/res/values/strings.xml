@@ -92,6 +92,9 @@
     <string name="article_native_message">没有编辑完成的文章会保存起来,等待下次的编辑</string>
     <string name="article_native_title">是否保存本次的编辑数据!</string>
     <string name="article_query_empty">该文章可能已经被删除或者隐藏了</string>
+    <string name="article_data_empty">没有该文章的数据!请重新创建!</string>
+    <string name="article_delete_fail">文章删除失败!您可以稍后尝试!</string>
+    <string name="article_delete_error">服务器出现错误了!请等待!</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>

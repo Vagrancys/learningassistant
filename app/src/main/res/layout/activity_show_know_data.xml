@@ -12,16 +12,16 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linear"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center|start">
+            android:gravity="center|top">
             <TextView
                 android:id="@+id/know_data_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/know_data_title"
                 android:textSize="@dimen/text_size_24sp"
@@ -84,24 +84,6 @@
                         android:textSize="@dimen/text_size_22sp"
                         android:textColor="@color/black"/>
                 </TableRow>
-                <TableRow
-                    android:gravity="start|center"
-                    android:padding="@dimen/margin_width_5dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/know_data_time_text"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_24sp"
-                        android:layout_marginEnd="@dimen/margin_width_10dp"/>
-                    <TextView
-                        android:id="@+id/know_data_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/know_data_time"
-                        android:textSize="@dimen/text_size_22sp"
-                        android:textColor="@color/black"/>
-                </TableRow>
             </TableLayout>
             <View
                 android:layout_width="match_parent"
@@ -131,131 +113,6 @@
                     android:src="@drawable/know_data_setting_normal"
                     android:layout_weight="1"/>
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/margin_width_10dp">
-                <TextView
-                    android:id="@+id/know_data_history_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/know_data_history_text"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_24sp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:paddingEnd="@dimen/margin_width_10dp"/>
-                <TextView
-                    android:id="@+id/know_data_history_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/know_data_history_count"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_24sp"
-                    android:layout_toEndOf="@+id/know_data_history_text"
-                    android:layout_centerVertical="true"/>
-                <TextView
-                    android:id="@+id/know_data_history_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/know_data_history_time"
-                    android:textSize="@dimen/text_size_24sp"
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"/>
-            <TextView
-                android:id="@+id/history_empty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/history_empty_title"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_24sp"
-                android:padding="@dimen/margin_width_40dp"
-                android:gravity="center"
-                android:visibility="gone"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/history_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                android:scrollbars="none"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="fill_vertical"
-                android:padding="@dimen/margin_width_10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_24sp"
-                    android:text="@string/know_data_commend_text"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/know_data_commend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/know_data_commend_count"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_24sp"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"/>
-            <TextView
-                android:id="@+id/commend_empty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/commend_empty_title"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_24sp"
-                android:padding="@dimen/margin_width_40dp"
-                android:gravity="center"
-                android:visibility="gone"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/commend_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                android:scrollbars="none"/>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:padding="@dimen/margin_width_10dp"
-        android:gravity="center"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:background="@color/black_1">
-        <EditText
-            android:id="@+id/know_data_commend_edit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minLines="1"
-            android:hint="@string/know_data_commend_hint"
-            android:background="@drawable/common_edit_shape"
-            android:layout_marginEnd="@dimen/margin_width_10dp"/>
-        <ImageView
-            android:id="@+id/know_data_commend_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/comment_send_selector"/>
-    </LinearLayout>
 </RelativeLayout>

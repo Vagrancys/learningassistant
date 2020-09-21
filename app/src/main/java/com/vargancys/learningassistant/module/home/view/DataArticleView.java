@@ -15,18 +15,9 @@ import java.util.List;
  * version:1.0
  */
 public interface DataArticleView extends BaseCallBackListener {
-    void showDataFinish(HomeKnowData homeKnowData);
-    void showDataError(int error, String message);
-    void showCommendEmptyError(int error, String message);
-    void showCommendSaveFinish(HomeKnowCommend homeKnowCommend);
-    void showCommendSaveError(int error, String message);
-    void showSaveCommend();
+    void deleteArticleSuccess();
 
-    void deleteDataFinish();
+    void deleteArticleFail();
 
-    void deleteDataError(int error, String message);
-
-    void showRefreshHistoryFinish(List<HomeKnowHistory> homeKnowHistories, HomeKnowContent homeKnowContent);
-
-    void showRefreshHistoryError(int error, String message);
+    void deleteArticleError(String message);
 }

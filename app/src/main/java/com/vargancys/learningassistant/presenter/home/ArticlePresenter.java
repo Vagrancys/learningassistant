@@ -5,6 +5,7 @@ import com.vargancys.learningassistant.db.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
+import com.vargancys.learningassistant.module.home.view.DataArticleView;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.BasePresenter;
@@ -80,6 +81,29 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
         }else{
             view.isEmptyError(200);
         }
+    }
+    public CommonHttpListener getDeleteDataListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                NoDataBean mBean = (NoDataBean) data;
+                if(mBean.getCode()){
+                    ((DataArticleView) mView).deleteArticleSuccess();
+                }else{
+                    ((DataArticleView) mView).deleteArticleFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                ((DataArticleView) mView).deleteArticleError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
     }
 
     public CommonHttpListener getNoDataListener(){

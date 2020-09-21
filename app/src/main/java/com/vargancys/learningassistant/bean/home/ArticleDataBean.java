@@ -9,6 +9,51 @@ package com.vargancys.learningassistant.bean.home;
  */
 public class ArticleDataBean {
     private int content_id;
+    private int article_id;
+    private String title;
+    private int level;
+    private int master;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getMaster() {
+        return master;
+    }
+
+    public void setMaster(int master) {
+        this.master = master;
+    }
+
+    public int getArticle_id() {
+        return article_id;
+    }
+
+    public void setArticle_id(int article_id) {
+        this.article_id = article_id;
+    }
 
     public int getContent_id() {
         return content_id;
