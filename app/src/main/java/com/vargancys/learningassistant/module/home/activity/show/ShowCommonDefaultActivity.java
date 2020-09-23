@@ -60,7 +60,7 @@ public class ShowCommonDefaultActivity extends BaseActivity implements ShowCommo
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, 0);
         }
         mPresenter = new KnowShowPresenter(this);
         mPresenter.getDefaultShowData(item_id);
@@ -81,7 +81,7 @@ public class ShowCommonDefaultActivity extends BaseActivity implements ShowCommo
 
     public static void launch(Activity activity,long id) {
         Intent intent = new Intent(activity, ShowCommonDefaultActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, id);
         activity.startActivity(intent);
     }
 

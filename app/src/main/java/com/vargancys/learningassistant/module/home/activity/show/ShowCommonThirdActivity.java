@@ -78,14 +78,14 @@ public class ShowCommonThirdActivity extends BaseActivity implements ShowCommonV
             if(state == 1){
                 finish();
             }else if(state == 2){
-                mPresenter.getRefreshDefaultShowData(item_id);
+                //mPresenter.getRefreshDefaultShowData(item_id);
             }
         }
     }
 
     public static void launch(Activity activity, long item_id) {
         Intent intent = new Intent(activity, ShowCommonThirdActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, item_id);
         activity.startActivity(intent);
     }
 
@@ -102,13 +102,13 @@ public class ShowCommonThirdActivity extends BaseActivity implements ShowCommonV
     }
 
     private void initData(ArticleBean object) {
-        insertShowTitle.setText(homeKnowContent.getTitle());
+        /*insertShowTitle.setText(homeKnowContent.getTitle());
         insertShowSummary.setText(homeKnowContent.getSummary());
         insertShowShow.setText(homeKnowContent.getShow());
         insertShowHeed.setText(homeKnowContent.getHeed());
         insertShowExperience.setText(homeKnowContent.getExperience());
         insertShowExplain.setText(homeKnowContent.getExplain());
-        commonTitle.setText(homeKnowContent.getTitle());
+        commonTitle.setText(homeKnowContent.getTitle());*/
     }
 
     @OnClick({R.id.common_back,R.id.common_img})
@@ -118,7 +118,7 @@ public class ShowCommonThirdActivity extends BaseActivity implements ShowCommonV
                 finish();
                 break;
             case R.id.common_img:
-                ShowKnowDataActivity.launch(ShowCommonThirdActivity.this,REQUEST_CODE,item_id);
+                //ShowKnowDataActivity.launch(ShowCommonThirdActivity.this,REQUEST_CODE,item_id);
                 break;
         }
     }
@@ -132,7 +132,7 @@ public class ShowCommonThirdActivity extends BaseActivity implements ShowCommonV
     public void onSuccess(Object object) {
         scrollView.setVisibility(View.VISIBLE);
         includeKnowEmpty.setVisibility(View.GONE);
-        initData(object);
+        //initData(object);
     }
 
     @Override

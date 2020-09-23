@@ -60,7 +60,7 @@ public class ShowCommonFifthActivity extends BaseActivity implements ShowCommonV
     public void initView() {
         Intent intent = getIntent();
         if (intent != null) {
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID, 0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, 0);
         }
 
         mPresenter = new KnowShowPresenter(this);
@@ -82,7 +82,7 @@ public class ShowCommonFifthActivity extends BaseActivity implements ShowCommonV
 
     public static void launch(Activity activity, long item_id) {
         Intent intent = new Intent(activity, ShowCommonFifthActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,item_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,item_id);
         activity.startActivity(intent);
     }
 

@@ -72,7 +72,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            know_item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
         mPresenter = new KnowInsertPresenter(this);
         initRecyclerView();
@@ -180,7 +180,7 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
 
     public static void launch(Activity activity, int know_id){
         Intent intent = new Intent(activity,KnowInsertFourthActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
         activity.startActivity(intent);
     }
 

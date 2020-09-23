@@ -72,7 +72,7 @@ public class ShowCommonSecondActivity extends BaseActivity implements ShowCommon
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            item_id = intent.getLongExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            item_id = intent.getLongExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
         init();
         mPresenter = new KnowShowPresenter(this);
@@ -88,7 +88,7 @@ public class ShowCommonSecondActivity extends BaseActivity implements ShowCommon
 
     public static void launch(Activity activity, long item_id) {
         Intent intent = new Intent(activity, ShowCommonSecondActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID, item_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, item_id);
         activity.startActivity(intent);
     }
 

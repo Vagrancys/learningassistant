@@ -21,18 +21,18 @@ public class KnowShowPresenter {
     public void getDefaultShowData(long id){
         HomeKnowContent homeKnowContent = mRequest.getDefaultShowData(id);
         if(homeKnowContent !=null){
-            ((ShowCommonView) mView).showContentFinish(homeKnowContent);
+            //((ShowCommonView) mView).showContentFinish(homeKnowContent);
         }else{
-            ((ShowCommonView) mView).showContentError(404,"没有该数据!");
+            //((ShowCommonView) mView).showContentError(404,"没有该数据!");
         }
     }
 
     public void getRefreshDefaultShowData(long id) {
         HomeKnowContent homeKnowContent = mRequest.getRefreshDefaultShowData(id);
         if(homeKnowContent !=null){
-            ((ShowCommonView) mView).showContentFinish(homeKnowContent);
+            //((ShowCommonView) mView).showContentFinish(homeKnowContent);
         }else{
-            ((ShowCommonView) mView).showContentError(404,"没有该数据!");
+            //((ShowCommonView) mView).showContentError(404,"没有该数据!");
         }
     }
 }

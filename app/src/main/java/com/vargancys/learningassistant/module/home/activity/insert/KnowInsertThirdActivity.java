@@ -55,7 +55,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOW_ITEM_ID,0);
+            know_item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
         Log.e(TAG,"know_id"+know_item_id);
         mPresenter = new KnowInsertPresenter(this);
@@ -105,7 +105,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
 
     public static void launch(Activity activity, int know_id){
         Intent intent = new Intent(activity,KnowInsertThirdActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_ITEM_ID,know_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
         activity.startActivity(intent);
     }
 

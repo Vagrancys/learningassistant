@@ -39,11 +39,11 @@ public class KnowInsertPresenter {
 
     //入门级判断是否为空
     public void isFirstEmpty(){
-        boolean result = ((InsertArticleView) mView).isFirstEmpty();
+        boolean result = false;//((InsertArticleView) mView.isFirstEmpty();
         if(!result){
-            ((InsertArticleView) mView).isFirstEqualsItem();
+            //((InsertArticleView) mView).isFirstEqualsItem();
         }else{
-            ((InsertArticleView) mView).isFirstEmptyError(502,"没有填写完!");
+            //((InsertArticleView) mView).isFirstEmptyError(502,"没有填写完!");
         }
     }
 
@@ -61,9 +61,9 @@ public class KnowInsertPresenter {
     public void isEqualsFirstItem(String title){
         boolean result = mRequest.isEqualsFirstItem(title);
         if(result){
-            ((InsertArticleView) mView).saveFirstKnowItem();
+            //((InsertArticleView) mView).saveFirstKnowItem();
         }else{
-            ((InsertArticleView) mView).isFirstEqualsError(501,"已经有该数据了!");
+            //((InsertArticleView) mView).isFirstEqualsError(501,"已经有该数据了!");
         }
     }
 
@@ -86,9 +86,9 @@ public class KnowInsertPresenter {
         boolean result = mRequest.saveKnowFirstItem(know_id,title,summary,show,
                 explain,heed,experience);
         if(result){
-            ((InsertArticleView) mView).saveFirstItemFinish();
+            //((InsertArticleView) mView).saveFirstItemFinish();
         }else{
-            ((InsertArticleView) mView).saveFirstItemError(501,"该数据项保存失败了!");
+            //((InsertArticleView) mView).saveFirstItemError(501,"该数据项保存失败了!");
         }
     }
 
