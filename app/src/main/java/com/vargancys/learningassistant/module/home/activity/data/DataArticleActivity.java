@@ -2,45 +2,22 @@ package com.vargancys.learningassistant.module.home.activity.data;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.bean.home.ArticleDataBean;
-import com.vargancys.learningassistant.bean.home.HomeKnowCommend;
-import com.vargancys.learningassistant.bean.home.HomeKnowContent;
-import com.vargancys.learningassistant.bean.home.HomeKnowData;
-import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
-import com.vargancys.learningassistant.module.home.activity.KnowHistoryDataActivity;
 import com.vargancys.learningassistant.module.home.activity.KnowSettingContentActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFirstActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateSecondActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateThirdActivity;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowCommendAdapter;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapter;
+import com.vargancys.learningassistant.module.home.activity.update.LedgeUpdateArticleActivity;
 import com.vargancys.learningassistant.module.home.view.DataArticleView;
-import com.vargancys.learningassistant.module.home.view.KnowDataView;
 import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
-import com.vargancys.learningassistant.presenter.home.KnowDataPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -65,7 +42,7 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
     @BindView(R.id.know_data_master)
     TextView knowDataMaster;
     private ArticlePresenter mPresenter;
-    private long contentId;
+    private int father_id;
     private int article_id;
     public static int RESULT_CODE = 2000;
     public static int REQUEST_CODE = 1900;
@@ -82,16 +59,8 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
         if(getIntent() !=null){
             article_id = getIntent().getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
-        init();
         mPresenter = new ArticlePresenter(this);
         mPresenter.queryData(article_id);
-        initListener();
-    }
-
-    private void initListener() {
-    }
-
-    private void init(){
     }
 
     public static void launch(Activity activity,int SHOW_REQUEST,int article_id){
@@ -165,7 +134,7 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
                 KnowSettingContentActivity.launch(DataArticleActivity.this,article_id);
                 break;
             case R.id.know_data_update:
-                KnowUpdateFirstActivity.launch(this,REQUEST_CODE,contentId,article_id);
+                LedgeUpdateArticleActivity.launch(this,REQUEST_CODE,father_id,article_id);
                 break;
             case R.id.know_data_delete:
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
@@ -189,7 +158,7 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
     @Override
     public void onSuccess(Object object) {
         ArticleDataBean mBean = (ArticleDataBean) object;
-        contentId = mBean.getContent_id();
+        father_id = mBean.getFather_id();
         commonTitleData.setText(mBean.getTitle());
         knowDataTitle.setText(mBean.getTitle());
         SelectDataLevel(mBean.getLevel());

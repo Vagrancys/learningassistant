@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -55,4 +56,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             binder.unbind();
         }
     }
+
+
 }

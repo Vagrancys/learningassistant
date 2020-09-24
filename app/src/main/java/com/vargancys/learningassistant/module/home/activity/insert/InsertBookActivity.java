@@ -35,28 +35,12 @@ import butterknife.OnClick;
  * version:1.0
  * 知识添加二级页面
  */
-public class KnowInsertSecondActivity extends BaseActivity  implements KnowInsertSecondView {
+public class InsertBookActivity extends BaseActivity  implements KnowInsertSecondView {
     private String TAG = "KnowInsertSecondActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.insert_title_edit)
-    EditText insertTitleEdit;
-    @BindView(R.id.insert_summary_edit)
-    EditText insertSummaryEdit;
-    @BindView(R.id.insert_show_add)
-    ImageView insertShowAdd;
-    @BindView(R.id.insert_show_count)
-    TextView insertShowCount;
-    @BindView(R.id.insert_heed_edit)
-    EditText insertHeedEdit;
-    @BindView(R.id.insert_experience_edit)
-    EditText insertExperienceEdit;
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    @BindView(R.id.show_hint_second)
-    TextView showHintSecond;
     private KnowInsertPresenter mPresenter;
     private int know_item_id;
     private List<HomeKnowFunction> homeKnowFunctions = new ArrayList<>();
@@ -185,7 +169,7 @@ public class KnowInsertSecondActivity extends BaseActivity  implements KnowInser
     }
 
     public static void launch(Activity activity, int know_id){
-        Intent intent = new Intent(activity,KnowInsertSecondActivity.class);
+        Intent intent = new Intent(activity, InsertBookActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
         activity.startActivity(intent);
     }

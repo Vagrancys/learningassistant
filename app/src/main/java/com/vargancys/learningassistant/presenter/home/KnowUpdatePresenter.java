@@ -5,9 +5,9 @@ import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
 import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
-import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
-import com.vargancys.learningassistant.module.home.view.KnowUpdateFourthView;
-import com.vargancys.learningassistant.module.home.view.KnowUpdateSecondView;
+import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
+import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateFourthView;
+import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateSecondView;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class KnowUpdatePresenter {
     private KnowUpdateRequest mRequest;
-    private BaseKnowUpdateView mView;
-    public KnowUpdatePresenter(BaseKnowUpdateView view){
+    private BaseKnowLedgeUpdateView mView;
+    public KnowUpdatePresenter(BaseKnowLedgeUpdateView view){
         mView = view;
         mRequest = KnowUpdateRequest.getInstance();
     };
@@ -132,23 +132,23 @@ public class KnowUpdatePresenter {
 
     //显示更新熟悉级的函数
     public void showSecondFunctionWindow() {
-        ((KnowUpdateSecondView) mView).showFunctionWindow();
+        ((KnowLedgeUpdateSecondView) mView).showFunctionWindow();
     }
 
     //添加熟悉级的函数项
     public void addFunctionSecondData(int mCommon, String title, String summary, String explain) {
-        boolean result = ((KnowUpdateSecondView) mView).addFunctionData(mCommon, title, summary, explain);
+        boolean result = ((KnowLedgeUpdateSecondView) mView).addFunctionData(mCommon, title, summary, explain);
         if(result){
-            ((KnowUpdateSecondView) mView).addFunctionFinish();
+            ((KnowLedgeUpdateSecondView) mView).addFunctionFinish();
         }else{
-            ((KnowUpdateSecondView) mView).addFunctionError(501,"添加函数项失败了!");
+            ((KnowLedgeUpdateSecondView) mView).addFunctionError(501,"添加函数项失败了!");
         }
     }
 
     //判断熟悉级的函数是否为空
     public boolean isFunctionSecondEmpty(int mCommon, String title,
                                          String summary, String explain) {
-        return ((KnowUpdateSecondView) mView).isFunctionEmpty(mCommon, title, summary, explain);
+        return ((KnowLedgeUpdateSecondView) mView).isFunctionEmpty(mCommon, title, summary, explain);
     }
 
 
@@ -224,23 +224,23 @@ public class KnowUpdatePresenter {
 
     //显示更新精通级的函数
     public void showFourthFunctionWindow() {
-        ((KnowUpdateFourthView) mView).showFunctionWindow();
+        ((KnowLedgeUpdateFourthView) mView).showFunctionWindow();
     }
 
     //添加精通级的函数项
     public void addFunctionFourthData(int mCommon, String title, String summary, String explain) {
-        boolean result = ((KnowUpdateFourthView) mView).addFunctionData(mCommon, title, summary, explain);
+        boolean result = ((KnowLedgeUpdateFourthView) mView).addFunctionData(mCommon, title, summary, explain);
         if(result){
-            ((KnowUpdateFourthView) mView).addFunctionFinish();
+            ((KnowLedgeUpdateFourthView) mView).addFunctionFinish();
         }else{
-            ((KnowUpdateFourthView) mView).addFunctionError(501,"添加函数项失败了!");
+            ((KnowLedgeUpdateFourthView) mView).addFunctionError(501,"添加函数项失败了!");
         }
     }
 
     //判断精通级的函数是否为空
     public boolean isFunctionFourthEmpty(int mCommon, String title,
                                          String summary, String explain) {
-        return ((KnowUpdateFourthView) mView).isFunctionEmpty(mCommon, title, summary, explain);
+        return ((KnowLedgeUpdateFourthView) mView).isFunctionEmpty(mCommon, title, summary, explain);
     }
 
     //查找创造级数据

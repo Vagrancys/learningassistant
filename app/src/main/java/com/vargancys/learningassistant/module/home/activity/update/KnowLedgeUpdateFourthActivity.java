@@ -19,7 +19,7 @@ import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowFourthAdapter;
-import com.vargancys.learningassistant.module.home.view.KnowUpdateFourthView;
+import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateFourthView;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识更新四级页面
  */
-public class KnowUpdateFourthActivity extends BaseActivity implements KnowUpdateFourthView {
+public class KnowLedgeUpdateFourthActivity extends BaseActivity implements KnowLedgeUpdateFourthView {
     private String TAG = "KnowInsertFourthActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
@@ -165,7 +165,7 @@ public class KnowUpdateFourthActivity extends BaseActivity implements KnowUpdate
     }
 
     public static void launch(Activity activity,int REQUEST_CODE, long content_id,long data_id){
-        Intent intent = new Intent(activity, KnowUpdateFourthActivity.class);
+        Intent intent = new Intent(activity, KnowLedgeUpdateFourthActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_CONTENT_ID,content_id);
         intent.putExtra(ConstantsUtils.KNOW_DATA_ID,data_id);
         activity.startActivityForResult(intent,REQUEST_CODE);

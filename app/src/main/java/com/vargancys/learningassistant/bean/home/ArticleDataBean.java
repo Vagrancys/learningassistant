@@ -8,7 +8,7 @@ package com.vargancys.learningassistant.bean.home;
  * 模块名: 文章知识的数据实体类
  */
 public class ArticleDataBean {
-    private int content_id;
+    private int father_id;
     private int article_id;
     private String title;
     private int level;
@@ -55,11 +55,11 @@ public class ArticleDataBean {
         this.article_id = article_id;
     }
 
-    public int getContent_id() {
-        return content_id;
+    public int getFather_id() {
+        return father_id;
     }
 
-    public void setContent_id(int content_id) {
-        this.content_id = content_id;
+    public void setFather_id(int father_id) {
+        this.father_id = father_id;
     }
 }

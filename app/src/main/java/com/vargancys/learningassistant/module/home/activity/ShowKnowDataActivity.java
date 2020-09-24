@@ -5,11 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,12 +17,12 @@ import com.vargancys.learningassistant.bean.home.HomeKnowCommend;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowData;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFirstActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateSecondActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowUpdateThirdActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateSecondActivity;
+import com.vargancys.learningassistant.module.home.activity.update.LedgeUpdateArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowCommendAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
@@ -104,22 +101,22 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     private void selectUpdateLevel(int level) {
         switch (level){
             case 1:
-                KnowUpdateFirstActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                LedgeUpdateArticleActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 2:
-                KnowUpdateSecondActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                KnowLedgeUpdateSecondActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 3:
-                KnowUpdateThirdActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                KnowLedgeUpdateThirdActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 4:
-                KnowUpdateFourthActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                KnowLedgeUpdateFourthActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 5:
-                KnowUpdateFifthActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                KnowLedgeUpdateFifthActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             default:
-                KnowUpdateDefaultActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                KnowLedgeUpdateDefaultActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
         }
     }

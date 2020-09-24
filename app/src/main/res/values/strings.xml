@@ -78,7 +78,7 @@
     <string name="common_fifth">创造级</string>
 
     <string name="common_update_default">更新默认级数据</string>
-    <string name="common_update_first">更新入门级数据</string>
+    <string name="common_update_first">更新文章</string>
     <string name="common_update_second">更新熟悉级数据</string>
     <string name="common_update_third">更新熟练级数据</string>
     <string name="common_update_fifth">更新创造级数据</string>
@@ -93,8 +93,14 @@
     <string name="article_native_title">是否保存本次的编辑数据!</string>
     <string name="article_query_empty">该文章可能已经被删除或者隐藏了</string>
     <string name="article_data_empty">没有该文章的数据!请重新创建!</string>
+    <string name="article_update_empty">如果没有,又为何来此!</string>
+    <string name="article_update_fail">更新数据失败了!要不重试下</string>
+    <string name="article_update_success">更新成功了!正在退出中!开玩笑的</string>
     <string name="article_delete_fail">文章删除失败!您可以稍后尝试!</string>
     <string name="article_delete_error">服务器出现错误了!请等待!</string>
+    <string name="no_text">   </string>
+    <!--书籍模块-->
+    <string name="book_insert_title">像书一样串联</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>

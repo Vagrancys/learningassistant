@@ -5,6 +5,7 @@ import com.vargancys.learningassistant.db.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
+import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.module.home.view.DataArticleView;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
@@ -32,7 +33,7 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
 
     @Override
     public void delete(int id) {
-        ArticleRequest.getInstance().deleteArticle(id,getNoDataListener());
+        ArticleRequest.getInstance().deleteArticle(id,getDeleteDataListener());
     }
 
     @Override
@@ -70,7 +71,7 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
 
     @Override
     public void update(ArticleBean object) {
-        ArticleRequest.getInstance().updateArticle(object,getNoDataListener());
+        ArticleRequest.getInstance().updateArticle(object,getUpdateListener());
     }
 
     public void isEmpty(){
@@ -97,6 +98,31 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
             @Override
             public void onError(Throwable t) {
                 ((DataArticleView) mView).deleteArticleError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
+    }
+
+    public CommonHttpListener getUpdateListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                NoDataBean mBean = (NoDataBean) data;
+                BaseKnowLedgeUpdateView view = (BaseKnowLedgeUpdateView) mView;
+                if(mBean.getCode()){
+                    view.onUpdateSuccess();
+                }else{
+                    view.onUpdateFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                mView.onError(t.getMessage());
             }
 
             @Override
@@ -213,5 +239,18 @@ public class ArticlePresenter implements BasePresenter<ArticleBean> {
 
     public void nativeAdd(TemporaryArticleDb mDB) {
         ArticleRequest.getInstance().nativeAdd(mDB);
+    }
+
+    /**
+     * 验证是否为空和是否相等
+     */
+    public void isUpdateEmpty() {
+        BaseKnowLedgeUpdateView view = (BaseKnowLedgeUpdateView) mView;
+        boolean result = view.isPass();
+        if(result){
+            view.isPassSuccess();
+        }else{
+            view.isPassFail();
+        }
     }
 }

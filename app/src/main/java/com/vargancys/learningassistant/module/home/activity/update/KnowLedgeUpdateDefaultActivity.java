@@ -11,7 +11,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
-import com.vargancys.learningassistant.module.home.view.BaseKnowUpdateView;
+import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -22,16 +22,17 @@ import butterknife.OnClick;
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
- * time  : 2020/03/09
+ * time  : 2020/03/28
  * version:1.0
- * 知识展示三级页面
+ * 知识更新默认页面
  */
-public class KnowUpdateThirdActivity extends BaseActivity implements BaseKnowUpdateView {
-    private static String TAG = "KnowUpdateThirdActivity";
-    @BindView(R.id.common_img)
-    ImageView commonImg;
+public class KnowLedgeUpdateDefaultActivity extends BaseActivity implements BaseKnowLedgeUpdateView {
+    private static String TAG = "KnowUpdateDefaultActivity";
+
     @BindView(R.id.common_title)
     TextView commonTitle;
+    @BindView(R.id.common_img)
+    ImageView commonImg;
     @BindView(R.id.update_title_edit)
     EditText updateTitleEdit;
     @BindView(R.id.update_summary_edit)
@@ -44,41 +45,75 @@ public class KnowUpdateThirdActivity extends BaseActivity implements BaseKnowUpd
     EditText updateHeedEdit;
     @BindView(R.id.update_experience_edit)
     EditText updateExperienceEdit;
-    private KnowUpdatePresenter mPresenter;
     private long contentId;
     private long dataId;
-    private int RESULT_CODE = 2002;
+    private KnowUpdatePresenter mPresenter;
     private HomeKnowHistory mOldHistory;
     private HomeKnowContent mNewContent;
+    private int RESULT_CODE = 2002;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_update_third;
+        return R.layout.activity_know_update_default;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
-        if(intent != null){
-            contentId = intent.getLongExtra(ConstantsUtils.KNOW_CONTENT_ID,0);
+        if (intent != null) {
+            contentId = intent.getLongExtra(ConstantsUtils.KNOW_CONTENT_ID, 0);
             dataId = intent.getLongExtra(ConstantsUtils.KNOW_DATA_ID,0);
         }
         mPresenter = new KnowUpdatePresenter(this);
-        mPresenter.getKnowThirdContent(contentId);
+        mPresenter.getKnowDefaultContent(contentId);
     }
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.common_update_third));
+
+        commonTitle.setText(getText(R.string.common_update_default));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
+
     }
 
-    public static void launch(Activity activity,int REQUEST_CODE, long content_id,long data_id){
-        Intent intent = new Intent(activity, KnowUpdateThirdActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_CONTENT_ID,content_id);
+    public static void launch(Activity activity,int request_code,long content_id,long data_id) {
+        Intent intent = new Intent(activity, KnowLedgeUpdateDefaultActivity.class);
+        intent.putExtra(ConstantsUtils.KNOW_CONTENT_ID, content_id);
         intent.putExtra(ConstantsUtils.KNOW_DATA_ID,data_id);
-        activity.startActivityForResult(intent,REQUEST_CODE);
+        activity.startActivityForResult(intent,request_code);
+    }
+
+    @Override
+    public void showKnowDataFinish(HomeKnowContent content) {
+        mNewContent = content;
+        initData(mNewContent);
+    }
+
+    @Override
+    public void showKnowDataError(int error, String message) {
+        ToastUtils.ToastText(getContext(), "Error = " + error + ", Message = " + message);
+    }
+
+    private void initData(HomeKnowContent content) {
+        addHistory(content);
+        updateTitleEdit.setText(content.getTitle());
+        updateSummaryEdit.setText(content.getSummary());
+        updateShowEdit.setText(content.getShow());
+        updateExplainEdit.setText(content.getExplain());
+        updateExperienceEdit.setText(content.getExperience());
+        updateHeedEdit.setText(content.getHeed());
+    }
+
+    private void addHistory(HomeKnowContent content) {
+        mOldHistory = new HomeKnowHistory();
+        mOldHistory.setDataId(dataId);
+        mOldHistory.setTitle(content.getTitle());
+        mOldHistory.setSummary(content.getSummary());
+        mOldHistory.setExplain(content.getExplain());
+        mOldHistory.setExperience(content.getExperience());
+        mOldHistory.setHeed(content.getHeed());
+        mOldHistory.setShow(content.getShow());
     }
 
     @Override
@@ -93,7 +128,12 @@ public class KnowUpdateThirdActivity extends BaseActivity implements BaseKnowUpd
 
     @Override
     public void showKnowEmptyError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+",Message = "+message);
+        ToastUtils.ToastText(getContext(),"Error = "+error+", Message = "+message);
+    }
+
+    @Override
+    public void showKnowEqualsError(int error, String message) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+", Message = "+message);
     }
 
     @Override
@@ -114,55 +154,21 @@ public class KnowUpdateThirdActivity extends BaseActivity implements BaseKnowUpd
         mNewContent.setExplain(updateExplainEdit.getText().toString());
         mNewContent.setExperience(updateExperienceEdit.getText().toString());
         mNewContent.setHeed(updateHeedEdit.getText().toString());
-        mPresenter.saveKnowUpdateThird(mOldHistory,mNewContent);
+        mPresenter.saveKnowUpdateDefault(mOldHistory,mNewContent);
     }
 
     @Override
-    public void showKnowEqualsError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
-    }
-
-    @Override
-    public void showKnowDataFinish(HomeKnowContent content) {
-        mNewContent = content;
-        addHistory(mNewContent);
-        updateTitleEdit.setText(content.getTitle());
-        updateSummaryEdit.setText(content.getSummary());
-        updateShowEdit.setText(content.getShow());
-        updateExplainEdit.setText(content.getExplain());
-        updateHeedEdit.setText(content.getHeed());
-        updateExperienceEdit.setText(content.getExperience());
-    }
-
-    private void addHistory(HomeKnowContent content){
-        mOldHistory = new HomeKnowHistory();
-        mOldHistory.setDataId(dataId);
-        mOldHistory.setTitle(content.getTitle());
-        mOldHistory.setSummary(content.getSummary());
-        mOldHistory.setExplain(content.getExplain());
-        mOldHistory.setExperience(content.getExperience());
-        mOldHistory.setHeed(content.getHeed());
-        mOldHistory.setShow(content.getShow());
-    }
-
-    @Override
-    public void showKnowDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
+    public void showKnowSaveError(int error, String message) {
+        ToastUtils.ToastText(getContext(),"Error = "+error+", Message = "+message);
     }
 
     @Override
     public void showKnowSaveFinish() {
         ToastUtils.ToastText(getContext(),"修改成功了正在退出!");
-        //0没有更新 1更新了
         Intent intent = new Intent();
         intent.putExtra(ConstantsUtils.ITEM_UPDATE_STATUS,1);
         setResult(RESULT_CODE,intent);
         finish();
-    }
-
-    @Override
-    public void showKnowSaveError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
     }
 
     @OnClick({R.id.common_back,R.id.common_img})
@@ -173,7 +179,7 @@ public class KnowUpdateThirdActivity extends BaseActivity implements BaseKnowUpd
                 finish();
                 break;
             case R.id.common_img:
-                mPresenter.isKnowUpdateThirdEmpty();
+                mPresenter.isKnowUpdateDefaultEmpty();
                 break;
         }
     }

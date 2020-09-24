@@ -34,7 +34,7 @@
         <activity android:name=".module.common.help.HelpSummaryActivity"/>
         <activity android:name=".module.common.help.HelpAddActivity"/>
         <activity android:name=".module.home.activity.insert.InsertArticleActivity"/>
-        <activity android:name=".module.home.activity.insert.KnowInsertSecondActivity"/>
+        <activity android:name=".module.home.activity.insert.InsertBookActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertThirdActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertFourthActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertFifthActivity"/>
@@ -42,7 +42,7 @@
         <activity android:name=".module.common.help.HelpUpdateActivity"/>
         <activity android:name=".module.home.activity.ShowKnowDataActivity"/>
         <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
-        <activity android:name=".module.home.activity.update.KnowUpdateDefaultActivity"/>
+        <activity android:name=".module.home.activity.update.KnowLedgeUpdateDefaultActivity"/>
         <activity android:name=".module.home.activity.KnowSettingContentActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowDefaultActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFirstActivity"/>
@@ -50,11 +50,11 @@
         <activity android:name=".module.home.activity.history.HistoryShowThirdActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFourthActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFifthActivity"/>
-        <activity android:name=".module.home.activity.update.KnowUpdateFirstActivity"/>
-        <activity android:name=".module.home.activity.update.KnowUpdateSecondActivity"/>
-        <activity android:name=".module.home.activity.update.KnowUpdateThirdActivity"/>
-        <activity android:name=".module.home.activity.update.KnowUpdateFourthActivity"/>
-        <activity android:name=".module.home.activity.update.KnowUpdateFifthActivity"/>
+        <activity android:name=".module.home.activity.update.LedgeUpdateArticleActivity"/>
+        <activity android:name=".module.home.activity.update.KnowLedgeUpdateSecondActivity"/>
+        <activity android:name=".module.home.activity.update.KnowLedgeUpdateThirdActivity"/>
+        <activity android:name=".module.home.activity.update.KnowLedgeUpdateFourthActivity"/>
+        <activity android:name=".module.home.activity.update.KnowLedgeUpdateFifthActivity"/>
         <activity android:name=".module.home.activity.KnowSearchActivity"/>
         <activity android:name=".module.overview.activity.OverViewInformationActivity"/>
         <activity android:name=".module.overview.activity.OverViewSelectActivity"/>

@@ -3,10 +3,10 @@ package com.vargancys.learningassistant.module.home.view;
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
- * time  : 2020/03/28
+ * time  : 2020/03/30
  * version:1.0
  */
-public interface KnowUpdateFourthView extends BaseKnowUpdateView{
+public interface KnowLedgeUpdateSecondView extends BaseKnowLedgeUpdateView {
     void showFunctionWindow();
     boolean addFunctionData(int common, String title, String summary, String explain);
 
@@ -15,3 +15,4 @@ public interface KnowUpdateFourthView extends BaseKnowUpdateView{
     void addFunctionFinish();
     boolean isFunctionEmpty(int common, String title, String summary, String explain);
 }
+

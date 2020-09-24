@@ -89,4 +89,6 @@ public class ConstantsUtils {
     public static final String ARTICLE_NATIVE_SAVE_STATE = "article_native_save_state";
     //文章内容的id
     public static final String KNOWLEDGE_ARTICLE_ID = "knowledge_article_id";
+    //知识父级id
+    public static final String KNOWLEDGE_FATHER_ID = "knowledge_father_id";
 }
