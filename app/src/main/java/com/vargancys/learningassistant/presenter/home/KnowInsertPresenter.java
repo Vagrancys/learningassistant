@@ -6,7 +6,6 @@ import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
-import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;

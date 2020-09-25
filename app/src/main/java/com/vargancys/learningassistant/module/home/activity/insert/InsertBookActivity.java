@@ -4,26 +4,25 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
+import com.vargancys.learningassistant.bean.home.BookBean;
 import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowSecondAdapter;
+import com.vargancys.learningassistant.module.home.adapter.BookItemAdapter;
+import com.vargancys.learningassistant.module.home.fragment.BookContentFragment;
+import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
-import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
+import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.FunctionDialog;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -35,40 +34,42 @@ import butterknife.OnClick;
  * version:1.0
  * 知识添加二级页面
  */
-public class InsertBookActivity extends BaseActivity  implements KnowInsertSecondView {
+public class InsertBookActivity extends BaseActivity  implements InsertArticleView {
     private String TAG = "KnowInsertSecondActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    private KnowInsertPresenter mPresenter;
-    private int know_item_id;
-    private List<HomeKnowFunction> homeKnowFunctions = new ArrayList<>();
-    private HomeKnowSecondAdapter mAdapter;
+    @BindView(R.id.book_viewpager)
+    ViewPager bookViewPager;
+    private BookPresenter mPresenter;
+    private int knowledge_id;
+    private BookBean mBook = new BookBean();
+    private BookItemAdapter mAdapter;
     private int mCommon = 1;
+    private int mBookIndex = 0;
     private FunctionDialog mDialog;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_insert_second;
+        return R.layout.activity_knowledge_insert_book;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+            knowledge_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ID,0);
         }
-        mPresenter = new KnowInsertPresenter(this);
-        initRecyclerView();
+        mPresenter = new BookPresenter(this);
+        init();
         initListener();
         initDialog();
     }
 
-    private void initRecyclerView() {
-        mAdapter = new HomeKnowSecondAdapter(getContext(),homeKnowFunctions);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(mAdapter);
+    private void init() {
+        mAdapter = new BookItemAdapter(getSupportFragmentManager());
+        bookViewPager.setAdapter(mAdapter);
     }
 
     @Override
@@ -168,9 +169,9 @@ public class InsertBookActivity extends BaseActivity  implements KnowInsertSecon
         ToastUtils.ToastText(getContext(),"Error = "+error+",Msg = "+msg+"该知识已经添加了!请重新输入!");
     }
 
-    public static void launch(Activity activity, int know_id){
+    public static void launch(Activity activity, int knowledge_id){
         Intent intent = new Intent(activity, InsertBookActivity.class);
-        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ID,knowledge_id);
         activity.startActivity(intent);
     }
 
@@ -232,20 +233,61 @@ public class InsertBookActivity extends BaseActivity  implements KnowInsertSecon
         insertShowCount.setVisibility(View.GONE);
     }
 
-    @Override
-    public void showFunctionWindow() {
-        mDialog.show();
-    }
-
-    @OnClick({R.id.common_back,R.id.common_img})
+    @OnClick({R.id.common_back,R.id.book_data,R.id.book_add,R.id.book_save})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
             case R.id.common_back:
                 finish();
                 break;
-            case R.id.common_img:
-                mPresenter.isSecondEmpty();
+            case R.id.book_data:
+                mDialog.show();
+                break;
+            case R.id.book_add:
+                mAdapter.addFragment(mBookIndex);
+                mBookIndex ++;
+                mAdapter.notifyDataSetChanged();
+                bookViewPager.setCurrentItem(mBookIndex-1);
+                break;
+            case R.id.book_save:
+                mPresenter.isAddEmpty();
+                for (Fragment fragment : mAdapter.getFragment()) {
+                    BookBean.BookItemBean bookItem = ((BookContentFragment) fragment).getBookItem();
+                    if(bookItem != null && !bookItem.getContent().isEmpty()){
+                        mBook.addItem(bookItem);
+                    }
+                }
+                mPresenter.add(mBook);
                 break;
         }
+    }
+
+    @Override
+    public void onSuccess() {
+        ToastUtils.ToastText(getContext(),R.string.book_success);
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+
+    }
+
+    @Override
+    public void onNoData() {
+
+    }
+
+    @Override
+    public void onFail() {
+        ToastUtils.ToastText(getContext(),R.string.common_fail);
+    }
+
+    @Override
+    public void onError(String message) {
+        ToastUtils.ToastText(getContext(),R.string.common_error);
+    }
+
+    @Override
+    public void onFinish() {
+
     }
 }

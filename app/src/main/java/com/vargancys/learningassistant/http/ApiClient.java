@@ -27,6 +27,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -219,6 +220,15 @@ public class ApiClient {
      */
     public void addArticle(Map<String,Object> article, MySubscriber<BaseBean<NoDataBean>> subscriber) {
         toSubscribe(mService.addArticleData(article),subscriber);
+    }
+
+    /**
+     * 添加书籍型文章
+     * @param body 主体
+     * @param subscriber
+     */
+    public void addBook(RequestBody body, MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.addBook(body),subscriber);
     }
 
     private <T> void toSubscribe(Observable<T> o, MySubscriber<T> s) {

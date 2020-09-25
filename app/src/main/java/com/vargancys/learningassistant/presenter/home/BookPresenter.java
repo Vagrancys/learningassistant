@@ -6,6 +6,8 @@ import com.vargancys.learningassistant.bean.home.BookContentBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
+import com.vargancys.learningassistant.model.home.request.BookRequest;
+import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.BasePresenter;
 
@@ -85,5 +87,12 @@ public class BookPresenter<T> implements BasePresenter<BookBean> {
                 mView.onFinish();
             }
         };
+    }
+
+    /**
+     * 判断是否为空
+     */
+    public void isAddEmpty() {
+        ((InsertArticleView) mView).isBookEmpty();
     }
 }

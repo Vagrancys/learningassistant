@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -68,4 +70,8 @@ public interface ApiService {
     @POST("query_single_article_data")
     @FormUrlEncoded
     Observable<BaseBean<ArticleDataBean>> queryArticleData(@Field("article_id") int id);
+
+    @POST("add_single_book")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> addBook(@Body RequestBody body);
 }

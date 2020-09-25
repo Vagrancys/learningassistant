@@ -91,4 +91,6 @@ public class ConstantsUtils {
     public static final String KNOWLEDGE_ARTICLE_ID = "knowledge_article_id";
     //知识父级id
     public static final String KNOWLEDGE_FATHER_ID = "knowledge_father_id";
+    //书籍位置
+    public static final String KNOWLEDGE_BOOK_INDEX = "knowledge_book_index";
 }

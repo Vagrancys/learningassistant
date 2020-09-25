@@ -87,8 +87,8 @@
     <string name="article_edit_hint">你可以尽情的创作你所想的所有想法和知识,没有任何规则!</string>
     <string name="article_default">知识需要实践</string>
     <string name="article_edit_empty">不能没有任何编辑的保存!请写点什么!</string>
-    <string name="article_fail">服务器没有回复!要不等等..</string>
-    <string name="article_error">服务器出故障了!正在抢救中..</string>
+    <string name="common_fail">服务器没有回复!要不等等..</string>
+    <string name="common_error">服务器出故障了!正在抢救中..</string>
     <string name="article_native_message">没有编辑完成的文章会保存起来,等待下次的编辑</string>
     <string name="article_native_title">是否保存本次的编辑数据!</string>
     <string name="article_query_empty">该文章可能已经被删除或者隐藏了</string>
@@ -101,6 +101,8 @@
     <string name="no_text">   </string>
     <!--书籍模块-->
     <string name="book_insert_title">像书一样串联</string>
+    <string name="book_success">您的操作成功了!</string>
+
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>
