@@ -8,10 +8,6 @@ import com.vargancys.learningassistant.presenter.BaseCallBackListener;
  * time  : 2020/03/09
  * version:1.0
  */
-public interface InsertArticleView extends BaseCallBackListener {
-    boolean isEmpty();
-    void isEmptyError(int error);
-    void isEmptyFinish();
-    void addArticle();
-    void nativeQueryFinish(Object object);
+public interface InsertBookView extends BaseCallBackListener {
+    boolean isBookEmpty();
 }

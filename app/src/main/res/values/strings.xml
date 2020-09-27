@@ -83,6 +83,13 @@
     <string name="common_update_third">更新熟练级数据</string>
     <string name="common_update_fifth">更新创造级数据</string>
 
+    <!--公共数据弹窗-->
+    <string name="knowledge_title_edit">知识的标题</string>
+    <string name="knowledge_summary_title">您所要表达的知识的简要或者背景!</string>
+    <string name="knowledge_summary_edit">请在这里编辑!</string>
+    <string name="knowledge_explain_title">您对该知识的感想或者要求!</string>
+    <string name="knowledge_explain_edit">请在这里编辑!</string>
+
     <!--文章模块-->
     <string name="article_edit_hint">你可以尽情的创作你所想的所有想法和知识,没有任何规则!</string>
     <string name="article_default">知识需要实践</string>
@@ -102,7 +109,7 @@
     <!--书籍模块-->
     <string name="book_insert_title">像书一样串联</string>
     <string name="book_success">您的操作成功了!</string>
-
+    <string name="book_content_edit">请逐页编辑您所要所想的内容!</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>

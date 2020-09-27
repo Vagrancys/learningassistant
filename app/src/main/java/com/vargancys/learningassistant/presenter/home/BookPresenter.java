@@ -8,6 +8,7 @@ import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
 import com.vargancys.learningassistant.model.home.request.BookRequest;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
+import com.vargancys.learningassistant.module.home.view.InsertBookView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.BasePresenter;
 
@@ -20,9 +21,9 @@ import java.util.List;
  * version:1.0
  * 模块名: 书籍类型管理器
  */
-public class BookPresenter<T> implements BasePresenter<BookBean> {
-    private T mView;
-    public BookPresenter(T view){
+public class BookPresenter implements BasePresenter<BookBean> {
+    private BaseCallBackListener mView;
+    public BookPresenter(BaseCallBackListener view){
         this.mView = view;
     }
 
@@ -58,7 +59,7 @@ public class BookPresenter<T> implements BasePresenter<BookBean> {
 
     @Override
     public void update(BookBean object) {
-
+        BookRequest.getInstance().updateBook(object,getArrayListener());
     }
 
     public void queryData(int id) {
@@ -92,7 +93,7 @@ public class BookPresenter<T> implements BasePresenter<BookBean> {
     /**
      * 判断是否为空
      */
-    public void isAddEmpty() {
-        ((InsertArticleView) mView).isBookEmpty();
+    public boolean isAddEmpty() {
+        return ((InsertBookView) mView).isBookEmpty();
     }
 }

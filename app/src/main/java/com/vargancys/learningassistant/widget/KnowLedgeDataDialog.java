@@ -17,10 +17,9 @@ import com.vargancys.learningassistant.R;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/23
  * version:1.0
- * 函数弹窗
+ * 知识数据弹窗
  */
-public class FunctionDialog extends AlertDialog {
-    private View parentView;
+public class KnowLedgeDataDialog extends AlertDialog {
     private EditText mTitle;
     private EditText mSummary;
     private EditText mExplain;
@@ -28,38 +27,33 @@ public class FunctionDialog extends AlertDialog {
     private TextView mDeterMine;
     private Spinner mSpinner;
     private int mCommon = 1;
-    public FunctionDialog(Context context) {
+    private boolean isEdit = false;
+    public KnowLedgeDataDialog(Context context) {
         this(context,0);
     }
 
-    public FunctionDialog(Context context, int themeResId) {
+    public KnowLedgeDataDialog(Context context, int themeResId) {
         super(context, themeResId);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(parentView);
+        setContentView(R.layout.pop_knowledge_data);
         initView();
         initListener();
     }
 
     private void initListener(){
-        mCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onClickCancelListener !=null){
-                    onClickCancelListener.OnCancel();
-                }
+        mCancel.setOnClickListener(v -> {
+            if(onClickCancelListener !=null){
+                onClickCancelListener.OnCancel();
             }
         });
 
-        mDeterMine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onClickDeterMineListener != null){
-                    onClickDeterMineListener.OnDeterMine(mCommon,mTitle.getText().toString(),
-                            mSummary.getText().toString(),mExplain.getText().toString());
-                }
+        mDeterMine.setOnClickListener(v -> {
+            if(onClickDeterMineListener != null){
+                onClickDeterMineListener.OnDeterMine(mCommon,mTitle.getText().toString(),
+                        mSummary.getText().toString(),mExplain.getText().toString());
             }
         });
 
@@ -76,24 +70,45 @@ public class FunctionDialog extends AlertDialog {
         });
     }
 
+    public void setTitle(String title){
+        if(mTitle != null){
+            mTitle.setText(title);
+        }
+    }
+
+    public void setSummary(String summary){
+        if(mSummary != null){
+            mSummary.setText(summary);
+        }
+    }
+
+    public void setExplain(String explain){
+        if(mExplain != null){
+            mExplain.setText(explain);
+        }
+    }
+
+    public void setLevel(int common){
+        if(mSpinner != null){
+            mCommon = common;
+            mSpinner.notify();
+        }
+    }
+
+    public boolean isEdit(){
+        return isEdit;
+    }
+
     private void initView() {
-        mTitle = parentView.findViewById(R.id.function_title_edit);
-        mSummary = parentView.findViewById(R.id.function_summary_edit);
-        mExplain = parentView.findViewById(R.id.function_explain_edit);
-        mCancel = parentView.findViewById(R.id.function_cancel);
-        mDeterMine = parentView.findViewById(R.id.function_determine);
-        mSpinner =parentView.findViewById(R.id.function_common);
+        mTitle = findViewById(R.id.knowledge_title_edit);
+        mSummary = findViewById(R.id.knowledge_summary_edit);
+        mExplain = findViewById(R.id.knowledge_explain_edit);
+        mCancel = findViewById(R.id.knowledge_cancel);
+        mDeterMine = findViewById(R.id.knowledge_determine);
+        mSpinner =findViewById(R.id.knowledge_level);
         ArrayAdapter arrayAdapter =ArrayAdapter.createFromResource(getContext(),R.array.common_level,
                 R.layout.support_simple_spinner_dropdown_item);
         mSpinner.setAdapter(arrayAdapter);
-    }
-
-    public View getContentView() {
-        return parentView;
-    }
-
-    public void setParentView(View parentView) {
-        this.parentView = parentView;
     }
 
     public void clearData() {

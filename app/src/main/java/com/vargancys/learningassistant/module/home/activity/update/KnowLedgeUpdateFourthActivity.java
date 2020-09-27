@@ -23,7 +23,7 @@ import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateFourthVie
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
-import com.vargancys.learningassistant.widget.FunctionDialog;
+import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class KnowLedgeUpdateFourthActivity extends BaseActivity implements KnowL
     private List<HomeKnowHistoryFunction> mOldHistoryFunction = new ArrayList<>();
     private HomeKnowFourthAdapter mAdapter;
     private int mCommon = 1;
-    private FunctionDialog mDialog;
+    private KnowLedgeDataDialog mDialog;
     private int RESULT_CODE = 2002;
     private HomeKnowHistory mOldHistory;
     private HomeKnowContent mNewContent;
@@ -139,17 +139,17 @@ public class KnowLedgeUpdateFourthActivity extends BaseActivity implements KnowL
     }
 
     private void initDialog(){
-        mDialog = new FunctionDialog(this);
-        mDialog = new FunctionDialog(this);
+        mDialog = new KnowLedgeDataDialog(this);
+        mDialog = new KnowLedgeDataDialog(this);
         final View popView = View.inflate(getContext(),R.layout.pop_function_fourth,null);
         mDialog.setParentView(popView);
-        mDialog.setOnClickCancelListener(new FunctionDialog.OnClickCancelListener() {
+        mDialog.setOnClickCancelListener(new KnowLedgeDataDialog.OnClickCancelListener() {
             @Override
             public void OnCancel() {
                 mDialog.cancel();
             }
         });
-        mDialog.setOnClickDeterMineListener(new FunctionDialog.OnClickDeterMineListener() {
+        mDialog.setOnClickDeterMineListener(new KnowLedgeDataDialog.OnClickDeterMineListener() {
             @Override
             public void OnDeterMine(int common,String title,String summary,String explain) {
                 mCommon = common;

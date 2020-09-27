@@ -70,7 +70,7 @@ public class BookRequest {
      * @param id 要删除的文章型id
      * @param noDataListener
      */
-    public void deleteArticle(int id, CommonHttpListener noDataListener) {
+    public void deleteBook(int id, CommonHttpListener noDataListener) {
 
     }
 
@@ -79,7 +79,7 @@ public class BookRequest {
      * @param ids 要删除的文章型数组
      * @param noDataListener
      */
-    public void deleteAllArticle(int[] ids, CommonHttpListener noDataListener) {
+    public void deleteAllBook(int[] ids, CommonHttpListener noDataListener) {
     }
 
     /**
@@ -87,7 +87,7 @@ public class BookRequest {
      * @param id 要查询的文章型id
      * @param noDataListener
      */
-    public void queryArticle(int id, CommonHttpListener noDataListener) {
+    public void queryBook(int id, CommonHttpListener noDataListener) {
     }
 
     /**
@@ -95,7 +95,7 @@ public class BookRequest {
      * @param ids 要查询的文章型数组
      * @param noDataListener
      */
-    public void queryAllArticle(int[] ids, CommonHttpListener noDataListener) {
+    public void queryAllBook(int[] ids, CommonHttpListener noDataListener) {
     }
 
     /**
@@ -103,7 +103,8 @@ public class BookRequest {
      * @param object 文章型数据实体类
      * @param noDataListener
      */
-    public void updateArticle(ArticleBean object, CommonHttpListener noDataListener) {
+    public void updateBook(BookBean object, CommonHttpListener noDataListener) {
+
     }
 
     /**
@@ -111,7 +112,7 @@ public class BookRequest {
      * @param id
      * @param dataListener
      */
-    public void queryArticleData(int article_id, CommonHttpListener listener) {
+    public void queryBookData(int article_id, CommonHttpListener listener) {
         ApiClient.getInstance().queryArticleData(article_id,new MySubscriber<BaseBean<ArticleDataBean>>() {
             @Override
             protected void onSuccess(BaseBean<ArticleDataBean> baseBean) {

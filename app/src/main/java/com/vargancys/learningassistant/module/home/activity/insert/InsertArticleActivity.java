@@ -173,12 +173,12 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
 
     @Override
     public void onFail() {
-        ToastUtils.ToastText(getContext(),R.string.article_fail);
+        ToastUtils.ToastText(getContext(),R.string.common_fail);
     }
 
     @Override
     public void onError(String message) {
-        ToastUtils.ToastText(getContext(),R.string.article_error);
+        ToastUtils.ToastText(getContext(),R.string.common_error);
     }
 
     @Override
