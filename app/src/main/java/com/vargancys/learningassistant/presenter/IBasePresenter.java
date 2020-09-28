@@ -7,7 +7,7 @@ package com.vargancys.learningassistant.presenter;
  * version:1.0
  * 模块名: 基础封装presenter
  */
-public interface BasePresenter<T> {
+public interface IBasePresenter<T> {
     void add(T object);
     void delete(int id);
     void delete(int[] ids);

@@ -10,10 +10,10 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonSecondActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonThirdActivity;
 import com.vargancys.learningassistant.module.mine.activity.KnowLedgeItemActivity;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -94,7 +94,7 @@ public class KnowLedgeItemSection extends StatelessSection {
                 ShowArticleActivity.launch(mActivity,item_id);
                 break;
             case 2:
-                ShowCommonSecondActivity.launch(mActivity,item_id);
+                ShowBookActivity.launch(mActivity,item_id);
                 break;
             case 3:
                 ShowCommonThirdActivity.launch(mActivity,item_id);

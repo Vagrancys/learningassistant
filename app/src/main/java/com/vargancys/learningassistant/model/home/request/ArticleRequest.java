@@ -13,7 +13,9 @@ import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -74,44 +76,135 @@ public class ArticleRequest {
      * @param noDataListener
      */
     public void deleteArticle(int id, CommonHttpListener noDataListener) {
+        List<Integer> deletes = new ArrayList<>();
+        deletes.add(id);
+        ApiClient.getInstance().deleteArticle(deletes, new MySubscriber<BaseBean<NoDataBean>>() {
+            @Override
+            protected void onSuccess(BaseBean<NoDataBean> baseBean) {
+                noDataListener.onSuccess(baseBean.getCode(),baseBean.getData());
+            }
 
+            @Override
+            public void onError(Throwable t) {
+                super.onError(t);
+                noDataListener.onError(t);
+            }
+
+            @Override
+            protected void onFinish() {
+                super.onFinish();
+                noDataListener.onFinish();
+            }
+        });
     }
 
     /**
      * 删除多个文章型知识
-     * @param ids 要删除的文章型数组
+     * @param deletes 要删除的文章型数组
      * @param noDataListener
      */
-    public void deleteAllArticle(int[] ids, CommonHttpListener noDataListener) {
+    public void deleteAllArticle(List<Integer> deletes, CommonHttpListener noDataListener) {
+        ApiClient.getInstance().deleteAllArticle(deletes, new MySubscriber<BaseBean<NoDataBean>>() {
+            @Override
+            protected void onSuccess(BaseBean<NoDataBean> baseBean) {
+                noDataListener.onSuccess(baseBean.getCode(),baseBean.getData());
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                super.onError(t);
+                noDataListener.onError(t);
+            }
+
+            @Override
+            protected void onFinish() {
+                super.onFinish();
+                noDataListener.onFinish();
+            }
+        });
     }
 
     /**
      * 查询文章型知识
      * @param id 要查询的文章型id
-     * @param noDataListener
+     * @param listener
      */
-    public void queryArticle(int id, CommonHttpListener noDataListener) {
+    public void queryArticle(int id, CommonHttpListener listener) {
+        ApiClient.getInstance().queryArticle(id,new MySubscriber<BaseBean<ArticleBean>>(){
+            @Override
+            protected void onSuccess(BaseBean<ArticleBean> baseBean) {
+                listener.onSuccess(baseBean.getCode(),baseBean.getData());
+            }
+
+            @Override
+            protected void onFinish() {
+                super.onFinish();
+                listener.onFinish();
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                super.onError(t);
+                listener.onError(t);
+            }
+        });
     }
 
     /**
      * 查询多个文章型知识
-     * @param ids 要查询的文章型数组
-     * @param noDataListener
+     * @param deletes 要查询的文章型数组
+     * @param listener
      */
-    public void queryAllArticle(int[] ids, CommonHttpListener noDataListener) {
+    public void queryAllArticle(List<Integer> deletes, CommonHttpListener listener) {
+        ApiClient.getInstance().queryAllArticle(deletes,new MySubscriber<BaseBean<List<ArticleBean>>>(){
+            @Override
+            protected void onSuccess(BaseBean<List<ArticleBean>> baseBean) {
+                listener.onSuccess(baseBean.getCode(),baseBean.getData());
+            }
+
+            @Override
+            protected void onFinish() {
+                super.onFinish();
+                listener.onFinish();
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                super.onError(t);
+                listener.onError(t);
+            }
+        });
     }
 
     /**
      * 要更新的文章型知识
      * @param object 文章型数据实体类
-     * @param noDataListener
+     * @param listener
      */
-    public void updateArticle(ArticleBean object, CommonHttpListener noDataListener) {
+    public void updateArticle(ArticleBean object, CommonHttpListener listener) {
+        ApiClient.getInstance().updateArticle(initArticle(object),new MySubscriber<BaseBean<NoDataBean>>(){
+            @Override
+            protected void onSuccess(BaseBean<NoDataBean> baseBean) {
+                listener.onSuccess(baseBean.getCode(),baseBean.getMsg());
+            }
+
+            @Override
+            protected void onFinish() {
+                super.onFinish();
+                listener.onFinish();
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                super.onError(t);
+                listener.onError(t);
+            }
+        });
     }
 
     /**
      * 查询本地的临时文章数据
-     * @param id
+     * @param article
      * @param mView
      */
     public TemporaryArticleDb nativeQuery(int article, BaseCallBackListener mView) {
@@ -128,7 +221,7 @@ public class ArticleRequest {
 
     /**
      * 删除本地文章数据
-     * @param knowLedge_id
+     * @param native_id
      */
     public void nativeDelete(long native_id) {
         articleDao.deleteByKey(native_id);
@@ -136,8 +229,8 @@ public class ArticleRequest {
 
     /**
      * 查询文章的数据情况
-     * @param id
-     * @param dataListener
+     * @param article_id
+     * @param listener
      */
     public void queryArticleData(int article_id, CommonHttpListener listener) {
         ApiClient.getInstance().queryArticleData(article_id,new MySubscriber<BaseBean<ArticleDataBean>>() {

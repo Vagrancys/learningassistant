@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:gravity="center|top">
             <TextView
-                android:id="@+id/know_data_title"
+                android:id="@+id/knowledge_data_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/know_data_title"
@@ -43,7 +43,7 @@
                         android:textSize="@dimen/text_size_24sp"
                         android:layout_marginEnd="@dimen/margin_width_10dp"/>
                     <ImageView
-                        android:id="@+id/know_data_level"
+                        android:id="@+id/knowledge_data_level"
                         android:layout_width="@dimen/margin_width_50dp"
                         android:layout_height="@dimen/margin_width_50dp"
                         android:src="@drawable/know_level_1"
@@ -60,7 +60,7 @@
                         android:textSize="@dimen/text_size_24sp"
                         android:layout_marginEnd="@dimen/margin_width_10dp"/>
                     <TextView
-                        android:id="@+id/know_data_count"
+                        android:id="@+id/knowledge_data_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/know_data_count"
@@ -78,7 +78,7 @@
                         android:textSize="@dimen/text_size_24sp"
                         android:layout_marginEnd="@dimen/margin_width_10dp"/>
                     <TextView
-                        android:id="@+id/know_data_master"
+                        android:id="@+id/knowledge_data_master"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/know_data_master"
@@ -96,19 +96,19 @@
                 android:padding="@dimen/margin_width_10dp"
                 android:orientation="horizontal">
                 <ImageView
-                    android:id="@+id/know_data_update"
+                    android:id="@+id/knowledge_data_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/know_data_update_normal"
                     android:layout_weight="1"/>
                 <ImageView
-                    android:id="@+id/know_data_delete"
+                    android:id="@+id/knowledge_data_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/know_data_delete_normal"
                     android:layout_weight="1"/>
                 <ImageView
-                    android:id="@+id/know_data_setting"
+                    android:id="@+id/knowledge_data_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/know_data_setting_normal"

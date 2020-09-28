@@ -1,8 +1,6 @@
 package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -12,11 +10,9 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.bean.home.BookBean;
 import com.vargancys.learningassistant.module.home.adapter.BookItemAdapter;
 import com.vargancys.learningassistant.module.home.fragment.BookContentFragment;
-import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.module.home.view.InsertBookView;
 import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;

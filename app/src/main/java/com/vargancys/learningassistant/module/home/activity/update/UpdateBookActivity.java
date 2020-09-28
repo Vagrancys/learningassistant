@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,12 +15,15 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
+import com.vargancys.learningassistant.bean.home.BookBean;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
+import com.vargancys.learningassistant.module.home.adapter.BookItemAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowSecondAdapter;
-import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateSecondView;
+import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
+import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -38,34 +42,24 @@ import butterknife.OnClick;
  * version:1.0
  * 知识更新二级页面
  */
-public class KnowLedgeUpdateSecondActivity extends BaseActivity  implements KnowLedgeUpdateSecondView {
+public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUpdateView {
     private String TAG = "KnowInsertSecondActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.update_title_edit)
-    EditText updateTitleEdit;
-    @BindView(R.id.update_summary_edit)
-    EditText updateSummaryEdit;
-    @BindView(R.id.update_show_add)
-    ImageView updateShowAdd;
-    @BindView(R.id.update_show_count)
-    TextView updateShowCount;
-    @BindView(R.id.update_heed_edit)
-    EditText updateHeedEdit;
-    @BindView(R.id.update_experience_edit)
-    EditText updateExperienceEdit;
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    @BindView(R.id.show_hint_second)
-    TextView showHintSecond;
-    private KnowUpdatePresenter mPresenter;
-    private long contentId;
-    private long dataId;
-    private List<HomeKnowFunction> homeKnowFunctions = new ArrayList<>();
+    @BindView(R.id.book_title)
+    TextView bookTitle;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.book_data)
+    TextView bookData;
+    private BookPresenter mPresenter;
+    private int articleId;
+    private int fatherId;
+    private List<BookBean.BookItemBean> mItems = new ArrayList<>();
     private List<HomeKnowHistoryFunction> mOldHistoryFunction = new ArrayList<>();
-    private HomeKnowSecondAdapter mAdapter;
+    private BookItemAdapter mAdapter;
     private int mCommon = 1;
     private KnowLedgeDataDialog mDialog;
     private int RESULT_CODE = 2002;
@@ -74,25 +68,25 @@ public class KnowLedgeUpdateSecondActivity extends BaseActivity  implements Know
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_update_second;
+        return R.layout.activity_knowledge_update_book;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            contentId = intent.getLongExtra(ConstantsUtils.KNOW_CONTENT_ID,0);
-            dataId = intent.getLongExtra(ConstantsUtils.KNOW_DATA_ID,0);
+            articleId = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+            fatherId = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_FATHER_ID,0);
         }
-        mPresenter = new KnowUpdatePresenter(this);
+        mPresenter = new BookPresenter(this);
         initRecyclerView();
         initListener();
         initDialog();
-        mPresenter.getKnowSecondContent(contentId);
+        mPresenter.query(articleId);
     }
 
     private void initRecyclerView() {
-        mAdapter = new HomeKnowSecondAdapter(getContext(),homeKnowFunctions);
+        mAdapter = new BookItemAdapter(getSupportFragmentManager(),mItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
     }
@@ -161,10 +155,10 @@ public class KnowLedgeUpdateSecondActivity extends BaseActivity  implements Know
         });
     }
 
-    public static void launch(Activity activity,int REQUEST_CODE,long content_id,long data_id){
-        Intent intent = new Intent(activity, KnowLedgeUpdateSecondActivity.class);
-        intent.putExtra(ConstantsUtils.KNOW_CONTENT_ID,content_id);
-        intent.putExtra(ConstantsUtils.KNOW_DATA_ID,data_id);
+    public static void launch(Activity activity,int REQUEST_CODE,int father_id,int article_id){
+        Intent intent = new Intent(activity, UpdateBookActivity.class);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,article_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_FATHER_ID,father_id);
         activity.startActivityForResult(intent,REQUEST_CODE);
     }
 

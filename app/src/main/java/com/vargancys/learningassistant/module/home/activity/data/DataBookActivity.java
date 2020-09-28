@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.ArticleDataBean;
+import com.vargancys.learningassistant.bean.home.BookDataBean;
 import com.vargancys.learningassistant.module.home.activity.KnowSettingContentActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateArticleActivity;
-import com.vargancys.learningassistant.module.home.view.DataArticleView;
-import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
+import com.vargancys.learningassistant.module.home.view.DataBookView;
+import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -27,21 +27,21 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/25
  * version:1.0
- * 展示知识数据页面
+ * 展示书籍知识数据页面
  */
-public class DataArticleActivity extends BaseActivity implements DataArticleView {
-    private static String TAG = "DataArticleActivity";
+public class DataBookActivity extends BaseActivity implements DataBookView {
+    private static String TAG = "DataBookActivity";
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
-    @BindView(R.id.know_data_title)
-    TextView knowDataTitle;
-    @BindView(R.id.know_data_level)
-    ImageView knowDataLevel;
-    @BindView(R.id.know_data_count)
-    TextView knowDataCount;
-    @BindView(R.id.know_data_master)
-    TextView knowDataMaster;
-    private ArticlePresenter mPresenter;
+    @BindView(R.id.knowledge_data_title)
+    TextView dataTitle;
+    @BindView(R.id.knowledge_data_level)
+    ImageView dataLevel;
+    @BindView(R.id.knowledge_data_count)
+    TextView dataCount;
+    @BindView(R.id.knowledge_data_master)
+    TextView dataMaster;
+    private BookPresenter mPresenter;
     private int father_id;
     private int article_id;
     public static int RESULT_CODE = 2000;
@@ -51,7 +51,7 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_show_know_data;
+        return R.layout.activity_show_book_data;
     }
 
     @Override
@@ -59,12 +59,12 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
         if(getIntent() !=null){
             article_id = getIntent().getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
-        mPresenter = new ArticlePresenter(this);
+        mPresenter = new BookPresenter(this);
         mPresenter.queryData(article_id);
     }
 
     public static void launch(Activity activity,int SHOW_REQUEST,int article_id){
-        Intent intent = new Intent(activity, DataArticleActivity.class);
+        Intent intent = new Intent(activity, DataBookActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,article_id);
         activity.startActivityForResult(intent,SHOW_REQUEST);
     }
@@ -72,19 +72,19 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
     private void SelectDataLevel(int level){
         switch (level){
             case 1:
-                knowDataLevel.setImageResource(R.drawable.know_level_1);
+                dataLevel.setImageResource(R.drawable.know_level_1);
                 break;
             case 2:
-                knowDataLevel.setImageResource(R.drawable.know_level_2);
+                dataLevel.setImageResource(R.drawable.know_level_2);
                 break;
             case 3:
-                knowDataLevel.setImageResource(R.drawable.know_level_3);
+                dataLevel.setImageResource(R.drawable.know_level_3);
                 break;
             case 4:
-                knowDataLevel.setImageResource(R.drawable.know_level_4);
+                dataLevel.setImageResource(R.drawable.know_level_4);
                 break;
             case 5:
-                knowDataLevel.setImageResource(R.drawable.know_level_5);
+                dataLevel.setImageResource(R.drawable.know_level_5);
                 break;
         }
     }
@@ -100,7 +100,7 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
     }
 
     @Override
-    public void deleteArticleSuccess() {
+    public void deleteBookSuccess() {
         Intent intent = new Intent();
         //0表示没有状态，1表示删除状态,2表示更新状态
         intent.putExtra(ConstantsUtils.ITEM_DELETE_STATUS,1);
@@ -109,12 +109,12 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
     }
 
     @Override
-    public void deleteArticleFail() {
+    public void deleteBookFail() {
         ToastUtils.ToastText(getContext(),R.string.article_delete_fail);
     }
 
     @Override
-    public void deleteArticleError(String message) {
+    public void deleteBookError(String message) {
         ToastUtils.ToastText(getContext(),R.string.article_delete_error);
     }
 
@@ -131,7 +131,7 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
                 finish();
                 break;
             case R.id.know_data_setting:
-                KnowSettingContentActivity.launch(DataArticleActivity.this,article_id);
+                KnowSettingContentActivity.launch(DataBookActivity.this,article_id);
                 break;
             case R.id.know_data_update:
                 UpdateArticleActivity.launch(this,REQUEST_CODE,father_id,article_id);
@@ -157,13 +157,13 @@ public class DataArticleActivity extends BaseActivity implements DataArticleView
 
     @Override
     public void onSuccess(Object object) {
-        ArticleDataBean mBean = (ArticleDataBean) object;
+        BookDataBean mBean = (BookDataBean) object;
         father_id = mBean.getFather_id();
         commonTitleData.setText(mBean.getTitle());
-        knowDataTitle.setText(mBean.getTitle());
+        dataTitle.setText(mBean.getTitle());
         SelectDataLevel(mBean.getLevel());
-        knowDataCount.setText(mBean.getCount()+"次");
-        knowDataMaster.setText(mBean.getMaster());
+        dataCount.setText(mBean.getCount()+"次");
+        dataMaster.setText(mBean.getMaster());
     }
 
     @Override

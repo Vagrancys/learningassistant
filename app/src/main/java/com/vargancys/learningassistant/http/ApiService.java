@@ -2,13 +2,17 @@ package com.vargancys.learningassistant.http;
 
 import com.vargancys.learningassistant.bean.common.HelpCommendItem;
 import com.vargancys.learningassistant.bean.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.home.ArticleBean;
 import com.vargancys.learningassistant.bean.home.ArticleDataBean;
+import com.vargancys.learningassistant.bean.home.BookBean;
+import com.vargancys.learningassistant.bean.home.BookDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
 import java.util.List;
 import java.util.Map;
 
+import butterknife.internal.ListenerClass;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -36,6 +40,12 @@ public interface ApiService {
     @POST("delete_help")
     @FormUrlEncoded
     Observable<BaseBean<NoDataBean>> deleteHelpData(@Field("delete[]") List<Integer> delete);
+
+    @POST("delete_most_article")
+    Observable<BaseBean<NoDataBean>> deleteArticle(@Field("delete[]") int[] delete);
+
+    @POST("delete_most_article")
+    Observable<BaseBean<NoDataBean>> deleteBook(@Field("delete[]") int[] delete);
 
     @GET("query_single_help")
     Observable<BaseBean<HelpContentBean>> getSingleHelpData(@Query("id") int id);
@@ -71,7 +81,28 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<BaseBean<ArticleDataBean>> queryArticleData(@Field("article_id") int id);
 
+    @GET("query_single_book_data")
+    Observable<BaseBean<BookDataBean>> queryBookData(@Query("article_id") int id);
+
     @POST("add_single_book")
     @FormUrlEncoded
     Observable<BaseBean<NoDataBean>> addBook(@Body RequestBody body);
+
+    @GET("query_single_article")
+    Observable<BaseBean<ArticleBean>> queryArticle(@Query("query") int query);
+
+    @POST("update_single_article")
+    Observable<BaseBean<NoDataBean>> updateArticle(@FieldMap Map<String,Object> update);
+
+    @GET("query_all_article")
+    Observable<BaseBean<List<ArticleBean>>> queryAllArticle(@Query("query[]") List<Integer> query);
+
+    @GET("query_single_book")
+    Observable<BaseBean<BookBean>> queryBook(@Query("query") int query);
+
+    @POST("update_single_book")
+    Observable<BaseBean<NoDataBean>> updateBook(@Body RequestBody body);
+
+    @GET("query_all_book")
+    Observable<BaseBean<List<BookBean>>> queryAllBook(@Query("query[]") int[] query);
 }

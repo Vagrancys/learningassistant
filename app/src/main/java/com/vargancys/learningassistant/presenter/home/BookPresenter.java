@@ -2,15 +2,13 @@ package com.vargancys.learningassistant.presenter.home;
 
 import com.vargancys.learningassistant.bean.home.ArticleBean;
 import com.vargancys.learningassistant.bean.home.BookBean;
-import com.vargancys.learningassistant.bean.home.BookContentBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
-import com.vargancys.learningassistant.model.home.request.ArticleRequest;
 import com.vargancys.learningassistant.model.home.request.BookRequest;
-import com.vargancys.learningassistant.module.home.view.InsertArticleView;
+import com.vargancys.learningassistant.module.home.view.DataArticleView;
 import com.vargancys.learningassistant.module.home.view.InsertBookView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
-import com.vargancys.learningassistant.presenter.BasePresenter;
+import com.vargancys.learningassistant.presenter.IBasePresenter;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ import java.util.List;
  * version:1.0
  * 模块名: 书籍类型管理器
  */
-public class BookPresenter implements BasePresenter<BookBean> {
+public class BookPresenter implements IBasePresenter<BookBean> {
     private BaseCallBackListener mView;
     public BookPresenter(BaseCallBackListener view){
         this.mView = view;
@@ -66,13 +64,109 @@ public class BookPresenter implements BasePresenter<BookBean> {
         BookRequest.getInstance().queryBookData(id,getDataListener());
     }
 
-    public CommonHttpListener getIdListener(){
+    public CommonHttpListener getDeleteDataListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                NoDataBean mBean = (NoDataBean) data;
+                if(mBean.getCode()){
+                    ((DataArticleView) mView).deleteArticleSuccess();
+                }else{
+                    ((DataArticleView) mView).deleteArticleFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                ((DataArticleView) mView).deleteArticleError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
+    }
+
+    public CommonHttpListener getNoDataListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                NoDataBean mBean = (NoDataBean) data;
+                if(mBean.getCode()){
+                    mView.onSuccess();
+                }else{
+                    mView.onFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                mView.onError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
+    }
+
+    private CommonHttpListener getIdListener(){
         return new CommonHttpListener() {
             @Override
             public void onSuccess(int code, Object data) {
                 NoDataBean mBean = (NoDataBean) data;
                 if(mBean != null){
                     mView.onSuccess(mBean.getMessage());
+                }else{
+                    mView.onFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                mView.onError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
+    }
+
+    private CommonHttpListener getArrayListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                List<ArticleBean> mBean = (List<ArticleBean>) data;
+                if(mBean != null && mBean.size() > 0){
+                    mView.onSuccess(mBean);
+                }else{
+                    mView.onFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                mView.onError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
+    }
+
+    private CommonHttpListener getDataListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                ArticleBean mBean = (ArticleBean) data;
+                if(mBean != null){
+                    mView.onSuccess(mBean);
                 }else{
                     mView.onFail();
                 }

@@ -10,11 +10,8 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.bean.home.HomeKnowContent;
-import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
-import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -28,7 +25,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识更新一级页面
  */
-public class LedgeUpdateArticleActivity extends BaseActivity implements BaseKnowLedgeUpdateView {
+public class UpdateArticleActivity extends BaseActivity implements BaseKnowLedgeUpdateView {
     private static String TAG = "UpdateArticleActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
@@ -67,7 +64,7 @@ public class LedgeUpdateArticleActivity extends BaseActivity implements BaseKnow
     }
 
     public static void launch(Activity activity,int request_code, int father_id,long article_id){
-        Intent intent = new Intent(activity, LedgeUpdateArticleActivity.class);
+        Intent intent = new Intent(activity, UpdateArticleActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,article_id);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_FATHER_ID,father_id);
         activity.startActivityForResult(intent,request_code);

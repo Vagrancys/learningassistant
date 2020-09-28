@@ -4,7 +4,10 @@ import android.util.Log;
 
 import com.vargancys.learningassistant.bean.common.HelpCommendItem;
 import com.vargancys.learningassistant.bean.common.HelpContentBean;
+import com.vargancys.learningassistant.bean.home.ArticleBean;
 import com.vargancys.learningassistant.bean.home.ArticleDataBean;
+import com.vargancys.learningassistant.bean.home.BookBean;
+import com.vargancys.learningassistant.bean.home.BookDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
@@ -223,6 +226,101 @@ public class ApiClient {
     }
 
     /**
+     * 删除特定文章
+     * @param id
+     * @param subscriber
+     */
+    public void deleteArticle(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteArticle(id),subscriber);
+    }
+
+    /**
+     * 查询特定的文章
+     * @param id
+     * @param subscriber
+     */
+    public void queryArticle(int id, MySubscriber<BaseBean<ArticleBean>> subscriber){
+        toSubscribe(mService.queryArticle(id),subscriber);
+    }
+
+    /**
+     * 查询多个特定的文章
+     * @param query
+     * @param subscriber
+     */
+    public void queryAllArticle(List<Integer> query,MySubscriber<BaseBean<List<ArticleBean>>> subscriber){
+        toSubscribe(mService.queryAllArticle(query),subscriber);
+    }
+
+    /**
+     * 更新文章
+     * @param update
+     * @param subscriber
+     */
+    public void updateArticle(Map<String,Object> update,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.updateArticle(update),subscriber);
+    }
+
+    /**
+     * 删除多个特定书籍
+     * @param id
+     * @param subscriber
+     */
+    public void deleteAllBook(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteBook(id),subscriber);
+    }
+
+
+    /**
+     * 删除特定书籍
+     * @param id
+     * @param subscriber
+     */
+    public void deleteBook(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteBook(id),subscriber);
+    }
+
+    /**
+     * 查询特定的书籍
+     * @param id
+     * @param subscriber
+     */
+    public void queryBook(int id, MySubscriber<BaseBean<BookBean>> subscriber){
+        toSubscribe(mService.queryBook(id),subscriber);
+    }
+
+    /**
+     * 查询多个特定的书籍
+     * @param query
+     * @param subscriber
+     */
+    public void queryAllBook(int[] query,MySubscriber<BaseBean<List<BookBean>>> subscriber){
+        toSubscribe(mService.queryAllBook(query),subscriber);
+    }
+
+    /**
+     * 更新书籍
+     * @param book
+     * @param subscriber
+     */
+    public void updateBook(RequestBody book,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.updateBook(book),subscriber);
+    }
+
+
+
+
+    /**
+     * 删除多个特定文章
+     * @param id
+     * @param subscriber
+     */
+    public void deleteAllArticle(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteArticle(id),subscriber);
+    }
+
+
+    /**
      * 添加书籍型文章
      * @param body 主体
      * @param subscriber
@@ -230,6 +328,13 @@ public class ApiClient {
     public void addBook(RequestBody body, MySubscriber<BaseBean<NoDataBean>> subscriber){
         toSubscribe(mService.addBook(body),subscriber);
     }
+
+    /**
+     *
+     * @param o
+     * @param s
+     * @param <T>
+     */
 
     private <T> void toSubscribe(Observable<T> o, MySubscriber<T> s) {
         o.subscribeOn(Schedulers.io())
@@ -242,9 +347,18 @@ public class ApiClient {
     /**
      * 查询文章的数据
      * @param article_id
-     * @param baseBeanMySubscriber
+     * @param subscriber
      */
     public void queryArticleData(int article_id, MySubscriber<BaseBean<ArticleDataBean>> subscriber) {
         toSubscribe(mService.queryArticleData(article_id),subscriber);
+    }
+
+    /**
+     * 查询书籍的数据
+     * @param article_id
+     * @param subscriber
+     */
+    public void queryBookData(int article_id, MySubscriber<BaseBean<BookDataBean>> subscriber) {
+        toSubscribe(mService.queryBookData(article_id),subscriber);
     }
 }

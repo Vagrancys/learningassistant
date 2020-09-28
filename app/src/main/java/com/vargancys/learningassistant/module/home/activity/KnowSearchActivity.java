@@ -18,10 +18,10 @@ import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFou
 import com.vargancys.learningassistant.module.home.activity.insert.InsertBookActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertThirdActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonSecondActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.KnowSearchAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeCommonView;
@@ -126,7 +126,7 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
                 ShowArticleActivity.launch(this,item_id);
                 break;
             case 2:
-                ShowCommonSecondActivity.launch(this,item_id);
+                ShowBookActivity.launch(this,item_id);
                 break;
             case 3:
                 ShowCommonThirdActivity.launch(this,item_id);

@@ -28,7 +28,7 @@
         <activity android:name=".module.home.activity.show.ShowCommonThirdActivity"/>
         <activity android:name=".module.home.activity.show.ShowCommonFifthActivity"/>
         <activity android:name=".module.home.activity.show.ShowCommonFourthActivity"/>
-        <activity android:name=".module.home.activity.show.ShowCommonSecondActivity"/>
+        <activity android:name=".module.home.activity.show.ShowBookActivity"/>
         <activity android:name=".module.common.help.HelpContentActivity"/>
         <activity android:name=".module.home.activity.AddKnowLedgeActivity"/>
         <activity android:name=".module.common.help.HelpSummaryActivity"/>
@@ -50,8 +50,8 @@
         <activity android:name=".module.home.activity.history.HistoryShowThirdActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFourthActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFifthActivity"/>
-        <activity android:name=".module.home.activity.update.LedgeUpdateArticleActivity"/>
-        <activity android:name=".module.home.activity.update.KnowLedgeUpdateSecondActivity"/>
+        <activity android:name=".module.home.activity.update.UpdateArticleActivity"/>
+        <activity android:name=".module.home.activity.update.UpdateBookActivity"/>
         <activity android:name=".module.home.activity.update.KnowLedgeUpdateThirdActivity"/>
         <activity android:name=".module.home.activity.update.KnowLedgeUpdateFourthActivity"/>
         <activity android:name=".module.home.activity.update.KnowLedgeUpdateFifthActivity"/>
@@ -99,6 +99,7 @@
         <activity android:name=".module.home.activity.data.DataArticleActivity"/>
         <activity android:name=".module.overview.activity.OverViewQueryActivity"
             android:launchMode="singleTask"/>
+        <activity android:name=".module.home.activity.data.DataBookActivity" />
     </application>
 
 </manifest>

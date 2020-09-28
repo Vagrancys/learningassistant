@@ -110,6 +110,7 @@
     <string name="book_insert_title">像书一样串联</string>
     <string name="book_success">您的操作成功了!</string>
     <string name="book_content_edit">请逐页编辑您所要所想的内容!</string>
+    <string name="book_query_empty">该书籍可能已经被删除或者隐藏了</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>

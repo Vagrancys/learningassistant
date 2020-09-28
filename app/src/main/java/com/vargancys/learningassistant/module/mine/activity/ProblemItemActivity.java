@@ -11,11 +11,11 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
+import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonSecondActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonThirdActivity;
 import com.vargancys.learningassistant.module.mine.adapter.ProblemItemAdapter;
 import com.vargancys.learningassistant.module.mine.view.ProblemItemView;
@@ -95,7 +95,7 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
                 ShowArticleActivity.launch(this,item_id);
                 break;
             case 2:
-                ShowCommonSecondActivity.launch(this,item_id);
+                ShowBookActivity.launch(this,item_id);
                 break;
             case 3:
                 ShowCommonThirdActivity.launch(this,item_id);

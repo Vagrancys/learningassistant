@@ -9,7 +9,7 @@ import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.module.home.view.DataArticleView;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
-import com.vargancys.learningassistant.presenter.BasePresenter;
+import com.vargancys.learningassistant.presenter.IBasePresenter;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * version:1.0
  * 模块名: 文章型管理器 增加获取查询删除修改
  */
-public class ArticlePresenter implements BasePresenter<ArticleBean> {
+public class ArticlePresenter implements IBasePresenter<ArticleBean> {
     private BaseCallBackListener mView;
     public ArticlePresenter(BaseCallBackListener view){
         this.mView = view;
