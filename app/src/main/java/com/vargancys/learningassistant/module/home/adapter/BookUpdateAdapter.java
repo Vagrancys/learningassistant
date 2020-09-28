@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.vargancys.learningassistant.bean.home.BookBean;
 import com.vargancys.learningassistant.module.home.fragment.BookContentFragment;
+import com.vargancys.learningassistant.module.home.fragment.BookUpdateFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class BookUpdateAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
         if(mFragment[i] == null){
-            mFragment[i] =
+            mFragment[i] = BookUpdateFragment.newInstance(mItems.get(i).getContent());
         }
         return null;
     }
