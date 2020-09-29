@@ -3,6 +3,7 @@ package com.vargancys.learningassistant.module.home.fragment;
 import android.os.Bundle;
 
 import com.vargancys.learningassistant.base.BaseFragment;
+import com.vargancys.learningassistant.bean.home.BookBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 
 /**
@@ -13,7 +14,7 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
  * 模块名: 书籍型更新
  */
 public class BookUpdateFragment extends BaseFragment {
-
+    private BookBean.BookItemBean mItemBean;
     private String bookContent;
     public static BookUpdateFragment newInstance(String content){
         BookUpdateFragment mFragment = new BookUpdateFragment();
@@ -32,5 +33,9 @@ public class BookUpdateFragment extends BaseFragment {
         if(getArguments() != null){
             bookContent = getArguments().getString(ConstantsUtils.KNOWLEDGE_BOOK_CONTENT);
         }
+    }
+
+    public BookBean.BookItemBean getItemBean() {
+        return mItemBean;
     }
 }

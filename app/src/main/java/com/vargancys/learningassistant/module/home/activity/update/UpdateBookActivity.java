@@ -23,6 +23,7 @@ import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
 import com.vargancys.learningassistant.module.home.adapter.BookItemAdapter;
 import com.vargancys.learningassistant.module.home.adapter.BookUpdateAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowSecondAdapter;
+import com.vargancys.learningassistant.module.home.fragment.BookUpdateFragment;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
@@ -58,6 +59,7 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
     private BookPresenter mPresenter;
     private int articleId;
     private int fatherId;
+    private BookBean mBookBean;
     private ArrayList<BookBean.BookItemBean> mItems = new ArrayList<>();
     private BookUpdateAdapter mAdapter;
     private int mCommon = 1;
@@ -146,17 +148,30 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
 
     @Override
     public boolean isPass() {
-        return false;
+        int count = 0;
+        for (int i = 0; i < mAdapter.getCount(); i++) {
+            BookUpdateFragment mFragment = (BookUpdateFragment) mAdapter.getItem(i);
+            BookBean.BookItemBean mBean = mFragment.getItemBean();
+            if(mBean != null && !mBean.getContent().isEmpty()){
+                mItems.add(mBean);
+                count++;
+            }
+        }
+
+        return !bookTitle.getText().toString().isEmpty()&& count !=0;
     }
 
     @Override
     public void isPassSuccess() {
-
+        mBookBean = new BookBean();
+        mBookBean.setItems(mItems);
+        mBookBean.setTitle(bookTitle.getText().toString());
+        mPresenter.update(mBookBean);
     }
 
     @Override
     public void isPassFail() {
-
+        ToastUtils.ToastText(getContext(),R.string.book_update_empty);
     }
 
     @Override
