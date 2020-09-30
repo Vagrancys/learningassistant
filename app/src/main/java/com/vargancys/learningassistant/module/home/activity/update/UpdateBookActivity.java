@@ -33,6 +33,7 @@ import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -62,7 +63,6 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
     private BookBean mBookBean;
     private ArrayList<BookBean.BookItemBean> mItems = new ArrayList<>();
     private BookUpdateAdapter mAdapter;
-    private int mCommon = 1;
     private KnowLedgeDataDialog mDialog;
     private int RESULT_CODE = 2002;
 
@@ -103,26 +103,13 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
 
     private void initDialog(){
         mDialog = new KnowLedgeDataDialog(this);
-        final View popView = View.inflate(getContext(),R.layout.pop_knowledge_data,null);
-        mDialog.setParentView(popView);
-        mDialog.setOnClickCancelListener(new KnowLedgeDataDialog.OnClickCancelListener() {
-            @Override
-            public void OnCancel() {
-                mDialog.cancel();
-            }
-        });
-        mDialog.setOnClickDeterMineListener(new KnowLedgeDataDialog.OnClickDeterMineListener() {
-            @Override
-            public void OnDeterMine(int common,String title,String summary,String explain) {
-                mCommon = common;
-                if(mPresenter.isFunctionSecondEmpty(mCommon,title,
-                        summary,explain)){
-                    ToastUtils.ToastText(getContext(),"请输入完整!");
-                }else{
-                    mPresenter.addFunctionSecondData(mCommon,title,
-                            summary,explain);
-                }
-            }
+        mDialog.setOnClickCancelListener(() -> mDialog.cancel());
+        mDialog.setOnClickDeterMineListener((common, title, summary, explain) -> {
+            mBookBean.setSummary(summary);
+            mBookBean.setExplain(explain);
+            mBookBean.setLevel(common);
+            mBookBean.setTitle(title);
+            mDialog.dismiss();
         });
     }
 
@@ -133,15 +120,22 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
         activity.startActivityForResult(intent,REQUEST_CODE);
     }
 
-    @OnClick({R.id.common_back,R.id.common_img})
+    @OnClick({R.id.common_back,R.id.common_data,R.id.common_set,R.id.common_save})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
             case R.id.common_back:
                 setResult(RESULT_CODE);
                 finish();
                 break;
-            case R.id.common_img:
-                mPresenter.isKnowUpdateSecondEmpty();
+            case R.id.common_save:
+                mPresenter.isUpdateEmpty();
+                break;
+            case R.id.common_data:
+                mDialog.setTitle(mBookBean.getTitle());
+                mDialog.setLevel(mBookBean.getLevel());
+                mDialog.setExplain(mBookBean.getExplain());
+                mDialog.setSummary(mBookBean.getSummary());
+                mDialog.show();
                 break;
         }
     }
@@ -176,12 +170,12 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
 
     @Override
     public void onUpdateSuccess() {
-
+        ToastUtils.ToastText(getContext(),R.string.book_update_success);
     }
 
     @Override
     public void onUpdateFail() {
-
+        ToastUtils.ToastText(getContext(),R.string.book_update_fail);
     }
 
     @Override
@@ -191,7 +185,11 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
 
     @Override
     public void onSuccess(Object object) {
-
+        mBookBean = (BookBean) object;
+        bookData.setText(String.format(Locale.CHINA,"1/%d", mBookBean.getItems().size()));
+        mItems.addAll(mBookBean.getItems());
+        mAdapter.notifyDataSetChanged();
+        viewPager.setCurrentItem(0);
     }
 
     @Override
@@ -201,12 +199,12 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
 
     @Override
     public void onFail() {
-
+        ToastUtils.ToastText(getContext(),R.string.common_fail);
     }
 
     @Override
     public void onError(String message) {
-
+        ToastUtils.ToastText(getContext(),R.string.common_error);
     }
 
     @Override

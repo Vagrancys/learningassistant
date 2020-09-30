@@ -267,7 +267,7 @@ public class ApiClient {
      * @param subscriber
      */
     public void deleteAllBook(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
-        toSubscribe(mService.deleteBook(id),subscriber);
+        toSubscribe(mService.deleteAllBook(id),subscriber);
     }
 
 
@@ -276,7 +276,7 @@ public class ApiClient {
      * @param id
      * @param subscriber
      */
-    public void deleteBook(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+    public void deleteBook(int id,MySubscriber<BaseBean<NoDataBean>> subscriber){
         toSubscribe(mService.deleteBook(id),subscriber);
     }
 

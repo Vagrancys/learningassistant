@@ -78,7 +78,7 @@ public class BookRequest {
      * @param id 要删除的书籍型id
      * @param listener
      */
-    public void deleteBook(int[] id, CommonHttpListener listener) {
+    public void deleteBook(int id, CommonHttpListener listener) {
         ApiClient.getInstance().deleteBook(id,new MySubscriber<BaseBean<NoDataBean>>(){
             @Override
             protected void onSuccess(BaseBean<NoDataBean> baseBean) {

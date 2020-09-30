@@ -1,10 +1,13 @@
 package com.vargancys.learningassistant.presenter.home;
 
+import android.content.Intent;
+
 import com.vargancys.learningassistant.bean.home.ArticleBean;
 import com.vargancys.learningassistant.bean.home.BookBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.BookRequest;
+import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.module.home.view.DataArticleView;
 import com.vargancys.learningassistant.module.home.view.InsertBookView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
@@ -57,7 +60,7 @@ public class BookPresenter implements IBasePresenter<BookBean> {
 
     @Override
     public void update(BookBean object) {
-        BookRequest.getInstance().updateBook(object,getArrayListener());
+        BookRequest.getInstance().updateBook(object,getUpdateListener());
     }
 
     public void queryData(int id) {
@@ -97,6 +100,31 @@ public class BookPresenter implements IBasePresenter<BookBean> {
                     mView.onSuccess();
                 }else{
                     mView.onFail();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                mView.onError(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
+                mView.onFinish();
+            }
+        };
+    }
+
+    public CommonHttpListener getUpdateListener(){
+        return new CommonHttpListener() {
+            @Override
+            public void onSuccess(int code, Object data) {
+                NoDataBean mBean = (NoDataBean) data;
+                BaseKnowLedgeUpdateView view = (BaseKnowLedgeUpdateView) mView;
+                if(mBean.getCode()){
+                    view.onUpdateSuccess();
+                }else{
+                    view.onUpdateFail();
                 }
             }
 
@@ -189,5 +217,18 @@ public class BookPresenter implements IBasePresenter<BookBean> {
      */
     public boolean isAddEmpty() {
         return ((InsertBookView) mView).isBookEmpty();
+    }
+
+    /**
+     * 判断更新是否为空
+     */
+    public void isUpdateEmpty() {
+        BaseKnowLedgeUpdateView view = (BaseKnowLedgeUpdateView) mView;
+        boolean result = view.isPass();
+        if(result){
+            view.isPassSuccess();
+        }else{
+            view.isPassFail();
+        }
     }
 }
