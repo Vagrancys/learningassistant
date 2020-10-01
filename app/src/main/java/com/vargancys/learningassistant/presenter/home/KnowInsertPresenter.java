@@ -7,7 +7,6 @@ import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
-import com.vargancys.learningassistant.module.home.view.KnowInsertSecondView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;
 
 import java.util.List;
@@ -93,12 +92,12 @@ public class KnowInsertPresenter {
 
     //添加熟悉级的函数项
     public void addFunctionSecondData(int mCommon, String title, String summary, String explain) {
-        boolean result = ((KnowInsertSecondView) mView).addFunctionData(mCommon, title, summary, explain);
-        if(result){
-            ((KnowInsertSecondView) mView).addFunctionFinish();
-        }else{
-            ((KnowInsertSecondView) mView).addFunctionError(501,"添加函数项失败了!");
-        }
+//        boolean result =  mView.addFunctionData(mCommon, title, summary, explain);
+//        if(result){
+//             mView.addFunctionFinish();
+//        }else{
+//            mView.addFunctionError(501,"添加函数项失败了!");
+//        }
     }
 
     //添加精通级的函数项
@@ -113,17 +112,17 @@ public class KnowInsertPresenter {
 
     //熟悉级判断是否已经存在
     public void isEqualsSecondItem(String title) {
-        boolean result = mRequest.isEqualsSecondItem(title);
-        if(result){
-            ((KnowInsertSecondView) mView).saveSecondKnowItem();
-        }else{
-            ((KnowInsertSecondView) mView).isSecondEqualsError(501,"已经有该数据项了!");
-        }
+//        boolean result = mRequest.isEqualsSecondItem(title);
+//        if(result){
+//            mView.saveSecondKnowItem();
+//        }else{
+//            mView.isSecondEqualsError(501,"已经有该数据项了!");
+//        }
     }
 
     //显示熟悉级的函数添加窗口
     public void showSecondFunctionWindow() {
-        ((KnowInsertSecondView) mView).showFunctionWindow();
+//        mView.showFunctionWindow();
     }
 
     //显示精通级的函数添加窗口
@@ -133,30 +132,31 @@ public class KnowInsertPresenter {
 
     //熟悉级判断是否为空
     public void isSecondEmpty() {
-        boolean result = ((KnowInsertSecondView) mView).isSecondEmpty();
-        if(!result){
-            ((KnowInsertSecondView) mView).isSecondEqualsItem();
-        }else{
-            ((KnowInsertSecondView) mView).isSecondEmptyError(502,"没有填写完!");
-        }
+//        boolean result = mView.isSecondEmpty();
+//        if(!result){
+//            mView.isSecondEqualsItem();
+//        }else{
+//            mView.isSecondEmptyError(502,"没有填写完!");
+//        }
     }
 
     //保存熟悉级知识项
     public void saveKnowSecondItem(int know_item_id, String title, String summary,
                                    List<HomeKnowFunction> homeKnowFunctions, String heed, String experience) {
-        boolean result = mRequest.saveKnowSecondItem(know_item_id,title,summary,homeKnowFunctions,
-                heed,experience);
-        if(result){
-            ((KnowInsertSecondView) mView).saveSecondItemFinish();
-        }else{
-            ((KnowInsertSecondView) mView).saveSecondItemError(501,"该数据项保存失败了!");
-        }
+//        boolean result = mRequest.saveKnowSecondItem(know_item_id,title,summary,homeKnowFunctions,
+//                heed,experience);
+//        if(result){
+//            mView.saveSecondItemFinish();
+//        }else{
+//            mView.saveSecondItemError(501,"该数据项保存失败了!");
+//        }
     }
 
     //判断熟悉级的函数是否为空
     public boolean isFunctionSecondEmpty(int mCommon, String title,
                                    String summary, String explain) {
-        return ((KnowInsertSecondView) mView).isFunctionEmpty(mCommon, title, summary, explain);
+//        return mView.isFunctionEmpty(mCommon, title, summary, explain);
+        return false;
     }
 
     //判断熟练级的函数是否为空

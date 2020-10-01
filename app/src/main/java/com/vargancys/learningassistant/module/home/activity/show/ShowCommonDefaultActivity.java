@@ -85,20 +85,6 @@ public class ShowCommonDefaultActivity extends BaseActivity implements ShowCommo
         activity.startActivity(intent);
     }
 
-    @Override
-    public void showContentError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+"Msg = "+msg);
-        scrollView.setVisibility(View.GONE);
-        includeKnowEmpty.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void showContentFinish(HomeKnowContent homeKnowContent) {
-        scrollView.setVisibility(View.VISIBLE);
-        includeKnowEmpty.setVisibility(View.GONE);
-        initData(homeKnowContent);
-    }
-
     private void initData(HomeKnowContent content){
         commonTitle.setText(content.getTitle());
         insertShowTitle.setText(content.getTitle());
@@ -119,5 +105,45 @@ public class ShowCommonDefaultActivity extends BaseActivity implements ShowCommo
                 ShowKnowDataActivity.launch(ShowCommonDefaultActivity.this,REQUEST_CODE,item_id);
                 break;
         }
+    }
+
+    @Override
+    public void showFinish(Object object) {
+
+    }
+
+    @Override
+    public void showError(String msg) {
+
+    }
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+
+    }
+
+    @Override
+    public void onNoData() {
+
+    }
+
+    @Override
+    public void onFail() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void onFinish() {
+
     }
 }

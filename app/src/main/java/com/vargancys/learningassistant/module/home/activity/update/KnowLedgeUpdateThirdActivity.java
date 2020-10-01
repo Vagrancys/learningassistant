@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示三级页面
  */
-public class KnowLedgeUpdateThirdActivity extends BaseActivity implements BaseKnowLedgeUpdateView {
+public class KnowLedgeUpdateThirdActivity extends BaseActivity{
     private static String TAG = "KnowUpdateThirdActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
@@ -63,7 +63,7 @@ public class KnowLedgeUpdateThirdActivity extends BaseActivity implements BaseKn
             contentId = intent.getLongExtra(ConstantsUtils.KNOW_CONTENT_ID,0);
             dataId = intent.getLongExtra(ConstantsUtils.KNOW_DATA_ID,0);
         }
-        mPresenter = new KnowUpdatePresenter(this);
+//        mPresenter = new KnowUpdatePresenter(this);
         mPresenter.getKnowThirdContent(contentId);
     }
 
@@ -81,89 +81,89 @@ public class KnowLedgeUpdateThirdActivity extends BaseActivity implements BaseKn
         activity.startActivityForResult(intent,REQUEST_CODE);
     }
 
-    @Override
-    public boolean isKnowUpdateDefaultEmpty() {
-        return updateTitleEdit.getText().toString().isEmpty()&&
-                updateSummaryEdit.getText().toString().isEmpty()&&
-                updateShowEdit.getText().toString().isEmpty()&&
-                updateExplainEdit.getText().toString().isEmpty()&&
-                updateExperienceEdit.getText().toString().isEmpty()&&
-                updateHeedEdit.getText().toString().isEmpty();
-    }
-
-    @Override
-    public void showKnowEmptyError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+",Message = "+message);
-    }
-
-    @Override
-    public boolean isKnowUpdateDefaultEquals() {
-        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())&&
-                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())&&
-                updateShowEdit.getText().toString().equals(mOldHistory.getShow())&&
-                updateExplainEdit.getText().toString().equals(mOldHistory.getExplain())&&
-                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())&&
-                updateHeedEdit.getText().toString().equals(mOldHistory.getHeed());
-    }
-
-    @Override
-    public void saveKnowUpdateContent() {
-        mNewContent.setTitle(updateTitleEdit.getText().toString());
-        mNewContent.setSummary(updateSummaryEdit.getText().toString());
-        mNewContent.setShow(updateShowEdit.getText().toString());
-        mNewContent.setExplain(updateExplainEdit.getText().toString());
-        mNewContent.setExperience(updateExperienceEdit.getText().toString());
-        mNewContent.setHeed(updateHeedEdit.getText().toString());
-        mPresenter.saveKnowUpdateThird(mOldHistory,mNewContent);
-    }
-
-    @Override
-    public void showKnowEqualsError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
-    }
-
-    @Override
-    public void showKnowDataFinish(HomeKnowContent content) {
-        mNewContent = content;
-        addHistory(mNewContent);
-        updateTitleEdit.setText(content.getTitle());
-        updateSummaryEdit.setText(content.getSummary());
-        updateShowEdit.setText(content.getShow());
-        updateExplainEdit.setText(content.getExplain());
-        updateHeedEdit.setText(content.getHeed());
-        updateExperienceEdit.setText(content.getExperience());
-    }
-
-    private void addHistory(HomeKnowContent content){
-        mOldHistory = new HomeKnowHistory();
-        mOldHistory.setDataId(dataId);
-        mOldHistory.setTitle(content.getTitle());
-        mOldHistory.setSummary(content.getSummary());
-        mOldHistory.setExplain(content.getExplain());
-        mOldHistory.setExperience(content.getExperience());
-        mOldHistory.setHeed(content.getHeed());
-        mOldHistory.setShow(content.getShow());
-    }
-
-    @Override
-    public void showKnowDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
-    }
-
-    @Override
-    public void showKnowSaveFinish() {
-        ToastUtils.ToastText(getContext(),"修改成功了正在退出!");
-        //0没有更新 1更新了
-        Intent intent = new Intent();
-        intent.putExtra(ConstantsUtils.ITEM_UPDATE_STATUS,1);
-        setResult(RESULT_CODE,intent);
-        finish();
-    }
-
-    @Override
-    public void showKnowSaveError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
-    }
+//    @Override
+//    public boolean isKnowUpdateDefaultEmpty() {
+//        return updateTitleEdit.getText().toString().isEmpty()&&
+//                updateSummaryEdit.getText().toString().isEmpty()&&
+//                updateShowEdit.getText().toString().isEmpty()&&
+//                updateExplainEdit.getText().toString().isEmpty()&&
+//                updateExperienceEdit.getText().toString().isEmpty()&&
+//                updateHeedEdit.getText().toString().isEmpty();
+//    }
+//
+//    @Override
+//    public void showKnowEmptyError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error = "+error+",Message = "+message);
+//    }
+//
+//    @Override
+//    public boolean isKnowUpdateDefaultEquals() {
+//        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())&&
+//                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())&&
+//                updateShowEdit.getText().toString().equals(mOldHistory.getShow())&&
+//                updateExplainEdit.getText().toString().equals(mOldHistory.getExplain())&&
+//                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())&&
+//                updateHeedEdit.getText().toString().equals(mOldHistory.getHeed());
+//    }
+//
+//    @Override
+//    public void saveKnowUpdateContent() {
+//        mNewContent.setTitle(updateTitleEdit.getText().toString());
+//        mNewContent.setSummary(updateSummaryEdit.getText().toString());
+//        mNewContent.setShow(updateShowEdit.getText().toString());
+//        mNewContent.setExplain(updateExplainEdit.getText().toString());
+//        mNewContent.setExperience(updateExperienceEdit.getText().toString());
+//        mNewContent.setHeed(updateHeedEdit.getText().toString());
+//        mPresenter.saveKnowUpdateThird(mOldHistory,mNewContent);
+//    }
+//
+//    @Override
+//    public void showKnowEqualsError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
+//    }
+//
+//    @Override
+//    public void showKnowDataFinish(HomeKnowContent content) {
+//        mNewContent = content;
+//        addHistory(mNewContent);
+//        updateTitleEdit.setText(content.getTitle());
+//        updateSummaryEdit.setText(content.getSummary());
+//        updateShowEdit.setText(content.getShow());
+//        updateExplainEdit.setText(content.getExplain());
+//        updateHeedEdit.setText(content.getHeed());
+//        updateExperienceEdit.setText(content.getExperience());
+//    }
+//
+//    private void addHistory(HomeKnowContent content){
+//        mOldHistory = new HomeKnowHistory();
+//        mOldHistory.setDataId(dataId);
+//        mOldHistory.setTitle(content.getTitle());
+//        mOldHistory.setSummary(content.getSummary());
+//        mOldHistory.setExplain(content.getExplain());
+//        mOldHistory.setExperience(content.getExperience());
+//        mOldHistory.setHeed(content.getHeed());
+//        mOldHistory.setShow(content.getShow());
+//    }
+//
+//    @Override
+//    public void showKnowDataError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error = "+error+", Message ="+message);
+//    }
+//
+//    @Override
+//    public void showKnowSaveFinish() {
+//        ToastUtils.ToastText(getContext(),"修改成功了正在退出!");
+//        //0没有更新 1更新了
+//        Intent intent = new Intent();
+//        intent.putExtra(ConstantsUtils.ITEM_UPDATE_STATUS,1);
+//        setResult(RESULT_CODE,intent);
+//        finish();
+//    }
+//
+//    @Override
+//    public void showKnowSaveError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
+//    }
 
     @OnClick({R.id.common_back,R.id.common_img})
     public void onViewClicked(View itemView){

@@ -151,7 +151,6 @@ public class KnowInsertFourthActivity extends BaseActivity implements KnowInsert
         mDialog = new KnowLedgeDataDialog(this);
         mDialog = new KnowLedgeDataDialog(this);
         final View popView = View.inflate(getContext(),R.layout.pop_function_fourth,null);
-        mDialog.setParentView(popView);
         mDialog.setOnClickCancelListener(new KnowLedgeDataDialog.OnClickCancelListener() {
             @Override
             public void OnCancel() {

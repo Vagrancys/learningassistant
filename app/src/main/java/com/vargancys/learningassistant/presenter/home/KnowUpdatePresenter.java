@@ -27,107 +27,107 @@ public class KnowUpdatePresenter {
 
     //查找默认级数据
     public void getKnowDefaultContent(long content_id){
-        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
-        if(homeKnowContent != null){
-             mView.showKnowDataFinish(homeKnowContent);
-        }else{
-            mView.showKnowDataError(404,"没有该数据!");
-        }
+//        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
+//        if(homeKnowContent != null){
+//             mView.showKnowDataFinish(homeKnowContent);
+//        }else{
+//            mView.showKnowDataError(404,"没有该数据!");
+//        }
     }
 
     //判断默认级数据是否为空
     public void isKnowUpdateDefaultEmpty(){
-        boolean result = mView.isKnowUpdateDefaultEmpty();
-        if(result){
-            mView.showKnowEmptyError(404,"该数据没有填写完成!");
-        }else{
-            boolean result2 = mView.isKnowUpdateDefaultEquals();
-            if(!result2){
-                mView.saveKnowUpdateContent();
-            }else{
-                mView.showKnowEqualsError(404,"您没有修改!");
-            }
-        }
+//        boolean result = mView.isKnowUpdateDefaultEmpty();
+//        if(result){
+//            mView.showKnowEmptyError(404,"该数据没有填写完成!");
+//        }else{
+//            boolean result2 = mView.isKnowUpdateDefaultEquals();
+//            if(!result2){
+//                mView.saveKnowUpdateContent();
+//            }else{
+//                mView.showKnowEqualsError(404,"您没有修改!");
+//            }
+//        }
     }
 
     //更新默认级数据
     public void saveKnowUpdateDefault(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
-        boolean result = mRequest.saveKnowUpdateDefault(mOldHistory,mNewContent);
-        if(result){
-            mView.showKnowSaveFinish();
-        }else{
-            mView.showKnowSaveError(404,"保存失败了!");
-        }
+//        boolean result = mRequest.saveKnowUpdateDefault(mOldHistory,mNewContent);
+//        if(result){
+//            mView.showKnowSaveFinish();
+//        }else{
+//            mView.showKnowSaveError(404,"保存失败了!");
+//        }
     }
 
     //查找入门级数据
     public void getKnowFirstContent(long content_id){
-        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
-        if(homeKnowContent != null){
-            mView.showKnowDataFinish(homeKnowContent);
-        }else{
-            mView.showKnowDataError(404,"没有该数据!");
-        }
+//        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
+//        if(homeKnowContent != null){
+//            mView.showKnowDataFinish(homeKnowContent);
+//        }else{
+//            mView.showKnowDataError(404,"没有该数据!");
+//        }
     }
 
     //判断入门级数据是否为空
     public void isKnowUpdateFirstEmpty(){
-        boolean result = mView.isKnowUpdateDefaultEmpty();
-        if(result){
-            mView.showKnowEmptyError(404,"该数据没有填写完成!");
-        }else{
-            boolean result2 = mView.isKnowUpdateDefaultEquals();
-            if(!result2){
-                mView.saveKnowUpdateContent();
-            }else{
-                mView.showKnowEqualsError(404,"您没有修改!");
-            }
-        }
+//        boolean result = mView.isKnowUpdateDefaultEmpty();
+//        if(result){
+//            mView.showKnowEmptyError(404,"该数据没有填写完成!");
+//        }else{
+//            boolean result2 = mView.isKnowUpdateDefaultEquals();
+//            if(!result2){
+//                mView.saveKnowUpdateContent();
+//            }else{
+//                mView.showKnowEqualsError(404,"您没有修改!");
+//            }
+//        }
     }
 
     //更新入门级数据
     public void saveKnowUpdateFirst(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
-        boolean result = mRequest.saveKnowUpdateFirst(mOldHistory,mNewContent);
-        if(result){
-            mView.showKnowSaveFinish();
-        }else{
-            mView.showKnowSaveError(404,"保存失败了!");
-        }
+//        boolean result = mRequest.saveKnowUpdateFirst(mOldHistory,mNewContent);
+//        if(result){
+//            mView.showKnowSaveFinish();
+//        }else{
+//            mView.showKnowSaveError(404,"保存失败了!");
+//        }
     }
 
     //查找熟悉级数据
     public void getKnowSecondContent(long content_id){
-        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
-        if(homeKnowContent != null){
-            mView.showKnowDataFinish(homeKnowContent);
-        }else{
-            mView.showKnowDataError(404,"没有该数据!");
-        }
+//        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
+//        if(homeKnowContent != null){
+//            mView.showKnowDataFinish(homeKnowContent);
+//        }else{
+//            mView.showKnowDataError(404,"没有该数据!");
+//        }
     }
 
     //判断熟悉级数据是否为空
     public void isKnowUpdateSecondEmpty(){
-        boolean result = mView.isKnowUpdateDefaultEmpty();
-        if(result){
-            mView.showKnowEmptyError(404,"该数据没有填写完成!");
-        }else{
-            boolean result2 = mView.isKnowUpdateDefaultEquals();
-            if(!result2){
-                mView.saveKnowUpdateContent();
-            }else{
-                mView.showKnowEqualsError(404,"您没有修改!");
-            }
-        }
+//        boolean result = mView.isKnowUpdateDefaultEmpty();
+//        if(result){
+//            mView.showKnowEmptyError(404,"该数据没有填写完成!");
+//        }else{
+//            boolean result2 = mView.isKnowUpdateDefaultEquals();
+//            if(!result2){
+//                mView.saveKnowUpdateContent();
+//            }else{
+//                mView.showKnowEqualsError(404,"您没有修改!");
+//            }
+//        }
     }
 
     //更新熟悉级数据
     public void saveKnowUpdateSecond(HomeKnowHistory mOldHistory, List<HomeKnowHistoryFunction> mOldHistoryFunction, HomeKnowContent mNewContent, List<HomeKnowFunction> homeKnowFunctions) {
-        boolean result = mRequest.saveKnowUpdateSecond(mOldHistory,mOldHistoryFunction,mNewContent,homeKnowFunctions);
-        if(result){
-            mView.showKnowSaveFinish();
-        }else{
-            mView.showKnowSaveError(404,"保存失败了!");
-        }
+//        boolean result = mRequest.saveKnowUpdateSecond(mOldHistory,mOldHistoryFunction,mNewContent,homeKnowFunctions);
+//        if(result){
+//            mView.showKnowSaveFinish();
+//        }else{
+//            mView.showKnowSaveError(404,"保存失败了!");
+//        }
     }
 
     //显示更新熟悉级的函数
@@ -154,72 +154,72 @@ public class KnowUpdatePresenter {
 
     //查找熟练级数据
     public void getKnowThirdContent(long content_id){
-        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
-        if(homeKnowContent != null){
-            mView.showKnowDataFinish(homeKnowContent);
-        }else{
-            mView.showKnowDataError(404,"没有该数据!");
-        }
+//        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
+//        if(homeKnowContent != null){
+//            mView.showKnowDataFinish(homeKnowContent);
+//        }else{
+//            mView.showKnowDataError(404,"没有该数据!");
+//        }
     }
 
     //判断熟练级数据是否为空
     public void isKnowUpdateThirdEmpty(){
-        boolean result = mView.isKnowUpdateDefaultEmpty();
-        if(result){
-            mView.showKnowEmptyError(404,"该数据没有填写完成!");
-        }else{
-            boolean result2 = mView.isKnowUpdateDefaultEquals();
-            if(!result2){
-                mView.saveKnowUpdateContent();
-            }else{
-                mView.showKnowEqualsError(404,"您没有修改!");
-            }
-        }
+//        boolean result = mView.isKnowUpdateDefaultEmpty();
+//        if(result){
+//            mView.showKnowEmptyError(404,"该数据没有填写完成!");
+//        }else{
+//            boolean result2 = mView.isKnowUpdateDefaultEquals();
+//            if(!result2){
+//                mView.saveKnowUpdateContent();
+//            }else{
+//                mView.showKnowEqualsError(404,"您没有修改!");
+//            }
+//        }
     }
 
     //更新熟练级数据
     public void saveKnowUpdateThird(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
-        boolean result = mRequest.saveKnowUpdateThird(mOldHistory,mNewContent);
-        if(result){
-            mView.showKnowSaveFinish();
-        }else{
-            mView.showKnowSaveError(404,"保存失败了!");
-        }
+//        boolean result = mRequest.saveKnowUpdateThird(mOldHistory,mNewContent);
+//        if(result){
+//            mView.showKnowSaveFinish();
+//        }else{
+//            mView.showKnowSaveError(404,"保存失败了!");
+//        }
     }
 
     //查找精通级数据
     public void getKnowFourthContent(long content_id){
-        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
-        if(homeKnowContent != null){
-            mView.showKnowDataFinish(homeKnowContent);
-        }else{
-            mView.showKnowDataError(404,"没有该数据!");
-        }
+//        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
+//        if(homeKnowContent != null){
+//            mView.showKnowDataFinish(homeKnowContent);
+//        }else{
+//            mView.showKnowDataError(404,"没有该数据!");
+//        }
     }
 
     //判断精通级数据是否为空
     public void isKnowUpdateFourthEmpty(){
-        boolean result = mView.isKnowUpdateDefaultEmpty();
-        if(result){
-            mView.showKnowEmptyError(404,"该数据没有填写完成!");
-        }else{
-            boolean result2 = mView.isKnowUpdateDefaultEquals();
-            if(!result2){
-                mView.saveKnowUpdateContent();
-            }else{
-                mView.showKnowEqualsError(404,"您没有修改!");
-            }
-        }
+//        boolean result = mView.isKnowUpdateDefaultEmpty();
+//        if(result){
+//            mView.showKnowEmptyError(404,"该数据没有填写完成!");
+//        }else{
+//            boolean result2 = mView.isKnowUpdateDefaultEquals();
+//            if(!result2){
+//                mView.saveKnowUpdateContent();
+//            }else{
+//                mView.showKnowEqualsError(404,"您没有修改!");
+//            }
+//        }
     }
 
     //更新精通级数据
     public void saveKnowUpdateFourth(HomeKnowHistory mOldHistory, List<HomeKnowHistoryFunction> mOldHistoryFunction, HomeKnowContent mNewContent, List<HomeKnowFunction> homeKnowFunctions) {
-        boolean result = mRequest.saveKnowUpdateFourth(mOldHistory,mOldHistoryFunction,mNewContent,homeKnowFunctions);
-        if(result){
-            mView.showKnowSaveFinish();
-        }else{
-            mView.showKnowSaveError(404,"保存失败了!");
-        }
+//        boolean result = mRequest.saveKnowUpdateFourth(mOldHistory,mOldHistoryFunction,mNewContent,homeKnowFunctions);
+//        if(result){
+//            mView.showKnowSaveFinish();
+//        }else{
+//            mView.showKnowSaveError(404,"保存失败了!");
+//        }
     }
 
     //显示更新精通级的函数
@@ -245,36 +245,36 @@ public class KnowUpdatePresenter {
 
     //查找创造级数据
     public void getKnowFifthContent(long content_id){
-        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
-        if(homeKnowContent != null){
-            mView.showKnowDataFinish(homeKnowContent);
-        }else{
-            mView.showKnowDataError(404,"没有该数据!");
-        }
+//        HomeKnowContent homeKnowContent = mRequest.getKnowDefaultContent(content_id);
+//        if(homeKnowContent != null){
+//            mView.showKnowDataFinish(homeKnowContent);
+//        }else{
+//            mView.showKnowDataError(404,"没有该数据!");
+//        }
     }
 
     //判断创造级数据是否为空
     public void isKnowUpdateFifthEmpty(){
-        boolean result = mView.isKnowUpdateDefaultEmpty();
-        if(result){
-            mView.showKnowEmptyError(404,"该数据没有填写完成!");
-        }else{
-            boolean result2 = mView.isKnowUpdateDefaultEquals();
-            if(!result2){
-                mView.saveKnowUpdateContent();
-            }else{
-                mView.showKnowEqualsError(404,"您没有修改!");
-            }
-        }
+//        boolean result = mView.isKnowUpdateDefaultEmpty();
+//        if(result){
+//            mView.showKnowEmptyError(404,"该数据没有填写完成!");
+//        }else{
+//            boolean result2 = mView.isKnowUpdateDefaultEquals();
+//            if(!result2){
+//                mView.saveKnowUpdateContent();
+//            }else{
+//                mView.showKnowEqualsError(404,"您没有修改!");
+//            }
+//        }
     }
 
     //更新创造级数据
     public void saveKnowUpdateFifth(HomeKnowHistory mOldHistory, HomeKnowContent mNewContent) {
-        boolean result = mRequest.saveKnowUpdateFifth(mOldHistory,mNewContent);
-        if(result){
-            mView.showKnowSaveFinish();
-        }else{
-            mView.showKnowSaveError(404,"保存失败了!");
-        }
+//        boolean result = mRequest.saveKnowUpdateFifth(mOldHistory,mNewContent);
+//        if(result){
+//            mView.showKnowSaveFinish();
+//        }else{
+//            mView.showKnowSaveError(404,"保存失败了!");
+//        }
     }
 }

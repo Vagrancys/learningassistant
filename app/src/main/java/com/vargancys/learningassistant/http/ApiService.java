@@ -43,7 +43,11 @@ public interface ApiService {
 
     @POST("delete_most_article")
     @FormUrlEncoded
-    Observable<BaseBean<NoDataBean>> deleteArticle(@Field("delete[]") int[] delete);
+    Observable<BaseBean<NoDataBean>> deleteAllArticle(@Field("delete[]") int[] delete);
+
+    @POST("delete_single_article")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> deleteArticle(@Field("delete") int delete);
 
     @POST("delete_single_article")
     @FormUrlEncoded
@@ -102,7 +106,7 @@ public interface ApiService {
     Observable<BaseBean<NoDataBean>> updateArticle(@FieldMap Map<String,Object> update);
 
     @GET("query_all_article")
-    Observable<BaseBean<List<ArticleBean>>> queryAllArticle(@Query("query[]") List<Integer> query);
+    Observable<BaseBean<List<ArticleBean>>> queryAllArticle(@Query("query[]") int[] query);
 
     @GET("query_single_book")
     Observable<BaseBean<BookBean>> queryBook(@Query("query") int query);

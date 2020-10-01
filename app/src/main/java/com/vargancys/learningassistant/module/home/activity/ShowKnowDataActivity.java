@@ -58,9 +58,9 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     TextView knowDataMaster;
     private KnowDataPresenter mPresenter;
     private int commendCount;
-    private long contentId;
-    private long dataId;
-    private long itemId;
+    private int contentId;
+    private int dataId;
+    private int itemId;
     public static int RESULT_CODE = 2000;
     public static int REQUEST_CODE = 1900;
     public static int RESULT_UPDATE_CODE = 2002;
@@ -80,7 +80,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            itemId = intent.getLongExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+            itemId = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
         init();
         mPresenter = new KnowDataPresenter(this);

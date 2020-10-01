@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识更新四级页面
  */
-public class KnowLedgeUpdateFourthActivity extends BaseActivity implements KnowLedgeUpdateFourthView {
+public class KnowLedgeUpdateFourthActivity extends BaseActivity{
     private String TAG = "KnowInsertFourthActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
@@ -84,7 +84,7 @@ public class KnowLedgeUpdateFourthActivity extends BaseActivity implements KnowL
             contentId = intent.getLongExtra(ConstantsUtils.KNOW_CONTENT_ID,0);
             dataId = intent.getLongExtra(ConstantsUtils.KNOW_DATA_ID,0);
         }
-        mPresenter = new KnowUpdatePresenter(this);
+//        mPresenter = new KnowUpdatePresenter(this);
         initRecyclerView();
         initListener();
         initDialog();
@@ -142,7 +142,6 @@ public class KnowLedgeUpdateFourthActivity extends BaseActivity implements KnowL
         mDialog = new KnowLedgeDataDialog(this);
         mDialog = new KnowLedgeDataDialog(this);
         final View popView = View.inflate(getContext(),R.layout.pop_function_fourth,null);
-        mDialog.setParentView(popView);
         mDialog.setOnClickCancelListener(new KnowLedgeDataDialog.OnClickCancelListener() {
             @Override
             public void OnCancel() {
@@ -171,160 +170,160 @@ public class KnowLedgeUpdateFourthActivity extends BaseActivity implements KnowL
         activity.startActivityForResult(intent,REQUEST_CODE);
     }
 
-    @Override
-    public boolean isFunctionEmpty(int common, String title, String summary, String explain) {
-        return common != 0 &&title.isEmpty()&&summary.isEmpty()&&explain.isEmpty();
-    }
-
-    @Override
-    public void addFunctionFinish() {
-        ToastUtils.ToastText(getContext(),"添加函数项成功了!");
-        if(homeKnowFunctions.size() > 0){
-            recyclerView.setVisibility(View.VISIBLE);
-            showHintFourth.setVisibility(View.GONE);
-            updateShowCount.setVisibility(View.VISIBLE);
-            updateShowCount.setText(String.valueOf(homeKnowFunctions.size()));
-        }
-        mDialog.clearData();
-        mDialog.cancel();
-        mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void addFunctionError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+", Msg = "+msg);
-    }
-
-    @Override
-    public boolean addFunctionData(int common, String title, String summary, String explain) {
-        HomeKnowFunction homeKnowFunction = new HomeKnowFunction();
-        homeKnowFunction.setFunctionId(contentId);
-        homeKnowFunction.setCommon(common);
-        homeKnowFunction.setTitle(title);
-        homeKnowFunction.setSummary(summary);
-        homeKnowFunction.setExplain(explain);
-        return homeKnowFunctions.add(homeKnowFunction);
-    }
-
-    private void initEmpty() {
-        updateTitleEdit.setText("");
-        updateSummaryEdit.setText("");
-        updateHeedEdit.setText("");
-        updateExperienceEdit.setText("");
-        homeKnowFunctions.clear();
-        mAdapter.notifyDataSetChanged();
-        recyclerView.setVisibility(View.GONE);
-        showHintFourth.setVisibility(View.VISIBLE);
-        updateShowCount.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void showFunctionWindow() {
-        mDialog.show();
-    }
-
-    @Override
-    public void showKnowDataFinish(HomeKnowContent content) {
-        mNewContent = content;
-        addHistory(mNewContent);
-        updateTitleEdit.setText(content.getTitle());
-        updateSummaryEdit.setText(content.getSummary());
-        updateHeedEdit.setText(content.getHeed());
-        updateExperienceEdit.setText(content.getExperience());
-        int count = content.getHomeKnowFunctions().size();
-        if(count>0){
-            homeKnowFunctions.addAll(content.getHomeKnowFunctions());
-            recyclerView.setVisibility(View.VISIBLE);
-            showHintFourth.setVisibility(View.GONE);
-            updateShowCount.setVisibility(View.VISIBLE);
-            updateShowCount.setText("("+count+")");
-            mAdapter.notifyDataSetChanged();
-        }else{
-            recyclerView.setVisibility(View.GONE);
-            showHintFourth.setVisibility(View.VISIBLE);
-            updateShowCount.setVisibility(View.GONE);
-        }
-    }
-
-    private void addHistory(HomeKnowContent content){
-        mOldHistory = new HomeKnowHistory();
-        mOldHistory.setDataId(dataId);
-        mOldHistory.setTitle(content.getTitle());
-        mOldHistory.setSummary(content.getSummary());
-        mOldHistory.setExplain(content.getExplain());
-        mOldHistory.setExperience(content.getExperience());
-        mOldHistory.setHeed(content.getHeed());
-        mOldHistory.setShow(content.getShow());
-        if(content.getHomeKnowFunctions().size()>0){
-            for (HomeKnowFunction mFunction :content.getHomeKnowFunctions()){
-                HomeKnowHistoryFunction mHistory = new HomeKnowHistoryFunction();
-                mHistory.setCommon(mFunction.getCommon());
-                mHistory.setExplain(mFunction.getExplain());
-                mHistory.setFunctionId(mFunction.getFunctionId());
-                mHistory.setSummary(mFunction.getSummary());
-                mHistory.setTitle(mFunction.getTitle());
-                mOldHistoryFunction.add(mHistory);
-            }
-        }
-    }
-
-    @Override
-    public void showKnowDataError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
-    }
-
-    @Override
-    public boolean isKnowUpdateDefaultEmpty() {
-        return updateTitleEdit.getText().toString().isEmpty()&&
-                updateSummaryEdit.getText().toString().isEmpty()&&
-                updateExperienceEdit.getText().toString().isEmpty()&&
-                updateHeedEdit.getText().toString().isEmpty()&&
-                homeKnowFunctions.size()>0;
-    }
-
-    @Override
-    public void showKnowEmptyError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+",Message = "+message);
-    }
-
-
-    @Override
-    public boolean isKnowUpdateDefaultEquals() {
-        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())&&
-                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())&&
-                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())&&
-                updateHeedEdit.getText().toString().equals(mOldHistory.getHeed());
-    }
-
-    @Override
-    public void saveKnowUpdateContent() {
-        mNewContent.setTitle(updateTitleEdit.getText().toString());
-        mNewContent.setSummary(updateSummaryEdit.getText().toString());
-        mNewContent.setExperience(updateExperienceEdit.getText().toString());
-        mNewContent.setHeed(updateHeedEdit.getText().toString());
-        mPresenter.saveKnowUpdateFourth(mOldHistory,mOldHistoryFunction,mNewContent,homeKnowFunctions);
-    }
-
-    @Override
-    public void showKnowEqualsError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
-    }
-
-    @Override
-    public void showKnowSaveFinish() {
-        ToastUtils.ToastText(getContext(),"修改成功了正在退出!");
-        initEmpty();
-        //0没有更新 1更新了
-        Intent intent = new Intent();
-        intent.putExtra(ConstantsUtils.ITEM_UPDATE_STATUS,1);
-        setResult(RESULT_CODE,intent);
-        finish();
-    }
-
-    @Override
-    public void showKnowSaveError(int error, String message) {
-        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
-    }
+//    @Override
+//    public boolean isFunctionEmpty(int common, String title, String summary, String explain) {
+//        return common != 0 &&title.isEmpty()&&summary.isEmpty()&&explain.isEmpty();
+//    }
+//
+//    @Override
+//    public void addFunctionFinish() {
+//        ToastUtils.ToastText(getContext(),"添加函数项成功了!");
+//        if(homeKnowFunctions.size() > 0){
+//            recyclerView.setVisibility(View.VISIBLE);
+//            showHintFourth.setVisibility(View.GONE);
+//            updateShowCount.setVisibility(View.VISIBLE);
+//            updateShowCount.setText(String.valueOf(homeKnowFunctions.size()));
+//        }
+//        mDialog.clearData();
+//        mDialog.cancel();
+//        mAdapter.notifyDataSetChanged();
+//    }
+//
+//    @Override
+//    public void addFunctionError(int error, String msg) {
+//        ToastUtils.ToastText(getContext(),"Error = "+error+", Msg = "+msg);
+//    }
+//
+//    @Override
+//    public boolean addFunctionData(int common, String title, String summary, String explain) {
+//        HomeKnowFunction homeKnowFunction = new HomeKnowFunction();
+//        homeKnowFunction.setFunctionId(contentId);
+//        homeKnowFunction.setCommon(common);
+//        homeKnowFunction.setTitle(title);
+//        homeKnowFunction.setSummary(summary);
+//        homeKnowFunction.setExplain(explain);
+//        return homeKnowFunctions.add(homeKnowFunction);
+//    }
+//
+//    private void initEmpty() {
+//        updateTitleEdit.setText("");
+//        updateSummaryEdit.setText("");
+//        updateHeedEdit.setText("");
+//        updateExperienceEdit.setText("");
+//        homeKnowFunctions.clear();
+//        mAdapter.notifyDataSetChanged();
+//        recyclerView.setVisibility(View.GONE);
+//        showHintFourth.setVisibility(View.VISIBLE);
+//        updateShowCount.setVisibility(View.GONE);
+//    }
+//
+//    @Override
+//    public void showFunctionWindow() {
+//        mDialog.show();
+//    }
+//
+//    @Override
+//    public void showKnowDataFinish(HomeKnowContent content) {
+//        mNewContent = content;
+//        addHistory(mNewContent);
+//        updateTitleEdit.setText(content.getTitle());
+//        updateSummaryEdit.setText(content.getSummary());
+//        updateHeedEdit.setText(content.getHeed());
+//        updateExperienceEdit.setText(content.getExperience());
+//        int count = content.getHomeKnowFunctions().size();
+//        if(count>0){
+//            homeKnowFunctions.addAll(content.getHomeKnowFunctions());
+//            recyclerView.setVisibility(View.VISIBLE);
+//            showHintFourth.setVisibility(View.GONE);
+//            updateShowCount.setVisibility(View.VISIBLE);
+//            updateShowCount.setText("("+count+")");
+//            mAdapter.notifyDataSetChanged();
+//        }else{
+//            recyclerView.setVisibility(View.GONE);
+//            showHintFourth.setVisibility(View.VISIBLE);
+//            updateShowCount.setVisibility(View.GONE);
+//        }
+//    }
+//
+//    private void addHistory(HomeKnowContent content){
+//        mOldHistory = new HomeKnowHistory();
+//        mOldHistory.setDataId(dataId);
+//        mOldHistory.setTitle(content.getTitle());
+//        mOldHistory.setSummary(content.getSummary());
+//        mOldHistory.setExplain(content.getExplain());
+//        mOldHistory.setExperience(content.getExperience());
+//        mOldHistory.setHeed(content.getHeed());
+//        mOldHistory.setShow(content.getShow());
+//        if(content.getHomeKnowFunctions().size()>0){
+//            for (HomeKnowFunction mFunction :content.getHomeKnowFunctions()){
+//                HomeKnowHistoryFunction mHistory = new HomeKnowHistoryFunction();
+//                mHistory.setCommon(mFunction.getCommon());
+//                mHistory.setExplain(mFunction.getExplain());
+//                mHistory.setFunctionId(mFunction.getFunctionId());
+//                mHistory.setSummary(mFunction.getSummary());
+//                mHistory.setTitle(mFunction.getTitle());
+//                mOldHistoryFunction.add(mHistory);
+//            }
+//        }
+//    }
+//
+//    @Override
+//    public void showKnowDataError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
+//    }
+//
+//    @Override
+//    public boolean isKnowUpdateDefaultEmpty() {
+//        return updateTitleEdit.getText().toString().isEmpty()&&
+//                updateSummaryEdit.getText().toString().isEmpty()&&
+//                updateExperienceEdit.getText().toString().isEmpty()&&
+//                updateHeedEdit.getText().toString().isEmpty()&&
+//                homeKnowFunctions.size()>0;
+//    }
+//
+//    @Override
+//    public void showKnowEmptyError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error = "+error+",Message = "+message);
+//    }
+//
+//
+//    @Override
+//    public boolean isKnowUpdateDefaultEquals() {
+//        return updateTitleEdit.getText().toString().equals(mOldHistory.getTitle())&&
+//                updateSummaryEdit.getText().toString().equals(mOldHistory.getSummary())&&
+//                updateExperienceEdit.getText().toString().equals(mOldHistory.getExperience())&&
+//                updateHeedEdit.getText().toString().equals(mOldHistory.getHeed());
+//    }
+//
+//    @Override
+//    public void saveKnowUpdateContent() {
+//        mNewContent.setTitle(updateTitleEdit.getText().toString());
+//        mNewContent.setSummary(updateSummaryEdit.getText().toString());
+//        mNewContent.setExperience(updateExperienceEdit.getText().toString());
+//        mNewContent.setHeed(updateHeedEdit.getText().toString());
+//        mPresenter.saveKnowUpdateFourth(mOldHistory,mOldHistoryFunction,mNewContent,homeKnowFunctions);
+//    }
+//
+//    @Override
+//    public void showKnowEqualsError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error ="+error+",Message ="+message);
+//    }
+//
+//    @Override
+//    public void showKnowSaveFinish() {
+//        ToastUtils.ToastText(getContext(),"修改成功了正在退出!");
+//        initEmpty();
+//        //0没有更新 1更新了
+//        Intent intent = new Intent();
+//        intent.putExtra(ConstantsUtils.ITEM_UPDATE_STATUS,1);
+//        setResult(RESULT_CODE,intent);
+//        finish();
+//    }
+//
+//    @Override
+//    public void showKnowSaveError(int error, String message) {
+//        ToastUtils.ToastText(getContext(),"Error ="+error+", Message ="+message);
+//    }
 
     @OnClick({R.id.common_back,R.id.common_img})
     public void onViewClicked(View itemView){

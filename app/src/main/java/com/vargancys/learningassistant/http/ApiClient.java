@@ -230,7 +230,7 @@ public class ApiClient {
      * @param id
      * @param subscriber
      */
-    public void deleteArticle(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+    public void deleteArticle(int id,MySubscriber<BaseBean<NoDataBean>> subscriber){
         toSubscribe(mService.deleteArticle(id),subscriber);
     }
 
@@ -248,7 +248,7 @@ public class ApiClient {
      * @param query
      * @param subscriber
      */
-    public void queryAllArticle(List<Integer> query,MySubscriber<BaseBean<List<ArticleBean>>> subscriber){
+    public void queryAllArticle(int[] query,MySubscriber<BaseBean<List<ArticleBean>>> subscriber){
         toSubscribe(mService.queryAllArticle(query),subscriber);
     }
 
@@ -316,7 +316,7 @@ public class ApiClient {
      * @param subscriber
      */
     public void deleteAllArticle(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
-        toSubscribe(mService.deleteArticle(id),subscriber);
+        toSubscribe(mService.deleteAllArticle(id),subscriber);
     }
 
 

@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示四级页面
  */
-public class ShowCommonFourthActivity extends BaseActivity implements ShowCommonView {
+public class ShowCommonFourthActivity extends BaseActivity{
     private static final String TAG = "KnowShowFourthActivity";
     @BindView(R.id.common_title)
     TextView commonTitle;
@@ -101,20 +101,6 @@ public class ShowCommonFourthActivity extends BaseActivity implements ShowCommon
                 mPresenter.getRefreshDefaultShowData(item_id);
             }
         }
-    }
-
-    @Override
-    public void showContentError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+"msg ="+msg);
-        scrollView.setVisibility(View.GONE);
-        includeKnowEmpty.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void showContentFinish(HomeKnowContent homeKnowContent) {
-        scrollView.setVisibility(View.VISIBLE);
-        includeKnowEmpty.setVisibility(View.GONE);
-        initData(homeKnowContent);
     }
 
     private void initData(HomeKnowContent homeKnowContent) {

@@ -76,9 +76,7 @@ public class ArticleRequest {
      * @param noDataListener
      */
     public void deleteArticle(int id, CommonHttpListener noDataListener) {
-        List<Integer> deletes = new ArrayList<>();
-        deletes.add(id);
-        ApiClient.getInstance().deleteArticle(deletes, new MySubscriber<BaseBean<NoDataBean>>() {
+        ApiClient.getInstance().deleteArticle(id, new MySubscriber<BaseBean<NoDataBean>>() {
             @Override
             protected void onSuccess(BaseBean<NoDataBean> baseBean) {
                 noDataListener.onSuccess(baseBean.getCode(),baseBean.getData());
@@ -103,7 +101,7 @@ public class ArticleRequest {
      * @param deletes 要删除的文章型数组
      * @param noDataListener
      */
-    public void deleteAllArticle(List<Integer> deletes, CommonHttpListener noDataListener) {
+    public void deleteAllArticle(int[] deletes, CommonHttpListener noDataListener) {
         ApiClient.getInstance().deleteAllArticle(deletes, new MySubscriber<BaseBean<NoDataBean>>() {
             @Override
             protected void onSuccess(BaseBean<NoDataBean> baseBean) {
@@ -155,7 +153,7 @@ public class ArticleRequest {
      * @param deletes 要查询的文章型数组
      * @param listener
      */
-    public void queryAllArticle(List<Integer> deletes, CommonHttpListener listener) {
+    public void queryAllArticle(int[] deletes, CommonHttpListener listener) {
         ApiClient.getInstance().queryAllArticle(deletes,new MySubscriber<BaseBean<List<ArticleBean>>>(){
             @Override
             protected void onSuccess(BaseBean<List<ArticleBean>> baseBean) {

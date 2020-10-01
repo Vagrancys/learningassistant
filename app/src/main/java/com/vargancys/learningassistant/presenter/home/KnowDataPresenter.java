@@ -23,7 +23,7 @@ public class KnowDataPresenter {
         mRequest = KnowDataRequest.getRequest();
     }
 
-    public void getShowData(Long data_id) {
+    public void getShowData(int data_id) {
         HomeKnowData homeKnowData = mRequest.getShowData(data_id);
         if(homeKnowData !=null){
             mView.showDataFinish(homeKnowData);
@@ -49,7 +49,7 @@ public class KnowDataPresenter {
         }
     }
 
-    public void deleteDataItem(Long know_id) {
+    public void deleteDataItem(int know_id) {
         int delete = mRequest.deleteDataItem(know_id);
         if(delete == 200){
             mView.deleteDataFinish();
@@ -68,7 +68,9 @@ public class KnowDataPresenter {
         }
     }
 
-    public long getContentId(long know_id) {
-        return mRequest.getContentId(know_id);
+    public int getContentId(int know_id) {
+//        return mRequest.getContentId(know_id);
+
+        return 0;
     }
 }

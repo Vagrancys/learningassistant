@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示五级页面
  */
-public class ShowCommonFifthActivity extends BaseActivity implements ShowCommonView {
+public class ShowCommonFifthActivity extends BaseActivity{
     private static final String TAG = "KnowShowFifthActivity";
 
     @BindView(R.id.common_title)
@@ -84,20 +84,6 @@ public class ShowCommonFifthActivity extends BaseActivity implements ShowCommonV
         Intent intent = new Intent(activity, ShowCommonFifthActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,item_id);
         activity.startActivity(intent);
-    }
-
-    @Override
-    public void showContentError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error +"Msg ="+msg);
-        scrollView.setVisibility(View.GONE);
-        includeKnowEmpty.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void showContentFinish(HomeKnowContent homeKnowContent) {
-        scrollView.setVisibility(View.VISIBLE);
-        includeKnowEmpty.setVisibility(View.GONE);
-        initData(homeKnowContent);
     }
 
     private void initData(HomeKnowContent homeKnowContent) {
