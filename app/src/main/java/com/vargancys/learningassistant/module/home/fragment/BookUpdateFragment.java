@@ -1,10 +1,15 @@
 package com.vargancys.learningassistant.module.home.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.BinderThread;
+import android.widget.TextView;
 
+import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.bean.home.BookBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+
+import butterknife.BindView;
 
 /**
  * author: Vagrancy
@@ -15,24 +20,32 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
  */
 public class BookUpdateFragment extends BaseFragment {
     private BookBean.BookItemBean mItemBean;
-    private String bookContent;
-    public static BookUpdateFragment newInstance(String content){
+    private String content;
+    private int index;
+    @BindView(R.id.book_content)
+    TextView bookContent;
+    public static BookUpdateFragment newInstance(String content,int index){
         BookUpdateFragment mFragment = new BookUpdateFragment();
         Bundle bundle = new Bundle();
+        bundle.putInt(ConstantsUtils.KNOWLEDGE_BOOK_INDEX,index);
         bundle.putString(ConstantsUtils.KNOWLEDGE_BOOK_CONTENT,content);
         mFragment.setArguments(bundle);
         return mFragment;
     }
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_book_update;
     }
 
     @Override
     protected void initView() {
         if(getArguments() != null){
-            bookContent = getArguments().getString(ConstantsUtils.KNOWLEDGE_BOOK_CONTENT);
+            content = getArguments().getString(ConstantsUtils.KNOWLEDGE_BOOK_CONTENT);
+            index = getArguments().getInt(ConstantsUtils.KNOWLEDGE_BOOK_INDEX);
         }
+        bookContent.setText(content);
+        mItemBean = new BookBean.BookItemBean();
+        mItemBean.setContent(content);
     }
 
     public BookBean.BookItemBean getItemBean() {

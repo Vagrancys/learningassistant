@@ -2,9 +2,13 @@ package com.vargancys.learningassistant.module.home.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
 
+import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+
+import butterknife.BindView;
 
 /**
  * author: Vagrancy
@@ -14,7 +18,8 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
  * 模块名: 书籍型展示
  */
 public class BookShowFragment extends BaseFragment {
-
+    @BindView(R.id.book_content)
+    TextView BookContent;
     private String bookContent;
     public static BookShowFragment newInstance(String content){
         BookShowFragment mFragment = new BookShowFragment();
@@ -25,7 +30,7 @@ public class BookShowFragment extends BaseFragment {
     }
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_book_show;
     }
 
     @Override
@@ -33,5 +38,6 @@ public class BookShowFragment extends BaseFragment {
         if(getArguments() != null){
             bookContent = getArguments().getString(ConstantsUtils.KNOWLEDGE_BOOK_CONTENT);
         }
+        BookContent.setText(bookContent);
     }
 }

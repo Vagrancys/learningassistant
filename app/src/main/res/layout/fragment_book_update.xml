@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/book_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/book_content_edit"
+        android:minLines="2"
+        android:gravity="center"
+        android:background="@drawable/common_edit_shape"
+        android:layout_margin="@dimen/margin_width_5dp"/>
+</LinearLayout>
