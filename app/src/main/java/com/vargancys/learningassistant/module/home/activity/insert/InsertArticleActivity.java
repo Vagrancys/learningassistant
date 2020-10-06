@@ -39,7 +39,7 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_article_insert;
+        return R.layout.activity_knowledge_insert_article;
     }
 
     @Override

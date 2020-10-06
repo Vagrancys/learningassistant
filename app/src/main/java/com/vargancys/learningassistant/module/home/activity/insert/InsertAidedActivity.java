@@ -25,7 +25,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识添加三级页面
  */
-public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertThirdView {
+public class InsertAidedActivity extends BaseActivity implements KnowInsertThirdView {
     private static String TAG = "KnowInsertThirdActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
@@ -48,7 +48,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_insert_third;
+        return R.layout.activity_knowledge_insert_aided;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class KnowInsertThirdActivity extends BaseActivity implements KnowInsertT
     }
 
     public static void launch(Activity activity, int know_id){
-        Intent intent = new Intent(activity,KnowInsertThirdActivity.class);
+        Intent intent = new Intent(activity, InsertAidedActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
         activity.startActivity(intent);
     }

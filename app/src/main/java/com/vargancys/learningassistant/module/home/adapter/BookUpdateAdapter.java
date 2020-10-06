@@ -30,7 +30,7 @@ public class BookUpdateAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
         if(mFragment[i] == null){
-            mFragment[i] = BookUpdateFragment.newInstance(mItems.get(i).getContent());
+            mFragment[i] = BookUpdateFragment.newInstance(mItems.get(i).getContent(),i);
         }
         return null;
     }

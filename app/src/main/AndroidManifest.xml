@@ -35,7 +35,7 @@
         <activity android:name=".module.common.help.HelpAddActivity"/>
         <activity android:name=".module.home.activity.insert.InsertArticleActivity"/>
         <activity android:name=".module.home.activity.insert.InsertBookActivity"/>
-        <activity android:name=".module.home.activity.insert.KnowInsertThirdActivity"/>
+        <activity android:name=".module.home.activity.insert.InsertAidedActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertFourthActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertFifthActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertDefaultActivity"/>
