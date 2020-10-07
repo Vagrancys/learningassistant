@@ -117,13 +117,13 @@
 
     <!--辅助模块-->
     <string name="aided_insert_toolbar">引导型知识</string>
-    <string name="aided_insert_directory">目录</string>
-    <string name="aided_insert_explain">讲解</string>
-    <string name="aided_insert_deep_explain">深层次讲解</string>
-    <string name="aided_insert_case">案例</string>
-    <string name="aided_insert_experience">经验</string>
-    <string name="aided_insert_advanced">进阶</string>
-    <string name="aided_insert_publicize">宣传</string>
+    <string name="aided_common_directory">目录</string>
+    <string name="aided_common_explain">讲解</string>
+    <string name="aided_common_deep_explain">深层次讲解</string>
+    <string name="aided_common_case">案例</string>
+    <string name="aided_common_experience">经验</string>
+    <string name="aided_common_advanced">进阶</string>
+    <string name="aided_common_publicize">宣传</string>
     <string name="aided_insert_hint_directory">请试着总结您所要表达的知识的目录!</string>
     <string name="aided_insert_hint_explain">请试着说明目录中地所有知识的含义!</string>
     <string name="aided_insert_hint_deep_explain">请试着发掘目录中地所有知识的含义!</string>

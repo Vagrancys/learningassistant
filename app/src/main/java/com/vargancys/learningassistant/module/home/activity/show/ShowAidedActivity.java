@@ -54,7 +54,7 @@ public class ShowAidedActivity extends BaseActivity implements ShowCommonView<Ar
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_third;
+        return R.layout.activity_knowledge_show_aided;
     }
 
     @Override
