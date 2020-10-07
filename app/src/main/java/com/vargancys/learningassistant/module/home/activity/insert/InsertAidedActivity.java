@@ -2,20 +2,23 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;
-import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
+import com.vargancys.learningassistant.bean.home.AidedBean;
+import com.vargancys.learningassistant.module.home.view.InsertAidedView;
+import com.vargancys.learningassistant.presenter.home.AidedPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
+import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -25,26 +28,27 @@ import butterknife.OnClick;
  * version:1.0
  * 知识添加三级页面
  */
-public class InsertAidedActivity extends BaseActivity implements KnowInsertThirdView {
-    private static String TAG = "KnowInsertThirdActivity";
-    @BindView(R.id.common_img)
-    ImageView commonImg;
+public class InsertAidedActivity extends BaseActivity implements InsertAidedView {
+    private static String TAG = "InsertAidedActivity";
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.insert_title_edit)
-    EditText insertTitleEdit;
-    @BindView(R.id.insert_summary_edit)
-    EditText insertSummaryEdit;
-    @BindView(R.id.insert_show_edit)
-    EditText insertShowEdit;
-    @BindView(R.id.insert_explain_edit)
-    EditText insertExplainEdit;
-    @BindView(R.id.insert_heed_edit)
-    EditText insertHeedEdit;
-    @BindView(R.id.insert_experience_edit)
-    EditText insertExperienceEdit;
-    private KnowInsertPresenter mPresenter;
-    private int know_item_id;
+    @BindView(R.id.aided_insert_directory)
+    EditText aidedInsertDirectory;
+    @BindView(R.id.aided_insert_explain)
+    EditText aidedInsertExplain;
+    @BindView(R.id.aided_insert_deep_explain)
+    EditText aidedInsertDeepExplain;
+    @BindView(R.id.aided_insert_experience)
+    EditText aidedInsertExperience;
+    @BindView(R.id.aided_insert_advanced)
+    EditText aidedInsertAdvanced;
+    @BindView(R.id.aided_insert_publicize)
+    EditText aidedInsertPublicize;
+    private AidedPresenter mPresenter;
+    private int knowledge_article_id;
+    private KnowLedgeDataDialog mDialog;
+    private AidedBean aidedBean;
+    private boolean dialog_state = false;
 
     @Override
     public int getLayoutId() {
@@ -54,92 +58,124 @@ public class InsertAidedActivity extends BaseActivity implements KnowInsertThird
     @Override
     public void initView() {
         Intent intent = getIntent();
-        if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+        if (intent != null) {
+            knowledge_article_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, 0);
         }
-        Log.e(TAG,"know_id"+know_item_id);
-        mPresenter = new KnowInsertPresenter(this);
+        mPresenter = new AidedPresenter(this);
+        aidedBean = new AidedBean();
+        aidedBean.setFather_id(knowledge_article_id);
+        mDialog = new KnowLedgeDataDialog(this);
+        mDialog.setOnClickDeterMineListener((common, title, summary, explain) -> {
+            aidedBean.setLevel(common);
+            aidedBean.setTitle(title);
+            aidedBean.setSummary(summary);
+            aidedBean.setExplain(explain);
+            mDialog.dismiss();
+        });
+        mDialog.setOnClickCancelListener(()->{
+            mDialog.dismiss();
+        });
     }
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.common_third));
-
-        commonImg.setImageResource(R.drawable.comment_complete_selector);
+        commonTitle.setText(ResourceUtils.getString(getContext(),R.string.aided_insert_toolbar));
     }
 
-    @Override
-    public boolean isThirdEmpty() {
-        return insertTitleEdit.getText().toString().isEmpty()
-                &&insertSummaryEdit.getText().toString().isEmpty()
-                &&insertHeedEdit.getText().toString().isEmpty()
-                &&insertExperienceEdit.getText().toString().isEmpty()
-                &&insertShowEdit.getText().toString().isEmpty()
-                &&insertExplainEdit.getText().toString().isEmpty();
-    }
-
-    @Override
-    public void isThirdEmptyError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+",Msg = "+msg+"请填满每个知识项!");
-    }
-
-    @Override
-    public void isThirdEqualsItem() {
-        mPresenter.isEqualsThirdItem(insertTitleEdit.getText().toString());
-    }
-
-    @Override
-    public void saveThirdKnowItem() {
-        mPresenter.saveKnowThirdItem(know_item_id,insertTitleEdit.getText().toString(),
-                insertSummaryEdit.getText().toString(),
-                insertShowEdit.getText().toString(),
-                insertExplainEdit.getText().toString(),
-                insertHeedEdit.getText().toString(),
-                insertExperienceEdit.getText().toString());
-    }
-
-    @Override
-    public void isThirdEqualsError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+",Msg = "+msg+"该知识已经添加了!请重新输入!");
-    }
-
-    public static void launch(Activity activity, int know_id){
+    public static void launch(Activity activity, int know_id) {
         Intent intent = new Intent(activity, InsertAidedActivity.class);
-        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, know_id);
         activity.startActivity(intent);
     }
 
-    @Override
-    public void saveThirdItemError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+", Msg = "+msg);
-    }
 
-    @Override
-    public void saveThirdItemFinish() {
-        ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
-        initEmpty();
-        finish();
-    }
 
     private void initEmpty() {
-        insertTitleEdit.setText("");
-        insertSummaryEdit.setText("");
-        insertHeedEdit.setText("");
-        insertExperienceEdit.setText("");
-        insertShowEdit.setText("");
-        insertExplainEdit.setText("");
+        aidedInsertDirectory.setText(null);
+        aidedInsertExplain.setText(null);
+        aidedInsertDeepExplain.setText(null);
+        aidedInsertExperience.setText(null);
+        aidedInsertAdvanced.setText(null);
+        aidedInsertPublicize.setText(null);
     }
 
-    @OnClick({R.id.common_back,R.id.common_img})
-    public void onViewClicked(View itemView){
-        switch (itemView.getId()){
+    @OnClick({R.id.common_back, R.id.common_data,R.id.common_save})
+    public void onViewClicked(View itemView) {
+        switch (itemView.getId()) {
             case R.id.common_back:
                 finish();
                 break;
-            case R.id.common_img:
-                mPresenter.isThirdEmpty();
+            case R.id.common_data:
+                if(dialog_state){
+                    mDialog.setLevel(aidedBean.getLevel());
+                    mDialog.setTitle(aidedBean.getTitle());
+                    mDialog.setSummary(aidedBean.getSummary());
+                    mDialog.setExplain(aidedBean.getExplain());
+                }else{
+                    mDialog.show();
+                }
+                break;
+            case R.id.common_save:
+                mPresenter.isDataEmpty();
                 break;
         }
+    }
+
+    @Override
+    public boolean isDataEmpty() {
+        return aidedInsertDirectory.getText().length() > 0 &&
+                aidedInsertExplain.getText().length() > 0 &&
+                aidedInsertDeepExplain.getText().length() > 0 &&
+                aidedInsertAdvanced.getText().length() > 0 &&
+                aidedInsertExperience.getText().length() > 0 &&
+                aidedInsertPublicize.getText().length() > 0;
+    }
+
+    @Override
+    public void isDataEmptyFail() {
+        ToastUtils.ToastText(getContext(),R.string.aided_insert_empty_fail);
+    }
+
+    @Override
+    public void isDataEmptySuccess() {
+        aidedBean.setDirectory(aidedInsertDirectory.getText().toString());
+        aidedBean.setNow_explain(aidedInsertExplain.getText().toString());
+        aidedBean.setDeep_explain(aidedInsertDeepExplain.getText().toString());
+        aidedBean.setAdvance(aidedInsertAdvanced.getText().toString());
+        aidedBean.setExperience(aidedInsertExperience.getText().toString());
+        aidedBean.setPublicize(aidedInsertPublicize.getText().toString());
+        mPresenter.add(aidedBean);
+    }
+
+    @Override
+    public void onSuccess() {
+        ToastUtils.ToastText(getContext(),R.string.aided_insert_save_success);
+        initEmpty();
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+
+    }
+
+    @Override
+    public void onNoData() {
+
+    }
+
+    @Override
+    public void onFail() {
+        ToastUtils.ToastText(getContext(),R.string.aided_insert_save_fail);
+    }
+
+    @Override
+    public void onError(String message) {
+        ToastUtils.ToastText(getContext(),R.string.aided_insert_save_error);
+    }
+
+    @Override
+    public void onFinish() {
+
     }
 }
 

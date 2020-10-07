@@ -115,6 +115,27 @@
     <string name="book_update_fail">更新数据失败了!要不重试下</string>
     <string name="book_update_success">更新成功了!正在退出中!开玩笑的</string>
 
+    <!--辅助模块-->
+    <string name="aided_insert_toolbar">引导型知识</string>
+    <string name="aided_insert_directory">目录</string>
+    <string name="aided_insert_explain">讲解</string>
+    <string name="aided_insert_deep_explain">深层次讲解</string>
+    <string name="aided_insert_case">案例</string>
+    <string name="aided_insert_experience">经验</string>
+    <string name="aided_insert_advanced">进阶</string>
+    <string name="aided_insert_publicize">宣传</string>
+    <string name="aided_insert_hint_directory">请试着总结您所要表达的知识的目录!</string>
+    <string name="aided_insert_hint_explain">请试着说明目录中地所有知识的含义!</string>
+    <string name="aided_insert_hint_deep_explain">请试着发掘目录中地所有知识的含义!</string>
+    <string name="aided_insert_hint_case">请试着回想目录中所有知识会实践在哪!</string>
+    <string name="aided_insert_hint_experience">请试着表达实践所有知识所遇到的难关!</string>
+    <string name="aided_insert_hint_advanced">发挥头脑,试着为目录中所有知识找出更深的用途或含义!</string>
+    <string name="aided_insert_hint_publicize">你可以留下下次发布的信息!</string>
+    <string name="aided_insert_empty_fail">如果没有填写完整的话是不能通过的!</string>
+    <string name="aided_insert_save_error">发布辅助型知识的时候,服务器故障了!</string>
+    <string name="aided_insert_save_fail">发布辅助型知识失败了!请重试!</string>
+    <string name="aided_insert_save_success">发布辅助型知识成功!正在初始化以编辑下一知识!</string>
+
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>
     <string name="insert_summary">简介:</string>

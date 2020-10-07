@@ -15,192 +15,82 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:focusable="true"
-            android:focusableInTouchMode="true">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start|top">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/insert_title_third"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_title_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_title_third"
-                    android:minLines="2"
-                    android:gravity="start"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
+            android:focusableInTouchMode="true"
+            android:padding="@dimen/margin_width_10dp">
+            <TextView
+                style="@style/base_text_style"
+                android:text="@string/aided_insert_directory"
+                android:layout_marginBottom="@dimen/margin_width_10dp"/>
+
+            <EditText
+                android:id="@+id/aided_insert_directory"
+                style="@style/base_edit_insert_style"
+                android:hint="@string/aided_insert_hint_directory"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"
-                android:layout_marginBottom="@dimen/margin_width_5dp"/>
+                style="@style/view_insert_style"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start|top">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/insert_summary_third"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_summary_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_summary_third"
-                    android:minLines="3"
-                    android:gravity="start"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
+            <TextView
+                style="@style/base_text_style"
+                android:text="@string/aided_insert_explain"
+                android:layout_marginBottom="@dimen/margin_width_10dp"/>
+
+            <EditText
+                android:id="@+id/aided_insert_explain"
+                style="@style/base_edit_insert_style"
+                android:hint="@string/aided_insert_hint_explain"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"
-                android:layout_marginBottom="@dimen/margin_width_5dp"/>
+                style="@style/view_insert_style"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/insert_show_third"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:textColor="@color/black"
-                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_show_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_show_third"
-                    android:minLines="3"
-                    android:gravity="start"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
+            <TextView
+                style="@style/base_text_style"
+                android:text="@string/aided_insert_deep_explain"
+                android:layout_marginEnd="@dimen/margin_width_10dp"/>
+
+            <EditText
+                android:id="@+id/aided_insert_deep_explain"
+                style="@style/base_edit_insert_style"
+                android:hint="@string/aided_insert_hint_deep_explain"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"
-                android:layout_marginBottom="@dimen/margin_width_5dp"/>
+                style="@style/view_insert_style"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/insert_explain_third"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:textColor="@color/black"
-                    android:layout_marginEnd="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_explain_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_explain_third"
-                    android:minLines="3"
-                    android:gravity="start"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
+            <TextView
+                style="@style/base_text_style"
+                android:text="@string/aided_insert_experience"
+                android:layout_marginEnd="@dimen/margin_width_10dp"/>
+
+            <EditText
+                android:id="@+id/aided_insert_experience"
+                style="@style/base_edit_insert_style"
+                android:hint="@string/aided_insert_hint_experience"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"
-                android:layout_marginBottom="@dimen/margin_width_5dp"/>
+                style="@style/view_insert_style"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start|top">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/insert_heed_third"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_heed_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_heed_third"
-                    android:minLines="3"
-                    android:gravity="start"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
+            <TextView
+                style="@style/base_text_style"
+                android:text="@string/aided_insert_advanced"
+                android:layout_marginBottom="@dimen/margin_width_10dp"/>
+
+            <EditText
+                android:id="@+id/aided_insert_advanced"
+                style="@style/base_edit_insert_style"
+                android:hint="@string/aided_insert_hint_advanced"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_width_1dp"
-                android:background="@color/black_1"
-                android:layout_marginBottom="@dimen/margin_width_5dp"/>
+                style="@style/view_insert_style"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_width_10dp"
-                android:layout_marginBottom="@dimen/margin_width_10dp"
-                android:orientation="vertical"
-                android:gravity="start|top">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/insert_experience_third"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="@dimen/margin_width_10dp"/>
-                <EditText
-                    android:id="@+id/insert_experience_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/insert_hint_experience_third"
-                    android:minLines="6"
-                    android:gravity="start"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_20sp"
-                    android:background="@drawable/common_edit_shape"/>
-            </LinearLayout>
+            <TextView
+                style="@style/base_text_style"
+                android:text="@string/aided_insert_publicize"
+                android:layout_marginBottom="@dimen/margin_width_10dp"/>
+
+            <EditText
+                android:id="@+id/aided_insert_publicize"
+                style="@style/base_edit_insert_style"
+                android:hint="@string/aided_insert_hint_publicize"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

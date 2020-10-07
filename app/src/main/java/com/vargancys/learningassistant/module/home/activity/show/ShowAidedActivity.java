@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示三级页面
  */
-public class ShowCommonThirdActivity extends BaseActivity implements ShowCommonView<ArticleBean> {
+public class ShowAidedActivity extends BaseActivity implements ShowCommonView<ArticleBean> {
     private static final String TAG = "KnowShowThirdActivity";
 
     @BindView(R.id.common_title)
@@ -81,7 +81,7 @@ public class ShowCommonThirdActivity extends BaseActivity implements ShowCommonV
     }
 
     public static void launch(Activity activity, long item_id) {
-        Intent intent = new Intent(activity, ShowCommonThirdActivity.class);
+        Intent intent = new Intent(activity, ShowAidedActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, item_id);
         activity.startActivity(intent);
     }

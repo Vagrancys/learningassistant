@@ -7,7 +7,7 @@ import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
-import com.vargancys.learningassistant.module.home.view.KnowInsertThirdView;
+import com.vargancys.learningassistant.module.home.view.InsertAidedView;
 
 import java.util.List;
 
@@ -167,11 +167,11 @@ public class KnowInsertPresenter {
 
     //熟练级判断是否为空
     public void isThirdEmpty() {
-        boolean result = ((KnowInsertThirdView) mView).isThirdEmpty();
+        boolean result = ((InsertAidedView) mView).isThirdEmpty();
         if(!result){
-            ((KnowInsertThirdView) mView).isThirdEqualsItem();
+            ((InsertAidedView) mView).isThirdEqualsItem();
         }else{
-            ((KnowInsertThirdView) mView).isThirdEmptyError(502,"没有填写完!");
+            ((InsertAidedView) mView).isThirdEmptyError(502,"没有填写完!");
         }
     }
 
@@ -179,9 +179,9 @@ public class KnowInsertPresenter {
     public void isEqualsThirdItem(String title) {
         boolean result = mRequest.isEqualsThirdItem(title);
         if(result){
-            ((KnowInsertThirdView) mView).saveThirdKnowItem();
+            ((InsertAidedView) mView).saveThirdKnowItem();
         }else{
-            ((KnowInsertThirdView) mView).isThirdEqualsError(501,"已经有该数据项了!");
+            ((InsertAidedView) mView).isThirdEqualsError(501,"已经有该数据项了!");
         }
     }
 
@@ -191,9 +191,9 @@ public class KnowInsertPresenter {
         boolean result = mRequest.saveKnowThirdItem(know_item_id,title,summary,show,explain,
                 heed,experience);
         if(result){
-            ((KnowInsertThirdView) mView).saveThirdItemFinish();
+            ((InsertAidedView) mView).saveThirdItemFinish();
         }else{
-            ((KnowInsertThirdView) mView).saveThirdItemError(501,"该数据项保存失败了!");
+            ((InsertAidedView) mView).saveThirdItemError(501,"该数据项保存失败了!");
         }
     }
 

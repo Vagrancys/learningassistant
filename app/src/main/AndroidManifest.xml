@@ -25,7 +25,7 @@
         </activity>
         <activity android:name=".module.home.activity.show.ShowCommonDefaultActivity"/>
         <activity android:name=".module.home.activity.show.ShowArticleActivity"/>
-        <activity android:name=".module.home.activity.show.ShowCommonThirdActivity"/>
+        <activity android:name=".module.home.activity.show.ShowAidedActivity"/>
         <activity android:name=".module.home.activity.show.ShowCommonFifthActivity"/>
         <activity android:name=".module.home.activity.show.ShowCommonFourthActivity"/>
         <activity android:name=".module.home.activity.show.ShowBookActivity"/>

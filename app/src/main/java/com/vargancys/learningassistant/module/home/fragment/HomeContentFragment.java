@@ -31,12 +31,12 @@ import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDef
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFourthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertBookActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
 import com.vargancys.learningassistant.presenter.home.HomeContentPresenter;
@@ -242,7 +242,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 ShowBookActivity.launch(getActivity(),item_id);
                 break;
             case 3:
-                ShowCommonThirdActivity.launch(getActivity(),item_id);
+                ShowAidedActivity.launch(getActivity(),item_id);
                 break;
             case 4:
                 ShowCommonFourthActivity.launch(getActivity(),item_id);

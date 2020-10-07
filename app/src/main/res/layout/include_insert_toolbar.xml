@@ -21,7 +21,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"/>
             <TextView
-                android:id="@+id/article_title"
+                android:id="@+id/common_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/article_default"
@@ -29,23 +29,23 @@
                 android:textColor="@color/white"
                 android:layout_centerInParent="true"/>
             <ImageView
-                android:id="@+id/article_data"
+                android:id="@+id/common_data"
                 android:layout_width="@dimen/margin_width_25dp"
                 android:layout_height="@dimen/margin_width_25dp"
                 android:src="@drawable/know_content_data_normal"
                 android:layout_marginEnd="@dimen/margin_width_10dp"
-                android:layout_toStartOf="@+id/article_set"
+                android:layout_toStartOf="@+id/common_set"
                 android:layout_centerVertical="true"/>
             <ImageView
-                android:id="@+id/article_set"
+                android:id="@+id/common_set"
                 android:layout_width="@dimen/margin_width_25dp"
                 android:layout_height="@dimen/margin_width_25dp"
                 android:src="@drawable/common_insert_normal"
                 android:layout_marginEnd="@dimen/margin_width_10dp"
-                android:layout_toStartOf="@+id/article_save"
+                android:layout_toStartOf="@+id/common_save"
                 android:layout_centerVertical="true"/>
             <ImageView
-                android:id="@+id/article_save"
+                android:id="@+id/common_save"
                 android:layout_width="@dimen/margin_width_25dp"
                 android:layout_height="@dimen/margin_width_25dp"
                 android:src="@drawable/know_content_data_normal"
