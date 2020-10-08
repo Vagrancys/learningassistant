@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/include_insert_toolbar"/>
+    <include layout="@layout/include_toolbar"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,7 @@
                 android:layout_marginBottom="@dimen/margin_width_10dp"/>
 
             <EditText
-                android:id="@+id/aided_insert_directory"
+                android:id="@+id/aided_update_directory"
                 style="@style/base_edit_common_style"
                 android:hint="@string/aided_common_hint_directory"/>
 
@@ -36,7 +36,7 @@
                 android:layout_marginBottom="@dimen/margin_width_10dp"/>
 
             <EditText
-                android:id="@+id/aided_insert_explain"
+                android:id="@+id/aided_update_explain"
                 style="@style/base_edit_common_style"
                 android:hint="@string/aided_common_hint_explain"/>
 
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
 
             <EditText
-                android:id="@+id/aided_insert_deep_explain"
+                android:id="@+id/aided_update_deep_explain"
                 style="@style/base_edit_common_style"
                 android:hint="@string/aided_common_hint_deep_explain"/>
 
@@ -62,7 +62,7 @@
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
 
             <EditText
-                android:id="@+id/aided_insert_case"
+                android:id="@+id/aided_update_case"
                 style="@style/base_edit_common_style"
                 android:hint="@string/aided_common_hint_case"/>
 
@@ -75,7 +75,7 @@
                 android:layout_marginEnd="@dimen/margin_width_10dp"/>
 
             <EditText
-                android:id="@+id/aided_insert_experience"
+                android:id="@+id/aided_update_experience"
                 style="@style/base_edit_common_style"
                 android:hint="@string/aided_common_hint_experience"/>
 
@@ -88,7 +88,7 @@
                 android:layout_marginBottom="@dimen/margin_width_10dp"/>
 
             <EditText
-                android:id="@+id/aided_insert_advanced"
+                android:id="@+id/aided_update_advanced"
                 style="@style/base_edit_common_style"
                 android:hint="@string/aided_common_hint_advanced"/>
 
@@ -101,7 +101,7 @@
                 android:layout_marginBottom="@dimen/margin_width_10dp"/>
 
             <EditText
-                android:id="@+id/aided_insert_publicize"
+                android:id="@+id/aided_update_publicize"
                 style="@style/base_edit_common_style"
                 android:hint="@string/aided_common_hint_publicize"/>
         </LinearLayout>

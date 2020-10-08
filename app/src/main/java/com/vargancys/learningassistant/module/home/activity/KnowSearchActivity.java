@@ -13,9 +13,9 @@ import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertArticleActivity;
-import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertDefaultActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.InsertClassActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.InsertDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFourthActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
@@ -109,13 +109,13 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
                 InsertAidedActivity.launch(this,item_id);
                 break;
             case 4:
-                KnowInsertFourthActivity.launch(this,item_id);
+                InsertClassActivity.launch(this,item_id);
                 break;
             case 5:
                 KnowInsertFifthActivity.launch(this,item_id);
                 break;
             default:
-                KnowInsertDefaultActivity.launch(this,item_id);
+                InsertDefaultActivity.launch(this,item_id);
                 break;
         }
     }

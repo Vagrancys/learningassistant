@@ -6,7 +6,7 @@ package com.vargancys.learningassistant.module.home.view;
  * time  : 2020/03/09
  * version:1.0
  */
-public interface KnowInsertFourthView {
+public interface InsertClassView {
     boolean isFourthEmpty();
     void saveFourthKnowItem();
     void isFourthEqualsError(int error, String msg);

@@ -2,18 +2,16 @@ package com.vargancys.learningassistant.module.home.activity.show;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.AidedBean;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
+import com.vargancys.learningassistant.model.home.bean.AidedBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.activity.data.DataAidedActivity;
 import com.vargancys.learningassistant.module.home.view.ShowCommonView;
@@ -22,7 +20,6 @@ import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.db;
+package com.vargancys.learningassistant.db.knowledge;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;

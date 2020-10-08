@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.bean.home.BookBean;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 
 import butterknife.BindView;

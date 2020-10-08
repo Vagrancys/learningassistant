@@ -5,17 +5,19 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.db.TemporaryArticleDb;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
+import com.vargancys.learningassistant.db.knowledge.TemporaryArticleDb;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
+import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -30,12 +32,16 @@ import butterknife.OnClick;
 public class InsertArticleActivity extends BaseActivity implements InsertArticleView {
     @BindView(R.id.article_edit)
     EditText articleEdit;
+    @BindView(R.id.common_title)
+    TextView commonTitle;
     private ArticlePresenter mPresenter;
     //知识的id
     private int KnowLedge_Id;
     //本地文章id
     private long nativeArticle_id;
     private boolean isArticle = false;
+    private KnowLedgeDataDialog mDialog;
+    private ArticleBean mArticle = new ArticleBean();
 
     @Override
     public int getLayoutId() {
@@ -50,11 +56,25 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
         }
         mPresenter = new ArticlePresenter(this);
         mPresenter.nativeQuery(KnowLedge_Id);
+        mArticle = new ArticleBean();
+        initDialog();
+    }
+
+    private void initDialog(){
+        mDialog = new KnowLedgeDataDialog(this);
+        mDialog.setOnClickCancelListener(() -> mDialog.cancel());
+        mDialog.setOnClickDeterMineListener((common, title, summary, explain) -> {
+            mArticle.setLevel(common);
+            mArticle.setTitle(title);
+            mArticle.setSummary(summary);
+            mArticle.setExplain(explain);
+            mDialog.dismiss();
+        });
     }
 
     @Override
     public void initToolbar() {
-
+        commonTitle.setText(getText(R.string.article_toolbar));
     }
 
     @Override
@@ -69,15 +89,10 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
 
     @Override
     public void isEmptyFinish() {
-        mPresenter.addArticle();
-    }
 
-    @Override
-    public void addArticle() {
-        ArticleBean mBean = new ArticleBean();
-        mBean.setKnowledge_id(KnowLedge_Id);
-        mBean.setContent(articleEdit.getText().toString());
-        mPresenter.add(mBean);
+        mArticle.setFather_id(KnowLedge_Id);
+        mArticle.setContent(articleEdit.getText().toString());
+        mPresenter.add(mArticle);
     }
 
     @Override
@@ -99,17 +114,25 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
         articleEdit.setText(null);
     }
 
-    @OnClick({R.id.common_back,R.id.article_save,R.id.article_set,R.id.article_data})
+    @OnClick({R.id.common_back,R.id.common_save,R.id.common_set,R.id.common_data})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
             case R.id.common_back:
                 finishArticle();
                 break;
-            case R.id.article_save:
+            case R.id.common_save:
                 mPresenter.isEmpty();
                 break;
-            case R.id.article_data:
-            case R.id.article_set:
+            case R.id.common_data:
+                if(!mDialog.isEdit()){
+                    mDialog.setTitle(mArticle.getTitle());
+                    mDialog.setLevel(mArticle.getLevel());
+                    mDialog.setExplain(mArticle.getExplain());
+                    mDialog.setSummary(mArticle.getSummary());
+                }
+                mDialog.show();
+                break;
+            case R.id.common_set:
                 // TODO 功能等待....
                 ToastUtils.DefaultToast(getContext());
                 break;

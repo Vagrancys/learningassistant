@@ -1,13 +1,13 @@
-package com.vargancys.learningassistant.bean.home;
+package com.vargancys.learningassistant.model.home.bean;
 
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
  * time  : 2020/9/20
  * version:1.0
- * 模块名: 文章知识的数据实体类
+ * 模块名: 书籍知识的数据实体类
  */
-public class ArticleDataBean {
+public class BookDataBean {
     private int father_id;
     private int article_id;
     private String title;

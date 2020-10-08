@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.activity.data.DataArticleActivity;
 import com.vargancys.learningassistant.module.home.view.ShowCommonView;

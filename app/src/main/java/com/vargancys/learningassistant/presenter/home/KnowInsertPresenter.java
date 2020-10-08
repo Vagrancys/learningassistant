@@ -6,7 +6,7 @@ import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.request.KnowInsertRequest;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
-import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
+import com.vargancys.learningassistant.module.home.view.InsertClassView;
 import com.vargancys.learningassistant.module.home.view.InsertAidedView;
 
 import java.util.List;
@@ -102,11 +102,11 @@ public class KnowInsertPresenter {
 
     //添加精通级的函数项
     public void addFunctionFourthData(int mCommon, String title, String summary, String explain) {
-        boolean result = ((KnowInsertFourthView) mView).addFunctionData(mCommon, title, summary, explain);
+        boolean result = ((InsertClassView) mView).addFunctionData(mCommon, title, summary, explain);
         if(result){
-            ((KnowInsertFourthView) mView).addFunctionFinish();
+            ((InsertClassView) mView).addFunctionFinish();
         }else{
-            ((KnowInsertFourthView) mView).addFunctionError(501,"添加函数项失败了!");
+            ((InsertClassView) mView).addFunctionError(501,"添加函数项失败了!");
         }
     }
 
@@ -127,7 +127,7 @@ public class KnowInsertPresenter {
 
     //显示精通级的函数添加窗口
     public void showFourthFunctionWindow() {
-        ((KnowInsertFourthView) mView).showFunctionWindow();
+        ((InsertClassView) mView).showFunctionWindow();
     }
 
     //熟悉级判断是否为空
@@ -162,7 +162,7 @@ public class KnowInsertPresenter {
     //判断熟练级的函数是否为空
     public boolean isFunctionFourthEmpty(int mCommon, String title,
                                    String summary, String explain) {
-        return ((KnowInsertFourthView) mView).isFunctionEmpty(mCommon, title, summary, explain);
+        return ((InsertClassView) mView).isFunctionEmpty(mCommon, title, summary, explain);
     }
 
     //熟练级判断是否为空
@@ -201,9 +201,9 @@ public class KnowInsertPresenter {
     public void isEqualsFourthItem(String title) {
         boolean result = mRequest.isEqualsFourthItem(title);
         if(result){
-            ((KnowInsertFourthView) mView).saveFourthKnowItem();
+            ((InsertClassView) mView).saveFourthKnowItem();
         }else{
-            ((KnowInsertFourthView) mView).isFourthEqualsError(501,"已经有该数据项了!");
+            ((InsertClassView) mView).isFourthEqualsError(501,"已经有该数据项了!");
         }
     }
 
@@ -213,19 +213,19 @@ public class KnowInsertPresenter {
         boolean result = mRequest.saveKnowFourthItem(know_item_id,title,summary,homeKnowFunctions,
                 heed,experience);
         if(result){
-            ((KnowInsertFourthView) mView).saveFourthItemFinish();
+            ((InsertClassView) mView).saveFourthItemFinish();
         }else{
-            ((KnowInsertFourthView) mView).saveFourthItemError(501,"该数据项保存失败了!");
+            ((InsertClassView) mView).saveFourthItemError(501,"该数据项保存失败了!");
         }
     }
 
     //熟练级判断是否为空
     public void isFourthEmpty() {
-        boolean result = ((KnowInsertFourthView) mView).isFourthEmpty();
+        boolean result = ((InsertClassView) mView).isFourthEmpty();
         if(!result){
-            ((KnowInsertFourthView) mView).isFourthEqualsItem();
+            ((InsertClassView) mView).isFourthEqualsItem();
         }else{
-            ((KnowInsertFourthView) mView).isFourthEmptyError(502,"没有填写完!");
+            ((InsertClassView) mView).isFourthEmptyError(502,"没有填写完!");
         }
     }
 

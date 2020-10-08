@@ -4,10 +4,12 @@ import android.util.Log;
 
 import com.vargancys.learningassistant.bean.common.HelpCommendItem;
 import com.vargancys.learningassistant.bean.common.HelpContentBean;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.bean.home.ArticleDataBean;
-import com.vargancys.learningassistant.bean.home.BookBean;
-import com.vargancys.learningassistant.bean.home.BookDataBean;
+import com.vargancys.learningassistant.model.home.bean.AidedBean;
+import com.vargancys.learningassistant.model.home.bean.AidedDataBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleDataBean;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
+import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
@@ -281,6 +283,24 @@ public class ApiClient {
     }
 
     /**
+     * 删除特定辅助
+     * @param id
+     * @param subscriber
+     */
+    public void deleteAided(int id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteAided(id),subscriber);
+    }
+
+    /**
+     * 删除多个特定辅助
+     * @param id
+     * @param subscriber
+     */
+    public void deleteAllAided(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteAllAided(id),subscriber);
+    }
+
+    /**
      * 查询特定的书籍
      * @param id
      * @param subscriber
@@ -299,6 +319,24 @@ public class ApiClient {
     }
 
     /**
+     * 查询特定的辅助
+     * @param id
+     * @param subscriber
+     */
+    public void queryAided(int id, MySubscriber<BaseBean<AidedBean>> subscriber){
+        toSubscribe(mService.queryAided(id),subscriber);
+    }
+
+    /**
+     * 查询多个特定的辅助
+     * @param query
+     * @param subscriber
+     */
+    public void queryAllAided(int[] query,MySubscriber<BaseBean<List<AidedBean>>> subscriber){
+        toSubscribe(mService.queryAllAided(query),subscriber);
+    }
+
+    /**
      * 更新书籍
      * @param book
      * @param subscriber
@@ -307,8 +345,14 @@ public class ApiClient {
         toSubscribe(mService.updateBook(book),subscriber);
     }
 
-
-
+    /**
+     * 更新辅助
+     * @param aided
+     * @param subscriber
+     */
+    public void updateAided(Map<String,Object> aided,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.updateAided(aided),subscriber);
+    }
 
     /**
      * 删除多个特定文章
@@ -318,7 +362,6 @@ public class ApiClient {
     public void deleteAllArticle(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
         toSubscribe(mService.deleteAllArticle(id),subscriber);
     }
-
 
     /**
      * 添加书籍型文章
@@ -360,6 +403,15 @@ public class ApiClient {
      */
     public void queryBookData(int article_id, MySubscriber<BaseBean<BookDataBean>> subscriber) {
         toSubscribe(mService.queryBookData(article_id),subscriber);
+    }
+
+    /**
+     * 查询辅助的数据
+     * @param article_id
+     * @param subscriber
+     */
+    public void queryAidedData(int article_id, MySubscriber<BaseBean<AidedDataBean>> subscriber) {
+        toSubscribe(mService.queryAidedData(article_id),subscriber);
     }
 
     /**

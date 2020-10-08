@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.bean.home;
+package com.vargancys.learningassistant.model.home.bean;
 
 /**
  * author: Vagrancy

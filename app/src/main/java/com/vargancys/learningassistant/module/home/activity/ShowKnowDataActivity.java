@@ -22,7 +22,7 @@ import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpda
 import com.vargancys.learningassistant.module.home.activity.update.UpdateBookActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateFourthActivity;
-import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateThirdActivity;
+import com.vargancys.learningassistant.module.home.activity.update.UpdateAidedActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowCommendAdapter;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowHistoryAdapter;
 import com.vargancys.learningassistant.module.home.view.KnowDataView;
@@ -107,7 +107,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
                 UpdateBookActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 3:
-                KnowLedgeUpdateThirdActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                UpdateAidedActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 4:
                 KnowLedgeUpdateFourthActivity.launch(this,REQUEST_CODE,contentId,dataId);

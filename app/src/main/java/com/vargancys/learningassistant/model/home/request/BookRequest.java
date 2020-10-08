@@ -1,26 +1,16 @@
 package com.vargancys.learningassistant.model.home.request;
 
-import android.media.AsyncPlayer;
-
 import com.google.gson.Gson;
-import com.vagrancys.learningassistant.db.TemporaryArticleDbDao;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.bean.home.ArticleDataBean;
-import com.vargancys.learningassistant.bean.home.BookBean;
-import com.vargancys.learningassistant.bean.home.BookDataBean;
-import com.vargancys.learningassistant.db.TemporaryArticleDb;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
+import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.http.ApiClient;
 import com.vargancys.learningassistant.http.BaseBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.http.MySubscriber;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
-import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import butterknife.internal.ListenerClass;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 

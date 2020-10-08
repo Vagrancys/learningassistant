@@ -12,6 +12,5 @@ public interface InsertArticleView extends BaseCallBackListener {
     boolean isEmpty();
     void isEmptyError(int error);
     void isEmptyFinish();
-    void addArticle();
     void nativeQueryFinish(Object object);
 }

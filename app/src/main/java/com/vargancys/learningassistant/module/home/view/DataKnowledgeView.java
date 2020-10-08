@@ -14,10 +14,10 @@ import java.util.List;
  * time  : 2020/03/25
  * version:1.0
  */
-public interface DataArticleView extends BaseCallBackListener {
-    void deleteArticleSuccess();
+public interface DataKnowledgeView extends BaseCallBackListener {
+    void deleteSuccess();
 
-    void deleteArticleFail();
+    void deleteFail();
 
-    void deleteArticleError(String message);
+    void deleteError(String message);
 }

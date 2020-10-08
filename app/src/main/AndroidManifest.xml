@@ -36,9 +36,9 @@
         <activity android:name=".module.home.activity.insert.InsertArticleActivity"/>
         <activity android:name=".module.home.activity.insert.InsertBookActivity"/>
         <activity android:name=".module.home.activity.insert.InsertAidedActivity"/>
-        <activity android:name=".module.home.activity.insert.KnowInsertFourthActivity"/>
+        <activity android:name=".module.home.activity.insert.InsertClassActivity"/>
         <activity android:name=".module.home.activity.insert.KnowInsertFifthActivity"/>
-        <activity android:name=".module.home.activity.insert.KnowInsertDefaultActivity"/>
+        <activity android:name=".module.home.activity.insert.InsertDefaultActivity"/>
         <activity android:name=".module.common.help.HelpUpdateActivity"/>
         <activity android:name=".module.home.activity.ShowKnowDataActivity"/>
         <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
@@ -52,7 +52,7 @@
         <activity android:name=".module.home.activity.history.HistoryShowFifthActivity"/>
         <activity android:name=".module.home.activity.update.UpdateArticleActivity"/>
         <activity android:name=".module.home.activity.update.UpdateBookActivity"/>
-        <activity android:name=".module.home.activity.update.KnowLedgeUpdateThirdActivity"/>
+        <activity android:name=".module.home.activity.update.UpdateAidedActivity"/>
         <activity android:name=".module.home.activity.update.KnowLedgeUpdateFourthActivity"/>
         <activity android:name=".module.home.activity.update.KnowLedgeUpdateFifthActivity"/>
         <activity android:name=".module.home.activity.KnowSearchActivity"/>

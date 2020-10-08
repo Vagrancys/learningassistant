@@ -2,14 +2,13 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.AidedBean;
+import com.vargancys.learningassistant.model.home.bean.AidedBean;
 import com.vargancys.learningassistant.module.home.view.InsertAidedView;
 import com.vargancys.learningassistant.presenter.home.AidedPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
@@ -18,7 +17,6 @@ import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -64,6 +62,10 @@ public class InsertAidedActivity extends BaseActivity implements InsertAidedView
         mPresenter = new AidedPresenter(this);
         aidedBean = new AidedBean();
         aidedBean.setFather_id(knowledge_article_id);
+        initDialog();
+    }
+
+    private void initDialog(){
         mDialog = new KnowLedgeDataDialog(this);
         mDialog.setOnClickDeterMineListener((common, title, summary, explain) -> {
             aidedBean.setLevel(common);

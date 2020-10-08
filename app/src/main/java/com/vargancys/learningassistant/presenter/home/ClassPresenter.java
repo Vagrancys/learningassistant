@@ -1,17 +1,18 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.model.home.bean.AidedBean;
-import com.vargancys.learningassistant.model.home.bean.ArticleBean;
 import com.vargancys.learningassistant.db.knowledge.TemporaryAidedDb;
 import com.vargancys.learningassistant.db.knowledge.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
+import com.vargancys.learningassistant.model.home.bean.AidedBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
 import com.vargancys.learningassistant.model.home.request.AidedRequest;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
-import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.module.home.view.InsertAidedView;
+import com.vargancys.learningassistant.module.home.view.InsertArticleView;
+import com.vargancys.learningassistant.module.home.view.InsertClassView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.IBasePresenter;
 
@@ -22,10 +23,11 @@ import java.util.List;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
+ * 模块名: 函数型管理器 增加获取查询删除修改
  */
-public class AidedPresenter implements IBasePresenter<AidedBean> {
+public class ClassPresenter implements IBasePresenter<AidedBean> {
     private BaseCallBackListener mView;
-    public AidedPresenter(BaseCallBackListener view){
+    public ClassPresenter(BaseCallBackListener view){
         mView = view;
     }
 
@@ -33,7 +35,7 @@ public class AidedPresenter implements IBasePresenter<AidedBean> {
      * 判断是否为空
      */
     public void isDataEmpty() {
-        InsertAidedView view = (InsertAidedView) mView;
+        InsertClassView view = (InsertClassView) mView;
         if(view.isDataEmpty()){
             view.isDataEmptyFail();
         }else{

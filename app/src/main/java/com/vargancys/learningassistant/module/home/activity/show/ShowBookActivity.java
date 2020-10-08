@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.BookBean;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.adapter.BookShowItemAdapter;
 import com.vargancys.learningassistant.module.home.view.ShowCommonView;

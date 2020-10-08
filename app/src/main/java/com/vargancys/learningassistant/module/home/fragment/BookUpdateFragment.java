@@ -1,12 +1,11 @@
 package com.vargancys.learningassistant.module.home.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.BinderThread;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
-import com.vargancys.learningassistant.bean.home.BookBean;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 
 import butterknife.BindView;

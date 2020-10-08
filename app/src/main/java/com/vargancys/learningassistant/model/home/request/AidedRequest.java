@@ -1,11 +1,11 @@
 package com.vargancys.learningassistant.model.home.request;
 
-import com.vagrancys.learningassistant.db.TemporaryArticleDbDao;
+import com.vagrancys.learningassistant.db.TemporaryAidedDbDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.bean.home.AidedBean;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.bean.home.ArticleDataBean;
-import com.vargancys.learningassistant.db.TemporaryArticleDb;
+import com.vargancys.learningassistant.model.home.bean.AidedBean;
+import com.vargancys.learningassistant.model.home.bean.AidedDataBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
+import com.vargancys.learningassistant.db.knowledge.TemporaryAidedDb;
 import com.vargancys.learningassistant.http.ApiClient;
 import com.vargancys.learningassistant.http.BaseBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
@@ -26,7 +26,9 @@ import java.util.Map;
  */
 public class AidedRequest {
     private static AidedRequest instance;
+    private TemporaryAidedDbDao AidedDao;
     private AidedRequest(){
+        AidedDao = BaseApplication.getInstance().getDaoSession().getTemporaryAidedDbDao();
     }
     public static AidedRequest getInstance(){
         if(instance == null){
@@ -203,7 +205,7 @@ public class AidedRequest {
      * @param mView
      */
     public TemporaryAidedDb nativeQuery(int aided, BaseCallBackListener mView) {
-        return AidedDao.queryBuilder().where(TemporaryAidedDbDao.Properties.aided_id.eq(aided)).unique();
+        return AidedDao.queryBuilder().where(TemporaryAidedDbDao.Properties.Db_id.eq(aided)).unique();
     }
 
     /**

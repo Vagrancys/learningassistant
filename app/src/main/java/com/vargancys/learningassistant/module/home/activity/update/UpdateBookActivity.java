@@ -1,38 +1,24 @@
 package com.vargancys.learningassistant.module.home.activity.update;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.bean.home.BookBean;
-import com.vargancys.learningassistant.bean.home.HomeKnowContent;
-import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
-import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
-import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
-import com.vargancys.learningassistant.module.home.adapter.BookItemAdapter;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.module.home.adapter.BookUpdateAdapter;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowSecondAdapter;
 import com.vargancys.learningassistant.module.home.fragment.BookUpdateFragment;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.presenter.home.BookPresenter;
-import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;

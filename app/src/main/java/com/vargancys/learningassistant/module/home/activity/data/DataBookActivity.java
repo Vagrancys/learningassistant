@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.BookDataBean;
+import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.module.home.activity.KnowSettingContentActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateArticleActivity;
-import com.vargancys.learningassistant.module.home.view.DataBookView;
+import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
 import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
@@ -29,7 +29,7 @@ import butterknife.OnClick;
  * version:1.0
  * 展示书籍知识数据页面
  */
-public class DataBookActivity extends BaseActivity implements DataBookView {
+public class DataBookActivity extends BaseActivity implements DataKnowledgeView {
     private static String TAG = "DataBookActivity";
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
@@ -100,7 +100,7 @@ public class DataBookActivity extends BaseActivity implements DataBookView {
     }
 
     @Override
-    public void deleteBookSuccess() {
+    public void deleteSuccess() {
         Intent intent = new Intent();
         //0表示没有状态，1表示删除状态,2表示更新状态
         intent.putExtra(ConstantsUtils.ITEM_DELETE_STATUS,1);
@@ -109,12 +109,12 @@ public class DataBookActivity extends BaseActivity implements DataBookView {
     }
 
     @Override
-    public void deleteBookFail() {
+    public void deleteFail() {
         ToastUtils.ToastText(getContext(),R.string.article_delete_fail);
     }
 
     @Override
-    public void deleteBookError(String message) {
+    public void deleteError(String message) {
         ToastUtils.ToastText(getContext(),R.string.article_delete_error);
     }
 

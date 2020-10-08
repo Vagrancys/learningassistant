@@ -2,17 +2,18 @@ package com.vargancys.learningassistant.http;
 
 import com.vargancys.learningassistant.bean.common.HelpCommendItem;
 import com.vargancys.learningassistant.bean.common.HelpContentBean;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.bean.home.ArticleDataBean;
-import com.vargancys.learningassistant.bean.home.BookBean;
-import com.vargancys.learningassistant.bean.home.BookDataBean;
+import com.vargancys.learningassistant.model.home.bean.AidedBean;
+import com.vargancys.learningassistant.model.home.bean.AidedDataBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleDataBean;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
+import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 
 import java.util.List;
 import java.util.Map;
 
-import butterknife.internal.ListenerClass;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -57,6 +58,14 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<BaseBean<NoDataBean>> deleteAllBook(@Field("delete[]") int[] delete);
 
+    @POST("delete_single_aided")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> deleteAided(@Field("delete") int delete);
+
+    @POST("delete_most_aided")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> deleteAllAided(@Field("delete[]") int[] delete);
+
     @GET("query_single_help")
     Observable<BaseBean<HelpContentBean>> getSingleHelpData(@Query("id") int id);
 
@@ -86,6 +95,10 @@ public interface ApiService {
     @POST("add_single_article")
     @FormUrlEncoded
     Observable<BaseBean<NoDataBean>> addArticleData(@FieldMap Map<String,Object> map);
+
+    @POST("query_single_aided_data")
+    @FormUrlEncoded
+    Observable<BaseBean<AidedDataBean>> queryAidedData(@Field("article_id") int id);
 
     @POST("query_single_article_data")
     @FormUrlEncoded
@@ -121,4 +134,14 @@ public interface ApiService {
     @POST("add_single_aided")
     @FormUrlEncoded
     Observable<BaseBean<NoDataBean>> addAided(@FieldMap Map<String, Object> aided);
+
+    @POST("update_single_aided")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> updateAided(@FieldMap Map<String,Object> update);
+
+    @GET("query_all_aided")
+    Observable<BaseBean<List<AidedBean>>> queryAllAided(@Query("query[]") int[] query);
+
+    @GET("query_single_aided")
+    Observable<BaseBean<AidedBean>> queryAided(@Query("query") int query);
 }

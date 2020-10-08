@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.BookBean;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.module.home.adapter.BookItemAdapter;
 import com.vargancys.learningassistant.module.home.fragment.BookContentFragment;
 import com.vargancys.learningassistant.module.home.view.InsertBookView;
@@ -57,19 +57,18 @@ public class InsertBookActivity extends BaseActivity  implements InsertBookView 
         }
         mPresenter = new BookPresenter(this);
         init();
-        initDialog();
+
     }
 
     private void init() {
         mAdapter = new BookItemAdapter(getSupportFragmentManager());
         bookViewPager.setAdapter(mAdapter);
+        initDialog();
     }
 
     @Override
     public void initToolbar() {
         commonTitle.setText(getText(R.string.common_second));
-
-        commonImg.setImageResource(R.drawable.comment_complete_selector);
     }
 
     private void initDialog(){
@@ -90,7 +89,7 @@ public class InsertBookActivity extends BaseActivity  implements InsertBookView 
         activity.startActivity(intent);
     }
 
-    @OnClick({R.id.common_back,R.id.book_data,R.id.book_add,R.id.book_save})
+    @OnClick({R.id.common_back,R.id.book_data,R.id.common_add,R.id.common_save})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
             case R.id.common_back:
@@ -105,13 +104,13 @@ public class InsertBookActivity extends BaseActivity  implements InsertBookView 
                 }
                 mDialog.show();
                 break;
-            case R.id.book_add:
+            case R.id.common_add:
                 mAdapter.addFragment(mBookIndex);
                 mBookIndex ++;
                 mAdapter.notifyDataSetChanged();
                 bookViewPager.setCurrentItem(mBookIndex-1);
                 break;
-            case R.id.book_save:
+            case R.id.common_save:
                 if(!mPresenter.isAddEmpty()){
                     for (Fragment fragment : mAdapter.getFragment()) {
                         BookBean.BookItemBean bookItem = ((BookContentFragment) fragment).getBookItem();

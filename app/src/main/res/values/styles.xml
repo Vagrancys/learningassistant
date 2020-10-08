@@ -108,8 +108,8 @@
         <item name="android:textSize">@dimen/text_size_18sp</item>
     </style>
 
-    <!--基础edit添加样式-->
-    <style name="base_edit_insert_style">
+    <!--基础edit公共样式-->
+    <style name="base_edit_common_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minLines">3</item>

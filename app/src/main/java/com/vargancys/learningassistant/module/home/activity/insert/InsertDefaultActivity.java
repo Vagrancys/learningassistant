@@ -21,9 +21,9 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
- * 知识添加默认页面
+ * 添加默认型页面
  */
-public class KnowInsertDefaultActivity extends BaseActivity implements KnowInsertDefaultView {
+public class InsertDefaultActivity extends BaseActivity implements KnowInsertDefaultView {
 
     @BindView(R.id.common_img)
     ImageView commonImg;
@@ -97,7 +97,7 @@ public class KnowInsertDefaultActivity extends BaseActivity implements KnowInser
     }
 
     public static void launch(Activity activity,int know_id){
-        Intent intent = new Intent(activity,KnowInsertDefaultActivity.class);
+        Intent intent = new Intent(activity, InsertDefaultActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ID,know_id);
         activity.startActivity(intent);
     }

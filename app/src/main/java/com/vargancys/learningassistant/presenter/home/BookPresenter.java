@@ -1,14 +1,12 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import android.content.Intent;
-
-import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.bean.home.BookBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.BookRequest;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
-import com.vargancys.learningassistant.module.home.view.DataArticleView;
+import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
 import com.vargancys.learningassistant.module.home.view.InsertBookView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.IBasePresenter;
@@ -68,20 +66,21 @@ public class BookPresenter implements IBasePresenter<BookBean> {
     }
 
     public CommonHttpListener getDeleteDataListener(){
+        DataKnowledgeView view = (DataKnowledgeView) mView;
         return new CommonHttpListener() {
             @Override
             public void onSuccess(int code, Object data) {
                 NoDataBean mBean = (NoDataBean) data;
                 if(mBean.getCode()){
-                    ((DataArticleView) mView).deleteArticleSuccess();
+                    view.deleteSuccess();
                 }else{
-                    ((DataArticleView) mView).deleteArticleFail();
+                    view.deleteFail();
                 }
             }
 
             @Override
             public void onError(Throwable t) {
-                ((DataArticleView) mView).deleteArticleError(t.getMessage());
+                view.deleteError(t.getMessage());
             }
 
             @Override

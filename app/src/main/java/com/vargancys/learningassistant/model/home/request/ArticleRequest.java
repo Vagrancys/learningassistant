@@ -2,18 +2,16 @@ package com.vargancys.learningassistant.model.home.request;
 
 import com.vagrancys.learningassistant.db.TemporaryArticleDbDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.bean.home.ArticleBean;
-import com.vargancys.learningassistant.bean.home.ArticleDataBean;
-import com.vargancys.learningassistant.db.TemporaryArticleDb;
+import com.vargancys.learningassistant.model.home.bean.ArticleBean;
+import com.vargancys.learningassistant.model.home.bean.ArticleDataBean;
+import com.vargancys.learningassistant.db.knowledge.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.ApiClient;
 import com.vargancys.learningassistant.http.BaseBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.http.MySubscriber;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
-import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

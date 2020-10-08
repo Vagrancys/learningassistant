@@ -4,12 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.vargancys.learningassistant.bean.home.BookBean;
-import com.vargancys.learningassistant.module.home.fragment.BookContentFragment;
+import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.module.home.fragment.BookShowFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * author: Vagrancy
