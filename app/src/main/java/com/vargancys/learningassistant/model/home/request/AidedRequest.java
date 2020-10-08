@@ -41,7 +41,7 @@ public class AidedRequest {
      * @param listener 监听器
      */
     public void addAided(AidedBean object, CommonHttpListener listener) {
-        ApiClient.getInstance().addArticle(initAided(object),new MySubscriber<BaseBean<NoDataBean>>() {
+        ApiClient.getInstance().addAided(initAided(object),new MySubscriber<BaseBean<NoDataBean>>() {
             @Override
             protected void onSuccess(BaseBean<NoDataBean> baseBean) {
                 listener.onSuccess(baseBean.getCode(),baseBean.getData());

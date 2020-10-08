@@ -117,4 +117,8 @@ public interface ApiService {
 
     @GET("query_all_book")
     Observable<BaseBean<List<BookBean>>> queryAllBook(@Query("query[]") int[] query);
+
+    @POST("add_single_aided")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> addAided(@FieldMap Map<String, Object> aided);
 }

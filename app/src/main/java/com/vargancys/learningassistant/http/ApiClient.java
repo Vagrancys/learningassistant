@@ -361,4 +361,13 @@ public class ApiClient {
     public void queryBookData(int article_id, MySubscriber<BaseBean<BookDataBean>> subscriber) {
         toSubscribe(mService.queryBookData(article_id),subscriber);
     }
+
+    /**
+     * 添加辅助型文章
+     * @param aided 主体
+     * @param subscriber
+     */
+    public void addAided(Map<String, Object> aided, MySubscriber<BaseBean<NoDataBean>> subscriber) {
+        toSubscribe(mService.addAided(aided),subscriber);
+    }
 }

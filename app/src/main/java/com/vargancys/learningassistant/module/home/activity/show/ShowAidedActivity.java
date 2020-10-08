@@ -2,22 +2,27 @@ package com.vargancys.learningassistant.module.home.activity.show;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.bean.home.AidedBean;
 import com.vargancys.learningassistant.bean.home.ArticleBean;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
+import com.vargancys.learningassistant.module.home.activity.data.DataAidedActivity;
 import com.vargancys.learningassistant.module.home.view.ShowCommonView;
-import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
+import com.vargancys.learningassistant.presenter.home.AidedPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -28,27 +33,29 @@ import butterknife.OnClick;
  * 知识展示三级页面
  */
 public class ShowAidedActivity extends BaseActivity implements ShowCommonView<ArticleBean> {
-    private static final String TAG = "KnowShowThirdActivity";
+    private static final String TAG = "ShowAidedActivity";
 
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.insert_show_title)
-    TextView insertShowTitle;
-    @BindView(R.id.insert_show_summary)
-    TextView insertShowSummary;
-    @BindView(R.id.insert_show_show)
-    TextView insertShowShow;
-    @BindView(R.id.insert_show_explain)
-    TextView insertShowExplain;
-    @BindView(R.id.insert_show_heed)
-    TextView insertShowHeed;
-    @BindView(R.id.insert_show_experience)
-    TextView insertShowExperience;
+    @BindView(R.id.aided_show_directory)
+    TextView aidedShowDirectory;
+    @BindView(R.id.aided_show_explain)
+    TextView aidedShowExplain;
+    @BindView(R.id.aided_show_deep_explain)
+    TextView aidedShowDeepExplain;
+    @BindView(R.id.aided_show_case)
+    TextView aidedShowCase;
+    @BindView(R.id.aided_show_experience)
+    TextView aidedShowExperience;
+    @BindView(R.id.aided_show_advanced)
+    TextView aidedShowAdvanced;
+    @BindView(R.id.aided_show_publicize)
+    TextView aidedShowPublicize;
     @BindView(R.id.scrollView)
     ScrollView scrollView;
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
-    private ArticlePresenter mPresenter;
+    private AidedPresenter mPresenter;
     private int article_id;
     private static int REQUEST_CODE = 2001;
 
@@ -63,19 +70,18 @@ public class ShowAidedActivity extends BaseActivity implements ShowCommonView<Ar
             article_id = getIntent().getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, 0);
         }
 
-        mPresenter = new ArticlePresenter(this);
+        mPresenter = new AidedPresenter(this);
         mPresenter.query(article_id);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
-            int state = data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0);
-            if(state == 1){
+        if (requestCode == REQUEST_CODE && resultCode == ShowKnowDataActivity.RESULT_CODE && data != null) {
+            int state = data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS, 0);
+            if (state == 1) {
                 finish();
-            }else if(state == 2){
-                //mPresenter.getRefreshDefaultShowData(item_id);
+            } else if (state == 2) {
             }
         }
     }
@@ -86,36 +92,25 @@ public class ShowAidedActivity extends BaseActivity implements ShowCommonView<Ar
         activity.startActivity(intent);
     }
 
-
-
-    @Override
-    public void showFinish(ArticleBean object) {
-
+    private void initData(AidedBean aided) {
+        aidedShowDirectory.setText(aided.getDirectory());
+        aidedShowExplain.setText(aided.getNow_explain());
+        aidedShowDeepExplain.setText(aided.getDeep_explain());
+        aidedShowCase.setText(aided.getCase());
+        aidedShowAdvanced.setText(aided.getAdvance());
+        aidedShowExperience.setText(aided.getExperience());
+        aidedShowPublicize.setText(aided.getPublicize());
+        commonTitle.setText(aided.getTitle());
     }
 
-    @Override
-    public void showError(String msg) {
-
-    }
-
-    private void initData(ArticleBean object) {
-        /*insertShowTitle.setText(homeKnowContent.getTitle());
-        insertShowSummary.setText(homeKnowContent.getSummary());
-        insertShowShow.setText(homeKnowContent.getShow());
-        insertShowHeed.setText(homeKnowContent.getHeed());
-        insertShowExperience.setText(homeKnowContent.getExperience());
-        insertShowExplain.setText(homeKnowContent.getExplain());
-        commonTitle.setText(homeKnowContent.getTitle());*/
-    }
-
-    @OnClick({R.id.common_back,R.id.common_img})
-    public void onViewClicked(View itemView){
-        switch (itemView.getId()){
+    @OnClick({R.id.common_back, R.id.common_img})
+    public void onViewClicked(View itemView) {
+        switch (itemView.getId()) {
             case R.id.common_back:
                 finish();
                 break;
             case R.id.common_img:
-                //ShowKnowDataActivity.launch(ShowCommonThirdActivity.this,REQUEST_CODE,item_id);
+                DataAidedActivity.launch(ShowAidedActivity.this,REQUEST_CODE,article_id);
                 break;
         }
     }
@@ -129,7 +124,7 @@ public class ShowAidedActivity extends BaseActivity implements ShowCommonView<Ar
     public void onSuccess(Object object) {
         scrollView.setVisibility(View.VISIBLE);
         includeKnowEmpty.setVisibility(View.GONE);
-        //initData(object);
+        initData((AidedBean) object);
     }
 
     @Override
@@ -139,20 +134,30 @@ public class ShowAidedActivity extends BaseActivity implements ShowCommonView<Ar
 
     @Override
     public void onFail() {
-        ToastUtils.ToastText(getContext(),R.string.article_query_empty);
+        ToastUtils.ToastText(getContext(), R.string.aided_query_empty);
         scrollView.setVisibility(View.GONE);
         includeKnowEmpty.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onError(String message) {
-        ToastUtils.ToastText(getContext(),message);
+        ToastUtils.ToastText(getContext(), message);
         scrollView.setVisibility(View.GONE);
         includeKnowEmpty.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onFinish() {
+
+    }
+
+    @Override
+    public void showFinish(ArticleBean object) {
+
+    }
+
+    @Override
+    public void showError(String msg) {
 
     }
 }

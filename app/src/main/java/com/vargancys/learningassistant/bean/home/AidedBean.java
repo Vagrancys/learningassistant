@@ -21,6 +21,15 @@ public class AidedBean {
     private String advance;
     private String experience;
     private String publicize;
+    private String Case;
+
+    public String getCase() {
+        return Case;
+    }
+
+    public void setCase(String aCase) {
+        Case = aCase;
+    }
 
     public int getId() {
         return id;

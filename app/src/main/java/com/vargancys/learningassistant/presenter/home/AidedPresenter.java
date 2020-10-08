@@ -8,6 +8,9 @@ import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.request.AidedRequest;
+import com.vargancys.learningassistant.model.home.request.ArticleRequest;
+import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
+import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertDefaultView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
 import com.vargancys.learningassistant.module.home.view.KnowInsertFourthView;
@@ -58,12 +61,12 @@ public class AidedPresenter implements IBasePresenter<AidedBean> {
 
     @Override
     public void query(int id) {
-        ArticleRequest.getInstance().queryArticle(id,getDataListener());
+        AidedRequest.getInstance().queryAided(id,getDataListener());
     }
 
     @Override
     public void query(int[] ids) {
-        ArticleRequest.getInstance().queryAllArticle(ids,getArrayListener());
+        AidedRequest.getInstance().queryAllAided(ids,getArrayListener());
     }
 
     public void queryData(int id) {
@@ -86,7 +89,7 @@ public class AidedPresenter implements IBasePresenter<AidedBean> {
 
     @Override
     public void update(AidedBean object) {
-        ArticleRequest.getInstance().updateArticle(object,getUpdateListener());
+        AidedRequest.getInstance().updateAided(object,getUpdateListener());
     }
 
     public CommonHttpListener getDeleteDataListener(){

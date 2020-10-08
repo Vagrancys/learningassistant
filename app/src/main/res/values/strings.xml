@@ -106,6 +106,7 @@
     <string name="article_delete_fail">文章删除失败!您可以稍后尝试!</string>
     <string name="article_delete_error">服务器出现错误了!请等待!</string>
     <string name="no_text">   </string>
+
     <!--书籍模块-->
     <string name="book_insert_title">像书一样串联</string>
     <string name="book_success">您的操作成功了!</string>
@@ -135,6 +136,7 @@
     <string name="aided_insert_save_error">发布辅助型知识的时候,服务器故障了!</string>
     <string name="aided_insert_save_fail">发布辅助型知识失败了!请重试!</string>
     <string name="aided_insert_save_success">发布辅助型知识成功!正在初始化以编辑下一知识!</string>
+    <string name="aided_query_empty">该辅助型文章未查找到!</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>
