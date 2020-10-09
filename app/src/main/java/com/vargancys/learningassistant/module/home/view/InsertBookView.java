@@ -8,6 +8,6 @@ import com.vargancys.learningassistant.presenter.BaseCallBackListener;
  * time  : 2020/03/09
  * version:1.0
  */
-public interface InsertBookView extends BaseCallBackListener {
+public interface InsertBookView{
     boolean isBookEmpty();
 }

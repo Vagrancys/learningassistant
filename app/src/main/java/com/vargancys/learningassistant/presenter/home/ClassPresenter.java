@@ -6,6 +6,7 @@ import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.bean.AidedBean;
 import com.vargancys.learningassistant.model.home.bean.ArticleBean;
+import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.request.AidedRequest;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
@@ -25,7 +26,7 @@ import java.util.List;
  * version:1.0
  * 模块名: 函数型管理器 增加获取查询删除修改
  */
-public class ClassPresenter implements IBasePresenter<AidedBean> {
+public class ClassPresenter implements IBasePresenter<ClassBean> {
     private BaseCallBackListener mView;
     public ClassPresenter(BaseCallBackListener view){
         mView = view;
@@ -36,15 +37,15 @@ public class ClassPresenter implements IBasePresenter<AidedBean> {
      */
     public void isDataEmpty() {
         InsertClassView view = (InsertClassView) mView;
-        if(view.isDataEmpty()){
-            view.isDataEmptyFail();
+        if(view.isEmpty()){
+            view.isEmptyFail();
         }else{
-            view.isDataEmptySuccess();
+            view.isEmptySuccess();
         }
     }
 
     @Override
-    public void add(AidedBean object) {
+    public void add(ClassBean object) {
         AidedRequest.getInstance().addAided(object,getIdListener());
     }
 
@@ -87,7 +88,7 @@ public class ClassPresenter implements IBasePresenter<AidedBean> {
 
 
     @Override
-    public void update(AidedBean object) {
+    public void update(ClassBean object) {
         AidedRequest.getInstance().updateAided(object,getUpdateListener());
     }
 

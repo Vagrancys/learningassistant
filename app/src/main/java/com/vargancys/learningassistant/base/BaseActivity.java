@@ -7,6 +7,8 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.vargancys.learningassistant.presenter.BaseCallBackListener;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -16,7 +18,7 @@ import butterknife.Unbinder;
  * time  : 2020/02/29
  * version:1.0
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements BaseCallBackListener {
     private Unbinder binder;
     private Context context;
     @LayoutRes
@@ -57,5 +59,33 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSuccess() {
 
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+
+    }
+
+    @Override
+    public void onNoData() {
+
+    }
+
+    @Override
+    public void onFail() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void onFinish() {
+
+    }
 }

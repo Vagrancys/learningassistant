@@ -131,16 +131,6 @@ public class InsertBookActivity extends BaseActivity  implements InsertBookView 
     }
 
     @Override
-    public void onSuccess(Object object) {
-
-    }
-
-    @Override
-    public void onNoData() {
-
-    }
-
-    @Override
     public void onFail() {
         ToastUtils.ToastText(getContext(),R.string.common_fail);
     }
@@ -148,11 +138,6 @@ public class InsertBookActivity extends BaseActivity  implements InsertBookView 
     @Override
     public void onError(String message) {
         ToastUtils.ToastText(getContext(),R.string.common_error);
-    }
-
-    @Override
-    public void onFinish() {
-
     }
 
     @Override

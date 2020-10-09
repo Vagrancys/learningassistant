@@ -18,8 +18,7 @@ import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowFourthAdapter;
-import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateFourthView;
+import com.vargancys.learningassistant.module.home.adapter.InsertClassTreeAdapter;
 import com.vargancys.learningassistant.presenter.home.KnowUpdatePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -65,7 +64,7 @@ public class KnowLedgeUpdateFourthActivity extends BaseActivity{
     private long dataId;
     private List<HomeKnowFunction> homeKnowFunctions = new ArrayList<>();
     private List<HomeKnowHistoryFunction> mOldHistoryFunction = new ArrayList<>();
-    private HomeKnowFourthAdapter mAdapter;
+    private InsertClassTreeAdapter mAdapter;
     private int mCommon = 1;
     private KnowLedgeDataDialog mDialog;
     private int RESULT_CODE = 2002;
@@ -92,7 +91,7 @@ public class KnowLedgeUpdateFourthActivity extends BaseActivity{
     }
 
     private void initRecyclerView() {
-        mAdapter = new HomeKnowFourthAdapter(getContext(),homeKnowFunctions);
+        mAdapter = new InsertClassTreeAdapter(getContext(),homeKnowFunctions);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
     }

@@ -9,7 +9,9 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
+import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -22,12 +24,11 @@ import butterknife.ButterKnife;
  * version:1.0
  * 首页知识第四适配器
  */
-public class HomeKnowFourthAdapter extends BaseRecyclerAdapter {
-    private List<HomeKnowFunction> homeKnowFunctions;
-    private String[] mCommon = {"不认识","偶尔","经常","已遗忘"};
-    public HomeKnowFourthAdapter(Context context, List<HomeKnowFunction> homeKnowFunctions){
+public class InsertClassTreeAdapter extends BaseRecyclerAdapter {
+    private List<ClassTreeBean> trees;
+    public InsertClassTreeAdapter(Context context, ArrayList<ClassTreeBean> trees){
         super(context);
-        this.homeKnowFunctions = homeKnowFunctions;
+        this.trees = trees;
     }
 
     @NonNull

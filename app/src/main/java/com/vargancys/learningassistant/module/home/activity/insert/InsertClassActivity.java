@@ -2,30 +2,29 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowFourthAdapter;
+import com.vargancys.learningassistant.model.home.bean.ClassBean;
+import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
+import com.vargancys.learningassistant.module.home.adapter.InsertClassTreeAdapter;
 import com.vargancys.learningassistant.module.home.view.InsertClassView;
+import com.vargancys.learningassistant.presenter.home.ClassPresenter;
 import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -38,10 +37,14 @@ import butterknife.OnClick;
 public class InsertClassActivity extends BaseActivity implements InsertClassView {
     @BindView(R.id.common_title)
     TextView commonTitle;
-    private KnowInsertPresenter mPresenter;
+    @BindView(R.id.class_recycler)
+    RecyclerView classRecycler;
+    private ClassPresenter mPresenter;
     private int article_id;
-    private HomeKnowFourthAdapter mAdapter;
+    private ArrayList<ClassTreeBean> classTrees = new ArrayList<>();
+    private InsertClassTreeAdapter mAdapter;
     private KnowLedgeDataDialog mDialog;
+    private ClassBean mClass;
 
     @Override
     public int getLayoutId() {
@@ -51,19 +54,21 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     @Override
     public void initView() {
         Intent intent = getIntent();
-        if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+        if (intent != null) {
+            article_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, 0);
         }
-        mPresenter = new KnowInsertPresenter(this);
+        mPresenter = new ClassPresenter(this);
+        mClass = new ClassBean();
+        mClass.setFather_id(article_id);
         initRecyclerView();
         initListener();
         initDialog();
     }
 
     private void initRecyclerView() {
-        mAdapter = new HomeKnowFourthAdapter(getContext(),homeKnowFunctions);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(mAdapter);
+        mAdapter = new InsertClassTreeAdapter(getContext(), classTrees);
+        classRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        classRecycler.setAdapter(mAdapter);
     }
 
     @Override
@@ -72,63 +77,81 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     }
 
     private void initListener() {
-        mAdapter.setOnItemLongClickListener(position -> {
-            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-            alert.setTitle(homeKnowFunctions.get(position).getTitle());
-            alert.setMessage(homeKnowFunctions.get(position).getSummary());
-            alert.setPositiveButton("取消", (dialog, which) -> dialog.dismiss());
-            alert.setNegativeButton("确定", (dialog, which) -> {
-                homeKnowFunctions.remove(position);
-                mAdapter.notifyItemRemoved(position);
-                dialog.dismiss();
-            });
-        });
     }
 
-    private void initDialog(){
+    private void initDialog() {
         mDialog = new KnowLedgeDataDialog(this);
         mDialog.setOnClickCancelListener(() -> mDialog.cancel());
         mDialog.setOnClickDeterMineListener((common, title, summary, explain) -> {
-
+            mClass.setLevel(common);
+            mClass.setTitle(title);
+            mClass.setSummary(summary);
+            mClass.setExplain(explain);
+            mDialog.dismiss();
         });
     }
 
-    public static void launch(Activity activity, int article_id){
+    @Override
+    public void isEmptyFinish() {
+        mPresenter.add(mClass);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return classTrees.size() > 0;
+    }
+
+    @Override
+    public void isEmptyError(int error) {
+        ToastUtils.ToastText(getContext(),R.string.class_empty);
+    }
+
+    public static void launch(Activity activity, int article_id) {
         Intent intent = new Intent(activity, InsertClassActivity.class);
-        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,article_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, article_id);
         activity.startActivity(intent);
     }
 
     private void initEmpty() {
-        insertTitleEdit.setText("");
-        insertSummaryEdit.setText("");
-        insertHeedEdit.setText("");
-        insertExperienceEdit.setText("");
-        homeKnowFunctions.clear();
+        classTrees.clear();
         mAdapter.notifyDataSetChanged();
-        recyclerView.setVisibility(View.GONE);
-        showHintFourth.setVisibility(View.VISIBLE);
-        insertShowCount.setVisibility(View.GONE);
     }
 
-    @Override
-    public void showFunctionWindow() {
-        mDialog.show();
-    }
-
-    @OnClick({R.id.common_back,R.id.common_save,R.id.common_add,R.id.common_data})
-    public void onViewClicked(View itemView){
-        switch (itemView.getId()){
+    @OnClick({R.id.common_back, R.id.common_save, R.id.common_add, R.id.common_data})
+    public void onViewClicked(View itemView) {
+        switch (itemView.getId()) {
             case R.id.common_back:
                 finish();
                 break;
             case R.id.common_save:
-                mPresenter.isFourthEmpty();
+                mPresenter.isDataEmpty();
                 break;
             case R.id.common_data:
-                mPresenter.showFourthFunctionWindow();
+                if(!mDialog.isEdit()){
+                    mDialog.setTitle(mClass.getTitle());
+                    mDialog.setLevel(mClass.getLevel());
+                    mDialog.setExplain(mClass.getExplain());
+                    mDialog.setSummary(mClass.getSummary());
+                }
+                mDialog.show();
                 break;
         }
+    }
+
+    @Override
+    public void onSuccess() {
+        ToastUtils.ToastText(getContext(),R.string.class_success);
+        initEmpty();
+    }
+
+    @Override
+    public void onFail() {
+        ToastUtils.ToastText(getContext(),R.string.common_fail);
+    }
+
+    @Override
+    public void onError(String message) {
+        ToastUtils.ToastText(getContext(),R.string.common_error);
     }
 }
 
