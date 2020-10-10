@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.presenter.home;
 
 import com.vargancys.learningassistant.db.knowledge.TemporaryAidedDb;
 import com.vargancys.learningassistant.db.knowledge.TemporaryArticleDb;
+import com.vargancys.learningassistant.db.knowledge.TemporaryClassDb;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.bean.AidedBean;
@@ -9,6 +10,7 @@ import com.vargancys.learningassistant.model.home.bean.ArticleBean;
 import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.request.AidedRequest;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
+import com.vargancys.learningassistant.model.home.request.ClassRequest;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
 import com.vargancys.learningassistant.module.home.view.InsertAidedView;
@@ -46,31 +48,31 @@ public class ClassPresenter implements IBasePresenter<ClassBean> {
 
     @Override
     public void add(ClassBean object) {
-        AidedRequest.getInstance().addAided(object,getIdListener());
+        ClassRequest.getInstance().addClass(object,getIdListener());
     }
 
     @Override
     public void delete(int id) {
-        AidedRequest.getInstance().deleteAided(id,getDeleteDataListener());
+        ClassRequest.getInstance().deleteClass(id,getDeleteDataListener());
     }
 
     @Override
     public void delete(int[] ids) {
-        AidedRequest.getInstance().deleteAllAided(ids,getNoDataListener());
+        ClassRequest.getInstance().deleteAllClass(ids,getNoDataListener());
     }
 
     @Override
     public void query(int id) {
-        AidedRequest.getInstance().queryAided(id,getDataListener());
+        ClassRequest.getInstance().queryClass(id,getDataListener());
     }
 
     @Override
     public void query(int[] ids) {
-        AidedRequest.getInstance().queryAllAided(ids,getArrayListener());
+        ClassRequest.getInstance().queryAllClass(ids,getArrayListener());
     }
 
     public void queryData(int id) {
-        AidedRequest.getInstance().queryAidedData(id,getDataListener());
+        ClassRequest.getInstance().queryClassData(id,getDataListener());
     }
 
     /**
@@ -89,7 +91,7 @@ public class ClassPresenter implements IBasePresenter<ClassBean> {
 
     @Override
     public void update(ClassBean object) {
-        AidedRequest.getInstance().updateAided(object,getUpdateListener());
+        ClassRequest.getInstance().updateClass(object,getUpdateListener());
     }
 
     public CommonHttpListener getDeleteDataListener(){
@@ -218,7 +220,7 @@ public class ClassPresenter implements IBasePresenter<ClassBean> {
         return new CommonHttpListener() {
             @Override
             public void onSuccess(int code, Object data) {
-                List<ArticleBean> mBean = (List<ArticleBean>) data;
+                List<ClassBean> mBean = (List<ClassBean>) data;
                 if(mBean != null && mBean.size() > 0){
                     mView.onSuccess(mBean);
                 }else{
@@ -239,11 +241,11 @@ public class ClassPresenter implements IBasePresenter<ClassBean> {
     }
 
     public void nativeDelete(long knowLedge_id) {
-        AidedRequest.getInstance().nativeDelete(knowLedge_id);
+        ClassRequest.getInstance().nativeDelete(knowLedge_id);
     }
 
-    public void nativeAdd(TemporaryAidedDb mDB) {
-        AidedRequest.getInstance().nativeAdd(mDB);
+    public void nativeAdd(TemporaryClassDb mDB) {
+        ClassRequest.getInstance().nativeAdd(mDB);
     }
 
     /**

@@ -12,6 +12,8 @@ import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
+import com.vargancys.learningassistant.model.home.bean.ClassBean;
+import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -421,5 +423,68 @@ public class ApiClient {
      */
     public void addAided(Map<String, Object> aided, MySubscriber<BaseBean<NoDataBean>> subscriber) {
         toSubscribe(mService.addAided(aided),subscriber);
+    }
+
+    /**
+     * 添加函数型文章
+     * @param body 主体
+     * @param subscriber
+     */
+    public void addClass(RequestBody body, MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.addClass(body),subscriber);
+    }
+
+    /**
+     * 删除特定函数
+     * @param id
+     * @param subscriber
+     */
+    public void deleteClass(int id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteClass(id),subscriber);
+    }
+
+    /**
+     * 删除多个特定函数
+     * @param id
+     * @param subscriber
+     */
+    public void deleteAllClass(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteAllClass(id),subscriber);
+    }
+
+    /**
+     * 查询特定的函数
+     * @param id
+     * @param subscriber
+     */
+    public void queryClass(int id, MySubscriber<BaseBean<ClassBean>> subscriber){
+        toSubscribe(mService.queryClass(id),subscriber);
+    }
+
+    /**
+     * 查询多个特定的辅助
+     * @param query
+     * @param subscriber
+     */
+    public void queryAllClass(int[] query,MySubscriber<BaseBean<List<ClassBean>>> subscriber){
+        toSubscribe(mService.queryAllClass(query),subscriber);
+    }
+
+    /**
+     * 查询函数的数据
+     * @param article_id
+     * @param subscriber
+     */
+    public void queryClassData(int article_id, MySubscriber<BaseBean<ClassDataBean>> subscriber) {
+        toSubscribe(mService.queryClassData(article_id),subscriber);
+    }
+
+    /**
+     * 更新函数
+     * @param book
+     * @param subscriber
+     */
+    public void updateClass(RequestBody book,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.updateClass(book),subscriber);
     }
 }

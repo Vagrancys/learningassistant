@@ -10,6 +10,8 @@ import com.vargancys.learningassistant.model.home.bean.BookBean;
 import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
+import com.vargancys.learningassistant.model.home.bean.ClassBean;
+import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
 
 import java.util.List;
 import java.util.Map;
@@ -144,4 +146,30 @@ public interface ApiService {
 
     @GET("query_single_aided")
     Observable<BaseBean<AidedBean>> queryAided(@Query("query") int query);
+
+    @GET("query_all_class")
+    Observable<BaseBean<List<ClassBean>>> queryAllClass(@Query("query[]") int[] query);
+
+    @POST("add_single_class")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> addClass(@Body RequestBody body);
+
+    @POST("update_single_class")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> updateClass(@Body RequestBody body);
+
+    @GET("query_single_class")
+    Observable<BaseBean<ClassBean>> queryClass(@Query("query") int query);
+
+    @POST("delete_single_class")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> deleteClass(@Field("delete") int delete);
+
+    @POST("delete_most_class")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> deleteAllClass(@Field("delete[]") int[] delete);
+
+    @POST("query_single_class_data")
+    @FormUrlEncoded
+    Observable<BaseBean<ClassDataBean>> queryClassData(@Field("article_id") int id);
 }

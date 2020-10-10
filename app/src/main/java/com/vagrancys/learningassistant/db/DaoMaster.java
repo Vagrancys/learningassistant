@@ -60,6 +60,7 @@ public class DaoMaster extends AbstractDaoMaster {
         OverViewListItemDao.createTable(db, ifNotExists);
         TemporaryAidedDbDao.createTable(db, ifNotExists);
         TemporaryArticleDbDao.createTable(db, ifNotExists);
+        TemporaryClassDbDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -103,6 +104,7 @@ public class DaoMaster extends AbstractDaoMaster {
         OverViewListItemDao.dropTable(db, ifExists);
         TemporaryAidedDbDao.dropTable(db, ifExists);
         TemporaryArticleDbDao.dropTable(db, ifExists);
+        TemporaryClassDbDao.dropTable(db, ifExists);
     }
 
     /**
@@ -160,6 +162,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(OverViewListItemDao.class);
         registerDaoClass(TemporaryAidedDbDao.class);
         registerDaoClass(TemporaryArticleDbDao.class);
+        registerDaoClass(TemporaryClassDbDao.class);
     }
 
     public DaoSession newSession() {

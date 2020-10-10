@@ -92,7 +92,7 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     }
 
     @Override
-    public void isEmptyFinish() {
+    public void isEmptySuccess() {
         mPresenter.add(mClass);
     }
 
@@ -102,7 +102,7 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     }
 
     @Override
-    public void isEmptyError(int error) {
+    public void isEmptyFail() {
         ToastUtils.ToastText(getContext(),R.string.class_empty);
     }
 
