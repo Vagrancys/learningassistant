@@ -10,6 +10,7 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
+import com.vargancys.learningassistant.model.home.bean.ClassTreeListBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,46 +25,52 @@ import butterknife.ButterKnife;
  * version:1.0
  * 首页知识第四适配器
  */
-public class InsertClassTreeAdapter extends BaseRecyclerAdapter {
+public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
     private List<ClassTreeBean> trees;
+    private List<ClassTreeListBean> lists = new ArrayList<>();
     public InsertClassTreeAdapter(Context context, ArrayList<ClassTreeBean> trees){
-        super(context);
+        super(context,0,0);
         this.trees = trees;
+        initClassTree();
     }
 
-    @NonNull
-    @Override
-    public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new KnowSecondViewHolder(getView(R.layout.know_function_fourth_item));
-    }
+    private void initClassTree() {
 
-    @Override
-    public void onBindViewHolder(CommonViewHolder holder, int position) {
-        KnowSecondViewHolder mHolder = (KnowSecondViewHolder) holder;
-        HomeKnowFunction homeKnowFunction = homeKnowFunctions.get(position);
-        mHolder.functionCommon.setText(mCommon[homeKnowFunction.getCommon()]);
-        mHolder.functionTitle.setText(homeKnowFunction.getTitle());
-        mHolder.functionSummary.setText(homeKnowFunction.getSummary());
-        mHolder.functionExplain.setText(homeKnowFunction.getExplain());
+        setTree(lists);
     }
 
     @Override
-    public int getItemCount() {
-        return homeKnowFunctions.size();
+    CommonViewHolder getHeaderHolder(View view) {
+        return new ClassHeaderViewHolder(view);
     }
 
-    public class KnowSecondViewHolder extends CommonViewHolder{
-        @BindView(R.id.item_function_common_fourth)
-        TextView functionCommon;
-        @BindView(R.id.item_function_title_fourth)
-        TextView functionTitle;
-        @BindView(R.id.item_function_summary_fourth)
-        TextView functionSummary;
-        @BindView(R.id.item_function_explain_fourth)
-        TextView functionExplain;
-        private KnowSecondViewHolder(View view){
+    @Override
+    CommonViewHolder getItemHolder(View view) {
+        return new ClassItemViewHolder(view);
+    }
+
+    @Override
+    void onBindHeaderHolder(CommonViewHolder holder, int position) {
+
+    }
+
+    @Override
+    void onBindItemHolder(CommonViewHolder holder, int position) {
+
+    }
+
+    public class ClassHeaderViewHolder extends CommonViewHolder{
+        private ClassHeaderViewHolder(View view){
+            super(view);
+            ButterKnife.bind(view);
+        }
+    }
+
+    public class ClassItemViewHolder extends CommonViewHolder{
+        private ClassItemViewHolder(View view){
             super(view);
             ButterKnife.bind(view);
         }
     }
 }
+
