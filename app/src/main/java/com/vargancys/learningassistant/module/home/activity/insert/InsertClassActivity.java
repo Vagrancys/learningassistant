@@ -1,9 +1,7 @@
 package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,20 +9,21 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
 import com.vargancys.learningassistant.module.home.adapter.InsertClassTreeAdapter;
 import com.vargancys.learningassistant.module.home.view.InsertClassView;
 import com.vargancys.learningassistant.presenter.home.ClassPresenter;
-import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
-import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
+import com.vargancys.learningassistant.widget.dialog.ClassHeaderDataDialog;
+import com.vargancys.learningassistant.widget.dialog.ClassItemDataDialog;
+import com.vargancys.learningassistant.widget.dialog.KnowLedgeDataDialog;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -45,6 +44,8 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     private InsertClassTreeAdapter mAdapter;
     private KnowLedgeDataDialog mDialog;
     private ClassBean mClass;
+    private ClassHeaderDataDialog mHeaderDialog;
+    private ClassItemDataDialog mItemDialog;
 
     @Override
     public int getLayoutId() {
@@ -63,6 +64,17 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
         initRecyclerView();
         initListener();
         initDialog();
+        initData();
+    }
+
+    private void initData() {
+        ClassTreeBean mBean = new ClassTreeBean();
+        mBean.setTree_id(0);
+        mBean.setPosition(0);
+        mBean.setCount(0);
+        mBean.setType(2);
+        classTrees.add(mBean);
+        mAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView() {
@@ -77,6 +89,17 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     }
 
     private void initListener() {
+        mAdapter.setOnItemClickListener(position -> {
+            switch (classTrees.get(position).getType()){
+                case 1:
+                    mItemDialog.setTree_id(position);
+                    mItemDialog.show();
+                    break;
+                case 2:
+                    mHeaderDialog.show();
+                    break;
+            }
+        });
     }
 
     private void initDialog() {
@@ -89,6 +112,32 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
             mClass.setExplain(explain);
             mDialog.dismiss();
         });
+
+        mHeaderDialog = new ClassHeaderDataDialog(this);
+        mHeaderDialog.setOnClickCancelListener(() -> mHeaderDialog.cancel());
+        mHeaderDialog.setOnClickDeterMineListener(((common, title, summary) -> {
+            ClassTreeBean classBean = new ClassTreeBean();
+            classBean.setCount(0);
+            classBean.setType(1);
+            classBean.setTitle(title);
+            classBean.setPosition(0);
+            classBean.setTree_id(0);
+            classBean.setSummary(summary);
+            classBean.setLevel(common);
+            classTrees.add(classBean);
+            mAdapter.notifyDataSetChanged();
+        }));
+
+        mItemDialog = new ClassItemDataDialog(this);
+        mItemDialog.setOnClickCancelListener(()->mItemDialog.cancel());
+        mItemDialog.setOnClickDeterMineListener(((position,common, title, summary) -> {
+            ClassTreeBean.ClassTreeItemBean mItem = new ClassTreeBean.ClassTreeItemBean();
+            mItem.setPosition(position);
+            mItem.setTree_item_id(position);
+            mItem.setTitle(title);
+            classTrees.get(position).getItems().add(mItem);
+            mAdapter.notifyDataSetChanged();
+        }));
     }
 
     @Override

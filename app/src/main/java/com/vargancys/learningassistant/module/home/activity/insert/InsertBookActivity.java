@@ -17,7 +17,7 @@ import com.vargancys.learningassistant.module.home.view.InsertBookView;
 import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
-import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
+import com.vargancys.learningassistant.widget.dialog.KnowLedgeDataDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;

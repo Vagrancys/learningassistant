@@ -14,10 +14,37 @@ public class ClassTreeBean {
     private int position;
     private String title;
     private int count;
+    private int type;
+    private String summary;
+    private int level;
     private List<ClassTreeItemBean> items;
 
     public List<ClassTreeItemBean> getItems() {
         return items;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getCount() {

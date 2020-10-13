@@ -146,6 +146,8 @@
     <string name="class_insert_toolbar">函数型知识</string>
     <string name="class_success">函数型知识添加成功了!你可以在添加了!</string>
     <string name="class_empty">函数型知识不能为空!写个0都比不写好!</string>
+    <string name="knowledge_class_header_title">请填写该函数的名称!</string>
+    <string name="knowledge_class_item_title">请填写该函数的子函数!</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>

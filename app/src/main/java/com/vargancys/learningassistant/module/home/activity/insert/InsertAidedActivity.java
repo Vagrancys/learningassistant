@@ -14,7 +14,7 @@ import com.vargancys.learningassistant.presenter.home.AidedPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
-import com.vargancys.learningassistant.widget.KnowLedgeDataDialog;
+import com.vargancys.learningassistant.widget.dialog.KnowLedgeDataDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;

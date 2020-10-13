@@ -1,4 +1,4 @@
-package com.vargancys.learningassistant.widget;
+package com.vargancys.learningassistant.widget.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,30 +17,38 @@ import com.vargancys.learningassistant.R;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/23
  * version:1.0
- * 知识数据弹窗
+ * 函数Item数据弹窗
  */
-public class KnowLedgeDataDialog extends AlertDialog {
+public class ClassItemDataDialog extends AlertDialog {
     private EditText mTitle;
     private EditText mSummary;
-    private EditText mExplain;
     private TextView mCancel;
     private TextView mDeterMine;
     private Spinner mSpinner;
     private int mCommon = 1;
+    private int tree_id;
     private boolean isEdit = false;
-    public KnowLedgeDataDialog(Context context) {
+    public ClassItemDataDialog(Context context) {
         this(context,0);
     }
 
-    public KnowLedgeDataDialog(Context context, int themeResId) {
+    public ClassItemDataDialog(Context context, int themeResId) {
         super(context, themeResId);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.pop_knowledge_data);
+        setContentView(R.layout.pop_knowledge_class_header);
         initView();
         initListener();
+    }
+
+    public int getTree_id() {
+        return tree_id;
+    }
+
+    public void setTree_id(int tree_id) {
+        this.tree_id = tree_id;
     }
 
     private void initListener(){
@@ -52,8 +60,8 @@ public class KnowLedgeDataDialog extends AlertDialog {
 
         mDeterMine.setOnClickListener(v -> {
             if(onClickDeterMineListener != null){
-                onClickDeterMineListener.OnDeterMine(mCommon,mTitle.getText().toString(),
-                        mSummary.getText().toString(),mExplain.getText().toString());
+                onClickDeterMineListener.OnDeterMine(tree_id,mCommon,mTitle.getText().toString(),
+                        mSummary.getText().toString());
             }
         });
 
@@ -82,12 +90,6 @@ public class KnowLedgeDataDialog extends AlertDialog {
         }
     }
 
-    public void setExplain(String explain){
-        if(mExplain != null){
-            mExplain.setText(explain);
-        }
-    }
-
     public void setLevel(int common){
         if(mSpinner != null){
             mCommon = common;
@@ -102,7 +104,6 @@ public class KnowLedgeDataDialog extends AlertDialog {
     private void initView() {
         mTitle = findViewById(R.id.knowledge_title_edit);
         mSummary = findViewById(R.id.knowledge_summary_edit);
-        mExplain = findViewById(R.id.knowledge_explain_edit);
         mCancel = findViewById(R.id.knowledge_cancel);
         mDeterMine = findViewById(R.id.knowledge_determine);
         mSpinner =findViewById(R.id.knowledge_level);
@@ -115,7 +116,6 @@ public class KnowLedgeDataDialog extends AlertDialog {
         mTitle.setText("");
         mSummary.setText("");
         mCommon = 1;
-        mExplain.setText("");
     }
 
     public interface OnClickCancelListener{
@@ -123,7 +123,7 @@ public class KnowLedgeDataDialog extends AlertDialog {
     }
 
     public interface OnClickDeterMineListener{
-        void OnDeterMine(int common,String title,String summary,String explain);
+        void OnDeterMine(int position,int common, String title, String summary);
     }
 
     private OnClickCancelListener onClickCancelListener;
