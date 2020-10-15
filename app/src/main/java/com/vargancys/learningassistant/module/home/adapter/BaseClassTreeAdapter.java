@@ -20,24 +20,29 @@ import java.util.List;
  * 模块名:
  */
 public abstract class BaseClassTreeAdapter extends BaseRecyclerAdapter {
-    public List<ClassTreeListBean> lists = new ArrayList<>();
-    public int headerId;
-    public int itemId;
-    public BaseClassTreeAdapter(Context context,int headerId, int itemId){
+    private List<ClassTreeListBean> lists = new ArrayList<>();
+    private int headerId;
+    private int itemId;
+    private int addId;
+    public BaseClassTreeAdapter(Context context,int addId,int headerId, int itemId){
         super(context);
         this.headerId = headerId;
         this.itemId = itemId;
+        this.addId = addId;
     }
     @NonNull
     @Override
     public CommonViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        CommonViewHolder holder = null;
+        CommonViewHolder holder;
         switch (lists.get(i).getType()){
             case 1:
                 holder = getHeaderHolder(getView(headerId));
                 break;
             case 2:
                 holder = getItemHolder(getView(itemId));
+                break;
+            default:
+                holder = getAddHolder(getView(addId));
                 break;
         }
         return holder;
@@ -46,12 +51,16 @@ public abstract class BaseClassTreeAdapter extends BaseRecyclerAdapter {
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        switch (lists.get(position).getType()){
+        ClassTreeListBean mBean = lists.get(position);
+        switch (mBean.getType()){
             case 1:
-                onBindHeaderHolder(holder,position);
+                onBindHeaderHolder(holder,position,mBean.getHeader());
                 break;
             case 2:
-                onBindItemHolder(holder,position);
+                onBindItemHolder(holder,position,mBean.getItem());
+                break;
+            case 3:
+                onBindAddHolder(holder,position);
                 break;
         }
     }
@@ -69,7 +78,11 @@ public abstract class BaseClassTreeAdapter extends BaseRecyclerAdapter {
 
     abstract CommonViewHolder getItemHolder(View view);
 
-    abstract void onBindHeaderHolder(CommonViewHolder holder,int position);
+    abstract CommonViewHolder getAddHolder(View view);
 
-    abstract void onBindItemHolder(CommonViewHolder holder,int position);
+    abstract void onBindHeaderHolder(CommonViewHolder holder, int position, ClassTreeListBean.ClassTreeHeader header);
+
+    abstract void onBindItemHolder(CommonViewHolder holder, int position, ClassTreeListBean.ClassTreeItem item);
+
+    abstract void onBindAddHolder(CommonViewHolder holder,int position);
 }

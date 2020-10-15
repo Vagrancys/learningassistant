@@ -89,15 +89,36 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     }
 
     private void initListener() {
-        mAdapter.setOnItemClickListener(position -> {
-            switch (classTrees.get(position).getType()){
-                case 1:
-                    mItemDialog.setTree_id(position);
-                    mItemDialog.show();
-                    break;
-                case 2:
-                    mHeaderDialog.show();
-                    break;
+        mAdapter.setOnClickClassListener(new InsertClassTreeAdapter.OnClickClassListener() {
+            @Override
+            public void onAdd(int position) {
+                mHeaderDialog.show();
+            }
+
+            @Override
+            public void onItemUpdate(int position, int header_id, int item_id) {
+
+            }
+
+            @Override
+            public void onItemDelete(int position, int header_id, int item_id) {
+
+            }
+
+            @Override
+            public void onHeaderAdd(int position, int header_id) {
+                mItemDialog.setTree_id(position);
+                mItemDialog.show();
+            }
+
+            @Override
+            public void onHeaderUpdate(int position, int header_id) {
+
+            }
+
+            @Override
+            public void onHeaderDelete(int position, int header_id) {
+
             }
         });
     }
