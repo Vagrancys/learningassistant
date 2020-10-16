@@ -12,6 +12,7 @@ import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
+import com.vargancys.learningassistant.model.home.bean.ClassTreeListBean;
 import com.vargancys.learningassistant.module.home.adapter.InsertClassTreeAdapter;
 import com.vargancys.learningassistant.module.home.view.InsertClassView;
 import com.vargancys.learningassistant.presenter.home.ClassPresenter;
@@ -22,6 +23,7 @@ import com.vargancys.learningassistant.widget.dialog.ClassItemDataDialog;
 import com.vargancys.learningassistant.widget.dialog.KnowLedgeDataDialog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -97,12 +99,28 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
 
             @Override
             public void onItemUpdate(int position, int header_id, int item_id) {
-
+                if(classTrees.get(position).getTree_id() == header_id){
+                    List<ClassTreeBean.ClassTreeItemBean> mItem = classTrees.get(position).getItems();
+                    for (ClassTreeBean.ClassTreeItemBean itemBean : mItem) {
+                        if(itemBean.getTree_item_id()==item_id){
+                            mItemDialog.setTitle(itemBean.getTitle());
+                            mItemDialog.show();
+                        }
+                    }
+                }
             }
 
             @Override
             public void onItemDelete(int position, int header_id, int item_id) {
-
+                if(classTrees.get(position).getTree_id() == header_id){
+                    List<ClassTreeBean.ClassTreeItemBean> mItem = classTrees.get(position).getItems();
+                    int ItemLength = mItem.size();
+                    for (int i = 0; i < ItemLength; i++) {
+                        if(mItem.get(i).getTree_item_id() == item_id){
+                            mItem.remove(i);
+                        }
+                    }
+                }
             }
 
             @Override
@@ -113,12 +131,19 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
 
             @Override
             public void onHeaderUpdate(int position, int header_id) {
-
+                if(classTrees.get(position).getTree_id() == header_id){
+                    mHeaderDialog.setTitle(classTrees.get(position).getTitle());
+                    mHeaderDialog.setLevel(classTrees.get(position).getLevel());
+                    mHeaderDialog.setSummary(classTrees.get(position).getSummary());
+                    mHeaderDialog.show();
+                }
             }
 
             @Override
             public void onHeaderDelete(int position, int header_id) {
-
+                if(classTrees.get(position).getTree_id() == header_id){
+                    classTrees.remove(position);
+                }
             }
         });
     }

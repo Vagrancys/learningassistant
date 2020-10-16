@@ -37,16 +37,16 @@ public class ClassTreeListBean {
     }
 
     public static class ClassTreeHeader{
-        private String count;
+        private int count;
         private int position;
         private int header_id;
         private String title;
 
-        public String getCount() {
+        public int getCount() {
             return count;
         }
 
-        public void setCount(String count) {
+        public void setCount(int count) {
             this.count = count;
         }
 

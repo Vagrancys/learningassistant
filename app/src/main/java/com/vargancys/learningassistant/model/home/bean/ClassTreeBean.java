@@ -87,6 +87,24 @@ public class ClassTreeBean {
         private int tree_item_id;
         private int position;
         private String title;
+        private int level;
+        private String summary;
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public void setSummary(String summary) {
+            this.summary = summary;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        public void setLevel(int level) {
+            this.level = level;
+        }
 
         public int getTree_item_id() {
             return tree_item_id;

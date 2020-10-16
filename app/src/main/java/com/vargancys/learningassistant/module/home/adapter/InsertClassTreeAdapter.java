@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
  */
 public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
     private List<ClassTreeBean> trees;
+    private int position = 0;
     private List<ClassTreeListBean> lists = new ArrayList<>();
     public InsertClassTreeAdapter(Context context, ArrayList<ClassTreeBean> trees){
         super(context,R.layout.knowledge_class_add_item,R.layout.knowledge_class_header_item,R.layout.knowledge_class_item);
@@ -37,8 +38,42 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
     }
 
     private void initClassTree() {
-
+        for (ClassTreeBean tree : trees) {
+            addHeader(tree);
+            addItem(tree);
+        }
+        ClassTreeListBean mList = new ClassTreeListBean();
+        mList.setType(3);
+        lists.add(mList);
         setTree(lists);
+    }
+
+    private void addItem(ClassTreeBean tree) {
+        for (ClassTreeBean.ClassTreeItemBean item : tree.getItems()) {
+            ClassTreeListBean mList = new ClassTreeListBean();
+            ClassTreeListBean.ClassTreeItem mItem = new ClassTreeListBean.ClassTreeItem();
+            mItem.setFather_id(tree.getTree_id());
+            mItem.setItem_id(item.getTree_item_id());
+            mItem.setLevel(item.getLevel());
+            mItem.setPosition(position++);
+            mItem.setTitle(item.getTitle());
+            mItem.setSummary(item.getSummary());
+            mList.setType(2);
+            mList.setItem(mItem);
+            lists.add(mList);
+        }
+    }
+
+    private void addHeader(ClassTreeBean tree){
+        ClassTreeListBean mList = new ClassTreeListBean();
+        ClassTreeListBean.ClassTreeHeader mHeader = new ClassTreeListBean.ClassTreeHeader();
+        mHeader.setCount(tree.getItems().size());
+        mHeader.setHeader_id(tree.getTree_id());
+        mHeader.setPosition(position++);
+        mHeader.setTitle(tree.getTitle());
+        mList.setType(1);
+        mList.setHeader(mHeader);
+        lists.add(mList);
     }
 
     @Override
