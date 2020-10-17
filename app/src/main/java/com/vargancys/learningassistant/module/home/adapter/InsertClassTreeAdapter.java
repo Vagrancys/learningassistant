@@ -48,6 +48,12 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
         setTree(lists);
     }
 
+    public void setTrees(List<ClassTreeBean> tree){
+        trees.clear();
+        trees.addAll(tree);
+        initClassTree();
+    }
+
     private void addItem(ClassTreeBean tree) {
         for (ClassTreeBean.ClassTreeItemBean item : tree.getItems()) {
             ClassTreeListBean mList = new ClassTreeListBean();

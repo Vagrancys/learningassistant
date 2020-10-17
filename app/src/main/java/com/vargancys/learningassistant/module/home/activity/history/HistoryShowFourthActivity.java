@@ -60,7 +60,7 @@ public class HistoryShowFourthActivity extends BaseActivity implements HistorySh
     private List<HomeKnowHistoryFunction> mFunction = new ArrayList<>();
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_fourth;
+        return R.layout.activity_knowledge_show_class;
     }
 
     @Override

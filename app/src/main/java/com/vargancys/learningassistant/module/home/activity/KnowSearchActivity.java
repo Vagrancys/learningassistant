@@ -22,7 +22,7 @@ import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActi
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;
 import com.vargancys.learningassistant.module.home.adapter.KnowSearchAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeCommonView;
 import com.vargancys.learningassistant.presenter.home.HomeCommonPresenter;
@@ -132,7 +132,7 @@ public class KnowSearchActivity extends BaseActivity implements HomeCommonView {
                 ShowAidedActivity.launch(this,item_id);
                 break;
             case 4:
-                ShowCommonFourthActivity.launch(this,item_id);
+                ShowClassActivity.launch(this,item_id);
                 break;
             case 5:
                 ShowCommonFifthActivity.launch(this,item_id);

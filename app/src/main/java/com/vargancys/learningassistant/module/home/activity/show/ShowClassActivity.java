@@ -14,12 +14,13 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
+import com.vargancys.learningassistant.model.home.bean.ClassBean;
+import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowFourthAdapter;
-import com.vargancys.learningassistant.module.home.view.ShowCommonView;
+import com.vargancys.learningassistant.presenter.home.ClassPresenter;
 import com.vargancys.learningassistant.presenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
-import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,48 +35,34 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示四级页面
  */
-public class ShowCommonFourthActivity extends BaseActivity{
-    private static final String TAG = "KnowShowFourthActivity";
+public class ShowClassActivity extends BaseActivity{
+    private static final String TAG = "ShowClassActivity";
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.insert_show_title)
-    TextView insertShowTitle;
-    @BindView(R.id.insert_show_summary)
-    TextView insertShowSummary;
-    @BindView(R.id.insert_show_count)
-    TextView insertShowCount;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.show_empty_fourth)
-    TextView showEmptyFourth;
-    @BindView(R.id.insert_show_heed)
-    TextView insertShowHeed;
-    @BindView(R.id.insert_show_experience)
-    TextView insertShowExperience;
-    @BindView(R.id.scrollView)
-    ScrollView scrollView;
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
 
-    private KnowShowPresenter mPresenter;
-    private long item_id;
+    private ClassPresenter mPresenter;
     private static int REQUEST_CODE = 2001;
-    private HomeKnowShowFourthAdapter mAdapter;
-    private List<HomeKnowFunction> mFunction = new ArrayList<>();
+    private int article_id;
+    private ClassBean mClass;
+    private ArrayList<ClassTreeBean> mTree = new ArrayList<>();
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_fourth;
+        return R.layout.activity_knowledge_show_class;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
         if(intent !=null){
-            item_id = intent.getLongExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+            article_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
-        mPresenter = new KnowShowPresenter(this);
+        mPresenter = new ClassPresenter(this);
         init();
-        mPresenter.getDefaultShowData(item_id);
+        mPresenter.query(article_id);
     }
 
     private void init() {
@@ -85,7 +72,7 @@ public class ShowCommonFourthActivity extends BaseActivity{
     }
 
     public static void launch(Activity activity, long item_id) {
-        Intent intent = new Intent(activity, ShowCommonFourthActivity.class);
+        Intent intent = new Intent(activity, ShowClassActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, item_id);
         activity.startActivity(intent);
     }
@@ -129,7 +116,7 @@ public class ShowCommonFourthActivity extends BaseActivity{
                 finish();
                 break;
             case R.id.common_img:
-                ShowKnowDataActivity.launch(ShowCommonFourthActivity.this,REQUEST_CODE,item_id);
+                ShowKnowDataActivity.launch(ShowClassActivity.this,REQUEST_CODE,item_id);
                 break;
         }
     }

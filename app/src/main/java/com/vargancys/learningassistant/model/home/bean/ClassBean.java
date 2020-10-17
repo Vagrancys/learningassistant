@@ -18,8 +18,15 @@ public class ClassBean {
     private String explain;
     private int level;
     private int father_id;
+    private List<ClassTreeBean> trees;
 
-    private List<ClassItemBean> items;
+    public List<ClassTreeBean> getTrees() {
+        return trees;
+    }
+
+    public void setTrees(List<ClassTreeBean> trees) {
+        this.trees = trees;
+    }
 
     public int getFather_id() {
         return father_id;
@@ -27,18 +34,6 @@ public class ClassBean {
 
     public void setFather_id(int father_id) {
         this.father_id = father_id;
-    }
-
-    public List<ClassItemBean> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ClassItemBean> items) {
-        this.items = items;
-    }
-
-    public void addItem(ClassItemBean item){
-        this.items.add(item);
     }
 
     public String getTitle() {
@@ -79,9 +74,5 @@ public class ClassBean {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public static class ClassItemBean{
-
     }
 }

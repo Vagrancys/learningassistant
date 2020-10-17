@@ -16,7 +16,7 @@ import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivit
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;
 import com.vargancys.learningassistant.module.mine.adapter.ProblemItemAdapter;
 import com.vargancys.learningassistant.module.mine.view.ProblemItemView;
 import com.vargancys.learningassistant.presenter.mine.BaseMinePresenter;
@@ -101,7 +101,7 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
                 ShowAidedActivity.launch(this,item_id);
                 break;
             case 4:
-                ShowCommonFourthActivity.launch(this,item_id);
+                ShowClassActivity.launch(this,item_id);
                 break;
             case 5:
                 ShowCommonFifthActivity.launch(this,item_id);

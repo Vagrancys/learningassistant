@@ -118,6 +118,8 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
                     for (int i = 0; i < ItemLength; i++) {
                         if(mItem.get(i).getTree_item_id() == item_id){
                             mItem.remove(i);
+                            mAdapter.setTrees(classTrees);
+                            mAdapter.notifyDataSetChanged();
                         }
                     }
                 }
@@ -143,6 +145,8 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
             public void onHeaderDelete(int position, int header_id) {
                 if(classTrees.get(position).getTree_id() == header_id){
                     classTrees.remove(position);
+                    mAdapter.setTrees(classTrees);
+                    mAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -171,6 +175,7 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
             classBean.setSummary(summary);
             classBean.setLevel(common);
             classTrees.add(classBean);
+            mAdapter.setTrees(classTrees);
             mAdapter.notifyDataSetChanged();
         }));
 
@@ -182,12 +187,14 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
             mItem.setTree_item_id(position);
             mItem.setTitle(title);
             classTrees.get(position).getItems().add(mItem);
+            mAdapter.setTrees(classTrees);
             mAdapter.notifyDataSetChanged();
         }));
     }
 
     @Override
     public void isEmptySuccess() {
+        mClass.setTrees(classTrees);
         mPresenter.add(mClass);
     }
 

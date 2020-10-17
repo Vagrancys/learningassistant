@@ -14,7 +14,7 @@ import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActi
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFourthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;
 import com.vargancys.learningassistant.module.mine.activity.KnowLedgeItemActivity;
 import com.vargancys.learningassistant.utils.ToastUtils;
 import com.vargancys.learningassistant.widget.section.SectionedRecyclerViewAdapter;
@@ -100,7 +100,7 @@ public class KnowLedgeItemSection extends StatelessSection {
                 ShowAidedActivity.launch(mActivity,item_id);
                 break;
             case 4:
-                ShowCommonFourthActivity.launch(mActivity,item_id);
+                ShowClassActivity.launch(mActivity,item_id);
                 break;
             case 5:
                 ShowCommonFifthActivity.launch(mActivity,item_id);
