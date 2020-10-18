@@ -66,9 +66,9 @@ public class ShowClassActivity extends BaseActivity{
     }
 
     private void init() {
-        mAdapter = new HomeKnowShowFourthAdapter(getContext(),mFunction);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(mAdapter);
+        //mAdapter = new HomeKnowShowFourthAdapter(getContext(),mFunction);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //recyclerView.setAdapter(mAdapter);
     }
 
     public static void launch(Activity activity, long item_id) {
@@ -85,28 +85,13 @@ public class ShowClassActivity extends BaseActivity{
             if(state == 1){
                 finish();
             }else if(state == 2){
-                mPresenter.getRefreshDefaultShowData(item_id);
+                mPresenter.query(article_id);
             }
         }
     }
 
     private void initData(HomeKnowContent homeKnowContent) {
-        insertShowTitle.setText(homeKnowContent.getTitle());
-        insertShowSummary.setText(homeKnowContent.getSummary());
-        insertShowHeed.setText(homeKnowContent.getHeed());
-        insertShowExperience.setText(homeKnowContent.getExperience());
-        int count = homeKnowContent.getHomeKnowFunctions().size();
-        if(count <= 0){
-            showEmptyFourth.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
-        }else{
-            showEmptyFourth.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-        }
-        insertShowCount.setText(String.valueOf(homeKnowContent.getHomeKnowFunctions().size()));
-        mFunction.addAll(homeKnowContent.getHomeKnowFunctions());
-        commonTitle.setText(homeKnowContent.getTitle());
-        mAdapter.notifyDataSetChanged();
+
     }
 
     @OnClick({R.id.common_back,R.id.common_img})
@@ -116,7 +101,7 @@ public class ShowClassActivity extends BaseActivity{
                 finish();
                 break;
             case R.id.common_img:
-                ShowKnowDataActivity.launch(ShowClassActivity.this,REQUEST_CODE,item_id);
+                ShowKnowDataActivity.launch(ShowClassActivity.this,REQUEST_CODE,article_id);
                 break;
         }
     }
