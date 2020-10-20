@@ -13,7 +13,6 @@ import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.module.home.activity.show.ShowAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;

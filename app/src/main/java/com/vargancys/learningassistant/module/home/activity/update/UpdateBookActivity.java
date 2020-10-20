@@ -29,10 +29,10 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
- * 知识更新二级页面
+ * 更新书籍知识页面
  */
-public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUpdateView {
-    private String TAG = "KnowInsertSecondActivity";
+public class UpdateBookActivity extends BaseActivity implements BaseKnowLedgeUpdateView {
+    private String TAG = "UpdateBookActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -66,7 +66,6 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
         }
         mPresenter = new BookPresenter(this);
         initRecyclerView();
-        initListener();
         initDialog();
         mPresenter.query(articleId);
     }
@@ -79,12 +78,9 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.common_update_second));
+        commonTitle.setText(getText(R.string.book_update_toolbar));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
-    }
-
-    private void initListener() {
     }
 
     private void initDialog(){
@@ -165,22 +161,12 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
     public void onSuccess(Object object) {
         mBookBean = (BookBean) object;
         bookData.setText(String.format(Locale.CHINA,"1/%d", mBookBean.getItems().size()));
         mItems.addAll(mBookBean.getItems());
         mAdapter.notifyDataSetChanged();
         viewPager.setCurrentItem(0);
-    }
-
-    @Override
-    public void onNoData() {
-
     }
 
     @Override
@@ -193,8 +179,4 @@ public class UpdateBookActivity extends BaseActivity  implements BaseKnowLedgeUp
         ToastUtils.ToastText(getContext(),R.string.common_error);
     }
 
-    @Override
-    public void onFinish() {
-
-    }
 }

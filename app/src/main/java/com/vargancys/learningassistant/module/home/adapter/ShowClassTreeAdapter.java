@@ -1,16 +1,12 @@
 package com.vargancys.learningassistant.module.home.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeListBean;
 
@@ -25,14 +21,14 @@ import butterknife.ButterKnife;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
- * 首页知识第四适配器
+ * 首页知识函数展示适配器
  */
-public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
+public class ShowClassTreeAdapter extends BaseClassTreeAdapter {
     private List<ClassTreeBean> trees;
     private int position = 0;
     private List<ClassTreeListBean> lists = new ArrayList<>();
-    public InsertClassTreeAdapter(Context context, ArrayList<ClassTreeBean> trees){
-        super(context,R.layout.knowledge_class_add_item,R.layout.knowledge_class_header_item,R.layout.knowledge_class_item);
+    public ShowClassTreeAdapter(Context context, ArrayList<ClassTreeBean> trees){
+        super(context,0,R.layout.knowledge_class_show_header_item,R.layout.knowledge_class_show_item);
         this.trees = trees;
         initClassTree();
     }
@@ -42,9 +38,6 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
             addHeader(tree);
             addItem(tree);
         }
-        ClassTreeListBean mList = new ClassTreeListBean();
-        mList.setType(3);
-        lists.add(mList);
         setTree(lists);
     }
 
@@ -99,12 +92,6 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
 
     @Override
     void onBindAddHolder(CommonViewHolder holder, int position) {
-        ClassAddViewHolder mHolder = (ClassAddViewHolder) holder;
-        mHolder.classAddLinear.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onAdd(position);
-            }
-        });
     }
 
     @Override
@@ -112,27 +99,12 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
         ClassHeaderViewHolder mHolder = (ClassHeaderViewHolder) holder;
         mHolder.classHeaderCount.setText(header.getCount());
         mHolder.classHeaderTitle.setText(header.getTitle());
-        mHolder.classHeaderAdd.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onHeaderAdd(header.getPosition(),header.getHeader_id());
-            }
-        });
-        mHolder.classHeaderUpdate.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onHeaderUpdate(header.getPosition(),header.getHeader_id());
-            }
-        });
-        mHolder.classHeaderDelete.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onHeaderDelete(header.getPosition(),header.getHeader_id());
-            }
-        });
     }
 
     @Override
     void onBindItemHolder(CommonViewHolder holder, int position, ClassTreeListBean.ClassTreeItem item) {
         ClassItemViewHolder mHolder = (ClassItemViewHolder) holder;
-        int imageId = 0;
+        int imageId;
         switch (item.getLevel()){
             case 1:
                 imageId = R.drawable.know_level_1;
@@ -147,16 +119,6 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
         mHolder.classItemLevel.setBackgroundResource(imageId);
         mHolder.classItemTitle.setText(item.getTitle());
         mHolder.classItemSummary.setText(item.getSummary());
-        mHolder.classItemUpdate.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onItemUpdate(item.getPosition(),item.getFather_id(),item.getItem_id());
-            }
-        });
-        mHolder.classItemDelete.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onItemDelete(item.getPosition(),item.getFather_id(),item.getItem_id());
-            }
-        });
     }
 
     public class ClassHeaderViewHolder extends CommonViewHolder{
@@ -164,12 +126,6 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
         TextView classHeaderCount;
         @BindView(R.id.class_header_title)
         TextView classHeaderTitle;
-        @BindView(R.id.class_header_add)
-        ImageView classHeaderAdd;
-        @BindView(R.id.class_header_update)
-        ImageView classHeaderUpdate;
-        @BindView(R.id.class_header_delete)
-        ImageView classHeaderDelete;
         private ClassHeaderViewHolder(View view){
             super(view);
             ButterKnife.bind(view);
@@ -181,10 +137,6 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
         ImageView classItemLevel;
         @BindView(R.id.class_item_title)
         TextView classItemTitle;
-        @BindView(R.id.class_item_update)
-        ImageView classItemUpdate;
-        @BindView(R.id.class_item_delete)
-        ImageView classItemDelete;
         @BindView(R.id.class_item_summary)
         TextView classItemSummary;
         private ClassItemViewHolder(View view){
@@ -194,27 +146,10 @@ public class InsertClassTreeAdapter extends BaseClassTreeAdapter {
     }
 
     public class ClassAddViewHolder extends CommonViewHolder{
-        @BindView(R.id.class_add_linear)
-        LinearLayout classAddLinear;
         private ClassAddViewHolder(View view){
             super(view);
             ButterKnife.bind(view);
         }
-    }
-
-    private OnClickClassListener onClickClassListener;
-
-    public void setOnClickClassListener(OnClickClassListener onClickClassListener) {
-        this.onClickClassListener = onClickClassListener;
-    }
-
-    public interface OnClickClassListener{
-        void onAdd(int position);
-        void onItemUpdate(int position,int header_id,int item_id);
-        void onItemDelete(int position,int header_id,int item_id);
-        void onHeaderAdd(int position,int header_id);
-        void onHeaderUpdate(int position,int header_id);
-        void onHeaderDelete(int position,int header_id);
     }
 }
 

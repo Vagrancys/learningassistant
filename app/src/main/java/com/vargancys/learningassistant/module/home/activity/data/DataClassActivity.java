@@ -10,13 +10,14 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.model.home.bean.AidedDataBean;
-import com.vargancys.learningassistant.model.home.bean.ArticleDataBean;
+import com.vargancys.learningassistant.model.home.bean.BookDataBean;
+import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
 import com.vargancys.learningassistant.module.home.activity.KnowSettingContentActivity;
-import com.vargancys.learningassistant.module.home.activity.update.UpdateAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.update.UpdateClassActivity;
 import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
-import com.vargancys.learningassistant.presenter.home.AidedPresenter;
+import com.vargancys.learningassistant.presenter.home.BookPresenter;
+import com.vargancys.learningassistant.presenter.home.ClassPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -29,21 +30,21 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/25
  * version:1.0
- * 展示知识数据页面
+ * 展示函数知识数据页面
  */
-public class DataAidedActivity extends BaseActivity implements DataKnowledgeView {
-    private static String TAG = "DataArticleActivity";
+public class DataClassActivity extends BaseActivity implements DataKnowledgeView {
+    private static String TAG = "DataClassActivity";
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
-    @BindView(R.id.know_data_title)
-    TextView knowDataTitle;
-    @BindView(R.id.know_data_level)
-    ImageView knowDataLevel;
-    @BindView(R.id.know_data_count)
-    TextView knowDataCount;
-    @BindView(R.id.know_data_master)
-    TextView knowDataMaster;
-    private AidedPresenter mPresenter;
+    @BindView(R.id.knowledge_data_title)
+    TextView dataTitle;
+    @BindView(R.id.knowledge_data_level)
+    ImageView dataLevel;
+    @BindView(R.id.knowledge_data_count)
+    TextView dataCount;
+    @BindView(R.id.knowledge_data_master)
+    TextView dataMaster;
+    private ClassPresenter mPresenter;
     private int father_id;
     private int article_id;
     public static int RESULT_CODE = 2000;
@@ -53,7 +54,7 @@ public class DataAidedActivity extends BaseActivity implements DataKnowledgeView
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_show_know_data;
+        return R.layout.activity_show_book_data;
     }
 
     @Override
@@ -61,12 +62,12 @@ public class DataAidedActivity extends BaseActivity implements DataKnowledgeView
         if(getIntent() !=null){
             article_id = getIntent().getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
-        mPresenter = new AidedPresenter(this);
+        mPresenter = new ClassPresenter(this);
         mPresenter.queryData(article_id);
     }
 
     public static void launch(Activity activity,int SHOW_REQUEST,int article_id){
-        Intent intent = new Intent(activity, DataAidedActivity.class);
+        Intent intent = new Intent(activity, DataClassActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,article_id);
         activity.startActivityForResult(intent,SHOW_REQUEST);
     }
@@ -74,19 +75,19 @@ public class DataAidedActivity extends BaseActivity implements DataKnowledgeView
     private void SelectDataLevel(int level){
         switch (level){
             case 1:
-                knowDataLevel.setImageResource(R.drawable.know_level_1);
+                dataLevel.setImageResource(R.drawable.know_level_1);
                 break;
             case 2:
-                knowDataLevel.setImageResource(R.drawable.know_level_2);
+                dataLevel.setImageResource(R.drawable.know_level_2);
                 break;
             case 3:
-                knowDataLevel.setImageResource(R.drawable.know_level_3);
+                dataLevel.setImageResource(R.drawable.know_level_3);
                 break;
             case 4:
-                knowDataLevel.setImageResource(R.drawable.know_level_4);
+                dataLevel.setImageResource(R.drawable.know_level_4);
                 break;
             case 5:
-                knowDataLevel.setImageResource(R.drawable.know_level_5);
+                dataLevel.setImageResource(R.drawable.know_level_5);
                 break;
         }
     }
@@ -133,10 +134,10 @@ public class DataAidedActivity extends BaseActivity implements DataKnowledgeView
                 finish();
                 break;
             case R.id.know_data_setting:
-                KnowSettingContentActivity.launch(DataAidedActivity.this,article_id);
+                KnowSettingContentActivity.launch(DataClassActivity.this,article_id);
                 break;
             case R.id.know_data_update:
-                UpdateAidedActivity.launch(this,REQUEST_CODE,father_id,article_id);
+                UpdateClassActivity.launch(this,REQUEST_CODE,father_id,article_id);
                 break;
             case R.id.know_data_delete:
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
@@ -154,13 +155,13 @@ public class DataAidedActivity extends BaseActivity implements DataKnowledgeView
 
     @Override
     public void onSuccess(Object object) {
-        AidedDataBean mBean = (AidedDataBean) object;
+        ClassDataBean mBean = (ClassDataBean) object;
         father_id = mBean.getFather_id();
         commonTitleData.setText(mBean.getTitle());
-        knowDataTitle.setText(mBean.getTitle());
+        dataTitle.setText(mBean.getTitle());
         SelectDataLevel(mBean.getLevel());
-        knowDataCount.setText(mBean.getCount()+"次");
-        knowDataMaster.setText(mBean.getMaster());
+        dataCount.setText(mBean.getCount()+"次");
+        dataMaster.setText(mBean.getMaster());
     }
 
     @Override
@@ -172,5 +173,6 @@ public class DataAidedActivity extends BaseActivity implements DataKnowledgeView
     public void onError(String message) {
         ToastUtils.ToastText(getContext(),R.string.common_error);
     }
+
 
 }

@@ -151,11 +151,6 @@ public class DataArticleActivity extends BaseActivity implements DataKnowledgeVi
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
     public void onSuccess(Object object) {
         ArticleDataBean mBean = (ArticleDataBean) object;
         father_id = mBean.getFather_id();
@@ -166,10 +161,6 @@ public class DataArticleActivity extends BaseActivity implements DataKnowledgeVi
         knowDataMaster.setText(mBean.getMaster());
     }
 
-    @Override
-    public void onNoData() {
-
-    }
 
     @Override
     public void onFail() {
@@ -178,11 +169,6 @@ public class DataArticleActivity extends BaseActivity implements DataKnowledgeVi
 
     @Override
     public void onError(String message) {
-
-    }
-
-    @Override
-    public void onFinish() {
-
+        ToastUtils.ToastText(getContext(),R.string.common_error);
     }
 }

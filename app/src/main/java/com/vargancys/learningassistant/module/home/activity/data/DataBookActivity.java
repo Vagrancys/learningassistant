@@ -151,11 +151,6 @@ public class DataBookActivity extends BaseActivity implements DataKnowledgeView 
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
     public void onSuccess(Object object) {
         BookDataBean mBean = (BookDataBean) object;
         father_id = mBean.getFather_id();
@@ -167,22 +162,12 @@ public class DataBookActivity extends BaseActivity implements DataKnowledgeView 
     }
 
     @Override
-    public void onNoData() {
-
-    }
-
-    @Override
     public void onFail() {
         ToastUtils.ToastText(getContext(),R.string.article_data_empty);
     }
 
     @Override
     public void onError(String message) {
-
-    }
-
-    @Override
-    public void onFinish() {
-
+        ToastUtils.ToastText(getContext(),R.string.common_error);
     }
 }

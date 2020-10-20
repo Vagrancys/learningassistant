@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.home.activity.show.ShowCommonDefaultActivity"/>
         <activity android:name=".module.home.activity.show.ShowArticleActivity"/>
         <activity android:name=".module.home.activity.show.ShowAidedActivity"/>
         <activity android:name=".module.home.activity.show.ShowCommonFifthActivity"/>
@@ -37,12 +36,10 @@
         <activity android:name=".module.home.activity.insert.InsertBookActivity"/>
         <activity android:name=".module.home.activity.insert.InsertAidedActivity"/>
         <activity android:name=".module.home.activity.insert.InsertClassActivity"/>
-        <activity android:name=".module.home.activity.insert.KnowInsertFifthActivity"/>
-        <activity android:name=".module.home.activity.insert.InsertDefaultActivity"/>
+        <activity android:name=".module.home.activity.insert.InsertFeelingActivity"/>
         <activity android:name=".module.common.help.HelpUpdateActivity"/>
         <activity android:name=".module.home.activity.ShowKnowDataActivity"/>
         <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
-        <activity android:name=".module.home.activity.update.KnowLedgeUpdateDefaultActivity"/>
         <activity android:name=".module.home.activity.KnowSettingContentActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowDefaultActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFirstActivity"/>
@@ -53,7 +50,7 @@
         <activity android:name=".module.home.activity.update.UpdateArticleActivity"/>
         <activity android:name=".module.home.activity.update.UpdateBookActivity"/>
         <activity android:name=".module.home.activity.update.UpdateAidedActivity"/>
-        <activity android:name=".module.home.activity.update.KnowLedgeUpdateFourthActivity"/>
+        <activity android:name=".module.home.activity.update.UpdateClassActivity"/>
         <activity android:name=".module.home.activity.update.KnowLedgeUpdateFifthActivity"/>
         <activity android:name=".module.home.activity.KnowSearchActivity"/>
         <activity android:name=".module.overview.activity.OverViewInformationActivity"/>
@@ -100,6 +97,7 @@
         <activity android:name=".module.overview.activity.OverViewQueryActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".module.home.activity.data.DataBookActivity" />
+        <activity android:name=".module.home.activity.data.DataClassActivity"/>
     </application>
 
 </manifest>

@@ -24,7 +24,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识添加五级页面
  */
-public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsertFifthView {
+public class InsertFeelingActivity extends BaseActivity implements KnowInsertFifthView {
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -100,7 +100,7 @@ public class KnowInsertFifthActivity  extends BaseActivity implements KnowInsert
     }
 
     public static void launch(Activity activity, int know_id){
-        Intent intent = new Intent(activity,KnowInsertFifthActivity.class);
+        Intent intent = new Intent(activity, InsertFeelingActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
         activity.startActivity(intent);
     }

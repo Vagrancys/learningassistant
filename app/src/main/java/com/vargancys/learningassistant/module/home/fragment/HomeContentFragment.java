@@ -28,13 +28,11 @@ import com.vargancys.learningassistant.module.home.activity.KnowSearchActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertClassActivity;
-import com.vargancys.learningassistant.module.home.activity.insert.InsertDefaultActivity;
-import com.vargancys.learningassistant.module.home.activity.insert.KnowInsertFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.insert.InsertFeelingActivity;
 import com.vargancys.learningassistant.module.home.activity.insert.InsertBookActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonDefaultActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
@@ -271,7 +269,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 InsertClassActivity.launch(getActivity(),item_id);
                 break;
             case 5:
-                KnowInsertFifthActivity.launch(getActivity(),item_id);
+                InsertFeelingActivity.launch(getActivity(),item_id);
                 break;
             default:
                 InsertDefaultActivity.launch(getActivity(),item_id);

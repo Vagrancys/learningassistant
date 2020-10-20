@@ -7,23 +7,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.bean.home.HomeKnowContent;
-import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
 import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
-import com.vargancys.learningassistant.module.home.adapter.HomeKnowShowFourthAdapter;
+import com.vargancys.learningassistant.module.home.adapter.CommonClassTreeAdapter;
 import com.vargancys.learningassistant.presenter.home.ClassPresenter;
-import com.vargancys.learningassistant.presenter.home.KnowShowPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
+import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -48,6 +44,7 @@ public class ShowClassActivity extends BaseActivity{
     private static int REQUEST_CODE = 2001;
     private int article_id;
     private ClassBean mClass;
+    private CommonClassTreeAdapter mAdapter;
     private ArrayList<ClassTreeBean> mTree = new ArrayList<>();
     @Override
     public int getLayoutId() {
@@ -66,9 +63,9 @@ public class ShowClassActivity extends BaseActivity{
     }
 
     private void init() {
-        //mAdapter = new HomeKnowShowFourthAdapter(getContext(),mFunction);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //recyclerView.setAdapter(mAdapter);
+        mAdapter = new CommonClassTreeAdapter(getContext(),mTree);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(mAdapter);
     }
 
     public static void launch(Activity activity, long item_id) {
@@ -90,10 +87,6 @@ public class ShowClassActivity extends BaseActivity{
         }
     }
 
-    private void initData(HomeKnowContent homeKnowContent) {
-
-    }
-
     @OnClick({R.id.common_back,R.id.common_img})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
@@ -104,6 +97,23 @@ public class ShowClassActivity extends BaseActivity{
                 ShowKnowDataActivity.launch(ShowClassActivity.this,REQUEST_CODE,article_id);
                 break;
         }
+    }
+
+    @Override
+    public void onError(String message) {
+        ToastUtils.ToastText(getContext(),R.string.common_error);
+    }
+
+    @Override
+    public void onFail() {
+        ToastUtils.ToastText(getContext(),R.string.common_fail);
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+        mClass = (ClassBean) object;
+        mAdapter.setTrees(mClass.getTrees());
+        mAdapter.notifyDataSetChanged();
     }
 }
 

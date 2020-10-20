@@ -25,7 +25,7 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
- * 知识展示三级页面
+ * 更新辅助型知识页面
  */
 public class UpdateAidedActivity extends BaseActivity implements BaseKnowLedgeUpdateView {
     private static String TAG = "UpdateAidedActivity";
@@ -72,7 +72,7 @@ public class UpdateAidedActivity extends BaseActivity implements BaseKnowLedgeUp
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.common_update_first));
+        commonTitle.setText(getText(R.string.aided_update_toolbar));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
     }
@@ -152,11 +152,6 @@ public class UpdateAidedActivity extends BaseActivity implements BaseKnowLedgeUp
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
     public void onSuccess(Object object) {
         mArticle = (AidedBean) object;
         initAidedBean();
@@ -172,11 +167,6 @@ public class UpdateAidedActivity extends BaseActivity implements BaseKnowLedgeUp
     }
 
     @Override
-    public void onNoData() {
-
-    }
-
-    @Override
     public void onFail() {
         ToastUtils.ToastText(getContext(), R.string.common_fail);
     }
@@ -184,10 +174,5 @@ public class UpdateAidedActivity extends BaseActivity implements BaseKnowLedgeUp
     @Override
     public void onError(String message) {
         ToastUtils.ToastText(getContext(), R.string.common_error);
-    }
-
-    @Override
-    public void onFinish() {
-
     }
 }

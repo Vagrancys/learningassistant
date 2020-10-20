@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/09
  * version:1.0
- * 知识更新一级页面
+ * 更新文章知识页面
  */
 public class UpdateArticleActivity extends BaseActivity implements BaseKnowLedgeUpdateView {
     private static String TAG = "UpdateArticleActivity";
@@ -58,7 +58,7 @@ public class UpdateArticleActivity extends BaseActivity implements BaseKnowLedge
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.common_update_first));
+        commonTitle.setText(getText(R.string.article_update_toolbar));
 
         commonImg.setImageResource(R.drawable.common_update_normal);
     }
@@ -114,19 +114,9 @@ public class UpdateArticleActivity extends BaseActivity implements BaseKnowLedge
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
     public void onSuccess(Object object) {
         mArticle =(ArticleBean) object;
         updateEdit.setText(mArticle.getTitle());
-    }
-
-    @Override
-    public void onNoData() {
-
     }
 
     @Override
@@ -137,10 +127,5 @@ public class UpdateArticleActivity extends BaseActivity implements BaseKnowLedge
     @Override
     public void onError(String message) {
         ToastUtils.ToastText(getContext(),R.string.common_error);
-    }
-
-    @Override
-    public void onFinish() {
-
     }
 }
