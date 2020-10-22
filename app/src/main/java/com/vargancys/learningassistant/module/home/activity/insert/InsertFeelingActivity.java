@@ -2,6 +2,7 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,10 +10,16 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.module.home.view.KnowInsertFifthView;
-import com.vargancys.learningassistant.presenter.home.KnowInsertPresenter;
+import com.vargancys.learningassistant.model.home.bean.FeelingBean;
+import com.vargancys.learningassistant.module.home.adapter.FeelingItemAdapter;
+import com.vargancys.learningassistant.module.home.view.InsertFeelingView;
+import com.vargancys.learningassistant.presenter.home.FeelingPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
+import com.vargancys.learningassistant.widget.dialog.KnowLedgeDataDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,106 +31,63 @@ import butterknife.OnClick;
  * version:1.0
  * 知识添加五级页面
  */
-public class InsertFeelingActivity extends BaseActivity implements KnowInsertFifthView {
+public class InsertFeelingActivity extends BaseActivity implements InsertFeelingView {
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.insert_title_edit)
-    EditText insertTitleEdit;
-    @BindView(R.id.insert_summary_edit)
-    EditText insertSummaryEdit;
-    @BindView(R.id.insert_show_edit)
-    EditText insertShowEdit;
-    @BindView(R.id.insert_explain_edit)
-    EditText insertExplainEdit;
-    @BindView(R.id.insert_heed_edit)
-    EditText insertHeedEdit;
-    @BindView(R.id.insert_experience_edit)
-    EditText insertExperienceEdit;
-    private KnowInsertPresenter mPresenter;
-    private int know_item_id;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    private FeelingPresenter mPresenter;
+    private int article_id;
+    private FeelingBean mFeeling;
+    private KnowLedgeDataDialog mDialog;
+    private FeelingItemAdapter mAdapter;
+    private List<FeelingBean.FeelingItemBean> mItem = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_insert_fifth;
+        return R.layout.activity_knowledge_insert_feeling;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
         if(intent != null){
-            know_item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+            article_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
-        mPresenter = new KnowInsertPresenter(this);
+        initData();
+        initDialog();
+        mPresenter = new FeelingPresenter(this);
+    }
+
+    private void initData() {
+
+    }
+
+    private void initDialog() {
+        mDialog = new KnowLedgeDataDialog(this);
+        mDialog.setOnClickCancelListener(() -> mDialog.cancel());
+        mDialog.setOnClickDeterMineListener((common, title, summary, explain) -> {
+            mFeeling.setLevel(common);
+            mFeeling.setTitle(title);
+            mFeeling.setSummary(summary);
+            mFeeling.setExplain(explain);
+            mDialog.dismiss();
+        });
+
     }
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.common_fifth));
+        commonTitle.setText(getText(R.string.feeling_insert_toolbar));
         commonImg.setImageResource(R.drawable.comment_complete_selector);
-    }
-
-    @Override
-    public boolean isFifthEmpty() {
-        return insertTitleEdit.getText().toString().isEmpty()
-                &&insertSummaryEdit.getText().toString().isEmpty()
-                &&insertHeedEdit.getText().toString().isEmpty()
-                &&insertExperienceEdit.getText().toString().isEmpty()
-                &&insertShowEdit.getText().toString().isEmpty()
-                &&insertExplainEdit.getText().toString().isEmpty();
-    }
-
-    @Override
-    public void isFifthEmptyError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+",Msg = "+msg+"请填满每个知识项!");
-    }
-
-    @Override
-    public void isFifthEqualsItem() {
-        mPresenter.isEqualsFifthItem(insertTitleEdit.getText().toString());
-    }
-
-    @Override
-    public void saveFifthKnowItem() {
-        mPresenter.saveKnowFifthItem(know_item_id,insertTitleEdit.getText().toString(),
-                insertSummaryEdit.getText().toString(),
-                insertShowEdit.getText().toString(),
-                insertExplainEdit.getText().toString(),
-                insertHeedEdit.getText().toString(),
-                insertExperienceEdit.getText().toString());
-    }
-
-    @Override
-    public void isFifthEqualsError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+",Msg = "+msg+"该知识已经添加了!请重新输入!");
     }
 
     public static void launch(Activity activity, int know_id){
         Intent intent = new Intent(activity, InsertFeelingActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
         activity.startActivity(intent);
-    }
-
-    @Override
-    public void saveFifthItemError(int error, String msg) {
-        ToastUtils.ToastText(getContext(),"Error = "+error+", Msg = "+msg);
-    }
-
-    @Override
-    public void saveFifthItemFinish() {
-        ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
-        initEmpty();
-        finish();
-    }
-
-    private void initEmpty() {
-        insertTitleEdit.setText("");
-        insertSummaryEdit.setText("");
-        insertHeedEdit.setText("");
-        insertExperienceEdit.setText("");
-        insertShowEdit.setText("");
-        insertExplainEdit.setText("");
     }
 
     @OnClick({R.id.common_back,R.id.common_img})
@@ -133,9 +97,25 @@ public class InsertFeelingActivity extends BaseActivity implements KnowInsertFif
                 finish();
                 break;
             case R.id.common_img:
-                mPresenter.isFifthEmpty();
+                mPresenter.isDataEmpty();
                 break;
         }
+    }
+
+
+    @Override
+    public void isEmptySuccess() {
+        mPresenter.add(mFeeling);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return mItem.size() > 0;
+    }
+
+    @Override
+    public void isEmptyFail() {
+        ToastUtils.ToastText(getContext(),R.string.feeling_empty);
     }
 }
 

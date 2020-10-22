@@ -156,6 +156,10 @@
     <string name="class_add_title">请添加新的函数知识!</string>
     <string name="class_update_empty">函数型没有数据不能更新</string>
 
+    <!--感悟型模块-->
+    <string name="feeling_insert_toolbar">感悟型知识</string>
+    <string name="feeling_empty">感悟型知识不能为空,请添加更多内容!</string>
+
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>
     <string name="insert_summary">简介:</string>

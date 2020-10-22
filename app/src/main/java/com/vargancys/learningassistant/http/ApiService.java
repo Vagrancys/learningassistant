@@ -12,6 +12,8 @@ import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
+import com.vargancys.learningassistant.model.home.bean.FeelingBean;
+import com.vargancys.learningassistant.model.home.bean.FeelingDataBean;
 
 import java.util.List;
 import java.util.Map;
@@ -172,4 +174,30 @@ public interface ApiService {
     @POST("query_single_class_data")
     @FormUrlEncoded
     Observable<BaseBean<ClassDataBean>> queryClassData(@Field("article_id") int id);
+
+    @POST("add_single_feeling")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> addFeeling(@Body RequestBody body);
+
+    @POST("update_single_feeling")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> updateFeeling(@Body RequestBody body);
+
+    @GET("query_single_feeling")
+    Observable<BaseBean<FeelingBean>> queryFeeling(@Query("query") int query);
+
+    @POST("delete_single_feeling")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> deleteFeeling(@Field("delete") int delete);
+
+    @POST("delete_most_feeling")
+    @FormUrlEncoded
+    Observable<BaseBean<NoDataBean>> deleteAllFeeling(@Field("delete[]") int[] delete);
+
+    @POST("query_single_feeling_data")
+    @FormUrlEncoded
+    Observable<BaseBean<FeelingDataBean>> queryFeelingData(@Field("article_id") int id);
+
+    @GET("query_all_feeling")
+    Observable<BaseBean<List<FeelingBean>>> queryAllFeeling(@Query("query[]") int[] query);
 }

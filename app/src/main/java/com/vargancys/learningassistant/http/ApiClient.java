@@ -14,6 +14,8 @@ import com.vargancys.learningassistant.bean.home.KnowLedgeBean;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
+import com.vargancys.learningassistant.model.home.bean.FeelingBean;
+import com.vargancys.learningassistant.model.home.bean.FeelingDataBean;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -486,5 +488,68 @@ public class ApiClient {
      */
     public void updateClass(RequestBody book,MySubscriber<BaseBean<NoDataBean>> subscriber){
         toSubscribe(mService.updateClass(book),subscriber);
+    }
+
+    /**
+     * 添加函数型文章
+     * @param body 主体
+     * @param subscriber
+     */
+    public void addFeeling(RequestBody body, MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.addFeeling(body),subscriber);
+    }
+
+    /**
+     * 删除特定函数
+     * @param id
+     * @param subscriber
+     */
+    public void deleteFeeling(int id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteFeeling(id),subscriber);
+    }
+
+    /**
+     * 删除多个特定函数
+     * @param id
+     * @param subscriber
+     */
+    public void deleteAllFeeling(int[] id,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.deleteAllFeeling(id),subscriber);
+    }
+
+    /**
+     * 查询特定的函数
+     * @param id
+     * @param subscriber
+     */
+    public void queryFeeling(int id, MySubscriber<BaseBean<FeelingBean>> subscriber){
+        toSubscribe(mService.queryFeeling(id),subscriber);
+    }
+
+    /**
+     * 查询多个特定的辅助
+     * @param query
+     * @param subscriber
+     */
+    public void queryAllFeeling(int[] query,MySubscriber<BaseBean<List<FeelingBean>>> subscriber){
+        toSubscribe(mService.queryAllFeeling(query),subscriber);
+    }
+
+    /**
+     * 查询函数的数据
+     * @param article_id
+     * @param subscriber
+     */
+    public void queryFeelingData(int article_id, MySubscriber<BaseBean<FeelingDataBean>> subscriber) {
+        toSubscribe(mService.queryFeelingData(article_id),subscriber);
+    }
+
+    /**
+     * 更新函数
+     * @param book
+     * @param subscriber
+     */
+    public void updateFeeling(RequestBody book,MySubscriber<BaseBean<NoDataBean>> subscriber){
+        toSubscribe(mService.updateFeeling(book),subscriber);
     }
 }
