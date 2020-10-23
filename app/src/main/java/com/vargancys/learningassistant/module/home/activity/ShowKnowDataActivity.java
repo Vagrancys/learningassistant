@@ -17,7 +17,7 @@ import com.vargancys.learningassistant.bean.home.HomeKnowCommend;
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowData;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
-import com.vargancys.learningassistant.module.home.activity.update.KnowLedgeUpdateFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.update.UpdateFeelingActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateBookActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateClassActivity;
@@ -112,7 +112,7 @@ public class ShowKnowDataActivity extends BaseActivity implements KnowDataView {
                 UpdateClassActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             case 5:
-                KnowLedgeUpdateFifthActivity.launch(this,REQUEST_CODE,contentId,dataId);
+                UpdateFeelingActivity.launch(this,REQUEST_CODE,contentId,dataId);
                 break;
             default:
                 KnowLedgeUpdateDefaultActivity.launch(this,REQUEST_CODE,contentId,dataId);

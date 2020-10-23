@@ -10,11 +10,13 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.model.home.bean.BookDataBean;
+import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
 import com.vargancys.learningassistant.module.home.activity.KnowSettingContentActivity;
-import com.vargancys.learningassistant.module.home.activity.update.UpdateArticleActivity;
+import com.vargancys.learningassistant.module.home.activity.update.UpdateClassActivity;
+import com.vargancys.learningassistant.module.home.activity.update.UpdateFeelingActivity;
 import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
-import com.vargancys.learningassistant.presenter.home.BookPresenter;
+import com.vargancys.learningassistant.presenter.home.ClassPresenter;
+import com.vargancys.learningassistant.presenter.home.FeelingPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -27,10 +29,10 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/25
  * version:1.0
- * 展示书籍知识数据页面
+ * 展示感悟知识数据页面
  */
-public class DataBookActivity extends BaseActivity implements DataKnowledgeView {
-    private static String TAG = "DataBookActivity";
+public class DataFeelingActivity extends BaseActivity implements DataKnowledgeView {
+    private static String TAG = "DataFeelingActivity";
     @BindView(R.id.common_title_data)
     TextView commonTitleData;
     @BindView(R.id.knowledge_data_title)
@@ -41,7 +43,7 @@ public class DataBookActivity extends BaseActivity implements DataKnowledgeView 
     TextView dataCount;
     @BindView(R.id.knowledge_data_master)
     TextView dataMaster;
-    private BookPresenter mPresenter;
+    private FeelingPresenter mPresenter;
     private int father_id;
     private int article_id;
     public static int RESULT_CODE = 2000;
@@ -59,12 +61,12 @@ public class DataBookActivity extends BaseActivity implements DataKnowledgeView 
         if(getIntent() !=null){
             article_id = getIntent().getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
         }
-        mPresenter = new BookPresenter(this);
+        mPresenter = new FeelingPresenter(this);
         mPresenter.queryData(article_id);
     }
 
     public static void launch(Activity activity,int SHOW_REQUEST,int article_id){
-        Intent intent = new Intent(activity, DataBookActivity.class);
+        Intent intent = new Intent(activity, DataFeelingActivity.class);
         intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,article_id);
         activity.startActivityForResult(intent,SHOW_REQUEST);
     }
@@ -131,10 +133,10 @@ public class DataBookActivity extends BaseActivity implements DataKnowledgeView 
                 finish();
                 break;
             case R.id.know_data_setting:
-                KnowSettingContentActivity.launch(DataBookActivity.this,article_id);
+                KnowSettingContentActivity.launch(DataFeelingActivity.this,article_id);
                 break;
             case R.id.know_data_update:
-                UpdateArticleActivity.launch(this,REQUEST_CODE,father_id,article_id);
+                UpdateFeelingActivity.launch(this,REQUEST_CODE,father_id,article_id);
                 break;
             case R.id.know_data_delete:
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
@@ -152,7 +154,7 @@ public class DataBookActivity extends BaseActivity implements DataKnowledgeView 
 
     @Override
     public void onSuccess(Object object) {
-        BookDataBean mBean = (BookDataBean) object;
+        ClassDataBean mBean = (ClassDataBean) object;
         father_id = mBean.getFather_id();
         commonTitleData.setText(mBean.getTitle());
         dataTitle.setText(mBean.getTitle());

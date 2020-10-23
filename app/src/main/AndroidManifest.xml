@@ -51,7 +51,7 @@
         <activity android:name=".module.home.activity.update.UpdateBookActivity"/>
         <activity android:name=".module.home.activity.update.UpdateAidedActivity"/>
         <activity android:name=".module.home.activity.update.UpdateClassActivity"/>
-        <activity android:name=".module.home.activity.update.KnowLedgeUpdateFifthActivity"/>
+        <activity android:name=".module.home.activity.update.UpdateFeelingActivity"/>
         <activity android:name=".module.home.activity.KnowSearchActivity"/>
         <activity android:name=".module.overview.activity.OverViewInformationActivity"/>
         <activity android:name=".module.overview.activity.OverViewSelectActivity"/>
@@ -98,6 +98,7 @@
             android:launchMode="singleTask"/>
         <activity android:name=".module.home.activity.data.DataBookActivity" />
         <activity android:name=".module.home.activity.data.DataClassActivity"/>
+        <activity android:name=".module.home.activity.data.DataFeelingActivity" />
     </application>
 
 </manifest>

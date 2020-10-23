@@ -54,7 +54,7 @@ public class DataClassActivity extends BaseActivity implements DataKnowledgeView
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_show_book_data;
+        return R.layout.activity_show_know_data;
     }
 
     @Override
