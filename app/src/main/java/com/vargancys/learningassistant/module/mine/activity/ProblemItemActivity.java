@@ -13,7 +13,7 @@ import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.module.home.activity.show.ShowAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowFeelingActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;
 import com.vargancys.learningassistant.module.mine.adapter.ProblemItemAdapter;
@@ -103,7 +103,7 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
                 ShowClassActivity.launch(this,item_id);
                 break;
             case 5:
-                ShowCommonFifthActivity.launch(this,item_id);
+                ShowFeelingActivity.launch(this,item_id);
                 break;
             default:
                 ShowCommonDefaultActivity.launch(this,item_id);

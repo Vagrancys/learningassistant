@@ -11,9 +11,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.model.home.bean.ArticleBean;
-import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.activity.data.DataArticleActivity;
-import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -28,7 +26,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示一级页面
  */
-public class ShowArticleActivity extends BaseActivity  implements ShowCommonView<ArticleBean> {
+public class ShowArticleActivity extends BaseActivity{
     private static final String TAG = "ShowArticleActivity";
 
     @BindView(R.id.common_title)
@@ -77,18 +75,6 @@ public class ShowArticleActivity extends BaseActivity  implements ShowCommonView
         activity.startActivity(intent);
     }
 
-
-
-    @Override
-    public void showFinish(ArticleBean object) {
-
-    }
-
-    @Override
-    public void showError(String msg) {
-
-    }
-
     private void initData(ArticleBean object) {
         articleContent.setText(object.getTitle());
         commonTitle.setText(object.getTitle());
@@ -107,20 +93,10 @@ public class ShowArticleActivity extends BaseActivity  implements ShowCommonView
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
     public void onSuccess(Object object) {
         scrollView.setVisibility(View.VISIBLE);
         includeKnowEmpty.setVisibility(View.GONE);
         initData((ArticleBean) object);
-    }
-
-    @Override
-    public void onNoData() {
-
     }
 
     @Override
@@ -135,10 +111,5 @@ public class ShowArticleActivity extends BaseActivity  implements ShowCommonView
         ToastUtils.ToastText(getContext(),message);
         scrollView.setVisibility(View.GONE);
         includeKnowEmpty.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onFinish() {
-
     }
 }

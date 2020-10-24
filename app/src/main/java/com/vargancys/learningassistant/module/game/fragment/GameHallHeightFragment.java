@@ -10,7 +10,6 @@ import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.game.bean.GameHallRankBean;
 import com.vargancys.learningassistant.module.game.adapter.GameHallHeightAdapter;
-import com.vargancys.learningassistant.module.game.adapter.GameHallSpecialityAdapter;
 import com.vargancys.learningassistant.module.game.view.BaseGameHallView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;

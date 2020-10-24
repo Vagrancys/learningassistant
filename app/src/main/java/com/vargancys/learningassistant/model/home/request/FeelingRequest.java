@@ -1,18 +1,14 @@
 package com.vargancys.learningassistant.model.home.request;
 
 import com.google.gson.Gson;
-import com.vagrancys.learningassistant.db.TemporaryClassDbDao;
 import com.vagrancys.learningassistant.db.TemporaryFeelingDbDao;
 import com.vargancys.learningassistant.base.BaseApplication;
-import com.vargancys.learningassistant.db.knowledge.TemporaryClassDb;
 import com.vargancys.learningassistant.db.knowledge.TemporaryFeelingDb;
 import com.vargancys.learningassistant.http.ApiClient;
 import com.vargancys.learningassistant.http.BaseBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.http.MySubscriber;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
-import com.vargancys.learningassistant.model.home.bean.ClassBean;
-import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
 import com.vargancys.learningassistant.model.home.bean.FeelingBean;
 import com.vargancys.learningassistant.model.home.bean.FeelingDataBean;
 

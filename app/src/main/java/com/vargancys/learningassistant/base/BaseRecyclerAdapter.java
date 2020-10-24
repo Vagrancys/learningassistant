@@ -26,23 +26,17 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseRecyc
     @Override
     public void onBindViewHolder(final CommonViewHolder holder, final int position) {
         Log.e("1adapter","1adapter");
-        holder.getParentView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("adapter","adapter");
-                if(onItemClickListener != null){
-                    onItemClickListener.OnItemClick(position);
-                }
+        holder.getParentView().setOnClickListener(v -> {
+            Log.e("adapter","adapter");
+            if(onItemClickListener != null){
+                onItemClickListener.OnItemClick(position);
             }
         });
-        holder.getParentView().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if(onItemLongClickListener !=null){
-                    onItemLongClickListener.OnItemLongClick(position);
-                }
-                return false;
+        holder.getParentView().setOnLongClickListener(v -> {
+            if(onItemLongClickListener !=null){
+                onItemLongClickListener.OnItemLongClick(position);
             }
+            return false;
         });
     }
 

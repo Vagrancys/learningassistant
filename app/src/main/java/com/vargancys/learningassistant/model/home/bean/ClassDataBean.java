@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.model.home.bean;
 
-import java.util.List;
-
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com

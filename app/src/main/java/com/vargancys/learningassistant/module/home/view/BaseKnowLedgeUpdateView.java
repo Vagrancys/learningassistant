@@ -1,6 +1,5 @@
 package com.vargancys.learningassistant.module.home.view;
 
-import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 
 /**

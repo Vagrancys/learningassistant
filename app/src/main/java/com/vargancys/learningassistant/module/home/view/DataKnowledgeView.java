@@ -1,12 +1,6 @@
 package com.vargancys.learningassistant.module.home.view;
 
-import com.vargancys.learningassistant.bean.home.HomeKnowCommend;
-import com.vargancys.learningassistant.bean.home.HomeKnowContent;
-import com.vargancys.learningassistant.bean.home.HomeKnowData;
-import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
-
-import java.util.List;
 
 /**
  * author: Vagrancy

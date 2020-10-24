@@ -70,14 +70,11 @@ public class AddKnowLedgeActivity extends BaseActivity implements HomeAddView {
     }
 
     private void initListener() {
-        addKnowHave.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.know_true){
-                    mHave = true;
-                }else{
-                    mHave = false;
-                }
+        addKnowHave.setOnCheckedChangeListener((group, checkedId) -> {
+            if(checkedId == R.id.know_true){
+                mHave = true;
+            }else{
+                mHave = false;
             }
         });
 

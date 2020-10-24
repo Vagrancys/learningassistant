@@ -33,7 +33,7 @@ import com.vargancys.learningassistant.module.home.activity.insert.InsertBookAct
 import com.vargancys.learningassistant.module.home.activity.show.ShowAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowFeelingActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;
 import com.vargancys.learningassistant.module.home.adapter.HomeContentAdapter;
 import com.vargancys.learningassistant.module.home.view.HomeContentView;
@@ -246,7 +246,7 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 ShowClassActivity.launch(getActivity(),item_id);
                 break;
             case 5:
-                ShowCommonFifthActivity.launch(getActivity(),item_id);
+                ShowFeelingActivity.launch(getActivity(),item_id);
                 break;
             default:
                 ShowCommonDefaultActivity.launch(getActivity(),item_id);

@@ -48,7 +48,7 @@ public class HistoryShowFifthActivity extends BaseActivity implements HistorySho
     private long historyId;
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_show_fifth;
+        return R.layout.activity_knowledge_show_feeling;
     }
 
     @Override

@@ -10,13 +10,10 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
 import com.vargancys.learningassistant.module.home.activity.KnowSettingContentActivity;
-import com.vargancys.learningassistant.module.home.activity.update.UpdateArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.update.UpdateClassActivity;
 import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
-import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.presenter.home.ClassPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ResourceUtils;

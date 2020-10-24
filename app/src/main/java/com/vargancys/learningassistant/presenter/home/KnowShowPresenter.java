@@ -2,7 +2,6 @@ package com.vargancys.learningassistant.presenter.home;
 
 import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.model.home.request.KnowShowRequest;
-import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 
 /**
  * author: Vagrancy

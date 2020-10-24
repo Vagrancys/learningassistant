@@ -164,8 +164,8 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
         if(selectNode == 0){
 
             KnowListBean mBean = new KnowListBean(mId,mPid,title);
-            mBean.setLevel(Integer.valueOf(level));
-            mBean.setScore(Integer.valueOf(score));
+            mBean.setLevel(Integer.parseInt(level));
+            mBean.setScore(Integer.parseInt(score));
             mAdapter.addNode(mBean);
             mId++;
             //Log.e(TAG,"length="+mBeans.size());
@@ -175,8 +175,8 @@ public class OverViewAddActivity extends BaseActivity implements OverViewAddView
             }
         }else{
             mAdapter.getNodes(selectNode).setName(title);
-            mAdapter.getNodes(selectNode).setLevel(Integer.valueOf(level));
-            mAdapter.getNodes(selectNode).setScore(Integer.valueOf(score));
+            mAdapter.getNodes(selectNode).setLevel(Integer.parseInt(level));
+            mAdapter.getNodes(selectNode).setScore(Integer.parseInt(score));
             mAdapter.notifyDataSetChanged();
         }
         selectNode = 0;

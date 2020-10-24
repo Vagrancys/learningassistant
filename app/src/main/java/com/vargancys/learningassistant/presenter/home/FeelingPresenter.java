@@ -1,20 +1,15 @@
 package com.vargancys.learningassistant.presenter.home;
 
 import com.vargancys.learningassistant.db.knowledge.TemporaryArticleDb;
-import com.vargancys.learningassistant.db.knowledge.TemporaryClassDb;
 import com.vargancys.learningassistant.db.knowledge.TemporaryFeelingDb;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
-import com.vargancys.learningassistant.model.home.bean.ArticleBean;
-import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.bean.FeelingBean;
 import com.vargancys.learningassistant.model.home.request.ArticleRequest;
-import com.vargancys.learningassistant.model.home.request.ClassRequest;
 import com.vargancys.learningassistant.model.home.request.FeelingRequest;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
 import com.vargancys.learningassistant.module.home.view.DataKnowledgeView;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
-import com.vargancys.learningassistant.module.home.view.InsertClassView;
 import com.vargancys.learningassistant.module.home.view.InsertFeelingView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.IBasePresenter;

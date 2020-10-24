@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.module.game.view;
 
 import com.vargancys.learningassistant.model.game.bean.GameHallBean;
-import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 
 /**
  * @author Vagrancy

@@ -11,11 +11,10 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
-import com.vargancys.learningassistant.model.home.bean.ClassBean;
-import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
-import com.vargancys.learningassistant.module.home.activity.data.DataClassActivity;
-import com.vargancys.learningassistant.module.home.adapter.CommonClassTreeAdapter;
-import com.vargancys.learningassistant.presenter.home.ClassPresenter;
+import com.vargancys.learningassistant.model.home.bean.FeelingBean;
+import com.vargancys.learningassistant.module.home.activity.data.DataFeelingActivity;
+import com.vargancys.learningassistant.module.home.adapter.CommonFeelingItemAdapter;
+import com.vargancys.learningassistant.presenter.home.FeelingPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -29,49 +28,44 @@ import butterknife.OnClick;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/06
  * version:1.0
- * 知识展示四级页面
+ * 知识展示感悟页面
  */
-public class ShowClassActivity extends BaseActivity{
-    private static final String TAG = "ShowClassActivity";
+public class ShowFeelingActivity extends BaseActivity{
+    private static final String TAG = "ShowFeelingActivity";
+
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.include_know_empty)
     LinearLayout includeKnowEmpty;
-
-    private ClassPresenter mPresenter;
+    private FeelingPresenter mPresenter;
+    private int item_id;
+    private FeelingBean mFeeling;
+    private ArrayList<FeelingBean.FeelingItemBean> mItem;
+    private CommonFeelingItemAdapter mAdapter;
     private static int REQUEST_CODE = 2001;
-    private int article_id;
-    private ClassBean mClass;
-    private CommonClassTreeAdapter mAdapter;
-    private ArrayList<ClassTreeBean> mTree = new ArrayList<>();
     @Override
     public int getLayoutId() {
-        return R.layout.activity_knowledge_show_class;
+        return R.layout.activity_knowledge_show_feeling;
     }
 
     @Override
     public void initView() {
         Intent intent = getIntent();
-        if(intent !=null){
-            article_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,0);
+        if (intent != null) {
+            item_id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, 0);
         }
-        mPresenter = new ClassPresenter(this);
-        init();
-        mPresenter.query(article_id);
+
+        mPresenter = new FeelingPresenter(this);
+        initAdapter();
+        mPresenter.query(item_id);
     }
 
-    private void init() {
-        mAdapter = new CommonClassTreeAdapter(getContext(),true,mTree);
+    private void initAdapter() {
+        mAdapter = new CommonFeelingItemAdapter(getContext(),true,mItem);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
-    }
-
-    public static void launch(Activity activity, long item_id) {
-        Intent intent = new Intent(activity, ShowClassActivity.class);
-        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID, item_id);
-        activity.startActivity(intent);
     }
 
     @Override
@@ -82,9 +76,15 @@ public class ShowClassActivity extends BaseActivity{
             if(state == 1){
                 finish();
             }else if(state == 2){
-                mPresenter.query(article_id);
+                mPresenter.query(item_id);
             }
         }
+    }
+
+    public static void launch(Activity activity, long item_id) {
+        Intent intent = new Intent(activity, ShowFeelingActivity.class);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,item_id);
+        activity.startActivity(intent);
     }
 
     @OnClick({R.id.common_back,R.id.common_img})
@@ -94,9 +94,10 @@ public class ShowClassActivity extends BaseActivity{
                 finish();
                 break;
             case R.id.common_img:
-                DataClassActivity.launch(ShowClassActivity.this,REQUEST_CODE,article_id);
+                DataFeelingActivity.launch(ShowFeelingActivity.this,REQUEST_CODE,item_id);
                 break;
         }
+
     }
 
     @Override
@@ -111,9 +112,9 @@ public class ShowClassActivity extends BaseActivity{
 
     @Override
     public void onSuccess(Object object) {
-        mClass = (ClassBean) object;
-        mAdapter.setTrees(mClass.getTrees());
+        mFeeling = (FeelingBean) object;
+        mItem.addAll(mFeeling.getItems());
+        mAdapter.setTree(mItem);
         mAdapter.notifyDataSetChanged();
     }
 }
-

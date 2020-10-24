@@ -39,7 +39,7 @@ public class TreeHelper {
 
     private static <T> List<Node> convetData2Node(List<T> datas)
         throws IllegalArgumentException,IllegalAccessException{
-        List<Node> nodes = new ArrayList<Node>();
+        List<Node> nodes = new ArrayList<>();
         Node node = null;
         for (T t:datas){
             long id = -1;
@@ -92,7 +92,7 @@ public class TreeHelper {
     }
 
     private static List<Node> getRootNodes(List<Node> nodes){
-        List<Node> root = new ArrayList<Node>();
+        List<Node> root = new ArrayList<>();
         for (Node node :nodes){
             if(node.isRoot()){
                 root.add(node);

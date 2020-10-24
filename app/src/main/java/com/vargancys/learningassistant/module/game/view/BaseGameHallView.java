@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.module.game.view;
 
 import com.vargancys.learningassistant.model.game.bean.GameHallRankBean;
-import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 
 import java.util.List;
 

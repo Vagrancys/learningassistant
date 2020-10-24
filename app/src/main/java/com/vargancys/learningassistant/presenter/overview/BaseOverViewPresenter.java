@@ -55,19 +55,9 @@ public class BaseOverViewPresenter<T> {
         long parentId = mRequest.saveOverViewContent(mContent);
         boolean result = mRequest.saveOverViewItem(parentId,mItems);
         if(result){
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    ((OverViewAddView)mView).saveDataFinish();
-                }
-            });
+            handler.post(() -> ((OverViewAddView)mView).saveDataFinish());
         }else{
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    ((OverViewAddView)mView).saveDataError(200,"没有保存成功");
-                }
-            });
+            handler.post(() -> ((OverViewAddView)mView).saveDataError(200,"没有保存成功"));
         }
     }
 

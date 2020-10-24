@@ -159,6 +159,8 @@
     <!--感悟型模块-->
     <string name="feeling_insert_toolbar">感悟型知识</string>
     <string name="feeling_empty">感悟型知识不能为空,请添加更多内容!</string>
+    <string name="feeling_add_title">请添加新的感悟知识!</string>
+    <string name="feeling_item_summary">讲解:</string>
 
     <string name="insert_title">标题:</string>
     <string name="insert_hint_title">知识的标题</string>

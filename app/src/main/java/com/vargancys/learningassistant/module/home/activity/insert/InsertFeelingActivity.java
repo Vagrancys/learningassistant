@@ -2,20 +2,21 @@ package com.vargancys.learningassistant.module.home.activity.insert;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.model.home.bean.FeelingBean;
-import com.vargancys.learningassistant.module.home.adapter.FeelingItemAdapter;
+import com.vargancys.learningassistant.module.home.adapter.CommonFeelingItemAdapter;
 import com.vargancys.learningassistant.module.home.view.InsertFeelingView;
 import com.vargancys.learningassistant.presenter.home.FeelingPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
+import com.vargancys.learningassistant.widget.dialog.FeelingItemDataDialog;
 import com.vargancys.learningassistant.widget.dialog.KnowLedgeDataDialog;
 
 import java.util.ArrayList;
@@ -42,7 +43,8 @@ public class InsertFeelingActivity extends BaseActivity implements InsertFeeling
     private int article_id;
     private FeelingBean mFeeling;
     private KnowLedgeDataDialog mDialog;
-    private FeelingItemAdapter mAdapter;
+    private CommonFeelingItemAdapter mAdapter;
+    private FeelingItemDataDialog mItemDialog;
     private List<FeelingBean.FeelingItemBean> mItem = new ArrayList<>();
 
     @Override
@@ -62,7 +64,33 @@ public class InsertFeelingActivity extends BaseActivity implements InsertFeeling
     }
 
     private void initData() {
+        mAdapter = new CommonFeelingItemAdapter(getContext(),false,mItem);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnClickFeelingListener(new CommonFeelingItemAdapter.OnClickFeelingListener() {
+            @Override
+            public void onAdd(int position) {
+                mItemDialog.show();
+            }
 
+            @Override
+            public void onItemUpdate(int position, int item_id) {
+                if(mItem.get(position).getItem_id() == item_id){
+                    mItemDialog.show();
+                }
+            }
+
+            @Override
+            public void onItemDelete(int position,  int item_id) {
+                if(mItem.get(position).getItem_id() == item_id){
+
+                    mItem.remove(position);
+                    mAdapter.setTree(mItem);
+                    mAdapter.notifyDataSetChanged();
+
+                }
+            }
+        });
     }
 
     private void initDialog() {
@@ -76,6 +104,24 @@ public class InsertFeelingActivity extends BaseActivity implements InsertFeeling
             mDialog.dismiss();
         });
 
+        mItemDialog = new FeelingItemDataDialog(this);
+        mItemDialog.setOnClickCancelListener(()->mItemDialog.cancel());
+        mItemDialog.setOnClickDeterMineListener(((position,common, title, summary) -> {
+            if(mItem.get(position).getItem_id() == position){
+                mItem.get(position).setTitle(title);
+                mItem.get(position).setSummary(summary);
+                mItem.get(position).setLevel(common);
+            }else{
+                FeelingBean.FeelingItemBean item = new FeelingBean.FeelingItemBean();
+                item.setPosition(position);
+                item.setItem_id(position);
+                item.setTitle(title);
+                item.setSummary(summary);
+                mItem.add(item);
+            }
+            mAdapter.setTree(mItem);
+            mAdapter.notifyDataSetChanged();
+        }));
     }
 
     @Override
@@ -92,12 +138,21 @@ public class InsertFeelingActivity extends BaseActivity implements InsertFeeling
 
     @OnClick({R.id.common_back,R.id.common_img})
     public void onViewClicked(View itemView){
-        switch (itemView.getId()){
+        switch (itemView.getId()) {
             case R.id.common_back:
                 finish();
                 break;
-            case R.id.common_img:
+            case R.id.common_save:
                 mPresenter.isDataEmpty();
+                break;
+            case R.id.common_data:
+                if(!mDialog.isEdit()){
+                    mDialog.setTitle(mFeeling.getTitle());
+                    mDialog.setLevel(mFeeling.getLevel());
+                    mDialog.setExplain(mFeeling.getExplain());
+                    mDialog.setSummary(mFeeling.getSummary());
+                }
+                mDialog.show();
                 break;
         }
     }
@@ -105,6 +160,7 @@ public class InsertFeelingActivity extends BaseActivity implements InsertFeeling
 
     @Override
     public void isEmptySuccess() {
+        mFeeling.getItems().addAll(mItem);
         mPresenter.add(mFeeling);
     }
 

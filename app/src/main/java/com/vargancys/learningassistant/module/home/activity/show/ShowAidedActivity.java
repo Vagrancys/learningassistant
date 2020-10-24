@@ -11,10 +11,7 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.model.home.bean.AidedBean;
-import com.vargancys.learningassistant.model.home.bean.ArticleBean;
-import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
 import com.vargancys.learningassistant.module.home.activity.data.DataAidedActivity;
-import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 import com.vargancys.learningassistant.presenter.home.AidedPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -29,7 +26,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示三级页面
  */
-public class ShowAidedActivity extends BaseActivity implements ShowCommonView<ArticleBean> {
+public class ShowAidedActivity extends BaseActivity{
     private static final String TAG = "ShowAidedActivity";
 
     @BindView(R.id.common_title)
@@ -113,20 +110,10 @@ public class ShowAidedActivity extends BaseActivity implements ShowCommonView<Ar
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
     public void onSuccess(Object object) {
         scrollView.setVisibility(View.VISIBLE);
         includeKnowEmpty.setVisibility(View.GONE);
         initData((AidedBean) object);
-    }
-
-    @Override
-    public void onNoData() {
-
     }
 
     @Override
@@ -141,20 +128,5 @@ public class ShowAidedActivity extends BaseActivity implements ShowCommonView<Ar
         ToastUtils.ToastText(getContext(), message);
         scrollView.setVisibility(View.GONE);
         includeKnowEmpty.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onFinish() {
-
-    }
-
-    @Override
-    public void showFinish(ArticleBean object) {
-
-    }
-
-    @Override
-    public void showError(String msg) {
-
     }
 }

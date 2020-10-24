@@ -9,8 +9,6 @@ import com.vargancys.learningassistant.http.BaseBean;
 import com.vargancys.learningassistant.http.CommonHttpListener;
 import com.vargancys.learningassistant.http.MySubscriber;
 import com.vargancys.learningassistant.model.common.bean.NoDataBean;
-import com.vargancys.learningassistant.model.home.bean.BookBean;
-import com.vargancys.learningassistant.model.home.bean.BookDataBean;
 import com.vargancys.learningassistant.model.home.bean.ClassBean;
 import com.vargancys.learningassistant.model.home.bean.ClassDataBean;
 

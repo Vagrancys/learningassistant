@@ -25,7 +25,7 @@
         </activity>
         <activity android:name=".module.home.activity.show.ShowArticleActivity"/>
         <activity android:name=".module.home.activity.show.ShowAidedActivity"/>
-        <activity android:name=".module.home.activity.show.ShowCommonFifthActivity"/>
+        <activity android:name=".module.home.activity.show.ShowFeelingActivity"/>
         <activity android:name=".module.home.activity.show.ShowClassActivity"/>
         <activity android:name=".module.home.activity.show.ShowBookActivity"/>
         <activity android:name=".module.common.help.HelpContentActivity"/>
@@ -38,7 +38,6 @@
         <activity android:name=".module.home.activity.insert.InsertClassActivity"/>
         <activity android:name=".module.home.activity.insert.InsertFeelingActivity"/>
         <activity android:name=".module.common.help.HelpUpdateActivity"/>
-        <activity android:name=".module.home.activity.ShowKnowDataActivity"/>
         <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
         <activity android:name=".module.home.activity.KnowSettingContentActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowDefaultActivity"/>

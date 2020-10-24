@@ -46,21 +46,15 @@ public class AddKnowTitleDialog extends AlertDialog {
     }
 
     private void initListener(){
-        mCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onClickCancelListener !=null){
-                    onClickCancelListener.OnCancel();
-                }
+        mCancel.setOnClickListener(v-> {
+            if(onClickCancelListener !=null){
+                onClickCancelListener.OnCancel();
             }
         });
 
-        mDeterMine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onClickDeterMineListener != null){
-                    onClickDeterMineListener.OnDeterMine(mTitleEdit.getText().toString(),mSummaryEdit.getText().toString());
-                }
+        mDeterMine.setOnClickListener(v->{
+            if(onClickDeterMineListener != null){
+                onClickDeterMineListener.OnDeterMine(mTitleEdit.getText().toString(),mSummaryEdit.getText().toString());
             }
         });
     }

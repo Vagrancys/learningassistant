@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.module.overview.adapter.OverViewHallRankAdapter;
 import com.vargancys.learningassistant.utils.ResourceUtils;
 import com.vargancys.learningassistant.widget.section.SectionedRecyclerViewAdapter;
 import com.vargancys.learningassistant.widget.section.StatelessSection;

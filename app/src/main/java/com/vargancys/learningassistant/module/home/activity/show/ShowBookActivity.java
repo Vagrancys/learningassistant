@@ -10,9 +10,8 @@ import android.widget.TextView;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
 import com.vargancys.learningassistant.model.home.bean.BookBean;
-import com.vargancys.learningassistant.module.home.activity.ShowKnowDataActivity;
+import com.vargancys.learningassistant.module.home.activity.data.DataBookActivity;
 import com.vargancys.learningassistant.module.home.adapter.BookShowItemAdapter;
-import com.vargancys.learningassistant.module.home.view.ShowCommonView;
 import com.vargancys.learningassistant.presenter.home.BookPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -30,7 +29,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识展示二级页面
  */
-public class ShowBookActivity extends BaseActivity implements ShowCommonView<BookBean> {
+public class ShowBookActivity extends BaseActivity{
     private static final String TAG = "ShowArticleActivity";
 
     @BindView(R.id.common_title)
@@ -108,16 +107,6 @@ public class ShowBookActivity extends BaseActivity implements ShowCommonView<Boo
         }
     }
 
-    @Override
-    public void showFinish(BookBean object) {
-
-    }
-
-    @Override
-    public void showError(String msg) {
-
-    }
-
     @OnClick({R.id.common_back,R.id.common_img})
     public void onViewClicked(View itemView){
         switch (itemView.getId()){
@@ -125,14 +114,9 @@ public class ShowBookActivity extends BaseActivity implements ShowCommonView<Boo
                 finish();
                 break;
             case R.id.common_img:
-                ShowKnowDataActivity.launch(ShowBookActivity.this,REQUEST_CODE,article_id);
+                DataBookActivity.launch(ShowBookActivity.this,REQUEST_CODE,article_id);
                 break;
         }
-    }
-
-    @Override
-    public void onSuccess() {
-
     }
 
     @Override
@@ -146,11 +130,6 @@ public class ShowBookActivity extends BaseActivity implements ShowCommonView<Boo
     }
 
     @Override
-    public void onNoData() {
-
-    }
-
-    @Override
     public void onFail() {
         ToastUtils.ToastText(getContext(),R.string.book_query_empty);
     }
@@ -158,10 +137,5 @@ public class ShowBookActivity extends BaseActivity implements ShowCommonView<Boo
     @Override
     public void onError(String message) {
         ToastUtils.ToastText(getContext(),R.string.common_error);
-    }
-
-    @Override
-    public void onFinish() {
-
     }
 }

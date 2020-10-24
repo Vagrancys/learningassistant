@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.model.game.bean.GameHallBean;
-import com.vargancys.learningassistant.model.overview.bean.OverViewHallBean;
 import com.vargancys.learningassistant.widget.section.SectionedRecyclerViewAdapter;
 import com.vargancys.learningassistant.widget.section.StatelessSection;
 

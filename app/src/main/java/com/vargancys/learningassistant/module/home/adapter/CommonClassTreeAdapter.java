@@ -1,16 +1,12 @@
 package com.vargancys.learningassistant.module.home.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
-import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
-import com.vargancys.learningassistant.bean.home.HomeKnowFunction;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeBean;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeListBean;
 
@@ -30,10 +26,12 @@ import butterknife.ButterKnife;
 public class CommonClassTreeAdapter extends BaseClassTreeAdapter {
     private List<ClassTreeBean> trees;
     private int position = 0;
+    private boolean show = false;
     private List<ClassTreeListBean> lists = new ArrayList<>();
-    public CommonClassTreeAdapter(Context context, ArrayList<ClassTreeBean> trees){
+    public CommonClassTreeAdapter(Context context,boolean show, ArrayList<ClassTreeBean> trees){
         super(context,R.layout.knowledge_class_add_item,R.layout.knowledge_class_header_item,R.layout.knowledge_class_item);
         this.trees = trees;
+        this.show = show;
         initClassTree();
     }
 
@@ -100,6 +98,7 @@ public class CommonClassTreeAdapter extends BaseClassTreeAdapter {
     @Override
     void onBindAddHolder(CommonViewHolder holder, int position) {
         ClassAddViewHolder mHolder = (ClassAddViewHolder) holder;
+
         mHolder.classAddLinear.setOnClickListener(v -> {
             if(onClickClassListener != null){
                 onClickClassListener.onAdd(position);
@@ -112,21 +111,28 @@ public class CommonClassTreeAdapter extends BaseClassTreeAdapter {
         ClassHeaderViewHolder mHolder = (ClassHeaderViewHolder) holder;
         mHolder.classHeaderCount.setText(header.getCount());
         mHolder.classHeaderTitle.setText(header.getTitle());
-        mHolder.classHeaderAdd.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onHeaderAdd(header.getPosition(),header.getHeader_id());
-            }
-        });
-        mHolder.classHeaderUpdate.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onHeaderUpdate(header.getPosition(),header.getHeader_id());
-            }
-        });
-        mHolder.classHeaderDelete.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onHeaderDelete(header.getPosition(),header.getHeader_id());
-            }
-        });
+        if(show){
+            mHolder.classHeaderAdd.setVisibility(View.GONE);
+            mHolder.classHeaderDelete.setVisibility(View.GONE);
+            mHolder.classHeaderUpdate.setVisibility(View.GONE);
+        }else{
+            mHolder.classHeaderAdd.setOnClickListener(v -> {
+                if(onClickClassListener != null){
+                    onClickClassListener.onHeaderAdd(header.getPosition(),header.getHeader_id());
+                }
+            });
+            mHolder.classHeaderUpdate.setOnClickListener(v -> {
+                if(onClickClassListener != null){
+                    onClickClassListener.onHeaderUpdate(header.getPosition(),header.getHeader_id());
+                }
+            });
+            mHolder.classHeaderDelete.setOnClickListener(v -> {
+                if(onClickClassListener != null){
+                    onClickClassListener.onHeaderDelete(header.getPosition(),header.getHeader_id());
+                }
+            });
+        }
+
     }
 
     @Override
@@ -147,16 +153,22 @@ public class CommonClassTreeAdapter extends BaseClassTreeAdapter {
         mHolder.classItemLevel.setBackgroundResource(imageId);
         mHolder.classItemTitle.setText(item.getTitle());
         mHolder.classItemSummary.setText(item.getSummary());
-        mHolder.classItemUpdate.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onItemUpdate(item.getPosition(),item.getFather_id(),item.getItem_id());
-            }
-        });
-        mHolder.classItemDelete.setOnClickListener(v -> {
-            if(onClickClassListener != null){
-                onClickClassListener.onItemDelete(item.getPosition(),item.getFather_id(),item.getItem_id());
-            }
-        });
+        if(show){
+            mHolder.classItemDelete.setVisibility(View.GONE);
+            mHolder.classItemUpdate.setVisibility(View.GONE);
+        }else{
+            mHolder.classItemUpdate.setOnClickListener(v -> {
+                if(onClickClassListener != null){
+                    onClickClassListener.onItemUpdate(item.getPosition(),item.getFather_id(),item.getItem_id());
+                }
+            });
+            mHolder.classItemDelete.setOnClickListener(v -> {
+                if(onClickClassListener != null){
+                    onClickClassListener.onItemDelete(item.getPosition(),item.getFather_id(),item.getItem_id());
+                }
+            });
+        }
+
     }
 
     public class ClassHeaderViewHolder extends CommonViewHolder{
@@ -189,7 +201,6 @@ public class CommonClassTreeAdapter extends BaseClassTreeAdapter {
         TextView classItemSummary;
         private ClassItemViewHolder(View view){
             super(view);
-            ButterKnife.bind(view);
         }
     }
 
@@ -198,7 +209,6 @@ public class CommonClassTreeAdapter extends BaseClassTreeAdapter {
         LinearLayout classAddLinear;
         private ClassAddViewHolder(View view){
             super(view);
-            ButterKnife.bind(view);
         }
     }
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,22 +40,8 @@ public class UpdateClassActivity extends BaseActivity implements BaseKnowLedgeUp
     ImageView commonImg;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    @BindView(R.id.update_title_edit)
-    EditText updateTitleEdit;
-    @BindView(R.id.update_summary_edit)
-    EditText updateSummaryEdit;
-    @BindView(R.id.update_show_add)
-    ImageView updateShowAdd;
-    @BindView(R.id.update_show_count)
-    TextView updateShowCount;
-    @BindView(R.id.update_heed_edit)
-    EditText updateHeedEdit;
-    @BindView(R.id.update_experience_edit)
-    EditText updateExperienceEdit;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.show_hint_fourth)
-    TextView showHintFourth;
     private ClassPresenter mPresenter;
     private ArrayList<ClassTreeBean> classTrees = new ArrayList<>();
     private ClassBean mClass;
@@ -70,7 +55,7 @@ public class UpdateClassActivity extends BaseActivity implements BaseKnowLedgeUp
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_know_update_fourth;
+        return R.layout.activity_knowledge_update_class;
     }
 
     @Override
@@ -160,7 +145,7 @@ public class UpdateClassActivity extends BaseActivity implements BaseKnowLedgeUp
     }
 
     private void initRecyclerView() {
-        mAdapter = new CommonClassTreeAdapter(getContext(),classTrees);
+        mAdapter = new CommonClassTreeAdapter(getContext(),false,classTrees);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
     }

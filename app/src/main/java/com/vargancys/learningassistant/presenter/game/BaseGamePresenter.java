@@ -200,23 +200,13 @@ public class BaseGamePresenter<T> {
         TidyAllData tidyAllData = new TidyAllData() {
             @Override
             public void showFinish(final List<GameStartContent> mContent) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((StartGameView) mView).showTidyAllDataFinish(mContent);
-                    }
-                });
+                handler.post(() -> ((StartGameView) mView).showTidyAllDataFinish(mContent));
 
             }
 
             @Override
             public void showError(int error, String message) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((StartGameView) mView).showTidyAllDataError(404,"没有处理好!");
-                    }
-                });
+                handler.post(() -> ((StartGameView) mView).showTidyAllDataError(404,"没有处理好!"));
             }
         };
         mRequest.getGameStartAllData(gameId,tidyAllData);

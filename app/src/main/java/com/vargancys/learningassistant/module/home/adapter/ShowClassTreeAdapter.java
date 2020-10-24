@@ -3,7 +3,6 @@ package com.vargancys.learningassistant.module.home.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;

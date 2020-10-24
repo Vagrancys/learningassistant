@@ -25,7 +25,7 @@ public class Node {
     private int icon;
 
     //下一级的子Node
-    private List<Node> children = new ArrayList<Node>();
+    private List<Node> children = new ArrayList<>();
 
     //父Node
     private Node parent;

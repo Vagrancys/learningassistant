@@ -144,12 +144,7 @@ public class ChallengeFragment extends BaseFragment implements ChallengeView {
 
     private void initRefresh() {
         swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                autoRefresh();
-            }
-        });
+        swipeRefresh.setOnRefreshListener(() -> autoRefresh());
     }
 
     private void autoRefresh(){

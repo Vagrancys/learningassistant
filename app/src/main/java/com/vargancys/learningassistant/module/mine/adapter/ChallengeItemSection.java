@@ -36,12 +36,7 @@ public class ChallengeItemSection extends StatelessSection {
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder) {
         ChallengeHeaderViewHolder mHolder = (ChallengeHeaderViewHolder) holder;
         mHolder.challengeTitle.setText(mBean.getTitle());
-        mHolder.challengeMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ChallengeItemActivity.launch(mActivity,mBean.getType());
-            }
-        });
+        mHolder.challengeMore.setOnClickListener(v -> ChallengeItemActivity.launch(mActivity,mBean.getType()));
         mHolder.challengeCount.setText(mBean.getCount());
         mHolder.challengeSuccess.setText(mBean.getSuccess());
         mHolder.challengeTime.setText(String.valueOf(mBean.getTime()));
@@ -57,12 +52,7 @@ public class ChallengeItemSection extends StatelessSection {
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
         ChallengeItemViewHolder mHolder = (ChallengeItemViewHolder) holder;
         final ChallengeItemBean.ChallengeItem mItem = mBean.getItems().get(position);
-        mHolder.getParentView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ChallengeDetailsActivity.launch(mActivity,mItem.getId());
-            }
-        });
+        mHolder.getParentView().setOnClickListener(v -> ChallengeDetailsActivity.launch(mActivity,mItem.getId()));
         mHolder.challengeSerial.setText(String.valueOf(mItem.getSerial()));
         mHolder.challengeTitle.setText(mItem.getTitle());
         mHolder.challengeHighest.setText(String.valueOf(mItem.getHighest()));

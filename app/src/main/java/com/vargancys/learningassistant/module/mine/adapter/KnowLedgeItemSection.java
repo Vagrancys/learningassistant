@@ -12,7 +12,7 @@ import com.vargancys.learningassistant.model.mine.bean.KnowLedgeItemBean;
 import com.vargancys.learningassistant.module.home.activity.show.ShowAidedActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowBookActivity;
-import com.vargancys.learningassistant.module.home.activity.show.ShowCommonFifthActivity;
+import com.vargancys.learningassistant.module.home.activity.show.ShowFeelingActivity;
 import com.vargancys.learningassistant.module.home.activity.show.ShowClassActivity;
 import com.vargancys.learningassistant.module.mine.activity.KnowLedgeItemActivity;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -102,7 +102,7 @@ public class KnowLedgeItemSection extends StatelessSection {
                 ShowClassActivity.launch(mActivity,item_id);
                 break;
             case 5:
-                ShowCommonFifthActivity.launch(mActivity,item_id);
+                ShowFeelingActivity.launch(mActivity,item_id);
                 break;
             default:
                 ShowCommonDefaultActivity.launch(mActivity,item_id);

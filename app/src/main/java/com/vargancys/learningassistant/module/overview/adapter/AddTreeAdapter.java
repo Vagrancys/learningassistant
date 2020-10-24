@@ -56,52 +56,43 @@ public class AddTreeAdapter<T> extends TreeListViewAdapter<T> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.overViewTitle.setText(node.getName());
-        viewHolder.overViewTool.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewHolder.overViewTool.setVisibility(View.GONE);
-                viewHolder.overViewToolLayout.setVisibility(View.VISIBLE);
-                viewHolder.overViewToolLayout.startAnimation(mShowAnim);
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewHolder.overViewToolLayout.startAnimation(mHideAnim);
-                        mHideAnim.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
+        viewHolder.overViewTool.setOnClickListener(v -> {
+            viewHolder.overViewTool.setVisibility(View.GONE);
+            viewHolder.overViewToolLayout.setVisibility(View.VISIBLE);
+            viewHolder.overViewToolLayout.startAnimation(mShowAnim);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    viewHolder.overViewToolLayout.startAnimation(mHideAnim);
+                    mHideAnim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
 
-                            }
+                        }
 
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                viewHolder.overViewTool.setVisibility(View.VISIBLE);
-                                viewHolder.overViewToolLayout.setVisibility(View.GONE);
-                            }
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            viewHolder.overViewTool.setVisibility(View.VISIBLE);
+                            viewHolder.overViewToolLayout.setVisibility(View.GONE);
+                        }
 
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
 
-                            }
-                        });
-                    }
-                },3000);
-            }
-        });
-        viewHolder.overViewToolUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onTreeNodeClickListener != null){
-                    onTreeNodeClickListener.onUpdate(node, position);
+                        }
+                    });
                 }
+            },3000);
+        });
+        viewHolder.overViewToolUpdate.setOnClickListener(v -> {
+            if(onTreeNodeClickListener != null){
+                onTreeNodeClickListener.onUpdate(node, position);
             }
         });
 
-        viewHolder.overViewToolDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(onTreeNodeClickListener != null){
-                    onTreeNodeClickListener.onDelete(node, position);
-                }
+        viewHolder.overViewToolDelete.setOnClickListener(v -> {
+            if(onTreeNodeClickListener != null){
+                onTreeNodeClickListener.onDelete(node, position);
             }
         });
         viewHolder.overViewScore.setText(node.getScore()+"分");

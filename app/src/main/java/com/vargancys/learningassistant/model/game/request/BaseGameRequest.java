@@ -177,81 +177,78 @@ public class BaseGameRequest {
 
     //关卡中心的id
     public void getGameStartAllData(final long gameId, final BaseGamePresenter.TidyAllData tidyAllData) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<OverViewListItem> mOverViews =  getGameListBean(getGameListData(gameId).getOverviewId());
-                List<GameStartContent> mStarts = new ArrayList<>();
-                int type = GameConfigUtils.CONFIG_TYPE;
-                boolean isError = GameConfigUtils.CONFIG_CONTAIN;
-                int difficulty = GameConfigUtils.CONFIG_DIFFICULTY;
-                boolean isRepeat = GameConfigUtils.CONFIG_REPEAT;
-                for (OverViewListItem mItem:mOverViews) {
-                    long SubjectId = getSubjectContentData(mItem.getId()).getId();
-                    List<GameSubjectItem> mSubjects = mSubjectItemDao
-                            .queryBuilder()
-                            .where(GameSubjectItemDao.Properties.SubjectId.eq(SubjectId))
-                            .limit(GameConfigUtils.CONFIG_SINGLE)
-                            .list();
-                    Log.e(TAG,"mSubjects ="+mSubjects.size());
-                    for(GameSubjectItem mSubject :mSubjects){
-                        if(isError&&mSubject.getIsError()){
-                            if(!isRepeat&&mSubject.getIsRepeat()){
-                                if(difficulty <= mSubject.getLevel()){
-                                    GameStartContent mStart = new GameStartContent();
-                                    mStart.setStart_id(mSubject.getId());
-                                    mStart.setGame_id(gameId);
-                                    mStart.setContent_id(SubjectId);
-                                    if(type == 0){
-                                        switch (mSubject.getSelect()){
-                                            case 1:
-                                                initRadio(mSubject, mStart);
-                                                break;
-                                            case 2:
-                                                initMultiple(mSubject, mStart);
-                                                break;
-                                            case 3:
-                                                initFill(mSubject, mStart);
-                                                break;
-                                            case 4:
-                                                initSubjective(mSubject, mStart);
-                                                break;
-                                        }
-                                    }else if(type == 1){
-                                        initRadio(mSubject,mStart);
-                                    }else if(type == 2){
-                                        initMultiple(mSubject,mStart);
-                                    }else if(type == 3){
-                                        initFill(mSubject,mStart);
-                                    }else if(type == 4){
-                                        initSubjective(mSubject,mStart);
+        new Thread(() -> {
+            List<OverViewListItem> mOverViews =  getGameListBean(getGameListData(gameId).getOverviewId());
+            List<GameStartContent> mStarts = new ArrayList<>();
+            int type = GameConfigUtils.CONFIG_TYPE;
+            boolean isError = GameConfigUtils.CONFIG_CONTAIN;
+            int difficulty = GameConfigUtils.CONFIG_DIFFICULTY;
+            boolean isRepeat = GameConfigUtils.CONFIG_REPEAT;
+            for (OverViewListItem mItem:mOverViews) {
+                long SubjectId = getSubjectContentData(mItem.getId()).getId();
+                List<GameSubjectItem> mSubjects = mSubjectItemDao
+                        .queryBuilder()
+                        .where(GameSubjectItemDao.Properties.SubjectId.eq(SubjectId))
+                        .limit(GameConfigUtils.CONFIG_SINGLE)
+                        .list();
+                Log.e(TAG,"mSubjects ="+mSubjects.size());
+                for(GameSubjectItem mSubject :mSubjects){
+                    if(isError&&mSubject.getIsError()){
+                        if(!isRepeat&&mSubject.getIsRepeat()){
+                            if(difficulty <= mSubject.getLevel()){
+                                GameStartContent mStart = new GameStartContent();
+                                mStart.setStart_id(mSubject.getId());
+                                mStart.setGame_id(gameId);
+                                mStart.setContent_id(SubjectId);
+                                if(type == 0){
+                                    switch (mSubject.getSelect()){
+                                        case 1:
+                                            initRadio(mSubject, mStart);
+                                            break;
+                                        case 2:
+                                            initMultiple(mSubject, mStart);
+                                            break;
+                                        case 3:
+                                            initFill(mSubject, mStart);
+                                            break;
+                                        case 4:
+                                            initSubjective(mSubject, mStart);
+                                            break;
                                     }
-                                    mStarts.add(mStart);
+                                }else if(type == 1){
+                                    initRadio(mSubject,mStart);
+                                }else if(type == 2){
+                                    initMultiple(mSubject,mStart);
+                                }else if(type == 3){
+                                    initFill(mSubject,mStart);
+                                }else if(type == 4){
+                                    initSubjective(mSubject,mStart);
                                 }
+                                mStarts.add(mStart);
                             }
                         }
                     }
                 }
-                Log.e("looper","size ="+mStarts.size());
+            }
+            Log.e("looper","size ="+mStarts.size());
 
 
 
-                if(mStarts.size() > 0){
-                    int size = GameConfigUtils.CONFIG_NUMBER;
-                    if(size>mStarts.size()){
-                        size = mStarts.size();
-                    }
-                    Random mRandom = new Random();
-                    List<GameStartContent> mFinishStart = new ArrayList<>();
-                    for (int i = 0; i < size; i++){
-                        int length = mRandom.nextInt(mStarts.size());
-                        mFinishStart.add(mStarts.get(length));
-                        mStarts.remove(length);
-                    }
-                    tidyAllData.showFinish(mFinishStart);
-                }else{
-                    tidyAllData.showError(404,"没有找到合适的答题项!");
+            if(mStarts.size() > 0){
+                int size = GameConfigUtils.CONFIG_NUMBER;
+                if(size>mStarts.size()){
+                    size = mStarts.size();
                 }
+                Random mRandom = new Random();
+                List<GameStartContent> mFinishStart = new ArrayList<>();
+                for (int i = 0; i < size; i++){
+                    int length = mRandom.nextInt(mStarts.size());
+                    mFinishStart.add(mStarts.get(length));
+                    mStarts.remove(length);
+                }
+                tidyAllData.showFinish(mFinishStart);
+            }else{
+                tidyAllData.showError(404,"没有找到合适的答题项!");
             }
         }).start();
     }

@@ -1,7 +1,5 @@
 package com.vargancys.learningassistant.model.home.bean;
 
-import android.support.constraint.solver.LinearSystem;
-
 import java.util.List;
 
 /**

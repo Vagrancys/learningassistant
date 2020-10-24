@@ -17,9 +17,9 @@ import com.vargancys.learningassistant.R;
  * e-mail: 18050829067@163.com
  * time  : 2020/03/23
  * version:1.0
- * 函数Item数据弹窗
+ * 感悟Item数据弹窗
  */
-public class ClassItemDataDialog extends AlertDialog {
+public class FeelingItemDataDialog extends AlertDialog {
     private EditText mTitle;
     private EditText mSummary;
     private TextView mCancel;
@@ -28,17 +28,17 @@ public class ClassItemDataDialog extends AlertDialog {
     private int mCommon = 1;
     private int tree_id;
     private boolean isEdit = false;
-    public ClassItemDataDialog(Context context) {
+    public FeelingItemDataDialog(Context context) {
         this(context,0);
     }
 
-    public ClassItemDataDialog(Context context, int themeResId) {
+    public FeelingItemDataDialog(Context context, int themeResId) {
         super(context, themeResId);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.pop_knowledge_class_item);
+        setContentView(R.layout.pop_knowledge_class_header);
         initView();
         initListener();
     }
@@ -123,7 +123,7 @@ public class ClassItemDataDialog extends AlertDialog {
     }
 
     public interface OnClickDeterMineListener{
-        void OnDeterMine(int position,int common, String title, String summary);
+        void OnDeterMine(int position, int common, String title, String summary);
     }
 
     private OnClickCancelListener onClickCancelListener;

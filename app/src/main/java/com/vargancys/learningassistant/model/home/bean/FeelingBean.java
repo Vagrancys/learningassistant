@@ -77,5 +77,57 @@ public class FeelingBean {
     public static class FeelingItemBean{
         private String title;
         private String summary;
+        private int type;
+        private int level;
+        private int position;
+        private int item_id;
+
+        public int getItem_id() {
+            return item_id;
+        }
+
+        public void setItem_id(int item_id) {
+            this.item_id = item_id;
+        }
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        public void setLevel(int level) {
+            this.level = level;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public void setSummary(String summary) {
+            this.summary = summary;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
     }
 }

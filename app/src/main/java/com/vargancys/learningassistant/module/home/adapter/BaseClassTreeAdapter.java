@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.home.bean.ClassTreeListBean;
-import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 
 import java.util.ArrayList;
 import java.util.List;

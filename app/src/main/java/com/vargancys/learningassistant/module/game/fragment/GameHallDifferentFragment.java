@@ -9,14 +9,9 @@ import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseFragment;
 import com.vargancys.learningassistant.base.BaseRecyclerAdapter;
 import com.vargancys.learningassistant.model.game.bean.GameHallRankBean;
-import com.vargancys.learningassistant.model.overview.bean.OverViewHallRankBean;
 import com.vargancys.learningassistant.module.game.adapter.GameHallDifferentAdapter;
 import com.vargancys.learningassistant.module.game.view.BaseGameHallView;
-import com.vargancys.learningassistant.module.overview.adapter.OverViewHallHotAdapter;
-import com.vargancys.learningassistant.module.overview.fragment.OverViewHallHotFragment;
-import com.vargancys.learningassistant.module.overview.view.BaseHallView;
 import com.vargancys.learningassistant.presenter.game.BaseGamePresenter;
-import com.vargancys.learningassistant.presenter.overview.BaseOverViewPresenter;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
 import java.util.ArrayList;

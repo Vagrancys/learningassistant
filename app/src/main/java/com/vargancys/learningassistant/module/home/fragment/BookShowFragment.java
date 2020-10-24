@@ -1,7 +1,6 @@
 package com.vargancys.learningassistant.module.home.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;

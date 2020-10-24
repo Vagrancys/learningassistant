@@ -78,7 +78,7 @@ public class InsertClassActivity extends BaseActivity implements InsertClassView
     }
 
     private void initRecyclerView() {
-        mAdapter = new CommonClassTreeAdapter(getContext(), classTrees);
+        mAdapter = new CommonClassTreeAdapter(getContext(), false,classTrees);
         classRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         classRecycler.setAdapter(mAdapter);
     }

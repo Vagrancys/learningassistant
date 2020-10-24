@@ -57,22 +57,12 @@ public class ChallengeItemActivity extends BaseActivity implements ChallengeItem
         type = getIntent().getIntExtra(ConstantsUtils.KNOW_TYPE_ID, 0);
         mPresenter = new BaseMinePresenter(this);
         swipeRefresh.setColorSchemeColors(ResourceUtils.getColor(getContext(),R.color.pink));
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                autoRefresh();
-            }
-        });
+        swipeRefresh.setOnRefreshListener(this::autoRefresh);
 
         mAdapter = new ChallengeItemAdapter(getContext(),mBean);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void OnItemClick(int position) {
-                ChallengeDetailsActivity.launch(ChallengeItemActivity.this,mBean.get(position).getId());
-            }
-        });
+        mAdapter.setOnItemClickListener(position -> ChallengeDetailsActivity.launch(ChallengeItemActivity.this,mBean.get(position).getId()));
     }
 
     @Override
