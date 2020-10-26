@@ -64,6 +64,7 @@ public class InsertFeelingActivity extends BaseActivity implements InsertFeeling
     }
 
     private void initData() {
+        mFeeling = new FeelingBean();
         mAdapter = new CommonFeelingItemAdapter(getContext(),false,mItem);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mAdapter);

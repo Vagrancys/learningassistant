@@ -133,10 +133,11 @@ public class UpdateFeelingActivity extends BaseActivity implements BaseKnowLedge
         commonImg.setImageResource(R.drawable.comment_complete_selector);
     }
 
-    public static void launch(Activity activity, int know_id){
-        Intent intent = new Intent(activity, InsertFeelingActivity.class);
-        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,know_id);
-        activity.startActivity(intent);
+    public static void launch(Activity activity,int REQUEST_CODE, int article_id,int father_id){
+        Intent intent = new Intent(activity, UpdateClassActivity.class);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_FATHER_ID,father_id);
+        intent.putExtra(ConstantsUtils.KNOWLEDGE_ARTICLE_ID,article_id);
+        activity.startActivityForResult(intent,REQUEST_CODE);
     }
 
     @OnClick({R.id.common_back,R.id.common_img})

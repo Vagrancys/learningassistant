@@ -6,8 +6,6 @@ import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistoryFunction;
 import com.vargancys.learningassistant.model.home.request.KnowUpdateRequest;
 import com.vargancys.learningassistant.module.home.view.BaseKnowLedgeUpdateView;
-import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateFourthView;
-import com.vargancys.learningassistant.module.home.view.KnowLedgeUpdateSecondView;
 
 import java.util.List;
 

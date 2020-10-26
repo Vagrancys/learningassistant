@@ -77,7 +77,7 @@ public class ShowClassActivity extends BaseActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE&&resultCode == ShowKnowDataActivity.RESULT_CODE&&data !=null){
+        if(requestCode == REQUEST_CODE&&resultCode == DataClassActivity.RESULT_CODE&&data !=null){
             int state = data.getIntExtra(ConstantsUtils.ITEM_DELETE_STATUS,0);
             if(state == 1){
                 finish();

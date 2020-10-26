@@ -74,7 +74,7 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.article_toolbar));
+        commonTitle.setText(getText(R.string.article_insert_toolbar));
     }
 
     @Override

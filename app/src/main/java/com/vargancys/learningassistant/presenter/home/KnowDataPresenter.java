@@ -5,7 +5,6 @@ import com.vargancys.learningassistant.bean.home.HomeKnowContent;
 import com.vargancys.learningassistant.bean.home.HomeKnowData;
 import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.model.home.request.KnowDataRequest;
-import com.vargancys.learningassistant.module.home.view.KnowDataView;
 
 import java.util.List;
 

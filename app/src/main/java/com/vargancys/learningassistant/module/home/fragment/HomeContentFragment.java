@@ -248,9 +248,6 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
             case 5:
                 ShowFeelingActivity.launch(getActivity(),item_id);
                 break;
-            default:
-                ShowCommonDefaultActivity.launch(getActivity(),item_id);
-                break;
         }
     }
 
@@ -270,9 +267,6 @@ public class HomeContentFragment extends BaseFragment implements HomeContentView
                 break;
             case 5:
                 InsertFeelingActivity.launch(getActivity(),item_id);
-                break;
-            default:
-                InsertDefaultActivity.launch(getActivity(),item_id);
                 break;
         }
     }

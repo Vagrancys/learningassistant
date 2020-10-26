@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * 知识添加二级页面
  */
 public class InsertBookActivity extends BaseActivity  implements InsertBookView {
-    private String TAG = "KnowInsertSecondActivity";
+    private String TAG = "InsertBookActivity";
     @BindView(R.id.common_img)
     ImageView commonImg;
     @BindView(R.id.common_title)
@@ -68,7 +68,7 @@ public class InsertBookActivity extends BaseActivity  implements InsertBookView 
 
     @Override
     public void initToolbar() {
-        commonTitle.setText(getText(R.string.common_second));
+        commonTitle.setText(getText(R.string.book_insert_toolbar));
     }
 
     private void initDialog(){
