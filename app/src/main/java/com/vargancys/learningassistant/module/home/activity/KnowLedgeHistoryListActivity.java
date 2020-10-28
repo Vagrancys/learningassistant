@@ -20,7 +20,7 @@ import com.vargancys.learningassistant.module.home.activity.history.HistoryShowS
 import com.vargancys.learningassistant.module.home.activity.history.HistoryShowThirdActivity;
 import com.vargancys.learningassistant.module.home.adapter.HistoryDataAdapter;
 import com.vargancys.learningassistant.module.home.view.BaseHistoryView;
-import com.vargancys.learningassistant.presenter.home.KnowHistoryPresenter;
+import com.vargancys.learningassistant.presenter.home.KnowledgeHistoryPresenter;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
 
@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * version:1.0
  * 知识历史数据页面
  */
-public class KnowHistoryDataActivity extends BaseActivity implements BaseHistoryView {
+public class KnowLedgeHistoryListActivity extends BaseActivity implements BaseHistoryView {
     @BindView(R.id.common_title)
     TextView commonTitle;
     @BindView(R.id.recyclerView)
@@ -45,7 +45,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
     private long dataId;
     private int know_level;
     private HistoryDataAdapter mHistoryAdapter;
-    private KnowHistoryPresenter mPresenter;
+    private KnowledgeHistoryPresenter mPresenter;
     private List<HomeKnowHistory> mHistorys = new ArrayList<>();
     private Handler mHandler;
     @Override
@@ -57,7 +57,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
         }
         mHandler = new Handler();
         initAdapter();
-        mPresenter = new KnowHistoryPresenter(this);
+        mPresenter = new KnowledgeHistoryPresenter(this);
         mPresenter.getAllHistoryData(dataId);
         initListener();
     }
@@ -74,22 +74,22 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
     private void selectShowHistoryLevel(int know_level,long id) {
         switch (know_level){
             case 1:
-                HistoryShowFirstActivity.launch(KnowHistoryDataActivity.this,id);
+                HistoryShowFirstActivity.launch(KnowLedgeHistoryListActivity.this,id);
                 break;
             case 2:
-                HistoryShowSecondActivity.launch(KnowHistoryDataActivity.this,id);
+                HistoryShowSecondActivity.launch(KnowLedgeHistoryListActivity.this,id);
                 break;
             case 3:
-                HistoryShowThirdActivity.launch(KnowHistoryDataActivity.this,id);
+                HistoryShowThirdActivity.launch(KnowLedgeHistoryListActivity.this,id);
                 break;
             case 4:
-                HistoryShowFourthActivity.launch(KnowHistoryDataActivity.this,id);
+                HistoryShowFourthActivity.launch(KnowLedgeHistoryListActivity.this,id);
                 break;
             case 5:
-                HistoryShowFifthActivity.launch(KnowHistoryDataActivity.this,id);
+                HistoryShowFifthActivity.launch(KnowLedgeHistoryListActivity.this,id);
                 break;
             default:
-                HistoryShowDefaultActivity.launch(KnowHistoryDataActivity.this,id);
+                HistoryShowDefaultActivity.launch(KnowLedgeHistoryListActivity.this,id);
                 break;
         }
     }
@@ -111,7 +111,7 @@ public class KnowHistoryDataActivity extends BaseActivity implements BaseHistory
     }
 
     public static void launch(Activity activity, long data_id,int know_level) {
-        Intent intent = new Intent(activity, KnowHistoryDataActivity.class);
+        Intent intent = new Intent(activity, KnowLedgeHistoryListActivity.class);
         intent.putExtra(ConstantsUtils.KNOW_DATA_ID, data_id);
         intent.putExtra(ConstantsUtils.KNOW_LEVEL_ID,know_level);
         activity.startActivity(intent);

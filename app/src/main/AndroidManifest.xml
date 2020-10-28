@@ -38,7 +38,7 @@
         <activity android:name=".module.home.activity.insert.InsertClassActivity"/>
         <activity android:name=".module.home.activity.insert.InsertFeelingActivity"/>
         <activity android:name=".module.common.help.HelpUpdateActivity"/>
-        <activity android:name=".module.home.activity.KnowHistoryDataActivity"/>
+        <activity android:name=".module.home.activity.KnowLedgeHistoryListActivity"/>
         <activity android:name=".module.home.activity.KnowSettingContentActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowDefaultActivity"/>
         <activity android:name=".module.home.activity.history.HistoryShowFirstActivity"/>
@@ -98,6 +98,7 @@
         <activity android:name=".module.home.activity.data.DataBookActivity" />
         <activity android:name=".module.home.activity.data.DataClassActivity"/>
         <activity android:name=".module.home.activity.data.DataFeelingActivity" />
+        <activity android:name=".module.home.activity.data.DataAidedActivity" />
     </application>
 
 </manifest>
