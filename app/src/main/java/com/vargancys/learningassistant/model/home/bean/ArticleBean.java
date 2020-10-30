@@ -86,5 +86,5 @@ public class ArticleBean {
     public void setFather_id(int father_id) {
         this.father_id = father_id;
     }
-//标题
+
 }

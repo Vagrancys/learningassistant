@@ -1,9 +1,6 @@
 package com.vargancys.learningassistant.presenter.home;
 
-import com.vargancys.learningassistant.bean.home.HomeKnowHistory;
 import com.vargancys.learningassistant.model.home.bean.HistoryBean;
-import com.vargancys.learningassistant.model.home.request.KnowHistoryRequest;
-import com.vargancys.learningassistant.module.home.view.BaseHistoryView;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 import com.vargancys.learningassistant.presenter.IBasePresenter;
 
