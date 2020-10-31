@@ -1,22 +1,7 @@
 package com.vargancys.learningassistant.model.common.bean;
 
-public class NoDataBean {
-    private String message;
-    private int code;
+import com.vargancys.learningassistant.base.BaseEntity;
 
-    public boolean getCode() {
-        return code == 1;
-    }
+public class NoDataBean extends BaseEntity {
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

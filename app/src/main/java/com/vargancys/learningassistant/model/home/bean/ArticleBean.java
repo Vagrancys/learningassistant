@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.model.home.bean;
 
+import com.vargancys.learningassistant.base.BaseEntity;
+
 /**
  * author: Vagrancy
  * e-mail: 18050829067@163.com
@@ -7,7 +9,7 @@ package com.vargancys.learningassistant.model.home.bean;
  * version:1.0
  * 模块名: 文章型知识实体类
  */
-public class ArticleBean {
+public class ArticleBean extends BaseEntity {
     //id
     public static String ARTICLE_ID = "article_id";
     public static String KNOWLEDGE_ID = "knowledge_id";

@@ -9,11 +9,16 @@ import android.widget.TextView;
 
 import com.vargancys.learningassistant.R;
 import com.vargancys.learningassistant.base.BaseActivity;
+import com.vargancys.learningassistant.base.BaseEntity;
+import com.vargancys.learningassistant.base.BasePresenter;
+import com.vargancys.learningassistant.model.common.bean.NoDataBean;
 import com.vargancys.learningassistant.model.home.bean.ArticleBean;
 import com.vargancys.learningassistant.db.knowledge.TemporaryArticleDb;
 import com.vargancys.learningassistant.module.home.activity.show.ShowArticleActivity;
+import com.vargancys.learningassistant.module.home.contract.KnowledgeArticleContract;
 import com.vargancys.learningassistant.module.home.view.InsertArticleView;
 import com.vargancys.learningassistant.presenter.home.ArticlePresenter;
+import com.vargancys.learningassistant.presenter.home.InsertArticlePresenter;
 import com.vargancys.learningassistant.utils.CacheUtils;
 import com.vargancys.learningassistant.utils.ConstantsUtils;
 import com.vargancys.learningassistant.utils.ToastUtils;
@@ -29,12 +34,11 @@ import butterknife.OnClick;
  * version:1.0
  * 知识文章型页面
  */
-public class InsertArticleActivity extends BaseActivity implements InsertArticleView {
+public class InsertArticleActivity extends BaseActivity<InsertArticlePresenter, InsertArticleView>{
     @BindView(R.id.article_edit)
     EditText articleEdit;
     @BindView(R.id.common_title)
     TextView commonTitle;
-    private ArticlePresenter mPresenter;
     //知识的id
     private int KnowLedge_Id;
     //本地文章id
@@ -54,8 +58,7 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
         if(intent != null){
             KnowLedge_Id = intent.getIntExtra(ConstantsUtils.KNOWLEDGE_ID,0);
         }
-        mPresenter = new ArticlePresenter(this);
-        mPresenter.nativeQuery(KnowLedge_Id);
+        getPresenter().getContract().nativeQuery(KnowLedge_Id);
         mArticle = new ArticleBean();
         initDialog();
     }
@@ -78,29 +81,65 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
     }
 
     @Override
-    public boolean isEmpty() {
-        return articleEdit.getText().length() > 0;
+    public InsertArticleView getContract() {
+        return new InsertArticleView() {
+
+            @Override
+            public boolean isEmpty() {
+                return articleEdit.getText().length() > 0;
+            }
+
+            @Override
+            public void isEmptyFail(int error) {
+                ToastUtils.ToastText(getContext(),R.string.article_edit_empty);
+            }
+
+            @Override
+            public void nativeQueryFinish(Object object) {
+                isArticle = true;
+                TemporaryArticleDb db = (TemporaryArticleDb) object;
+                nativeArticle_id = db.getTemporary_article_id();
+                articleEdit.setText(db.getContent());
+            }
+
+            @Override
+            public void onSuccess(NoDataBean noDataBean) {
+                if(isArticle){
+                   getPresenter().getContract().nativeDelete(nativeArticle_id);
+                }
+                ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
+                initEmpty();
+                ShowArticleActivity.launch(InsertArticleActivity.this,Integer.parseInt(noDataBean.getMessage()));
+                finish();
+            }
+
+            @Override
+            public void onFail() {
+                ToastUtils.ToastText(getContext(),R.string.common_fail);
+            }
+
+            @Override
+            public void onError(String message) {
+                ToastUtils.ToastText(getContext(),R.string.common_error);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void isEmptySuccess() {
+                mArticle.setFather_id(KnowLedge_Id);
+                mArticle.setContent(articleEdit.getText().toString());
+                getPresenter().getContract().addArticle(mArticle);
+            }
+        };
     }
 
     @Override
-    public void isEmptyError(int error) {
-        ToastUtils.ToastText(getContext(),R.string.article_edit_empty);
-    }
-
-    @Override
-    public void isEmptyFinish() {
-
-        mArticle.setFather_id(KnowLedge_Id);
-        mArticle.setContent(articleEdit.getText().toString());
-        mPresenter.add(mArticle);
-    }
-
-    @Override
-    public void nativeQueryFinish(Object object) {
-        isArticle = true;
-        TemporaryArticleDb db = (TemporaryArticleDb) object;
-        nativeArticle_id = db.getTemporary_article_id();
-        articleEdit.setText(db.getContent());
+    public InsertArticlePresenter getPresenter() {
+        return new InsertArticlePresenter();
     }
 
     public static void launch(Activity activity, int knowledge_id){
@@ -110,7 +149,7 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
     }
 
     private void initEmpty() {
-        mPresenter.nativeDelete(KnowLedge_Id);
+        getPresenter().getContract().nativeDelete(KnowLedge_Id);
         articleEdit.setText(null);
     }
 
@@ -121,7 +160,7 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
                 finishArticle();
                 break;
             case R.id.common_save:
-                mPresenter.isEmpty();
+                getPresenter().getContract().isEmpty();
                 break;
             case R.id.common_data:
                 if(!mDialog.isEdit()){
@@ -133,7 +172,6 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
                 mDialog.show();
                 break;
             case R.id.common_set:
-                // TODO 功能等待....
                 ToastUtils.DefaultToast(getContext());
                 break;
 
@@ -170,42 +208,6 @@ public class InsertArticleActivity extends BaseActivity implements InsertArticle
         TemporaryArticleDb mDB = new TemporaryArticleDb();
         mDB.setArticle_id(KnowLedge_Id);
         mDB.setContent(articleEdit.getText().toString());
-        mPresenter.nativeAdd(mDB);
-    }
-
-    @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
-    public void onSuccess(Object object) {
-        if(isArticle){
-            mPresenter.nativeDelete(nativeArticle_id);
-        }
-        ToastUtils.ToastText(getContext(),R.string.know_insert_success_text);
-        initEmpty();
-        ShowArticleActivity.launch(this,(int)object);
-        finish();
-    }
-
-    @Override
-    public void onNoData() {
-
-    }
-
-    @Override
-    public void onFail() {
-        ToastUtils.ToastText(getContext(),R.string.common_fail);
-    }
-
-    @Override
-    public void onError(String message) {
-        ToastUtils.ToastText(getContext(),R.string.common_error);
-    }
-
-    @Override
-    public void onFinish() {
-
+        getPresenter().getContract().nativeAdd(mDB);
     }
 }

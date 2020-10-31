@@ -1,5 +1,7 @@
 package com.vargancys.learningassistant.module.home.view;
 
+import com.vargancys.learningassistant.model.common.bean.NoDataBean;
+import com.vargancys.learningassistant.module.home.contract.KnowledgeArticleContract;
 import com.vargancys.learningassistant.presenter.BaseCallBackListener;
 
 /**
@@ -8,9 +10,9 @@ import com.vargancys.learningassistant.presenter.BaseCallBackListener;
  * time  : 2020/03/09
  * version:1.0
  */
-public interface InsertArticleView extends BaseCallBackListener {
+public interface InsertArticleView extends KnowledgeArticleContract.View<NoDataBean> {
     boolean isEmpty();
-    void isEmptyError(int error);
-    void isEmptyFinish();
+    void isEmptyFail(int error);
+    void isEmptySuccess();
     void nativeQueryFinish(Object object);
 }

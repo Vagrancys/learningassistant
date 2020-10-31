@@ -1,5 +1,6 @@
 package com.vargancys.learningassistant.presenter.home;
 
+import com.vargancys.learningassistant.base.BasePresenter;
 import com.vargancys.learningassistant.model.home.bean.ArticleBean;
 import com.vargancys.learningassistant.db.knowledge.TemporaryArticleDb;
 import com.vargancys.learningassistant.http.CommonHttpListener;
@@ -28,7 +29,7 @@ public class ArticlePresenter implements IBasePresenter<ArticleBean> {
 
     @Override
     public void add(ArticleBean object) {
-        ArticleRequest.getInstance().addArticle(object,getIdListener());
+
     }
 
     @Override
@@ -74,15 +75,6 @@ public class ArticlePresenter implements IBasePresenter<ArticleBean> {
         ArticleRequest.getInstance().updateArticle(object,getUpdateListener());
     }
 
-    public void isEmpty(){
-        InsertArticleView view = ((InsertArticleView) mView);
-        boolean result = view.isEmpty();
-        if(result){
-            view.isEmptyFinish();
-        }else{
-            view.isEmptyError(200);
-        }
-    }
     public CommonHttpListener getDeleteDataListener(){
         DataKnowledgeView view = (DataKnowledgeView) mView;
         return new CommonHttpListener() {
