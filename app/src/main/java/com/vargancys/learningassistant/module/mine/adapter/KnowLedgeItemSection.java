@@ -104,9 +104,6 @@ public class KnowLedgeItemSection extends StatelessSection {
             case 5:
                 ShowFeelingActivity.launch(mActivity,item_id);
                 break;
-            default:
-                ShowCommonDefaultActivity.launch(mActivity,item_id);
-                break;
         }
     }
 

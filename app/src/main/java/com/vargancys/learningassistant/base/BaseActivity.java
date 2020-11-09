@@ -17,10 +17,9 @@ import butterknife.Unbinder;
  * time  : 2020/02/29
  * version:1.0
  */
-public abstract class BaseActivity<P extends BasePresenter,CONTRACT> extends AppCompatActivity implements BaseCallBackListener {
+public abstract class BaseActivity extends AppCompatActivity implements BaseCallBackListener {
     private Unbinder binder;
     private Context context;
-    private P presenter;
     @LayoutRes
     public abstract int getLayoutId();
 
@@ -30,8 +29,6 @@ public abstract class BaseActivity<P extends BasePresenter,CONTRACT> extends App
         setContentView(getLayoutId());
         binder = ButterKnife.bind(this);
         context = this;
-        presenter = getPresenter();
-        presenter.bindView(this);
         initView();
         initToolbar();
         loadData();
@@ -47,15 +44,11 @@ public abstract class BaseActivity<P extends BasePresenter,CONTRACT> extends App
 
     public void loadData(){}
 
-    public abstract CONTRACT getContract();
-
-    public abstract P getPresenter();
     public void error(Exception e){};
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.unBindView();
         if(binder != null){
             binder.unbind();
         }

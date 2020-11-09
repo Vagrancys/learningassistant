@@ -29,7 +29,7 @@ public class ArticlePresenter implements IBasePresenter<ArticleBean> {
 
     @Override
     public void add(ArticleBean object) {
-
+        ArticleRequest.getInstance().addArticle(object,getNoDataListener());
     }
 
     @Override
@@ -240,5 +240,9 @@ public class ArticlePresenter implements IBasePresenter<ArticleBean> {
         }else{
             view.isPassFail();
         }
+    }
+
+    public void isEmpty() {
+        ((InsertArticleView) mView).isEmpty();
     }
 }

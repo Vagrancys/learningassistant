@@ -105,9 +105,6 @@ public class ProblemItemActivity extends BaseActivity implements ProblemItemView
             case 5:
                 ShowFeelingActivity.launch(this,item_id);
                 break;
-            default:
-                ShowCommonDefaultActivity.launch(this,item_id);
-                break;
         }
     }
 
